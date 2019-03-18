@@ -1,9 +1,8 @@
 /*
-	Copyright (C) 1999_2006, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
-#ifndef _UTILS_F0DB6EF6_A37B_410a_929F_A4D55EDD864C
-#define _UTILS_F0DB6EF6_A37B_410a_929F_A4D55EDD864C
+#pragma once
 
 #define SYMLINKARGS L"symlink.args"
 
@@ -18,6 +17,3 @@ ForkExeHelper(
 	wchar_t*	curdir,
 	wchar_t*	sla_quoted
 );
-
-
-#endif

@@ -1,7 +1,8 @@
-﻿
+﻿/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
-#ifndef hardlink_h_7988191F_6E30_4dcd_9381_83299250C6A2
-#define hardlink_h_7988191F_6E30_4dcd_9381_83299250C6A2
+#pragma once
 
 #if !defined EXTERN
 #define EXTERN extern
@@ -13,17 +14,18 @@
 
 #define USE_VECTOR
 
-
 // define if we don't want to fork symlink.exe to perform operations
 // but instead do it in hardlinkshellext.dll
-// #define SYMLINK_INPROC
+// #define SYMLINK_FORCE
+// #define SYMLINK_OUTPROC 0
+
+// define if we want to fork symlink.exe to perform all operations
+// #define SYMLINK_FORCE
+// #define SYMLINK_OUTPROC 1
 
 // #define FIND_HARDLINK_DEBUG // DEBUG_DEFINES
 
-// Rockall is controlled via the project settings, because we currently do not have Rockall for Itanium
-// 
-// #define USE_ROCKALL_HEAPMANAGER
-
+// Used in ln.exe to do all operations in sequence. This eases debugging a lot
 // #define SEPERATED_CLONE_MIRROR // DEBUG_DEFINES
 
 // #define _HTRACE_DEBUG // DEBUG_DEFINES
@@ -44,16 +46,23 @@
 
 // #define DEBUG_ARCHIVE_COMPLIANT
 
+// Disable the Stopwatch functionality
+// #define DEBUG_STOPWATCH
+
+// Use STL regular Expression system. This is just an experiment, an dit turned out, that regex is 13t imes slower on average 
+// for a simple regex which has been transformed from a wildcard. Using one expression on 401000 items takes 1500 mSec with tre
+// The same with regex takes 20000 mSec. So for now we will not move to c++ 11 regex, because it is too slow. 
+// #define REGEXP_STL
+
 // Test a safe delete via DeleteSiblings(), so that Hardlink Attribute Teleportation does
 // not interfere the delorean process
 // #define DEBUG_DS
-
 
 #define NTQUERYDIRECTORY_BUFSIZE 100000
 
 #define FAT_SERIAL_NUMBER 0xffffffff
 
-#define STACKSIZE 15000000
+#define STACKSIZE 45000000
 
 #define ERROR_END_OF_RECURSION					30000
 
@@ -148,7 +157,7 @@ const int cMaxHardlinkLimit = 1023;
 #define LSE_REGISTRY_HARDLINK_ICON              L"Hardlink Icon"
 #define LSE_REGISTRY_JUNCTION_ICON              L"Junction Icon"
 #define LSE_REGISTRY_SYMBOLICLINK_ICON          L"SymbolicLink Icon"
-#define LSE_CURRENT_VERSION                     3872
+#define LSE_CURRENT_VERSION                     3913
 #define LSE_REGISTRY_SUPPORTED_FILESYSTEMS      L"ThirdPartyFileSystems"
 
 #define SE_INCREASE_WORKINGSET_PRIVILEGE             TEXT("SeIncreaseWorkingSetPrivilege")
@@ -186,39 +195,15 @@ extern "C"
 		LPSECURITY_ATTRIBUTES sa
 	);
 
-	typedef HANDLE (__stdcall *FindFirstFileNameW_t)(
-		LPCWSTR lpFileName,
-		DWORD dwFlags,
-		LPDWORD StringLength,
-		PWCHAR LinkName
-	);
-
-	typedef BOOL (__stdcall *FindNextFileNameW_t)(
-		HANDLE hFindStream,
-		LPDWORD StringLength,
-		PWCHAR LinkName
-		);
-
   typedef BOOL (__stdcall *IsUserAnAdmin_t)(
 	);
-
-  typedef BOOL (__stdcall *GetVolumeNameForVolumeMountPoint_t)(
-    LPCTSTR lpszVolumeMountPoint,
-    LPTSTR lpszVolumeName,
-    DWORD cchBufferLength
-  );
-
 }
 
 EXTERN CreateSymboliclinkW_t		gpfCreateSymbolicLink;
 EXTERN CreateHardlinkW_t			  gpfCreateHardlink;
-EXTERN FindFirstFileNameW_t			pfnFindFirstFileNameW;
-EXTERN FindNextFileNameW_t			pfnFindNextFileNameW;
 EXTERN IsUserAnAdmin_t			    gpfIsUserAnAdmin;
-EXTERN GetVolumeNameForVolumeMountPoint_t pfnGetVolumeNameForVolumeMountPoint;
 
 EXTERN OSVERSIONINFO            gVersionInfo;
-EXTERN bool                     gbXpSymlinks;
 
 #define SYMLINK_FLAG_FILE 	                    0x00
 #define SYMLINK_FLAG_DIRECTORY 	                0x01
@@ -275,9 +260,9 @@ MakeAnsiString(
 
 void
 stringreplace(
-  std::wstring& aThis, 
-  std::wstring& src, 
-  std::wstring& dest
+  wstring& aThis, 
+  wstring& src, 
+  wstring& dest
 );
 
 bool
@@ -295,7 +280,7 @@ CheckFileSystemType(
 //----------------------------------------------------------------------
 BOOL
 EnableTokenPrivilege(
-  PTCHAR PrivilegeName
+  __in LPCWSTR	PrivilegeName
 );
 
 void
@@ -303,20 +288,20 @@ InitCreateHardlink();
 
 int
 CreateHardlink(
-	LPCWSTR	fromFile,
-	LPCWSTR	toFile
+  __in    LPCWSTR	fromFile,
+  __in    LPCWSTR	toFile
 );
 
 bool
 IsVeryLongPath(
-   LPCWSTR lpPathName
+  __in    LPCWSTR lpPathName
 );
 
 int
 ResolveSymboliclink(
-   LPCWSTR  lpSymlinkFileName,
-   LPCWSTR lpTargetFileName,
-   LPWSTR  lpSymlinkTarget
+  __in    LPCWSTR   lpSymlinkFileName,
+  __in    LPCWSTR   lpTargetFileName,
+  __inout LPWSTR    lpSymlinkTarget
 );
 
 int
@@ -326,10 +311,10 @@ FixVeryLongPath(
 
 int
 CreateSymboliclink(
-  LPWSTR    lpSymlinkFileName,
-  LPWSTR    lpTargetFileName,
-  DWORD     dwFlags,
-  LPCWSTR   lpFakeSymlinkFileName = NULL
+  __in  LPWSTR    lpSymlinkFileName,
+  __in  LPCWSTR   lpTargetFileName,
+  __in  DWORD     dwFlags,
+  __in  LPCWSTR   lpFakeSymlinkFileName = NULL
 );
 
 void
@@ -339,7 +324,7 @@ HTRACE (
 
 BOOL
 ProbeTokenPrivilege(
-  PTCHAR PrivilegeName
+  __in LPCWSTR PrivilegeName
 );
 
 typedef DWORD (__stdcall *ThrFuncType)(void*);
@@ -384,8 +369,8 @@ enum Operations
 
 
 BOOL RemoveDir (
-  LPCWSTR aPath,
-  BOOL    aQuiet
+  __in  LPCWSTR aPath,
+  const BOOL aQuiet
 );
 
 struct	XDelStatistics
@@ -420,7 +405,7 @@ int XDel_recursive (
 //--------------------------------------------------------------------
 int 
 ProbeHardlink(
-	LPCTSTR		aFileName
+	__in LPCTSTR		aFileName
 );
 
 //--------------------------------------------------------------------
@@ -434,9 +419,9 @@ ProbeHardlink(
 //--------------------------------------------------------------------
 int
 CreateJunction( 
-	PCWCH   LinkDirectory, 
-	PCWCH   LinkTarget,
-  DWORD   dwFlags = 0
+  __in  PCWCH   LinkDirectory,
+  __in  PCWCH   LinkTarget,
+  __in  DWORD   dwFlags = 0
 );
 
 extern "C"
@@ -453,9 +438,9 @@ extern "C"
 int
 __stdcall
 CreateSymboliclinkRaw( 
-	LPCWSTR lpTargetFileName,
-	LPCWSTR lpSymlinkFileName,
-  DWORD  dwFlags
+  __in    LPCWSTR       lpTargetFileName,
+  __in    LPCWSTR       lpSymlinkFileName,
+  __in    const DWORD   dwFlags
 );
 }
 
@@ -470,13 +455,12 @@ CreateSymboliclinkRaw(
 //   REPARSE_POINT_JUNCTION
 //   REPARSE_POINT_MOUNTPOINT
 //   REPARSE_POINT_SYMBOLICLINK
-// This coding is partially taken from www.sysinternals.com
 //
 //--------------------------------------------------------------------
 int 
 ProbeReparsePoint( 
-  PCWSTR  FileName,
-  PWCHAR	aDestination
+  __in      LPCWSTR  FileName,
+  __inout   PWCHAR	aDestination
 );
 
 //--------------------------------------------------------------------
@@ -490,8 +474,8 @@ ProbeReparsePoint(
 //--------------------------------------------------------------------
 BOOL 
 ProbeJunction( 
-	PCWSTR   FileName,
-	PWCHAR   raDestination
+	__in    LPCWSTR  aFileName,
+  __inout PWCHAR   aDestination
 );
 
 //--------------------------------------------------------------------
@@ -506,7 +490,7 @@ class SringSorter
 {
 	public:
 		bool
-		operator()(const std::wstring& first, const std::wstring& second) const
+		operator()(const wstring& first, const wstring& second) const
 		{
 			return first <= second ? true : false;
 		}
@@ -566,11 +550,11 @@ IsFileSystemNtfs (
 );
 
 int ReparseCanonicalize (
-	PWCHAR		aPath, 
-	PWCHAR		aDestination
+  __in    LPCWSTR		aPath,
+	__inout LPWSTR		aDestination
 );
 
-typedef std::vector<int>	_Of;
+typedef vector<int>	_Of;
 
 #if defined _DEBUG
 int
@@ -593,8 +577,8 @@ Test_FindFreeNumber(
 //--------------------------------------------------------------------
 int
 CreateMountPoint (
-	PWCHAR aSourceDirectory, 
-	PWCHAR aDestinationDirectory
+  __in    LPCWSTR aSourceDirectory,
+  __in    LPCWSTR aDestinationDirectory
 );
 
 //--------------------------------------------------------------------
@@ -606,8 +590,8 @@ CreateMountPoint (
 //--------------------------------------------------------------------
 BOOL
 TranslateMountPoint (
-  PWCHAR  aDestination,
-  PWCHAR  aVolumeName
+  __inout LPWSTR  aDestination,
+  __in    LPCWSTR aVolumeName
 );
 
 //--------------------------------------------------------------------
@@ -620,9 +604,9 @@ TranslateMountPoint (
 //--------------------------------------------------------------------
 BOOL
 ProbeMountPoint (
-	PCWSTR	aDirectory,
-	PWCHAR  aDestination,
-	PWCHAR  aVolumeName
+  __in    LPCWSTR aDirectory,
+  __inout LPWSTR  aDestination,
+  __in    LPWSTR  aVolumeName
 );
 
 //--------------------------------------------------------------------
@@ -634,7 +618,7 @@ ProbeMountPoint (
 //--------------------------------------------------------------------
 int
 DeleteMountPoint (
-	PWCHAR aDirectory
+  __in    LPCWSTR  aDirectory
 );
 
 //--------------------------------------------------------------------
@@ -646,8 +630,8 @@ DeleteMountPoint (
 //--------------------------------------------------------------------
 BOOL 
 ProbeSymbolicLink( 
-	PCWSTR  aFileName,
-	PWCHAR  aDestination
+  __in    LPCWSTR aFileName,
+  __inout LPWSTR  aDestination
 );
 
 //--------------------------------------------------------------------
@@ -778,9 +762,9 @@ bool CheckIfOnSameDrive(
 class _ArgvPath
 {
 public:
-  std::wstring  Argv;
-  std::wstring  ArgvOrg;
-  std::wstring  ArgvDest;
+  wstring  Argv;
+  wstring  ArgvOrg;
+  wstring  ArgvDest;
   int           DriveType;
   int           FileAttribute;
   int           Flags;
@@ -794,14 +778,14 @@ public:
 };
 
 
-typedef std::vector<_ArgvPath>	_ArgvList;
-typedef std::vector<_ArgvPath>::iterator	_ArgvListIterator;
+typedef vector<_ArgvPath>	_ArgvList;
+typedef vector<_ArgvPath>::iterator	_ArgvListIterator;
 
-typedef std::vector<std::wstring>	_StringList;
-typedef std::vector<std::wstring>::iterator	_StringListIterator;
+typedef vector<wstring>	_StringList;
+typedef vector<wstring>::iterator	_StringListIterator;
 
-typedef std::pair<std::wstring, DWORD> _StringMapPair;
-typedef std::map<std::wstring, DWORD> _StringMap;
+typedef pair<wstring, DWORD> _StringMapPair;
+typedef map<wstring, DWORD> _StringMap;
 
 
 
@@ -1080,7 +1064,7 @@ class FileInfo
 
 };
 
-typedef std::vector<FileInfo*>	_Pathes;
+typedef vector<FileInfo*>	_Pathes;
 
 //
 // DupeGroup
@@ -1141,7 +1125,7 @@ class DupeGroup
 		};
 };
 
-typedef std::vector<DupeGroup>	_DupeGroups;
+typedef vector<DupeGroup>	_DupeGroups;
 
 
 //
@@ -1164,7 +1148,34 @@ class StatisticsEvent
 		};
 };
 
-typedef std::list<StatisticsEvent, std::allocator<StatisticsEvent> >	_StatisticsEvent;
+typedef list<StatisticsEvent, allocator<StatisticsEvent> >	_StatisticsEvent;
+
+class uDelta
+{
+public:
+  uDelta() { Reset(); };
+  ~uDelta() { };
+
+#if defined DEBUG_STOPWATCH
+private:
+  LARGE_INTEGER   m_Start;
+  LARGE_INTEGER   m_Value;
+
+public:
+  void Reset() { m_Value.QuadPart = 0; };
+  void Start() { QueryPerformanceCounter(&m_Start); };
+  __int64 Stop() { LARGE_INTEGER stop;  QueryPerformanceCounter(&stop); __int64 delta = stop.QuadPart - m_Start.QuadPart; m_Value.QuadPart += delta; return delta; };
+
+  // Return stopwatch in uS
+  __int64 Get() { LARGE_INTEGER frequency; QueryPerformanceFrequency(&frequency); return (double)m_Value.QuadPart / (double(frequency.QuadPart) / 1000000.0); };
+#else
+  void Reset() { };
+  void Start() { };
+  __int64 Stop() { return 0; };
+  __int64 Get() { return 0; };
+#endif
+};
+
 
 class	CopyStatistics
 {
@@ -1174,6 +1185,9 @@ public:
   SYSTEMTIME	m_StartTime;
 	SYSTEMTIME	m_CopyTime;
 	SYSTEMTIME	m_EndTime;
+
+  void Start() { GetLocalTime(&m_StartTime); };
+  void End() { GetLocalTime(&m_EndTime); };
 
 
   ULONG64		m_DirectoryTotal; // no printout by design
@@ -1253,6 +1267,10 @@ public:
   ULONG64		m_HardlinksTotal; // no printout by design
   ULONG64		m_HardlinksTotalBytes; // no printout by design
 
+  uDelta    m_HeapAllocTime;
+  uDelta    m_HeapDeletionTime;
+  uDelta    m_RegExpMatchTime;
+
 
   // DupeMerge
   ULONG64		m_DupeGroupsTotal;
@@ -1313,14 +1331,14 @@ public:
 class	EnumHardlinkSiblingsGlue
 {
 	public:
-		EnumHardlinkSiblingsGlue();
+    EnumHardlinkSiblingsGlue() {};
 		virtual void Print(wchar_t* pSiblingFileName) = 0;
 
 	protected:	
 		int			m_RefCount;
 
 	public:
-		virtual ~EnumHardlinkSiblingsGlue();
+    virtual ~EnumHardlinkSiblingsGlue() {};
 };
 
 struct map_comp
@@ -1443,8 +1461,8 @@ class AnchorPathCache
     virtual ~AnchorPathCache() { m_AnchorPaths.clear(); };
 };
 
-typedef std::pair<const wchar_t*, DWORD> _DiskSerialMap_Pair;
-typedef std::map<const wchar_t*, DWORD, map_comp> _DiskSerialMap;
+typedef pair<const wchar_t*, DWORD> _DiskSerialMap_Pair;
+typedef map<const wchar_t*, DWORD, map_comp> _DiskSerialMap;
 
 //
 // DiskSerialCache
@@ -1454,8 +1472,8 @@ class DiskSerialCache
   public:
     DiskSerialCache() {};
 
-    typedef std::pair<DWORD, const wchar_t*> _DiskSerialInverseMap_Pair;
-    typedef std::map<DWORD, const wchar_t*, map_comp_DWORD> _DiskSerialInverseMap;
+    typedef pair<DWORD, const wchar_t*> _DiskSerialInverseMap_Pair;
+    typedef map<DWORD, const wchar_t*, map_comp_DWORD> _DiskSerialInverseMap;
 
     int 
     Lookup(
@@ -1481,19 +1499,22 @@ class DiskSerialCache
     virtual ~DiskSerialCache();
 };
 
-//
 // FileInfoContainer
 //
-typedef std::vector<regex_t*>	_RegExpList;
+#if defined REGEXP_STL
+typedef vector<wregex*>	_RegExpList;
+#else
+typedef vector<regex_t*>	_RegExpList;
+#endif
 class FileInfoContainer
 {
 	public:
     FileInfoContainer ();
 
 
-    typedef std::pair<const wchar_t*, FileInfo*> _PathMap_Pair;
+    typedef pair<const wchar_t*, FileInfo*> _PathMap_Pair;
 #if defined USE_VECTOR
-    typedef std::vector<_PathMap_Pair>	_PathVector;
+    typedef vector<_PathMap_Pair>	_PathVector;
 
     struct vector_comp
     {
@@ -1505,7 +1526,7 @@ class FileInfoContainer
     };
 
 #else
-    typedef std::map<const wchar_t*, FileInfo*, map_comp > _PathMap;
+    typedef map<const wchar_t*, FileInfo*, map_comp > _PathMap;
 #endif
 
     int AddDirectoryFast(
@@ -1772,6 +1793,7 @@ class FileInfoContainer
 
       AsyncContext*         m_pContext;
       FileInfoContainer*    m_This;
+      CopyStatistics*	      m_pStats;
     };
 
     static
@@ -1781,10 +1803,11 @@ class FileInfoContainer
       DisposeParams* pParams
     );
 
-		int
-		_Dispose(
-      AsyncContext*         apContext
-		);
+    int
+    _Dispose(
+      AsyncContext*         apContext,
+      CopyStatistics*	      aStats
+    );
 
     int
     CopyDirectoriesSilent(
@@ -1824,8 +1847,8 @@ class FileInfoContainer
     void
     CopyReparsePoints_Junction_Statistics(
       int&                      a_result,
-      wchar_t*                  a_pSourceFilename,
-      CopyStatistics*		        a_pStats,
+      const wchar_t*            a_pSourceFilename,
+      CopyStatistics*           a_pStats,
       _PathNameStatusList*      a_pPathNameStatusList
     );
 
@@ -2096,7 +2119,7 @@ class FileInfoContainer
     FileInfoContainer*        m_pLookAsideFileInfoContainer;
     int                       m_CurDestPathIdx;
     size_t                    m_CurSourcePathLen;
-    bool                      m_SmartCopyPrepared;
+    bool                      m_Prepared;
     int                       m_Flags;
     int                       m_Flags2;
 
@@ -2145,14 +2168,26 @@ class FileInfoContainer
 			int		aPrintSizePos
 		);
 
-    __int64
-    PrepareSmartCopy(
+    enum ItemWeight
+    {
+      eHardlinkWeight = 100,
+      eDirectoryWeight = 100,
+      eTimeStampWeight = 50,
+      eReparseWeight = 100
+    };
+
+    int 
+    Prepare(
       FileInfoContainer::CopyReparsePointFlags  aMode,
-      CopyStatistics*	                          pStats
+      CopyStatistics*	                          pStats,
+      Effort *                                  aEffort = NULL
     );
 
-    __int64
-    PrepareSmartMove(
+    int
+    FileInfoContainer::
+    EstimateEffort(
+      FileInfoContainer::CopyReparsePointFlags  aMode,
+      Effort *                                  aEffort = NULL
     );
 
     BOOL
@@ -2259,46 +2294,47 @@ class FileInfoContainer
     );
 
     int
-		SmartClean(
-	    CopyStatistics*	      pStats,
+    SmartClean(
+      CopyStatistics*	      pStats,
       _PathNameStatusList*  aPathNameStatusList,
       AsyncContext*         apContext
-		);
+    );
 
     int
-		SmartMirror(
-	    CopyStatistics*	      pStats,
+    SmartMirror(
+      CopyStatistics*	      pStats,
       _PathNameStatusList*  aPathNameStatusList,
       AsyncContext*         apContext
-		);
+    );
 
-		int
-		FindHardLink(
-      _ArgvList&            aSrcPath, 
+    int
+    FindHardLink(
+      _ArgvList&            aSrcPath,
       int		                aRefCount,
-	    CopyStatistics*	      pStats,
+      CopyStatistics*	      pStats,
       _PathNameStatusList*  aPathNameStatusList,
       AsyncContext*         apContext
-		);
+    );
 
-		int
-		FindSingleUnsaturated(
-			int		aPrintSizePos
-		);
+    int
+    FindSingleUnsaturated(
+      int		aPrintSizePos
+    );
 
-		int
-		EnumHardlinkSiblings(
-			PWCHAR						          aSrcPath, 
-			PWCHAR						          aExcludePath, 
-			EnumHardlinkSiblingsGlue*	  pEnumHardlinkSiblingsGlue,
-			bool						            aQuiet,
+    int
+    EnumHardlinkSiblings(
+      PWCHAR						          aSrcPath,
+      PWCHAR						          aExcludePath,
+      EnumHardlinkSiblingsGlue*	  pEnumHardlinkSiblingsGlue,
+      bool						            aQuiet,
       _PathNameStatusList*        aPathNameStatusList,
       AsyncContext*               apContext
-		);
+    );
 
     int
  		Dispose(
-      AsyncContext*         apContext
+      AsyncContext*         apContext,
+      CopyStatistics*	      apStats
 		);
 
     void
@@ -2368,7 +2404,8 @@ class FileInfoContainer
     EndLogging(
       FILE*                 a_File,
       _PathNameStatusList&  r_PathNameStatusList,
-      CopyStatistics&       r_CopyStatistics
+      CopyStatistics&       r_CopyStatistics,
+      FileInfoContainer::CopyReparsePointFlags  aMode = FileInfoContainer::eSmartCopy
     );
 
     void
@@ -2821,8 +2858,9 @@ class FileInfoContainer
 
 		int
 		Dispose(
-      _Pathes::iterator	  aBegin,
-	    _Pathes::iterator	  aEnd
+      _Pathes::iterator	    aBegin,
+	    _Pathes::iterator	    aEnd,
+      CopyStatistics*	      apStats
     );
 
     int
@@ -3051,7 +3089,8 @@ class SupportedFileSystems
     ~SupportedFileSystems() {};
 
   bool IsSupportedFileSystem(const wchar_t*	aFileSystemName);
-  bool Init();
+  bool ReadFromRegistry();
+  void Add(const wchar_t*	aFileSystemName) { m_ThirdPartyFileSystems.push_back(aFileSystemName); };
 
   private:
     _StringList m_ThirdPartyFileSystems;
@@ -3082,10 +3121,6 @@ typedef BOOL (WINAPI *K32EnumProcessModulesEx_t)(
   IN    DWORD dwFilterFlag
 );
 
-#define LIST_MODULES_32BIT 0x01
-#define LIST_MODULES_64BIT 0x02
-#define LIST_MODULES_ALL 0x03
-
 
 wchar_t * __cdecl wcseistr (
         const wchar_t * wcs1,
@@ -3105,5 +3140,3 @@ wchar_t* GetRelativeFilename(
   wchar_t *currentDirectory, 
   wchar_t *absoluteFilename
 );
-
-#endif

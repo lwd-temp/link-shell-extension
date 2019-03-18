@@ -95,6 +95,7 @@ BOOL PropPageGeneral::OnInitDialog()
     // With WindowsXP gray out the Backup Option if the user does not hold the backup privs
     BOOL b = EnableTokenPrivilege(SE_BACKUP_NAME);
     BOOL r = EnableTokenPrivilege(SE_RESTORE_NAME);
+    EnableTokenPrivilege(SE_SECURITY_NAME);
     if ( ((FALSE == b) || (FALSE == r)) )
     {
       // And disable the backup

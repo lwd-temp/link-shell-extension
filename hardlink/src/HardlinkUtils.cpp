@@ -14,10 +14,6 @@
 
 #include "HardlinkUtils.h"
 
-#if defined USE_ROCKALL_HEAPMANAGER
-    extern FAST_HEAP MyHeap;
-#endif
-
 extern FILE* gStdOutFile;
 
 WaitQueue::
@@ -73,14 +69,186 @@ WaitMultiple()
       CloseHandle(m_Handles[d]);
 };
 
+// ProgressPrediction
+//
+ProgressPrediction::ProgressPrediction()
+{
+}
+
+ProgressPrediction::~ProgressPrediction()
+{
+}
+
+// ProgressPrediction
+//
+void
+ProgressPrediction::
+SetStart(const Effort& aMaxProgress) 
+{ 
+  SYSTEMTIME  ct;
+  GetLocalTime(&ct);
+
+  SystemTimeToFileTime(&ct, &m_Start.first.FileTime);
+
+  // Furthermore reduce accuracy to 1/4 of a second
+  m_Start.first.ul64DateTime >>= cAccuracy;
+  m_Start.second = aMaxProgress;
+
+  m_Increment = aMaxProgress.m_Points.load() / 100;
+
+};
+
+void
+ProgressPrediction::
+Duration(SYSTEMTIME& aDuration, Effort& a_Effort)
+{
+  SYSTEMTIME  currentTime;
+  GetLocalTime(&currentTime);
+
+  FILETIME64  currentFileTime;
+  SystemTimeToFileTime(&currentTime, &currentFileTime.FileTime);
+
+  FILETIME64 duration;
+  duration.ul64DateTime = currentFileTime.ul64DateTime - (m_Start.first.ul64DateTime << cAccuracy);
+
+  FileTimeToSystemTime(&duration.FileTime, &aDuration);
+  a_Effort = m_Start.second;
+}
+
+
+int
+ProgressPrediction::
+AddSample(
+  const Effort&   aProgress, 
+  const Effort*   apProgressOffset
+)
+{
+  if (m_Values.size() >= cMaxSamples)
+    m_Values.pop_front();
+
+  // Invert the progress, because this works by counting down
+  _ProgressSample sample;
+  sample.second = m_Start.second - aProgress;
+
+  // Retrieve time and convert to Filetime
+  SYSTEMTIME    ct;
+  GetLocalTime(&ct);
+  FILETIME64    CurrentTime;
+  SystemTimeToFileTime(&ct, &CurrentTime.FileTime);
+
+  // Also offset the time to m_Start and To stay in the range of __int64 in belows calculation, we shift 
+  // by 18bit which is a factor of 262144 and brings us to an accuracy of ~1/4 a second because FILETIME is
+  // in 100ns
+  sample.first.ul64DateTime = CurrentTime.ul64DateTime >> cAccuracy;
+  sample.first.ul64DateTime -= m_Start.first.ul64DateTime;
+
+  m_Values.push_back(sample);
+
+  __int64 currentPoints = aProgress.m_Points;
+  if (apProgressOffset)
+    currentPoints += apProgressOffset->m_Points;
+
+  return (int)(m_Increment ? currentPoints / m_Increment : 100);
+}
+
+// Calculates the progress and returns and estimate how long progress will last.
+// returns false if prediction is not possible due to unknown endpoint
+bool
+ProgressPrediction::
+TimeLeft(SYSTEMTIME& a_TimeLeft, Effort& a_Effort)
+{
+// #define NEW_PROGRESS_PREDICTION 1
+#if defined NEW_PROGRESS_PREDICTION
+  __int64 SumX = 0;
+  __int64 SumY = m_Start.second.m_Points;
+  __int64 SumXX = 0; 
+  __int64 SumXY = 0; 
+  for (auto sample : m_Values)
+  {
+    SumX += sample.first.ul64DateTime;
+    SumY += sample.second.m_Points;
+    SumXX += sample.first.ul64DateTime * sample.first.ul64DateTime;
+    SumXY += sample.first.ul64DateTime * sample.second.m_Points;
+  }
+
+  // This is the magic math 
+  FILETIME64 EndTime;
+  EndTime.l64DateTime = - (SumY * SumXX - SumX * SumXY) / (m_Values.size() * SumXY - SumX * SumY ) + m_Start.first.ul64DateTime;
+//  EndTime.l64DateTime =  (SumY * SumXX - SumX * SumXY) / (SumX * SumY - m_Values.size() * SumXY ) + m_Start.first.ul64DateTime;
+  
+  // Shift back in the range of 100ns
+  EndTime.ul64DateTime <<= cAccuracy;
+
+  // Get current time
+  SYSTEMTIME    CurrentTime;
+  GetLocalTime(&CurrentTime);
+  FILETIME64    CurrentFileTime;
+  SystemTimeToFileTime(&CurrentTime, &CurrentFileTime.FileTime);
+
+  FILETIME64 TimeLeft;
+  TimeLeft.ul64DateTime = EndTime.ul64DateTime - CurrentFileTime.ul64DateTime;
+//  TimeLeft.ul64DateTime = CurrentFileTime.ul64DateTime - EndTime.ul64DateTime;
+  FileTimeToSystemTime(&TimeLeft.FileTime, &a_TimeLeft);
+
+  return true;
+#else
+  SYSTEMTIME    CurrentTime;
+  GetLocalTime(&CurrentTime);
+  FILETIME64    CurrentFileTime;
+  SystemTimeToFileTime(&CurrentTime, &CurrentFileTime.FileTime);
+
+  CurrentFileTime.ul64DateTime >>= cAccuracy;
+  __int64 dX = CurrentFileTime.ul64DateTime - m_Start.first.ul64DateTime;
+  __int64 dY = m_Start.second.m_Points - m_Values.back().second.m_Points;
+  __int64 k;
+  
+  // If things are very fast, we might enter this in no time, thus ....
+  if (dX == 0)
+    k = 0;
+  else
+    k = dY / dX;
+
+  FILETIME64 EndTime;
+  // Check if prediction is unsure
+  if (k > 0)
+  {
+    EndTime.l64DateTime = m_Start.second.m_Points.load() / k;
+
+    FILETIME64 TimeLeft;
+    TimeLeft.ul64DateTime = m_Start.first.ul64DateTime + EndTime.ul64DateTime - CurrentFileTime.ul64DateTime;
+    // Shift back in the range of 100ns
+    TimeLeft.ul64DateTime <<= cAccuracy;
+
+    FileTimeToSystemTime(&TimeLeft.FileTime, &a_TimeLeft);
+    a_Effort = m_Values.back().second;
+    return true;
+  }
+  else
+    return false;
+#endif
+}
+
+char* FormatNumber(char* aResult, ULONG64 aNumber)
+{
+  locale::global(locale(""));
+
+  // Make a stringstreams for output
+  //
+  ostringstream oss;
+
+  oss << aNumber;
+  strcpy(aResult, oss.str().c_str());
+  return aResult;
+}
+
 char* FormatG(char* aResult, ULONG64 aNumber)
 {
-  std::locale::global(std::locale(""));
+  locale::global(locale(""));
 
   //
 	// Make a stringstreams for output
 	//
-	std::ostringstream oss;
+	ostringstream oss;
 
   if (aNumber < 1024 * 1024)
   {
@@ -153,38 +321,38 @@ int PrintTrueSizeCopyStatsNormal(
 	//
 	// Make a stringstreams for output
 	//
-	std::locale localeDeu( "" );
-	std::ostringstream oss;
+	locale localeDeu( "" );
+	ostringstream oss;
 	oss.imbue( localeDeu );
 
-	oss << std::endl;
+	oss << endl;
 
-  oss << "                        Total               Bytes" << std::endl; 
+  oss << "                        Total               Bytes" << endl; 
 
   oss << "    File:";
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_FilesTotal;
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_BytesTotal;
-	oss << std::endl;
+  oss << setfill(' ') << setw(20) << aStats.m_FilesTotal;
+  oss << setfill(' ') << setw(20) << aStats.m_BytesTotal;
+	oss << endl;
 
   oss << "Hardlink:";
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_FilesTotal - aStats.m_HardlinksTotal;
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_BytesTotal - aStats.m_HardlinksTotalBytes;
-  oss << std::endl;
+  oss << setfill(' ') << setw(20) << aStats.m_FilesTotal - aStats.m_HardlinksTotal;
+  oss << setfill(' ') << setw(20) << aStats.m_BytesTotal - aStats.m_HardlinksTotalBytes;
+  oss << endl;
 
   oss << "   Total:";
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_FilesTotal - (aStats.m_FilesTotal - aStats.m_HardlinksTotal);
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_BytesTotal - (aStats.m_BytesTotal - aStats.m_HardlinksTotalBytes);
-  oss << std::endl;
+  oss << setfill(' ') << setw(20) << aStats.m_FilesTotal - (aStats.m_FilesTotal - aStats.m_HardlinksTotal);
+  oss << setfill(' ') << setw(20) << aStats.m_BytesTotal - (aStats.m_BytesTotal - aStats.m_HardlinksTotalBytes);
+  oss << endl;
 
   oss << "  Folder:";
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_DirectoryTotal;
-  oss << std::setfill(' ') << std::setw(20) << "-";
-	oss << std::endl;
+  oss << setfill(' ') << setw(20) << aStats.m_DirectoryTotal;
+  oss << setfill(' ') << setw(20) << "-";
+	oss << endl;
 
   oss << "Junction:";
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_JunctionsTotal;
-  oss << std::setfill(' ') << std::setw(20) << "-";
-	oss << std::endl;
+  oss << setfill(' ') << setw(20) << aStats.m_JunctionsTotal;
+  oss << setfill(' ') << setw(20) << "-";
+	oss << endl;
 
   // Only show the statistics for Symbolic links with Windows7 or show it
   // if we are under XP, but someone has a symbolic link on a filesystem
@@ -192,11 +360,11 @@ int PrintTrueSizeCopyStatsNormal(
   if (gpfCreateSymbolicLink || aStats.m_SymlinksTotal)
   {
     oss << " Symlink:";
-    oss << std::setfill(' ') << std::setw(20) << aStats.m_SymlinksTotal;
-    oss << std::setfill(' ') << std::setw(20) << "-";
-	  oss << std::endl;
+    oss << setfill(' ') << setw(20) << aStats.m_SymlinksTotal;
+    oss << setfill(' ') << setw(20) << "-";
+	  oss << endl;
   }
-  oss << std::endl;
+  oss << endl;
     
   if (!a_AutomatedTest)
   {
@@ -237,11 +405,11 @@ int PrintTrueSizeCopyStatsNormal(
     }
 
 
-    oss << "                      Overall" << std::endl;
+    oss << "                      Overall" << endl;
 
     oss << "   Times:";
-    oss << std::setfill(' ') << std::setw(20) << TotalDurationStr;
-    oss << std::endl;
+    oss << setfill(' ') << setw(20) << TotalDurationStr;
+    oss << endl;
   }
 
   fwprintf(a_OutputFile, L"%S", oss.str().c_str());
@@ -318,51 +486,51 @@ int PrintDeloreanCopyStatsNormal(
 	//
 	// Make a stringstreams for output
 	//
-	std::ostringstream oss;
+	ostringstream oss;
 
   char  tmpstr[MAX_PATH];
 
 
 //	oss.imbue( localeDeu );
-	oss << std::endl;
+	oss << endl;
 
   oss << "              Total    Copied    Linked   Skipped";
   if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror )
     oss << "   Removed";
-  oss << "  Excluded    Failed" << std::endl; 
+  oss << "  Excluded    Failed" << endl; 
 
   oss << "  Folder:";
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_DirectoryTotal);
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_DirectoryCreated);
-  oss << std::setfill(' ') << std::setw(10) << "-";
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_DirectoryCreateSkipped);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_DirectoryTotal);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_DirectoryCreated);
+  oss << setfill(' ') << setw(10) << "-";
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_DirectoryCreateSkipped);
   if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_DirectoriesCleaned);
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_DirectoriesExcluded);
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_DirectoryCreateFailed + aStats.m_DirectoriesCleanedFailed);
-	oss << std::endl;
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_DirectoriesCleaned);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_DirectoriesExcluded);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_DirectoryCreateFailed + aStats.m_DirectoriesCleanedFailed);
+	oss << endl;
 
   oss << "    File:";
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_FilesTotal);
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_FilesCopied);
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_FilesLinked);
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_FilesCopySkipped + aStats.m_FilesLinkSkipped); 
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesTotal);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesCopied);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesLinked);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesCopySkipped + aStats.m_FilesLinkSkipped); 
   if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_FilesCleaned);
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_FilesExcluded);
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_FilesCopyFailed + aStats.m_FilesLinkFailed + aStats.m_FilesCleanedFailed);
-	oss << std::endl;
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesCleaned);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesExcluded);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesCopyFailed + aStats.m_FilesLinkFailed + aStats.m_FilesCleanedFailed);
+	oss << endl;
 
   oss << "Junction:";
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_JunctionsTotal);
-  oss << std::setfill(' ') << std::setw(10) << "-";
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_JunctionsRestored + aStats.m_JunctionsDangling);
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_JunctionsRestoreSkipped);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_JunctionsTotal);
+  oss << setfill(' ') << setw(10) << "-";
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_JunctionsRestored + aStats.m_JunctionsDangling);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_JunctionsRestoreSkipped);
   if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_JunctionsCleaned);
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_JunctionsExcluded + aStats.m_JunctionsCropped);
-  oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_JunctionsRestoreFailed + aStats.m_JunctionsCleanedFailed);
-	oss << std::endl;
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_JunctionsCleaned);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_JunctionsExcluded + aStats.m_JunctionsCropped);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_JunctionsRestoreFailed + aStats.m_JunctionsCleanedFailed);
+	oss << endl;
 
   // Mountpoints, but only if they were part of the operation
   if (
@@ -378,15 +546,15 @@ int PrintDeloreanCopyStatsNormal(
   )
   {
     oss << "MountPnt:";
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_MountpointsTotal);
-    oss << std::setfill(' ') << std::setw(10) << "-";
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_MountpointsRestored + aStats.m_MountpointsDangling);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_MountpointsRestoreSkipped);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_MountpointsTotal);
+    oss << setfill(' ') << setw(10) << "-";
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_MountpointsRestored + aStats.m_MountpointsDangling);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_MountpointsRestoreSkipped);
     if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-      oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_MountpointsCleaned);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_MountpointsExcluded + aStats.m_MountpointsCropped);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_MountpointsRestoreFailed + aStats.m_MountpointsCleanedFailed);
-	  oss << std::endl;
+      oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_MountpointsCleaned);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_MountpointsExcluded + aStats.m_MountpointsCropped);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_MountpointsRestoreFailed + aStats.m_MountpointsCleanedFailed);
+	  oss << endl;
   }
 
   // Unknown Reparsepoints, but only if they were part of the operation
@@ -403,15 +571,15 @@ int PrintDeloreanCopyStatsNormal(
   )
   {
     oss << "RparsUkn:";
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_ReparsePointTotal);
-    oss << std::setfill(' ') << std::setw(10) << "-";
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_ReparsePointRestored + aStats.m_ReparsePointDangling);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_ReparsePointRestoreSkipped);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_ReparsePointTotal);
+    oss << setfill(' ') << setw(10) << "-";
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_ReparsePointRestored + aStats.m_ReparsePointDangling);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_ReparsePointRestoreSkipped);
     if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-      oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_ReparsePointCleaned);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_ReparsePointExcluded + aStats.m_ReparsePointCropped);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_ReparsePointRestoreFailed + aStats.m_ReparsePointCleanedFailed);
-	  oss << std::endl;
+      oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_ReparsePointCleaned);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_ReparsePointExcluded + aStats.m_ReparsePointCropped);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_ReparsePointRestoreFailed + aStats.m_ReparsePointCleanedFailed);
+	  oss << endl;
   }
 
 
@@ -421,28 +589,28 @@ int PrintDeloreanCopyStatsNormal(
   if (gpfCreateSymbolicLink || aStats.m_SymlinksTotal)
   {
     oss << " Symlink:";
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_SymlinksTotal);
-    oss << std::setfill(' ') << std::setw(10) << "-";
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestored + aStats.m_SymlinksDangling);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestoreSkipped);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksTotal);
+    oss << setfill(' ') << setw(10) << "-";
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestored + aStats.m_SymlinksDangling);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestoreSkipped);
     if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-      oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_SymlinksCleaned);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_SymlinksExcluded + aStats.m_SymlinksCropped);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestoreFailed + aStats.m_SymlinksCleanedFailed);
-	  oss << std::endl;
+      oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksCleaned);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksExcluded + aStats.m_SymlinksCropped);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestoreFailed + aStats.m_SymlinksCleanedFailed);
+	  oss << endl;
   }
     
     oss << "    Byte:";
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_BytesTotal);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_BytesCopied);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_BytesLinked);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_BytesCopySkippped + aStats.m_BytesLinkSkipped);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesTotal);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCopied);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesLinked);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCopySkippped + aStats.m_BytesLinkSkipped);
     if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-      oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_BytesCleaned);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_BytesExcluded);
-    oss << std::setfill(' ') << std::setw(10) << FormatG(tmpstr, aStats.m_BytesCopyFailed + aStats.m_BytesLinkFailed);
-	  oss << std::endl;
-	  oss << std::endl;
+      oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCleaned);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesExcluded);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCopyFailed + aStats.m_BytesLinkFailed);
+	  oss << endl;
+	  oss << endl;
 
   // Time calculations
   FILETIME64 StartTime, EndTime;
@@ -536,18 +704,18 @@ int PrintDeloreanCopyStatsNormal(
   }
 
   if ( (aFlags & (FileInfoContainer::eSmartCopy | FileInfoContainer::eSmartMirror)) == (FileInfoContainer::eSmartCopy | FileInfoContainer::eSmartMirror) )
-    oss << "                      Overall               Clone              Mirror" << std::endl;
+    oss << "                      Overall               Clone              Mirror" << endl;
   else
-    oss << "                      Overall" << std::endl;
+    oss << "                      Overall" << endl;
 
   oss << "   Times:";
-  oss << std::setfill(' ') << std::setw(20) << TotalDurationStr;
+  oss << setfill(' ') << setw(20) << TotalDurationStr;
   if ( (aFlags & (FileInfoContainer::eSmartCopy | FileInfoContainer::eSmartMirror)) == (FileInfoContainer::eSmartCopy | FileInfoContainer::eSmartMirror) )
   {
-    oss << std::setfill(' ') << std::setw(20) << CloneDurationStr;
-    oss << std::setfill(' ') << std::setw(20) << MirrorDurationStr;
+    oss << setfill(' ') << setw(20) << CloneDurationStr;
+    oss << setfill(' ') << setw(20) << MirrorDurationStr;
   }
-  oss << std::endl;
+  oss << endl;
 
   fwprintf(a_OutputFile, L"%S", oss.str().c_str());
  
@@ -680,48 +848,65 @@ int PrintDupeMergeCopyStats(
 	//
 	// Make a stringstreams for output
 	//
-	std::locale localeDeu( "" );
-	std::ostringstream oss;
+	locale localeDeu( "" );
+	ostringstream oss;
 	oss.imbue( localeDeu );
 
-	oss << std::endl;
+	oss << endl;
 
   if (a_ListOnly)
-    oss << "                         Total     Estimated Dupes" << std::endl; 
+    oss << "                         Total     Estimated Dupes" << endl; 
   else
-    oss << "                         Total             Deduped        Dedup Failed" << std::endl; 
+    oss << "                         Total             Deduped        Dedup Failed" << endl; 
 
   oss << "     File:";
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_FilesSelected;
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_DupeFilesHardlinked;
+  oss << setfill(' ') << setw(20) << aStats.m_FilesSelected;
+  oss << setfill(' ') << setw(20) << aStats.m_DupeFilesHardlinked;
   if (!a_ListOnly)
-    oss << std::setfill(' ') << std::setw(20) << aStats.m_DupeFilesHardlinkFailed;
-	oss << std::endl;
+    oss << setfill(' ') << setw(20) << aStats.m_DupeFilesHardlinkFailed;
+	oss << endl;
 
   oss << "    Bytes:";
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_BytesTotal;
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_DupeBytesSaved;
+  oss << setfill(' ') << setw(20) << aStats.m_BytesTotal;
+  oss << setfill(' ') << setw(20) << aStats.m_DupeBytesSaved;
   if (!a_ListOnly)
-    oss << std::setfill(' ') << std::setw(20) << "-";
-	oss << std::endl;
+    oss << setfill(' ') << setw(20) << "-";
+	oss << endl;
 
-	oss << std::endl;
-	oss << std::endl;
+	oss << endl;
+	oss << endl;
   if (a_ListOnly)
-    oss << "                         Total       Estimated New                 Old" << std::endl; 
+    oss << "                         Total       Estimated New                 Old" << endl; 
   else
-    oss << "                         Total                 New                 Old" << std::endl; 
+    oss << "                         Total                 New                 Old" << endl; 
 
   oss << "DupeGroup:";
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_DupeGroupsTotal;
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_DupeGroupsNew;
-  oss << std::setfill(' ') << std::setw(20) << aStats.m_DupeGroupsOld;
-	oss << std::endl;
-	oss << std::endl;
-	oss << std::endl;
+  oss << setfill(' ') << setw(20) << aStats.m_DupeGroupsTotal;
+  oss << setfill(' ') << setw(20) << aStats.m_DupeGroupsNew;
+  oss << setfill(' ') << setw(20) << aStats.m_DupeGroupsOld;
+	oss << endl;
+	oss << endl;
+	oss << endl;
   fwprintf(a_OutputFile, L"%S", oss.str().c_str());
  
   return 42;
+}
+
+void PrintInternalCounters(
+  FILE*                                     a_OutputFile,
+  CopyStatistics&                           aStats
+)
+{
+  locale localeDeu("");
+  ostringstream oss;
+  oss.imbue(localeDeu);
+
+
+  oss << "Allocation Time[uS]: " << aStats.m_HeapAllocTime.Get() << endl;
+  oss << "Deletion Time[uS]: " << aStats.m_HeapDeletionTime.Get() << endl;
+  oss << "RegExpMatch Time[uS]: " << aStats.m_RegExpMatchTime.Get() << endl;
+
+  fwprintf(a_OutputFile, L"%S", oss.str().c_str());
 }
 
 
@@ -1143,12 +1328,13 @@ int AnalysePathNameStatusJson(
 }
 
 
+/*
 typedef enum  {
   TokenElevationTypeDefault   = 1,
   TokenElevationTypeFull,
   TokenElevationTypeLimited 
 } TOKEN_ELEVATION_TYPE , *PTOKEN_ELEVATION_TYPE;
-
+*/
 /*
 typedef enum _TOKEN_INFORMATION_CLASS {
   TokenUser                    = 1,
@@ -1409,11 +1595,7 @@ GetFileSizeEx2 (
   do
   {
     BufferSize += 0x400;
-#if defined USE_ROCKALL_HEAPMANAGER
-      pBuffer = (LPBYTE)MyHeap.New(BufferSize);
-#else
     pBuffer = (LPBYTE)malloc(BufferSize);
-#endif
 
     Status = NtQueryInformationFile(
       lpExistingFileHandle,
@@ -1446,22 +1628,14 @@ GetFileSizeEx2 (
 
     } while (Offset);
 
-#if defined USE_ROCKALL_HEAPMANAGER
-      MyHeap.Delete(pBuffer);
-#else
     free(pBuffer);
-#endif
     return ERROR_SUCCESS;
   }
   else
   {
     // We might end up here because we had no access on the streams
     // return a proper error code
-#if defined USE_ROCKALL_HEAPMANAGER
-      MyHeap.Delete(pBuffer);
-#else
     free(pBuffer);
-#endif
     return ERROR_FILE_NOT_FOUND;
   }
 }
@@ -1598,11 +1772,7 @@ GetEaRecords(
   *a_dwFileEaInfoSize = 0;
   while (TRUE) 
   {
-#if defined USE_ROCKALL_HEAPMANAGER
-      *a_pFileEaInfo = (PFILE_FULL_EA_INFORMATION)MyHeap.New(BufferSize);
-#else
 	  *a_pFileEaInfo = (PFILE_FULL_EA_INFORMATION)malloc(BufferSize);
-#endif
 
     Status = NtQueryEaFile(
       a_SrcFileHandle,
@@ -1646,11 +1816,8 @@ GetEaRecords(
 
     //  Resize the buffer to something that seems reasonable
     //
-#if defined USE_ROCKALL_HEAPMANAGER
-      MyHeap.Delete(*a_pFileEaInfo);
-#else
     free (*a_pFileEaInfo);
-#endif
+
     BufferSize = FileEaInfo.EaSize * 5 / 4;
 
     // And with the next loop try to retrieve EA records again.
@@ -1838,11 +2005,7 @@ CopyEaRecords(
   if ((ERROR_SUCCESS == iResult) && dwFileEaInfoSize)
     iResult = SetEaRecords(a_NewFileHandle, pFileEaInfo, dwFileEaInfoSize);
 
-#if defined USE_ROCKALL_HEAPMANAGER
-  MyHeap.Delete(pFileEaInfo);
-#else
   free(pFileEaInfo);
-#endif
 
   return iResult;
 }
@@ -1874,14 +2037,10 @@ GetSecurityAttributes(
 
   if(STATUS_BUFFER_TOO_SMALL == ntstatus) 
   { 
-#if defined USE_ROCKALL_HEAPMANAGER
-    MyHeap.Delete(*a_pSecDesc);
-    *a_pSecDesc = (PSECURITY_DESCRIPTOR)MyHeap.New(SecDescSize);
-    *a_SecDescSize = SecDescSize;
-#else
     free(*a_pSecDesc);
     *a_pSecDesc = (PSECURITY_DESCRIPTOR)malloc(SecDescSize);
-#endif
+    *a_SecDescSize = SecDescSize;
+
     if(!*a_pSecDesc) 
       return STATUS_NO_MEMORY; 
   } 
@@ -1955,11 +2114,11 @@ CopySecurityAttributes(
 //--------------------------------------------------------------------
 int
 CopySecurityAttributesByName( 
-  __in    PWSTR                 aSrcName,
-  __in    PWSTR                 aDstName,
+  __in    PCWSTR                aSrcName,
+  __in    PCWSTR                aDstName,
   __inout PSECURITY_DESCRIPTOR* a_pSecDesc,
   __inout int*                  a_SecDescSize,
-  __in    int                   aFlagsAndAttributes
+  __in    const int             aFlagsAndAttributes
 )
 {
   int iResult = ERROR_INVALID_FUNCTION;
@@ -2005,10 +2164,10 @@ CopySecurityAttributesByName(
 //--------------------------------------------------------------------
 int
 GetSecurityAttributesByName( 
-  __in    PWSTR                 aSrcName,
+  __in    PCWSTR                aSrcName,
   __inout PSECURITY_DESCRIPTOR* a_pSecDesc,
   __inout int*                  a_SecDescSize,
-  __in    int                   aFlagsAndAttributes
+  __in    const int             aFlagsAndAttributes
 )
 {
   int iResult = ERROR_INVALID_FUNCTION;
@@ -2040,9 +2199,9 @@ GetSecurityAttributesByName(
 //--------------------------------------------------------------------
 int
 SetSecurityAttributesByName( 
-  __in    PWSTR                 aDstName,
+  __in    PCWSTR                aDstName,
   __in    PSECURITY_DESCRIPTOR  a_pSecDesc,
-  __in    int                   aFlagsAndAttributes
+  __in    const int             aFlagsAndAttributes
 )
 {
   int iResult = ERROR_INVALID_FUNCTION;
@@ -2310,11 +2469,7 @@ CopySparseStream(
   do
 	{
 		BufferSize += 0x1000;
-#if defined USE_ROCKALL_HEAPMANAGER
-      pRanges = (PFILE_ALLOCATED_RANGE_BUFFER)MyHeap.New(BufferSize);
-#else
-      pRanges = (PFILE_ALLOCATED_RANGE_BUFFER)malloc(BufferSize);
-#endif
+    pRanges = (PFILE_ALLOCATED_RANGE_BUFFER)malloc(BufferSize);
 
     BOOL br = ::DeviceIoControl(
       a_ExistingFileHandle, 
@@ -2364,11 +2519,7 @@ CopySparseStream(
       break;
   }
 
-#if defined USE_ROCKALL_HEAPMANAGER
-  MyHeap.Delete(pRanges);
-#else
   free(pRanges);
-#endif
 
   return iResult;
 }
@@ -2996,11 +3147,7 @@ CopyFileEx3(
           // FILE_ATTRIBUTE_DIRECTORY
           //
           wchar_t VolumeName[MAX_PATH];
-          BOOL IsVolume;
-          if (!pfnGetVolumeNameForVolumeMountPoint)
-            IsVolume = false;
-          else
-            IsVolume = pfnGetVolumeNameForVolumeMountPoint(lpExistingFileName, VolumeName, MAX_PATH);
+          BOOL IsVolume = GetVolumeNameForVolumeMountPoint(lpExistingFileName, VolumeName, MAX_PATH);
 
           if (IsVolume)
             ExistingFileAttributes = FILE_ATTRIBUTE_DIRECTORY;
@@ -3430,11 +3577,7 @@ CopyAlternativeStreams(
   do
   {
     BufferSize += 0x400;
-#if defined USE_ROCKALL_HEAPMANAGER
-    pBuffer = (LPBYTE)MyHeap.New(BufferSize);
-#else
     pBuffer = (LPBYTE)malloc(BufferSize);
-#endif
 
     Status = NtQueryInformationFile(
       a_ExistingFileHandle,
@@ -3446,11 +3589,7 @@ CopyAlternativeStreams(
 
     if (Status == STATUS_INFO_LENGTH_MISMATCH) 
       // Grow the buffer, which means delete the already allocated buffer
-#if defined USE_ROCKALL_HEAPMANAGER
-      MyHeap.Delete(pBuffer);
-#else
       free(pBuffer);
-#endif
 
   } while (Status == STATUS_INFO_LENGTH_MISMATCH);
 
@@ -3575,11 +3714,8 @@ CopyAlternativeStreams(
     // Do nothing. Files on non NTFS drives do not have streams 
   }
 
-#if defined USE_ROCKALL_HEAPMANAGER
-  MyHeap.Delete(pBuffer);
-#else
   free(pBuffer);
-#endif
+
   return iResult;
 }
 
@@ -3961,85 +4097,69 @@ DeleteSiblingIntl(
 {
   BOOL bDeleted = FALSE;
 
-  // Since we must be very careful with setting the attributes of siblings from a delorean set
-  // We should try to restore the attributes on a different sibling. Unfortunatley the siblings can 
-  // only be found out eficiently with >= Windows7
-  if (pfnFindFirstFileNameW)
+  // First get number of siblings
+  BY_HANDLE_FILE_INFORMATION	FileInformation;
+  ZeroMemory(&FileInformation, sizeof(BY_HANDLE_FILE_INFORMATION));
+  HANDLE	SourceFileHandle = CreateFileW (
+    a_SrcPath, 
+    FILE_READ_ATTRIBUTES | FILE_READ_EA,
+    FILE_SHARE_READ, 
+    NULL, 
+    OPEN_EXISTING, 
+    FILE_ATTRIBUTE_NORMAL,
+    NULL
+  );
+  BOOL	r = FALSE;
+  if (INVALID_HANDLE_VALUE != SourceFileHandle)
   {
-    // First get number of siblings
-    BY_HANDLE_FILE_INFORMATION	FileInformation;
-    ZeroMemory(&FileInformation, sizeof(BY_HANDLE_FILE_INFORMATION));
-    HANDLE	SourceFileHandle = CreateFileW (
-      a_SrcPath, 
-      FILE_READ_ATTRIBUTES | FILE_READ_EA,
-      FILE_SHARE_READ, 
-      NULL, 
-      OPEN_EXISTING, 
-      FILE_ATTRIBUTE_NORMAL,
-      NULL
-    );
-    BOOL	r = FALSE;
-    if (INVALID_HANDLE_VALUE != SourceFileHandle)
-    {
-      r = GetFileInformationByHandle (SourceFileHandle, &FileInformation);
-      CloseHandle(SourceFileHandle);
-    }
+    r = GetFileInformationByHandle (SourceFileHandle, &FileInformation);
+    CloseHandle(SourceFileHandle);
+  }
 
-    // Were there siblings at all?
-    if (r && FileInformation.nNumberOfLinks > 1)
-    {
-      // Yes there were siblings
-      wchar_t	LinkName[HUGE_PATH + 2];
-      DWORD LinkNameLength = HUGE_PATH; 
-      wcsncpy_s(LinkName, LinkNameLength, a_SrcPath, PATH_PARSE_SWITCHOFF_SIZE + 2);
+  // Were there siblings at all?
+  if (r && FileInformation.nNumberOfLinks > 1)
+  {
+    // Yes there were siblings
+    wchar_t	LinkName[HUGE_PATH + 2];
+    DWORD LinkNameLength = HUGE_PATH; 
+    wcsncpy_s(LinkName, LinkNameLength, a_SrcPath, PATH_PARSE_SWITCHOFF_SIZE + 2);
 
-      // Try to get at least one sibling
-      HANDLE FindHardLinkHandle = pfnFindFirstFileNameW(a_SrcPath, 0, &LinkNameLength, &LinkName[PATH_PARSE_SWITCHOFF_SIZE + 2]);
-      if (INVALID_HANDLE_VALUE != FindHardLinkHandle)
+    // Try to get at least one sibling
+    HANDLE FindHardLinkHandle = FindFirstFileNameW(a_SrcPath, 0, &LinkNameLength, &LinkName[PATH_PARSE_SWITCHOFF_SIZE + 2]);
+    if (INVALID_HANDLE_VALUE != FindHardLinkHandle)
+    {
+      do
       {
-        do
-        {
-          // Search as long as we get a sibling and not the file itself.
-          if (wcscmp(LinkName, a_SrcPath))
-            break;
-          LinkNameLength = HUGE_PATH; 
-        } while (pfnFindNextFileNameW(FindHardLinkHandle, &LinkNameLength, &LinkName[PATH_PARSE_SWITCHOFF_SIZE + 2]));
-        FindClose(FindHardLinkHandle);
+        // Search as long as we get a sibling and not the file itself.
+        if (wcscmp(LinkName, a_SrcPath))
+          break;
+        LinkNameLength = HUGE_PATH; 
+      } while (FindNextFileNameW(FindHardLinkHandle, &LinkNameLength, &LinkName[PATH_PARSE_SWITCHOFF_SIZE + 2]));
+      FindClose(FindHardLinkHandle);
 
 #if defined DEBUG_DS        
-        fwprintf (gStdOutFile, L"DSI 01: %s:%08x\n", a_SrcPath, FileInformation.dwFileAttributes);
+      fwprintf (gStdOutFile, L"DSI 01: %s:%08x\n", a_SrcPath, FileInformation.dwFileAttributes);
 #endif
-        // So delete the file but restore the attributes on a sibling
-        SetFileAttributesW(
-          a_SrcPath,
-          FILE_ATTRIBUTE_NORMAL
-        );
-        bDeleted = DeleteFile(a_SrcPath);
-
-        // Restore it on the sibling
-        SetFileAttributesW(
-          LinkName,
-          FileInformation.dwFileAttributes
-        );
-      }
-    }
-    else
-    {
-      // This was easy. No siblings. No sideeffect of deleting hardlinks
-#if defined DEBUG_DS        
-      fwprintf (gStdOutFile, L"DSI 01: %s\n", a_SrcPath);
-#endif
+      // So delete the file but restore the attributes on a sibling
       SetFileAttributesW(
         a_SrcPath,
         FILE_ATTRIBUTE_NORMAL
       );
       bDeleted = DeleteFile(a_SrcPath);
+
+      // Restore it on the sibling
+      SetFileAttributesW(
+        LinkName,
+        FileInformation.dwFileAttributes
+      );
     }
   }
   else
   {
-    // We are not on > Win7, So we can't enumerate the siblings of a hardlink. 
-    // This definitley is a problem. The attributes of sibligs will be modified
+    // This was easy. No siblings. No sideeffect of deleting hardlinks
+#if defined DEBUG_DS        
+    fwprintf (gStdOutFile, L"DSI 01: %s\n", a_SrcPath);
+#endif
     SetFileAttributesW(
       a_SrcPath,
       FILE_ATTRIBUTE_NORMAL
@@ -4086,7 +4206,7 @@ DeleteSibling(
 #endif
 
       if (!bDeleted)
-        wprintf(L"DEL04 '%s%, %08x, %08x, %08x\n", a_SrcPath, GetLastError(), a_FileAttribute, GetFileAttributes(a_SrcPath));
+        wprintf(L"DEL04 '%s, %08x, %08x, %08x\n", a_SrcPath, GetLastError(), a_FileAttribute, GetFileAttributes(a_SrcPath));
     }
   }
   
@@ -4146,7 +4266,7 @@ ReadArgsFromFile(
       // Do not take empty lines from files
       StrTrim(Argument, L" \t");
       if (*Argument)
-      aArgumentList.push_back(Argument);
+        aArgumentList.push_back(Argument);
     }
     fclose(Args);
   }
@@ -4156,23 +4276,24 @@ ReadArgsFromFile(
 
 void
 WildCard2RegExp(
-  std::wstring&  aString
+  wstring&  aString
 )
 {
-  stringreplace(aString, std::wstring(L"."), std::wstring(L"\\."));
-  stringreplace(aString, std::wstring(L"*"), std::wstring(L".*"));
-  stringreplace(aString, std::wstring(L"?"), std::wstring(L"."));
-  stringreplace(aString, std::wstring(L"$"), std::wstring(L"\\$"));
-  stringreplace(aString, std::wstring(L"["), std::wstring(L"\\["));
-  stringreplace(aString, std::wstring(L"]"), std::wstring(L"\\]"));
-  stringreplace(aString, std::wstring(L"^"), std::wstring(L"\\^"));
-  stringreplace(aString, std::wstring(L"+"), std::wstring(L"\\+"));
-  stringreplace(aString, std::wstring(L"-"), std::wstring(L"\\-"));
-  stringreplace(aString, std::wstring(L"("), std::wstring(L"\\("));
-  stringreplace(aString, std::wstring(L")"), std::wstring(L"\\)"));
-  stringreplace(aString, std::wstring(L"{"), std::wstring(L"\\{"));
-  stringreplace(aString, std::wstring(L"}"), std::wstring(L"\\}"));
-  stringreplace(aString, std::wstring(L"~"), std::wstring(L"\\~"));
+  stringreplace(aString, wstring(L"."), wstring(L"\\."));
+  stringreplace(aString, wstring(L"*"), wstring(L".*"));
+  stringreplace(aString, wstring(L"?"), wstring(L"."));
+
+  stringreplace(aString, wstring(L"$"), wstring(L"\\$"));
+  stringreplace(aString, wstring(L"["), wstring(L"\\["));
+  stringreplace(aString, wstring(L"]"), wstring(L"\\]"));
+  stringreplace(aString, wstring(L"^"), wstring(L"\\^"));
+  stringreplace(aString, wstring(L"+"), wstring(L"\\+"));
+  stringreplace(aString, wstring(L"-"), wstring(L"\\-"));
+  stringreplace(aString, wstring(L"("), wstring(L"\\("));
+  stringreplace(aString, wstring(L")"), wstring(L"\\)"));
+  stringreplace(aString, wstring(L"{"), wstring(L"\\{"));
+  stringreplace(aString, wstring(L"}"), wstring(L"\\}"));
+  stringreplace(aString, wstring(L"~"), wstring(L"\\~"));
 }
 
 // https://stackoverflow.com/questions/41231586/how-to-detect-if-developer-mode-is-active-on-windows-10?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
@@ -4191,4 +4312,56 @@ IsDeveloperModeEnabled()
   if (err != ERROR_SUCCESS)
     return false;
   return value != 0;
+}
+
+wchar_t*
+ResolveUNCPath(
+  wchar_t* aUNCPath,
+  wchar_t* aResolvedUNCPath
+)
+{
+  if (PathIsUNC(aUNCPath))
+  {
+    char ipAdress[MAX_PATH];
+    size_t charsConverted;
+
+    // Try to get the hostname portion of the UNC share
+    wcstombs_s(&charsConverted, ipAdress, MAX_PATH, &aUNCPath[2], wcslen(&aUNCPath[2]));
+    char* path = PathFindNextComponentA(ipAdress);
+    if (ipAdress != path)
+      *(path - 1) = 0x0;
+
+    hostent* hostent = NULL;
+    try
+    {
+      use_WSA x;
+
+      struct in_addr addr = { 0 };
+      addr.s_addr = inet_addr(ipAdress);
+
+      if (addr.s_addr != INADDR_NONE)
+        hostent = gethostbyaddr((char*)&addr, sizeof(addr), AF_INET);
+    }
+    catch (std::exception const &exc)
+    {
+    }
+
+    // Check if name could be resolved
+    if (hostent)
+    {
+      char serverName[MAX_PATH];
+      strcpy_s(serverName, MAX_PATH, hostent->h_name);
+      char* dot = strstr(serverName, ".");
+      if (dot)
+        *dot = 0x0;
+
+      swprintf_s(aResolvedUNCPath, HUGE_PATH, L"\\\\%S\\%S", serverName, path);
+    }
+  }
+  else
+  {
+    aResolvedUNCPath = nullptr;
+  }
+  return aResolvedUNCPath;
+
 }

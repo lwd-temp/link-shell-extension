@@ -1,0 +1,238 @@
+
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Outer SymLink 1 -> C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder0\Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder2\Inner SymLink 1 -> C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Inner SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder2\Inner SymLink 2 -> C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder2\Inner SymLink 3 -> C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Inner SymLink Target 3
+
+33 matching file(s) found, using 15312 bytes.
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder0\File A in Folder0
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder0\File B in Folder0
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder0\File C in Folder0
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder0\Hardlink to File A in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder0\Hardlink to File B in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder0\Outer SymLink Target 1\File A in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder0\Outer SymLink Target 1\File B in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder0\Outer SymLink Target 1\File C in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder2\File A in Folder2
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder2\File B in Folder2
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder2\File C in Folder2
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder2\Inner SymLink 1\File A in Inner SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder2\Inner SymLink 2\File A in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder2\Inner SymLink 2\File B in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder2\Inner SymLink 3\File A in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder2\Inner SymLink 3\File B in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder2\Inner SymLink 3\File C in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\File A in Folder3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\File B in Folder3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\File C in Folder3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Hardlink to File A in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Hardlink to File C in Folder3 Ref 2 Loopback
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Inner SymLink Target 2\File A in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Inner SymLink Target 3\File A in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Inner SymLink Target 3\File B in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Folder3\Inner SymLink Target 3\File C in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Outer SymLink 1\File A in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Outer SymLink 1\File B in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Outer SymLink 1\File C in Outer SymLink Target 1
+
+C:\data\cpp\hardlinks\ln>set REPARSEOPT=--noitcnuj 
+
+C:\data\cpp\hardlinks\ln>if [noitcnuj] == [symbolic] (if [recursive] == [recursive] (SET OPTION=--noitcnuj --recursive )  else (SET OPTION=--recursive ) )  else (set OPTION=--recursive ) 
+
+C:\data\cpp\hardlinks\ln>if [relative] == [absolute] (SET ABS_REL=--relative )  else (SET ABS_REL= ) 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Straight forward Smart Copy/Clone 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --recursive test\smartclone\source test\smartclone\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:    11.136         0    11.136         0         0         0
+    File:        24         0        24         0         0         0
+   Times:        00:00:00.002
+  Folder:         9         9         -         0         0         0
+ Symlink:         0         -         0         0         0         0
+&j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner Dead SymLink 1
+&j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner Dead SymLink 2
+&j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Outer Dead SymLink 1
+&j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Outer Dead SymLink 2
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Outer SymLink Target 1
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 1
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 2
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\File A in Folder0
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\File B in Folder0
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\File C in Folder0
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Hardlink to File A in Folder2 Ref 3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Hardlink to File B in Folder2 Ref 3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Outer SymLink Target 1\File A in Outer SymLink Target 1
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Outer SymLink Target 1\File B in Outer SymLink Target 1
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Outer SymLink Target 1\File C in Outer SymLink Target 1
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\File A in Folder2
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\File B in Folder2
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\File C in Folder2
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\File A in Folder3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\File B in Folder3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\File C in Folder3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File A in Folder2 Ref 3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File C in Folder3 Ref 2 Loopback
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 2\File A in Inner SymLink Target 2
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3\File A in Inner SymLink Target 3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3\File B in Inner SymLink Target 3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3\File C in Inner SymLink Target 3
++j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 1
++j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 2
++j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 3
++j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Outer SymLink 1
+Junction:         8         -         8         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>..\Tools\where.exe *.* test\smartclone\dest   | sort  
+33 matching file(s) found, using 15312 bytes.
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\File A in Folder0
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\File B in Folder0
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\File C in Folder0
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Hardlink to File A in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Hardlink to File B in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Outer SymLink Target 1\File A in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Outer SymLink Target 1\File B in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Outer SymLink Target 1\File C in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\File A in Folder2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\File B in Folder2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\File C in Folder2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 1\File A in Inner SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 2\File A in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 2\File B in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 3\File A in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 3\File B in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 3\File C in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\File A in Folder3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\File B in Folder3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\File C in Folder3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File A in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File C in Folder3 Ref 2 Loopback
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 2\File A in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3\File A in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3\File B in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3\File C in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Outer SymLink 1\File A in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Outer SymLink 1\File B in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Outer SymLink 1\File C in Outer SymLink Target 1
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Check Attributes of first Dir 
+
+C:\data\cpp\hardlinks\ln>REM  
+W:2011-07-06 08:38:41.000
+AlterNativeStream
+000001d0: 'LN.H'
+
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Outer SymLink 1 -> C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 1 -> C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 2 -> C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 3 -> C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner Dead SymLink 1 -#-> C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner Dead SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner Dead SymLink 2 -#-> C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner Dead SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Outer Dead SymLink 1 -#-> C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Outer Dead SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Outer Dead SymLink 2 -#-> C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder0\Outer Dead SymLink Target 2
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Now ommit some outer dead junctions 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --recursive test\smartclone\source\Folder1 test\smartclone\dest\Folder1  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     7.424         0     7.424         0         0         0
+    File:        16         0        16         0         0         0
+   Times:        00:00:00.002
+  Folder:         6         6         -         0         0         0
+ Symlink:         0         -         0         0         0         0
+#j C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Outer Dead SymLink 1
+#j C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Outer Dead SymLink 2
+#j C:\data\cpp\hardlinks\ln\test\smartclone\source\Folder1\Outer SymLink 1
+&j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner Dead SymLink 1
+&j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner Dead SymLink 2
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 1
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 2
++d C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\File A in Folder2
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\File B in Folder2
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\File C in Folder2
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\File A in Folder3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\File B in Folder3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\File C in Folder3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File A in Folder2 Ref 3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File C in Folder3 Ref 2 Loopback
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 2\File A in Inner SymLink Target 2
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3\File A in Inner SymLink Target 3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3\File B in Inner SymLink Target 3
++h C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3\File C in Inner SymLink Target 3
++j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 1
++j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 2
++j C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 3
+Junction:         8         -         5         0         3         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>..\Tools\where.exe *.* test\smartclone\dest   | sort
+22 matching file(s) found, using 10208 bytes.
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\File A in Folder2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\File B in Folder2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\File C in Folder2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 1\File A in Inner SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 2\File A in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 2\File B in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 3\File A in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 3\File B in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 3\File C in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\File A in Folder3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\File B in Folder3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\File C in Folder3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File A in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Hardlink to File C in Folder3 Ref 2 Loopback
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 2\File A in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3\File A in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3\File B in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3\File C in Inner SymLink Target 3
+
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 1 -> C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 2 -> C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder2\Inner SymLink 3 -> C:\data\cpp\hardlinks\ln\test\smartclone\dest\Folder1\Folder3\Inner SymLink Target 3

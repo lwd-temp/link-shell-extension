@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{07073ffa-6f63-4603-b3e2-64360f85aeb6}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{1d3cff53-20b6-43b0-938e-0fc34012b183}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{4eac8e9c-e35c-4cdb-81dd-365d084f4217}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Docu">
+      <UniqueIdentifier>{57cc363a-b1f8-4601-a1e7-21defcfa49b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Docu\blog">
+      <UniqueIdentifier>{5a5d34e4-366a-4546-92b1-b98f68eb938b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bat">
+      <UniqueIdentifier>{739e1141-da4a-41d2-befc-5f955eb02fdf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ln.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\ultragetopt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ln.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\ultragetopt.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="ln.exe.trust.manifest">
+      <Filter>Resource Files</Filter>
+    </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ln.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LnAllTest.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="..\HardlinkExtension\Settings.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_AbsoluteRelativ.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_AdsCopy01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_AdsCopy02.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_AdsCopy03.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_AdsCopyPrepare01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_BaseTest.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_CaseSensitiv.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_Circularity01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_DeepPathOff.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_DeepPathOn.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_Delorean01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_Delorean02.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_DeloreanExclude.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_Dupemerge.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_Dupemerge01Preperation.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_FatSmartXXX.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_Hardlink01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_IpAdress.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_Json01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_LnTest.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_MultiSource01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_NetworkDrive01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_RegExp01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_ReparseOnReparse01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_ReparseOnReparse01Prepare.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_ReparseOnReparse02Prepare.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_ReparseOnReparse03Prepare.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_RootCopy01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_RootReparsePoint01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_RootReparsePoint02.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_Settings.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_Siblings.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_SiblingsPrepare.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_SmartCopy01Preperation.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_SmartCopy02Preperation.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_SmartCopy03.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_SmartCopy03Prepare.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_SmartCopy04.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_SmartCopy04Prepare.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_SmartMirror01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_SmartMirror02.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_SmartMove02.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_SmartMove02Prepare.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_timestamp.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_UNC_Simple.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_UNC_Simple_Preperation.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_Unroll01Prepare01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_Unroll01Prepare02.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_UnrollExcl01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_UnrollSplice01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_UnrollSplice02.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="t_VolumeGuid01.bat">
+      <Filter>Test</Filter>
+    </None>
+    <None Include="bat\DeLoreanHanoi.bat">
+      <Filter>Bat</Filter>
+    </None>
+    <None Include="bat\vss-exec.cmd">
+      <Filter>Bat</Filter>
+    </None>
+    <None Include="bat\vss_drivecopy.cmd">
+      <Filter>Bat</Filter>
+    </None>
+    <None Include="bat\vss_raw.cmd">
+      <Filter>Bat</Filter>
+    </None>
+    <None Include="bat\vss_unc.cmd">
+      <Filter>Bat</Filter>
+    </None>
+    <None Include="t_Delete01.bat">
+      <Filter>Test</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Doc\ln.html">
+      <Filter>Docu</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Doc\blog\blog.html">
+      <Filter>Docu\blog</Filter>
+    </CustomBuild>
+    <CustomBuild Include="bat\DeleteAllHardlinks.bat">
+      <Filter>Bat</Filter>
+    </CustomBuild>
+    <CustomBuild Include="bat\DeLoreanCopy.bat">
+      <Filter>Bat</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

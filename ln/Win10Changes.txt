@@ -1,0 +1,19 @@
+bei ln.exe & symlink.exe das Manifest 
+
+        <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+          <application>
+            <!-- Windows 10 -->
+            <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}"/>
+          </application>
+        </compatibility>
+        
+
+hinzugefügt
+
+In CreateSymbolicLink() wird der ReturnStatus falsch zurückgegeben
+
+Die OverlayIcons bekommt man zurück, wenn man unter 
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers
+zwei blanks vor IconOverlaySymbolicLink stellt, damit die Dinger wieder am Anfang sind
+Siehe http://stackoverflow.com/questions/31964627/tortoisesvn-icons-overlay-not-showing-after-updating-to-windows-10
+

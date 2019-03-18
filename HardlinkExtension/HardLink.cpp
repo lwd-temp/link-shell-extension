@@ -1,20 +1,21 @@
-#include "stdafx.h"
-#include "localisation.h"
-#include "multilang.h"
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
-#include "HardLink.h"
+#include "stdafx.h"
+
 #include "CopyHook.h"
 #include "IconOverlay.h"
-#include "ColumnProvider.h"
 #include "PropertySheetPage.h"
 #include "HardLinkMenu.h"
+
+#include "HardLink.h"
 
 
 
 HINSTANCE g_hInstance = NULL;
 
 UINT    g_cRefThisDll = 0;    // Reference count of this DLL.
-int     gColourDepth = 8;
 
 // gLSE_Flag contains various settings, which can be enabled
 _LSESettings gLSESettings;
@@ -51,6 +52,10 @@ DllMain( HINSTANCE hInstance, DWORD ul_reason_for_call, LPVOID lpReserved )
       // here, because the PropertyheetPageHandler is loaded in a different process than the other
       // Shell extension, and thus also needs initialization.
       InitCreateHardlink();
+
+      // Read the 'known' Filesytems 
+      gSupportedFileSystems.ReadFromRegistry();
+
     break;
 
     case DLL_PROCESS_DETACH:
@@ -246,27 +251,12 @@ CreateInstance(
 
   GetLSESettings(gLSESettings);
 
-  // Get the Colrodepth so that we load the proper progress bar animation
-  HDC hDC = GetDC(0);
-  gColourDepth = GetDeviceCaps(hDC, BITSPIXEL);
-  ReleaseDC(0, hDC);
-
-	HRESULT r;
-	ColumnProvider* pColProvider = new ColumnProvider();
-  r = pColProvider->QueryInterface(riid, ppvObj);
-  if (NULL != *ppvObj)
-  {
-    GetLSESettings(gLSESettings);
-    return r;
-  }
-	delete pColProvider;
-
   HardLinkExt* pShellExt = new HardLinkExt();
-  r = pShellExt->QueryInterface(riid, ppvObj);
+  HRESULT result = pShellExt->QueryInterface(riid, ppvObj);
   if (NULL != *ppvObj)
   {
     GetLSESettings(gLSESettings);
-    return r;
+    return result;
   }
   delete pShellExt;
 

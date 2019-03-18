@@ -57,6 +57,6 @@ REM F4
 %LN% %OPTION_PREP% %TESTROOTSRC%\F0 %TESTROOTSRC%\J4 > nul
 
 @echo on
-echo.
+@echo.
 @REM %WHERE% *.* %TESTROOTSRC% | sort
 

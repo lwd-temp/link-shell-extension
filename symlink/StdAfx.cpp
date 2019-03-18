@@ -1,7 +1,7 @@
 /*
-Copyright (C) 1999-2010, Hermann Schinagl, Hermann.Schinagl@gmx.net
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
-*/
 
 #include "stdafx.h"
 

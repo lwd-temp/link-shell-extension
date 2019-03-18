@@ -1,13 +1,9 @@
 
 #include "stdafx.h"
 
-#include "psapi.h"
-#pragma comment(lib, "psapi.lib")
-
 #include "hardlink_types.h"
 
 #include "MmfObject.h"
-#include "md5.h"
 
 #include "Multilang.h"
 #include "AsyncContext.h"
@@ -20,14 +16,11 @@
 
 #include "moduleversion.h"
 
-
 extern "C" { int __locale_changed; }
 
-#if defined USE_ROCKALL_HEAPMANAGER
-    FAST_HEAP MyHeap;
-#endif
-
 _locale_t g_locale_t;
+
+
 
 #if defined _HTRACE_DEBUG
 void 
@@ -77,7 +70,7 @@ MakeAnsiString(
 }
 
 void
-stringreplace(std::wstring& aThis, std::wstring& src, std::wstring& dest)
+stringreplace(wstring& aThis, wstring& src, wstring& dest)
 {
 	size_t slen = src.size();
 	size_t  dlen = dest.size();
@@ -118,7 +111,7 @@ MapNtStatusToWinError(
 //----------------------------------------------------------------------
 BOOL
 _ChangeTokenPrivilege(
-  PTCHAR                   PrivilegeName,
+  __in LPCWSTR             PrivilegeName,
   PrivilegeModification_t  aMode
 )
 {
@@ -218,7 +211,7 @@ _ChangeTokenPrivilege(
 //----------------------------------------------------------------------
 BOOL
 DisableTokenPrivilege(
-  PTCHAR PrivilegeName
+  __in LPCWSTR PrivilegeName
 )
 {
   return _ChangeTokenPrivilege(PrivilegeName, eClearPrivilege);
@@ -233,7 +226,7 @@ DisableTokenPrivilege(
 //----------------------------------------------------------------------
 BOOL
 EnableTokenPrivilege(
-  PTCHAR PrivilegeName
+  __in LPCWSTR PrivilegeName
 )
 {
   return _ChangeTokenPrivilege(PrivilegeName, eSetPrivilege);
@@ -248,12 +241,11 @@ EnableTokenPrivilege(
 //----------------------------------------------------------------------
 BOOL
 ProbeTokenPrivilege(
-  PTCHAR PrivilegeName
+  __in LPCWSTR PrivilegeName
 )
 {
   return _ChangeTokenPrivilege(PrivilegeName, eProbePrivilege);
 }
-
 
 void
 InitCreateHardlink()
@@ -262,8 +254,6 @@ InitCreateHardlink()
   gVersionInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
   GetVersionEx(&gVersionInfo);
 
-  gSupportedFileSystems.Init();
-    
 #if defined DEBUG_DO_NOT_DELETE_SYMLINKS_ARGS
   DbgOsPrint(L"InitCreateHardlink");
 #endif
@@ -283,19 +273,6 @@ InitCreateHardlink()
       EnableTokenPrivilege(SE_RESTORE_NAME);
     }
 
-    // GetVolumePathNamesForVolumeName is only available with XP and Vista
-    // but not with Nt4 and W2K, so we have to load ot dynamically
-    pfnGetVolumePathNamesForVolumeName = (GetVolumePathNamesForVolumeName_t)GetProcAddress (hKernel32, "GetVolumePathNamesForVolumeNameW");
-    pfnGetVolumeNameForVolumeMountPoint = (GetVolumeNameForVolumeMountPoint_t)GetProcAddress (hKernel32, "GetVolumeNameForVolumeMountPointW");
-
-    // Volume Mountpoint functionality is not available with NT4
-    pfnSetVolumeMountPoint = (SetVolumeMountPoint_t)GetProcAddress (hKernel32, "SetVolumeMountPointW");
-    pfnDeleteVolumeMountPoint = (DeleteVolumeMountPoint_t)GetProcAddress (hKernel32, "DeleteVolumeMountPointW");
-
-    // For Enumeration of hardlinks under Vista
-    pfnFindFirstFileNameW = (FindFirstFileNameW_t) GetProcAddress (hKernel32, "FindFirstFileNameW");
-    pfnFindNextFileNameW = (FindNextFileNameW_t) GetProcAddress (hKernel32, "FindNextFileNameW");
-
 #if defined FAKE_SYMBOLIC_LINK 
     // This is a fake to switch on functionality for Symbolic Links even under WXP
     gpfCreateSymbolicLink = (CreateSymboliclinkW_t)0x042;
@@ -305,7 +282,6 @@ InitCreateHardlink()
 #endif
 
     // By default we do not have symlinks under XP
-    gbXpSymlinks = false;
     if (gpfCreateSymbolicLink)
     {
       BOOL b;
@@ -320,38 +296,6 @@ InitCreateHardlink()
       if (!b && (gVersionInfo.dwMajorVersion >= WINDOWS_VERSION_WIN10))
         gpfCreateSymbolicLink = (CreateSymboliclinkW_t) 0;
 #endif
-    }
-    else
-    {
-      // We are on WindowsXP, but there are drivers which support symbolic links
-      CreateSymboliclinkW_t gpfCreateSymbolicLinkRaw = (CreateSymboliclinkW_t) &CreateSymboliclinkRaw;
-
-      wchar_t TmpPathSource[MAX_PATH];
-      wchar_t TmpPathSymlink[MAX_PATH];
-
-      GetTempPath(MAX_PATH, TmpPathSource);
-      wcscat_s(TmpPathSource, MAX_PATH, L"WxpSymlinkTest");
-
-      GetTempPath(MAX_PATH, TmpPathSymlink);
-      wcscat_s(TmpPathSymlink, MAX_PATH, L"WxpSymlinkTest_Symlink");
-
-      FILE* f = _wfopen(TmpPathSource, L"wb");
-      if (f)
-      {
-        fwprintf(f, L"WxpSymlinkTest");
-        fclose(f);
-        int symresult = gpfCreateSymbolicLinkRaw(TmpPathSymlink, TmpPathSource, 0 /*/ SYMLINK_FLAG_DIRECTORY /*/ /*/ | SYMLINK_FLAG_RELATIVE /*/ );
-        FILE* s = _wfopen(TmpPathSymlink, L"rb");
-        if (s)
-        {
-          gpfCreateSymbolicLink = gpfCreateSymbolicLinkRaw;
-          gbXpSymlinks = true;
-          fclose(s);
-        }
-
-        DeleteFile(TmpPathSymlink);
-        DeleteFile(TmpPathSource);
-      }
     }
     FreeLibrary(hKernel32);
   }
@@ -456,8 +400,8 @@ HardlinkExists(
 
 int
 CreateHardlinkIntl(
-  LPCWSTR	fromFile,
-               LPCWSTR	toFile
+  __in LPCWSTR	fromFile,
+  __in LPCWSTR	toFile
 )
 {
   int RetVal; 
@@ -496,8 +440,9 @@ CreateHardlink(
   }
 
 int
-CreateHardlink(LPCWSTR	fromFile,
-               LPCWSTR	toFile
+CreateHardlink(
+  __in  LPCWSTR	fromFile,
+  __in  LPCWSTR	toFile
 )
 {
 
@@ -520,7 +465,7 @@ CreateHardlink(LPCWSTR	fromFile,
 /// </returns>
 bool
 IsVeryLongPath(
-   LPCWSTR lpPathName
+   __in LPCWSTR lpPathName
 )
 {
   bool r = false;
@@ -562,9 +507,9 @@ IsVeryLongPath(
 /// </returns>
 int
 ResolveSymboliclink(
-   LPCWSTR lpSymlinkFileName,
-   LPCWSTR lpTargetFileName,
-   LPWSTR lpSymlinkTarget
+  __in    LPCWSTR   lpSymlinkFileName,
+  __in    LPCWSTR   lpTargetFileName,
+  __inout LPWSTR    lpSymlinkTarget
 )
 {
   int SymbolicLinkResolved = ERROR_INVALID_FUNCTION;
@@ -806,188 +751,183 @@ inline BOOL CreateSymboliclinkMS(
 //--------------------------------------------------------------------
 int
 CreateSymboliclink(
-   LPWSTR   lpSymlinkFileName,
-   LPWSTR   lpTargetFileName,
-   DWORD    dwFlags,
-   LPCWSTR  lpFakeSymlinkFileName
+  __in  LPWSTR    lpSymlinkFileName,
+  __in  LPCWSTR   lpTargetFileName,
+  __in  DWORD     dwFlags,
+  __in  LPCWSTR   lpFakeSymlinkFileName
 )
 {
   int RetVal = ERROR_INVALID_FUNCTION;
 
-  if (gpfCreateSymbolicLink)
+  wchar_t SymlinkFileNameTarget[HUGE_PATH];
+  wchar_t* pSymlinkFileNameTarget = SymlinkFileNameTarget;
+  wcscpy_s(SymlinkFileNameTarget, HUGE_PATH, lpTargetFileName);
+
+  bool bRelativeSymlinkCreated = false;
+  BOOL bSymLinkCreation = FALSE;
+  if (dwFlags & SYMLINK_FLAG_RELATIVE)
   {
-    bool bRelativeSymlinkCreated = false;
-    BOOL bSymLinkCreation = FALSE;
-    if (dwFlags & SYMLINK_FLAG_RELATIVE)
+    // Create relative symbolic links
+    wchar_t SymbolicPath[HUGE_PATH];
+    wchar_t* pSymbolicPath = SymbolicPath;
+    LPWSTR lpSymlinkFileParent = NULL;
+    wchar_t SaveChar = 0x00;
+
+    bool VeryLongSymlink = IsVeryLongPath(lpSymlinkFileName);
+
+    // If it is a directory, we have to hand over the parent of the 
+    // SymbolicLink Directory
+    if (dwFlags & SYMLINK_FLAG_DIRECTORY)
     {
-      // Create relative symbolic links
-      wchar_t SymbolicPath[HUGE_PATH];
-      wchar_t* pSymbolicPath = SymbolicPath;
-      LPWSTR lpSymlinkFileParent = NULL;
-      wchar_t SaveChar = 0x00;
-
-      bool VeryLongSymlink = IsVeryLongPath(lpSymlinkFileName);
-
-      // If it is a directory, we have to hand over the parent of the 
-      // SymbolicLink Directory
-      if (dwFlags & SYMLINK_FLAG_DIRECTORY)
+      lpSymlinkFileParent = PathFindFileName (lpSymlinkFileName);
+      if (lpSymlinkFileParent != lpSymlinkFileName)
       {
-        lpSymlinkFileParent = PathFindFileName (lpSymlinkFileName);
-        if (lpSymlinkFileParent != lpSymlinkFileName)
-        {
-          SaveChar = *lpSymlinkFileParent;
-          *lpSymlinkFileParent = 0x00;
+        SaveChar = *lpSymlinkFileParent;
+        *lpSymlinkFileParent = 0x00;
           
-          // Check if we reached the root of a drive e.g. d:\tmp
-          if (!PathIsRoot(lpSymlinkFileName))
-          {
-            *lpSymlinkFileParent = SaveChar;
-            *--lpSymlinkFileParent = 0x00;
-            SaveChar = 0x00;
-          }
-        }
-      }
-
-      // Check if the location, where symbolic link has to be created in, is also a symbolic link
-      // If yes *and* the target is on another drive, then resolve it.
-      // Do this only for one level
-      wchar_t SymlinkFileNameTarget[HUGE_PATH];
-      if (ProbeReparsePoint(lpSymlinkFileName, SymlinkFileNameTarget))
-      {
-        bool VeryLongSymlinkFileNameTarget = IsVeryLongPath(SymlinkFileNameTarget);
-        if (&SymlinkFileNameTarget[VeryLongSymlinkFileNameTarget ? PATH_PARSE_SWITCHOFF_SIZE : 0] != 
-            &lpSymlinkFileName[VeryLongSymlink ? PATH_PARSE_SWITCHOFF_SIZE : 0])
-            wcscpy_s(lpTargetFileName, HUGE_PATH, SymlinkFileNameTarget);
-      }
-      
-
-      // PathRelativePathTo() has a flaw when two very long path get compared
-      // It assumes that e.g \\?\t:\ and \\?\e:\bla\foo have a common ancestor
-      // But this applies only if the \\?\ prefixed path are < MAX_PATH. Unfortunatley
-      // it gets worse if the \\?\ path are longer than 256 chars. Then this method
-      // can't be used
-      //
-      // This is why we have *not* to run this with very long path. ;-((
-      BOOL bHasCommonAncestor;
-#if 0 // DEBUG_DEFINES
-      bHasCommonAncestor = (bool)GetRelativeFilename(SymbolicPath, &lpSymlinkFileName[PATH_PARSE_SWITCHOFF_SIZE],&lpTargetFileName[PATH_PARSE_SWITCHOFF_SIZE]);
-#else
-      bool VeryLongTarget = IsVeryLongPath(lpTargetFileName);
-      bHasCommonAncestor = PathRelativePathTo(SymbolicPath,
-        &lpSymlinkFileName[VeryLongSymlink ? PATH_PARSE_SWITCHOFF_SIZE : 0],
-        dwFlags & SYMLINK_FLAG_DIRECTORY ? FILE_ATTRIBUTE_DIRECTORY : 0,
-        &lpTargetFileName[VeryLongTarget ? PATH_PARSE_SWITCHOFF_SIZE : 0],
-        dwFlags & SYMLINK_FLAG_DIRECTORY ? FILE_ATTRIBUTE_DIRECTORY : 0
-      );
-#endif
-      if (dwFlags & SYMLINK_FLAG_DIRECTORY)
-      {
-        if (SaveChar)
+        // Check if we reached the root of a drive e.g. d:\tmp
+        if (!PathIsRoot(lpSymlinkFileName))
+        {
           *lpSymlinkFileParent = SaveChar;
-        else
-          *lpSymlinkFileParent = '\\';
-      }
-
-      // Create relative Symbolic link targets
-      if (bHasCommonAncestor)
-      {
-        // Create a relative symbolic link between to normal path ( < MAX_PATH )
-        //
-        // If there is a relative path between two very long path, with a normal
-        // CreateSymbolicLink this can not acchieved.
-        if (wcslen(&lpSymlinkFileName[PATH_PARSE_SWITCHOFF_SIZE]) < MAX_PATH && wcslen(&lpTargetFileName[PATH_PARSE_SWITCHOFF_SIZE]) < MAX_PATH)
-        {
-          // PathRelativePathTo() returns '.\bla' for pathes in the same location
-          // which also is just 'bla', so chop them of in front
-          if (SymbolicPath[0] == '.' && SymbolicPath[1] == '\\' )
-            pSymbolicPath += 2;
-          
-          if (lpFakeSymlinkFileName)
-            // Create a dead symbolic link. Only CreateSymboliclinkRaw() can do this
-            bSymLinkCreation = CreateSymboliclinkRaw (lpFakeSymlinkFileName, pSymbolicPath, dwFlags) == ERROR_SUCCESS ? TRUE : FALSE;
-          else
-          {
-            // CreateSymbolicLink does not work when used with SE_BACKUPNAME, but CreateSymbolcLinkRaw() does
-            if (dwFlags & FILE_FLAG_BACKUP_SEMANTICS)
-              bSymLinkCreation = CreateSymboliclinkRaw (lpSymlinkFileName, pSymbolicPath, dwFlags) == ERROR_SUCCESS ? TRUE : FALSE;
-            else
-            {
-              // When symlinks are enabled under Windows XP gpfCreateSymbolicLink() goes to CreateSymbolicLinkRaw(), which needs the
-              // hint if the link is relative or not, so depending upon gbXpSymlinks we have to preserve the SYMLINK_FLAG_RELATIVE
-              // info
-              if (gbXpSymlinks)
-                bSymLinkCreation = gpfCreateSymbolicLink (lpSymlinkFileName, pSymbolicPath, dwFlags) == ERROR_SUCCESS ? TRUE : FALSE;
-              else
-                // The original CreateSymbolicLink(), does not understand the content of dwFlags, thus translate it
-                bSymLinkCreation = CreateSymboliclinkMS(lpSymlinkFileName, pSymbolicPath, dwFlags);
-            }
-          }
-
-          bRelativeSymlinkCreated = true;
-        }
-        else
-        {
-          // Create a relative symbolic link between to very long path ( > MAX_PATH )
-          // Currently we can not use this because PathRelativePathTo() is broken for path > MAX_PATH
-          // There is a method PathRelativ under test in this lib. But to create relative symlinks
-          // between very long path is more an academic problem, so this is the reason the code is commented out
-          //
-          // bSymLinkCreation = CreateSymboliclinkRaw (lpSymlinkFileName, pSymbolicPath, dwFlags);
-          // bRelativeSymlinkCreated = true;
-
-          // So we create it absolute
-          dwFlags &= ~SYMLINK_FLAG_RELATIVE;
-        }
-      } // if (bHasCommonAncestor)
-      else
-        dwFlags &= ~SYMLINK_FLAG_RELATIVE;
-    } // if (dwFlags & SYMLINK_FLAG_RELATIVE)
-
-
-    // Create absolute Symbolic link targets. This is because
-    // it was either requested, or relative creation didn't work
-    // because the target was on a different drive
-    if (!bRelativeSymlinkCreated)
-    {
-      FixVeryLongPath(&lpSymlinkFileName);
-      FixVeryLongPath(&lpTargetFileName);
-
-      // If we go to a volumeguid, we always have to be absolute. Windows7 would be that robust to also accept relative
-      // symlinks to \\?\VolumeGUID, but the XP driver is not
-      if (!wcsncmp(lpTargetFileName, PATH_LONG_VOLUME_GUID, PATH_LONG_VOLUME_GUID_SIZE))
-        dwFlags &= ~SYMLINK_FLAG_RELATIVE;
-
-      if (lpFakeSymlinkFileName)
-        bSymLinkCreation = CreateSymboliclinkRaw (lpFakeSymlinkFileName, lpTargetFileName, dwFlags & ~SYMLINK_FLAG_RELATIVE) == ERROR_SUCCESS ? TRUE : FALSE;
-      else
-      {
-        if (dwFlags & FILE_FLAG_BACKUP_SEMANTICS)
-          bSymLinkCreation = CreateSymboliclinkRaw (lpSymlinkFileName, lpTargetFileName, dwFlags & ~SYMLINK_FLAG_RELATIVE) == ERROR_SUCCESS ? TRUE : FALSE;
-        else
-        {
-          // When symlinks are enabled under Windows XP gpfCreateSymbolicLink() goes to CreateSymbolicLinkRaw()
-          if (gbXpSymlinks)
-            bSymLinkCreation = gpfCreateSymbolicLink (lpSymlinkFileName, lpTargetFileName, dwFlags) == ERROR_SUCCESS ? TRUE : FALSE;
-          else
-            // The original CreateSymbolicLink(), does not understand the content of dwFlags, thus translate it
-            bSymLinkCreation = CreateSymboliclinkMS (lpSymlinkFileName, lpTargetFileName, dwFlags);
-
-          // MS changed the return type of CreateSymbolicLink for Windows10 from BOOLEAN to int. Idiots!
-          // But success is still BOOL true, and everything above shall be treated as an error
-          if ((gVersionInfo.dwMajorVersion >= WINDOWS_VERSION_WIN10) && (int)bSymLinkCreation > 1)
-          {
-            SetLastError(bSymLinkCreation);
-            bSymLinkCreation = FALSE;
-          }
+          *--lpSymlinkFileParent = 0x00;
+          SaveChar = 0x00;
         }
       }
     }
 
-    if (bSymLinkCreation)
-      RetVal = ERROR_SUCCESS;
-    else 
-      RetVal = GetLastError();
+    // Check if the location, where symbolic link has to be created, is also a symbolic link
+    // If yes *and* the target is on another drive, then resolve it.
+    // Do this only for one level
+    wchar_t ReparseTarget[HUGE_PATH];
+    if (ProbeReparsePoint(lpSymlinkFileName, ReparseTarget))
+    {
+      bool VeryLongSymlinkFileNameTarget = IsVeryLongPath(ReparseTarget);
+      if (&ReparseTarget[VeryLongSymlinkFileNameTarget ? PATH_PARSE_SWITCHOFF_SIZE : 0] !=
+        &lpSymlinkFileName[VeryLongSymlink ? PATH_PARSE_SWITCHOFF_SIZE : 0])
+      {
+        wcscpy_s(SymlinkFileNameTarget, HUGE_PATH, ReparseTarget);
+        // TODO return resolved symlink in a fifth parameter
+        // TODO resolve more than one level
+      }
+    }
+      
+
+    // PathRelativePathTo() has a flaw when two very long path get compared
+    // It assumes that e.g \\?\t:\ and \\?\e:\bla\foo have a common ancestor
+    // But this applies only if the \\?\ prefixed path are < MAX_PATH. Unfortunatley
+    // it gets worse if the \\?\ path are longer than 256 chars. Then this method
+    // can't be used
+    //
+    // This is why we have *not* to run this with very long path. ;-((
+    BOOL bHasCommonAncestor;
+#if 0 // DEBUG_DEFINES
+    bHasCommonAncestor = (bool)GetRelativeFilename(SymbolicPath, &lpSymlinkFileName[PATH_PARSE_SWITCHOFF_SIZE],&SymlinkFileNameTarget[PATH_PARSE_SWITCHOFF_SIZE]);
+#else
+    bool VeryLongTarget = IsVeryLongPath(SymlinkFileNameTarget);
+    bHasCommonAncestor = PathRelativePathTo(SymbolicPath,
+      &lpSymlinkFileName[VeryLongSymlink ? PATH_PARSE_SWITCHOFF_SIZE : 0],
+      dwFlags & SYMLINK_FLAG_DIRECTORY ? FILE_ATTRIBUTE_DIRECTORY : 0,
+      &SymlinkFileNameTarget[VeryLongTarget ? PATH_PARSE_SWITCHOFF_SIZE : 0],
+      dwFlags & SYMLINK_FLAG_DIRECTORY ? FILE_ATTRIBUTE_DIRECTORY : 0
+    );
+#endif
+    if (dwFlags & SYMLINK_FLAG_DIRECTORY)
+    {
+      if (SaveChar)
+        *lpSymlinkFileParent = SaveChar;
+      else
+        *lpSymlinkFileParent = '\\';
+    }
+
+    // Create relative Symbolic link targets
+    if (bHasCommonAncestor)
+    {
+      // Create a relative symbolic link between to normal path ( < MAX_PATH )
+      //
+      // If there is a relative path between two very long path, with a normal
+      // CreateSymbolicLink this can not acchieved.
+      if (wcslen(&lpSymlinkFileName[PATH_PARSE_SWITCHOFF_SIZE]) < MAX_PATH && wcslen(&SymlinkFileNameTarget[PATH_PARSE_SWITCHOFF_SIZE]) < MAX_PATH)
+      {
+        // PathRelativePathTo() returns '.\bla' for pathes in the same location
+        // which also is just 'bla', so chop them of in front
+        if (SymbolicPath[0] == '.' && SymbolicPath[1] == '\\' )
+          pSymbolicPath += 2;
+          
+        if (lpFakeSymlinkFileName)
+          // Create a dead symbolic link. Only CreateSymboliclinkRaw() can do this
+          bSymLinkCreation = CreateSymboliclinkRaw (lpFakeSymlinkFileName, pSymbolicPath, dwFlags) == ERROR_SUCCESS ? TRUE : FALSE;
+        else
+        {
+          // CreateSymbolicLink does not work when used with SE_BACKUPNAME, but CreateSymbolcLinkRaw() does
+          if (dwFlags & FILE_FLAG_BACKUP_SEMANTICS)
+            bSymLinkCreation = CreateSymboliclinkRaw (lpSymlinkFileName, pSymbolicPath, dwFlags) == ERROR_SUCCESS ? TRUE : FALSE;
+          else
+          {
+            // The original CreateSymbolicLink(), does not understand the content of dwFlags, thus translate it
+            bSymLinkCreation = CreateSymboliclinkMS(lpSymlinkFileName, pSymbolicPath, dwFlags);
+          }
+        }
+
+        bRelativeSymlinkCreated = true;
+      }
+      else
+      {
+        // Create a relative symbolic link between to very long path ( > MAX_PATH )
+        // Currently we can not use this because PathRelativePathTo() is broken for path > MAX_PATH
+        // There is a method PathRelativ under test in this lib. But to create relative symlinks
+        // between very long path is more an academic problem, so this is the reason the code is commented out
+        //
+        // bSymLinkCreation = CreateSymboliclinkRaw (lpSymlinkFileName, pSymbolicPath, dwFlags);
+        // bRelativeSymlinkCreated = true;
+
+        // So we create it absolute
+        dwFlags &= ~SYMLINK_FLAG_RELATIVE;
+      }
+    } // if (bHasCommonAncestor)
+    else
+      dwFlags &= ~SYMLINK_FLAG_RELATIVE;
+  } // if (dwFlags & SYMLINK_FLAG_RELATIVE)
+
+
+  // Create absolute Symbolic link targets. This is because
+  // it was either requested, or relative creation didn't work
+  // because the target was on a different drive
+  if (!bRelativeSymlinkCreated)
+  {
+    FixVeryLongPath(&lpSymlinkFileName);
+    FixVeryLongPath(&pSymlinkFileNameTarget);
+
+    // If we go to a volumeguid, we always have to be absolute. Windows7 would be that robust to also accept relative
+    // symlinks to \\?\VolumeGUID, but the XP driver is not
+    if (!wcsncmp(pSymlinkFileNameTarget, PATH_LONG_VOLUME_GUID, PATH_LONG_VOLUME_GUID_SIZE))
+      dwFlags &= ~SYMLINK_FLAG_RELATIVE;
+
+    if (lpFakeSymlinkFileName)
+      bSymLinkCreation = CreateSymboliclinkRaw (lpFakeSymlinkFileName, pSymlinkFileNameTarget, dwFlags & ~SYMLINK_FLAG_RELATIVE) == ERROR_SUCCESS ? TRUE : FALSE;
+    else
+    {
+      if (dwFlags & FILE_FLAG_BACKUP_SEMANTICS)
+        bSymLinkCreation = CreateSymboliclinkRaw (lpSymlinkFileName, pSymlinkFileNameTarget, dwFlags & ~SYMLINK_FLAG_RELATIVE) == ERROR_SUCCESS ? TRUE : FALSE;
+      else
+      {
+        // The original CreateSymbolicLink(), does not understand the content of dwFlags, thus translate it
+        bSymLinkCreation = CreateSymboliclinkMS (lpSymlinkFileName, pSymlinkFileNameTarget, dwFlags);
+
+        // MS changed the return type of CreateSymbolicLink for Windows10 from BOOLEAN to int. Idiots!
+        // But success is still BOOL true, and everything above shall be treated as an error
+        if ((gVersionInfo.dwMajorVersion >= WINDOWS_VERSION_WIN10) && (int)bSymLinkCreation > 1)
+        {
+          SetLastError(bSymLinkCreation);
+          bSymLinkCreation = FALSE;
+        }
+      }
+    }
   }
+
+  if (bSymLinkCreation)
+    RetVal = ERROR_SUCCESS;
+  else 
+    RetVal = GetLastError();
 
   return RetVal;
 }
@@ -1073,7 +1013,10 @@ void DeletePathNameStatusList(_PathNameStatusList &p)
     delete [] (*i).m_PathName;
 }
 
-BOOL RemoveDir (LPCWSTR aPath, BOOL aQuiet)
+BOOL RemoveDir (
+  __in  LPCWSTR aPath,
+  const BOOL aQuiet
+)
 {
 	SetFileAttributesW(
 		aPath,
@@ -1242,8 +1185,8 @@ int XDel_recursive (
 //--------------------------------------------------------------------
 int 
 ProbeHardlink(
-              LPCTSTR		aFileName
-              )
+  __in LPCTSTR		aFileName
+)
 {
   BY_HANDLE_FILE_INFORMATION 	FileInformation;
   int							RetVal = -1;
@@ -1297,9 +1240,9 @@ ProbeHardlink(
 //--------------------------------------------------------------------
 int
 CreateJunction( 
-  PCWCH   LinkDirectory, 
-  PCWCH   LinkTarget,
-  DWORD   dwFlags
+  __in        PCWCH   LinkDirectory,
+  __in        PCWCH   LinkTarget,
+  __in        DWORD   dwFlags
 )
 {
   DWORD		RetVal = ERROR_SUCCESS;
@@ -1445,9 +1388,9 @@ CreateJunction(
 int
 __stdcall
 CreateSymboliclinkRaw( 
-	LPCWSTR lpTargetFileName,
-	LPCWSTR lpSymlinkFileName,
-  DWORD  dwFlags
+  __in    LPCWSTR       lpTargetFileName,
+  __in    LPCWSTR       lpSymlinkFileName,
+  __in    const DWORD   dwFlags
 )
 {
   DWORD		RetVal = ERROR_SUCCESS;
@@ -1633,13 +1576,12 @@ CreateVeryLongPath(
 //   REPARSE_POINT_JUNCTION
 //   REPARSE_POINT_MOUNTPOINT
 //   REPARSE_POINT_SYMBOLICLINK
-// This coding is partially taken from www.sysinternals.com
 //
 //--------------------------------------------------------------------
 int 
 ProbeReparsePoint( 
-  PCWSTR  FileName,
-  PWCHAR	aDestination
+  __in      LPCWSTR  FileName,
+  __inout   PWCHAR	aDestination
 )
 {
   int	 RetVal = REPARSE_POINT_FAIL;
@@ -1708,7 +1650,10 @@ ProbeReparsePoint(
                 if (aDestination)
                 {
                   wcscpy(aDestination, name1);
-                  aDestination[1] = '\\';
+                  
+                  // There are two ways a mountpoint can be reported: Via \??\\ or \\Device\bla
+                  if (!wcsncmp(aDestination, PATH_NAMESPACE_ROOT, PATH_NAMESPACE_ROOT_SIZE))
+                    aDestination[1] = '\\';
                 }
                 RetVal = REPARSE_POINT_MOUNTPOINT;
               }
@@ -1740,10 +1685,12 @@ ProbeReparsePoint(
             }
             break;
 
+#if _WIN32_WINNT == 0x601
             case IO_REPARSE_TAG_DEDUP:
             {
             }
             break;
+#endif
           }
         }
       }
@@ -1765,8 +1712,8 @@ ProbeReparsePoint(
 //--------------------------------------------------------------------
 BOOL 
 ProbeJunction( 
-  PCWSTR  aFileName,
-  PWCHAR  aDestination
+  __in    LPCWSTR  aFileName,
+  __inout PWCHAR   aDestination
 )
 {
   int r = ProbeReparsePoint(aFileName, aDestination);
@@ -1953,9 +1900,9 @@ IsFileSystemNtfs (
 
 int 
 ReparseCanonicalize (
-                PWCHAR		aPath, 
-                PWCHAR		aDestination
-                )
+  __in    LPCWSTR		aPath,
+  __inout LPWSTR		aDestination
+)
 {
   if (!aPath)
     return ERROR_PATH_NOT_FOUND;
@@ -2052,7 +1999,7 @@ CreateTimeStampedFileName(
 
   if (FilenameList.size())
   {
-    std::sort(FilenameList.begin(), FilenameList.end(), SringSorter());
+    sort(FilenameList.begin(), FilenameList.end(), SringSorter());
     wcscpy(aBackup0Path, aDestPath);
     PathAddBackslash(aBackup0Path);
     wcscat(aBackup0Path, FilenameList.back().c_str());
@@ -2247,7 +2194,7 @@ CreateFileName(
       }
       while (FindNextFile (sh, &wfind) > 0);
 
-      std::sort(of.begin(), of.end(), SizeSorter());
+      sort(of.begin(), of.end(), SizeSorter());
       MaxOf = FindFreeNumber(of);
     }
     FindClose (sh);
@@ -2375,7 +2322,7 @@ CreateFileName(
       }
       while (FindNextFile (sh, &wfind) > 0);
 
-      std::sort(of.begin(), of.end(), SizeSorter());
+      sort(of.begin(), of.end(), SizeSorter());
       MaxOf = FindFreeNumber(of);
     }
     FindClose (sh);
@@ -2515,16 +2462,13 @@ FindFreeNumber(
 //--------------------------------------------------------------------
 int
 CreateMountPoint (
-  PWCHAR aSourceDirectory, 
-  PWCHAR aDestinationDirectory
+  __in    LPCWSTR aSourceDirectory,
+  __in    LPCWSTR aDestinationDirectory
 )
 {
-  if (!pfnGetVolumeNameForVolumeMountPoint)
-    return ERROR_INVALID_FUNCTION;
-
   // GetVolumePathNamesForVolumeName
   WCHAR	VolumeName[MAX_PATH];
-  BOOL r = pfnGetVolumeNameForVolumeMountPoint(aSourceDirectory, VolumeName, MAX_PATH);
+  BOOL r = GetVolumeNameForVolumeMountPoint(aSourceDirectory, VolumeName, MAX_PATH);
   if (r)
   {
     if ('\\' != aDestinationDirectory[wcslen(aDestinationDirectory) - 1])
@@ -2532,13 +2476,13 @@ CreateMountPoint (
       WCHAR	Dst[MAX_PATH];
       wcscpy_s(Dst, MAX_PATH, aDestinationDirectory);
       wcscat_s(Dst, MAX_PATH, L"\\");
-      r = pfnSetVolumeMountPoint(Dst, VolumeName);
+      r = SetVolumeMountPoint(Dst, VolumeName);
       if (!r)
         return GetLastError();
     }
     else
     {
-      r = pfnSetVolumeMountPoint(aDestinationDirectory, VolumeName);
+      r = SetVolumeMountPoint(aDestinationDirectory, VolumeName);
       if (!r)
         return GetLastError();
     }
@@ -2558,8 +2502,8 @@ CreateMountPoint (
 //--------------------------------------------------------------------
 BOOL
 TranslateMountPoint (
-  PWCHAR  aDestination,
-  PWCHAR  aVolumeName
+  __inout LPWSTR  aDestination,
+  __in    LPCWSTR aVolumeName
 )
 {
   if (aVolumeName)
@@ -2568,47 +2512,36 @@ TranslateMountPoint (
     PWCHAR Names;
 
     // Make sure GetVolume... is only called when it is available
-    if (pfnGetVolumePathNamesForVolumeName)
+    DWORD  Chars = MAX_PATH + 1;
+    for (;;)
     {
-      DWORD  Chars = MAX_PATH + 1;
-      for (;;) 
+      Error = S_FALSE;
+
+      // Allocate a buffer to hold the path names
+      Names = (PWCHAR) new BYTE[Chars * sizeof(WCHAR)];
+
+      // Obtain all of the path names for this volume
+      BOOL Status = GetVolumePathNamesForVolumeName(aVolumeName, Names, Chars, &Chars);
+      if (Status)
       {
-        Error = S_FALSE;
-
-        // Allocate a buffer to hold the path names
-        Names = (PWCHAR) new BYTE [Chars * sizeof(WCHAR)];
-
-        // Obtain all of the path names for this volume
-        BOOL Status = pfnGetVolumePathNamesForVolumeName(aVolumeName, Names, Chars, &Chars);
-        if (Status) 
-        {
-          Error = ERROR_SUCCESS;
-          break;
-        }
-
-        Error = GetLastError();
-        if (Error != ERROR_MORE_DATA) 
-          break;
-
-        // Try again with the new suggested size
-        delete [] Names;
+        Error = ERROR_SUCCESS;
+        break;
       }
 
-      if (ERROR_SUCCESS == Error)
-        wcscpy(aDestination, Names); 
-      else
-        wcscpy(aDestination, aVolumeName); 
+      Error = GetLastError();
+      if (Error != ERROR_MORE_DATA)
+        break;
 
-      delete [] Names;
+      // Try again with the new suggested size
+      delete[] Names;
     }
+
+    if (ERROR_SUCCESS == Error)
+      wcscpy(aDestination, Names);
     else
-    {
-      // This is the W2K and NT4 use case, which is 
-      // not yet supported, so we copy the volume name
-      // to the destination
-      if (aDestination) 
-        wcscpy(aDestination, aVolumeName); 
-    }
+      wcscpy(aDestination, aVolumeName);
+
+    delete[] Names;
   }
 
   return TRUE;
@@ -2623,9 +2556,9 @@ TranslateMountPoint (
 //--------------------------------------------------------------------
 BOOL
 ProbeMountPoint (
-  PCWSTR	aDirectory,
-  PWCHAR  aDestination,
-  PWCHAR  aVolumeName
+  __in    LPCWSTR aDirectory,
+  __inout LPWSTR  aDestination,
+  __in    LPWSTR  aVolumeName
 )
 {
   int r = ProbeReparsePoint(aDirectory, aVolumeName);
@@ -2644,12 +2577,9 @@ ProbeMountPoint (
 //--------------------------------------------------------------------
 int
 DeleteMountPoint (
-                  PWCHAR aDirectory
-                  )
+  __in    LPCWSTR  aDirectory
+)
 {
-  if (!pfnDeleteVolumeMountPoint)
-    return ERROR_INVALID_FUNCTION;
-
   int RetVal = ERROR_SUCCESS;
   BOOL b;
 
@@ -2658,10 +2588,10 @@ DeleteMountPoint (
     WCHAR	Dst[MAX_PATH];
     wcscpy_s(Dst, MAX_PATH, aDirectory);
     wcscat_s(Dst, MAX_PATH, L"\\");
-    b = pfnDeleteVolumeMountPoint(Dst);
+    b = DeleteVolumeMountPoint(Dst);
   }
   else
-    b = pfnDeleteVolumeMountPoint(aDirectory);
+    b = DeleteVolumeMountPoint(aDirectory);
 
   if (!b)
     RetVal = GetLastError();
@@ -2678,8 +2608,8 @@ DeleteMountPoint (
 //--------------------------------------------------------------------
 BOOL 
 ProbeSymbolicLink( 
-  PCWSTR  aFileName,
-  PWCHAR  aDestination
+  __in    LPCWSTR aFileName,
+  __inout LPWSTR  aDestination
 )
 {
   if (gpfCreateSymbolicLink)
@@ -3778,7 +3708,7 @@ FileInfoContainer() :
   m_pLookAsideFileInfoContainer(NULL),
   m_CurDestPathIdx(-1),
   m_CurSourcePathLen(0),
-  m_SmartCopyPrepared (false),
+  m_Prepared (false),
 
   m_Flags(eSmartCopy),
   m_Flags2(0),
@@ -3826,11 +3756,7 @@ FileInfoContainer() :
   m_MaxRound = Power2 + eRoundOffset;
 
   m_SecDescSize = sizeof(SECURITY_DESCRIPTOR);
-#if defined USE_ROCKALL_HEAPMANAGER
-  m_pSecDesc = (PSECURITY_DESCRIPTOR)MyHeap.New(sizeof(SECURITY_DESCRIPTOR));
-#else
   m_pSecDesc = (PSECURITY_DESCRIPTOR)malloc(sizeof(SECURITY_DESCRIPTOR));
-#endif
 }
 
 //--------------------------------------------------------------------
@@ -3940,7 +3866,7 @@ _EnumHardlinkSiblingsUp(
   // Check if we have been canceled from outside
   if (apContext)
   {
-    apContext->Inc();
+    apContext->AddProgress(1, 1, 1);
 
     // Set the status, and check if Smartcopy has been cancelled from outside
     int r = apContext->PutStatus(&aSrcPath[PATH_PARSE_SWITCHOFF_SIZE]);
@@ -4018,7 +3944,7 @@ _EnumHardlinkSiblingsDown(
 
         if (apContext)
         {
-          apContext->Inc();
+          apContext->AddProgress(1, 1, 1);
 
           // Set the status, and check if EnumHardlinkSiblings has been cancelled from outside
           int r = apContext->PutStatus(&aSrcPath[PATH_PARSE_SWITCHOFF_SIZE]);
@@ -4094,7 +4020,7 @@ _EnumHardlinkSiblingsDown(
             // Check if we have been canceled from outside
             if (apContext)
             {
-              apContext->Inc();
+              apContext->AddProgress(1, 1, 1);
 
               // Set the status, and check if EnumHardlinkSiblings has been cancelled from outside
               int r = apContext->PutStatus(&aSrcPath[PATH_PARSE_SWITCHOFF_SIZE]);
@@ -4198,6 +4124,10 @@ _FindHardLink(
   AsyncContext*           apContext
 )
 {
+#if defined _M_IX86
+  PVOID OldValue = NULL;
+  Wow64DisableWow64FsRedirection(&OldValue);
+#endif
   WCHAR	SrcPath[HUGE_PATH];
 
   // Add all source path to the m_AnchorPathCache, because during FindHardlink
@@ -4273,34 +4203,28 @@ _FindHardLink(
 
     // Make sure GetVolumeNameForVolumeMountPoint() is available
     //
-    BOOL IsVolume;
-    if (!pfnGetVolumeNameForVolumeMountPoint)
-      IsVolume = false;
-    else
+    BOOL IsVolume = GetVolumeNameForVolumeMountPoint(SrcPath, VolumeName, HUGE_PATH);
+    if (ERROR_SUCCESS != GetLastError())
     {
-      IsVolume = pfnGetVolumeNameForVolumeMountPoint(SrcPath, VolumeName, HUGE_PATH);
-      if (ERROR_SUCCESS != GetLastError())
+      // Another hack. Root-Path based on \\?\GLOBALROOT need a trailing slash so that 
+      // GetVolumeNameForVolumeMountPoint() works.
+      size_t Len = wcslen(SrcPath);
+      wcscat_s(SrcPath, HUGE_PATH, L"\\");
+      IsVolume = GetVolumeNameForVolumeMountPoint(SrcPath, VolumeName, HUGE_PATH);
+
+      // But it does not work when \\?\GLOBALROOT is the prefix for path created by volumeshadows
+      if ((!wcsncmp(SrcPath, PATH_LONG_GLOBALROOT, PATH_LONG_GLOBALROOT_SIZE)) && !IsVolume)
       {
-        // Another hack. Root-Path based on \\?\GLOBALROOT need a trailing slash so that 
-        // GetVolumeNameForVolumeMountPoint() works.
-        size_t Len = wcslen(SrcPath);
-        wcscat_s(SrcPath, HUGE_PATH, L"\\");
-        IsVolume = pfnGetVolumeNameForVolumeMountPoint(SrcPath, VolumeName, HUGE_PATH);
-
-        // But it does not work when \\?\GLOBALROOT is the prefix for path created by volumeshadows
-        if ( ( !wcsncmp(SrcPath, PATH_LONG_GLOBALROOT, PATH_LONG_GLOBALROOT_SIZE) ) && !IsVolume)
-        {
-          FileAttributes = GetFileAttributes(SrcPath);
-          if (INVALID_FILE_ATTRIBUTES != FileAttributes)
-            IsVolume = true;
-        }
-        else
-        {
-          // Still unable to get the fileAttributes from \\?\GLOBALROOT as prefix for path created by volumeshadows
-        }
-
-        SrcPath[Len] = 0x0;
+        FileAttributes = GetFileAttributes(SrcPath);
+        if (INVALID_FILE_ATTRIBUTES != FileAttributes)
+          IsVolume = true;
       }
+      else
+      {
+        // Still unable to get the fileAttributes from \\?\GLOBALROOT as prefix for path created by volumeshadows
+      }
+
+      SrcPath[Len] = 0x0;
     }
 
     //
@@ -4465,6 +4389,9 @@ _FindHardLink(
     if (RetVal != ERROR_SUCCESS)
       break;
   }
+#if defined _M_IX86
+  Wow64RevertWow64FsRedirection(OldValue);
+#endif
   return RetVal;
 }
 //
@@ -4504,10 +4431,6 @@ _FindHardLinkTraditionalRecursive(
 
 #if defined _M_IX86
   _asm { mov [sp_value], esp }
-#elif defined _M_IA64
-  CONTEXT context;
-  RtlCaptureContext(&context);
-  sp_value = context.IntSp;
 #elif defined _M_X64
   CONTEXT context;
   RtlCaptureContext(&context);
@@ -4576,7 +4499,7 @@ _FindHardLinkTraditionalRecursive(
 #endif
             if (apContext)
             {
-              apContext->Inc();
+              apContext->AddProgress(1, 1, 1);
 
               // Set the status, and check if FindHardLink has been cancelled from outside
               int r = apContext->PutStatus(&aSrcPath[PathParseSwitchOffSize]);
@@ -4813,7 +4736,7 @@ _FindHardLinkTraditionalRecursive(
 
         if (apContext)
         {
-          apContext->Inc();
+          apContext->AddProgress(1, 1, 1);
 
           // Set the status, and check if Smartcopy has been cancelled from outside
           int r = apContext->PutStatus(&aSrcPath[PathParseSwitchOffSize]);
@@ -5147,11 +5070,10 @@ _FindHardLinkRecursive(
   m_LastStackUsageFindHardlink = used_stack_size;
 
   // Make sure this number is the same as given under the linker section
-  // via /stack:number . It seems that 15Mb is enough for a path with 128
+  // via /stack:number . It seems that 45Mb is enough for a path with 128
   // levels aka 256 character for MAX_PATH
   if (used_stack_size + m_StackUsageFindHardlink > STACKSIZE)
     return ERROR_STACK_BUFFER_OVERRUN;
-
 
   //
   // ReparsePointReferencePath is kept for each level of recursion
@@ -5228,11 +5150,9 @@ _FindHardLinkRecursive(
 
   if( NT_SUCCESS( ntStatus ))
   {
-#if defined USE_ROCKALL_HEAPMANAGER
-    BothDirInfo = (PFILE_ID_BOTH_DIR_INFORMATION) MyHeap.New( NTQUERYDIRECTORY_BUFSIZE + sizeof(long) );
-#else
+    aStats->m_HeapAllocTime.Start();
     BothDirInfo = (PFILE_ID_BOTH_DIR_INFORMATION) malloc( NTQUERYDIRECTORY_BUFSIZE + sizeof(long) );
-#endif
+    aStats->m_HeapAllocTime.Stop();
     while(1)
     {
       ntStatus = NtQueryDirectoryFile( 
@@ -5286,7 +5206,7 @@ _FindHardLinkRecursive(
 #endif
               if (apContext)
               {
-                apContext->Inc();
+                apContext->AddProgress(1, 1, 1);
 
                 // Set the status, and check if FindHardLink has been cancelled from outside
                 int r = apContext->PutStatus(&aSrcPath[PathParseSwitchOffSize]);
@@ -5323,11 +5243,17 @@ _FindHardLinkRecursive(
                 // An empty Incl List means 'take everything'
                 RegExpMatch = true;
               else
+              {
                 // But if there are items on the incl-list we would like just have them
+                aStats->m_RegExpMatchTime.Start();
                 RegExpMatch = MatchRegExpList(&aSrcPath[PathParseSwitchOffSize], m_RegExpInclDirList);
+                aStats->m_RegExpMatchTime.Stop();
+              }
 
               // But afterwards exclude
+              aStats->m_RegExpMatchTime.Start();
               RegExpMatch &= !MatchRegExpList(&aSrcPath[PathParseSwitchOffSize], m_RegExpExclDirList);
+              aStats->m_RegExpMatchTime.Stop();
 
               if (RegExpMatch)
 #endif
@@ -5546,7 +5472,7 @@ _FindHardLinkRecursive(
 
           if (apContext)
           {
-            apContext->Inc();
+            apContext->AddProgress(1, 1, 1);
 
             // Set the status, and check if Smartcopy has been cancelled from outside
             int r = apContext->PutStatus(&aSrcPath[PathParseSwitchOffSize]);
@@ -5571,11 +5497,17 @@ _FindHardLinkRecursive(
               // An empty Incl List means 'take everything'
               RegExpMatch = true;
             else
+            {
               // But if there are items on the incl-list we would like just have them
+              aStats->m_RegExpMatchTime.Start();
               RegExpMatch = MatchRegExpList(aSrcPath, m_RegExpInclFileList);
+              aStats->m_RegExpMatchTime.Stop();
+            }
 
             // But afterwards exclude
+            aStats->m_RegExpMatchTime.Start();
             RegExpMatch &= !MatchRegExpList(aSrcPath, m_RegExpExclFileList);
+            aStats->m_RegExpMatchTime.Stop();
 
             CurrentBothDirInfo->FileName[CurrentBothDirInfo->FileNameLength / sizeof(wchar_t)] = SaveChar;
 
@@ -5803,11 +5735,9 @@ _FindHardLinkRecursive(
 
     CloseHandle (DirHandle);
 
-#if defined USE_ROCKALL_HEAPMANAGER
-    MyHeap.Delete(BothDirInfo);
-#else
+    aStats->m_HeapDeletionTime.Start();
     free(BothDirInfo);
-#endif
+    aStats->m_HeapDeletionTime.Stop();
   }
   else // if( NT_SUCCESS( ntStatus ))
   {
@@ -6347,14 +6277,12 @@ AddDirectoryFast(
   int RetVal = ERROR_SUCCESS;
 
   size_t FilenameLength = wcslen (aName) + 1;
-#if defined USE_ROCKALL_HEAPMANAGER
-  FileInfo*	pFileInfo = (FileInfo*)MyHeap.New(sizeof(FileInfo));
-  pFileInfo->Init();
-  pFileInfo->m_FileName = (wchar_t*)MyHeap.New( (int)(FilenameLength * sizeof(wchar_t)));
-#else
+  aStats->m_HeapAllocTime.Start();
   FileInfo*	pFileInfo = new FileInfo;
+  pFileInfo->Init();
   pFileInfo->m_FileName = new wchar_t[FilenameLength];
-#endif
+  aStats->m_HeapAllocTime.Stop();
+
   wcscpy_s (pFileInfo->m_FileName, FilenameLength, aName);
 
   pFileInfo->m_CreationTime.ul64DateTime = pFullDirInfo->CreationTime.QuadPart;
@@ -6369,11 +6297,11 @@ AddDirectoryFast(
   if (aReparseSrcTargetHint[0])
   {
     size_t ReparseSrcTargetHintLength = wcslen(aReparseSrcTargetHint) + 1;
-#if defined USE_ROCKALL_HEAPMANAGER
-    pFileInfo->m_ReparseSrcTargetHint = (wchar_t*)MyHeap.New( (int)(ReparseSrcTargetHintLength * sizeof(wchar_t)) );
-#else
+
+    aStats->m_HeapAllocTime.Start();
     pFileInfo->m_ReparseSrcTargetHint = new wchar_t[ReparseSrcTargetHintLength];
-#endif
+    aStats->m_HeapAllocTime.Stop();
+
     wcscpy_s (pFileInfo->m_ReparseSrcTargetHint, ReparseSrcTargetHintLength, aReparseSrcTargetHint);
   }
   else
@@ -6511,7 +6439,7 @@ AddDirectoryFast(
 #if defined USE_VECTOR
     m_PathVector.push_back(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
 #else    
-    /* std::pair< _PathMap::iterator, bool > pr = */ m_PathMap.insert(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
+    /* pair< _PathMap::iterator, bool > pr = */ m_PathMap.insert(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
 #endif
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
@@ -6557,14 +6485,12 @@ AddDirectory(
     if (r)
     {
       size_t FilenameLength = wcslen (aName) + 1;
-#if defined USE_ROCKALL_HEAPMANAGER
-      FileInfo*	pFileInfo = (FileInfo*)MyHeap.New(sizeof(FileInfo));
-      pFileInfo->Init();
-      pFileInfo->m_FileName = (wchar_t*)MyHeap.New((int)(FilenameLength * sizeof(wchar_t)));
-#else
+
+      aStats->m_HeapAllocTime.Start();
       FileInfo*	pFileInfo = new FileInfo;
       pFileInfo->m_FileName = new wchar_t[FilenameLength];
-#endif
+      aStats->m_HeapAllocTime.Stop();
+
       wcscpy_s (pFileInfo->m_FileName, FilenameLength, aName);
 
       pFileInfo->m_CreationTime.dwLowDateTime = FileInformation.ftCreationTime.dwLowDateTime;
@@ -6584,11 +6510,11 @@ AddDirectory(
       if (aReparseSrcTargetHint[0])
       {
         size_t ReparseSrcTargetHintLength = wcslen(aReparseSrcTargetHint) + 1;
-#if defined USE_ROCKALL_HEAPMANAGER
-        pFileInfo->m_ReparseSrcTargetHint = (wchar_t*)MyHeap.New( (int)(ReparseSrcTargetHintLength * sizeof(wchar_t)) );
-#else
+
+        aStats->m_HeapAllocTime.Start();
         pFileInfo->m_ReparseSrcTargetHint = new wchar_t[ReparseSrcTargetHintLength];
-#endif
+        aStats->m_HeapAllocTime.Stop();
+
         wcscpy_s (pFileInfo->m_ReparseSrcTargetHint, ReparseSrcTargetHintLength, aReparseSrcTargetHint);
       }
       else
@@ -6598,7 +6524,7 @@ AddDirectory(
 #if defined USE_VECTOR
       m_PathVector.push_back(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
 #else    
-      /* std::pair< _PathMap::iterator, bool > pr = */ m_PathMap.insert(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
+      /* pair< _PathMap::iterator, bool > pr = */ m_PathMap.insert(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
 #endif
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
@@ -6799,14 +6725,10 @@ AddFileFast(
 
   size_t FilenameLength = wcslen (aName) + 1;
 
-#if defined USE_ROCKALL_HEAPMANAGER
-  FileInfo*	pFileInfo = (FileInfo*)MyHeap.New(sizeof(FileInfo));
-  pFileInfo->Init();
-  pFileInfo->m_FileName = (wchar_t*)MyHeap.New((int)(FilenameLength * sizeof(wchar_t)));
-#else
+  aStats->m_HeapAllocTime.Start();
   FileInfo*	pFileInfo = new FileInfo;
   pFileInfo->m_FileName = new wchar_t[FilenameLength];
-#endif
+  aStats->m_HeapAllocTime.Stop();
 
   wcscpy_s (pFileInfo->m_FileName, FilenameLength, aName);
 
@@ -6831,11 +6753,11 @@ AddFileFast(
     if (aReparseSrcTargetHint[0])
     {
       size_t ReparseSrcTargetHintLength = wcslen(aReparseSrcTargetHint) + 1;
-#if defined USE_ROCKALL_HEAPMANAGER
-      pFileInfo->m_ReparseSrcTargetHint = (wchar_t*)MyHeap.New( (int)(ReparseSrcTargetHintLength * sizeof(wchar_t)) );
-#else
+
+      aStats->m_HeapAllocTime.Start();
       pFileInfo->m_ReparseSrcTargetHint = new wchar_t[ReparseSrcTargetHintLength];
-#endif
+      aStats->m_HeapAllocTime.Stop();
+
       wcscpy_s (pFileInfo->m_ReparseSrcTargetHint, ReparseSrcTargetHintLength, aReparseSrcTargetHint);
     }
     else
@@ -6850,7 +6772,7 @@ AddFileFast(
 #if defined USE_VECTOR
     m_PathVector.push_back(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
 #else    
-    /* std::pair< _PathMap::iterator, bool > pr = */ m_PathMap.insert(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
+    /* pair< _PathMap::iterator, bool > pr = */ m_PathMap.insert(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
 #endif
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
@@ -6955,7 +6877,7 @@ AddFileFast(
 #if defined USE_VECTOR
     m_PathVector.push_back(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
 #else    
-    /*/ std::pair< _PathMap::iterator, bool > pr = /*/ m_PathMap.insert(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
+    /*/ pair< _PathMap::iterator, bool > pr = /*/ m_PathMap.insert(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
 #endif
 
 // #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
@@ -7005,14 +6927,12 @@ AddFile(
   if (INVALID_HANDLE_VALUE != fh)
   {
     size_t FilenameLength = wcslen (aName) + 1;
-#if defined USE_ROCKALL_HEAPMANAGER
-    FileInfo*	pFileInfo = (FileInfo*)MyHeap.New(sizeof(FileInfo));
-    pFileInfo->Init();
-    pFileInfo->m_FileName = (wchar_t*)MyHeap.New((int)(FilenameLength * sizeof(wchar_t)));
-#else
+
+    aStats->m_HeapAllocTime.Start();
     FileInfo*	pFileInfo = new FileInfo;
     pFileInfo->m_FileName = new wchar_t[FilenameLength];
-#endif
+    aStats->m_HeapAllocTime.Stop();
+
     wcscpy_s (pFileInfo->m_FileName, FilenameLength, aName);
 
     pFileInfo->m_Type = nType;
@@ -7038,13 +6958,11 @@ AddFile(
 
       if (!bAddItem)
       {
-#if defined USE_ROCKALL_HEAPMANAGER
-        MyHeap.Delete(pFileInfo->m_FileName);
-        MyHeap.Delete(pFileInfo);
-#else
+        aStats->m_HeapDeletionTime.Start();
         delete[] pFileInfo->m_FileName;
         delete pFileInfo;
-#endif
+        aStats->m_HeapDeletionTime.Stop();
+
         CloseHandle(fh);
         return RetVal;
       }
@@ -7072,11 +6990,11 @@ AddFile(
         if (aReparseSrcTargetHint[0])
         {
           size_t ReparseSrcTargetHintLength = wcslen(aReparseSrcTargetHint) + 1;
-#if defined USE_ROCKALL_HEAPMANAGER
-          pFileInfo->m_ReparseSrcTargetHint = (wchar_t*)MyHeap.New( (int) (ReparseSrcTargetHintLength * sizeof(wchar_t)) );
-#else
+
+          aStats->m_HeapAllocTime.Start();
           pFileInfo->m_ReparseSrcTargetHint = new wchar_t[ReparseSrcTargetHintLength];
-#endif
+          aStats->m_HeapAllocTime.Stop();
+
           wcscpy_s(pFileInfo->m_ReparseSrcTargetHint, ReparseSrcTargetHintLength, aReparseSrcTargetHint);
         }
         else
@@ -7087,7 +7005,7 @@ AddFile(
 #if defined USE_VECTOR
         m_PathVector.push_back(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
 #else    
-        /* std::pair< _PathMap::iterator, bool > pr = */ m_PathMap.insert(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
+        /* pair< _PathMap::iterator, bool > pr = */ m_PathMap.insert(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
 #endif
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
@@ -7142,7 +7060,7 @@ AddFile(
 #if defined USE_VECTOR
           m_PathVector.push_back(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
 #else    
-          /*/ std::pair< _PathMap::iterator, bool > pr = /*/ m_PathMap.insert(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
+          /*/ pair< _PathMap::iterator, bool > pr = /*/ m_PathMap.insert(_PathMap_Pair(pFileInfo->m_FileName, pFileInfo));
 #endif
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
@@ -7274,11 +7192,7 @@ Load(
     );
 
     size_t FileNameLength = wcslen (Filename) + 1;
-#if defined USE_ROCKALL_HEAPMANAGER
-    pFileInfo->m_FileName = (wchar_t*)MyHeap.New((int)(FileNameLength * sizeof(wchar_t)));
-#else
     pFileInfo->m_FileName = new wchar_t[FileNameLength];
-#endif
     wcscpy_s (pFileInfo->m_FileName, FileNameLength, Filename);
 
     if (pFileInfo->IsDirectory() || pFileInfo->IsReparsePoint())
@@ -7296,11 +7210,7 @@ Load(
       size_t ReparseSrcTargetHintLength = wcslen(ReparseSrcTargetHint) + 1;
       if (wcscmp(ReparseSrcTargetHint, NULL_STRING))
       {
-#if defined USE_ROCKALL_HEAPMANAGER
-        pFileInfo->m_ReparseSrcTargetHint = (wchar_t*)MyHeap.New((int)(ReparseSrcTargetHintLength * sizeof(wchar_t)));
-#else
         pFileInfo->m_ReparseSrcTargetHint = new wchar_t[ReparseSrcTargetHintLength];
-#endif
         wcscpy_s (pFileInfo->m_ReparseSrcTargetHint, ReparseSrcTargetHintLength, ReparseSrcTargetHint);
       }
       else
@@ -7384,7 +7294,7 @@ Save(
 )
 {
   // Save all filenames
-  fwprintf(aDestFile, L"%x\n", m_Filenames.size()); 
+  fwprintf(aDestFile, L"%zx\n", m_Filenames.size()); 
 
   _Pathes::iterator	PathIter;
   for (PathIter = m_Filenames.begin(); PathIter != m_Filenames.end(); ++PathIter)
@@ -7458,14 +7368,12 @@ SaveStringList(
   _StringList&  a_StringList
 )
 {
-  fwprintf(aFile, L"%x\n", a_StringList.size()); 
+  fwprintf(aFile, L"%zx\n", a_StringList.size()); 
   for (_StringListIterator iter = a_StringList.begin(); iter != a_StringList.end(); ++iter)
     fwprintf (aFile, L"%s\"\n", iter->c_str());
 
   return ERROR_SUCCESS;
 }
-
-using namespace std;
 
 FileInfo::
 FileInfo()
@@ -7590,20 +7498,13 @@ ReplaceSourcePath(
   if (aNewPathLen > m_SourcePathLen)
   {
     // We have to realloc
-#if defined USE_ROCKALL_HEAPMANAGER
-    int FilenameLength = (int)( (OldLength - m_SourcePathLen + aNewPathLen + 1) * sizeof(wchar_t) );
-    wchar_t* pNewFilename = (wchar_t*)MyHeap.New(FilenameLength);
-#else
-    int FilenameLength = OldLength - m_SourcePathLen + aNewPathLen + 1;
+    size_t FilenameLength = OldLength - m_SourcePathLen + aNewPathLen + 1;
     wchar_t* pNewFilename = new wchar_t[FilenameLength];
-#endif
     wcscpy_s(pNewFilename, FilenameLength, aNewPath);
     CopyMemory(&pNewFilename[aNewPathLen], &m_FileName[m_SourcePathLen], (OldLength - m_SourcePathLen + 1) * sizeof(wchar_t));
-#if defined USE_ROCKALL_HEAPMANAGER
-    MyHeap.Delete(m_FileName);
-#else
+
     delete [] m_FileName;
-#endif
+
     m_FileName = pNewFilename;
   }
   else
@@ -7701,8 +7602,7 @@ PrepareRefcounts(
 )
 {
   CopyStatistics	aStats;
-  if (!m_SmartCopyPrepared)
-    PrepareSmartCopy(FileInfoContainer::eSmartClone, &aStats);
+  Prepare(FileInfoContainer::eSmartClone, &aStats);
 
   if (m_HardlinkBegin == m_FATFilenameBegin)
     return 0;
@@ -7842,7 +7742,7 @@ DWORD CALLBACK CopyProgressRoutine(
   AsyncContext*   apContext = (AsyncContext*)lpData;
   if (apContext)
   {
-    int r = apContext->Add2SnapShot(TotalBytesTransferred.QuadPart);
+    int r = apContext->Add2SnapShot(TotalBytesTransferred.QuadPart, TotalBytesTransferred.QuadPart, 0);
     if (ERROR_REQUEST_ABORTED == r)
       return PROGRESS_CANCEL;
     else
@@ -8066,111 +7966,108 @@ CopyHardlink(
             // With --merge having the same files means: hardlink the files, aka merge the sets
             //
 
-            if (pfnFindNextFileNameW)
+            // The files could be already hardlinked so lets check with via pLookAside
+            if (pLookAside->m_FileIndex.ul64 == pF->m_FileIndex.ul64)
             {
-              // The files could be already hardlinked so lets check with via pLookAside
-              if (pLookAside->m_FileIndex.ul64 == pF->m_FileIndex.ul64)
-              {
-                // uuups the files are already hardlinked
-                Log(L"°=f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
-              }
-              else
-              {
-                // No the files to be merged are already hardlinked, so lets go and try to merge them
-                wchar_t	LinkName[HUGE_PATH + 2];
-                DWORD LinkNameLength = HUGE_PATH; 
-                HRESULT HardlinkResult;
+              // uuups the files are already hardlinked
+              Log(L"°=f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+            }
+            else
+            {
+              // No the files to be merged are already hardlinked, so lets go and try to merge them
+              wchar_t	LinkName[HUGE_PATH + 2];
+              DWORD LinkNameLength = HUGE_PATH; 
+              HRESULT HardlinkResult;
 
-                // We have to check if we exceed the number of 1023 hardlink limit
+              // We have to check if we exceed the number of 1023 hardlink limit
                 
-                // If we are in --traditional we know the refcount from enumeration. With the fast mode 
-                // we don't know it, so we have to query it once, even if it is time-consuming
-                if (!(m_Flags & eTraditional))
+              // If we are in --traditional we know the refcount from enumeration. With the fast mode 
+              // we don't know it, so we have to query it once, even if it is time-consuming
+              if (!(m_Flags & eTraditional))
+              {
+                pF->m_RefCount = -1;
+
+                // Open the file so that we can read out the refcount
+                HANDLE	SourceFileHandle = CreateFileW (
+                  pF->m_FileName, 
+                  m_Flags & eBackupMode ? GENERIC_READ | READ_CONTROL | ACCESS_SYSTEM_SECURITY | FILE_READ_EA : FILE_READ_ATTRIBUTES | FILE_READ_EA,
+                  FILE_SHARE_READ, 
+                  NULL, 
+                  OPEN_EXISTING, 
+                  m_Flags & eBackupMode ? FILE_ATTRIBUTE_NORMAL | FILE_FLAG_BACKUP_SEMANTICS : FILE_ATTRIBUTE_NORMAL,
+                  NULL
+                );
+                if (INVALID_HANDLE_VALUE != SourceFileHandle)
                 {
-                  pF->m_RefCount = -1;
+                  BY_HANDLE_FILE_INFORMATION	FileInformation;
+                  BOOL	r = GetFileInformationByHandle (SourceFileHandle, &FileInformation);
+                  if (r)
+                    pF->m_RefCount = FileInformation.nNumberOfLinks;
 
-                  // Open the file so that we can read out the refcount
-                  HANDLE	SourceFileHandle = CreateFileW (
-                    pF->m_FileName, 
-                    m_Flags & eBackupMode ? GENERIC_READ | READ_CONTROL | ACCESS_SYSTEM_SECURITY | FILE_READ_EA : FILE_READ_ATTRIBUTES | FILE_READ_EA,
-                    FILE_SHARE_READ, 
-                    NULL, 
-                    OPEN_EXISTING, 
-                    m_Flags & eBackupMode ? FILE_ATTRIBUTE_NORMAL | FILE_FLAG_BACKUP_SEMANTICS : FILE_ATTRIBUTE_NORMAL,
-                    NULL
-                  );
-                  if (INVALID_HANDLE_VALUE != SourceFileHandle)
-                  {
-                    BY_HANDLE_FILE_INFORMATION	FileInformation;
-                    BOOL	r = GetFileInformationByHandle (SourceFileHandle, &FileInformation);
-                    if (r)
-                      pF->m_RefCount = FileInformation.nNumberOfLinks;
-
-                    CloseHandle(SourceFileHandle);
-                  }
+                  CloseHandle(SourceFileHandle);
                 }
-                // By the end we have a valid pF->m_RefCount
+              }
+              // By the end we have a valid pF->m_RefCount
 
 
-                // Iterate through all siblings, add it to a temporary list and count how many siblings there are
-                int DestNumberSiblings = 0;
-                wcsncpy_s(LinkName, LinkNameLength, aDestPath, PATH_PARSE_SWITCHOFF_SIZE + 2);
-                HANDLE FindHardLinkHandle = pfnFindFirstFileNameW(aDestPath, 0, &LinkNameLength, &LinkName[PATH_PARSE_SWITCHOFF_SIZE + 2]);
-                if (INVALID_HANDLE_VALUE != FindHardLinkHandle)
+              // Iterate through all siblings, add it to a temporary list and count how many siblings there are
+              int DestNumberSiblings = 0;
+              wcsncpy_s(LinkName, LinkNameLength, aDestPath, PATH_PARSE_SWITCHOFF_SIZE + 2);
+              HANDLE FindHardLinkHandle = FindFirstFileNameW(aDestPath, 0, &LinkNameLength, &LinkName[PATH_PARSE_SWITCHOFF_SIZE + 2]);
+              if (INVALID_HANDLE_VALUE != FindHardLinkHandle)
+              {
+	              // Add to list, because one can not delete aDestPath itself while iterating over the siblings
+                _StringList Siblings;
+                do
                 {
-	                // Add to list, because one can not delete aDestPath itself while iterating over the siblings
-                  _StringList Siblings;
-                  do
-                  {
-                    Siblings.push_back(LinkName);
-                    LinkNameLength = HUGE_PATH; 
-                    DestNumberSiblings++;
-                  } while (pfnFindNextFileNameW(FindHardLinkHandle, &LinkNameLength, &LinkName[PATH_PARSE_SWITCHOFF_SIZE + 2]));
-                  FindClose(FindHardLinkHandle);
+                  Siblings.push_back(LinkName);
+                  LinkNameLength = HUGE_PATH; 
+                  DestNumberSiblings++;
+                } while (FindNextFileNameW(FindHardLinkHandle, &LinkNameLength, &LinkName[PATH_PARSE_SWITCHOFF_SIZE + 2]));
+                FindClose(FindHardLinkHandle);
 
-                  // Check if we do not exceed the hardlink limit of 1023
-                  if (DestNumberSiblings + pF->m_RefCount < m_HardlinkLimit)
+                // Check if we do not exceed the hardlink limit of 1023
+                if (DestNumberSiblings + pF->m_RefCount < m_HardlinkLimit)
+                {
+                  // If there was at least one sibling, and the refcount will not be exceeded
+                  if (Siblings.size())
                   {
-                    // If there was at least one sibling, and the refcount will not be exceeded
-                    if (Siblings.size())
+                    bool MergeSuccess = true;
+                      
+                    // Hardlink the siblings
+                    for (_StringListIterator iter = Siblings.begin(); iter != Siblings.end(); ++iter)
                     {
-                      bool MergeSuccess = true;
-                      
-                      // Hardlink the siblings
-                      for (_StringListIterator iter = Siblings.begin(); iter != Siblings.end(); ++iter)
+                      BOOL bDeleted = DeleteSibling(iter->c_str(), GetFileAttributes(iter->c_str())); 
+                      HardlinkResult = CreateHardlinkIntl(pF->m_FileName, iter->c_str());
+
+                      if (ERROR_SUCCESS == HardlinkResult)
                       {
-                        BOOL bDeleted = DeleteSibling(iter->c_str(), GetFileAttributes(iter->c_str())); 
-                        HardlinkResult = CreateHardlinkIntl(pF->m_FileName, iter->c_str());
-
-                        if (ERROR_SUCCESS == HardlinkResult)
-                        {
-                          pStats->m_FilesLinked++;
-                          pStats->m_BytesLinked += pF->m_FileSize.ul64;
-    //                      Log(L"°f %s\n", &iter->c_str()[PathParseSwitchOffSize], m_Flags, eLogVerbose);
-                        }
-                        else
-                        {
-                          pStats->m_FilesLinkFailed++;
-                          pStats->m_BytesLinkFailed += pF->m_FileSize.ul64;
-
-                          PathNameStatus pns(MergeF, &iter->c_str()[PathParseSwitchOffSize], ERROR_ALREADY_EXISTS == HardlinkResult ? ERROR_FILE_EXISTS : HardlinkResult);
-                          aPathNameStatusList->push_back(pns);
-
-                          MergeSuccess = false;
-                        }
+                        pStats->m_FilesLinked++;
+                        pStats->m_BytesLinked += pF->m_FileSize.ul64;
+  //                      Log(L"°f %s\n", &iter->c_str()[PathParseSwitchOffSize], m_Flags, eLogVerbose);
                       }
-                      
-                      if (MergeSuccess)
-                        Log(L"°f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+                      else
+                      {
+                        pStats->m_FilesLinkFailed++;
+                        pStats->m_BytesLinkFailed += pF->m_FileSize.ul64;
 
-                      Siblings.clear();
+                        PathNameStatus pns(MergeF, &iter->c_str()[PathParseSwitchOffSize], ERROR_ALREADY_EXISTS == HardlinkResult ? ERROR_FILE_EXISTS : HardlinkResult);
+                        aPathNameStatusList->push_back(pns);
+
+                        MergeSuccess = false;
+                      }
                     }
-                  } // if (DestNumberSiblings + pF->m_RefCount < m_HardlinkLimit)
-                  else
-                  {
-                    /// The hardlink limit was exceed for this file, can't link
-                    Log(L"°~f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+                      
+                    if (MergeSuccess)
+                      Log(L"°f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+
+                    Siblings.clear();
                   }
+                } // if (DestNumberSiblings + pF->m_RefCount < m_HardlinkLimit)
+                else
+                {
+                  /// The hardlink limit was exceed for this file, can't link
+                  Log(L"°~f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
                 }
               }
             }
@@ -8186,7 +8083,7 @@ CopyHardlink(
             if (apContext)
             {
               // Anyway if the files are the same we have to move on with the progressbar
-              apContext->AddProgress(pF->m_FileSize.ul64);
+              apContext->AddProgress(pF->m_FileSize.ul64, pF->m_FileSize.ul64, 1);
 		        }
           }
 		  
@@ -8255,15 +8152,11 @@ CopyHardlink(
         // Check whether we have to go async
         if (apContext)
         {
-          // We are running Async on a thread
-
           // Set the status, and check if CopyHardlink has been cancelled from outside
-          int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize_Source]);
+          int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize_Source], &aDestPath[PathParseSwitchOffSize]);
           if ( ERROR_REQUEST_ABORTED == r)
             RetVal = ERROR_REQUEST_ABORTED;
         }
-
-
 
         // 
         if (DoCopy)
@@ -8283,7 +8176,7 @@ CopyHardlink(
               aDestPath, 
               (LPPROGRESS_ROUTINE)CopyProgressRoutine, 
               apContext, 
-              (LPBOOL)&apContext->m_Cancel, 
+              (LPBOOL)&apContext->m_Status, 
               CopyFlags, 
               &m_pSecDesc, 
               &m_SecDescSize,
@@ -8294,7 +8187,7 @@ CopyHardlink(
             LastError = GetLastError();
 
             // Anyway at the end we have to add the size to the progress
-            apContext->Add2SnapShot(pF->m_FileSize.ul64);
+            apContext->Add2SnapShot(pF->m_FileSize.ul64, pF->m_FileSize.ul64, 1);
           }
           else 
           {
@@ -8474,14 +8367,15 @@ CopyHardlink(
           PathParseSwitchOffSize_Source = PATH_PARSE_SWITCHOFF_SIZE;
 
         // Set the status, and check if Smartcopy has been cancelled from outside
-        int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize_Source]);
+        int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize_Source], &aDestPath[PathParseSwitchOffSize]);
         if ( ERROR_REQUEST_ABORTED == r)
         {
           RetVal = ERROR_REQUEST_ABORTED;
           break;
         }
 
-        apContext->Inc();
+        // Increment the progress by 'weight' of hardlink creation
+        apContext->AddProgress(eHardlinkWeight, 1, 1);
       }
 
       // aDestPath and LinkFile are both long path safe
@@ -8834,10 +8728,10 @@ CopyDirectories(
     if (apContext)
     {
       // Increment the progress
-      apContext->Inc();
+      apContext->AddProgress(eDirectoryWeight, 1, 1 );
 
       // Set the status, and check if CopyHardlink has been cancelled from outside
-      int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize]);
+      int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize], &DestPath[PathParseSwitchOffSize]);
       if ( ERROR_REQUEST_ABORTED == r)
       {
         RetVal = ERROR_REQUEST_ABORTED;
@@ -9202,8 +9096,8 @@ void
 FileInfoContainer::
 CopyReparsePoints_Junction_Statistics(
   int&                      a_result,
-  wchar_t*                  a_pSourceFilename,
-  CopyStatistics*		        a_pStats,
+  const wchar_t*            a_pSourceFilename,
+  CopyStatistics*           a_pStats,
   _PathNameStatusList*      a_pPathNameStatusList
 )
 {
@@ -9405,31 +9299,11 @@ CopyReparsePoints(
         if (apContext)
         {
           // Increment the progress
-          apContext->Inc();
-
-          // Set the status and check if CopyReparsePoints has been canceled from outside
-          int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize]);
-          if ( ERROR_REQUEST_ABORTED == r)
-          {
-            RetVal = ERROR_REQUEST_ABORTED;
-            break;
-          }
+          apContext->AddProgress(eReparseWeight, 1, 1);
         }
 
         if (REPARSE_POINT_FAIL != ReparsePointType)
         {
-          int SourcePathLen = pF->m_SourcePathLen;
-
-          // We have to save the character here, because it might be that
-          // SourcePathLen already points to the end of the string, and then
-          // later on we don't want to replace the terminating 0x00 with '\'
-          wchar_t SourcePathSaveChar = pF->m_FileName[SourcePathLen];
-
-          // Cut out the 'pure' sourcepath from the original source path, so that
-          // we can do the wcseistr() to find out if it is a inner or outer junction
-          // [EXAMPLE] pF->m_FileName == "\\?\n:\MultiSourceUnroll\source\F1"
-          pF->m_FileName[SourcePathLen] = 0x00;
-
           // See if the DestPath has changed since last time
           if (pF->m_DestPathIdx != DestPathIdx)
           {
@@ -9482,6 +9356,21 @@ CopyReparsePoints(
             AlternativeDestPath, 
             &AlternativeDestPathIdx
           );
+
+          int SourcePathLen = pF->m_SourcePathLen;
+
+          // We have to save the character here, because it might be that
+          // SourcePathLen already points to the end of the string, and then
+          // later on we don't want to replace the terminating 0x00 with '\'
+          wchar_t SourcePathSaveChar = pF->m_FileName[SourcePathLen];
+
+          // Copy out the 'pure' sourcepath from the original source path, so that
+          // we can do the wcseistr() to find out if it is a inner or outer junction
+          // [EXAMPLE] pF->m_FileName == "\\?\n:\MultiSourceUnroll\source\F1"
+          wchar_t PureSource[HUGE_PATH];
+          wcsncpy_s(PureSource, HUGE_PATH, pF->m_FileName, SourcePathLen);
+          PureSource[SourcePathLen] = 0x00;
+
           if (MultiSourcePath)
           {
             WCHAR	ReparseDestTarget[HUGE_PATH];
@@ -9492,9 +9381,9 @@ CopyReparsePoints(
             // The path, where the reparse points to, contains the source ==> inner reparse point,
             // but we need to know the reason for the 'innerness', because it could just
             // be an inner reparse point due beeing on the MultiSourceCache, but it could be also an
-            // 'pure' inner reparse point because pF->m_FileName was found in ReparseSrcTarget
+            // 'pure' inner reparse point because PureSource was found in ReparseSrcTarget
 
-            wchar_t* InnerReparsePoint = wcseistr(ReparseSrcTarget, pF->m_FileName);
+            wchar_t* InnerReparsePoint = wcseistr(ReparseSrcTarget, PureSource);
             if (InnerReparsePoint)
             {
               // This is a pure inner reparse point, and all the coding below will work
@@ -9506,7 +9395,7 @@ CopyReparsePoints(
               // but the DestPath are different. So it can happen, that we have a reparse point, which 
               // points across DestPath. 
               // e.g.
-              //   pF->m_FileName	==    "\\?\N:\MultiDest\source\F0\F0_J0" points to ReparseSrcTarget
+              //   PureSource	==        "\\?\N:\MultiDest\source\F0\F0_J0" points to ReparseSrcTarget
               //   ReparseSrcTarget	==  "\\?\N:\MultiDest\source\F1\F1_F0" and has
               //   DestPath	==          "\\?\N:\MultiDest\dest\F0" as its DestPath
               //
@@ -9553,14 +9442,19 @@ CopyReparsePoints(
 
             wcscat_s(ReparseDestTarget, HUGE_PATH, pReparseSrcTarget);
 
+            if (apContext)
+            {
+              // Set the status and check if CopyReparsePoints has been canceled from outside
+              int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize], &DestPath[PathParseSwitchOffSize]);
+              if (ERROR_REQUEST_ABORTED == r)
+              {
+                RetVal = ERROR_REQUEST_ABORTED;
+                break;
+              }
+            }
 
             // TBD Muessen wir da auch den PFad erstellen, wenn ein Kopiervorgang
             // nur aus Junctions besteht.???? Wie bei CopyDirectories
-
-            // Restore the \ because we have deleted it before. But only restore it
-            // if we SourcePathLen did not point to the end of the string
-            if (SourcePathSaveChar)
-              pF->m_FileName[SourcePathLen] = '\\';
 
             // Append the source to DestPath 
             wcscat_s(DestPath, HUGE_PATH, &(pF->m_FileName[SourcePathLen]));
@@ -9783,7 +9677,7 @@ CopyReparsePoints(
 
                     // Create dead symbolic links, which will become valid after the move
                     result = CreateSymboliclink(DestPath, 
-                      ReparseDestTarget, 
+                      ReparseDestTarget,
                       m_Flags & eBackupMode ? aSymlinkFlags | FILE_FLAG_BACKUP_SEMANTICS : aSymlinkFlags,
                       pF->m_FileName
                     );
@@ -9875,7 +9769,7 @@ CopyReparsePoints(
                     {
                       result = CreateSymboliclink(
                         DestPath, 
-                        ReparseDestTarget, 
+                        ReparseDestTarget,
                         m_Flags & eBackupMode ? aSymlinkFlags | FILE_FLAG_BACKUP_SEMANTICS : aSymlinkFlags
                       );
                       if (ERROR_SUCCESS == result && m_Flags & eBackupMode) 
@@ -9904,7 +9798,7 @@ CopyReparsePoints(
                         // Create dead symlink
                         CreateSymboliclink(
                           DestPath, 
-                          ReparseDestTarget, 
+                          ReparseDestTarget,
                           m_Flags & eBackupMode ? aSymlinkFlags | FILE_FLAG_BACKUP_SEMANTICS : aSymlinkFlags,
                           DestPath
                         );
@@ -9961,11 +9855,6 @@ CopyReparsePoints(
             // For outer ReparsePoints we have two choices here:
             // o) They are spliced
             // o) They are unrolled
-
-            // Restore the \ because we have deleted it before. But only restore it
-            // if we SourcePathLen did not point to the end of the string
-            if (SourcePathSaveChar)
-              pF->m_FileName[SourcePathLen] = '\\';
 
             // Check if outer junctions symlinks should be spliced
             bool DoSplice = false;
@@ -10444,7 +10333,7 @@ CopyReparsePoints(
                       {
                         result = CreateSymboliclink(
                           DestPath, 
-                          ReparseDestTarget, 
+                          ReparseDestTarget,
                           m_Flags & eBackupMode ? aSymlinkFlags | FILE_FLAG_BACKUP_SEMANTICS : aSymlinkFlags
                         );
                         if (ERROR_SUCCESS == result && m_Flags & eBackupMode)
@@ -10473,7 +10362,7 @@ CopyReparsePoints(
                           // Create dead symlink
                           CreateSymboliclink(
                             DestPath, 
-                            ReparseDestTarget, 
+                            ReparseDestTarget,
                             m_Flags & eBackupMode ? aSymlinkFlags | FILE_FLAG_BACKUP_SEMANTICS : aSymlinkFlags,
                             DestPath
                           );
@@ -10611,11 +10500,10 @@ CopyReparsePoints(
         // case keep it.
         if (pF->m_ReparseSrcTargetHint && (!(pF->m_Type & FILE_ATTRIBUTE_NESTED_REPARSE_POINT)) )
         {
-  #if defined USE_ROCKALL_HEAPMANAGER
-          MyHeap.Delete(pF->m_ReparseSrcTargetHint);
-  #else
+          pStats->m_HeapDeletionTime.Start();
           delete [] pF->m_ReparseSrcTargetHint;
-  #endif
+          pStats->m_HeapDeletionTime.Stop();
+
           pF->m_ReparseSrcTargetHint = NULL;
         }
       } // for (iter = ReparseBegin; iter != ReparseEnd; ++iter)
@@ -10681,10 +10569,10 @@ RestoreTimeStamps(
     if (apContext)
     {
       // Increment the progress
-      apContext->Inc();
+      apContext->AddProgress(eTimeStampWeight, 1, 0);
 
       // Set the status, and check if RestoreTimeStamps has been cancelled from outside
-      int r = apContext->PutStatus(&pF->m_FileName[PATH_PARSE_SWITCHOFF_SIZE]);
+      int r = apContext->PutStatus(&pF->m_FileName[PATH_PARSE_SWITCHOFF_SIZE], &DestPath[PATH_PARSE_SWITCHOFF_SIZE]);
       if ( ERROR_REQUEST_ABORTED == r)
       {
         RetVal = ERROR_REQUEST_ABORTED;
@@ -10778,10 +10666,22 @@ CopyDirectoryAttributes(
       if (apContext)
       {
         // Increment the progress
-        apContext->Inc();
+        apContext->AddProgress(eTimeStampWeight, 1, 0);
+
+        size_t PathParseSwitchOffSize_Source = 0;
+        if (IsVeryLongPath(pF->m_FileName))
+          PathParseSwitchOffSize_Source = PATH_PARSE_SWITCHOFF_SIZE;
+
+        size_t PathParseSwitchOffSize_Dest = 0;
+        if (IsVeryLongPath(DestPath))
+          PathParseSwitchOffSize_Dest = PATH_PARSE_SWITCHOFF_SIZE;
+
+        // TODO: Vielleicht sollte man die PathParseSwitch Check in das PutStatus verlegen, denn für die LSE wird es dort
+        // gebraucht um sauber auszugeben. Andererseits wird es auch für das Logging vom ln.exe gebraucht.... Vl sollte man es
+        // auch dort zentral machen, denn es ist ja wirklich nur für das Logging bzw die Ansicht wichtig... Hmm nicht immer
 
         // Set the status, and check if RestoreTimeStamps has been cancelled from outside
-        int r = apContext->PutStatus(&pF->m_FileName[PATH_PARSE_SWITCHOFF_SIZE]);
+        int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize_Source], &DestPath[PathParseSwitchOffSize_Dest]);
         if ( ERROR_REQUEST_ABORTED == r)
         {
           RetVal = ERROR_REQUEST_ABORTED;
@@ -10901,10 +10801,10 @@ CloneFiles(
       // We are running Async on a thread
 
       // Increment the progress
-      apContext->Inc();
+      apContext->AddProgress(eHardlinkWeight, 1, 1);
 
       // Set the status, and check if CloneFile has been cancelled from outside
-      int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize]);
+      int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize], &DestPath[PathParseSwitchOffSize]);
       if ( ERROR_REQUEST_ABORTED == r)
         RetVal = ERROR_REQUEST_ABORTED;
     }
@@ -10924,7 +10824,7 @@ CloneFiles(
 
       result = CreateSymboliclink(
         DestPath, 
-        pF->m_FileName, 
+        pF->m_FileName,
         SymLinkFlags
       );
       if (ERROR_SUCCESS != result)
@@ -11162,7 +11062,7 @@ CleanItems(
     CompOper = NoCompare;
 
 
-  // Go through all files
+  // Go through all items
   for (_Pathes::iterator iter = aBegin; iter != aEnd; ++iter)
   {
     FileInfo*	pF = *iter;
@@ -11170,15 +11070,8 @@ CleanItems(
     // Check whether we have to go async
     if (apContext)
     {
-      // We are running Async on a thread
-
       // Increment the progress
-      apContext->Inc();
-
-      // Set the status, and check if CleanItems has been cancelled from outside
-      int r = apContext->PutStatus(&pF->m_FileName[PATH_PARSE_SWITCHOFF_SIZE]);
-      if (ERROR_REQUEST_ABORTED == r)
-        RetVal = ERROR_REQUEST_ABORTED;
+      apContext->AddProgress(1, 1, 1);
     }
 
 
@@ -11216,11 +11109,18 @@ CleanItems(
       int SourcePathLen = pF->m_SourcePathLen;
       wcscat_s(DestPath, HUGE_PATH + PATH_PARSE_SWITCHOFF_SIZE, &pF->m_FileName[SourcePathLen]);
 
+      if (apContext)
+      {
+        // Set the status, and check if CleanItems has been cancelled from outside
+        int r = apContext->PutStatus(&pF->m_FileName[PATH_PARSE_SWITCHOFF_SIZE], &DestPath[PathParseSwitchOffSize]);
+        if (ERROR_REQUEST_ABORTED == r)
+          RetVal = ERROR_REQUEST_ABORTED;
+      }
+
       switch (CompOper)
       {
         case SymbolicLinkCompare:
           pLookAside = m_pLookAsideFileInfoContainer->Find(DestPath);
-          
           if (pLookAside)
           {
             // It was found on the other side. Determine if it is a symlink or file
@@ -11523,14 +11423,6 @@ ChangePath(
   m_AnchorPathCache.Add(aNewDestPath);
 }
 
-__int64
-FileInfoContainer::
-PrepareSmartMove(
-)
-{
-  return distance(m_Filenames.begin(), m_HardlinkBegin);
-}
-
 //--------------------------------------------------------------------
 // 
 // Sorts the list of files for Smartcopy properly
@@ -11541,14 +11433,18 @@ PrepareSmartMove(
 //   Directories  :  m_DirectoryBegin
 // 
 //--------------------------------------------------------------------
-__int64
+int
 FileInfoContainer::
-PrepareSmartCopy(
+Prepare(
   FileInfoContainer::CopyReparsePointFlags  aMode,
-  CopyStatistics*	                          pStats
- )
+  CopyStatistics*	                          pStats,
+  Effort *                                  aEffort
+)
 {
-  m_SmartCopyPrepared = true;
+  if (m_Prepared)
+    return -1;
+
+  m_Prepared = true;
 
   // Group all files into several partitions
   // |--Reparsepoints--|--Delayed Reparsepoints--|--Hardlinks--|--Files--|--Directories--|
@@ -11569,31 +11465,31 @@ PrepareSmartCopy(
 
   m_FilenamesSave = m_Filenames;
 
-// #define SMARTCOPY_DEBUG // DEBUG_DEFINES
+  // #define SMARTCOPY_DEBUG // DEBUG_DEFINES
 #if defined SMARTCOPY_DEBUG
   // Dump all entries
-  HTRACE (L"PrepareSmartCopy All Entries %d\n", distance(m_Filenames.begin(), m_Filenames.end()) );
+  HTRACE(L"PrepareSmartCopy All Entries %d\n", distance(m_Filenames.begin(), m_Filenames.end()));
   Dump(m_Filenames.begin(), m_Filenames.end());
 #endif
 
   // divide into Reparse Point and the rest
   // m_HardlinkBegin
-  _Pathes::iterator DelayedReparsePointBegin = partition (m_Filenames.begin(), m_Filenames.end(), IsReparsePoint());
+  _Pathes::iterator DelayedReparsePointBegin = partition(m_Filenames.begin(), m_Filenames.end(), IsReparsePoint());
 
   // divide the rest(==Directories & Files) into filenames and directories
-  m_DirectoryBegin = partition (DelayedReparsePointBegin, m_Filenames.end(), IsDirectory());
+  m_DirectoryBegin = partition(DelayedReparsePointBegin, m_Filenames.end(), IsDirectory());
 
   // The files might contain delayed Reparse Points, which will either 
   // be ReparsePoints or files, once it has been decided
-  m_HardlinkBegin = partition (DelayedReparsePointBegin, m_DirectoryBegin, IsDelayedReparsePoint());
+  m_HardlinkBegin = partition(DelayedReparsePointBegin, m_DirectoryBegin, IsDelayedReparsePoint());
 
 #if defined SMARTCOPY_DEBUG
   // Dump the reparse points
-  HTRACE (L"PrepareSmartCopy reparse points: %d\n", distance(m_Filenames.begin(), DelayedReparsePointBegin) );
+  HTRACE(L"PrepareSmartCopy reparse points: %d\n", distance(m_Filenames.begin(), DelayedReparsePointBegin));
   Dump(m_Filenames.begin(), DelayedReparsePointBegin);
 
   // Dump the Delayed ReparsePoints
-  HTRACE (L"PrepareSmartCopy Delayed ReparsePoints %d\n", distance(DelayedReparsePointBegin, m_HardlinkBegin) );
+  HTRACE(L"PrepareSmartCopy Delayed ReparsePoints %d\n", distance(DelayedReparsePointBegin, m_HardlinkBegin));
   Dump(DelayedReparsePointBegin, m_HardlinkBegin);
 #endif
 
@@ -11609,72 +11505,232 @@ PrepareSmartCopy(
     // And sort again, because we have new items among the FILE_ATTRIBUTE_NORMAL set
     sort(m_HardlinkBegin, m_DirectoryBegin, PathIdxFileIndexSorter());
   }
-  
+
   // Hardlinks contain possible hardlinks and plain files, if this container 
   // traversed a FAT partition. Plain files have a disk ID of 0xffffffff, and
   // a random file ID 
-  m_FATFilenameBegin = partition (m_HardlinkBegin, m_DirectoryBegin, IsPlainFile());
+  m_FATFilenameBegin = partition(m_HardlinkBegin, m_DirectoryBegin, IsPlainFile());
 
-//  Dump(m_HardlinkBegin, m_DirectoryBegin);
+  //  Dump(m_HardlinkBegin, m_DirectoryBegin);
 
-  // To avoid hardlink clustering of plain files, each files get a uniq file id,
-  // so that the normal mechanisms of Smartcopy can be used
+    // To avoid hardlink clustering of plain files, each files get a uniq file id,
+    // so that the normal mechanisms of Smartcopy can be used
   __int64 Idx = 0;
   for (_Pathes::iterator iter = m_FATFilenameBegin; iter != m_DirectoryBegin; ++iter)
     (*iter)->m_FileIndex.ul64 = Idx++;
 
-  // The number of Reparsepoints and Directories
-  __int64 Progress = distance(m_Filenames.begin(), m_HardlinkBegin) + distance(m_DirectoryBegin, m_Filenames.end()); 
-
-
 #if defined SMARTCOPY_DEBUG
   // Dump the reparse points
-  HTRACE (L"PrepareSmartCopy reparse points %d\n", distance(m_Filenames.begin(), m_HardlinkBegin) );
+  HTRACE(L"PrepareSmartCopy reparse points %d\n", distance(m_Filenames.begin(), m_HardlinkBegin));
   Dump(m_Filenames.begin(), m_HardlinkBegin);
 
   // Dump the Filenames
-  HTRACE (L"PrepareSmartCopy Filenames %d\n", distance(m_HardlinkBegin, m_DirectoryBegin) );
+  HTRACE(L"PrepareSmartCopy Filenames %d\n", distance(m_HardlinkBegin, m_DirectoryBegin));
   Dump(m_HardlinkBegin, m_DirectoryBegin);
 
   // Dump the directories
-  HTRACE (L"PrepareSmartCopy Directories %d\n", distance(m_DirectoryBegin, m_Filenames.end()) );
+  HTRACE(L"PrepareSmartCopy Directories %d\n", distance(m_DirectoryBegin, m_Filenames.end()));
   Dump(m_DirectoryBegin, m_Filenames.end());
 
 #endif
 
-  // Check if there are hardlinks at all
-  if (m_HardlinkBegin == m_DirectoryBegin)
-    return Progress;
+  // Only calc effort with a valid mode. There are situations, where PrepareSmartCopy is only called to
+  // prepare the container
+  return aEffort ? EstimateEffort(aMode, aEffort) : 0;
+}
 
-  if (FileInfoContainer::eSmartCopy == aMode)
+// Estimate effort for the operations on containers
+//
+int
+FileInfoContainer::
+EstimateEffort(
+  FileInfoContainer::CopyReparsePointFlags  aMode,
+  Effort *                                  aEffort
+)
+{
+  // TODO: Wenn viele Daten in Alternative datastreans kopiert werden stimmt die Vorhersage nicht, und der Progressbar läuft
+  // drüber. Aber wie kommt man vorab auf die Anzahl der Bytes in den e.g. Alternative DataStreams? Schwierig
+  switch (aMode)
   {
-    // Smart Copy overall amount calculation
-    _Pathes::iterator	iter = m_HardlinkBegin;
-    _Pathes::iterator	last = m_HardlinkBegin;
-
-    // Go through all files and only the size of the first sibbling
-    // and for all sibblings just add 1
-    while (++iter != m_DirectoryBegin)
+    case FileInfoContainer::eSmartMirror:
+    case FileInfoContainer::eSmartCopy:
     {
-      if ((*iter)->m_FileIndex.ul64 != (*last)->m_FileIndex.ul64 || (*iter)->m_DiskIndex != (*last)->m_DiskIndex)
+      // Weight for Copy Directories
+      auto nDirectories = distance(m_DirectoryBegin, m_Filenames.end());
+      aEffort->m_Items = nDirectories;
+      aEffort->m_Size = nDirectories;
+      aEffort->m_Points = nDirectories * eDirectoryWeight;
+      auto points = aEffort->m_Points.load();
+      HTRACE(L"Effort CM nDirectories: %I64d, %I64d\n", nDirectories, points);
+
+      // Check if there are hardlinks at all
+      if (m_HardlinkBegin != m_DirectoryBegin)
       {
-        // border of set
-        Progress += distance(last, iter) - 1;
-        Progress += (*last)->m_FileSize.ul64;
-        last = iter;
+        // Smart Copy overall amount calculation
+        _Pathes::iterator	iter = m_HardlinkBegin;
+        _Pathes::iterator	last = m_HardlinkBegin;
+
+        // Go through all files and only the size of the first sibbling
+        // and for all sibblings just add eHardlinkWeight
+        while (++iter != m_DirectoryBegin)
+        {
+          if ((*iter)->m_FileIndex.ul64 != (*last)->m_FileIndex.ul64 || (*iter)->m_DiskIndex != (*last)->m_DiskIndex)
+          {
+            // border of set
+            auto nSiblings = distance(last, iter);
+            aEffort->m_Items += nSiblings;
+
+            // With size we calculate hardlinks as 1 and count one sibling with full size
+            aEffort->m_Size += nSiblings - 1;
+            aEffort->m_Size += (*last)->m_FileSize.ul64;
+
+            // During calculation hardlinks are a bit heavier than just the size
+            aEffort->m_Points += (nSiblings - 1) * eHardlinkWeight;
+            aEffort->m_Points += (*last)->m_FileSize.ul64;
+
+            last = iter;
+          }
+        }
+
+        // Last set
+        auto nSiblings = distance(last, iter);
+        aEffort->m_Items += nSiblings;
+
+        // With size we calculate hardlinks as 1 and count one sibling with full size
+        aEffort->m_Size += nSiblings - 1;
+        aEffort->m_Size += (*last)->m_FileSize.ul64;
+
+        // During calculation hardlinks are a bit heavier than just the size
+        aEffort->m_Points += (nSiblings - 1) * eHardlinkWeight;
+        aEffort->m_Points += (*last)->m_FileSize.ul64;
       }
+      HTRACE(L"Effort CM nFiles: %I64d, %I64d\n", aEffort->m_Items - nDirectories, aEffort->m_Points - points);
+
+      // Add effort for Reparse Points
+      auto nReparsePoints = distance(m_Filenames.begin(), m_HardlinkBegin);
+      aEffort->m_Items += nReparsePoints;
+      aEffort->m_Size += nReparsePoints;
+      aEffort->m_Points += nReparsePoints * eReparseWeight;
+      HTRACE(L"Effort CM nReparsepoints: %I64d\n", nReparsePoints);
+
+      // Add effort for CopyDirectoriesSilent
+      auto nDateTime = distance(m_DateTimeRestore.begin(), m_DateTimeRestore.end());
+      aEffort->m_Items += nDateTime;
+      aEffort->m_Size += nDateTime;
+      aEffort->m_Points += nDateTime * eDirectoryWeight;
+      HTRACE(L"Effort CM CopyDirectoriesSilent: %I64d\n", nDateTime);
+
+      // Add effort for restoring the timestamps on reparsepoints
+//      aEffort->m_Items += nReparsePoints;
+      aEffort->m_Size += nReparsePoints;
+      aEffort->m_Points += nReparsePoints * eTimeStampWeight;
+      HTRACE(L"Effort CM timestamps nReparsepoints: %I64d\n", nReparsePoints);
+
+      // Add effort for restoring the timestamps on directories
+//      aEffort->m_Items += nDirectories;
+      aEffort->m_Size += nDirectories;
+      aEffort->m_Points += nDirectories * eTimeStampWeight;
+      HTRACE(L"Effort CM timestamps nDirectories: %I64d\n", nDirectories);
+
+      // Add effort for restoring the Attributes on directories
+//      aEffort->m_Items += nDateTime;
+      aEffort->m_Size += nDateTime;
+      aEffort->m_Points += nDateTime * eTimeStampWeight;
+      HTRACE(L"Effort CM nAttributes: %I64d\n", nDateTime);
     }
+    break;
 
-    Progress += distance(last, iter) - 1;
-    Progress += (*last)->m_FileSize.ul64;
-  }
-  else
-  {
-    // Smart Clone overall amount calculation
-    Progress += distance(m_HardlinkBegin, m_DirectoryBegin);
-  }
+    case FileInfoContainer::eSmartClean:
+    {
+      // Smart Clean overall amount calculation. The weight on all operations is 1
 
-  return Progress;
+      // Add effort for Files
+      auto MaxPoints = distance(m_HardlinkBegin, m_DirectoryBegin);
+      HTRACE(L"Effort CL timestamps nFiles: %I64d\n", MaxPoints);
+
+      // Add effort for Reparsepoints
+      auto nReparsePoints = distance(m_Filenames.begin(), m_HardlinkBegin);
+      MaxPoints += nReparsePoints;
+      HTRACE(L"Effort CL timestamps nReparsePoints: %I64d\n", nReparsePoints);
+
+      // Add effort for Directories
+      auto nDirectories = distance(m_DirectoryBegin, m_Filenames.end());
+      aEffort->m_Items = MaxPoints + nDirectories;
+      aEffort->m_Size = MaxPoints + nDirectories;
+      aEffort->m_Points = MaxPoints + nDirectories * eTimeStampWeight;
+      HTRACE(L"Effort CL timestamps nDirectories: %I64d\n", nDirectories);
+    }
+    break;
+
+    // case FileInfoContainer::eDupemerge:
+    case FileInfoContainer::eSmartClone:
+    {
+      // Smart Clone overall amount calculation
+
+      // Add effort for Directories
+      auto nDirectories = distance(m_DirectoryBegin, m_Filenames.end());
+      aEffort->m_Items = nDirectories;
+      aEffort->m_Size = nDirectories;
+      aEffort->m_Points = nDirectories * eDirectoryWeight;
+      HTRACE(L"Effort CE nDirectories: %I64d\n", nDirectories);
+
+      // Add effort for Files
+      auto nFiles = distance(m_HardlinkBegin, m_DirectoryBegin);
+      aEffort->m_Items += nFiles;
+      aEffort->m_Size += nFiles;
+      aEffort->m_Points += nFiles * eHardlinkWeight;
+      HTRACE(L"Effort CE nFiles: %I64d\n", nFiles);
+
+      // Add effort for Reparsepoints
+      auto nReparsePoints = distance(m_Filenames.begin(), m_HardlinkBegin);
+      aEffort->m_Items += nReparsePoints;
+      aEffort->m_Size += nReparsePoints;
+      aEffort->m_Points += nReparsePoints * eReparseWeight;
+      HTRACE(L"Effort CE nReparsepoints: %I64d\n", nReparsePoints);
+
+      // Add effort for restoring the timestamps on reparsepoints
+//      aEffort->m_Items += nReparsePoints;
+      aEffort->m_Size += nReparsePoints;
+      aEffort->m_Points += nReparsePoints * eTimeStampWeight;
+      HTRACE(L"Effort CE timestamps nReparsepoints: %I64d\n", nReparsePoints);
+
+      // Add effort for restoring the timestamps on directories
+//      aEffort->m_Items += nDirectories;
+      aEffort->m_Size += nDirectories;
+      aEffort->m_Points += nDirectories * eTimeStampWeight;
+      HTRACE(L"Effort CE timestamps nDirectories: %I64d\n", nDirectories);
+
+      // Add effort for restoring the Attributes on directories
+      auto nAttributes = distance(m_DateTimeRestore.begin(), m_DateTimeRestore.end());
+//      aEffort->m_Items += nAttributes;
+      aEffort->m_Size += nAttributes;
+      aEffort->m_Points += nAttributes * eTimeStampWeight;
+      HTRACE(L"Effort CE nAttributes: %I64d\n", nAttributes);
+    }
+    break;
+
+    case FileInfoContainer::eSmartMove:
+    {
+      // Add effort for Reparsepoints
+      auto nReparsePoints = distance(m_Filenames.begin(), m_HardlinkBegin);
+      aEffort->m_Items = nReparsePoints;
+      aEffort->m_Size = nReparsePoints;
+      aEffort->m_Points = nReparsePoints * eReparseWeight;
+
+      // Add effort for restoring the timestamps on reparsepoints
+//      aEffort->m_Items += nReparsePoints;
+      aEffort->m_Size += nReparsePoints;
+      aEffort->m_Points += nReparsePoints * eTimeStampWeight;
+
+      // Add effort for restoring the timestamps on directories
+      auto nDirectories = distance(m_DirectoryBegin, m_Filenames.end());
+//      aEffort->m_Items += nDirectories;
+      aEffort->m_Size += nDirectories;
+      aEffort->m_Points += nDirectories * eTimeStampWeight;
+    }
+    break;
+  }
+  return 1;
 }
 
 
@@ -11703,7 +11759,7 @@ ResolveDelayedReparsePoints(
   for (_Pathes::iterator iter = aDelayedReparsePointBegin; iter !=  aFilenameBegin; ++iter)
   {
     FileInfo* pI = *iter;
-    found = std::lower_bound(aFilenameBegin, aDirectoryBegin, *iter, FileIndexCompare());
+    found = lower_bound(aFilenameBegin, aDirectoryBegin, *iter, FileIndexCompare());
     if (found != aDirectoryBegin && (*found)->m_FileIndex.ul64 == (*iter)->m_FileIndex.ul64 && (*found)->m_DiskIndex == (*iter)->m_DiskIndex)
     {
       // It is a ReparsePoint
@@ -11712,11 +11768,10 @@ ResolveDelayedReparsePoints(
       // Assemble the ReparseSrcTargetHint
       const wchar_t* pReparseSrcTargetHint = &pF->m_FileName[pF->m_SourcePathLen];
       size_t ReparseSrcTargetHintLength = wcslen(pReparseSrcTargetHint) + 1;
-#if defined USE_ROCKALL_HEAPMANAGER
-      (*iter)->m_ReparseSrcTargetHint = (wchar_t*)MyHeap.New((int)(ReparseSrcTargetHintLength * sizeof(wchar_t)) );
-#else
+      pStats->m_HeapAllocTime.Start();
       (*iter)->m_ReparseSrcTargetHint = new wchar_t[wcslen(pF->m_FileName) + 1];
-#endif
+      pStats->m_HeapAllocTime.Stop();
+
       wcscpy_s ((*iter)->m_ReparseSrcTargetHint, ReparseSrcTargetHintLength, pReparseSrcTargetHint);
 
     }
@@ -11754,8 +11809,7 @@ FileInfoContainer::
 CheckSymbolicLinks()
 {
   CopyStatistics	      aStats;
-  if (!m_SmartCopyPrepared)
-    PrepareSmartCopy(eSmartClone, &aStats);
+  Prepare(eSmartClone, &aStats);
 
   WCHAR	DummyReparsePointTarget[HUGE_PATH];
   _Pathes::iterator iter;
@@ -11820,9 +11874,6 @@ _SmartCopy(
   AsyncContext*         apContext
 )
 {
-  int r;
-
-  
 #if 0 && defined _DEBUG // DEBUG_DEFINES
   // This is the unit test for the PathIdxFileIndexSorter()
   AddFile (L"\\\\?\\e:\\data\\test\\000.txt", FILE_ATTRIBUTE_NORMAL, 0x00390000, 0x0000d2b1, 0x04, 0x00);
@@ -11864,10 +11915,12 @@ _SmartCopy(
   Dump (m_Filenames.begin(), m_Filenames.end());
 #endif
 
-  if (!m_SmartCopyPrepared)
-    PrepareSmartCopy(eSmartCopy, pStats);
+#if defined _M_IX86
+  PVOID OldValue = NULL;
+  Wow64DisableWow64FsRedirection(&OldValue);
+#endif
 
-  m_SmartCopyPrepared = false;
+  Prepare(eSmartCopy, pStats);
 
   // If NTFS is broken invalidate the hardlink indices
   if (errOk != SanityCheck(m_HardlinkBegin, m_DirectoryBegin) )
@@ -11893,11 +11946,12 @@ _SmartCopy(
 
     DmFindDupes(m_HardlinkBegin, m_DirectoryBegin, aPathNameStatusList, pStats);
     CalcFileIndex(m_HardlinkBegin, m_DirectoryBegin);
-    PrepareSmartCopy(eSmartCopy, pStats);
+    m_Prepared = false;
+    Prepare(eSmartCopy, pStats);
   }
 
   // Copy Directories 
-  r = CopyDirectories(
+  int r = CopyDirectories(
     m_DirectoryBegin, 
     m_Filenames.end(), 
     pStats, 
@@ -11907,7 +11961,12 @@ _SmartCopy(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
   if (!(m_Flags & eSkipFiles))
   {
@@ -11924,7 +11983,18 @@ _SmartCopy(
 	  );
 
     if (ERROR_REQUEST_ABORTED == r)
+    {
+#if defined _M_IX86
+      Wow64RevertWow64FsRedirection(OldValue);
+#endif
       return ERROR_REQUEST_ABORTED;
+    }
+
+  }
+  else
+  {
+  // TODO: Fake-Advance the progress bei SkipFiles. Da aber SkipFiles nur von der Kommandozeile aus aufgerufen 
+  // werden kann ist das nicht wichtig
   }
 
   // Copy Reparse Points
@@ -11938,7 +12008,13 @@ _SmartCopy(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
+
 
   // Create Directories, which have not been created up till now.
   // Most propably they were empty Root Dir
@@ -11950,7 +12026,12 @@ _SmartCopy(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
   // Restore timestamps on ReparsePoints
   r = RestoreTimeStamps(
@@ -11962,7 +12043,12 @@ _SmartCopy(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
   // Restore timestamps on Directories when everything is done
   r = RestoreTimeStamps(
@@ -11974,7 +12060,12 @@ _SmartCopy(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
   // Restore the date time of the very first directory
   CopyDirectoryAttributes(
@@ -11985,6 +12076,9 @@ _SmartCopy(
     eSmartCopy
   );
 
+#if defined _M_IX86
+  Wow64RevertWow64FsRedirection(OldValue);
+#endif
   return ERROR_SUCCESS;
 }
 
@@ -12012,10 +12106,12 @@ _TrueSize(
    AsyncContext*         apContext
 )
 {
-  if (!m_SmartCopyPrepared)
-    PrepareSmartCopy(eSmartCopy, pStats);
+#if defined _M_IX86
+  PVOID OldValue = NULL;
+  Wow64DisableWow64FsRedirection(&OldValue);
+#endif
 
-  m_SmartCopyPrepared = false;
+  Prepare(eSmartCopy, pStats);
 
   if (errOk != SanityCheck(m_HardlinkBegin, m_DirectoryBegin))
   {
@@ -12037,6 +12133,9 @@ _TrueSize(
     apContext
   );
 
+#if defined _M_IX86
+  Wow64RevertWow64FsRedirection(OldValue);
+#endif
   return ERROR_SUCCESS;
 }
 
@@ -12093,12 +12192,11 @@ _SmartClone(
   AsyncContext*         apContext
 )
 {
-  int r;
-
-  if (!m_SmartCopyPrepared)
-    PrepareSmartCopy(eSmartClone, pStats);
-
-  m_SmartCopyPrepared = false;
+#if defined _M_IX86
+  PVOID OldValue = NULL;
+  Wow64DisableWow64FsRedirection(&OldValue);
+#endif
+  Prepare(eSmartClone, pStats);
 
   if (errOk != SanityCheck(m_HardlinkBegin, m_DirectoryBegin))
   {
@@ -12123,11 +12221,11 @@ _SmartClone(
 
     DmFindDupes(m_HardlinkBegin, m_DirectoryBegin, aPathNameStatusList, pStats);
     CalcFileIndex(m_HardlinkBegin, m_DirectoryBegin);
-    PrepareSmartCopy(eSmartCopy, pStats);
+    Prepare(eSmartCopy, pStats);
   }
 
   // Copy Directories 
-  r = CopyDirectories(
+  int r = CopyDirectories(
     m_DirectoryBegin, 
     m_Filenames.end(), 
     pStats, 
@@ -12137,8 +12235,12 @@ _SmartClone(
     );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
-
+  }
 
   // Clone Files and Hardlinks
   if (!(m_Flags & eSkipFiles))
@@ -12152,7 +12254,12 @@ _SmartClone(
 	  );
 
     if (ERROR_REQUEST_ABORTED == r)
+    {
+#if defined _M_IX86
+      Wow64RevertWow64FsRedirection(OldValue);
+#endif
       return ERROR_REQUEST_ABORTED;
+    }
   }
 
   // Copy Reparse Points
@@ -12166,7 +12273,12 @@ _SmartClone(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
   // Restore timestamps on ReparsePoints
   r = RestoreTimeStamps(
@@ -12178,7 +12290,12 @@ _SmartClone(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
   // Restore timestamps on directories
   r = RestoreTimeStamps(
@@ -12190,7 +12307,12 @@ _SmartClone(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
   // Restore the date time of the very first directory
   CopyDirectoryAttributes(
@@ -12201,6 +12323,9 @@ _SmartClone(
     eSmartCopy
   );
 
+#if defined _M_IX86
+  Wow64RevertWow64FsRedirection(OldValue);
+#endif
   return ERROR_SUCCESS;
 }
 
@@ -12256,10 +12381,12 @@ _SmartClean(
   AsyncContext*         apContext
 )
 {
-  if (!m_SmartCopyPrepared)
-    PrepareSmartCopy(eSmartClone, pStats);
+#if defined _M_IX86
+  PVOID OldValue = NULL;
+  Wow64DisableWow64FsRedirection(&OldValue);
+#endif
 
-  m_SmartCopyPrepared = false;
+  Prepare(eSmartClean, pStats);
 
   if (errOk != SanityCheck(m_HardlinkBegin, m_DirectoryBegin))
   {
@@ -12290,7 +12417,12 @@ _SmartClean(
 	  );
 
     if (ERROR_REQUEST_ABORTED == r)
+    {
+#if defined _M_IX86
+      Wow64RevertWow64FsRedirection(OldValue);
+#endif
       return ERROR_REQUEST_ABORTED;
+    }
   }
 
   // Clean Reparse Points
@@ -12304,7 +12436,12 @@ _SmartClean(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
   // Create all Directories. Sorting brings directories in such an order
   // so that we can easily delete them
@@ -12321,13 +12458,18 @@ _SmartClean(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
+#if defined _M_IX86
+  Wow64RevertWow64FsRedirection(OldValue);
+#endif
   return ERROR_SUCCESS;
 }
-
-
-
 
 int
 FileInfoContainer::
@@ -12381,12 +12523,12 @@ _SmartMirror(
   AsyncContext*         apContext
 )
 {
-  int r;
+#if defined _M_IX86
+  PVOID OldValue = NULL;
+  Wow64DisableWow64FsRedirection(&OldValue);
+#endif
 
-  if (!m_SmartCopyPrepared)
-    PrepareSmartCopy(eSmartCopy, pStats);
-
-  m_SmartCopyPrepared = false;
+  Prepare(eSmartMirror, pStats);
 
   if (errOk != SanityCheck(m_HardlinkBegin, m_DirectoryBegin))
   {
@@ -12411,12 +12553,12 @@ _SmartMirror(
 
     DmFindDupes(m_HardlinkBegin, m_DirectoryBegin, aPathNameStatusList, pStats);
     CalcFileIndex(m_HardlinkBegin, m_DirectoryBegin);
-    PrepareSmartCopy(eSmartCopy, pStats);
+    Prepare(eSmartCopy, pStats);
   }
 
 
   // Copy Directories 
-  r = CopyDirectories(
+  int r = CopyDirectories(
     m_DateTimeRestore.begin(), 
     m_DateTimeRestore.end(), 
     pStats, 
@@ -12436,7 +12578,12 @@ _SmartMirror(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
   // Copy Files and Hardlinks
   if (!(m_Flags & eSkipFiles))
@@ -12464,12 +12611,21 @@ _SmartMirror(
 	    );
 
       if (ERROR_REQUEST_ABORTED == r)
+      {
+#if defined _M_IX86
+        Wow64RevertWow64FsRedirection(OldValue);
+#endif
         return ERROR_REQUEST_ABORTED;
+      }
     }
     
-
     if (ERROR_REQUEST_ABORTED == r)
+    {
+#if defined _M_IX86
+      Wow64RevertWow64FsRedirection(OldValue);
+#endif
       return ERROR_REQUEST_ABORTED;
+    }
   }
 
   // Copy Reparse Points
@@ -12483,46 +12639,69 @@ _SmartMirror(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
   // Restore timestamps on ReparsePoints
   r = RestoreTimeStamps(
-	  m_Filenames.begin(),
-    m_HardlinkBegin, 
+    m_Filenames.begin(),
+    m_HardlinkBegin,
     aPathNameStatusList,
     apContext,
     eSmartMirror
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
   // Restore timestamps on directories
   // Sorting brings directories in such an order so that we can easily set the timestamps.
   //
   r = RestoreTimeStamps(
-	  m_DirectoryBegin,
-    m_Filenames.end(), 
+    m_DirectoryBegin,
+    m_Filenames.end(),
     aPathNameStatusList,
     apContext,
     eSmartMirror
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
   // Restore the date time of the very first directory
   r = CopyDirectoryAttributes(
-    m_DateTimeRestore.begin(), 
-    m_DateTimeRestore.end(), 
+    m_DateTimeRestore.begin(),
+    m_DateTimeRestore.end(),
     aPathNameStatusList,
     apContext,
     eSmartMirror
   );
 
   if (ERROR_REQUEST_ABORTED == r)
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
     return ERROR_REQUEST_ABORTED;
+  }
 
+#if defined _M_IX86
+  Wow64RevertWow64FsRedirection(OldValue);
+#endif
   return ERROR_SUCCESS;
 }
 
@@ -12534,13 +12713,15 @@ _SmartMirror(
 int
 FileInfoContainer::
 Dispose(
-          AsyncContext*         apContext
+  AsyncContext*         apContext,
+  CopyStatistics*	      apStats
 )
 {
   if (apContext)
   {
     DisposeParams* pDisposeParams = new DisposeParams;
     pDisposeParams->m_pContext = apContext;
+    pDisposeParams->m_pStats = apStats;
 
     pDisposeParams->m_This = this;
 
@@ -12556,7 +12737,7 @@ Dispose(
     return 0;
   }
   else
-    return _Dispose(apContext);
+    return _Dispose(apContext, apStats);
 }
 
 DWORD
@@ -12565,7 +12746,8 @@ FileInfoContainer::
 RunDispose(DisposeParams* p)
 {
   AsyncContext* pCtx = p->m_pContext;
-  pCtx->m_RetVal = p->m_This->_Dispose(pCtx);
+  CopyStatistics*	pStats = p->m_pStats;
+  pCtx->m_RetVal = p->m_This->_Dispose(pCtx, pStats);
   delete p;
 
   return 1;
@@ -12578,11 +12760,15 @@ DisposeRegExpList(
 )
 {
   // Cleanup regular expression
-  for (_RegExpList::iterator iter = a_RegExpList.begin (); iter != a_RegExpList.end (); ++iter)
+  for (auto iter : a_RegExpList)
   {
-	  regex_t*  pRegEx = *iter;
+#if defined REGEXP_STL
+    delete iter;
+#else
+    regex_t*  pRegEx = iter;
     regfree (pRegEx);
     delete pRegEx;
+#endif
   }
   a_RegExpList.clear();
 }
@@ -12601,12 +12787,7 @@ DisposeMmf(
     FileInfo* pF = *iter;
     if (pF->m_pMmfObject)
 		{
-#if defined USE_ROCKALL_HEAPMANAGER
-      pF->m_pMmfObject->Close();
-      MyHeap.Delete(pF->m_pMmfObject);
-#else
 			delete pF->m_pMmfObject;
-#endif
 			pF->m_pMmfObject = NULL;
 		}
   }
@@ -12616,8 +12797,9 @@ DisposeMmf(
 int
 FileInfoContainer::
 Dispose(
-  _Pathes::iterator	aBegin,
-	_Pathes::iterator	aEnd
+  _Pathes::iterator	    aBegin,
+	_Pathes::iterator	    aEnd,
+  CopyStatistics*	      apStats
 )
 {
   DisposeMmf(aBegin, aEnd);
@@ -12626,23 +12808,23 @@ Dispose(
   {
     FileInfo*	pFileInfo = *iter;
     if (pFileInfo->m_FileName)
-#if defined USE_ROCKALL_HEAPMANAGER
-      MyHeap.Delete(pFileInfo->m_FileName);
-
-    MyHeap.Delete(pFileInfo);
-#else
+    {
+      apStats->m_HeapDeletionTime.Start();
       delete[] pFileInfo->m_FileName;
+      apStats->m_HeapDeletionTime.Stop();
+    }
       
+    apStats->m_HeapDeletionTime.Start();
     delete pFileInfo;
-#endif
+    apStats->m_HeapDeletionTime.Stop();
   }
 
   if (m_pSecDesc)
-#if defined USE_ROCKALL_HEAPMANAGER
-    MyHeap.Delete(m_pSecDesc);
-#else
+  {
+    apStats->m_HeapDeletionTime.Start();
     free(m_pSecDesc);
-#endif
+    apStats->m_HeapDeletionTime.Stop();
+  }
 
   m_pSecDesc = NULL;
 
@@ -12653,7 +12835,8 @@ Dispose(
 int
 FileInfoContainer::
 _Dispose(
-  AsyncContext*         apContext
+  AsyncContext*         apContext,
+  CopyStatistics*	      apStats
 )
 {
 #if defined USE_VECTOR
@@ -12695,12 +12878,12 @@ _Dispose(
   // order of items and is fast again.
   if (m_FilenamesSave.begin() != m_FilenamesSave.end())
   {
-    Dispose(m_FilenamesSave.begin(), m_FilenamesSave.end());
+    Dispose(m_FilenamesSave.begin(), m_FilenamesSave.end(), apStats);
 	  m_FilenamesSave.clear();
   }
   else
   {
-    Dispose(m_Filenames.begin(), m_Filenames.end());
+    Dispose(m_Filenames.begin(), m_Filenames.end(), apStats);
   }
   m_Filenames.clear();
   m_DateTimeRestore.clear();
@@ -12770,12 +12953,11 @@ _SmartMove(
           AsyncContext*         apContext
           )
 {
-  int RetVal = ERROR_SUCCESS;
-  
-  if (!m_SmartCopyPrepared)
-    PrepareSmartCopy(eSmartClone, pStats);
-
-  m_SmartCopyPrepared = false;
+#if defined _M_IX86
+  PVOID OldValue = NULL;
+  Wow64DisableWow64FsRedirection(&OldValue);
+#endif
+  Prepare(eSmartMove, pStats);
 
   // Is this NTFS ok?
   if (errOk != SanityCheck(m_HardlinkBegin, m_DirectoryBegin))
@@ -12802,7 +12984,12 @@ _SmartMove(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
-    RetVal = ERROR_REQUEST_ABORTED;
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
+    return ERROR_REQUEST_ABORTED;
+  }
 
   // Restore timestamps on ReparsePoints
   r = RestoreTimeStamps(
@@ -12814,13 +13001,18 @@ _SmartMove(
   );
 
   if (ERROR_REQUEST_ABORTED == r)
-    RetVal = ERROR_REQUEST_ABORTED;
+  {
+#if defined _M_IX86
+    Wow64RevertWow64FsRedirection(OldValue);
+#endif
+    return ERROR_REQUEST_ABORTED;
+  }
 
   // Restore timestamps on directories
   // Sorting brings directories in such an order so that we can easily set the timestamps.
   //
   RestoreTimeStamps(
-	  m_DirectoryBegin,
+    m_DirectoryBegin,
     m_Filenames.end(), 
     aPathNameStatusList,
     apContext,
@@ -12840,9 +13032,14 @@ _SmartMove(
   
   RemoveDir(DestPath, TRUE);
 
-  return RetVal;
+#if defined _M_IX86
+  Wow64RevertWow64FsRedirection(OldValue);
+#endif
+  return r;
 }
 
+// Regular Expression Handling
+//
 void
 FileInfoContainer::
 CopyRegExpList(
@@ -12860,10 +13057,15 @@ CompileRegExpList(_StringList* a_pStringList, _RegExpList& a_RegExpList)
 {
   for (_StringListIterator iter = a_pStringList->begin(); iter != a_pStringList->end(); ++iter)
   {
-	  regex_t*  compiled = new regex_t;
+#if defined REGEXP_STL
+    wregex* pRegEx = new wregex(*iter);
+    a_RegExpList.push_back(pRegEx);
+#else
+    regex_t*  compiled = new regex_t;
     int			retval = regwcomp (compiled, (*iter).c_str(), REG_ICASE | REG_EXTENDED);
     if (REG_OK == retval)
       a_RegExpList.push_back (compiled);
+#endif
   }
 }
 
@@ -12932,19 +13134,27 @@ MatchRegExpList(
 )
 {
   bool RegExpMatch = false;
-  if (a_RegExpList.size())
+#if defined REGEXP_STL
+  wcmatch match;
+#else
+  regmatch_t pmatch[1];
+#endif
+  for (auto iter : a_RegExpList)
   {
-    int retval;
-    regmatch_t pmatch[1];
-    for (_RegExpList::iterator iter = a_RegExpList.begin(); iter != a_RegExpList.end (); ++iter)
+#if defined REGEXP_STL
+    if (regex_search(a_String, match, *iter))
     {
-	    retval = regwexec (*iter, a_String, 1, pmatch, 0);
-	    if (REG_OK == retval)
-      {
-		    RegExpMatch = true;
-        break;
-      }
+      RegExpMatch = true;
+      break;
     }
+#else
+    int retval = regwexec (iter, a_String, 1, pmatch, 0);
+	  if (REG_OK == retval)
+    {
+		  RegExpMatch = true;
+      break;
+    }
+#endif
   }
 
   return RegExpMatch;
@@ -12956,7 +13166,7 @@ FileInfoContainer::
 Find(const wchar_t* a_pFilename)
 {
 #if defined USE_VECTOR
-  _PathVector::iterator found = std::lower_bound(m_PathVector.begin(), m_PathVector.end(), _PathMap_Pair(a_pFilename, NULL), vector_comp());
+  _PathVector::iterator found = lower_bound(m_PathVector.begin(), m_PathVector.end(), _PathMap_Pair(a_pFilename, NULL), vector_comp());
   if ( found !=  m_PathVector.end() && !wcscmp(found->first, a_pFilename))
   {
     FileInfo* pF = (*found).second;
@@ -12980,8 +13190,9 @@ FileInfoContainer::
 DumpPathMap()
 {
 #if defined USE_VECTOR
-  for (_PathVector::iterator iter = m_PathVector.begin(); iter != m_PathVector.end(); ++iter)
-    HTRACE(L"#%s#\n", (*iter).first);
+  HTRACE(L"#m_PathVector.size() %d#\n", m_PathVector.size());
+  for (auto iter : m_PathVector)
+    HTRACE(L"#%s#\n", iter.first);
 #else    
   for (_PathMap::iterator iter = m_PathMap.begin(); iter != m_PathMap.end(); ++iter)
     HTRACE(L"#%s#\n", (*iter).first);
@@ -13052,14 +13263,15 @@ FileInfoContainer::
 EndLogging(
   FILE*                 a_File,
   _PathNameStatusList&  r_PathNameStatusList,
-  CopyStatistics&       r_CopyStatistics
+  CopyStatistics&       r_CopyStatistics,
+  FileInfoContainer::CopyReparsePointFlags  aMode
 )
 {
   if(a_File)
   {
     // LSE does not support Json Logging right now: JsonWriterState == NULL !!!
     AnalysePathNameStatus(a_File, r_PathNameStatusList, true, FileInfoContainer::eLogVerbose, false, NULL);
-    PrintDeloreanCopyStats(a_File, r_CopyStatistics, FileInfoContainer::eSmartCopy, false, false);
+    PrintDeloreanCopyStats(a_File, r_CopyStatistics, aMode, false, false);
 
     fclose(a_File);
   }
@@ -13125,22 +13337,10 @@ Log(
 FileInfoContainer::
 ~FileInfoContainer()
 {
-  Dispose (NULL);
+  CopyStatistics	      stats;
+  Dispose (NULL, &stats);
 }
 
-
-//
-// EnumHardlinkSiblingsGlue
-//
-EnumHardlinkSiblingsGlue::
-EnumHardlinkSiblingsGlue() : m_RefCount(0)
-{
-}
-
-EnumHardlinkSiblingsGlue::
-~EnumHardlinkSiblingsGlue()
-{
-}
 
 //
 // AnchorPathCache
@@ -13382,7 +13582,7 @@ Save(
   FILE*         aFile
 )
 {
-  fwprintf(aFile, L"%x\n", m_AnchorPaths.size()); 
+  fwprintf(aFile, L"%zx\n", m_AnchorPaths.size()); 
   for (_ArgvListIterator iter = m_AnchorPaths.begin(); iter != m_AnchorPaths.end(); ++iter)
     fwprintf (aFile, L"%s\"%s\"%x,%x,%x\n", 
       iter->Argv.c_str(), 
@@ -13634,7 +13834,7 @@ Save(
 )
 {
   _DiskSerialMap::iterator iter;
-  fwprintf(a_File, L"%x\n", m_DiskSerialMap.size());
+  fwprintf(a_File, L"%zx\n", m_DiskSerialMap.size());
   for (iter = m_DiskSerialMap.begin(); iter != m_DiskSerialMap.end(); ++iter)
     fwprintf(a_File, L"%s\"%x\n", iter->first, iter->second);
 
@@ -13677,7 +13877,7 @@ IsSupportedFileSystem(
 
 bool 
 SupportedFileSystems::
-Init() 
+ReadFromRegistry() 
 {
   HKEY HKLMRegKey;
   DWORD RetVal = ::RegOpenKeyEx(
@@ -13690,8 +13890,6 @@ Init()
 
   if (ERROR_SUCCESS == RetVal)
   {
-    DWORD NewgFlags;
-    
     DWORD aType = REG_SZ;
     DWORD aSize = MAX_PATH;
     wchar_t SuppFs[MAX_PATH];
@@ -13980,7 +14178,7 @@ NtQueryProcessByModule(
                 {
                   if (aProcessNames.find(pProcess->ImageName.Buffer) == aProcessNames.end())
                   {
-                    // std::pair< _StringMap::iterator, bool > pr = ...
+                    // pair< _StringMap::iterator, bool > pr = ...
                     aProcessNames.insert(_StringMapPair(pProcess->ImageName.Buffer, 42));
                     // printf("\t%S\t%S \n", pProcess->pszProcessName, szModName);
                   }
@@ -14276,8 +14474,7 @@ _DupeMerge(
   }
 
   // Preparation steps for DupeMerge
-  if (!m_SmartCopyPrepared)
-    PrepareSmartCopy(FileInfoContainer::eSmartClone, pStats);
+  Prepare(eSmartClone, pStats);
 
 	_Pathes::iterator	begin = m_HardlinkBegin;
 	_Pathes::iterator	end = m_FATFilenameBegin;
@@ -14903,11 +15100,9 @@ CreateHashes(
 			case 0:
 			{
 				// Open the file if we come around the first time
-#if defined USE_ROCKALL_HEAPMANAGER
-        MmfObject* pMmfObject = (MmfObject*)MyHeap.New(sizeof(MmfObject));
-#else
-				MmfObject* pMmfObject = new MmfObject ();
-#endif
+        pStats->m_HeapAllocTime.Start();
+        MmfObject* pMmfObject = new MmfObject ();
+        pStats->m_HeapAllocTime.Stop();
 
         int	r = pMmfObject->Open (pFileInfo->m_FileName, a_PathNameStatusList, 0, min(pFileInfo->m_FileSize.ul64, m_SystemAllocGranularity));
 				if (errOk == r)
@@ -14920,11 +15115,10 @@ CreateHashes(
           {
             // Failed to read from the view.
             pMmfObject->Close();
-#if defined USE_ROCKALL_HEAPMANAGER
-            MyHeap.Delete(pMmfObject);
-#else
+            pStats->m_HeapDeletionTime.Start();
             delete pMmfObject;
-#endif
+            pStats->m_HeapDeletionTime.Stop();
+
             pFileInfo->m_pMmfObject = NULL;
             pFileInfo->InvalidHash();
           }
@@ -14932,12 +15126,11 @@ CreateHashes(
 				else
 				{
           pMmfObject->Close();
-#if defined USE_ROCKALL_HEAPMANAGER
-          MyHeap.Delete(pMmfObject);
-#else
-					delete pMmfObject;
-#endif
-					pFileInfo->m_pMmfObject = NULL;
+          pStats->m_HeapDeletionTime.Start();
+          delete pMmfObject;
+          pStats->m_HeapDeletionTime.Stop();
+
+          pFileInfo->m_pMmfObject = NULL;
 					pFileInfo->InvalidHash ();
 				}
 			}
@@ -14971,11 +15164,10 @@ CreateHashes(
           {
             // Failed to read from the view.
             pMmfObject->Close();
-#if defined USE_ROCKALL_HEAPMANAGER
-            MyHeap.Delete(pMmfObject);
-#else
+            pStats->m_HeapDeletionTime.Start();
             delete pMmfObject;
-#endif
+            pStats->m_HeapDeletionTime.Stop();
+
             pFileInfo->m_pMmfObject = NULL;
             pFileInfo->InvalidHash();
           }
@@ -15013,11 +15205,10 @@ CreateHashes(
           {
             // Failed to read from the view.
             pMmfObject->Close();
-#if defined USE_ROCKALL_HEAPMANAGER
-            MyHeap.Delete(pMmfObject);
-#else
+            pStats->m_HeapDeletionTime.Start();
             delete pMmfObject;
-#endif
+            pStats->m_HeapDeletionTime.Stop();
+
             pFileInfo->m_pMmfObject = NULL;
             pFileInfo->InvalidHash();
           }
@@ -15070,12 +15261,11 @@ CreateHashes(
             if (ERROR_SUCCESS != iResult)
             {
               pMmfObject->Close();
-#if defined USE_ROCKALL_HEAPMANAGER
-              MyHeap.Delete(pMmfObject);
-#else
-  					  delete pMmfObject;
-#endif
-						  pFileInfo->m_pMmfObject = NULL;
+              pStats->m_HeapDeletionTime.Start();
+              delete pMmfObject;
+              pStats->m_HeapDeletionTime.Stop();
+
+              pFileInfo->m_pMmfObject = NULL;
 						  pFileInfo->InvalidHash ();
             }
             else
@@ -15091,12 +15281,11 @@ CreateHashes(
 					else // if (errOk == r)
 					{
             pMmfObject->Close();
-#if defined USE_ROCKALL_HEAPMANAGER
-            MyHeap.Delete(pMmfObject);
-#else
-					  delete pMmfObject;
-#endif
-						pFileInfo->m_pMmfObject = NULL;
+            pStats->m_HeapDeletionTime.Start();
+            delete pMmfObject;
+            pStats->m_HeapDeletionTime.Stop();
+
+            pFileInfo->m_pMmfObject = NULL;
 						pFileInfo->InvalidHash ();
 					}
 				}

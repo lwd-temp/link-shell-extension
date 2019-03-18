@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{0c7a7040-17a7-4209-903b-420e8cc4eb92}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat;for;f90</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{61f8897d-b8d9-45bc-9ebc-b4e21bd3971d}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;fi;fd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{b3775f63-23cc-43f7-b2e3-9e3ff4b18a68}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Install">
+      <UniqueIdentifier>{385696db-4e0e-4124-8ec6-be868331d17f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Docu">
+      <UniqueIdentifier>{87d948dc-9ff6-40e7-8f85-3d5413784166}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{4624c145-a026-48c1-ab1d-ed7cc1ae998c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CopyHook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HardLink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HardLinkMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IconOverlay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertySheetPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HardLink.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="res\Hardlink.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\HardLink.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Hardlink_XP.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\JunctionIcon.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\JunctionIcon_XP.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\PROGRESS.BIN">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="install\CodeSign.bat">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="install\CreateInstall.bat">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="install\GetTime.nsh">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="install\GetWindowsVersion.nsh">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="install\HardlinkShellExt.nsi">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="install\HardlinkShellExt_win32.nsi">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="install\HardlinkShellExt_x64.nsi">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="install\ReleaseChecklist.txt">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="install\WriteEnvStr.nsh">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="install\HardlinkShellExt_win32_502.nsi">
+      <Filter>Install</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CopyHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HardLink.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HardLinkMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IconOverlay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="localisation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertySheetPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="HardLink.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="HardlinkShellExt.dll.trust.manifest">
+      <Filter>Resource Files</Filter>
+    </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="install\stampver.inf">
+      <Filter>Install</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Doc\dsgvo.html">
+      <Filter>Docu</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Doc\linkshellextension.html">
+      <Filter>Docu</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Doc\linkshellextension_fr.html">
+      <Filter>Docu</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Doc\lse.xml">
+      <Filter>Docu</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

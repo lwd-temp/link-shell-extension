@@ -1,6 +1,6 @@
 /*
-	Copyright (C) 1999-2010, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
 
 #include "stdafx.h"
@@ -37,7 +37,8 @@ ForkExeHelper(
 	wchar_t*	sla_quoted
 )
 {	
-	wchar_t symlinkexe[HUGE_PATH];	
+  // TODO: Das Übergabefile sollte nicht nur einen Namen haben, weil auch mehere Instanzen der LSE laufen können
+  wchar_t symlinkexe[HUGE_PATH];	
 	GetModuleFileNameW(g_hInstance, symlinkexe, HUGE_PATH);
 	PathRemoveFileSpec(symlinkexe);
 

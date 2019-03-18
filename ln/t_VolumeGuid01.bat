@@ -180,9 +180,6 @@ REM
 %RD% %TESTROOTSRCDRV%Poi
 %RD% %TESTROOTSRCDRV%Poi2
 
-@REM goto :ausmausraus
-:tttt
-if [Win7] NEQ [%OS%] goto :ausmausraus
 @echo off
 REM
 REM Shadow Copy 

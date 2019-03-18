@@ -152,7 +152,6 @@ int PropPageIconHardlink::FetchOverlayPath(bool aCommit)
   wchar_t buf[MAX_PATH];
   m_OverlayPath.GetWindowText(buf, MAX_PATH);
   
-  // TBD Check if file exists
   if (INVALID_FILE_ATTRIBUTES != GetFileAttributes(buf))
   {
     if (aCommit)

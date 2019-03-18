@@ -16,10 +16,8 @@
 // German (Austria) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEA)
-#ifdef _WIN32
 LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_AUSTRIAN
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -27,8 +25,8 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_AUSTRIAN
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,8,0
- PRODUCTVERSION 1,0,8,0
+ FILEVERSION MAJOR_VERSION, MINOR_VERSION, PATCH_VERSION, HOTFIX_VERSION
+ PRODUCTVERSION MAJOR_VERSION, MINOR_VERSION, PATCH_VERSION, HOTFIX_VERSION
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -45,12 +43,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Schinagl"
             VALUE "FileDescription", "DupeMerge"
-            VALUE "FileVersion", "1.0.8.0"
+            VALUE "FileVersion", VERSION_STRING
             VALUE "InternalName", "DUPEMERGE"
-            VALUE "LegalCopyright", "Copyright © 1999-2018 Hermann Schinagl"
+            VALUE "LegalCopyright", "Copyright © 1999-2019 Hermann Schinagl"
             VALUE "OriginalFilename", "dupemerge.exe"
             VALUE "ProductName", "DUPEMERGE"
-            VALUE "ProductVersion", "1.0.8.0"
+            VALUE "ProductVersion", VERSION_STRING
         END
     END
     BLOCK "VarFileInfo"

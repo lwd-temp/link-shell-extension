@@ -1,7 +1,7 @@
 REM goto Win10_arachnida
 REM goto Win10_sleipnir
 REM goto atgrzwn501360
-REM goto atgrzwn501360_d
+REM goto atgrzwn501360_c
 REM goto quadtatzw10
 REM goto xp_nbuild16
 goto Win7_quadtatz
@@ -31,11 +31,11 @@ set VS2005TOOLS_PATH=c:\vs2005\Common7\Tools\Bin
 set TRUECRYPT="C:\Program Files\TrueCrypt\TrueCrypt.exe"  /force 
 goto eof
 
-:atgrzwn501360_d
+:atgrzwn501360_c
 REM
-REM atgrzwn501360 on Drive D:
+REM atgrzwn501360 on Drive c:
 REM
-set HOME=D:\data\cpp\hardlinks\HardlinkExtension
+set HOME=c:\data\cpp\hardlinks\HardlinkExtension
 set INST=C:\Program Files\LinkShellExtension
 set TOOLS=c:\tools
 set PLATT=X64

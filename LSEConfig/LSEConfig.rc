@@ -13,27 +13,25 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Japanese resources
+// Japanese (Japan) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
-#ifdef _WIN32
 LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 #pragma code_page(932)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Link Shell Extension ê›íË"
     IDS_SELECT_SUBPAGE      "ê›íËÇµÇΩÇ¢ã@î\ÇëIë"
     IDS_ABOUTBOX            "ÉoÅ[ÉWÉáÉìèÓïÒ(&A)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "ÉlÉbÉgÉèÅ[ÉNÉhÉâÉCÉuÇ≈égóp"
     IDS_CHECK_SmartMove     "ÉXÉ}Å[Égà⁄ìÆ"
@@ -51,7 +49,7 @@ BEGIN
     IDS_General             "àÍî "
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "ÉnÅ[ÉhÉäÉìÉNÇÃÉAÉCÉRÉìÉIÅ[ÉoÅ[ÉåÉC"
     IDS_STATIC_Hardlink_Overlay_Priority02 "ÉIÅ[ÉoÅ[ÉåÉCÉAÉCÉRÉìÇÃóDêÊìx:"
@@ -64,13 +62,13 @@ BEGIN
     IDS_Icon_Junction       "ÉAÉCÉRÉì::ÉWÉÉÉìÉNÉVÉáÉì"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon "ÉVÉìÉ{ÉäÉbÉNÉäÉìÉNÇÃÉAÉCÉRÉìÉIÅ[ÉoÅ[ÉåÉC"
     IDS_Icon_Symboliclink   "ÉAÉCÉRÉì::ÉVÉìÉ{ÉäÉbÉNÉäÉìÉN"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "ê¢ë„ÉRÉsÅ["
     IDS_CHECK_SmartMirror   "ÉXÉ}Å[ÉgÉ~ÉâÅ[ÉäÉìÉO"
@@ -81,32 +79,30 @@ BEGIN
     IDS_STATIC_Backup_Caption "ÉRÉsÅ[ÉÇÅ[Éh"
 END
 
-#endif    // Japanese resources
+#endif    // Japanese (Japan) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Chinese (P.R.C.) resources
+// Chinese (Simplified, PRC) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
-#ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 #pragma code_page(936)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "NTFS Œƒº˛¡¨Ω”¿©’π≈‰÷√π§æﬂ"
     IDS_SELECT_SUBPAGE      "«Î—°‘Òœ¬º∂“≥√Ê"
     IDS_ABOUTBOX            "πÿ”⁄(&G)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "÷ß≥÷Õ¯¬ÁŒƒº˛¡¨Ω”(&W)"
     IDS_CHECK_SmartMove     "÷ß≥÷÷«ƒ‹“∆∂Ø(&Z)"
@@ -124,7 +120,7 @@ BEGIN
     IDS_General             "≥£πÊ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "‘⁄”≤¡¨Ω”Œƒº˛…œÃÌº”Õº±Í"
     IDS_STATIC_Hardlink_Overlay_Priority02 "Õº±Í”≈œ»º∂£®Ωœ–° ˝÷µ”≈œ»£©£∫"
@@ -137,13 +133,13 @@ BEGIN
     IDS_Icon_Junction       "Õº±Í::ƒø¬º¡¨Ω”µ„"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon "‘⁄∑˚∫≈¡¨Ω”Œƒº˛…œÃÌº”Õº±Í"
     IDS_Icon_Symboliclink   "Õº±Í::∑˚∫≈¡¨Ω”"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "÷ß≥÷∂‡∞Ê±æ±∏∑›"
     IDS_CHECK_SmartMirror   "÷ß≥÷÷«ƒ‹æµœÒ±∏∑›"
@@ -154,32 +150,30 @@ BEGIN
     IDS_STATIC_Backup_Caption "±∏∑›ƒ£ Ω"
 END
 
-#endif    // Chinese (P.R.C.) resources
+#endif    // Chinese (Simplified, PRC) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean resources
+// Korean (Korea) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
-#ifdef _WIN32
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 #pragma code_page(949)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Link Shell Extension º≥¡§"
     IDS_SELECT_SUBPAGE      "«œ¿ß∆‰¿Ã¡ˆ∏¶ º±≈√«ÿ¡÷ººø‰"
     IDS_ABOUTBOX            "&¡§∫∏"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "ø¯∞› »£»Øº∫"
     IDS_CHECK_SmartMove     "Ω∫∏∂∆Æ ¿Ãµø"
@@ -197,7 +191,7 @@ BEGIN
     IDS_General             "¿œπ›"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "«œµÂ∏µ≈©ø° æ∆¿Ãƒ‹ µ°∫Ÿ¿Ã±‚"
     IDS_STATIC_Hardlink_Overlay_Priority02 "µ°∫Ÿ¿œ æ∆¿Ãƒ‹¿« øÏº±±«:"
@@ -210,13 +204,13 @@ BEGIN
     IDS_Icon_Junction       "æ∆¿Ãƒ‹::¡§º«"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon "Ω…∫º∏Ø∏µ≈©ø° æ∆¿Ãƒ‹ µ°∫Ÿ¿Ã±‚"
     IDS_Icon_Symboliclink   "æ∆¿Ãƒ‹::Ω…∫º∏Ø∏µ≈©"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "Delorean ∫πªÁ"
     IDS_CHECK_SmartMirror   "Ω∫∏∂∆Æ πÃ∑Ø"
@@ -227,32 +221,30 @@ BEGIN
     IDS_STATIC_Backup_Caption "∫πªÁ ∏µÂ"
 END
 
-#endif    // Korean resources
+#endif    // Korean (Korea) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Czech resources
+// Czech (Czech Republic) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CSY)
-#ifdef _WIN32
 LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
 #pragma code_page(1250)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Moûnosti Link Shell Extension"
     IDS_SELECT_SUBPAGE      "ProsÌm zvolte podstr·nku"
     IDS_ABOUTBOX            "&O programu"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "SÌùovÈ jednotky"
     IDS_CHECK_SmartMove     "Chytr˝ p¯esun"
@@ -270,7 +262,7 @@ BEGIN
     IDS_General             "ObecnÈ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "P¯ekryvn· ikona pevn˝ch odkaz˘"
     IDS_STATIC_Hardlink_Overlay_Priority02 "Priorita p¯ekryvnÈ ikony:"
@@ -283,13 +275,13 @@ BEGIN
     IDS_Icon_Junction       "Ikona::RozcestÌ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon "P¯ekryvn· ikona symbolick˝ch odkaz˘"
     IDS_Icon_Symboliclink   "Ikona::Symbolick˝ odkaz"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "DeLoreanovsk· kopie"
     IDS_CHECK_SmartMirror   "ChytrÈ zrcadlo"
@@ -300,32 +292,30 @@ BEGIN
     IDS_STATIC_Backup_Caption "Reûim z·lohov·nÌ"
 END
 
-#endif    // Czech resources
+#endif    // Czech (Czech Republic) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Polish resources
+// Polish (Poland) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PLK)
-#ifdef _WIN32
 LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
 #pragma code_page(1250)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Konfiguracja Link Shell Extension"
     IDS_SELECT_SUBPAGE      "Wybierz podstronÍ"
     IDS_ABOUTBOX            "&O programie"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "Dyski sieciowe"
     IDS_CHECK_SmartMove     "Popr. przenosiny"
@@ -343,7 +333,7 @@ BEGIN
     IDS_General             "G≥Ûwne"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "Ikona dla dowiπzaÒ twardych"
     IDS_STATIC_Hardlink_Overlay_Priority02 "Priorytet ikon:"
@@ -356,13 +346,13 @@ BEGIN
     IDS_Icon_Junction       "Ikona::Powiπzanie"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon "Ikona dla dowiπzaÒ symbolicznych"
     IDS_Icon_Symboliclink   "Ikona::Dow. symboliczne"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "Kopia DeLoreanska"
     IDS_CHECK_SmartMirror   "Poprawny duplikat"
@@ -373,32 +363,30 @@ BEGIN
     IDS_STATIC_Backup_Caption "Tryb zachowywania"
 END
 
-#endif    // Polish resources
+#endif    // Polish (Poland) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Slovak resources
+// Slovak (Slovakia) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SKY)
-#ifdef _WIN32
 LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
 #pragma code_page(1250)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Nastavenie Link Shell Extension"
     IDS_SELECT_SUBPAGE      "Vyberte podponuku"
     IDS_ABOUTBOX            "&O programe"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "Sie?ovÈ jednotky"
     IDS_CHECK_SmartMove     "Inteligentn˝ presun"
@@ -416,7 +404,7 @@ BEGIN
     IDS_General             "VöeobecnÈ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "Ikona pre pevnÈ odkazy"
     IDS_STATIC_Hardlink_Overlay_Priority02 "Priorita ikony:"
@@ -429,13 +417,13 @@ BEGIN
     IDS_Icon_Junction       "Ikona::Prepojenie"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon "Ikona pre symbolickÈ odkazy"
     IDS_Icon_Symboliclink   "Ikona::Symbolick˝ odkaz"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "DeLoreansk· kÛpia"
     IDS_CHECK_SmartMirror   "InteligentnÈ zrkadlenie"
@@ -446,32 +434,30 @@ BEGIN
     IDS_STATIC_Backup_Caption "Reûim Z·lohy"
 END
 
-#endif    // Slovak resources
+#endif    // Slovak (Slovakia) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Russian resources
+// Russian (Russia) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
-#ifdef _WIN32
 LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 #pragma code_page(1251)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Õ‡ÒÚÓÈÍË Link Shell Extension"
     IDS_SELECT_SUBPAGE      "¬˚·ÂËÚÂ ÒÚ‡ÌËˆÛ"
     IDS_ABOUTBOX            "Œ &ÔÓ„‡ÏÏÂ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "—ÂÚÂ‚˚Â ÒÒ˚ÎÍË"
     IDS_CHECK_SmartMove     "”ÏÌ˚È ÔÂÂÌÓÒ"
@@ -489,7 +475,7 @@ BEGIN
     IDS_General             "Œ·˘ËÂ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "«Ì‡˜ÓÍ-ÏÂÚÍ‡ ‰Îˇ ∆∏ÒÚÍÓÈ ÒÒ˚ÎÍË"
     IDS_STATIC_Hardlink_Overlay_Priority02 "œËÓËÚÂÚ ‰Îˇ ÁÌ‡˜Í‡-ÏÂÚÍË:"
@@ -502,14 +488,14 @@ BEGIN
     IDS_Icon_Junction       "«Ì‡˜ÓÍ ÒÒ˚ÎÍË::”ÁÎ‡"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon 
                             "«Ì‡˜ÓÍ-ÏÂÚÍ‡ ‰Îˇ —ËÏ‚ÓÎË˜ÂÒÍÓÈ ÒÒ˚ÎÍË"
     IDS_Icon_Symboliclink   "«Ì‡˜ÓÍ ÒÒ˚ÎÍË::—ËÏ‚ÓÎË˜ÂÒÍÓÈ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "—ÓÁ‰‡Ú¸ DeLorean ÍÓÔË˛"
     IDS_CHECK_SmartMirror   "—ËÌıÓÌËÁ‡ˆËˇ"
@@ -520,25 +506,23 @@ BEGIN
     IDS_STATIC_Backup_Caption " –ÂÁÂ‚ËÓ‚‡ÌËÂ"
 END
 
-#endif    // Russian resources
+#endif    // Russian (Russia) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// French (Neutral) resources
+// French resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
-#ifdef _WIN32
 LANGUAGE LANG_FRENCH, SUBLANG_NEUTRAL
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "Cibles distantes"
     IDS_CHECK_SmartMove     " DÈpl. intelligent"
@@ -556,7 +540,7 @@ BEGIN
     IDS_General             "GÈnÈral"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon 
                             "IcÙne de superposition pour les liens physiques"
@@ -571,21 +555,21 @@ BEGIN
     IDS_Icon_Junction       "IcÙne::Jonction"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon 
                             "IcÙne de superposition pour les liens symboliques"
     IDS_Icon_Symboliclink   "IcÙne::Lien symbolique"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Configuration du Gestionnaire de liens LSE"
     IDS_SELECT_SUBPAGE      "Choisissez une sous-page"
     IDS_ABOUTBOX            "¿ &propos"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "Copie DeLorean"
     IDS_CHECK_SmartMirror   "Miroir intelligent"
@@ -596,32 +580,30 @@ BEGIN
     IDS_STATIC_Backup_Caption "Mode copie de s˚retÈ"
 END
 
-#endif    // French (Neutral) resources
+#endif    // French resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Dutch (Neutral) resources
+// Dutch resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
-#ifdef _WIN32
 LANGUAGE LANG_DUTCH, SUBLANG_NEUTRAL
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Link Shell Extension Configuration"
     IDS_SELECT_SUBPAGE      "Select a sub-page"
     IDS_ABOUTBOX            "&About"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "Remote Capabilities"
     IDS_CHECK_SmartMove     "Smart Move"
@@ -639,7 +621,7 @@ BEGIN
     IDS_General             "General"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "Overlay icon for Hardlinks"
     IDS_STATIC_Hardlink_Overlay_Priority02 "Priority for overlay icon:"
@@ -652,13 +634,13 @@ BEGIN
     IDS_Icon_Junction       "Icon::Junction"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon "Overlay icon for Symbolic Links"
     IDS_Icon_Symboliclink   "Icon::Symbolic Link"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "DeloreanCopy"
     IDS_CHECK_SmartMirror   "Smart Mirror"
@@ -668,32 +650,30 @@ BEGIN
     IDS_Customize           "Customize"
 END
 
-#endif    // Dutch (Neutral) resources
+#endif    // Dutch resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Swedish (Neutral) resources
+// Swedish resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SVE)
-#ifdef _WIN32
 LANGUAGE LANG_SWEDISH, SUBLANG_NEUTRAL
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Link Shell Extension Konfiguration"
     IDS_SELECT_SUBPAGE      "V‰lj underobjekt i menyn"
     IDS_ABOUTBOX            "&Om"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "N‰tverksfunktioner"
     IDS_CHECK_SmartMove     "Smart flyttning"
@@ -711,7 +691,7 @@ BEGIN
     IDS_General             "Allm‰nt"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "Ikon fˆr HÂrdl‰nkar"
     IDS_STATIC_Hardlink_Overlay_Priority02 "Prioritet fˆr ikon:"
@@ -724,13 +704,13 @@ BEGIN
     IDS_Icon_Junction       "Ikon::Knutpunkt"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon "Ikon for Symboliska L‰nkar"
     IDS_Icon_Symboliclink   "Ikon::Symbolisk L‰nk"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "Deloreankopia"
     IDS_CHECK_SmartMirror   "Smart spegling"
@@ -741,7 +721,7 @@ BEGIN
     IDS_STATIC_Backup_Caption "S‰kerhetskopieringsl‰ge"
 END
 
-#endif    // Swedish (Neutral) resources
+#endif    // Swedish resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -749,24 +729,22 @@ END
 // German (Germany) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
-#ifdef _WIN32
 LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Link Shell Extension Konfiguration"
     IDS_SELECT_SUBPAGE      "W‰hle eine Unterkategorie"
     IDS_ABOUTBOX            "‹ber"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "Netzwerk Funktionen"
     IDS_CHECK_SmartMove     "Smart Move"
@@ -784,7 +762,7 @@ BEGIN
     IDS_General             "Allgemein"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "Overlay Icon f¸r Hardlinks"
     IDS_STATIC_Hardlink_Overlay_Priority02 "Priorit‰t f¸r Overlay icon:"
@@ -797,13 +775,13 @@ BEGIN
     IDS_Icon_Junction       "Icon::Junction"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon "Overlay Icon f¸r Symbolische Links"
     IDS_Icon_Symboliclink   "Icon::Symbolischer Link"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "Delorean Copie"
     IDS_CHECK_SmartMirror   "Smart Spiegel Kopie"
@@ -819,13 +797,11 @@ END
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -833,6 +809,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 //
 
 IDB_EMPTY_IMAGE_LIST    BITMAP                  "res\\EmptyImageList.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -857,8 +834,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3,8,7,2
- PRODUCTVERSION 3,8,7,2
+ FILEVERSION 3,9,1,3
+ PRODUCTVERSION 3,9,1,3
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -875,12 +852,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Hermann Schinagl"
             VALUE "FileDescription", "Link Shell Extension"
-            VALUE "FileVersion", "3, 8, 7, 2"
+            VALUE "FileVersion", "3.9.1.3"
             VALUE "InternalName", "LSEConfig.exe"
             VALUE "LegalCopyright", "Copyright © 1999-2019 Hermann Schinagl"
             VALUE "OriginalFilename", "LSEConfig.exe"
             VALUE "ProductName", "Link Shell Extension Configuration"
-            VALUE "ProductVersion", "3, 8, 7, 2"
+            VALUE "ProductVersion", "3.9.1.3"
         END
     END
     BLOCK "VarFileInfo"
@@ -934,24 +911,29 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\LSEConfig.ico"
+
 IDI_ICON_HardlinkOverlay ICON                    "..\\HardlinkExtension\\res\\Hardlink_Vista.ico"
+
 IDI_ICON_JunctionOverlay ICON                    "..\\HardlinkExtension\\res\\JunctionIcon_Vista.ico"
+
 IDI_ICON_SymboliclinkOverlay ICON                    "..\\HardlinkExtension\\res\\SymbolicLink_Vista.ico"
+
 IDI_ICON_Rectangle      ICON                    "..\\HardlinkExtension\\res\\Rectangle.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Link Shell Extension Configuration"
     IDS_SELECT_SUBPAGE      "Select a sub-page"
     IDS_ABOUTBOX            "&About"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "Remote Capabilities"
     IDS_CHECK_SmartMove     "Smart Move"
@@ -969,7 +951,7 @@ BEGIN
     IDS_General             "General"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "Overlay icon for Hardlinks"
     IDS_STATIC_Hardlink_Overlay_Priority02 "Priority for overlay icon:"
@@ -982,13 +964,13 @@ BEGIN
     IDS_Icon_Junction       "Icon::Junction"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon "Overlay icon for Symbolic Links"
     IDS_Icon_Symboliclink   "Icon::Symbolic Link"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "DeloreanCopy"
     IDS_CHECK_SmartMirror   "Smart Mirror"
@@ -999,7 +981,7 @@ BEGIN
     IDS_STATIC_Backup_Caption "Copy Mode"
 END
 
-#endif    // English (U.S.) resources
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -1007,24 +989,22 @@ END
 // Italian (Italy) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
-#ifdef _WIN32
 LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Configurazione di Link Shell Extension"
     IDS_SELECT_SUBPAGE      "Seleziona una Sottopagina"
     IDS_ABOUTBOX            "&?Informazioni"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "Funzionalit‡ Remote"
     IDS_CHECK_SmartMove     "Spost. Intelligente"
@@ -1042,7 +1022,7 @@ BEGIN
     IDS_General             "Generale"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "Icona per Collegamento Reale"
     IDS_STATIC_Hardlink_Overlay_Priority02 "Priorit‡ dell'Icona:"
@@ -1055,13 +1035,13 @@ BEGIN
     IDS_Icon_Junction       "Icona::Giunzione"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon "Icona per Collegamento Simbolico"
     IDS_Icon_Symboliclink   "Icona::Simbolico"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "Copia Delorean"
     IDS_CHECK_SmartMirror   "Sincronizzazione Intelligente"
@@ -1080,24 +1060,22 @@ END
 // Portuguese (Brazil) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
-#ifdef _WIN32
 LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "ConfiguraÁ„o do Link Shell Extension"
     IDS_SELECT_SUBPAGE      "Selecione uma categoria"
     IDS_ABOUTBOX            "&Sobre"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "Capacidades Remotas"
     IDS_CHECK_SmartMove     "Mover Inteligente"
@@ -1115,7 +1093,7 @@ BEGIN
     IDS_General             "Geral"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "Õcone de sobreposiÁ„o para Hardlinks"
     IDS_STATIC_Hardlink_Overlay_Priority02 
@@ -1129,14 +1107,14 @@ BEGIN
     IDS_Icon_Junction       "Õcone::JunÁ„o"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon 
                             "Õcone de sobreposiÁ„o para Links SimbÛlicos"
     IDS_Icon_Symboliclink   "Õcone::Link SimbÛlico"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "CÛpia Delorean"
     IDS_CHECK_SmartMirror   "Espelho Inteligente"
@@ -1155,10 +1133,8 @@ END
 // Neutral (Sys. Default) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEUSD)
-#ifdef _WIN32
 LANGUAGE LANG_NEUTRAL, SUBLANG_SYS_DEFAULT
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1255,7 +1231,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_GENERAL, DIALOG
     BEGIN
@@ -1304,27 +1280,25 @@ END
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Spanish resources
+// Spanish (Spain, International Sort) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)
-#ifdef _WIN32
 LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MODERN
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "ConfiguraciÛn de Link Shell Extension"
     IDS_SELECT_SUBPAGE      "Seleccione una categorÌa"
     IDS_ABOUTBOX            "&Sobre"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "Remoto Modo"
     IDS_CHECK_SmartMove     "Movimiento Inteligente"
@@ -1342,7 +1316,7 @@ BEGIN
     IDS_General             "General"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "SuperposiciÛn del icono VÌnculo Fuerte"
     IDS_STATIC_Hardlink_Overlay_Priority02 
@@ -1356,14 +1330,14 @@ BEGIN
     IDS_Icon_Junction       "Icono::UniÛn"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon 
                             "SuperposiciÛn del icono VÌnculo SimbÛlico"
     IDS_Icon_Symboliclink   "Icono::VÌnculo SimbÛlico"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "Copia DeLorean"
     IDS_CHECK_SmartMirror   "Espejo Inteligente"
@@ -1374,25 +1348,23 @@ BEGIN
     IDS_STATIC_Backup_Caption "Modo de seguridad"
 END
 
-#endif    // Spanish resources
+#endif    // Spanish (Spain, International Sort) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Greek resources
+// Greek (Greece) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ELL)
-#ifdef _WIN32
 LANGUAGE LANG_GREEK, SUBLANG_DEFAULT
 #pragma code_page(1253)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "ƒÈÍÙ˝˘ÛÁ"
     IDS_CHECK_SmartMove     "∏ÓıÌÁ ÏÂÙ·ÍﬂÌÁÛÁ"
@@ -1410,7 +1382,7 @@ BEGIN
     IDS_General             "√ÂÌÈÍ‹"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "≈ÈÍÔÌﬂ‰ÈÔ ÂÈÍ‹Îı¯ÁÚ „È· ‰ÂÛÏÔ˝Ú ıÎÈÍÔ˝"
     IDS_STATIC_Hardlink_Overlay_Priority02 
@@ -1424,14 +1396,14 @@ BEGIN
     IDS_Icon_Junction       "≈ÈÍÔÌﬂ‰ÈÔ::”ÁÏÂﬂÔ Û˝Ì‰ÂÛÁÚ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon 
                             "≈ÈÍÔÌﬂ‰ÈÔ ÂÈÍ‹Îı¯ÁÚ „È· ÛıÏ‚ÔÎÈÍÔ˝Ú ‰ÂÛÏÔ˝Ú"
     IDS_Icon_Symboliclink   "≈ÈÍÔÌﬂ‰ÈÔ::”ıÏ‚ÔÎÈÍ¸Ú ‰ÂÛÏ¸Ú"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "¡ÌÙﬂ„Ò·ˆÔ DeLorean"
     IDS_CHECK_SmartMirror   "∏ÓıÌÔÚ Í·ÙÔÙÒÈÛÏ¸Ú"
@@ -1442,39 +1414,37 @@ BEGIN
     IDS_STATIC_Backup_Caption "ÀÂÈÙÔıÒ„ﬂ· ·ÌÙÈ„Ò·ˆﬁÚ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Link Shell Extension - ƒÈ·Ï¸Òˆ˘ÛÁ"
     IDS_SELECT_SUBPAGE      "≈ÈÎ›ÓÙÂ Ïﬂ· ıÔÍ·ÙÁ„ÔÒﬂ·"
     IDS_ABOUTBOX            "&–ÂÒﬂ LSE"
 END
 
-#endif    // Greek resources
+#endif    // Greek (Greece) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Turkish resources
+// Turkish (Turkey) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_TRK)
-#ifdef _WIN32
 LANGUAGE LANG_TURKISH, SUBLANG_DEFAULT
 #pragma code_page(1254)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LinkShellExtConfig  "Link Shell Extension Yap˝land˝rmas˝"
     IDS_SELECT_SUBPAGE      "Bir Alt Sayfa SeÁin"
     IDS_ABOUTBOX            "&Hakk˝nda"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_RemoteCapabilities "Uzak Masa¸st¸ SÁnk."
     IDS_CHECK_SmartMove     "Ak˝ll˝ Ta˛˝ma"
@@ -1492,7 +1462,7 @@ BEGIN
     IDS_General             "Genel"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Hardlink_Overlay_Icon "Hardlinkler iÁin ¸st ikon"
     IDS_STATIC_Hardlink_Overlay_Priority02 "‹st ikon ˆncelii:"
@@ -1505,13 +1475,13 @@ BEGIN
     IDS_Icon_Junction       "›kon::Junction"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_Symboliclink_Overlay_Icon "Sembolik Linkler iÁin ¸st ikon"
     IDS_Icon_Symboliclink   "›kon::Sembolik Link"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CHECK_DeloreanCopy  "DeloreanKopyas˝"
     IDS_CHECK_SmartMirror   "Ak˝ll˝ Yans˝"
@@ -1521,7 +1491,7 @@ BEGIN
     IDS_Customize           "÷zelle˛tir"
 END
 
-#endif    // Turkish resources
+#endif    // Turkish (Turkey) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

@@ -1,0 +1,395 @@
+test\CaseSensitiv\src\F0\F0_J1 -> C:\data\cpp\hardlinks\ln\test\CaseSensitiv\src\F1
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --copy test\CaseSensitiv\src\F0 test\CaseSensitiv\dst  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:       812       812         0         0         0         0
+    File:         2         2         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         4         4         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_F0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1\F1_F0
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_F0\F0F0F0.txt
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1\F1_F0\F1F1F0.txt
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Change case of junction, but directory stays the same 
+
+C:\data\cpp\hardlinks\ln>REM  
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --noitcnuj test\CaseSensitiv\src\F1 test\CaseSensitiv\src\F0\f0_j1 
+test\CaseSensitiv\src\F0\f0_j1 -> C:\data\cpp\hardlinks\ln\test\CaseSensitiv\src\F1
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Do a Delorean again 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --delorean test\CaseSensitiv\src\F0 test\CaseSensitiv\dst test\CaseSensitiv\bkp  1>sortout 
+
+
+-d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1
+-d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1\F1_F0
+-f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1\F1_F0\F1F1F0.txt
+-ff C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1\F1_F0\F1F1F0.txt
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:       812         0         0       406       406         0       406
+    File:         2         0         0         1         1         0         1
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         4         0         -         4         2         0         0
+ Symlink:         0         -         0         0         0         0         0
+!-f(0x00000003) C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1\F1_F0\F1F1F0.txt
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_F0
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1\F1_F0
+=f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_F0\F0F0F0.txt
+Junction:         0         -         0         0         0         0         0
+WARNING: Delorean Copy finished successfully but see output for errors.
+ErrorLevel == -16
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --delorean test\CaseSensitiv\src\F0 test\CaseSensitiv\bkp test\CaseSensitiv\bkp2  1>sortout 
+
+
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:       812       406         0       406         0         0         0
+    File:         2         1         0         1         0         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         4         2         -         2         0         0         0
+ Symlink:         0         -         0         0         0         0         0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\f0_j1
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\f0_j1\F1_F0
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\f0_j1\F1_F0\F1F1F0.txt
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0_F0
+=f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0_F0\F0F0F0.txt
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+test\CaseSensitiv\src\F0\F0_J1 -> t:\Tools
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --copy test\CaseSensitiv\src\F0 test\CaseSensitiv\dst  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     1.218     1.218         0         0         0         0
+    File:         3         3         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         4         4         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_F0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1\AAConsole
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_F0\F1F1F0.txt
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1\AAConsole\AAConsole.txt
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1\Tools.txt
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Change case of junction, but directory stays the same 
+
+C:\data\cpp\hardlinks\ln>REM  
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --noitcnuj t:\Tools test\CaseSensitiv\src\F0\f0_j1 
+test\CaseSensitiv\src\F0\f0_j1 -> t:\Tools
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Do a Delorean again 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --delorean test\CaseSensitiv\src\F0 test\CaseSensitiv\dst test\CaseSensitiv\bkp  1>sortout 
+
+
+-d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1
+-d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1\AAConsole
+-f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1\AAConsole\AAConsole.txt
+-f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1\Tools.txt
+-ff C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1\Tools.txt
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     1.218         0         0       406       812         0       812
+    File:         3         0         0         1         2         0         2
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         4         0         -         4         2         0         0
+ Symlink:         0         -         0         0         0         0         0
+!-f(0x00000003) C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1\Tools.txt
+!+f(0x00000003) C:\data\cpp\hardlinks\ln\test\CaseSensitiv\src\F0\f0_j1\AAConsole\AAConsole.txt
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_F0
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1\AAConsole
+=f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_F0\F1F1F0.txt
+Junction:         0         -         0         0         0         0         0
+WARNING: Delorean Copy finished successfully but see output for errors.
+ErrorLevel == -16
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --delorean test\CaseSensitiv\src\F0 test\CaseSensitiv\bkp test\CaseSensitiv\bkp2  1>sortout 
+
+
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     1.218       812         0       406         0         0         0
+    File:         3         2         0         1         0         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         4         2         -         2         0         0         0
+ Symlink:         0         -         0         0         0         0         0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\f0_j1
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\f0_j1\AAConsole
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\f0_j1\AAConsole\AAConsole.txt
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\f0_j1\Tools.txt
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0_F0
+=f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0_F0\F1F1F0.txt
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+test\CaseSensitiv\src\F0\F0_J1 -> t:\Tools
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --copy test\CaseSensitiv\src\F0 test\CaseSensitiv\dst  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     1.218     1.218         0         0         0         0
+    File:         3         3         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         4         4         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_F0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1\AAConsole
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_F0\F1F1F0.txt
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1\AAConsole\AAConsole.txt
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1\Tools.txt
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Change case of junction, but directory stays the same but case of driveletter changes 
+
+C:\data\cpp\hardlinks\ln>REM  
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --noitcnuj T:\Tools test\CaseSensitiv\src\F0\f0_j1 
+test\CaseSensitiv\src\F0\f0_j1 -> T:\Tools
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Do a Delorean again Here we are 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --delorean test\CaseSensitiv\src\F0 test\CaseSensitiv\dst test\CaseSensitiv\bkp  1>sortout 
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp
+-f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1\Tools.txt
+-f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1\AAConsole\AAConsole.txt
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_F0
+-d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1\AAConsole
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1
+=f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_F0\F1F1F0.txt
+-d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1
+-ff C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1\AAConsole\AAConsole.txt
+-ff C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1\Tools.txt
+!+d(0x00000003) C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1\AAConsole
+!-f(0x00000003) C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1\AAConsole\AAConsole.txt
+!-f(0x00000003) C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\f0_j1\Tools.txt
+WARNING: Delorean Copy finished successfully but see output for errors.
+
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+  Folder:         4         0         -         3         2         0         1
+    File:         3         0         0         1         2         0         2
+Junction:         0         -         0         0         0         0         0
+ Symlink:         0         -         0         0         0         0         0
+    Byte:     1.218         0         0       406       812         0       812
+
+                      Overall               Clone              Mirror
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+ErrorLevel == -16
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --delorean test\CaseSensitiv\src\F0 test\CaseSensitiv\bkp test\CaseSensitiv\bkp2  1>sortout 
+
+
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     1.218       812         0       406         0         0         0
+    File:         3         2         0         1         0         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         4         2         -         2         0         0         0
+ Symlink:         0         -         0         0         0         0         0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\f0_j1
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\f0_j1\AAConsole
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\f0_j1\AAConsole\AAConsole.txt
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\f0_j1\Tools.txt
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0_F0
+=f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0_F0\F1F1F0.txt
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+test\CaseSensitiv\src\F0\F0_J1 -> t:\Tools
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --copy test\CaseSensitiv\src\F0 test\CaseSensitiv\dst  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:       812       812         0         0         0         0
+    File:         2         2         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         3         3         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_F0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_F0\F1F1F0.txt
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0_J1\Tools.txt
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Change case of junction and directory 
+
+C:\data\cpp\hardlinks\ln>REM  
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --noitcnuj t:\tools test\CaseSensitiv\src\F0\F0_J1 
+test\CaseSensitiv\src\F0\F0_J1 -> t:\tools
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Do a Delorean again 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --delorean test\CaseSensitiv\src\F0 test\CaseSensitiv\dst test\CaseSensitiv\bkp  1>sortout 
+
+
+-f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1\Tools.txt
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     1.218       812         0       406       406         0         0
+    File:         3         2         0         1         1         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         4         1         -         3         0         0         0
+ Symlink:         0         -         0         0         0         0         0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1\AAConsole
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1\AAConsole\AAConsole.txt
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1\tools.txt
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_F0
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_J1
+=f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0_F0\F1F1F0.txt
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --delorean test\CaseSensitiv\src\F0 test\CaseSensitiv\bkp test\CaseSensitiv\bkp2  1>sortout 
+
+
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     1.218         0         0     1.218         0         0         0
+    File:         3         0         0         3         0         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         4         0         -         4         0         0         0
+ Symlink:         0         -         0         0         0         0         0
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0_F0
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0_J1
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0_J1\AAConsole
+=f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0_F0\F1F1F0.txt
+=f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0_J1\AAConsole\AAConsole.txt
+=f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0_J1\tools.txt
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --copy test\CaseSensitiv\src test\CaseSensitiv\dst  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:       812       812         0         0         0         0
+    File:         2         2         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         4         4         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0\F0_F0
++d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0\F1_F0
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0\F0_F0\F0F0F0.txt
++f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\dst\F0\F1_F0\F1F0F0.txt
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Remove the directory with read-only attribute 
+
+C:\data\cpp\hardlinks\ln>REM  
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Do a Delorean Copy again 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --delorean test\CaseSensitiv\src test\CaseSensitiv\dst test\CaseSensitiv\bkp  1>sortout 
+
+
+-d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0\F1_F0
+-f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0\F1_F0\F1F0F0.txt
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:       406         0         0       406       406         0         0
+    File:         1         0         0         1         1         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         3         0         -         3         1         0         0
+ Symlink:         0         -         0         0         0         0         0
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0\F0_F0
+=f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0\F0_F0\F0F0F0.txt
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --unroll --delorean test\CaseSensitiv\src test\CaseSensitiv\bkp test\CaseSensitiv\bkp2  1>sortout 
+
+
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:       406         0         0       406         0         0         0
+    File:         1         0         0         1         0         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         3         0         -         3         0         0         0
+ Symlink:         0         -         0         0         0         0         0
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0
+=d C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0\F0_F0
+=f C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp2\F0\F0_F0\F0F0F0.txt
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Make sure F0\F1_F0 is not in the Backup 
+
+C:\data\cpp\hardlinks\ln>REM  
+
+C:\data\cpp\hardlinks\ln>..\Tools\where.exe *.* test\CaseSensitiv\bkp   | sort  
+1 matching file(s) found, using 406 bytes.
+C:\data\cpp\hardlinks\ln\test\CaseSensitiv\bkp\F0\F0_F0\F0F0F0.txt

@@ -32,7 +32,6 @@ REM %PSKILL% explorer.exe
 move "%INST%\%MODULENAME%" "%INST%\%MODULENAME%.%STAMP%"
 copy %HOME%\bin\%PLATT%\%CONFIG%\%MODULENAME% "%INST%"
 copy %HOME%\..\bin\%PLATT%\%CONFIG%\symlink.exe "%INST%"
-copy %HOME%\..\bin\%PLATT%\%CONFIG%\RockallDll.dll "%INST%"
 
 copy %HOME%\bin\%PLATT%\%CONFIG%\%PROJECTNAME%.pdb "%INST%"
 copy %HOME%\..\bin\%PLATT%\%CONFIG%\symlink.pdb "%INST%"
@@ -55,7 +54,6 @@ if "%PLATT%"=="X64" (
 if "%PLATT%"=="Win32" (
   start %EXPLORER%
 )
-
 
 :ausmausraus
 REM

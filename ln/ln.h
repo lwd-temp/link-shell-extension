@@ -1,8 +1,6 @@
-
-
-using namespace std;
-
-#define _CRT_SECURE_NO_DEPRECATE
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
 PTCHAR
 ResolveUNC(

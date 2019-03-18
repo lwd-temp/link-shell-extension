@@ -5,7 +5,7 @@
  * define ULTRAGETOPT_REPLACE_GETOPT and include "ultragetopt.h" after the
  * vendor-provided headers for getopt() functions.
  *
- * Copyright (c) 2007, Kevin Locke <kwl7@cornell.edu>
+ * Copyright (C) 2007-2011, Kevin Locke <kevin@kevinlocke.name>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
@@ -33,6 +33,10 @@
 #include <stdlib.h>	/* getenv() */
 #include <string.h>	/* strcmp(), strncmp(), strchr() */
 
+#if HAVE_STRINGS_H
+# include <strings.h>	/* strcasecmp(), strncasecmp() */
+#endif
+
 #undef ULTRAGETOPT_REPLACE_GETOPT   /* Protect against project-wide defines */
 #include "ultragetopt.h"
 
@@ -49,10 +53,6 @@
 # define strchr index
 #endif
 
-#if !HAVE_STRRCHR && HAVE_RINDEX
-# define strrchr rindex
-#endif
-
 /* Supported defines:
  * ULTRAGETOPT_LIKE_BSD		Behave like BSD getopt()
  * ULTRAGETOPT_LIKE_DARWIN	Behave like Darwin (Mac OS) getopt()
@@ -66,6 +66,8 @@
  *				call to getopt()
  * ULTRAGETOPT_HYPHENARG	Accept -option -arg as -option with argument
  *				"-arg" rather than -option missing argument
+ *				Note:  A single "-" is always accepted as an
+ *				argument
  * ULTRAGETOPT_LONGOPTADJACENT	Accept adjacent arguments to long options
  *				(e.g. --optionarg) based on first longest-match
  * ULTRAGETOPT_OPTIONPERMUTE	Permute options, do not stop at first non-option
@@ -79,7 +81,6 @@
  * ULTRAGETOPT_DARWIN_ERRORS	Print error messages matching Darwin getopt
  * ULTRAGETOPT_GNU_ERRORS	Print error messages matching GNU getopt
  * ULTRAGETOPT_NO_EATDASHDASH	Do not increment optind when argv[optind] is --
- *				as required by SUS/POSIX
  * ULTRAGETOPT_NO_OPTIONALARG	Do not support GNU "::" optional argument
  *				Always supported in *_long*()
  * ULTRAGETOPT_NO_OPTIONASSIGN	Do not support --option=value syntax
@@ -88,7 +89,7 @@
 #ifdef ULTRAGETOPT_LIKE_POSIX
 # define ULTRAGETOPT_NO_OPTIONALARG
 # define ULTRAGETOPT_NO_OPTIONASSIGN
-# define ULTRAGETOPT_NO_EATDASHDASH
+# undef ULTRAGETOPT_NO_EATDASHDASH
 # undef ULTRAGETOPT_ASSIGNSPACE
 # undef ULTRAGETOPT_BSD_ERRORS
 # undef ULTRAGETOPT_DARWIN_ERRORS
@@ -168,7 +169,7 @@ static const int getoptflags = 0
 static const char *const errorarg =
     "%s: option `%.*s' doesn't allow an argument\n";
 static const char *const errornoarg =
-    "%s: option requires an argument -- `%.*s'\n";
+    "%s: option `%.*s' requires an argument \n";
 static const char *const erroropt = 
     "%s: unrecognized option `%.*s'\n";
 static const char *const errorargc =
@@ -249,6 +250,36 @@ static void print_error(int flags, const char *template, ...)
     va_end(ap);
 }
 
+/* Check if an argument string looks like an option string */
+static inline int like_option(const char *arg, const char *optleaders)
+{
+    return arg != NULL &&
+	arg[0] != '\0' &&			/* >= 2 characters long */
+	arg[1] != '\0' &&
+	strchr(optleaders, arg[0]) &&		/* Starts with optleader */
+	(arg[2] != '\0' || arg[0] != arg[1]);	/* Not -- */
+}
+
+/* Check if an argument string looks like the option terminator string */
+static inline int like_optterm(const char *arg, const char *optleaders)
+{
+    return arg != NULL &&
+	arg[0] != '\0' &&
+	arg[1] != '\0' &&
+	arg[2] == '\0' &&
+	arg[0] == arg[1] &&
+	strchr(optleaders, arg[0]);
+}
+
+/* Check if an argument string looks like an option argument string */
+static inline int like_optarg(const char *arg, const char *optleaders,
+			      int allow_option)
+{
+    return arg != NULL &&
+	(allow_option ||
+	    (!like_option(arg, optleaders) && !like_optterm(arg, optleaders)));
+}
+
 /* If argv[curopt] matches a long option, return the index of that option
  * Otherwise, return -1
  * If it has an adjacent argument, return pointer to it in longarg, else NULL
@@ -275,9 +306,7 @@ static int match_longopt(int curopt, char *const argv[],
     if (longopts == NULL)
 	return -1;
 
-    /* Not an option */
-    if (argv[curopt][0] == '\0' || argv[curopt][1] == '\0'
-	|| !strchr(optleaders, argv[curopt][0]))
+    if (!like_option(argv[curopt], optleaders))
 	return -1;
 
     if (flags & UGO_SINGLELEADERONLY) {
@@ -353,8 +382,7 @@ static int has_separate_argument(int curopt, int argc, char *const argv[],
     int longind;
     char *longarg;
 
-    assert(curopt < argc && argv[curopt][0] != '\0'
-	   && strchr(optleaders, argv[curopt][0]));
+    assert(curopt < argc && like_option(argv[curopt], optleaders));
 
     /* Check if we have a long option */
     longind = match_longopt(ultraoptind, argv, longopts, assigners, optleaders,
@@ -366,11 +394,9 @@ static int has_separate_argument(int curopt, int argc, char *const argv[],
 		&& !(flags & UGO_SEPARATEDOPTIONAL)))
 	    return 0;
 
-	return argv[curopt+1] != NULL		/* Argument exists */
-	       && (argv[curopt+1][0] == '\0'    /* and is an argument */
-		   || ((flags & UGO_HYPHENARG)	/* takes hyphenated */
-		       && longopts[longind].has_arg == required_argument)
-		   || !strchr(optleaders, argv[curopt+1][0])); /* not -arg */
+	return like_optarg(argv[curopt+1], optleaders,
+		    (flags & UGO_HYPHENARG) &&
+		    longopts[longind].has_arg == required_argument);
     } else if (!strchr(optleaders, argv[curopt][1])) {
 	/* Short option */
 	char *optpos;
@@ -388,17 +414,16 @@ static int has_separate_argument(int curopt, int argc, char *const argv[],
 	       && optpos[1] == ':'		/* Option takes argument */
 	       && (optpos[2] != ':' || (flags & UGO_SEPARATEDOPTIONAL))
 	       && argv[curopt][2] == '\0'	/* Argument is not adjacent */
-	       && argv[curopt+1] != NULL	/* Argument exists */
-	       && (argv[curopt+1][0] == '\0'	/* Is an argument */
-		   || ((flags & UGO_HYPHENARG) && optpos[2] != ':')
-		   || !strchr(optleaders, argv[curopt+1][0]));
+	       && like_optarg(argv[curopt+1],	/* Is an argument */
+		    optleaders,
+		    (flags & UGO_HYPHENARG) && optpos[2] != ':');
     }
 
     /* No match */
     return 0;
 }
 
-/* Bring the next option up to ultraoptind if there is one
+/* Bring the next option, or terminator, up to ultraoptind if there is one
  * Returns number of words shifted forward
  */
 static int permute_options(int argc, char *argv[], const char *shortopts,
@@ -409,23 +434,22 @@ static int permute_options(int argc, char *argv[], const char *shortopts,
     int curopt = ultraoptind;
 
     /* If we already have an option or no more possible, give up */
-    if (curopt >= argc
-	|| (argv[curopt][0] != '\0' && strchr(optleaders, argv[curopt][0])))
+    if (curopt >= argc || like_option(argv[curopt], optleaders))
 	return 0;
 
     for ( ; curopt < argc && argv[curopt]; curopt++) {
 	int shiftarg = 0;
 	int i;
 
-	/* Skip non-options */
-	if (argv[curopt][0] == '\0'
-	    || !strchr(optleaders, argv[curopt][0]))
+	/* Permute options and the option terminator */
+	if (like_option(argv[curopt], optleaders)) {
+	    /* Check if we need to shift argument too */
+	    shiftarg = has_separate_argument(curopt, argc, argv, shortopts,
+					     longopts, assigners, optleaders,
+					     flags);
+	} else if (!like_optterm(argv[curopt], optleaders)) {
 	    continue;
-
-	/* Check if we need to shift argument too */
-	shiftarg = has_separate_argument(curopt, argc, argv, shortopts,
-					 longopts, assigners, optleaders,
-					 flags);
+	}
 
 	/* Shift option */
 	for (i=curopt; i>ultraoptind; i--) {
@@ -483,9 +507,9 @@ static int handle_longopt(int longind, char *longarg, int noseparg,
     /* Handle missing required argument */
     if (longopts[longind].has_arg == required_argument
 	&& (noseparg
-	    || argv[ultraoptind+1] == NULL
-	    || (!(flags & UGO_HYPHENARG)
-		&& strchr(optleaders, argv[ultraoptind+1][0])))) {
+	    || !like_optarg(argv[ultraoptind+1],
+		    optleaders,
+		    flags & UGO_HYPHENARG))) {
 	print_error(flags, errornoarg, argv[0],
 		    strlen(argv[ultraoptind]), argv[ultraoptind]);
 	ultraoptind++;
@@ -500,11 +524,10 @@ static int handle_longopt(int longind, char *longarg, int noseparg,
 	 || (longopts[longind].has_arg == optional_argument
 	     && (flags & UGO_SEPARATEDOPTIONAL)))
 	&& !noseparg
-	&& argv[ultraoptind+1] != NULL
-	&& (argv[ultraoptind+1][0] == '\0'
-	    || ((flags & UGO_HYPHENARG)
-		&& longopts[longind].has_arg == required_argument)
-	    || !strchr(optleaders, argv[ultraoptind+1][0]))) {
+	&& like_optarg(argv[ultraoptind+1],
+		optleaders,
+		(flags & UGO_HYPHENARG) &&
+		longopts[longind].has_arg == required_argument)) {
 	ultraoptarg = argv[ultraoptind+1];
 	ultraoptind += 2;
     } else
@@ -542,7 +565,7 @@ int ultragetopt_tunable(int argc, char *const argv[], const char *shortopts,
 #endif
 
     /* Sanity check (These are specified verbatim in SUS) */
-    if (ultraoptind > argc
+    if (ultraoptind >= argc
 	|| argv[ultraoptind] == NULL)
 	return -1;
 
@@ -564,10 +587,15 @@ int ultragetopt_tunable(int argc, char *const argv[], const char *shortopts,
     }
 
     /* Found non-option */
-    if (argv[ultraoptind][0] == '\0'
-	|| argv[ultraoptind][1] == '\0'
-	|| !strchr(optleaders, argv[ultraoptind][0])) {
+    if (!like_option(argv[ultraoptind], optleaders)) {
 	int shifted;
+
+	if (like_optterm(argv[ultraoptind], optleaders)) {
+	    if (!(flags & UGO_NOEATDASHDASH))
+		ultraoptind++;
+
+	    return -1;
+	}
 
 	if (flags & UGO_NONOPTARG) {
 	    ultraoptarg = argv[ultraoptind];
@@ -584,23 +612,22 @@ int ultragetopt_tunable(int argc, char *const argv[], const char *shortopts,
 	    return -1;
 	else if (shifted == 1)
 	    noseparg = 1;
-    }
 
-    /* At this point we must have an option of some sort */
-    assert(strchr(optleaders, argv[ultraoptind][0]));
-
-    /* Handle -- */
-    if (argv[ultraoptind][0] == argv[ultraoptind][1]) {
-	int longind;
-	char *longarg;
-
-	/* End of options signaled by string of 2 leaders alone ("--") */
-	if (argv[ultraoptind][2] == '\0') {
+	if (like_optterm(argv[ultraoptind], optleaders)) {
 	    if (!(flags & UGO_NOEATDASHDASH))
 		ultraoptind++;
 
 	    return -1;
 	}
+    }
+
+    /* At this point we must have an option of some sort */
+    assert(like_option(argv[ultraoptind], optleaders));
+
+    /* Handle --* */
+    if (argv[ultraoptind][0] == argv[ultraoptind][1]) {
+	int longind;
+	char *longarg;
 
 	/* Handle long option */
 	longind = match_longopt(ultraoptind, argv, longopts, assigners,
@@ -688,8 +715,8 @@ int ultragetopt_tunable(int argc, char *const argv[], const char *shortopts,
 	if ((flags & UGO_OPTIONALARG)		    /* accept optionals */
 	    && optpos[2] == ':'			    /* opt takes optional */
 	    && (argv[ultraoptind+1] == NULL	    /* optional doesn't exist */
-		|| !(flags & UGO_SEPARATEDOPTIONAL) /* separated accepted */
-		|| strchr(optleaders, argv[ultraoptind+1][0]))) {
+		|| !(flags & UGO_SEPARATEDOPTIONAL) /* separated not accepted */
+		|| like_option(argv[ultraoptind+1], optleaders))) {
 	    ultraoptind++;
 	    return optpos[0];
 	}
@@ -697,9 +724,9 @@ int ultragetopt_tunable(int argc, char *const argv[], const char *shortopts,
 	/* Handle separated argument missing */
 	if (ultraoptind+2 > argc
 	    || noseparg
-	    || argv[ultraoptind+1] == NULL
-	    || (!(flags & UGO_HYPHENARG)
-		&& strchr(optleaders, argv[ultraoptind+1][0]))) {
+	    || !like_optarg(argv[ultraoptind+1],
+		    optleaders,
+		    (flags & UGO_HYPHENARG))) {
 	    ultraoptind++;
 	    print_error(flags, errornoargc, argv[0], opt[0]);
 

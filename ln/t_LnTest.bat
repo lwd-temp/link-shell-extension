@@ -198,19 +198,19 @@ REM
 call t_DeepPathOn.bat
 
 call t_SmartCopy03.bat test\DeepPath copy noitcnuj relative
-if [Win7] == [%OS%] call t_SmartCopy03.bat test\DeepPath copy symbolic absolute absolute
-if [Win7] == [%OS%] call t_SmartCopy03.bat test\DeepPath copy symbolic relative absolute
-if [Win7] == [%OS%] call t_SmartCopy03.bat test\DeepPath copy symbolic relative
-if [Win7] == [%OS%] call t_SmartCopy03.bat test\DeepPath copy symbolic absolute
+call t_SmartCopy03.bat test\DeepPath copy symbolic absolute absolute
+call t_SmartCopy03.bat test\DeepPath copy symbolic relative absolute
+call t_SmartCopy03.bat test\DeepPath copy symbolic relative
+call t_SmartCopy03.bat test\DeepPath copy symbolic absolute
 
 REM
 REM Check DeepPathClone
 REM
 call t_SmartCopy03.bat test\SmartClone recursive noitcnuj relative
-if [Win7] == [%OS%] call t_SmartCopy03.bat test\SmartClone recursive symbolic absolute absolute
-if [Win7] == [%OS%] call t_SmartCopy03.bat test\SmartClone recursive symbolic relative absolute
-if [Win7] == [%OS%] call t_SmartCopy03.bat test\SmartClone recursive symbolic relative
-if [Win7] == [%OS%] call t_SmartCopy03.bat test\SmartClone recursive symbolic absolute
+call t_SmartCopy03.bat test\SmartClone recursive symbolic absolute absolute
+call t_SmartCopy03.bat test\SmartClone recursive symbolic relative absolute
+call t_SmartCopy03.bat test\SmartClone recursive symbolic relative
+call t_SmartCopy03.bat test\SmartClone recursive symbolic absolute
 call t_DeepPathOff.bat
 
 
@@ -456,23 +456,23 @@ REM
 REM Case sensitive tests
 REM
 call t_CaseSensitiv.bat test\CaseSensitiv unroll noitcnuj
-if [Win7] == [%OS%] call t_CaseSensitiv.bat test\CaseSensitiv unroll symbolic
+call t_CaseSensitiv.bat test\CaseSensitiv unroll symbolic
 
 REM
 REM Absolute relative tests
 REM
 call t_AbsoluteRelativ.bat test\Absrel none noitcnuj none
-if [Win7] == [%OS%] call t_AbsoluteRelativ.bat test\Absrel none symbolic none
-if [Win7] == [%OS%] call t_AbsoluteRelativ.bat test\Absrel none symbolic absolute
+call t_AbsoluteRelativ.bat test\Absrel none symbolic none
+call t_AbsoluteRelativ.bat test\Absrel none symbolic absolute
 
 REM
 REM Reparse points on reparse points
 REM
 call t_ReparseOnReparse01.bat test\ReparseOnReparse none noitcnuj relative
-if [Win7] == [%OS%] call t_ReparseOnReparse01.bat test\ReparseOnReparse none symbolic relative
-if [Win7] == [%OS%] call t_ReparseOnReparse01.bat test\ReparseOnReparse none symbolic absolute 
-if [Win7] == [%OS%] call t_ReparseOnReparse01.bat test\ReparseOnReparse none symbolic absolute absolute
-if [Win7] == [%OS%] call t_ReparseOnReparse01.bat test\ReparseOnReparse none symbolic relative absolute
+call t_ReparseOnReparse01.bat test\ReparseOnReparse none symbolic relative
+call t_ReparseOnReparse01.bat test\ReparseOnReparse none symbolic absolute 
+call t_ReparseOnReparse01.bat test\ReparseOnReparse none symbolic absolute absolute
+call t_ReparseOnReparse01.bat test\ReparseOnReparse none symbolic relative absolute
 
 REM
 REM Show Hardlink Sibblings
@@ -506,28 +506,28 @@ call t_UNC_Simple.bat test\UNCSimple symbolic absolute
 REM
 REM If System Error 64, then disable virus scanner
 REM
-if [Win7] == [%OS%] call t_NetworkDrive01.bat test\netdrive copy symbolic absolute unroll
-if [Win7] == [%OS%] call t_NetworkDrive01.bat test\netdrive copy symbolic relative unroll
+call t_NetworkDrive01.bat test\netdrive copy symbolic absolute unroll
+call t_NetworkDrive01.bat test\netdrive copy symbolic relative unroll
 call t_NetworkDrive01.bat test\netdrive copy noitcnuj relative unroll
 
-if [Win7] == [%OS%] call t_NetworkDrive01.bat test\netdrive copy symbolic absolute
-if [Win7] == [%OS%] call t_NetworkDrive01.bat test\netdrive copy symbolic relative
+call t_NetworkDrive01.bat test\netdrive copy symbolic absolute
+call t_NetworkDrive01.bat test\netdrive copy symbolic relative
 call t_NetworkDrive01.bat test\netdrive copy noitcnuj relative
 
-if [Win7] == [%OS%] call t_NetworkDrive01.bat test\netdrive copy symbolic absolute splice
-if [Win7] == [%OS%] call t_NetworkDrive01.bat test\netdrive copy symbolic relative splice
+call t_NetworkDrive01.bat test\netdrive copy symbolic absolute splice
+call t_NetworkDrive01.bat test\netdrive copy symbolic relative splice
 call t_NetworkDrive01.bat test\netdrive copy noitcnuj relative splice
 
-if [Win7] == [%OS%] call t_NetworkDrive01.bat test\netdrive recursive symbolic absolute unroll
-if [Win7] == [%OS%] call t_NetworkDrive01.bat test\netdrive recursive symbolic relative unroll
+call t_NetworkDrive01.bat test\netdrive recursive symbolic absolute unroll
+call t_NetworkDrive01.bat test\netdrive recursive symbolic relative unroll
 call t_NetworkDrive01.bat test\netdrive recursive noitcnuj relative unroll
 
-if [Win7] == [%OS%] call t_NetworkDrive01.bat test\netdrive recursive symbolic absolute
-if [Win7] == [%OS%] call t_NetworkDrive01.bat test\netdrive recursive symbolic relative
+call t_NetworkDrive01.bat test\netdrive recursive symbolic absolute
+call t_NetworkDrive01.bat test\netdrive recursive symbolic relative
 call t_NetworkDrive01.bat test\netdrive recursive noitcnuj relative
 
-if [Win7] == [%OS%] call t_NetworkDrive01.bat test\netdrive recursive symbolic absolute splice
-if [Win7] == [%OS%] call t_NetworkDrive01.bat test\netdrive recursive symbolic relative splice
+call t_NetworkDrive01.bat test\netdrive recursive symbolic absolute splice
+call t_NetworkDrive01.bat test\netdrive recursive symbolic relative splice
 call t_NetworkDrive01.bat test\netdrive recursive noitcnuj relative splice
 
 REM
@@ -542,14 +542,14 @@ REM
 REM Copy ACLs
 REM
 call t_AdsCopy02.bat test\ads copy noitcnuj relative unroll
-if [Win7] == [%OS%] call t_AdsCopy02.bat test\ads copy symbolic relative unroll
+call t_AdsCopy02.bat test\ads copy symbolic relative unroll
 call t_AdsCopy02.bat test\ads copy noitcnuj relative splice
-if [Win7] == [%OS%] call t_AdsCopy02.bat test\ads copy symbolic relative splice
+call t_AdsCopy02.bat test\ads copy symbolic relative splice
 
 call t_AdsCopy02.bat test\ads recursive noitcnuj relative unroll
 call t_AdsCopy02.bat test\ads recursive noitcnuj relative splice
-if [Win7] == [%OS%] call t_AdsCopy02.bat test\ads recursive symbolic relative unroll
-if [Win7] == [%OS%] call t_AdsCopy02.bat test\ads recursive symbolic relative splice
+call t_AdsCopy02.bat test\ads recursive symbolic relative unroll
+call t_AdsCopy02.bat test\ads recursive symbolic relative splice
 
 call t_AdsCopy02.bat test\ads mirror noitcnuj relative unroll
 call t_AdsCopy02.bat test\ads mirror noitcnuj relative splice
@@ -558,14 +558,14 @@ set SAVE_LN=%LN%
 set LN=%LN% --traditional
 
 call t_AdsCopy02.bat test\ads copy noitcnuj relative unroll
-if [Win7] == [%OS%] call t_AdsCopy02.bat test\ads copy symbolic relative unroll
+call t_AdsCopy02.bat test\ads copy symbolic relative unroll
 call t_AdsCopy02.bat test\ads copy noitcnuj relative splice
-if [Win7] == [%OS%] call t_AdsCopy02.bat test\ads copy symbolic relative splice
+call t_AdsCopy02.bat test\ads copy symbolic relative splice
 
 call t_AdsCopy02.bat test\ads recursive noitcnuj relative unroll
 call t_AdsCopy02.bat test\ads recursive noitcnuj relative splice
-if [Win7] == [%OS%] call t_AdsCopy02.bat test\ads recursive symbolic relative unroll
-if [Win7] == [%OS%] call t_AdsCopy02.bat test\ads recursive symbolic relative splice
+call t_AdsCopy02.bat test\ads recursive symbolic relative unroll
+call t_AdsCopy02.bat test\ads recursive symbolic relative splice
 
 set LN=%SAVE_LN%
 
@@ -589,7 +589,8 @@ REM
 REM
 REM
 call t_AdsCopy03.bat test\ads copy noitcnuj relative unroll
-if [Win7] == [%OS%] call t_AdsCopy03.bat test\ads copy symbolic relative unroll
+call t_AdsCopy03.bat test\ads copy symbolic relative unroll
+
 
 REM Delete test
 REM
@@ -606,8 +607,9 @@ call t_Delete01.bat test\delete symbolic absolute
 call t_DeepPathOff.bat
 
 
-REM
+
 REM Json test
+REM
 call t_Json01.bat test\json copy noitcnuj relative unroll
 
 REM

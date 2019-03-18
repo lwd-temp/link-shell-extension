@@ -143,7 +143,7 @@
 #define TRE_APPROX 1
 
 /* Define if you want TRE to print debug messages to stdout. */
-/* #undef TRE_DEBUG */
+#undef TRE_DEBUG
 
 /* Define to enable multibyte character set support. */
 #define TRE_MULTIBYTE 1
@@ -180,4 +180,4 @@
 /* Avoid silly warnings about "insecure" functions. */
 #define _CRT_SECURE_NO_DEPRECATE 1
 
-#define snprintf sprintf_s
+// #define snprintf sprintf_s

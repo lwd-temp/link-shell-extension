@@ -4,8 +4,6 @@
 #include "NtSystemInfo.h"
 
 
-extern "C" { extern int __locale_changed; }
-
 
 #include <psapi.h>
 #pragma comment(lib, "psapi.lib")
@@ -15,7 +13,7 @@ _locale_t         g_locale_t;
 
 
 /***
-*wchar_t *wcsstr(string1, string2) - search for string2 in string1
+*wchar_t *wcseistr(string1, string2) - search for string2 in string1 ignoring the case
 *       (wide strings)
 *
 *Purpose:
@@ -34,56 +32,30 @@ _locale_t         g_locale_t;
 *Exceptions:
 *
 *******************************************************************************/
-#define __ascii_towlower(c)     ( (((c) >= L'A') && ((c) <= L'Z')) ? ((c) - L'A' + L'a') : (c) )
 
 wchar_t * __cdecl wcseistr (
         const wchar_t * wcs1,
         const wchar_t * wcs2
         )
 {
-  if (__locale_changed == 0)
+  wchar_t *cp = (wchar_t *) wcs1;
+  wchar_t *s1, *s2;
+
+  if ( !*wcs2)
+    return (wchar_t *)wcs1;
+
+  while (*cp)
   {
-    wchar_t *cp = (wchar_t *) wcs1;
-    wchar_t *s1, *s2;
+    s1 = cp;
+    s2 = (wchar_t *) wcs2;
 
-    if ( !*wcs2)
-      return (wchar_t *)wcs1;
+    while ( *s1 && *s2 && !(_towlower_l((unsigned short)(*s1), g_locale_t) - _towlower_l((unsigned short)(*s2), g_locale_t)) )
+      s1++, s2++;
 
-    while (*cp)
-    {
-      s1 = cp;
-      s2 = (wchar_t *) wcs2;
+    if (!*s2)
+      return(s1);
 
-      while ( *s1 && *s2 && !(__ascii_towlower(*s1) - __ascii_towlower(*s2)) )
-        s1++, s2++;
-
-      if (!*s2)
-        return(s1);
-
-      cp++;
-    }
-  }
-  else
-  {
-    wchar_t *cp = (wchar_t *) wcs1;
-    wchar_t *s1, *s2;
-
-    if ( !*wcs2)
-      return (wchar_t *)wcs1;
-
-    while (*cp)
-    {
-      s1 = cp;
-      s2 = (wchar_t *) wcs2;
-
-      while ( *s1 && *s2 && !(_towlower_l((unsigned short)(*s1), g_locale_t) - _towlower_l((unsigned short)(*s2), g_locale_t)) )
-        s1++, s2++;
-
-      if (!*s2)
-        return(s1);
-
-      cp++;
-    }
+    cp++;
   }
 
   return(NULL);
@@ -134,7 +106,7 @@ NtQueryProcessId(
 	{
     if (pProcess->ImageName.Length)
 		{
-      if ( !wcsicmp(aProcessName, pProcess->ImageName.Buffer) )
+      if ( !_wcsicmp(aProcessName, pProcess->ImageName.Buffer) )
 			{
 				(*lpProcessIdBuff)[*dwProcessIdBuff] = (DWORD)pProcess->UniqueProcessId;
 				(*dwProcessIdBuff)++;
@@ -223,7 +195,7 @@ NtQueryProcessByModule(
             wchar_t szModName[MAX_PATH];
             if ( GetModuleFileNameExW(hProcess, hMods[i], szModName, sizeof(szModName)))
             {
-              for (_StringList::iterator ii = aModuleNames.begin(); ii != aModuleNames.end(); ii++)
+              for (_StringList::iterator ii = aModuleNames.begin(); ii != aModuleNames.end(); ++ii)
               {
                 if (wcseistr(szModName, (*ii).c_str() ) )
                 {

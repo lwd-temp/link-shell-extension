@@ -18,13 +18,8 @@
 *********************************************************************/
 
 
-#if !defined(AFX_PROPPAGEFRAME_H__B968548B_F0B4_4C35_85DD_C44242A9D368__INCLUDED_)
-#define AFX_PROPPAGEFRAME_H__B968548B_F0B4_4C35_85DD_C44242A9D368__INCLUDED_
 
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
-
 
 namespace TreePropSheet
 {
@@ -298,8 +293,3 @@ private:
 } //namespace TreePropSheet
 
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-
-#endif // AFX_PROPPAGEFRAME_H__B968548B_F0B4_4C35_85DD_C44242A9D368__INCLUDED_

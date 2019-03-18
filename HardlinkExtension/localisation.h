@@ -1,9 +1,8 @@
 /*
-	Copyright (C) 1999-2010, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
-#ifndef _HARDLINKMENUE_B3882C66_9EEC_426d_BB03_85559D35C390
-#define _HARDLINKMENUE_B3882C66_9EEC_426d_BB03_85559D35C390
+#pragma once
 
 
 enum			TopMenuEntriesIdx
@@ -129,7 +128,3 @@ const PWCHAR  VerbsW[eCommandType__Free__] = {
               L"DropDeloreanCopy"
 			};
 
-
-
-
-#endif

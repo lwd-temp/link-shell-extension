@@ -1,0 +1,504 @@
+
+test\mirror\source\Folder1\Outer SymLink 1 -> C:\data\cpp\hardlinks\ln\test\mirror\source\Folder0\Outer SymLink Target 1
+test\mirror\source\Folder1\Folder2\Inner SymLink 1 -> C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Inner SymLink Target 1
+test\mirror\source\Folder1\Folder2\Inner SymLink 2 -> C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Inner SymLink Target 2
+test\mirror\source\Folder1\Folder2\Inner SymLink 3 -> C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Inner SymLink Target 3
+
+41 matching file(s) found, using 15312 bytes.
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder0\File A in Folder0
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder0\File B in Folder0
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder0\File C in Folder0
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder0\Hardlink to File A in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder0\Hardlink to File B in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder0\Outer SymLink Target 1\File A in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder0\Outer SymLink Target 1\File B in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder0\Outer SymLink Target 1\File C in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder0\SymLink to File A in Folder2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder0\SymLink to File B in Folder2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder2\File A in Folder2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder2\File B in Folder2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder2\File C in Folder2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder2\Inner SymLink 1\File A in Inner SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder2\Inner SymLink 2\File A in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder2\Inner SymLink 2\File B in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder2\Inner SymLink 3\File A in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder2\Inner SymLink 3\File B in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder2\Inner SymLink 3\File C in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\File A in Folder3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\File B in Folder3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\File C in Folder3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Hardlink to File A in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Hardlink to File C in Folder3 Ref 2 Loopback
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Inner SymLink Target 2\File A in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Inner SymLink Target 3\File A in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Inner SymLink Target 3\File B in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\Inner SymLink Target 3\File C in Inner SymLink Target 3
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\SymLink to File A in Folder2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\SymLink to File B in Folder2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Folder3\SymLink to File C in Folder2
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Outer SymLink 1\File A in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Outer SymLink 1\File B in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\Outer SymLink 1\File C in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\SymLink to File A in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\SymLink to File B in Outer SymLink Target 1
+C:\data\cpp\hardlinks\ln\test\mirror\source\Folder1\SymLink to File C in Outer SymLink Target 1
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM SmartMirror  
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Copy by default with relative symbolic links 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\mirror\source test\mirror\dest  1>sortout 
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Do the SmartMirror 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest  1>sortout 
+
+
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 3
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\File A in Folder0
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 3\File A in Inner SymLink Target 3
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 3\File B in Inner SymLink Target 3
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 3\File C in Inner SymLink Target 3
+-j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction0
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\SymLink to File A in Folder2
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer SymLink 1
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:    12.006     2.726     1.856     7.424     1.856         0         0
+    File:        26         6         4        16         4         0         0
+   Times:        00:00:00.002
+  Folder:         9         1         -         8         1         0         0
+ Symlink:        15         -         3        12         2         0         0
+*h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Hardlink to File A in Folder2 Ref 3
+*h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File A in Folder2 Ref 3
+*h C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AA in Sibbling0
+*h C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AB in Sibbling0
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Additional File AA in Folder0
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Outer SymLink Target 1\File A in Outer SymLink Target 1
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File A in Folder2
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Additional File AA in Folder3
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\resource.h
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AC in Sibbling0
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction1
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction2
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\JunctionTobeChanged
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Additional Symbolic Link to File B in Folder0
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 1
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File C in Outer SymLink Target 1
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Outer SymLink Target 1
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 1
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\File B in Folder0
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\File C in Folder0
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Outer SymLink Target 1\File B in Outer SymLink Target 1
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Outer SymLink Target 1\File C in Outer SymLink Target 1
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File B in Folder2
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File C in Folder2
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File A in Folder3
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File B in Folder3
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File C in Folder3
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2\File A in Inner SymLink Target 2
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
+=h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Hardlink to File B in Folder2 Ref 3
+=h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
+=h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
+=h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File C in Folder3 Ref 2 Loopback
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Junction0
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\SymLink to File B in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner Dead SymLink 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner Dead SymLink 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File A in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File B in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File C in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File A in Outer SymLink Target 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File B in Outer SymLink Target 1
+Junction:         4         -         3         1         1         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Check Attributes of first Dir 
+
+C:\data\cpp\hardlinks\ln>REM  
+W:2011-07-06 08:38:41.000  C:2011-07-06 08:38:41.000  A:2011-07-06 08:38:41.000
+AlterNativeStream
+000001d0: 'LN.H'
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Do the Symbolic CloneMirror 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --symbolic --mirror test\mirror\source test\mirror\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:    12.006         0    12.006         0         0         0         0
+    File:        26         0        26         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         9         9         -         0         0         0         0
+ Symlink:        15         -        15         0         0         0         0
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner Dead SymLink 1
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner Dead SymLink 2
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 3
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 1
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 2
++d C:\data\cpp\hardlinks\ln\test\mirror\dest
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Outer SymLink Target 1
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 1
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction1
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction2
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\JunctionTobeChanged
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Junction0
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Additional File AA in Folder0
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\File B in Folder0
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\File C in Folder0
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Hardlink to File A in Folder2 Ref 3
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Hardlink to File B in Folder2 Ref 3
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Outer SymLink Target 1\File A in Outer SymLink Target 1
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Outer SymLink Target 1\File B in Outer SymLink Target 1
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Outer SymLink Target 1\File C in Outer SymLink Target 1
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\SymLink to File B in Folder2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Additional Symbolic Link to File B in Folder0
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File A in Folder2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File B in Folder2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File C in Folder2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 1
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Additional File AA in Folder3
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File A in Folder3
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File B in Folder3
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File C in Folder3
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File A in Folder2 Ref 3
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File C in Folder3 Ref 2 Loopback
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2\File A in Inner SymLink Target 2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File A in Folder2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File B in Folder2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File C in Folder2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File A in Outer SymLink Target 1
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File B in Outer SymLink Target 1
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File C in Outer SymLink Target 1
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\resource.h
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AA in Sibbling0
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AB in Sibbling0
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AC in Sibbling0
+Junction:         4         -         4         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Here we are 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --symbolic --mirror test\mirror\source test\mirror\dest  1>sortout 
+
+
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Outer SymLink Target 1
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Additional File AA in Folder0
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\File B in Folder0
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\File C in Folder0
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Hardlink to File A in Folder2 Ref 3
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Hardlink to File B in Folder2 Ref 3
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Outer SymLink Target 1\File A in Outer SymLink Target 1
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Outer SymLink Target 1\File B in Outer SymLink Target 1
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\Outer SymLink Target 1\File C in Outer SymLink Target 1
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder0\SymLink to File B in Folder2
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     8.294         0         0         0         0         0         0
+    File:        18         0         0         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         7         0         -         7         2         0         0
+ Symlink:        14         -         0        32         9         0         0
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 1
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction1
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction2
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\JunctionTobeChanged
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Junction0
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Additional Symbolic Link to File B in Folder0
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File A in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File B in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File C in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner Dead SymLink 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner Dead SymLink 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Additional File AA in Folder3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File A in Folder3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File B in Folder3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File C in Folder3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File A in Folder2 Ref 3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File C in Folder3 Ref 2 Loopback
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2\File A in Inner SymLink Target 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File A in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File B in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File C in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File A in Outer SymLink Target 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File B in Outer SymLink Target 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File C in Outer SymLink Target 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\resource.h
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AA in Sibbling0
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AB in Sibbling0
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AC in Sibbling0
+Junction:         4         -         0         4         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --symbolic --mirror test\mirror\source test\mirror\dest  1>sortout 
+
+
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\resource.h
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     8.294         0       406         0       406         0         0
+    File:        18         0         1         0         1         0         0
+   Times:        00:00:00.002
+  Folder:         7         0         -         7         0         0         0
+ Symlink:        14         -         0        31         0         0         0
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\resource.h
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 1
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction1
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction2
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\JunctionTobeChanged
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Junction0
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Additional Symbolic Link to File B in Folder0
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File A in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File B in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File C in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner Dead SymLink 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner Dead SymLink 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Additional File AA in Folder3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File A in Folder3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File B in Folder3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File C in Folder3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File A in Folder2 Ref 3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File C in Folder3 Ref 2 Loopback
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2\File A in Inner SymLink Target 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File A in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File B in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File C in Folder2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File A in Outer SymLink Target 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File B in Outer SymLink Target 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File C in Outer SymLink Target 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AA in Sibbling0
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AB in Sibbling0
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AC in Sibbling0
+Junction:         4         -         0         4         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM Do the Hard CloneMirror 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive --mirror test\mirror\source test\mirror\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     8.294         0     8.294         0         0         0         0
+    File:        18         0        18         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         7         7         -         0         0         0         0
+ Symlink:        14         -        14         0         0         0         0
+&j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction1
+&j C:\data\cpp\hardlinks\ln\test\mirror\dest\Junction0
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Additional Symbolic Link to File B in Folder0
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner Dead SymLink 1
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner Dead SymLink 2
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 1
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 3
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 1
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 2
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File A in Outer SymLink Target 1
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File B in Outer SymLink Target 1
+&s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File C in Outer SymLink Target 1
++d C:\data\cpp\hardlinks\ln\test\mirror\dest
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 1
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File A in Folder2
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File B in Folder2
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File C in Folder2
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Additional File AA in Folder3
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File A in Folder3
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File B in Folder3
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File C in Folder3
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File A in Folder2 Ref 3
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File C in Folder3 Ref 2 Loopback
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2\File A in Inner SymLink Target 2
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\resource.h
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AA in Sibbling0
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AB in Sibbling0
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AC in Sibbling0
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction2
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\JunctionTobeChanged
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File A in Folder2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File B in Folder2
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File C in Folder2
+Junction:         4         -         4         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive --mirror test\mirror\source test\mirror\dest  1>sortout 
+
+
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 1
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File A in Folder2
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File B in Folder2
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\File C in Folder2
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Additional File AA in Folder3
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File A in Folder3
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File B in Folder3
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\File C in Folder3
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File A in Folder2 Ref 3
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Hardlink to File C in Folder3 Ref 2 Loopback
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2\File A in Inner SymLink Target 2
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Additional Symbolic Link to File B in Folder0
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner Dead SymLink 1
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner Dead SymLink 2
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 1
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 2
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder2\Inner SymLink 3
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File A in Folder2
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File B in Folder2
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Folder3\SymLink to File C in Folder2
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     1.798         0         0     1.798     6.496         0         0
+    File:         4         0         0         4        14         0         0
+   Times:        00:00:00.002
+  Folder:         3         0         -         3         4         0         0
+ Symlink:         5         -         0         5         9         0         0
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0
+=h C:\data\cpp\hardlinks\ln\test\mirror\dest\resource.h
+=h C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AA in Sibbling0
+=h C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AB in Sibbling0
+=h C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AC in Sibbling0
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction1
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction2
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\JunctionTobeChanged
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Junction0
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 2
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File A in Outer SymLink Target 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File B in Outer SymLink Target 1
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File C in Outer SymLink Target 1
+Junction:         4         -         0         4         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive --mirror test\mirror\source test\mirror\dest  1>sortout 
+
+
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\resource.h
+-j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction1
+-j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Junction2
+-j C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\JunctionTobeChanged
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 1
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\Outer Dead SymLink 2
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File A in Outer SymLink Target 1
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File B in Outer SymLink Target 1
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Folder1\SymLink to File C in Outer SymLink Target 1
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     1.798         0       406     1.392       406         0         0
+    File:         4         0         1         3         1         0         0
+   Times:        00:00:00.002
+  Folder:         2         0         -         2         1         0         0
+ Symlink:         0         -         0         0         5         0         0
++h C:\data\cpp\hardlinks\ln\test\mirror\dest\resource.h
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0
+=h C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AA in Sibbling0
+=h C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AB in Sibbling0
+=h C:\data\cpp\hardlinks\ln\test\mirror\dest\Sibbling0\Additional Siblings AC in Sibbling0
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\Junction0
+Junction:         1         -         0         1         3         0         0
+ErrorLevel == 0

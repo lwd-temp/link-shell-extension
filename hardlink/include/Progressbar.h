@@ -1,64 +1,47 @@
 /*
-	Copyright (C) 1999_2008, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
 #pragma once
 
-class Progressbar 
+class Progressbar
 {
-public:  
-  Progressbar(  
-    int         aTitleId,
-    int         aCancelMsgId,
-    HINSTANCE   aLSEInstance,
-    int         aLanguageID,
-    HWND        ahWnd,
-    __int64     aMaximum
-  );
-
-  
-  void
-  SetProgress(__int64 aProgress) { m_pIDlg->SetProgress64 (aProgress, m_Maximum); };
-
-  BOOL 
-  HasUserCancelled() { return m_pIDlg->HasUserCancelled(); };
-
-  void
-  SetTitle(wchar_t* aTitle);
-
-
-  void
-  Show();
-
-  void
-  Hide();
-
-  void SetCurrentPath(wchar_t* aCurrentPath);
-
-  void
-  SetRange(__int64 aMaximum);
-
-  int
-  GetWindowPos(RECT&   aRect);
-
-  int
-  SetWindowPos(RECT&   aRect);
-
 protected:
-  IProgressDialog*  m_pIDlg;
-  __int64           m_Maximum;
+  IOperationsProgressDialog*  m_pIOperDlg;
   bool              m_Visible;
-  HINSTANCE         m_Shell32Instance;
-  HINSTANCE         m_LSEInstance;
+
+  Effort            m_Progress;
+  Effort            m_Maximum;
 
   RECT              m_Rect;
 
+  int               m_PreflightProgress;
 
-
-  HWND
-  GetDlghWnd();
+  const int MaxPreflight = 50;
 
 public:
-  virtual 
+  Progressbar();
+
+  void SetProgress(const Effort& aProgress);
+  bool HasUserCancelled();
+  bool SetMode(DWORD aMode);
+  bool SetOperation(SPACTION aAction);
+  bool Update(AsyncContext& apContext, DWORD aMode);
+  bool Update(AsyncContext& aContext, const Effort& aEffort);
+
+  void Show();
+
+  void Hide();
+  void SetCurrentPath(wchar_t* aSourcePath, wchar_t* aDestPath);
+  void SetRange(const Effort& aMaximum);
+  int GetWindowPos(RECT&   aRect);
+  bool RestoreProgressbar(RECT&   aRect);
+
+protected:
+  HWND GetDlghWnd();
+  int SetWindowPos(RECT&   aRect);
+
+public:
+  virtual
     ~Progressbar();
 };

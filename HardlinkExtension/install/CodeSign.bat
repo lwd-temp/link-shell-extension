@@ -11,26 +11,21 @@ call ..\Settings.bat
 
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\Bin\x64\Release\HardlinkShellExt.dll
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\Bin\win32\Release\HardlinkShellExt.dll
-%SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\Bin\itanium\Release\HardlinkShellExt.dll
 
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\x64\Release\symlink.exe
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\win32\Release\symlink.exe
-%SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\itanium\Release\symlink.exe
 
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\x64\Release\ln.exe
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\win32\Release\ln.exe
-%SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\itanium\Release\ln.exe
 
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\LSEConfig\Bin\x64\Release\LSEConfig.exe
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\LSEConfig\Bin\win32\Release\LSEConfig.exe
 
-%SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\LSEConfig\Bin\itanium\Release\LSEConfig.exe
 
 call CreateInstall.bat
 
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" HardLinkShellExt_X64.exe
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" HardLinkShellExt_win32.exe
-%SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" HardLinkShellExt_Itanium.exe
 
 
 

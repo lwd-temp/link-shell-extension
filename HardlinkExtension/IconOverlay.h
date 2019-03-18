@@ -1,5 +1,9 @@
-#if !defined _ICON_OVERLAY_1CABAF33_9F76_4d24_9F4F_92C6882F9C1A
-#define _ICON_OVERLAY_1CABAF33_9F76_4d24_9F4F_92C6882F9C1A
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
+
+#pragma once
+
 
 DEFINE_GUID(CLSID_IconOverlayHardLink, 0xa479751, 0x2bc, 0x11d3, 0xa8, 0x55, 0x0, 0x4, 0xac, 0x25, 0x68, 0xdd);
 
@@ -255,5 +259,3 @@ public:
 private:
 	ULONG	m_cRef;
 };
-
-#endif

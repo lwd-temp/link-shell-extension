@@ -49,9 +49,37 @@ REM
 @sort sortout
 @echo ErrorLevel == %ERRLEV%
 
+@REM Check Casesensitivness in extensions
+@%RD% %TESTROOTDST%
+%LN% --exclude *.cXx --exclude *.h --copy %TESTROOTSRC% %TESTROOTDST% > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+
+@REM Check Casesensitivness in first letter: history.txt vs History.txt
+@%RD% %TESTROOTDST%
+%LN% --exclude History.txt --copy %TESTROOTSRC% %TESTROOTDST% > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+
 @%RD% %TESTROOTDST%
 @set FILTER_FILE=filter.txt
 @echo *.cxx> %FILTER_FILE%
+@echo *.h>> %FILTER_FILE%
+%LN% --exclude @%FILTER_FILE% --copy %TESTROOTSRC% %TESTROOTDST% > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@del %FILTER_FILE%
+
+@REM Test empty lines in filter file
+@%RD% %TESTROOTDST%
+@set FILTER_FILE=filter.txt
+@echo *.cxx> %FILTER_FILE%
+@echo.>> %FILTER_FILE%
+@echo.    >> %FILTER_FILE%
+@echo.		>> %FILTER_FILE%
 @echo *.h>> %FILTER_FILE%
 %LN% --exclude @%FILTER_FILE% --copy %TESTROOTSRC% %TESTROOTDST% > sortout
 @set ERRLEV=%errorlevel%

@@ -1,12 +1,10 @@
 /*
-Copyright (C) 1999-2001, Hermann Schinagl, Hermann.Schinagl@gmx.net
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
-
-*/
+#pragma once
 
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
-
-// #define REMOVE_DELETE_JUNCTION
 
 #define _CRT_SECURE_NO_DEPRECATE
 
@@ -18,7 +16,11 @@ Copyright (C) 1999-2001, Hermann Schinagl, Hermann.Schinagl@gmx.net
 // #  define _SECURE_SCL 0
 #endif
 
-#define UNICODE
+// Used to enable an extra menue entry to delete junctions from LSE
+// #define REMOVE_DELETE_JUNCTION
+
+
+
 #include <windows.h>
 #include <winnt.h>
 #include <winioctl.h>
@@ -29,6 +31,8 @@ Copyright (C) 1999-2001, Hermann Schinagl, Hermann.Schinagl@gmx.net
 #include <shlguid.h>
 
 #include <winnetwk.h>
+#pragma comment(lib, "wsock32.lib")
+
 #include <ShlObj.h>
 
 #include <stdio.h>
@@ -40,30 +44,39 @@ Copyright (C) 1999-2001, Hermann Schinagl, Hermann.Schinagl@gmx.net
 #include <vector>
 #include <algorithm>
 #include <list>
+#include <atomic>
+
+using namespace std;
+
+#include "uxtheme.h"
+#include "winuser.h"
+#include "commctrl.h"
+
+#include <sys/stat.h>
+#include <shlwapi.h>
+#include <strsafe.h>
+
+#include "resource.h"
 
 #include <..\..\shared\tre-0.8.0\lib\regex.h>
 
+
+
 #include "hardlink_types.h"
 #include "..\hardlink\src\mmfobject.h"
+#include "localisation.h"
+#include "multilang.h"
 
 #include "AsyncContext.h"
 #include <HardLink.h>
-#include "resource.h"
-#include "localisation.h"
-#include <sys/stat.h>
-#include <shlwapi.h>
+#include "Utils.h"
 
-#include "resource.h"
 
 // {0A479751-02BC-11d3-A855-0004AC2568AA}
 DEFINE_GUID(CLSID_HardLinkExtension, 0xa479751, 0x2bc, 0x11d3, 0xa8, 0x55, 0x0, 0x4, 0xac, 0x25, 0x68, 0xaa);
 
-
-
 #if defined _M_IX86
 #pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
-#elif defined _M_IA64
-#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='ia64' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #elif defined _M_X64
 #pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #else

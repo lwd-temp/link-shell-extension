@@ -1,23 +1,7 @@
 
-#define _WIN32_WINNT		0x500
-
-#if defined( UNICODE )	 && ! defined( _UNICODE )
-#define _UNICODE
-#endif
-
-#if defined( _UNICODE ) && ! defined( UNICODE )
-#define UNICODE
-#endif
-
 #include "stdafx.h"
 #include "resource.h"
 #include <winioctl.h>
-
-#if defined USE_ROCKALL_HEAPMANAGER
-#  include "FastHeap.hpp"
-   extern FAST_HEAP MyHeap;
-#endif
-
 
 #include "timestamp.h"
 
@@ -116,7 +100,7 @@ TimeStamp(
     if (a_SetStamps & SET_CTIME)
     {
       time_t  TimeVal;
-      swscanf(a_CtimeString, L"%08x", &TimeVal);
+      swscanf(a_CtimeString, L"%I64x", &TimeVal);
       UnixTimeToFileTime(TimeVal, &WriteTime);
       UnixTimeToFileTime(TimeVal, &AccessTime);
       UnixTimeToFileTime(TimeVal, &CreationTime);
@@ -382,12 +366,6 @@ main(int argc,
 #endif
 {
 	InitCreateHardlink ();
-  CreateSymboliclink(
-    _T("C:\\data\\cpp\\hardlinks\\tmp\\sym.txt"), 
-    _T("C:\\data\\cpp\\hardlinks\\tmp\\commandline-progress.txt"), 
-    SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE
-  ); //  | SYMLINK_FLAG_RELATIVE
-
 
 
   if (argc == 1)
@@ -520,11 +498,7 @@ main(int argc,
           if ((ERROR_SUCCESS == Result) && dwFileEaInfoSize)
           {
             DumpEaRecords(pFileEaInfo);
-  #if defined USE_ROCKALL_HEAPMANAGER
-            MyHeap.Delete(pFileEaInfo);
-  #else
             free(pFileEaInfo);
-  #endif
           }
 
           CloseHandle(ExistingFileHandle);
@@ -689,11 +663,7 @@ main(int argc,
           if ((ERROR_SUCCESS == Result) && dwFileEaInfoSize)
           {
             SaveEaRecords(pFileEaInfo);
-  #if defined USE_ROCKALL_HEAPMANAGER
-            MyHeap.Delete(pFileEaInfo);
-  #else
             free(pFileEaInfo);
-  #endif
           }
 
           CloseHandle(ExistingFileHandle);
@@ -729,7 +699,7 @@ main(int argc,
           DWORD BytesRead;
           ReadFile(ExistingFileHandle, StreamData, HUGE_PATH, &BytesRead, NULL);
           StreamData[BytesRead/2 + 1] = 0x00;
-          wprintf (L"%S\n", StreamData);
+          wprintf (L"%lS\n", StreamData);
 
           CloseHandle(ExistingFileHandle);
         }
@@ -835,7 +805,7 @@ main(int argc,
           int nRanges = nBytes / sizeof(FILE_ALLOCATED_RANGE_BUFFER);
 
           for (int range = 0; range < nRanges; range++)
-            printf ("%I64x: %I64x\n", pRanges[range]);
+            printf ("%08x: %I64x\n", range, pRanges[range]);
 
           free(pRanges);
           CloseHandle(ExistingFileHandle);

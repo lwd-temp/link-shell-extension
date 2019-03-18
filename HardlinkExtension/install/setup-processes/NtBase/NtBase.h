@@ -1,5 +1,5 @@
-#if !defined _NtBaseLib
-#define _NtBaseLib
+
+#pragma once
 
 //disable warnings on 255 char debug symbols
 #pragma warning (disable : 4786)
@@ -49,6 +49,3 @@ typedef BOOL (WINAPI *K32EnumProcessModulesEx_t)(
 
 #define LIST_MODULES_32BIT 0x01
 #define LIST_MODULES_64BIT 0x02
-#define LIST_MODULES_ALL 0x03
-
-#endif

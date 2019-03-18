@@ -51,7 +51,6 @@ namespace TreePropSheet
 
 #ifdef XPSUPPORT
 #include <UXTheme.h>
-#include <TMSchema.h>
 #pragma comment(lib, "UXTheme")
 #endif
 

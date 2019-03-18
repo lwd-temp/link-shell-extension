@@ -27,11 +27,11 @@ set ATTR=..\Tools\timestamp --attr
 
 set CACLS=cacls.exe
 
-if [Win7] == [%OS%] (
+REM if [Win7] == [%OS%] (
 set VSHADOW=..\Tools\vshadow64.exe
-) else (
-  set VSHADOW=..\Tools\vshadow32xp.exe
-)  
+REM ) else (
+REM   set VSHADOW=..\Tools\vshadow32xp.exe
+REM )  
 set NETSHAREDEL=..\Tools\netsharedel.exe
 
 

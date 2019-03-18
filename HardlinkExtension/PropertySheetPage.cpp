@@ -1,19 +1,14 @@
 /*
-	Copyright (C) 1999-2010, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
 
 #include "stdafx.h"
-#include "commctrl.h"
 
 #include "PropertySheetPage.h"
-#include "multilang.h"
 #include "Progressbar.h"
 #include "HardlinkMenu.h"
 #include "HardlinkUtils.h"
-
-#include "uxtheme.h"
-#include "winuser.h"
 
 
 extern UINT       g_cRefThisDll;    // Reference count of this DLL.
@@ -342,10 +337,6 @@ INT_PTR CALLBACK PropPageDlgProc ( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM l
       long code = (long)wParam;		
       switch ( code )
       {
-        case IDC_ENUMERATE_HARDLINK_SIBLINGS:
-          OnSearchSiblings(hwnd, lParam);
-        break;
-
         case IDC_EXPLORE_TARGET:
           OnExploreTarget(hwnd, lParam);
         break;
@@ -380,100 +371,6 @@ UINT CALLBACK PropPageCallbackProc ( HWND hwnd, UINT uMsg, LPPROPSHEETPAGE ppsp 
   }
 
   return 1;   // used for PSPCB_CREATE - let the page be created
-}
-
-void 
-lse_EnumHardlinkSiblingsGlue::
-Print(wchar_t* pSiblingFileName)
-{
-  wcscat(pSiblingFileName, L"\r\n");
-  int ndx = GetWindowTextLength (m_EditControl);
-  SendMessage (m_EditControl, EM_SETSEL, (WPARAM)ndx, (LPARAM)ndx); 
-  SendMessage (m_EditControl, EM_REPLACESEL, 0, (LPARAM) &pSiblingFileName[PATH_PARSE_SWITCHOFF_SIZE]);
-
-  //		wprintf (L"'%s'\n", pSiblingFileName);
-}
-
-void OnSearchSiblings ( HWND hwnd, LPARAM lParam )
-{        
-  HTRACE(L"Enum Button pressed, Control %08x\n", lParam);
-
-  wchar_t Buffer[MAX_PATH];
-  HWND hStatic = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM);
-  ShowWindow(hStatic, SW_SHOWNORMAL);
-  LoadStringEx(g_hInstance, IDS_STRING_PropPageHardlinkEnum, Buffer, MAX_PATH, gLSESettings.LanguageID);
-  SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM, Buffer);
-
-  HWND hEdit = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKS);
-  SendMessage (hEdit, EM_LIMITTEXT, (WPARAM)0, (LPARAM)0); 
-  ShowWindow(hEdit, SW_SHOWNORMAL);
-
-  // Clear the edit control
-  SendMessage (hEdit, EM_SETSEL, (WPARAM)0, (LPARAM)-1); 
-  SendMessage (hEdit, EM_REPLACESEL, 0, (LPARAM)"");
-
-  // Get the filename
-  WCHAR	szFile[HUGE_PATH];
-  GetDlgItemText ( hwnd, IDC_PROPPAGE_LINKSHLEXT_FILENAME, szFile, HUGE_PATH );
-
-  WCHAR PathWithoutJunction[HUGE_PATH];
-  wcscpy_s(PathWithoutJunction, HUGE_PATH, PATH_PARSE_SWITCHOFF);
-  ReparseCanonicalize(szFile, &PathWithoutJunction[PATH_PARSE_SWITCHOFF_SIZE]);
-
-  // Disable button
-  HWND hButton = GetDlgItem (hwnd, IDC_ENUMERATE_HARDLINK_SIBLINGS);
-  EnableWindow(hButton, FALSE);
-
-  wchar_t         CurrentPath[HUGE_PATH];
-  {
-    // ProgressBar
-    const int MaxEndlessProgress = 50;
-
-    Progressbar aProgressbar(
-      IDS_STRING_ProgressEnumerating, 
-      IDS_STRING_ProgressCanceling,
-      g_hInstance, 
-      gLSESettings.LanguageID,
-      hwnd,
-      MaxEndlessProgress
-      );
-
-    FileInfoContainer	FileList;
-    lse_EnumHardlinkSiblingsGlue Glue;
-    Glue.m_EditControl = hEdit;
-    AsyncContext    Context;
-    _PathNameStatusList PathNameStatusList;
-    FileList.EnumHardlinkSiblings(PathWithoutJunction, L"", &Glue, false, &PathNameStatusList, &Context);
-
-    int progress = 0;
-    while (!Context.Wait(250))
-    {
-      Context.GetStatus(CurrentPath);
-
-      aProgressbar.SetProgress (progress++);
-      aProgressbar.SetCurrentPath(CurrentPath);
-      aProgressbar.Show();
-      if (aProgressbar.HasUserCancelled())
-      {
-        Context.Cancel();
-        Context.Wait(INFINITE);
-        progress = -1;
-        break;
-      }
-
-      // This is an endless bar during searching for files
-      if (progress >= MaxEndlessProgress)
-      {
-        aProgressbar.SetRange(MaxEndlessProgress);
-        progress = 0;
-      }
-    }
-
-    DeletePathNameStatusList(PathNameStatusList);
-
-  } // Progressbar
-
-  EnableWindow(hButton, TRUE);
 }
 
 void OnExploreTarget ( HWND hwnd, LPARAM lParam )
@@ -683,96 +580,75 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
 
         SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, RefCountStr);
 
-        // Enumerate Hardlinks under Vista
-        if (pfnFindFirstFileNameW)
+        // Enumerate Hardlinks under Windows7
+        wchar_t	LinkName[HUGE_PATH + 2];
+        DWORD LinkNameLength = HUGE_PATH; 
+
+        // resolve a possible subst chain
+        int LinkNameIdx = 0;
+        if (!PathIsUNC(pReparseProperties->Source))
         {
-          wchar_t	LinkName[HUGE_PATH + 2];
-          DWORD LinkNameLength = HUGE_PATH; 
+	        wchar_t FullName[HUGE_PATH];
+          wcscpy_s(FullName, HUGE_PATH, PATH_PARSE_SWITCHOFF);
 
-          // resolve a possible subst chain
-          int LinkNameIdx = 0;
-          if (!PathIsUNC(pReparseProperties->Source))
+	        GetFullPathName(pReparseProperties->Source, HUGE_PATH, &FullName[PATH_PARSE_SWITCHOFF_SIZE], NULL); 
+
+          if (IsVeryLongPath(FullName))
+            LinkNameIdx = PATH_PARSE_SWITCHOFF_SIZE;
+
+          // Follow a possible subst chain, until we end up with e.g \Device\HardDisk\Volume4
+          do
           {
-	          wchar_t FullName[HUGE_PATH];
-            wcscpy_s(FullName, HUGE_PATH, PATH_PARSE_SWITCHOFF);
-
-	          GetFullPathName(pReparseProperties->Source, HUGE_PATH, &FullName[PATH_PARSE_SWITCHOFF_SIZE], NULL); 
-
-            if (IsVeryLongPath(FullName))
-              LinkNameIdx = PATH_PARSE_SWITCHOFF_SIZE;
-
-            // Follow a possible subst chain, until we end up with e.g \Device\HardDisk\Volume4
-            do
-            {
-              wcscpy_s(LinkName, HUGE_PATH, &FullName[LinkNameIdx]);
-              LinkName[2] = 0x00;
-              QueryDosDevice(LinkName, FullName, HUGE_PATH);
-            }
-            // a subst on a subst can be recognized by \??\ as prefix to e.g. \??\f:\tmp
-            while(FullName[1] == '?');
+            wcscpy_s(LinkName, HUGE_PATH, &FullName[LinkNameIdx]);
+            LinkName[2] = 0x00;
+            QueryDosDevice(LinkName, FullName, HUGE_PATH);
           }
+          // a subst on a subst can be recognized by \??\ as prefix to e.g. \??\f:\tmp
+          while(FullName[1] == '?');
+        }
 
-          // enumerate the siblings
-          HANDLE h = pfnFindFirstFileNameW(pReparseProperties->Source, 0, &LinkNameLength, &LinkName[2]);
-          if (INVALID_HANDLE_VALUE != h)
+        // enumerate the siblings
+        HANDLE h = FindFirstFileNameW(pReparseProperties->Source, 0, &LinkNameLength, &LinkName[2]);
+        if (INVALID_HANDLE_VALUE != h)
+        {
+          //
+          // If some calls FindFirstFileName() with a file on a mapped network
+          // drive FindFirstFileNameW returns ERROR_INVALID_LEVEL. But why?
+          //
+
+          // So we have to show the sibblins dialog only after we made sure
+          // that we got the first sibling, since it seems it is not enough
+          // to know that the reference count is > 1
+          HWND hStatic = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM);
+          ShowWindow(hStatic, SW_SHOWNORMAL);
+          LoadStringEx(g_hInstance, IDS_STRING_PropPageHardlinkEnum, Buffer, MAX_PATH, gLSESettings.LanguageID);
+          SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM, Buffer);
+
+          HWND hEdit = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKS);
+          SendMessage (hEdit, EM_LIMITTEXT, (WPARAM)0, (LPARAM)0); 
+          ShowWindow(hEdit, SW_SHOWNORMAL);
+
+          do
           {
-            //
-            // If some calls FindFirstFileName() with a file on a mapped network
-            // drive FindFirstFileNameW returns ERROR_INVALID_LEVEL. But why?
-            //
+            wcscat(LinkName, L"\r\n");
+            int ndx = GetWindowTextLength (hEdit);
+            SendMessage (hEdit, EM_SETSEL, (WPARAM)ndx, (LPARAM)ndx); 
+            SendMessage (hEdit, EM_REPLACESEL, 0, (LPARAM) LinkName);
 
-            // So we have to show the sibblins dialog only after we made sure
-            // that we got the first sibling, since it seems it is not enough
-            // to know that the reference count is > 1
-            HWND hStatic = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM);
-            ShowWindow(hStatic, SW_SHOWNORMAL);
-            LoadStringEx(g_hInstance, IDS_STRING_PropPageHardlinkEnum, Buffer, MAX_PATH, gLSESettings.LanguageID);
-            SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM, Buffer);
-
-            HWND hEdit = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKS);
-            SendMessage (hEdit, EM_LIMITTEXT, (WPARAM)0, (LPARAM)0); 
-            ShowWindow(hEdit, SW_SHOWNORMAL);
-
-            do
-            {
-              wcscat(LinkName, L"\r\n");
-              int ndx = GetWindowTextLength (hEdit);
-              SendMessage (hEdit, EM_SETSEL, (WPARAM)ndx, (LPARAM)ndx); 
-              SendMessage (hEdit, EM_REPLACESEL, 0, (LPARAM) LinkName);
-
-              LinkNameLength = HUGE_PATH; 
-            } while (pfnFindNextFileNameW(h, &LinkNameLength, &LinkName[2]));
-            FindClose(h);
-          }
-          else
-          {
-#if defined DEBUG_RICHARD_SCHAEFER
-            wchar_t	FullMsg[HUGE_PATH];
-            wsprintf(FullMsg, L"LSE: FindFirstFileName failed: %08x,'%s'", GetLastError(), pReparseProperties->Source);
-		        int mr = MessageBox ( NULL, 
-			        FullMsg,
-              L"LSE: PropertyPage",
-			        MB_ICONERROR );
-#endif
-          }
+            LinkNameLength = HUGE_PATH; 
+          } while (FindNextFileNameW(h, &LinkNameLength, &LinkName[2]));
+          FindClose(h);
         }
         else
         {
 #if defined DEBUG_RICHARD_SCHAEFER
           wchar_t	FullMsg[HUGE_PATH];
-          wsprintf(FullMsg, L"LSE: XP Why?: %08x,'%s'", GetLastError(), pReparseProperties->Source);
-	        int mr = MessageBox ( NULL, 
-		        FullMsg,
+          wsprintf(FullMsg, L"LSE: FindFirstFileName failed: %08x,'%s'", GetLastError(), pReparseProperties->Source);
+		      int mr = MessageBox ( NULL, 
+			      FullMsg,
             L"LSE: PropertyPage",
-		        MB_ICONERROR );
+			      MB_ICONERROR );
 #endif
-          // Enumerate Hardlinks on demand also for Windows XP
-
-          // Enable button
-          HWND hStatic = GetDlgItem (hwnd, IDC_ENUMERATE_HARDLINK_SIBLINGS);
-          LoadStringEx(g_hInstance, IDS_STRING_PropPageEnumSiblings, Buffer, MAX_PATH, gLSESettings.LanguageID);
-          SetDlgItemText( hwnd, IDC_ENUMERATE_HARDLINK_SIBLINGS, Buffer);
-          ShowWindow(hStatic, SW_SHOWNORMAL);
         }
       }
     }
@@ -828,11 +704,5 @@ ReplacePage(
 {
 	return NOERROR;
 }
-
-lse_EnumHardlinkSiblingsGlue::
-lse_EnumHardlinkSiblingsGlue() : m_EditControl(NULL)
-{
-}
-
 
 

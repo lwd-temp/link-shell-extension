@@ -7,9 +7,9 @@
 #define STR_NAME(name)    STR_VALUE(name)
 
 # define MAJOR_VERSION			2
-# define MINOR_VERSION			8
-# define PATCH_VERSION			7
-# define HOTFIX_VERSION		  4
+# define MINOR_VERSION			9
+# define PATCH_VERSION			1
+# define HOTFIX_VERSION		  3
 
 #define MAJOR_VERSION_STRING			STR_NAME(MAJOR_VERSION)
 #define MINOR_VERSION_STRING			STR_NAME(MINOR_VERSION)

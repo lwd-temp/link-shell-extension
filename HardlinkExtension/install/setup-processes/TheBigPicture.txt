@@ -1,0 +1,46 @@
+Quick Guide to Processes.dll
+--------------
+Processes.dll is a plugin to Nsis, and contains useful functions needed during install.
+To use it, copy it to NSIS/plugins directory
+
+There are a few helpers inside processes.dll, which are unique to LSE
+
+ProcessEnumModules_<platt>.exe
+----------
+This is an .exe, which is kept as a binary resource in processes.dll, and is extracted during setup and executed.
+Why that complicated: The installer is a 32bit process, and we need to enumerate modules used by 64bit proceses. This only works if you have 
+a 64bit process, and that's why it is extracted during run-time from 32bit processes.dll and executed via fork as 64bit process.
+It writes a file LseInstallerCollidingProcesses.txt as output, which is read by processes.dll and returned to the installer. Rather old-school, but works
+
+We have to find out the processes, which have loaded hardlinkshellext.dll, and thus prevent it from beeing deleted and installed.
+
+VCredistProbe_<platt>.exe
+-----------
+It is hard to find out if the redistributeables are properly installed on a system. The only way, which came to my mind is to
+execute a program, which needs the redistributeables, and see if process creation worked. This is what VCredistProbe_<platt>.exe does.
+
+
+ProcessesTest
+--------
+This is a small .exe which uses processes.dll and allows debugging of functionality in processesd.ll without
+going the full way to an InstallationSet
+
+
+How to build
+----------
+Build ProcessEnumModules and VCredistProbe first. Copy the output to 
+processes\ProcessEnumModules_x64.exe
+processes\ProcessEnumModules_win32.exe
+processes\VCredistProbe_x64.exe
+processes\VCredistProbe_win32.exe
+
+Compile processes.dll and copy processes.dll to NSIS/plugins
+
+History
+------
+2018-12-30 
+Updated to VS2017, removed Itanium support
+lang.dll still with Vs2005 compiled
+
+
+

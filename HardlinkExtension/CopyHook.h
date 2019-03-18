@@ -1,9 +1,8 @@
 /*
-	Copyright (C) 1999_2006, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
-#ifndef _COPYHOOK_18C7AB7E_CC89_46b8_8542_8B4DC94D5FD0
-#define _COPYHOOK_18C7AB7E_CC89_46b8_8542_8B4DC94D5FD0
+#pragma once
 
 DEFINE_GUID(CLSID_HardLinkCopyhook, 0xa479751, 0x2bc, 0x11d3, 0xa8, 0x55, 0x0, 0x4, 0xac, 0x25, 0x68, 0xbb);
 
@@ -83,7 +82,3 @@ private:
 	ULONG	m_cRef;
 };
 
-
-#endif
-
-/////////////////////////////////////////////////////////////////////////////
