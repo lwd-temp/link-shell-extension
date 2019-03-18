@@ -1,13 +1,13 @@
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --timetolerance with --mirror 
+C:\data\cpp\hardlinks\ln>REM --timetolerance with --mirror 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 1002 --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-=f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 1002 --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -19,9 +19,9 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 997 --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 997 --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -33,16 +33,16 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --timetolerance with --copy 
+C:\data\cpp\hardlinks\ln>REM --timetolerance with --copy 
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>..\Tools\timestamp.exe --writetime --ctime  4e1402f2 test\mirror\dest\A  
+C:\data\cpp\hardlinks\ln>..\Tools\timestamp.exe --writetime --ctime  4e1402f2 test\mirror\dest\A  
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 1002 --copy test\mirror\source test\mirror\dest 
-=f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 1002 --copy test\mirror\source test\mirror\dest 
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped  Excluded    Failed
   Folder:         1         0         -         0         0         0
@@ -54,8 +54,8 @@ Junction:         0         -         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 997 --copy test\mirror\source test\mirror\dest 
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 997 --copy test\mirror\source test\mirror\dest 
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped  Excluded    Failed
   Folder:         1         0         -         0         0         0
@@ -67,8 +67,8 @@ Junction:         0         -         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 997 --copy test\mirror\source test\mirror\dest 
-=f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 997 --copy test\mirror\source test\mirror\dest 
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped  Excluded    Failed
   Folder:         1         0         -         0         0         0
@@ -80,16 +80,16 @@ Junction:         0         -         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --timetolerance with --copy but no write access to destination 
+C:\data\cpp\hardlinks\ln>REM --timetolerance with --copy but no write access to destination 
 
-D:\data\cpp\hardlinks\ln>REM but it should says is the same 
+C:\data\cpp\hardlinks\ln>REM but it should says is the same 
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 1002 --copy test\mirror\source test\mirror\dest 
-=f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 1002 --copy test\mirror\source test\mirror\dest 
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped  Excluded    Failed
   Folder:         1         0         -         0         0         0
@@ -101,8 +101,8 @@ Junction:         0         -         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 997 --copy test\mirror\source test\mirror\dest 
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 997 --copy test\mirror\source test\mirror\dest 
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped  Excluded    Failed
   Folder:         1         0         -         0         0         0
@@ -114,24 +114,24 @@ Junction:         0         -         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM when there is no write access to destination, CopyfileEx3 will try to switch  
+C:\data\cpp\hardlinks\ln>REM when there is no write access to destination, CopyfileEx3 will try to switch  
 
-D:\data\cpp\hardlinks\ln>REM the attributes, and copy over. So there must be no +r on test\mirror\dest\A at the end 
+C:\data\cpp\hardlinks\ln>REM the attributes, and copy over. So there must be no +r on test\mirror\dest\A at the end 
 
-D:\data\cpp\hardlinks\ln>REM  
-A            D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>REM  
+A            C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Files with different compression status are different, even if in tolerance 
+C:\data\cpp\hardlinks\ln>REM Files with different compression status are different, even if in tolerance 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 C   test\mirror\dest\A
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 1002 --copy test\mirror\source test\mirror\dest 
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --timetolerance 1002 --copy test\mirror\source test\mirror\dest 
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped  Excluded    Failed
   Folder:         1         0         -         0         0         0
@@ -144,16 +144,16 @@ Junction:         0         -         0         0         0         0
    Times:        00:00:00.002
     test\mirror\dest\A
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>REM Different size, but same timestamp is different 
+C:\data\cpp\hardlinks\ln>REM Different size, but same timestamp is different 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>copy test\readme.txt test\mirror\dest\A  1>nul 
+C:\data\cpp\hardlinks\ln>copy test\readme.txt test\mirror\dest\A  1>nul 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\mirror\source test\mirror\dest 
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\mirror\source test\mirror\dest 
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped  Excluded    Failed
   Folder:         1         0         -         0         0         0
@@ -165,16 +165,16 @@ Junction:         0         -         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 01 --mirror -d +f 
+C:\data\cpp\hardlinks\ln>REM 01 --mirror -d +f 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         1         -         1         0         0         0
@@ -186,16 +186,16 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 02 --mirror -f +d 
+C:\data\cpp\hardlinks\ln>REM 02 --mirror -f +d 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         1         0         0
@@ -207,61 +207,61 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 03 --mirror -f +sf 
+C:\data\cpp\hardlinks\ln>REM 03 --mirror -f +sf 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkDest
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest  1>sortout 
 
+
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
+                      Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
-  Folder:         1         0         -         1         0         0         0
-    File:         1         1         0         0         1         0         0
-Junction:         0         -         0         0         0         0         0
- Symlink:         1         -         1         0         0         0         0
     Byte:       464       464         0         0         0         0         0
-
-                      Overall
-   Times:        00:00:00.002
-
-D:\data\cpp\hardlinks\ln>REM
-
-D:\data\cpp\hardlinks\ln>REM 04 --mirror -sf +f 
-
-D:\data\cpp\hardlinks\ln>REM
-
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkDest
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-
-              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
-  Folder:         1         0         -         1         0         0         0
     File:         1         1         0         0         1         0         0
-Junction:         0         -         0         0         0         0         0
- Symlink:         0         -         0         0         1         0         0
-    Byte:       464       464         0         0       464         0         0
-
-                      Overall
    Times:        00:00:00.002
+  Folder:         1         0         -         1         0         0         0
+ Symlink:         1         -         1         0         0         0         0
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkDest
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+Junction:         0         -         0         0         0         0         0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 05 --mirror -f +j 
+C:\data\cpp\hardlinks\ln>REM 04 --mirror -sf +f 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+j D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest  1>sortout 
+
+
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkDest
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:       464       464         0         0       464         0         0
+    File:         1         1         0         0         1         0         0
+   Times:        00:00:00.002
+  Folder:         1         0         -         1         0         0         0
+ Symlink:         0         -         0         0         1         0         0
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+Junction:         0         -         0         0         0         0         0
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>REM 05 --mirror -f +j 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         1         -         1         0         0         0
@@ -273,16 +273,16 @@ Junction:         1         -         1         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 22 --mirror =j 
+C:\data\cpp\hardlinks\ln>REM 22 --mirror =j 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
-=j D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+=j C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         0         -         2         0         0         0
@@ -294,17 +294,17 @@ Junction:         1         -         0         1         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 06 --mirror -j +d 
+C:\data\cpp\hardlinks\ln>REM 06 --mirror -j +d 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
--j D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+-j C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         1         -         1         1         0         0
@@ -316,15 +316,15 @@ Junction:         0         -         0         0         1         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 21 --mirror -j +d 
+C:\data\cpp\hardlinks\ln>REM 21 --mirror -j +d 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         0         -         2         0         0         0
@@ -336,17 +336,17 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 07 --mirror -d +j 
+C:\data\cpp\hardlinks\ln>REM 07 --mirror -d +j 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+j D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         1         -         1         1         0         0
@@ -358,17 +358,17 @@ Junction:         1         -         1         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 08 --mirror -j +s 
+C:\data\cpp\hardlinks\ln>REM 08 --mirror -j +s 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
--j D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+-j C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         0         -         2         0         0         0
@@ -380,17 +380,17 @@ Junction:         0         -         0         0         1         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 09 --mirror -s +j 
+C:\data\cpp\hardlinks\ln>REM 09 --mirror -s +j 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+j D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         0         -         2         0         0         0
@@ -402,17 +402,17 @@ Junction:         1         -         1         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 10 --mirror -j +f 
+C:\data\cpp\hardlinks\ln>REM 10 --mirror -j +f 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
--j D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+-j C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         1         0         0
@@ -424,18 +424,18 @@ Junction:         0         -         0         0         1         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 11 --mirror -s +sf, :: Restart 
+C:\data\cpp\hardlinks\ln>REM 11 --mirror -s +sf, :: Restart 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         1         0         0
@@ -447,16 +447,16 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 23 --mirror =s 
+C:\data\cpp\hardlinks\ln>REM 23 --mirror =s 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-=f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
-=s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -468,18 +468,18 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 12 --mirror -sf +s 
+C:\data\cpp\hardlinks\ln>REM 12 --mirror -sf +s 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         1         -         1         0         0         0
@@ -491,17 +491,17 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 13 --mirror -s +f  
+C:\data\cpp\hardlinks\ln>REM 13 --mirror -s +f  
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         1         0         0
@@ -513,15 +513,15 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 20 --mirror =f 
+C:\data\cpp\hardlinks\ln>REM 20 --mirror =f 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-=f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -533,17 +533,17 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 14 --mirror -d +s, :: Restart 
+C:\data\cpp\hardlinks\ln>REM 14 --mirror -d +s, :: Restart 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         1         -         1         1         0         0
@@ -555,17 +555,17 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 15 --mirror -f +s, :: Restart 
+C:\data\cpp\hardlinks\ln>REM 15 --mirror -f +s, :: Restart 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         1         -         1         0         0         0
@@ -577,17 +577,17 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 16 --mirror -s +d, Restart 
+C:\data\cpp\hardlinks\ln>REM 16 --mirror -s +d, Restart 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         1         -         1         1         0         0
@@ -599,17 +599,17 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 17 --mirror -d +sf 
+C:\data\cpp\hardlinks\ln>REM 17 --mirror -d +sf 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         1         0         0
@@ -621,16 +621,16 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 19 --mirror =sf 
+C:\data\cpp\hardlinks\ln>REM 19 --mirror =sf 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-=f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
-=s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+=s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -642,17 +642,17 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 18 --mirror -sf +d 
+C:\data\cpp\hardlinks\ln>REM 18 --mirror -sf +d 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\A
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_ReparseDest
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\A
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         1         -         1         0         0         0
@@ -664,20 +664,20 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM 24 --mirror -d +h 
+C:\data\cpp\hardlinks\ln>REM 24 --mirror -d +h 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\11
-=f D:\data\cpp\hardlinks\ln\test\mirror\dest\x_hard
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\x
-.f D:\data\cpp\hardlinks\ln\test\mirror\dest\x_hard
-*h D:\data\cpp\hardlinks\ln\test\mirror\dest\x
-+j D:\data\cpp\hardlinks\ln\test\mirror\dest\11_junction
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\11
+=f C:\data\cpp\hardlinks\ln\test\mirror\dest\x_hard
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\x
+.f C:\data\cpp\hardlinks\ln\test\mirror\dest\x_hard
+*h C:\data\cpp\hardlinks\ln\test\mirror\dest\x
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\11_junction
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         1         -         1         1         0         0
@@ -689,16 +689,16 @@ Junction:         1         -         1         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  108 --mirror -j +s 
+C:\data\cpp\hardlinks\ln>REM  108 --mirror -j +s 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
--j D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
+-j C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -710,16 +710,16 @@ Junction:         0         -         0         0         1         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  109 --mirror -s +j 
+C:\data\cpp\hardlinks\ln>REM  109 --mirror -s +j 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
-+j D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -731,16 +731,16 @@ Junction:         1         -         1         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  106 --mirror -j +d 
+C:\data\cpp\hardlinks\ln>REM  106 --mirror -j +d 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
--j D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
+-j C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         1         -         1         0         0         0
@@ -752,16 +752,16 @@ Junction:         0         -         0         0         1         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  107 --mirror -d +j 
+C:\data\cpp\hardlinks\ln>REM  107 --mirror -d +j 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
-+j D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         1         0         0
@@ -773,16 +773,16 @@ Junction:         1         -         1         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  105 --mirror -f +j 
+C:\data\cpp\hardlinks\ln>REM  105 --mirror -f +j 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
-+j D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -794,16 +794,16 @@ Junction:         1         -         1         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  110 --mirror -j +f 
+C:\data\cpp\hardlinks\ln>REM  110 --mirror -j +f 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
--j D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
+-j C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -815,16 +815,16 @@ Junction:         0         -         0         0         1         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  115 --mirror -f +s 
+C:\data\cpp\hardlinks\ln>REM  115 --mirror -f +s 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -836,16 +836,16 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  113 --mirror -s +f 
+C:\data\cpp\hardlinks\ln>REM  113 --mirror -s +f 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -857,16 +857,16 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  114 --mirror -d +s 
+C:\data\cpp\hardlinks\ln>REM  114 --mirror -d +s 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         1         0         0
@@ -878,16 +878,16 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  116 --mirror -s +d 
+C:\data\cpp\hardlinks\ln>REM  116 --mirror -s +d 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         2         1         -         1         0         0         0
@@ -899,16 +899,16 @@ Junction:         0         -         0         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  150 --mirror crop -sf +j  
+C:\data\cpp\hardlinks\ln>REM  150 --mirror crop -sf +j  
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
-+j D:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source\Dir test\mirror\dest\Dir 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\Dir\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -920,16 +920,16 @@ Junction:         1         -         1         0         0         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  151 --mirror crop delete -sf +j  
+C:\data\cpp\hardlinks\ln>REM  151 --mirror crop delete -sf +j  
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --mirror test\mirror\src2 test\mirror\dst2 
-=d D:\data\cpp\hardlinks\ln\test\mirror\dst2
-#s D:\data\cpp\hardlinks\ln\test\mirror\src2\A
--j D:\data\cpp\hardlinks\ln\test\mirror\dst2\A
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --mirror test\mirror\src2 test\mirror\dst2 
+=d C:\data\cpp\hardlinks\ln\test\mirror\dst2
+#s C:\data\cpp\hardlinks\ln\test\mirror\src2\A
+-j C:\data\cpp\hardlinks\ln\test\mirror\dst2\A
 
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
   Folder:         1         0         -         1         0         0         0
@@ -941,17 +941,17 @@ Junction:         0         -         0         0         1         0         0
                       Overall
    Times:        00:00:00.002
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  200 --mirror -d +m 
+C:\data\cpp\hardlinks\ln>REM  200 --mirror -d +m 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
 
 
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDrive
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDriveRoot
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDrive
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDriveRoot
                       Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:         0         0         0         0         0         0         0
@@ -959,25 +959,25 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --m
    Times:        00:00:00.002
   Folder:         1         0         -         1         2         0         0
  Symlink:         0         -         0         0         0         0         0
-+m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDrive
-+m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDriveRoot
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
++m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDrive
++m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDriveRoot
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
 Junction:         0         -         0         0         0         0         0
 MountPnt:         2         -         2         0         0         0         0
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDrive -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\tmp
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDriveRoot -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDrive -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\tmp
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDriveRoot -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  200a --mirror -m #m 
+C:\data\cpp\hardlinks\ln>REM  200a --mirror -m #m 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror test\mirror\source test\mirror\dest  1>sortout 
 
 
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDrive
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDriveRoot
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDrive
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDriveRoot
                       Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:         0         0         0         0         0         0         0
@@ -985,23 +985,23 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --mirror tes
    Times:        00:00:00.002
   Folder:         1         0         -         1         0         0         0
  Symlink:         0         -         0         0         0         0         0
-#m D:\data\cpp\hardlinks\ln\test\mirror\source\A_JuncEmptyTestDrive
-#m D:\data\cpp\hardlinks\ln\test\mirror\source\A_JuncEmptyTestDriveRoot
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
+#m C:\data\cpp\hardlinks\ln\test\mirror\source\A_JuncEmptyTestDrive
+#m C:\data\cpp\hardlinks\ln\test\mirror\source\A_JuncEmptyTestDriveRoot
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
 Junction:         0         -         0         0         0         0         0
 MountPnt:         2         -         0         0         2         2         0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  201 --mirror +d -m 
+C:\data\cpp\hardlinks\ln>REM  201 --mirror +d -m 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
 
 
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDrive
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDriveRoot
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDrive
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDriveRoot
                       Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:         0         0         0         0         0         0         0
@@ -1009,25 +1009,25 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --m
    Times:        00:00:00.002
   Folder:         3         2         -         1         0         0         0
  Symlink:         0         -         0         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDrive
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDriveRoot
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDrive
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncEmptyTestDriveRoot
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
 Junction:         0         -         0         0         0         0         0
 MountPnt:         0         -         0         0         2         0         0
 A_JuncEmptyTestDrive
 A_JuncEmptyTestDriveRoot
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  202 --mirror -f +m 
+C:\data\cpp\hardlinks\ln>REM  202 --mirror -f +m 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
 
 
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDest
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDestRoot
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDest
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDestRoot
                       Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:         0         0         0         0         0         0         0
@@ -1035,25 +1035,25 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --m
    Times:        00:00:00.002
   Folder:         1         0         -         1         0         0         0
  Symlink:         0         -         0         0         0         0         0
-+m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDest
-+m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDestRoot
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
++m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDest
++m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDestRoot
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
 Junction:         0         -         0         0         0         0         0
 MountPnt:         2         -         2         0         0         0         0
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDest -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\tmp
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDestRoot -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDest -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\tmp
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDestRoot -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  203 --mirror +f -m 
+C:\data\cpp\hardlinks\ln>REM  203 --mirror +f -m 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
 
 
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDest
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDestRoot
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDest
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDestRoot
                       Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:       928       928         0         0         0         0         0
@@ -1061,28 +1061,28 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --m
    Times:        00:00:00.002
   Folder:         1         0         -         1         0         0         0
  Symlink:         0         -         0         0         0         0         0
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDest
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDestRoot
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDest
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDestRoot
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
 Junction:         0         -         0         0         0         0         0
 MountPnt:         0         -         0         0         2         0         0
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDest
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDestRoot
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDest
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_FileDestRoot
 2 matching file(s) found, using 928 bytes.
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  204 --mirror -j +m 
+C:\data\cpp\hardlinks\ln>REM  204 --mirror -j +m 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
 
 
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncTarget
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncTargetRoot
--j D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Junc
--j D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncRoot
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncTarget
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncTargetRoot
+-j C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Junc
+-j C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncRoot
                       Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:         0         0         0         0         0         0         0
@@ -1090,25 +1090,25 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --m
    Times:        00:00:00.002
   Folder:         1         0         -         1         2         0         0
  Symlink:         0         -         0         0         0         0         0
-+m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Junc
-+m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncRoot
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
++m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Junc
++m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncRoot
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
 Junction:         0         -         0         0         2         0         0
 MountPnt:         2         -         2         0         0         0         0
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Junc -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\tmp
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncRoot -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Junc -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\tmp
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncRoot -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  205 --mirror +j -m 
+C:\data\cpp\hardlinks\ln>REM  205 --mirror +j -m 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
 
 
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Junc
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncRoot
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Junc
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncRoot
                       Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:         0         0         0         0         0         0         0
@@ -1116,29 +1116,29 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --m
    Times:        00:00:00.002
   Folder:         3         2         -         1         0         0         0
  Symlink:         0         -         0         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncTarget
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncTargetRoot
-+j D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Junc
-+j D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncRoot
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncTarget
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncTargetRoot
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Junc
++j C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncRoot
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
 Junction:         2         -         2         0         0         0         0
 MountPnt:         0         -         0         0         2         0         0
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Junc -> D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncTarget
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncRoot -> D:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncTargetRoot
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Junc -> C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncTarget
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncRoot -> C:\data\cpp\hardlinks\ln\test\mirror\dest\A_JuncTargetRoot
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  206 --mirror -s +m 
+C:\data\cpp\hardlinks\ln>REM  206 --mirror -s +m 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
 
 
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTarget
--d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTargetRoot
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTarget
+-d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTargetRoot
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
                       Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:         0         0         0         0         0         0         0
@@ -1146,25 +1146,25 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --m
    Times:        00:00:00.002
   Folder:         1         0         -         1         2         0         0
  Symlink:         0         -         0         0         2         0         0
-+m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
-+m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
++m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
++m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
 Junction:         0         -         0         0         0         0         0
 MountPnt:         2         -         2         0         0         0         0
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\tmp
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\tmp
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  207 --mirror +s -m 
+C:\data\cpp\hardlinks\ln>REM  207 --mirror +s -m 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
 
 
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
                       Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:         0         0         0         0         0         0         0
@@ -1172,29 +1172,29 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --m
    Times:        00:00:00.002
   Folder:         3         2         -         1         0         0         0
  Symlink:         2         -         2         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTarget
-+d D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTargetRoot
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTarget
++d C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTargetRoot
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
 Junction:         0         -         0         0         0         0         0
 MountPnt:         0         -         0         0         2         0         0
 test\mirror\dest\A_Symlink -> A_SymlinkTarget
 test\mirror\dest\A_SymlinkRoot -> A_SymlinkTargetRoot
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  208 --mirror -sf +m 
+C:\data\cpp\hardlinks\ln>REM  208 --mirror -sf +m 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
 
 
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTarget
--f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTargetRoot
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
--s D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTarget
+-f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTargetRoot
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
+-s C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
                       Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:         0         0         0         0       928         0         0
@@ -1202,25 +1202,25 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --m
    Times:        00:00:00.002
   Folder:         1         0         -         1         0         0         0
  Symlink:         0         -         0         0         2         0         0
-+m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
-+m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
++m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
++m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
 Junction:         0         -         0         0         0         0         0
 MountPnt:         2         -         2         0         0         0         0
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\tmp
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\tmp
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  209 --mirror +sf -m 
+C:\data\cpp\hardlinks\ln>REM  209 --mirror +sf -m 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
 
 
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
                       Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:       928       928         0         0         0         0         0
@@ -1228,27 +1228,27 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --m
    Times:        00:00:00.002
   Folder:         1         0         -         1         0         0         0
  Symlink:         2         -         2         0         0         0         0
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTarget
-+f D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTargetRoot
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
-+s D:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTarget
++f C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkTargetRoot
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Symlink
++s C:\data\cpp\hardlinks\ln\test\mirror\dest\A_SymlinkRoot
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
 Junction:         0         -         0         0         0         0         0
 MountPnt:         0         -         0         0         2         0         0
 test\mirror\dest\A_Symlink -> A_SymlinkTarget
 test\mirror\dest\A_SymlinkRoot -> A_SymlinkTargetRoot
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM  210 --mirror -m +m 
+C:\data\cpp\hardlinks\ln>REM  210 --mirror -m +m 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --mirror test\mirror\source test\mirror\dest  1>sortout 
 
 
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Mountpoint
--m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_MountpointRoot
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Mountpoint
+-m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_MountpointRoot
                       Overall
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:         0         0         0         0         0         0         0
@@ -1256,10 +1256,10 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --splice --m
    Times:        00:00:00.002
   Folder:         1         0         -         1         0         0         0
  Symlink:         0         -         0         0         0         0         0
-+m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Mountpoint
-+m D:\data\cpp\hardlinks\ln\test\mirror\dest\A_MountpointRoot
-=d D:\data\cpp\hardlinks\ln\test\mirror\dest
++m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Mountpoint
++m C:\data\cpp\hardlinks\ln\test\mirror\dest\A_MountpointRoot
+=d C:\data\cpp\hardlinks\ln\test\mirror\dest
 Junction:         0         -         0         0         0         0         0
 MountPnt:         2         -         2         0         2         0         0
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_Mountpoint -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\tmp
-D:\data\cpp\hardlinks\ln\test\mirror\dest\A_MountpointRoot -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_Mountpoint -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\tmp
+C:\data\cpp\hardlinks\ln\test\mirror\dest\A_MountpointRoot -> Volume{f6c8b244-1ce4-11e0-a607-005056c00008}\

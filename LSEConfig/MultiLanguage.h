@@ -1,5 +1,8 @@
-#ifndef __MULTILANGUAGE_H_
-#define __MULTILANGUAGE_H_
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
+
+#pragma once
 
 #include "MultiLang.h"
 
@@ -41,6 +44,3 @@ struct EnumWinData
 	CMultiLanguage *pLangObj;
 };
 
-
-
-#endif //__MULTILANGUAGE_H_

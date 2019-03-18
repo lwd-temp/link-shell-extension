@@ -1,0 +1,168 @@
+
+
+C:\data\cpp\hardlinks\ln>REM Straight forward Smart Copy/Clone 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  --backup --unroll --copy test\ads\source test\ads\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     2.320     2.320         0         0         0         0
+    File:         5         5         0         0         0         0
+   Times:        00:00:00.002
+  Folder:        10        10         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\hardlinks\ln\test\ads\dest
++d C:\data\cpp\hardlinks\ln\test\ads\dest\F0
++d C:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1
++d C:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F0
++d C:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F1
++d C:\data\cpp\hardlinks\ln\test\ads\dest\F1
++d C:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0
++d C:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_D0
++d C:\data\cpp\hardlinks\ln\test\ads\dest\F2
++d C:\data\cpp\hardlinks\ln\test\ads\dest\F3
++f C:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0.txt
++f C:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1.txt
++f C:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F1\F0_F1_F1.txt
++f C:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1.txt
++f C:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0.txt
++j C:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_J2
++j C:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_J0
++j C:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_J0
++j C:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_J0
++j C:\data\cpp\hardlinks\ln\test\ads\dest\J4
+Junction:         5         -         5         0         0         0
+ErrorLevel == 0
+C:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_J0 USERNAME:(OI)(CI)N 
+
+C:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1.txt USERNAME:N 
+
+C:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_D0 USERNAME:(OI)(CI)N 
+
+C:\data\cpp\hardlinks\ln\test\ads\dest USERNAME:(OI)(CI)N 
+
+
+
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     2.320         0         0     2.320         0         0         0
+    File:         5         0         0         5         0         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:        10         0         -        10         0         0         0
+ Symlink:         0         -         0         0         0         0         0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1_F0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1_F1
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F1
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0\F1_F0_D0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F2
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F3
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0.txt
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1.txt
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1_F1\F0_F1_F1.txt
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1.txt
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0\F1_F0.txt
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1_J2
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0\F1_F0_J0
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\F2\F2_J0
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\F3\F3_J0
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\J4
+Junction:         5         -         0         5         0         0         0
+C:\data\cpp\hardlinks\ln\test\ads\source\F2\F2_J0 USERNAME:(OI)(CI)N 
+
+C:\data\cpp\hardlinks\ln\test\ads\source\F0\F0_F1\F0_F1.txt USERNAME:N 
+
+C:\data\cpp\hardlinks\ln\test\ads\source\F1\F1_F0\F1_F0_D0 USERNAME:(OI)(CI)N 
+
+C:\data\cpp\hardlinks\ln\test\ads\source USERNAME:(OI)(CI)N 
+
+C:\data\cpp\hardlinks\ln\test\ads\bk1\F2\F2_J0 USERNAME:(OI)(CI)N 
+
+C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1.txt USERNAME:N 
+
+C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0\F1_F0_D0 USERNAME:(OI)(CI)N 
+
+C:\data\cpp\hardlinks\ln\test\ads\bk1 USERNAME:(OI)(CI)N 
+
+
+
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     2.320       464         0     1.856         0         0         0
+    File:         5         1         0         4         0         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:        10         0         -        10         0         0         0
+ Symlink:         0         -         0         0         0         0         0
++f C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1.txt
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1_F0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1_F1
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F1
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0\F1_F0_D0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F2
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F3
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0.txt
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1_F1\F0_F1_F1.txt
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1.txt
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0\F1_F0.txt
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1_J2
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0\F1_F0_J0
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\F2\F2_J0
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\F3\F3_J0
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\J4
+Junction:         5         -         0         5         0         0         0
+C:\data\cpp\hardlinks\ln\test\ads\bk1\F2\F2_J0 USERNAME:(OI)(CI)N 
+
+C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1.txt USERNAME:N 
+
+C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0\F1_F0_D0 USERNAME:(OI)(CI)N 
+
+C:\data\cpp\hardlinks\ln\test\ads\bk1 USERNAME:(OI)(CI)N 
+
+
+
+-f C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1.txt
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     1.856         0         0     1.856       464         0         0
+    File:         4         0         0         4         1         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:        10         0         -        10         0         0         0
+ Symlink:         0         -         0         0         0         0         0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1_F0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1_F1
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F1
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0\F1_F0_D0
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F2
+=d C:\data\cpp\hardlinks\ln\test\ads\bk1\F3
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0.txt
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1_F1\F0_F1_F1.txt
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1.txt
+=f C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0\F1_F0.txt
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\F0\F0_F1\F0_F1_J2
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0\F1_F0_J0
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\F2\F2_J0
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\F3\F3_J0
+=j C:\data\cpp\hardlinks\ln\test\ads\bk1\J4
+Junction:         5         -         0         5         0         0         0
+C:\data\cpp\hardlinks\ln\test\ads\bk1\F2\F2_J0 USERNAME:(OI)(CI)N 
+
+C:\data\cpp\hardlinks\ln\test\ads\bk1\F1\F1_F0\F1_F0_D0 USERNAME:(OI)(CI)N 
+
+C:\data\cpp\hardlinks\ln\test\ads\bk1 USERNAME:(OI)(CI)N 
+
+   SH        C:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_J0
+   SH        C:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_J0

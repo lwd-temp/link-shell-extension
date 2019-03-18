@@ -13,20 +13,18 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Japanese resources
+// Japanese (Japan) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
-#ifdef _WIN32
 LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 #pragma code_page(932)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "__unused__Drive "
     IDS_STRING_LanguageID   "0x0411"
@@ -36,7 +34,7 @@ BEGIN
     IDS_STRING_PropPageCaption "ƒƒ“ƒN"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "ƒGƒNƒXƒvƒ[ƒ‰‚ΝƒXƒ}[ƒgƒRƒs[‚πμ¬‚Ε‚«‚ά‚Ή‚ρ: %1!s!"
@@ -53,7 +51,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "ƒn[ƒhƒƒ“ƒN"
     IDS_STRING_Junction     "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“"
@@ -76,7 +74,7 @@ BEGIN
                             "ƒGƒNƒXƒvƒ[ƒ‰‚ΝƒVƒ“ƒ{ƒƒbƒNƒƒ“ƒN‚πμ¬‚Ε‚«‚ά‚Ή‚ρ: %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "ƒGƒNƒXƒvƒ[ƒ‰‚Νƒn[ƒhƒƒ“ƒN‚πκ‡μ¬‚Ε‚«‚ά‚Ή‚ρ: %1!s!"
@@ -98,7 +96,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "ƒXƒ}[ƒgΪ“®‚πΐs’†c"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "ƒn[ƒhƒƒ“ƒN(&H)"
     IDS_STRING_eMenuSymbolicLink "ƒVƒ“ƒ{ƒƒbƒNƒƒ“ƒN(&S)"
@@ -110,7 +108,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "ƒVƒ“ƒ{ƒƒbƒNƒƒ“ƒN‚Μ’u·(&Y)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "ƒ}ƒEƒ“ƒgƒ|ƒCƒ“ƒg‚Μ’u·(&M)"
     IDS_STRING_eMenuSmartMirror "ƒXƒ}[ƒgƒ~ƒ‰[ƒƒ“ƒO(&I)"
@@ -130,7 +128,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "ƒn[ƒhƒƒ“ƒN(&H)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "ƒVƒ“ƒ{ƒƒbƒNƒƒ“ƒN(&S)"
     IDS_STRING_eMenuJunction1 "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“(&J)"
@@ -150,7 +148,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "‚±‚±‚ΜƒWƒƒƒ“ƒNƒVƒ‡ƒ“ζ‚π•ΟX(&C)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "‚±‚±‚ΙƒXƒ}[ƒgƒRƒs[‚πΐs(&C)"
     IDS_STRING_eMenuDropSymbolicLink1 "‚±‚±‚ΙƒVƒ“ƒ{ƒƒbƒNƒƒ“ƒN‚πμ¬(&C)"
@@ -160,7 +158,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "‚±‚±‚ΙΆ‘γƒRƒs[‚πμ¬(&T)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "ƒtƒ@ƒCƒ‹‚ά‚½‚ΝƒtƒHƒ‹ƒ_‚πƒƒ“ƒN³‚Ζ‚µ‚Δ‘I‘π‚µAƒVƒ“ƒ{ƒƒbƒNEƒn[ƒhƒƒ“ƒN‚Μμ¬‚πJn‚µ‚ά‚·B"
     IDS_STRING_HelpText02   "ƒƒ“ƒN³‚Ζ‚µ‚Δ‘I‘π‚µ‚½ƒtƒ@ƒCƒ‹‚Μƒn[ƒhƒƒ“ƒN‚πμ¬‚µ‚ά‚·B"
@@ -168,7 +166,7 @@ BEGIN
     IDS_STRING_HelpText04   "ƒƒ“ƒN³‚Ζ‚µ‚Δ‘I‘π‚µ‚½ƒtƒHƒ‹ƒ_‚ΜƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚πμ¬‚µ‚ά‚·B"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "ƒtƒHƒ‹ƒ_\¬‚πƒRƒs[‚µA‚»‚Μ’†‚Ιά‚ά‚κ‚ιƒtƒ@ƒCƒ‹‚Μƒn[ƒhƒƒ“ƒN‚πμ¬‚µ‚ά‚·B"
     IDS_STRING_HelpText06   "ƒtƒHƒ‹ƒ_\¬‚πƒRƒs[‚µA‚»‚Μ’†‚Ιά‚ά‚κ‚ιƒtƒ@ƒCƒ‹‚ΜƒVƒ“ƒ{ƒƒbƒNƒƒ“ƒN‚πμ¬‚µ‚ά‚·B"
@@ -185,7 +183,7 @@ BEGIN
     IDS_STRING_HelpText17   "1 Ά‘γ‚Μuƒ^ƒCƒ€ƒ}ƒV[ƒ“ ƒoƒbƒNƒAƒbƒvv‚πμ¬‚µ‚ά‚·B"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "ƒƒ“ƒN³‚Ζ‚µ‚Δ‘I‘π(&L)"
     IDS_STRING_eTopMenuDeleteJunction "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚Μν(&J)"
@@ -205,7 +203,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%4!s!%3!s!%2!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%4!s! (*)%3!s!%2!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%5!s! (%3!d!)%4!s!%2!s!"
@@ -220,25 +218,23 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // Japanese resources
+#endif    // Japanese (Japan) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Chinese (P.R.C.) resources
+// Chinese (Simplified, PRC) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
-#ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 #pragma code_page(936)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "CHS_Drive"
     IDS_STRING_LanguageID   "0x0804"
@@ -248,7 +244,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Α¬½ΣΚτΠΤ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy "Ξή·¨΄΄½¨ΦΗΔάΈ±±Ύ£Ί%1!s!"
     IDS_STRING_ErrExplorerCanNotCreateSmartMirror "Ξή·¨΄΄½¨ΦΗΔάΎµΟρ±Έ·έ£Ί%1!s!"
@@ -262,7 +258,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Σ²Α¬½Σ"
     IDS_STRING_Junction     "ΔΏΒΌΑ¬½Σµγ"
@@ -282,7 +278,7 @@ BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSymlink "Ξή·¨΄΄½¨·ϋΊΕΑ¬½Σ %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone "Ξή·¨΄΄½¨Σ²Α¬½ΣΈ±±Ύ %1!s!"
     IDS_STRING_ErrExplorerCanNotCreateSymlinkClone "Ξή·¨΄΄½¨·ϋΊΕΑ¬½ΣΈ±±Ύ %1!s!"
@@ -302,7 +298,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "ΥύΤΪΦ΄ΠΠΦΗΔάÒΖ¶―²ΩΧχ..."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "Σ²Α¬½Σ(&L)"
     IDS_STRING_eMenuSymbolicLink "·ϋΊΕΑ¬½Σ(&H)"
@@ -314,7 +310,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "Μζ»»·ϋΊΕΑ¬½Σ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Μζ»»΄ΕΕΜΎνΉÒ½Σµγ"
     IDS_STRING_eMenuSmartMirror "ΦΗΔάΎµΟρ(&J)"
@@ -334,7 +330,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "Σ²Α¬½Σ(&L)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "·ϋΊΕΑ¬½Σ(&H)"
     IDS_STRING_eMenuJunction1 "ΔΏΒΌΑ¬½Σµγ(&M)"
@@ -354,7 +350,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "Μζ»»ΔΏΒΌΑ¬½Σµγ(&C)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "΄΄½¨ΦΗΔάΈ±±Ύ(&C)"
     IDS_STRING_eMenuDropSymbolicLink1 "΄΄½¨·ϋΊΕΑ¬½Σ(&C)"
@@ -364,7 +360,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "΄΄½¨¶ΰ°ζ±ΎΦΗΔάΈ±±Ύ(&B)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Ρ΅ΤρΠθΑ¬½ΣµΔΞΔΌώ»ςΔΏΒΌ΅£"
     IDS_STRING_HelpText02   "ΞªΡ΅ΦΠµΔΟξΔΏ΄΄½¨Σ²Α¬½Σ΅£"
@@ -372,7 +368,7 @@ BEGIN
     IDS_STRING_HelpText04   "ΞªΡ΅¶¨ΔΏΒΌ΄΄½¨Α¬½Σµγ΅£"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Ρ­»·Έ΄ΦΖΦΈ¶¨ΔΏΒΌµΔ½αΉΉ£¬²ΆΞªΖδΦΠµΔΞΔΌώ΄΄½¨Σ²Α¬½Σ΅£"
     IDS_STRING_HelpText06   "Ρ­»·Έ΄ΦΖΦΈ¶¨ΔΏΒΌµΔ½αΉΉ£¬²ΆΞªΖδΦΠµΔΞΔΌώ΄΄½¨·ϋΊΕΑ¬½Σ΅£"
@@ -389,7 +385,7 @@ BEGIN
     IDS_STRING_HelpText17   "΄΄½¨¶ΰ°ζ±ΎµΔ±Έ·έΈ±±Ύ£¬Έ±±ΎΌδΟΰΝ¬µΔΞΔΌώΚΉΣΓΣ²Α¬½ΣΉΨΑªÒΤ½ΪΚ΅ΏΥΌδ΅£"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Ρ΅ΤρΤ΄Α¬½Σµγ(&L)"
     IDS_STRING_eTopMenuDeleteJunction "ΙΎ³ύΔΏΒΌΑ¬½Σµγ(&M)"
@@ -409,7 +405,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -424,25 +420,23 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // Chinese (P.R.C.) resources
+#endif    // Chinese (Simplified, PRC) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean resources
+// Korean (Korea) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
-#ifdef _WIN32
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 #pragma code_page(949)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "µε¶σΐΜΊκ"
     IDS_STRING_LanguageID   "0x0409"
@@ -452,7 +446,7 @@ BEGIN
     IDS_STRING_PropPageCaption "ΈµΕ© ΌΣΌΊ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "ΗΟµεΈµΕ©"
     IDS_STRING_Junction     "Α¤ΌΗ"
@@ -473,7 +467,7 @@ BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSymlink "Ε½»φ±β°΅ ½ΙΊΌΈ― ΈµΕ© %1!s!Έ¦ ΈΈµι Όφ Ύψ½ΐ΄Ο΄Ω"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Ε½»φ±β°΅ ΗΟµεΈµΕ© Ε¬·Π %1!s!ΐ» ΈΈµι Όφ Ύψ½ΐ΄Ο΄Ω"
@@ -495,7 +489,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "½ΊΈ¶Ζ® ΐΜµΏΐΜ ΑψΗΰΑί..."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy "Ε½»φ±β°΅ ½ΊΈ¶Ζ® ΊΉ»η %1!s!Έ¦ ΈΈµι Όφ Ύψ½ΐ΄Ο΄Ω"
     IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
@@ -511,7 +505,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "&ΗΟµεΈµΕ©"
     IDS_STRING_eMenuSymbolicLink "&½ΙΊΌΈ― ΈµΕ©"
@@ -523,7 +517,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "΄λΓΌ &½ΙΊΌΈ― ΈµΕ©"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Έ¶ΏξΖ® ΑφΑ΅ &΄λΓΌ"
     IDS_STRING_eMenuSmartMirror "½ΊΈ¶Ζ® &ΉΜ·―"
@@ -543,7 +537,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "&ΗΟµεΈµΕ©"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "&½ΙΊΌΈ― ΈµΕ©"
     IDS_STRING_eMenuJunction1 "&Α¤ΌΗ"
@@ -563,7 +557,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Ώ©±βΏ΅ ΄λΓΌ Α¤ΌΗ ΈΈµι±β"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Ώ©±βΏ΅ ½ΊΈ¶Ζ® ΊΉ»η ΈΈµι±β"
     IDS_STRING_eMenuDropSymbolicLink1 "&Ώ©±βΏ΅ ½ΙΊΌΈ― ΈµΕ© ΈΈµι±β"
@@ -573,7 +567,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Ώ©±βΏ΅ &DeLorean ΊΉ»η ΈΈµι±β"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "ΖΔΐΟΐΜ³ª µπ·ΊΕΝΈ® Ό±ΕΓ."
     IDS_STRING_HelpText02   "Ό±ΕΓΐ» ΗΟµεΈµΕ©·Ξ ΈΈµι±β."
@@ -581,7 +575,7 @@ BEGIN
     IDS_STRING_HelpText04   "Ό±ΕΓµΘ µπ·ΊΕΝΈ®Ώ΅ Α¤ΌΗΐ» ΈΈµι±β."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Ό±ΕΓµΘ µπ·ΊΕΝΈ® ±ΈΑ¶Έ¦ ΐη±ΝΐϋΐΈ·Ξ Ε¬·ΠΗΟ°ν, ΖχΗΤµΘ ΖΔΐΟΐ» ΐ§ΗΡ ΗΟµεΈµΕ© »ύΌΊ."
     IDS_STRING_HelpText06   "Ό±ΕΓµΘ µπ·ΊΕΝΈ® ±ΈΑ¶Έ¦ ΐη±ΝΐϋΐΈ·Ξ Ε¬·ΠΗΟ°ν, ΖχΗΤµΘ ΖΔΐΟΐ» ΐ§ΗΡ ½ΙΊΌΈ― ΈµΕ© »ύΌΊ."
@@ -598,7 +592,7 @@ BEGIN
     IDS_STRING_HelpText17   "DeLorean ΊΉ»ηΐΗ µΗΗ®ΐΜ ΗΟ³ª »ύΌΊ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "ΈµΕ©ΌÒ½Ί &Ό±ΕΓ"
     IDS_STRING_eTopMenuDeleteJunction "Α¤ΌΗ &Α¦°Ε"
@@ -618,7 +612,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -633,25 +627,23 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // Korean resources
+#endif    // Korean (Korea) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Czech resources
+// Czech (Czech Republic) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CSY)
-#ifdef _WIN32
 LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
 #pragma code_page(1250)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Jednotka"
     IDS_STRING_LanguageID   "0x0405"
@@ -661,7 +653,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Vlastnosti odkazu"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Prωzkumnνk nemohl vytvoψit chytrou kopii %1!s!"
@@ -681,7 +673,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Pevnύ odkaz"
     IDS_STRING_Junction     "Rozcestν"
@@ -707,7 +699,7 @@ BEGIN
                             "Prωzkumnνk nemohl vytvoψit symbolickύ odkaz %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Prωzkumnνk nemohl vytvoψit klon pevnιho odkazu %1!s!"
@@ -734,7 +726,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Probνhα chytrύ pψesun…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "&Pevnύ odkaz"
     IDS_STRING_eMenuSymbolicLink "&Symbolickύ odkaz"
@@ -746,7 +738,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "Nahradit s&ymbolickύ odkaz"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Nahradit pψνpojnύ &bod"
     IDS_STRING_eMenuSmartMirror "Chytrι z&rcadlo"
@@ -766,7 +758,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "&Pevnύ odkaz"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "&Symbolickύ odkaz"
     IDS_STRING_eMenuJunction1 "&Rozcestν"
@@ -786,7 +778,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Nahradit zde rozcestν"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Vytvoψit zde chytrou kopii"
     IDS_STRING_eMenuDropSymbolicLink1 "&Vytvoψit zde symbolickύ odkaz"
@@ -796,7 +788,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Vytvoψit zde &DeLoreanovskou kopii"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Oznaθν soubor nebo sloku pro prαci s odkazy."
     IDS_STRING_HelpText02   "Vloν oznaθenou poloku jako pevnύ odkaz."
@@ -804,7 +796,7 @@ BEGIN
     IDS_STRING_HelpText04   "Vytvoψν rozcestν k oznaθenι sloce."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Rekurzivnμ naklonuje strukturu oznaθenι sloky a vytvoψν pevnι odkazy souborωm v nν obsaenι."
     IDS_STRING_HelpText06   "Rekurzivnμ naklonuje strukturu oznaθenι sloky a vytvoψν symbolickι odkazy souborωm v nν obsaenι."
@@ -821,7 +813,7 @@ BEGIN
     IDS_STRING_HelpText17   "Vytvoψν jednu iteraci DeLoreanovskι kopie."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Oznaθit jako &zdroj odkazu"
     IDS_STRING_eTopMenuDeleteJunction "Odstranit &rozcestν"
@@ -842,7 +834,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -857,25 +849,23 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // Czech resources
+#endif    // Czech (Czech Republic) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Polish resources
+// Polish (Poland) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PLK)
-#ifdef _WIN32
 LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
 #pragma code_page(1250)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Dysk"
     IDS_STRING_LanguageID   "0x0415"
@@ -885,7 +875,7 @@ BEGIN
     IDS_STRING_PropPageCaption "W³aciwoci ³Ήcza"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Eksplorator nie moΏe utworzyζ poprawnej kopii %1!s!"
@@ -904,7 +894,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "DowiΉzanie twarde"
     IDS_STRING_Junction     "PowiΉzanie"
@@ -930,7 +920,7 @@ BEGIN
                             "Eksplorator nie moΏe utworzyζ dowiΉzania symbolicznego %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Eksplorator nie moΏe utworzyζ klonu dowiΉzania twardego %1!s!"
@@ -955,7 +945,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Poprawne przenosiny w toku…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "DowiΉzanie &twarde"
     IDS_STRING_eMenuSymbolicLink "DowiΉzanie &symboliczne"
@@ -967,7 +957,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "Zamiana dowiΉzania s&ymbolicznego"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Zamiana p&unktu montowania"
     IDS_STRING_eMenuSmartMirror "Poprawny dupli&at"
@@ -988,7 +978,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "DowiΉzanie &twarde"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "DowiΉzanie &symboliczne"
     IDS_STRING_eMenuJunction1 "&PowiΉzanie"
@@ -1009,7 +999,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Zamiana powiΉzania tutaj"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "P&oprawna kopia tutaj"
     IDS_STRING_eMenuDropSymbolicLink1 "&Utwσrz tutaj dowiΉzanie symboliczne"
@@ -1020,7 +1010,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Kopia deLo&reanska tutaj"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "UΏywa pliku lub katalogu."
     IDS_STRING_HelpText02   "Tworzy dowiΉzanie twarde do wybranego obiektu."
@@ -1028,7 +1018,7 @@ BEGIN
     IDS_STRING_HelpText04   "Tworzy powiΉzanie z wybranym katalogiem."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Klonuje rekursywnie strukturκ wybranego katalogu i wype³nia jΉ dowiΉzaniami twardymi do plikσw w odpowiednich katalogach rσd³owych."
     IDS_STRING_HelpText06   "Klonuje rekursywnie strukturκ wybranego katalogu i wype³nia jΉ dowiΉzaniami symbolicznymi do plikσw w odpowiednich katalogach rσd³owych."
@@ -1045,7 +1035,7 @@ BEGIN
     IDS_STRING_HelpText17   "Przeprowadza cykl tworzenia kopii zapasowej w wybranym katalogu"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "UΏy&j jako rσd³a ³Ήcza"
     IDS_STRING_eTopMenuDeleteJunction "&Usuρ powiΉzanie"
@@ -1066,7 +1056,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -1081,25 +1071,23 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // Polish resources
+#endif    // Polish (Poland) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Slovak resources
+// Slovak (Slovakia) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SKY)
-#ifdef _WIN32
 LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
 #pragma code_page(1250)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Jednotka"
     IDS_STRING_LanguageID   "0x041b"
@@ -1110,7 +1098,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Vlastnosti odkazu"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Prieskumnνk nemτe vytvori inteligentnϊ kσpiu %1!s!"
@@ -1129,7 +1117,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Pevnύ odkaz"
     IDS_STRING_Junction     "Prepojenie"
@@ -1155,7 +1143,7 @@ BEGIN
                             "Prieskumnνk nemτe vytvori symbolickύ odkaz %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Prieskumnνk nemτe vytvori klon pevnιho odkazu %1!s!"
@@ -1179,7 +1167,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Prebieha inteligentnύ presun…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "&Pevnύ odkaz"
     IDS_STRING_eMenuSymbolicLink "&Symbolickύ odkaz"
@@ -1191,7 +1179,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "Nahradi s&ymbolickύ odkaz"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Nahradi &bod pripojenia"
     IDS_STRING_eMenuSmartMirror "&Inteligentnι zrkadlenie"
@@ -1211,7 +1199,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "P&evnύ odkaz"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "&Symbolickύ odkaz"
     IDS_STRING_eMenuJunction1 "&Prepojenie"
@@ -1232,7 +1220,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Nahradi prepojenie"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Vytvori inteligentnϊ kσpiu"
     IDS_STRING_eMenuDropSymbolicLink1 "&Vytvori symbolickύ odkaz"
@@ -1242,7 +1230,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Vytvori &DeLoreanskϊ kσpiu"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Vyberie sϊbor alebo prieθinok pre prαcu s odkazmi."
     IDS_STRING_HelpText02   "Prilepν vύber ako pevnύ odkaz."
@@ -1250,7 +1238,7 @@ BEGIN
     IDS_STRING_HelpText04   "Vytvorν prepojenie k oznaθenιmu prieθinku."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Rekurzνvne naklonuje truktϊru vybratιho prieθinku a vytvorν pevnι odkazy na sϊbory, ktorι obsahuje."
     IDS_STRING_HelpText06   "Rekurzνvne naklonuje truktϊru vybratιho prieθinku a vytvorν symbolickι odkazy na sϊbory, ktorι obsahuje."
@@ -1267,7 +1255,7 @@ BEGIN
     IDS_STRING_HelpText17   "Vytvorν jednu iterαciu DeLoreanskej kσpie."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Vybra &zdroj odkazu"
     IDS_STRING_eTopMenuDeleteJunction "Odstrαni &prepojenie"
@@ -1288,7 +1276,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -1303,25 +1291,23 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // Slovak resources
+#endif    // Slovak (Slovakia) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Russian resources
+// Russian (Russia) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
-#ifdef _WIN32
 LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 #pragma code_page(1251)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Δθρκ"
     IDS_STRING_LanguageID   "0x0419"
@@ -1331,7 +1317,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Ρβξιρςβΰ ρρϋλκθ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Οπξβξδνθκ νε μξζες ρξηδΰςό σμνσώ Smart κξοθώ %1!s!"
@@ -1349,7 +1335,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Ζερςκΰÿ ρρϋλκΰ"
     IDS_STRING_Junction     "Junction ρβÿηό"
@@ -1375,7 +1361,7 @@ BEGIN
                             "Οπξβξδνθκ νε μξζες ρξηδΰςό ρθμβξλθχερκσώ ρρϋλκσ %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Οπξβξδνθκ νε μξζες ρξηδΰςό κλξν ζερςκξι ρρϋλκθ %1!s!"
@@ -1400,7 +1386,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Βϋοξλνÿεςρÿ σμνξε Smart οεπεμεωενθε…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "&Ζερςκσώ ρρϋλκσ"
     IDS_STRING_eMenuSymbolicLink "&Ρθμβξλθχερκσώ ρρϋλκσ"
@@ -1412,7 +1398,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "Ηΰμενσ ρθμβξλθχερκξι ρρϋλκθ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Ηΰμενσ ςξχκθ μξνςθπξβΰνθÿ"
     IDS_STRING_eMenuSmartMirror "Σμνξε Smart ηεπκΰλξ"
@@ -1433,7 +1419,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "&Ζερςκΰÿ ρρϋλκΰ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "&Ρθμβξλθχερκΰÿ ρρϋλκΰ"
     IDS_STRING_eMenuJunction1 "&Junction ρβÿηό"
@@ -1453,7 +1439,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Ηΰμενθςό ηδερό Junction ρβÿηό"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Ρξηδΰςό ηδερό σμνσώ Smart κξοθώ"
     IDS_STRING_eMenuDropSymbolicLink1 "&Ρξηδΰςό ηδερό ρθμβξλθχερκσώ ρρϋλκσ"
@@ -1464,7 +1450,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Ρξηδΰςό ηδερό DeLorean κξοθώ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Ηΰοξμνθςό οσςό τΰιλΰ θλθ κΰςΰλξγΰ."
     IDS_STRING_HelpText02   "Οξμερςθςό βϋαπΰννξε κΰκ ζερςκσώ ρρϋλκσ."
@@ -1472,7 +1458,7 @@ BEGIN
     IDS_STRING_HelpText04   "ΡξηδΰΈς Junction ρβÿηό β βϋαπΰνξι οΰοκε."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Πεκσπρθβνξ κλξνθπσες ρςπσκςσπσ βϋαπΰννξι οΰοκθ θ ρξηδΰΈς ζερςκθε ρρϋλκθ δλÿ ρξδεπζΰωθυρÿ β νει τΰιλξβ."
     IDS_STRING_HelpText06   "Πεκσπρθβνξ κλξνθπσες ρςπσκςσπσ βϋαπΰννξι οΰοκθ θ ρξηδΰΈς ρθμβξλθχερκθε ρρϋλκθ δλÿ ρξδεπζΰωθυρÿ β νει τΰιλξβ."
@@ -1489,7 +1475,7 @@ BEGIN
     IDS_STRING_HelpText17   "Ρξηδΰες ξδθν φθκλ DeLorean κξοθθ."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Ηΰοξμνθςό &θρςξχνθκ ρρϋλκθ"
     IDS_STRING_eTopMenuDeleteJunction "Σδΰλθςό &Junction ρβÿηό"
@@ -1510,7 +1496,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -1525,25 +1511,23 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // Russian resources
+#endif    // Russian (Russia) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// French (Neutral) resources
+// French resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
-#ifdef _WIN32
 LANGUAGE LANG_FRENCH, SUBLANG_NEUTRAL
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Lecteur"
     IDS_STRING_LanguageID   "0x040c"
@@ -1553,7 +1537,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Lien"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Impossible de crιer la copie intelligente %1!s!"
@@ -1574,7 +1558,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Lien physique"
     IDS_STRING_Junction     "Jonction"
@@ -1600,7 +1584,7 @@ BEGIN
                             "Impossible de crιer le lien symbolique %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Impossible de crιer le lien physique %1!s!"
@@ -1628,7 +1612,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Dιplacement intelligent en cours…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "un lien p&hysique"
     IDS_STRING_eMenuSymbolicLink "un lien &symbolique"
@@ -1640,7 +1624,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "en &remplacement du lien symbolique"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "en &remplacement du point de &montage"
     IDS_STRING_eMenuSmartMirror "un m&iroir intelligent"
@@ -1663,7 +1647,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "un lien &physique"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "un lien &symbolique"
     IDS_STRING_eMenuJunction1 "une j&onction"
@@ -1683,7 +1667,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Remplacer cette jonction"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Crιer une co&pie intelligente ici"
     IDS_STRING_eMenuDropSymbolicLink1 "___&Crιer un lien symbolique ici"
@@ -1695,7 +1679,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Crιer une copie &DeLorean ici"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Prend note de la sιlection aux fins de crιation ultιrieure de liens physiques."
     IDS_STRING_HelpText02   "Crιe un lien physique vers la sιlection."
@@ -1703,7 +1687,7 @@ BEGIN
     IDS_STRING_HelpText04   "Crιe une jonction vers le dossier sιlectionnι."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Clone le dossier choisi et ses sous-dossiers, crιant des liens physiques vers les fichiers contenus."
     IDS_STRING_HelpText06   "Clone le dossier choisi et ses sous-dossiers, crιant des liens symboliques vers les fichiers contenus."
@@ -1720,7 +1704,7 @@ BEGIN
     IDS_STRING_HelpText17   "Crιer une itιration d’une copie DeLorean."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Prendre comme cible du &lien"
     IDS_STRING_eTopMenuDeleteJunction "Supprimer la j&onction"
@@ -1741,7 +1725,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -1756,25 +1740,23 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // French (Neutral) resources
+#endif    // French resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Dutch (Neutral) resources
+// Dutch resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
-#ifdef _WIN32
 LANGUAGE LANG_DUTCH, SUBLANG_NEUTRAL
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Drive"
     IDS_STRING_LanguageID   "0x0409"
@@ -1784,7 +1766,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Link Properties"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Explorer can not create Smart Copy %1!s!"
@@ -1802,7 +1784,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Hardlink"
     IDS_STRING_Junction     "Junction"
@@ -1829,7 +1811,7 @@ BEGIN
                             "Explorer can not create the Symbolic Link %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Explorer can not create the Hardlink Clone %1!s!"
@@ -1851,7 +1833,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Smart Move in progress…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "&Hardlink"
     IDS_STRING_eMenuSymbolicLink "&Symbolic Link"
@@ -1863,7 +1845,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "Replacement S&ymbolic Link"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Replacement &Mountpoint"
     IDS_STRING_eMenuSmartMirror "Smart M&irror"
@@ -1885,7 +1867,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "&Hardlink"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "&Symbolic Link"
     IDS_STRING_eMenuJunction1 "&Junction"
@@ -1905,7 +1887,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Create Replacement Junction Here"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Create Smart Copy Here"
     IDS_STRING_eMenuDropSymbolicLink1 "&Create Symbolic Link Here"
@@ -1917,7 +1899,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Create &DeLorean Copy here"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Picks a file or directory."
     IDS_STRING_HelpText02   "Drops the selection as HardLink."
@@ -1925,7 +1907,7 @@ BEGIN
     IDS_STRING_HelpText04   "Creates a Junction to the selected directory."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Recursively clones the selected directory structure, and creates HardLinks for the contained files."
     IDS_STRING_HelpText06   "Recursively clones the selected directory structure, and creates Symbolic Links for the contained files."
@@ -1942,7 +1924,7 @@ BEGIN
     IDS_STRING_HelpText17   "Create one iteration of DeLorean Copy"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Pick &Link Source"
     IDS_STRING_eTopMenuDeleteJunction "Delete &Junction"
@@ -1963,7 +1945,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -1978,25 +1960,23 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // Dutch (Neutral) resources
+#endif    // Dutch resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Swedish (Neutral) resources
+// Swedish resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SVE)
-#ifdef _WIN32
 LANGUAGE LANG_SWEDISH, SUBLANG_NEUTRAL
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Disk"
     IDS_STRING_LanguageID   "0x041D"
@@ -2006,7 +1986,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Lδnkegenskaper"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Utforskaren kan inte skapa Smart kopia %1!s!"
@@ -2027,7 +2007,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Hεrdlδnk"
     IDS_STRING_Junction     "Knutpunkt"
@@ -2053,7 +2033,7 @@ BEGIN
                             "Utforskaren kan inte skapa den symboliska lδnken %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Utforskaren kan inte skapa klon fφr hεrdlδnken %1!s!"
@@ -2079,7 +2059,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Smart flyttning pεgεr…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "&Hεrdlδnk"
     IDS_STRING_eMenuSymbolicLink "&Symbolisk lδnk"
@@ -2091,7 +2071,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "Ersδtt s&ymbolisk lδnk"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Ersδtt &monteringspunkt"
     IDS_STRING_eMenuSmartMirror "Smart s&pegling"
@@ -2111,7 +2091,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "&Hεrdlδnk"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "&Symbolisk lδnk"
     IDS_STRING_eMenuJunction1 "&Knutpunkt"
@@ -2131,7 +2111,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Ersδtt knutpunkt"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Skapa en Smart kopia hδr"
     IDS_STRING_eMenuDropSymbolicLink1 "&Skapa symbolisk lδnk hδr"
@@ -2141,7 +2121,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Skapa en &DeLorean kopia hδr"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Vδljer fil eller mapp."
     IDS_STRING_HelpText02   "Skapar en hεrdlδnk till valt objekt."
@@ -2149,7 +2129,7 @@ BEGIN
     IDS_STRING_HelpText04   "Skapar en knutpunkt till vald mapp."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Klonar vald mappstruktur och skapar hεrdlδnkar fφr alla filer."
     IDS_STRING_HelpText06   "Klonar vald mappstruktur och skapar symboliska lδnkar fφr alla filer."
@@ -2166,7 +2146,7 @@ BEGIN
     IDS_STRING_HelpText17   "Skapar en DeLorean kopia."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Vδlj kδlla fφr &lδnk"
     IDS_STRING_eTopMenuDeleteJunction "Ta bort &knutpunkt"
@@ -2187,7 +2167,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -2202,7 +2182,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // Swedish (Neutral) resources
+#endif    // Swedish resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -2210,17 +2190,15 @@ END
 // German (Germany) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
-#ifdef _WIN32
 LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Laufwerk"
     IDS_STRING_LanguageID   "0x0407"
@@ -2230,7 +2208,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Link Eigenschaften"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Explorer kann die Smarte Kopie %1!s! nicht erstellen"
@@ -2249,7 +2227,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Hardlink"
     IDS_STRING_Junction     "Junction"
@@ -2275,7 +2253,7 @@ BEGIN
                             "Explorer kann den symbolischen Link %1!s! nicht erstellen"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Explorer kann den Hardlink Klon %1!s! nicht erstellen"
@@ -2301,7 +2279,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Smart Move…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "&Hardlink"
     IDS_STRING_eMenuSymbolicLink "&Symbolischer Link"
@@ -2313,7 +2291,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "Verδnderter S&ymbolischer Link"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Verδnderter &Bereitstellungspunkt"
     IDS_STRING_eMenuSmartMirror "Smarte Spiegelkopie"
@@ -2335,7 +2313,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "&Hardlink"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "&Symbolischer Link"
     IDS_STRING_eMenuJunction1 "&Junction"
@@ -2355,7 +2333,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Verδnderte Junction hier erstellen"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Smarte Kopie hier erstellen"
     IDS_STRING_eMenuDropSymbolicLink1 "&Smarte Kopie hier erstellen"
@@ -2367,7 +2345,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "DeLorean Kopie hier einfόgen"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Selektiert ein File oder Verzeichnis."
     IDS_STRING_HelpText02   "Erstellt Hardlinks fuer die ausgewδhlten Dateien."
@@ -2375,7 +2353,7 @@ BEGIN
     IDS_STRING_HelpText04   "Erstellt eine Junction zum ausgewδhlten Verzeichnis."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Klont die erstellte Verzeichnisstruktur rekursiv, und erstellt Hardlinks fόr die enthaltenen Dateien."
     IDS_STRING_HelpText06   "Klont die erstellte Verzeichnisstruktur rekursiv, und erstellt symbolische Links fόr die enthaltenen Dateien."
@@ -2392,7 +2370,7 @@ BEGIN
     IDS_STRING_HelpText17   "Eine Iteration einer DeLorean Kopie erstellen."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "&Link Quelle festsetzen"
     IDS_STRING_eTopMenuDeleteJunction "&Junction lφschen"
@@ -2413,7 +2391,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -2433,13 +2411,11 @@ END
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -2484,8 +2460,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3,8,7,2
- PRODUCTVERSION 3,8,7,2
+ FILEVERSION 3,9,1,3
+ PRODUCTVERSION 3,9,1,3
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -2502,12 +2478,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Hermann Schinagl"
             VALUE "FileDescription", "Link Shell Extension"
-            VALUE "FileVersion", "3, 8, 7, 2"
+            VALUE "FileVersion", "3.9.1.3"
             VALUE "InternalName", "Link Shell Extension"
             VALUE "LegalCopyright", "Copyright © 1999-2019 Hermann Schinagl"
             VALUE "OriginalFilename", "Hardlinkshellext.dll"
             VALUE "ProductName", "Link Shell Extension"
-            VALUE "ProductVersion", "3, 8, 7, 2"
+            VALUE "ProductVersion", "3.9.1.3"
         END
     END
     BLOCK "VarFileInfo"
@@ -2522,7 +2498,7 @@ END
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Drive"
     IDS_STRING_LanguageID   "0x0409"
@@ -2532,7 +2508,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Link Properties"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Hardlink"
     IDS_STRING_Junction     "Junction"
@@ -2559,7 +2535,7 @@ BEGIN
                             "Explorer can not create the Symbolic Link %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Explorer can not create the Hardlink Clone %1!s!"
@@ -2581,7 +2557,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Smart Move in progress…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Explorer can not create Smart Copy %1!s!"
@@ -2599,7 +2575,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "&Hardlink"
     IDS_STRING_eMenuSymbolicLink "&Symbolic Link"
@@ -2611,7 +2587,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "Replacement S&ymbolic Link"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Replacement &Mountpoint"
     IDS_STRING_eMenuSmartMirror "Smart M&irror"
@@ -2633,7 +2609,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "&Hardlink"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "&Symbolic Link"
     IDS_STRING_eMenuJunction1 "&Junction"
@@ -2653,7 +2629,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Create Replacement Junction Here"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Create Smart Copy Here"
     IDS_STRING_eMenuDropSymbolicLink1 "&Create Symbolic Link Here"
@@ -2665,7 +2641,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Create &DeLorean Copy here"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Picks a file or directory."
     IDS_STRING_HelpText02   "Drops the selection as HardLink."
@@ -2673,7 +2649,7 @@ BEGIN
     IDS_STRING_HelpText04   "Creates a Junction to the selected directory."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Recursively clones the selected directory structure, and creates HardLinks for the contained files."
     IDS_STRING_HelpText06   "Recursively clones the selected directory structure, and creates Symbolic Links for the contained files."
@@ -2690,7 +2666,7 @@ BEGIN
     IDS_STRING_HelpText17   "Create one iteration of DeLorean Copy"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Pick &Link Source"
     IDS_STRING_eTopMenuDeleteJunction "Delete &Junction"
@@ -2711,7 +2687,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -2726,7 +2702,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // English (U.S.) resources
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -2734,17 +2710,15 @@ END
 // Italian (Italy) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
-#ifdef _WIN32
 LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Unitΰ"
     IDS_STRING_LanguageID   "0x0410"
@@ -2754,7 +2728,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Proprietΰ del collegamento"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Esplora risorse non puς creare la copia intelligente %1!s!"
@@ -2775,7 +2749,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Reale"
     IDS_STRING_Junction     "Giunzione"
@@ -2802,7 +2776,7 @@ BEGIN
                             "Esplora risorse non puς creare il collegamento simbolico %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Esplora risorse non puς clonare il collegamento reale %1!s!"
@@ -2831,7 +2805,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Spostamento intelligente…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "Collegamento &reale"
     IDS_STRING_eMenuSymbolicLink "Collegamento &simbolico"
@@ -2843,7 +2817,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "S&ostituzione collegamento simbolico"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Sostizione punto di &montaggio"
     IDS_STRING_eMenuSmartMirror "Sincroni&zzazione intelligente"
@@ -2865,7 +2839,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "Collegamento &reale"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "Collegamento &simbolico"
     IDS_STRING_eMenuJunction1 "&Giunzione"
@@ -2885,7 +2859,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Crea giunzione sostitutiva qui"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Crea qui copia intelligente"
     IDS_STRING_eMenuDropSymbolicLink1 "&Crea qui collegamento simbolico"
@@ -2897,7 +2871,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Crea copia &DeLorean qui"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Seleziona un file o una cartella"
     IDS_STRING_HelpText02   "Crea collegamento reale alla selezione"
@@ -2905,7 +2879,7 @@ BEGIN
     IDS_STRING_HelpText04   "Crea giunzione alla cartella selezionata"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Clona ricorsivamente la struttura delle cartelle selezionata e crea collegamenti reali per i file all'interno"
     IDS_STRING_HelpText06   "Clona ricorsivamente la struttura delle cartelle selezionata e crea collegamenti simbolici per i file all'interno"
@@ -2922,7 +2896,7 @@ BEGIN
     IDS_STRING_HelpText17   "Copia DeLorean crea un nuovo backup dai dati esistenti e mantiene lo storico dei backup precedenti"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Usa come origine del collegamento"
     IDS_STRING_eTopMenuDeleteJunction "Elimina giunzione"
@@ -2943,7 +2917,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -2966,17 +2940,15 @@ END
 // Portuguese (Brazil) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
-#ifdef _WIN32
 LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Unidade"
     IDS_STRING_LanguageID   "0x0c0a"
@@ -2986,7 +2958,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Propiedades do vνnculo"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Explorer nγo pode criar o Cσpia Inteligente %1!s!"
@@ -3004,7 +2976,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Hardlink"
     IDS_STRING_Junction     "Junηγo"
@@ -3030,7 +3002,7 @@ BEGIN
                             "Explorer nγo pode criar o Vνnculo Simbσlico %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Explorer nγo pode criar o Clone de Hardlink %1!s!"
@@ -3053,7 +3025,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Mover Inteligente em progresso…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "&Hardlink"
     IDS_STRING_eMenuSymbolicLink "Vνnculo &Simbσlico"
@@ -3065,7 +3037,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "Vνnculo Simbσlico de Substituiηγo"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Ponto de Montagem de Substituiηγo"
     IDS_STRING_eMenuSmartMirror "Espelho Inteligente"
@@ -3086,7 +3058,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "&Hardlink"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "&Vνnculo Simbσlico"
     IDS_STRING_eMenuJunction1 "&Junηγo"
@@ -3106,7 +3078,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "Junηγo de &Substituiηγo aqui"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Criar Cσpia Inteligente aqui"
     IDS_STRING_eMenuDropSymbolicLink1 "&Criar Vνnculo Simbσlico aqui"
@@ -3118,7 +3090,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Criar Cσpia DeLorean aqui"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Seleciona um arquivo ou diretσrio"
     IDS_STRING_HelpText02   "Solta a selecγo como um Hardlink"
@@ -3126,7 +3098,7 @@ BEGIN
     IDS_STRING_HelpText04   "Cria uma Junηγo no diretσrio selecionado"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Clona recursivamente a estrutura do diretσrio selecionado, e cria Hardlinks para os arquivos contidos"
     IDS_STRING_HelpText06   "Clona recursivamente a estrutura do diretσrio selecionado, e cria Vνnculos Simbσlicos para os arquivos contidos"
@@ -3143,7 +3115,7 @@ BEGIN
     IDS_STRING_HelpText17   "Criar uma interaηγo da Cσpia DeLorean"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Selecionar a origem do Vνnculo"
     IDS_STRING_eTopMenuDeleteJunction "Excluir Junηγo"
@@ -3163,7 +3135,7 @@ BEGIN
     IDS_STRING_eTopMenuSmartCopy "Cσpia Inteligente"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -3186,10 +3158,8 @@ END
 // Neutral (Sys. Default) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEUSD)
-#ifdef _WIN32
 LANGUAGE LANG_NEUTRAL, SUBLANG_SYS_DEFAULT
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -3199,7 +3169,9 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_SYS_DEFAULT
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDI_ICON1               ICON                    "res\\JunctionIcon_XP.ico"
+
 IDI_LINKSHLEXT_ICON_TAB ICON                    "res\\Hardlink_XP.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -3221,7 +3193,6 @@ BEGIN
     CONTROL         "Static",IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,78,38,134,11
     EDITTEXT        IDC_PROPPAGE_LINKSHLEXT_HARDLINKS,6,96,210,130,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | NOT WS_VISIBLE | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Static",IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM,6,78,205,8,SS_NOPREFIX | NOT WS_VISIBLE
-    PUSHBUTTON      "Enumerate Siblings",IDC_ENUMERATE_HARDLINK_SIBLINGS,121,231,95,14,NOT WS_VISIBLE
     PUSHBUTTON      "Explore Target",IDC_EXPLORE_TARGET,120,78,95,14,NOT WS_VISIBLE
     LTEXT           "Static",IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE,8,234,61,8,NOT WS_VISIBLE
 END
@@ -3233,7 +3204,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_LINKSHLEXT_PROPPAGE, DIALOG
     BEGIN
@@ -3247,20 +3218,18 @@ END
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Spanish resources
+// Spanish (Spain, International Sort) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)
-#ifdef _WIN32
 LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MODERN
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Unidad"
     IDS_STRING_LanguageID   "0x0c0a"
@@ -3270,7 +3239,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Propiedades del vνnculo"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Explorer no puede crear Copia Inteligente %1!s!"
@@ -3288,7 +3257,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Vνnculo Fuerte"
     IDS_STRING_Junction     "Uniσn"
@@ -3314,7 +3283,7 @@ BEGIN
                             "Explorer no puede crear Vνnculo Simbσlico %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Explorer no puede crear Clon de Vνnculo Fuerte %1!s!"
@@ -3338,7 +3307,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Movimiento inteligente en progreso…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "Vνnculo &Fuerte"
     IDS_STRING_eMenuSymbolicLink "Vνnculo &Simbσlico"
@@ -3350,7 +3319,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "&Remplazo de vνnculo simbσlico"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "R&emplazo de punto de montaje"
     IDS_STRING_eMenuSmartMirror "Espejo Inteligente"
@@ -3370,7 +3339,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "Vνnculo &Fuerte"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "Vνnculo &Simbσlico"
     IDS_STRING_eMenuJunction1 "&Uniσn"
@@ -3390,7 +3359,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Uniσn de reemplazo aquν"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Crear Copia Inteligente aquν"
     IDS_STRING_eMenuDropSymbolicLink1 "&Crear Vνnculo Simbσlico aquν"
@@ -3402,7 +3371,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Crear Copia de &DeLorean aquν"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Selecciona un archivo o directorio"
     IDS_STRING_HelpText02   "Suelta la selecciσn como un Vνnculo Fuerte"
@@ -3410,7 +3379,7 @@ BEGIN
     IDS_STRING_HelpText04   "Crea una Uniσn al directorio seleccionado"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Clona recursivamente la estructura de directorio seleccionada, y crea Vνnculos Fuertes para los archivos contenidos"
     IDS_STRING_HelpText06   "Clona recursivamente la estructura de directorio seleccionada, y crea Vνnculos Simbσlicos para los archivos contenidos"
@@ -3427,7 +3396,7 @@ BEGIN
     IDS_STRING_HelpText17   "Crear una iteraciσn de la copia del DeLorean"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Seleccionar el origen del Vνnculo"
     IDS_STRING_eTopMenuDeleteJunction "Eliminar Uniσn"
@@ -3448,7 +3417,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -3463,25 +3432,23 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // Spanish resources
+#endif    // Spanish (Spain, International Sort) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Greek resources
+// Greek (Greece) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ELL)
-#ifdef _WIN32
 LANGUAGE LANG_GREEK, SUBLANG_DEFAULT
 #pragma code_page(1253)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Οδηγός"
     IDS_STRING_LanguageID   "0x0408"
@@ -3491,7 +3458,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Ιδιότητες δεσμού"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Δεσμός υλικού"
     IDS_STRING_Junction     "Σημείο σύνδεσης"
@@ -3518,7 +3485,7 @@ BEGIN
                             "Η Εξερεύνηση των Windows δε μπορεί να δημιουργήσει τη συμβολική σύνδεση %1!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Η Εξερεύνηση των Windows δε μπορεί να δημιουργήσει τον κλώνο δεσμού υλικού %1!s!"
@@ -3545,7 +3512,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Έξυπνη μετακίνηση σε εξέλιξη…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Η Εξερεύνηση των Windows δε μπορεί να δημιουργήσει το έξυπνο αντίγραφο %1!s!"
@@ -3566,7 +3533,7 @@ BEGIN
                             "Η αυτόματη μετονομασία απέτυχε: %1!s! Επικοινωνήστε με την υποστήριξη"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "&Δεσμό υλικού"
     IDS_STRING_eMenuSymbolicLink "Σ&υμβολικό δεσμό"
@@ -3578,7 +3545,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "&Αντικατάστατο συμβολικού δεσμού"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "&Αντικατάστατο σημείου μονταρίσματος"
     IDS_STRING_eMenuSmartMirror "Έξυπνο κα&τοπτρισμό"
@@ -3601,7 +3568,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "&Δεσμός υλικού"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "Σ&υμβολική σύνδεση"
     IDS_STRING_eMenuJunction1 "&Σημείο σύνδεσης"
@@ -3622,7 +3589,7 @@ BEGIN
                             "&Δημιουργία αντικατάστατου σημείου σύνδεσης εδώ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Δημιουργία έξυπνου αντίγραφου εδώ"
     IDS_STRING_eMenuDropSymbolicLink1 "&Δημιουργία συμβολικού δεσμού εδώ"
@@ -3634,7 +3601,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "&Δημιουργία αντίγραφου DeLorean εδώ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Επιλέγει ένα αρχείο ή κατάλογο."
     IDS_STRING_HelpText02   "Αποθέτει την επιλογή ως δεσμό υλικού."
@@ -3642,7 +3609,7 @@ BEGIN
     IDS_STRING_HelpText04   "Δημιουργεί μια σύνδεση με τον επιλεγμένο κατάλογο."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Κλωνοποιεί αναδρομικά την επιλεγμένη δομή καταλόγου και δημιουργεί δεσμούς υλικού με τα περιεχόμενα αρχεία."
     IDS_STRING_HelpText06   "Κλωνοποιεί αναδρομικά την επιλεγμένη δομή καταλόγου και δημιουργεί συμβολικούς δεσμούς με τα περιεχόμενα αρχεία."
@@ -3659,7 +3626,7 @@ BEGIN
     IDS_STRING_HelpText17   "Δημιουργεί μία επανάληψη του αντίγραφου DeLorean"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Επι&λογή ως προορισμό δεσμού"
     IDS_STRING_eTopMenuDeleteJunction "Διαγραφή &σημείου σύνδεσης"
@@ -3680,7 +3647,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -3695,25 +3662,23 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // Greek resources
+#endif    // Greek (Greece) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Turkish resources
+// Turkish (Turkey) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_TRK)
-#ifdef _WIN32
 LANGUAGE LANG_TURKISH, SUBLANG_DEFAULT
 #pragma code_page(1254)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_DrivePrefix  "Sόrόcό"
     IDS_STRING_LanguageID   "0x041f"
@@ -3723,7 +3688,7 @@ BEGIN
     IDS_STRING_PropPageCaption "Baπlantύ φzellikleri"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
                             "Explorer %1!s! Akύllύ Kopyasύnύ oluώturamύyor"
@@ -3741,7 +3706,7 @@ BEGIN
                             "Auto Rename failed: %1!s! Please contact support"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Hardlink"
     IDS_STRING_Junction     "Junction"
@@ -3766,7 +3731,7 @@ BEGIN
                             "Explorer %1!s! Sembolik Linkini oluώturamύyor"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
                             "Explorer %1!s! Hardlink Klonunu oluώturamύyor"
@@ -3790,7 +3755,7 @@ BEGIN
     IDS_STRING_ProgressSmartMove "Akύllύ taώύma gerηekleώtiriliyor…"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuHardlink "&Hardlink"
     IDS_STRING_eMenuSymbolicLink "&Sembolik Link"
@@ -3802,7 +3767,7 @@ BEGIN
     IDS_STRING_eMenuReplaceSymbolicLink "Yedek S&embolik Link"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuReplaceMountPoint "Yedek Disk Bφlόmό &Baπlama Noktasύ"
     IDS_STRING_eMenuSmartMirror "Akύllύ &Yansύ"
@@ -3824,7 +3789,7 @@ BEGIN
     IDS_STRING_eMenuHardlink1 "&Hardlink"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuSymbolicLink1 "&Sembolik Link"
     IDS_STRING_eMenuJunction1 "&Junction"
@@ -3844,7 +3809,7 @@ BEGIN
     IDS_STRING_eMenuDropReplaceJunction1 "&Burada Yedek Junction Oluώtur"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartCopy1 "&Burada Akύllύ Kopya Oluώtur"
     IDS_STRING_eMenuDropSymbolicLink1 "&Burada Sembolik Link Oluώtur"
@@ -3856,7 +3821,7 @@ BEGIN
     IDS_STRING_eMenuDropDeloreanCopy1 "Burada &DeLorean Kopyasύ oluώtur"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText01   "Bir dosya ya da dizin seηer."
     IDS_STRING_HelpText02   "Seηimi HardLink olarak yapύώtύrύr."
@@ -3864,7 +3829,7 @@ BEGIN
     IDS_STRING_HelpText04   "Seηili dizine bir Junction oluώturur."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_HelpText05   "Dizin yapύsύnύ alt dizinlerle birlikte klonlar ve iηerdiπi dosyalarύn HardLinklerini oluώturur."
     IDS_STRING_HelpText06   "Dizin yapύsύnύ alt dizinlerle birlikte klonlar ve iηerdiπi dosyalarύn Sembolik Linklerini oluώturur."
@@ -3881,7 +3846,7 @@ BEGIN
     IDS_STRING_HelpText17   "DeLorean Kopyasύnύn bir yinelemesini oluώtur"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "&Link Kaynaπύnύ Seη"
     IDS_STRING_eTopMenuDeleteJunction "&Junction'ύ Sil"
@@ -3902,7 +3867,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
     IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
@@ -3917,7 +3882,7 @@ BEGIN
     IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
 END
 
-#endif    // Turkish resources
+#endif    // Turkish (Turkey) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

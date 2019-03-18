@@ -1,16 +1,8 @@
 /*
-Copyright (C) 1999-2001, Hermann Schinagl, Hermann.Schinagl@gmx.net
-
-
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
-
-#define _WIN32_WINNT		0x500
-
-#if defined( UNICODE )	 && ! defined( _UNICODE )
-#define _UNICODE
-#endif
 
 #if defined( _UNICODE ) && ! defined( UNICODE )
 #define UNICODE
@@ -24,7 +16,9 @@ Copyright (C) 1999-2001, Hermann Schinagl, Hermann.Schinagl@gmx.net
 #include <vector>
 #include <algorithm>
 #include <list>
+#include <atomic>
 
+using namespace std;
 
 #include <windows.h>
 #include <winbase.h>
@@ -36,3 +30,15 @@ Copyright (C) 1999-2001, Hermann Schinagl, Hermann.Schinagl@gmx.net
 #include <shlwapi.h>
 #include <sys/stat.h>
 
+#include <ShlObj.h>
+
+#include "..\..\shared\tre-0.8.0\lib\regex.h" 
+
+#include "hardlink_types.h"
+#include "..\hardlink\src\mmfobject.h"
+
+#include "multilang.h"
+
+#include "resource.h"
+
+#pragma comment(lib, "wsock32.lib")

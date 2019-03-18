@@ -18,7 +18,7 @@
 !define LANG_SWEDISH "1053"
 !define LANG_TURKISH "1055"
 
-!define LSE_VERSION "3.8.7.2"
+!define LSE_VERSION "3.9.1.3"
 
 Var WINDOWS_VERSION
 Var COM_SERVER_PATH
@@ -26,9 +26,6 @@ Var REG_PREFIX_
 Var NO_REDIST
 
 Name "Link Shell Extension"
-
-;OutFile HardLinkShellExt_${PLATTFORM}_${CONFIGURATION}.exe
-OutFile HardLinkShellExt_${PLATTFORM}.exe
 
 InstallDir $PROGRAMFILES\LinkShellExtension
 CRCCheck on
@@ -50,18 +47,11 @@ InstallDirRegKey HKLM "Software\LinkShellExtension" "Install_Dir"
 
 
 Function InstPathPlattformCompliant
-  StrCmp ${PLATTFORM} 'win32x64' lbl_preInstallDirEnd
-  
-lbl_ReplaceX86:
-  StrCmp ${PLATTFORM} 'X64' lbl_NoReplaceX86
+  StrCmp ${PLATTFORM} 'X64' lbl_ReplaceX86 lbl_preInstallDirEnd
+  lbl_ReplaceX86:
 	${WordReplace} $INSTDIR " (x86)" "" "+" $R0
 	StrCpy $INSTDIR $R0
-	goto lbl_preInstallDirEnd
-lbl_NoReplaceX86:
-  StrCmp ${PLATTFORM} 'Itanium' lbl_preInstallDirEnd
-	${WordReplace} $INSTDIR " (x86)" "" "+" $R0
-	StrCpy $INSTDIR $R0
-lbl_preInstallDirEnd:
+  lbl_preInstallDirEnd:
 FunctionEnd
 
 
@@ -304,8 +294,6 @@ Function COMServerRegistration
 
 
 
-  WriteRegStr HKCR "$REG_PREFIX_Folder\shellex\ColumnHandlers\{0A479751-02BC-11d3-A855-0004AC2568AA}" "" "HardLink Reference Count"
-
   WriteRegStr HKCR "$REG_PREFIX_Directory\shellex\CopyHookHandlers\HardLinkMenu" "" "{0A479751-02BC-11d3-A855-0004AC2568BB}"
   
   WriteRegStr HKCR "$REG_PREFIX_*\shellex\PropertySheetHandlers\HardLinkMenu" "" "{0A479751-02BC-11d3-A855-0004AC2568CC}"
@@ -399,7 +387,6 @@ Function un.COMServerCleanup
 
   lbl_Common01_deinst:
 
-  DeleteRegKey HKCR "$REG_PREFIX_Folder\shellex\ColumnHandlers\{0A479751-02BC-11d3-A855-0004AC2568AA}"
   DeleteRegKey HKCR "$REG_PREFIX_Directory\shellex\CopyHookHandlers\HardLinkMenu"
   DeleteRegKey HKLM "$REG_PREFIX_Software\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\IconOverlayJunction"
   DeleteRegKey HKLM "$REG_PREFIX_Software\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\IconOverlayHardLink"
@@ -526,17 +513,18 @@ Function .onInit
 	#
 	lbl_NoRedistCheck:
 
-  Call GetWindowsVersion
-  Pop $R0
-  StrCpy $WINDOWS_VERSION $R0
-  ; MessageBox MB_OK "Windows Version '$WINDOWS_VERSION'"
+	Call GetWindowsVersion
+	Pop $R0
+	StrCpy $WINDOWS_VERSION $R0
+	; MessageBox MB_OK "Windows Version '$WINDOWS_VERSION'"
 
+	# Check if prerequisites are available
 	lbl_redistlevel:
 	Processes::VcRedistLevel ${PLATTFORM};
 	Pop $R0
 	StrCmp $R0 "1" lbl_redistlevel_ok
 	StrCmp $NO_REDIST "1" lbl_redistlevel_ok
-	  MessageBox MB_OK "The VS2005 Sp1 Redistributable Package is a prerequiste for Link Shell Extension to work on this plattform. ${SP1_DOWNLOAD}";
+	  MessageBox MB_OK "The VS2017 Sp1 Redistributable Package is a prerequiste for Link Shell Extension to work on this plattform. ${SP1_DOWNLOAD}";
 	  Abort;
 	lbl_redistlevel_ok:
 	
@@ -726,37 +714,23 @@ Section
   ;
   ${GetTime} "" "L" $0 $1 $2 $3 $4 $5 $6
   Rename $INSTDIR\HardlinkShellExt.dll $INSTDIR\HardlinkShellExt.dll.$2$1$0$4$5$6
-  Rename $INSTDIR\RockAllDll.dll $INSTDIR\RockAllDll.$2$1$0$4$5$6
-
+  
   ; If in 64bit mode add the 32bit dll too
   ;
   !ifdef WIN32_REG_PREFIX_
     Rename $INSTDIR\32\HardlinkShellExt.dll $INSTDIR\32\HardlinkShellExt.dll.$2$1$0$4$5$6
-    Rename $INSTDIR\32\RockAllDll.dll $INSTDIR\32\RockAllDll.$2$1$0$4$5$6
 
     SetOutPath $INSTDIR\32
-    File ..\bin\${PLATTFORM_ALTERNATIVE}\${CONFIGURATION}\HardlinkShellExt.dll
-    File ..\bin\${PLATTFORM_ALTERNATIVE}\${CONFIGURATION}\rockalldll.dll
+    File ..\..\bin\${PLATTFORM_ALTERNATIVE}\${CONFIGURATION}\HardlinkShellExt.dll
     File ..\..\bin\${PLATTFORM_ALTERNATIVE}\${CONFIGURATION}\symlink.exe
   !endif
 
   ; go on with the normal part
   ;
   SetOutPath $INSTDIR
-  File ..\bin\${PLATTFORM}\${CONFIGURATION}\HardlinkShellExt.dll
-  File ..\..\LSEConfig\bin\${PLATTFORM}\${CONFIGURATION}\LSEConfig.exe
+  File ..\..\bin\${PLATTFORM}\${CONFIGURATION}\HardlinkShellExt.dll
+  File ..\..\bin\${PLATTFORM}\${CONFIGURATION}\LSEConfig.exe
 
-  ; Add Rockalldll for win32 and x64
-  StrCmp ${PLATTFORM} 'win32' lbl_rockall
-  StrCmp ${PLATTFORM} 'win32x64' lbl_rockall
-  StrCmp ${PLATTFORM} 'X64' lbl_rockall
-    goto lbl_rockall_no
-  
-  lbl_rockall:
-    File ..\bin\${PLATTFORM}\${CONFIGURATION}\rockalldll.dll
-  
-  lbl_rockall_no:
-  
   ; We need an extra symlink.exe with Windows7 to perform the symlinks, but we also need it under XP 
   ; with Backup Mode accquiring SE_DEBUG_PRIVILEGE
     File ..\..\bin\${PLATTFORM}\${CONFIGURATION}\symlink.exe
@@ -857,8 +831,6 @@ Section
 
   File ..\Doc\bitcoinlogo.png
   File ..\Doc\bitcoinlseqr.png
-
-  File "..\Doc\Rockall v4.0 Tool EULA 101204.doc"
 
   File ..\driver\symlink-1.06-x86.cab
   File ..\driver\symlink-1.06-x64.zip

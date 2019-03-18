@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
+
 #include "stdafx.h"
 
 #include "MultiLanguage.h"
@@ -85,7 +89,7 @@ ReplaceWindowTexts(
   EnumWinData EWData;
   EWData.pLangObj = this;
 
-  EnumChildWindows(hWinWnd, EnumProc, (long)&EWData);
+  EnumChildWindows(hWinWnd, EnumProc, (LPARAM)&EWData);
 
   return ERROR_SUCCESS;
 }
@@ -96,7 +100,7 @@ Replace(
   wchar_t*  a_StringKey
 )
 {
-  if (!wcsnicmp(a_StringKey, MLG_PREFIX, MLG_PREFIX_SIZE ))
+  if (!_wcsnicmp(a_StringKey, MLG_PREFIX, MLG_PREFIX_SIZE ))
   {
     UINT  StringId;
     swscanf (&a_StringKey[MLG_PREFIX_SIZE], L"%d", &StringId);

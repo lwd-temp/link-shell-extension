@@ -1,13 +1,14 @@
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
 #include "stdafx.h"
-
-
 
 // ULONG64 gSize, gCount, gDirectories, gJunctions;
 
 void Usage()
 {
-	wprintf(L"Fast recursive directory tree delete utility. (C) 1990-2018 Hermann Schinagl.\n");
+	wprintf(L"Fast recursive directory tree delete utility. (C) 1990-2019 Hermann Schinagl.\n");
 	wprintf(L"Parameter error. Usage: XDEL [drive:][path\\]directory. Version 5.302\n");
 }
 
@@ -18,9 +19,6 @@ void Usage()
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
-
-#define ULTRAGETOPT_REPLACE_GETOPT
-#include "..\Shared\ultragetopt.h"
 
 #define DEL_ONLY_REPARSE
 

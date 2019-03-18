@@ -28,9 +28,6 @@ documentation and/or software.
 #include "md5.h"
 
 
-#include <string.h>
-#include <stdio.h>
-
 /* Constants for Transform routine.
  */
 #define S11 7

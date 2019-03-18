@@ -1,7 +1,5 @@
 
 
-#define _CRT_SECURE_NO_DEPRECATE
-
 #define ERR_SUCCESS 		                  0
 #define ERR_SOURCE_DIR_DOES_NOT_EXIST 		-1
 #define ERR_ARG_IS_NOT_A_DIRECTORY				-2

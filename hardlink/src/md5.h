@@ -1,5 +1,6 @@
-#ifndef MD5_HPP
-#define MD5_HPP
+#pragma once
+
+
 
 /* MD5.H - header file for MD5C.C
  */
@@ -67,6 +68,3 @@ class MD5
 	public:
 		virtual ~MD5();
 };
-
-
-#endif

@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+﻿<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
 <html>
   <head>
     <meta content=
@@ -44,7 +44,7 @@
       <tr>
         <td colspan="2">
           <div style="font-size:.8em; font-family: Arial, 'Segoe UI', Verdana, Geneva, sans-serif; font-style: italic; text-align: right;">
-          <i>Last updated June 15 2017, Version 1.080</i></div>
+          <i>Last updated December 28 2018, Version 1.102</i></div>
         </td>
       </tr>
 
@@ -887,289 +887,391 @@
           <a name="history"><b>History</b></a>
         </td>
         <td valign="bottom">
-          <table cellspacing="0" cellpadding="0" width="100%"
-          border="0">
+            <table cellspacing="0" cellpadding="0" width="100%"
+                   border="0">
 
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font face="arial" size="-1">June 15 2017</font>
-              </td>
-                <td align="left" class="bodytext"><a name="1080">Version 1.080 released.<br>
-                <ul>
-                  <li>Added the <a href=#excludewildcardsdirectories>excludedirectories</a> option.</li>
-                  <li>Added the <a href=#includewildcardsdirectories>includedirectories</a> option.</li>
-                  <li><a href=#wildcard>include</a>/<a href=#exclude>exclude</a>/<a href=#includewildcardsdirectories>includedir</a>/<a href=#excludewildcardsdirectories>excludedir</a> options can take its arguments from file.</li>
-                </ul>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">December 28 2018</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        <a name="1100">
+                            Version 1.102 released.<br>
+                        <ul>
+                            <li>[Internal] but important change from VS2005 (sic) to VS2017. Basically everything compiled smoothly except for the heap, thus...</li>
+                            <li>
+                                [Internal] Removed the Rockall fast heap. This was neccessary, but also a big performance gain. Memory allocation is 2 times faster,
+                                and memory deletion is 10 times faster. Memory allocation is crucial for the core of Dupemerge.
+                            </li>
+                            <li>[Internal] Dropped Itanium configuration, since VS2017 does not support it anymore, and I am sure there is no Itanium hardware out in the wild anymore.</li>
+                        </ul>
+                    </td>
+                </tr>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font face="arial" size="-1">October 18 2014</font>
-              </td>
-                <td align="left" class="bodytext"><a name="1070">Version 1.07.001 released.<br>
-                <ul>
-                  <li>Certain Unicode command line arguments could drive the command line parser crazy.</li>
-                </ul>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">June 15 2017</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        <a name="1080">
+                            Version 1.080 released.<br>
+                            <ul>
+                                <li>Added the <a href=#excludewildcardsdirectories>excludedirectories</a> option.</li>
+                                <li>Added the <a href=#includewildcardsdirectories>includedirectories</a> option.</li>
+                                <li><a href=#wildcard>include</a>/<a href=#exclude>exclude</a>/<a href=#includewildcardsdirectories>includedir</a>/<a href=#excludewildcardsdirectories>excludedir</a> options can take its arguments from file.</li>
+                            </ul>
+                    </td>
+                </tr>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font face="arial" size="-1">August 23th 2013</font>
-              </td>
-                <td align="left" class="bodytext"><a name="1070">Version 1.07 released.<br>
-                <ul>
-                  <li>Dead Junctions to a different drive could lead to not detecting hardlinks during all operations. Very Nasty, but no dataloss caused.</li>
-                </ul>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">October 18 2014</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        <a name="1070">
+                            Version 1.07.001 released.<br>
+                            <ul>
+                                <li>Certain Unicode command line arguments could drive the command line parser crazy.</li>
+                            </ul>
+                    </td>
+                </tr>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font face="arial" size="-1">August 20th 2013</font>
-              </td>
-              <td align="left" class="bodytext"><a name="1060">Version 1.06 released.<br>
-              <ul>
-                <li class="bodytext">Introduced a sanity check for <a href="#error0585">broken NTFS</a> implementations.</li>
-                <li class="bodytext">When hardlinking a tupel of equal files, the tupels <a href="#timestamphandling">common date</a> is the date of the oldest file of the tupel.</li>
-                <li class="bodytext">The statistics is printed after the detailed log and not before.</li>
-                <br>
-                </ul>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">August 23th 2013</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        <a name="1070">
+                            Version 1.07 released.<br>
+                            <ul>
+                                <li>Dead Junctions to a different drive could lead to not detecting hardlinks during all operations. Very Nasty, but no dataloss caused.</li>
+                            </ul>
+                    </td>
+                </tr>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font face="arial" size="-1">August 7th 2013</font>
-              </td>
-              <td align="left" class="bodytext"><a name="1050">Version 1.05 released. <br>
-              <ul>
-                <li class="bodytext">Fixed a crash during cleanup at the very end when all was correctly done.
-                <br></li>
-                <br>
-                </ul>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">August 20th 2013</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        <a name="1060">
+                            Version 1.06 released.<br>
+                            <ul>
+                                <li class="bodytext">Introduced a sanity check for <a href="#error0585">broken NTFS</a> implementations.</li>
+                                <li class="bodytext">When hardlinking a tupel of equal files, the tupels <a href="#timestamphandling">common date</a> is the date of the oldest file of the tupel.</li>
+                                <li class="bodytext">The statistics is printed after the detailed log and not before.</li>
+                                <br>
+                            </ul>
+                    </td>
+                </tr>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font face="arial" size="-1">April 5th 2013</font>
-              </td>
-              <td align="left" class="bodytext"><a name="1040">Version 1.04 released. <br>
-              <ul>
-                <li class="bodytext">Fixed a crash when files were larger than 16gb.
-                <br></li>
-                <br>
-                </ul>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">August 7th 2013</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        <a name="1050">
+                            Version 1.05 released. <br>
+                            <ul>
+                                <li class="bodytext">
+                                    Fixed a crash during cleanup at the very end when all was correctly done.
+                                    <br>
+                                </li>
+                                <br>
+                            </ul>
+                    </td>
+                </tr>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font face="arial" size="-1">October 28th 2012</font>
-              </td>
-              <td align="left" class="bodytext"><a name="1010">Version 1.03 released. <br>
-              <ul>
-                <li class="bodytext">The number of new dupegroups was reported non deterministic when huge amounts of files were scanned, but always calculated correct.
-                <br></li>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">April 5th 2013</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        <a name="1040">
+                            Version 1.04 released. <br>
+                            <ul>
+                                <li class="bodytext">
+                                    Fixed a crash when files were larger than 16gb.
+                                    <br>
+                                </li>
+                                <br>
+                            </ul>
+                    </td>
+                </tr>
 
-                <li class="bodytext">The --output option didn't redirect output properly.
-                <br></li>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">October 28th 2012</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        <a name="1010">
+                            Version 1.03 released. <br>
+                            <ul>
+                                <li class="bodytext">
+                                    The number of new dupegroups was reported non deterministic when huge amounts of files were scanned, but always calculated correct.
+                                    <br>
+                                </li>
 
-                <li class="bodytext">Improved summary statistics.
-                <br></li>
-                
-                <li class="bodytext">Error message is printed out if the 1024 hardlink limit per file is exceeded.
-                <br></li>
-                
-                <br>
-                </ul>
-              </td>
-            </tr>
+                                <li class="bodytext">
+                                    The --output option didn't redirect output properly.
+                                    <br>
+                                </li>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font face="arial" size="-1">October 1st 2012</font>
-              </td>
-              <td align="left" class="bodytext"><a name="1000">Version 1.0 released. <br>
-              <ul>
-                <li class="bodytext">In rare situations not all dupes of a group were merged into one group but in e.g two groups.
-                <br></li>
+                                <li class="bodytext">
+                                    Improved summary statistics.
+                                    <br>
+                                </li>
 
-                <li class="bodytext">Fast file enumeration is now the default.
-                <br></li>
+                                <li class="bodytext">
+                                    Error message is printed out if the 1024 hardlink limit per file is exceeded.
+                                    <br>
+                                </li>
 
-                <li class="bodytext">Little tweaks here and there, but in general a long journey has ended and this version qualifies for a 1.0 release
-                <br></li>
+                                <br>
+                            </ul>
+                    </td>
+                </tr>
 
-                <br>
-                </ul>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">October 1st 2012</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        <a name="1000">
+                            Version 1.0 released. <br>
+                            <ul>
+                                <li class="bodytext">
+                                    In rare situations not all dupes of a group were merged into one group but in e.g two groups.
+                                    <br>
+                                </li>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font face="arial" size="-1">September 16th 2012</font>
-              </td>
-              <td align="left" class="bodytext">Version 0.9998 released. <br>
-              <ul>
-                <li class="bodytext">Fixed a bug which caused the message 'Could not map view of file' to show up on certain files, causing the files to be not part of the deduping process
-                <br></li>
-                <li class="bodytext">Fixed a problem, where dupemerge did not find all dupes.
-                <br></li>
-                <li class="bodytext">Time during operation is printed in readable hh:mm:ss.mss
-                <br></li>
-                <li class="bodytext">Dupemerge now uses the fast file enumerator which is also used in LSE and ln.exe. This speeds up file enumeration by the factor 10+
-                <br></li>
+                                <li class="bodytext">
+                                    Fast file enumeration is now the default.
+                                    <br>
+                                </li>
 
-                <li class="bodytext">Fixed a problem where files larger than 4gb were never detected as dupes.
-                <br></li>
-                <li class="bodytext">Files larger than 4gb sometimes might have caused the 'Could map view of file' error message
-                <br></li>
-                <li class="bodytext">In general filesize is not a limiting factor anymore
-                <br></li>
+                                <li class="bodytext">
+                                    Little tweaks here and there, but in general a long journey has ended and this version qualifies for a 1.0 release
+                                    <br>
+                                </li>
 
-                <li class="bodytext">DupeMerge now also handles files with ReadOnly attribute set
-                <br></li>
+                                <br>
+                            </ul>
+                    </td>
+                </tr>
 
-                <li class="bodytext">Added the --output option
-                <br></li>
-                <li class="bodytext">Added a <a href="#output"></a>error reporting</a> capabilty.
-                <br></li>
-                <li class="bodytext">Added the <a href="#exclude">--exclude</a> option
-                <br></li>
-                <li class="bodytext">Fixed the statistic output so that only new dupegroups are printed out.
-                <br></li>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">September 16th 2012</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        Version 0.9998 released. <br>
+                        <ul>
+                            <li class="bodytext">
+                                Fixed a bug which caused the message 'Could not map view of file' to show up on certain files, causing the files to be not part of the deduping process
+                                <br>
+                            </li>
+                            <li class="bodytext">
+                                Fixed a problem, where dupemerge did not find all dupes.
+                                <br>
+                            </li>
+                            <li class="bodytext">
+                                Time during operation is printed in readable hh:mm:ss.mss
+                                <br>
+                            </li>
+                            <li class="bodytext">
+                                Dupemerge now uses the fast file enumerator which is also used in LSE and ln.exe. This speeds up file enumeration by the factor 10+
+                                <br>
+                            </li>
 
-                <br>
-                </ul>
-              </td>
-            </tr>
+                            <li class="bodytext">
+                                Fixed a problem where files larger than 4gb were never detected as dupes.
+                                <br>
+                            </li>
+                            <li class="bodytext">
+                                Files larger than 4gb sometimes might have caused the 'Could map view of file' error message
+                                <br>
+                            </li>
+                            <li class="bodytext">
+                                In general filesize is not a limiting factor anymore
+                                <br>
+                            </li>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font face="arial" size="-1">February 25th 2012</font>
-              </td>
-              <td align="left" class="bodytext">Version 0.9994 released. <br>                <ul>
-                <li class="bodytext">Dupemerge does not climb down junctions or symbolic link directories and ignores symbolic link files.<br>
-                </li>
-                <br>
-                </ul>
-              </td>
-            </tr>
+                            <li class="bodytext">
+                                DupeMerge now also handles files with ReadOnly attribute set
+                                <br>
+                            </li>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font face="arial" size="-1">December 17th 2010</font>
-              </td>
-              <td align="left" class="bodytext">Version 0.9993 released. <br>                <ul>
-                <li class="bodytext">Dupemerge does not merge more than 1022 equal files, because there is a
-                    NTFS limit of having not more than 1023 hardlinks to one file. This is a temporary 
-                  solution. Let's see what can be done to improve situation here.<br></li>
-                <li class="bodytext">The regular expression machine used in dupemerge has been changed to tre-0.8.0, 
-                    which means regexp patterns are no longer case sensitive, and the regexp machine
-                    works for 100%.
-                <br></li>
-                <br>
-                </ul>
-              </td>
-            </tr>
+                            <li class="bodytext">
+                                Added the --output option
+                                <br>
+                            </li>
+                            <li class="bodytext">
+                                Added a <a href="#output"></a>error reporting</a> capabilty.
+                                <br>
+                            </li>
+                            <li class="bodytext">
+                                Added the <a href="#exclude">--exclude</a> option
+                                <br>
+                            </li>
+                            <li class="bodytext">
+                                Fixed the statistic output so that only new dupegroups are printed out.
+                                <br>
+                            </li>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">June 29th 2008
-              </td>
-              <td align="left" class="bodytext">Version 0.999 released. <br>
-                Dupemerge preserves the timestamps of original files when it merges the files via hardlinks.<br><br>
-                Itanium binaries are available.<br><br>
-              </td>
-            </tr>
+                            <br>
+                        </ul>
+                    </td>
+                </tr>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">October 21st 2007
-              </td>
-              <td align="left" class="bodytext">Version 0.998 released. <br>
-                Dupemerge respects the NTFS limit of having not more than 1023 hardlinks on one file<br><br>
-                Binaries are now available for 32bit and 64bit, because the compiler for this tool changed to VS2005<br><br>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">February 25th 2012</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        Version 0.9994 released. <br>                <ul>
+                            <li class="bodytext">
+                                Dupemerge does not climb down junctions or symbolic link directories and ignores symbolic link files.<br>
+                            </li>
+                            <br>
+                        </ul>
+                    </td>
+                </tr>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font face="arial" size="-1">January 25th 2007</font>
-              </td>
-              <td align="left" class="bodytext">Version 0.997
-                released. <br>
-                There is an issue with dupemerge when it climbs down junctions/symbolic links. Until a proper
-                fix to the main-algorithm is out, dupemerge is does not run down junctions/symbolic links, and
-                it keeps files below junctions/symbolic links completely untouched.<br><br>
-				        <br><br>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">December 17th 2010</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        Version 0.9993 released. <br>                <ul>
+                            <li class="bodytext">
+                                Dupemerge does not merge more than 1022 equal files, because there is a
+                                NTFS limit of having not more than 1023 hardlinks to one file. This is a temporary
+                                solution. Let's see what can be done to improve situation here.<br>
+                            </li>
+                            <li class="bodytext">
+                                The regular expression machine used in dupemerge has been changed to tre-0.8.0,
+                                which means regexp patterns are no longer case sensitive, and the regexp machine
+                                works for 100%.
+                                <br>
+                            </li>
+                            <br>
+                        </ul>
+                    </td>
+                </tr>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font size="-1" face="arial">November 3rd 2006</font>
-              </td>
-              <td align="left" class="bodytext">Version 0.995
-                released. <br>
-              Improved the <i>recursive runner</i> performance, which yields faster scanning time.<br><br>
-              Fixed a super rare merging bug, if dupemerge was run a second time on the same directory
-              and file sizes and numbers were in a super rare constellation.<br><br>
-              Migrated to the hardlink baseservices components, which also drive
-              <a href="../hardlinkshellext/hardlinkshellext.html">LinkShellExt</a> and
-              <a href="../ln/ln.html">ln</a>.<br><br>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        June 29th 2008
+                    </td>
+                    <td align="left" class="bodytext">
+                        Version 0.999 released. <br>
+                        Dupemerge preserves the timestamps of original files when it merges the files via hardlinks.<br><br>
+                        Itanium binaries are available.<br><br>
+                    </td>
+                </tr>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font size="-1" face="arial">March 18th
-                2006</font>
-              </td>
-              <td align="left" class="bodytext">Version 0.991 released.<br>
-                Fixed a critcal merging bug, which occur ed in very rare situations, when
-                dupemerge was run a second time on the same directory. Did tests on large
-                amounts of data, and checked the output via a second program, to prove integrity.<br><br>
-                Added calculation on savings resulting in running dupemerge, even with -l switch.<br><br>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        October 21st 2007
+                    </td>
+                    <td align="left" class="bodytext">
+                        Version 0.998 released. <br>
+                        Dupemerge respects the NTFS limit of having not more than 1023 hardlinks on one file<br><br>
+                        Binaries are now available for 32bit and 64bit, because the compiler for this tool changed to VS2005<br><br>
+                    </td>
+                </tr>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font size="-1" face="arial">February 17th
-                2006</font>
-              </td>
-              <td align="left" class="bodytext">Version 0.985
-                released. Added a check if given paths are on NTFS drives.<br><br>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font face="arial" size="-1">January 25th 2007</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        Version 0.997
+                        released. <br>
+                        There is an issue with dupemerge when it climbs down junctions/symbolic links. Until a proper
+                        fix to the main-algorithm is out, dupemerge is does not run down junctions/symbolic links, and
+                        it keeps files below junctions/symbolic links completely untouched.<br><br>
+                        <br><br>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font size="-1" face="arial">November 3rd 2006</font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        Version 0.995
+                        released. <br>
+                        Improved the <i>recursive runner</i> performance, which yields faster scanning time.<br><br>
+                        Fixed a super rare merging bug, if dupemerge was run a second time on the same directory
+                        and file sizes and numbers were in a super rare constellation.<br><br>
+                        Migrated to the hardlink baseservices components, which also drive
+                        <a href="../hardlinkshellext/hardlinkshellext.html">LinkShellExt</a> and
+                        <a href="../ln/ln.html">ln</a>.<br><br>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font size="-1" face="arial">
+                            March 18th
+                            2006
+                        </font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        Version 0.991 released.<br>
+                        Fixed a critcal merging bug, which occur ed in very rare situations, when
+                        dupemerge was run a second time on the same directory. Did tests on large
+                        amounts of data, and checked the output via a second program, to prove integrity.<br><br>
+                        Added calculation on savings resulting in running dupemerge, even with -l switch.<br><br>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font size="-1" face="arial">
+                            February 17th
+                            2006
+                        </font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        Version 0.985
+                        released. Added a check if given paths are on NTFS drives.<br><br>
+                    </td>
+                </tr>
 
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font size="-1" face="arial">Novemver 5th
-                2005</font>
-              </td>
-              <td align="left" class="bodytext">Version 0.98
-                released. Fixed the problems with bogus progress output.<br><br>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font size="-1" face="arial">
+                            Novemver 5th
+                            2005
+                        </font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        Version 0.98
+                        released. Fixed the problems with bogus progress output.<br><br>
+                    </td>
+                </tr>
 
-            <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                <font size="-1" face="arial">January 10th
-                2005</font>
-              </td>
-              <td align="left" class="bodytext">Version 0.95
-                released<br>
-              </td>
-            </tr>
+                <tr>
+                    <td align="left" width="150" valign="top" class="bodytext">
+                        <font size="-1" face="arial">
+                            January 10th
+                            2005
+                        </font>
+                    </td>
+                    <td align="left" class="bodytext">
+                        Version 0.95
+                        released<br>
+                    </td>
+                </tr>
 
 
 
-          </table>
+            </table>
         </td>
       </tr>
       <tr>
@@ -1182,7 +1284,7 @@
       <td align="right"
           valign="top"><b><font color="#25049F" size="-1" face="arial">Status</font></b></td>
 
-      <td valign="bottom" class="bodytext">The 1.07 version is the base for ongoing development, which will be the support 
+      <td valign="bottom" class="bodytext">The 1.100 version is the base for ongoing development, which will be the support 
       for multi-core machines, so that has calculation is distributed onto all available cores.
       <br></td>
     </tr>
@@ -1213,7 +1315,7 @@
         </td>
         <td valign="bottom">
           
-          <p class="bodytext">With Dupemerge 1.07 all known open issues have been worked off.</p>
+          <p class="bodytext">With Dupemerge 1.100 all known open issues have been worked off.</p>
         </td>
       </tr>
       <tr>
@@ -1231,7 +1333,6 @@
           <li>ln.exe uses <a href="http://laurikari.net/tre/">tre</a> the as regular expression machine. See the BSD 
           style <a href="license_tre.txt">tre license</a>.</li>
           <li>ln.exe uses <a href="http://kevinlocke.name/programs/ultragetopt.php">ultragetopt</a> for command line parsing. See the <a href="license_ultragetop.txt">ultragetopt license</a>.</li>
-          <li>ln.exe uses the Rockall v4.0 heapmanager for fast heap operations. See the <a href="Rockall v4.0 Tool EULA 101204.doc">EULA</a>.</li>
         </td>
       </tr>
       <tr>
@@ -1311,31 +1412,17 @@
 
           <tr>
             <td align="left" width="150" valign="top" class="bodytext">
-			  
-				<b>
-				Windows 2000<br>
-				Windows XP<br>
-				Windows Server 2003<br>
-				Windows Vista<br>
-				Windows 7/8
-				<br>
-				</b>
-              
+				<b>All Windows 32bit</b>
             </td>
 
             <td align="left" class="bodytext">
-                Please make sure that the necessary runtime .dlls are installed on your system.
-                This prerequisites package can be downloaded from Microsoft:<br><br>
-                <a href="http://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_x86.EXE">
-                  <center>vcredist_x86.exe for VS2005 SP1, version 6195/June 2011 (2.6 Mb)</center>
-				</a>
-
-				<br>
-				Afterwards install the
-				<br><a href="http://www.schinagl.priv.at/nt/dupemerge/dupemerge.zip">
-				  <center>dupemerge.zip (167kB)</center>
-				</a>
-				<br>
+                Simply download and extract
+                <a href="http://schinagl.priv.at/nt/dupemerge/dupemerge.zip"> dupemerge.zip (174kB) </a>
+                to your favourite tools directory. All neccesary runtime dlls are already installed on your system, but if not, grab them from
+                <a href="https://www.microsoft.com/de-at/download/details.aspx?id=48145">here.</a>
+                <br />
+                <br />
+                <br>
             </td>
           </tr>
 
@@ -1344,28 +1431,19 @@
 		  </tr>
 
           <tr>
-            <td align="left" width="150" valign="top" class="bodytext"><p><b>
-              Vista64<br>
-              Windows XP64<br>
-              Windows 7/8</b><b> 64<br>
-            </b></p></td>
+              <td align="left" width="150" valign="top" class="bodytext">
+                      <b>All Windows 64bit</b>
+              </td>
 
-            <td align="left" class="bodytext">
-                Please make sure that the necessary runtime .dlls are installed on your system.
-                This prerequisites package can be downloaded from Microsoft:<br><br>
-                <a href="http://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_x64.EXE">
-                <center>vcredist_x64.exe for VS2005 SP1, version 6195/June 2011 (3.0 Mb)</center>
-				</a>
-
-				<br>
-				Afterward install the
-				<br>				<center><a href="http://www.schinagl.priv.at/nt/dupemerge/dupemerge64.zip">
-				  dupemerge64.zip (220kB)</a></center>
-				
-				<br>
-
-				<br>				<br>
-            </td>
+              <td align="left" class="bodytext">
+                  Simply download and extract
+                  <a href="http://schinagl.priv.at/nt/dupemerge/dupemerge64.zip"> dupemerge64.zip (219kB) </a>
+                  to your favourite tools directory. All neccesary runtime dlls are already installed on your system, but if not, grab them from
+                  <a href="https://www.microsoft.com/de-at/download/details.aspx?id=48145">here.</a>
+                  <br />
+                  <br />
+                  <br>
+              </td>
           </tr>
 
           <tr>
@@ -1375,22 +1453,27 @@
             </td>
 
             <td align="left" class="bodytext">
+                The Itanium version is not supported anymore, but the last VS2005 based version 1.0.8.0 is kept for legacy.
                 Please make sure that the necessary runtime .dlls are installed on your system.
                 This prerequisites package can be downloaded from Microsoft:<br><br>
-				<center>
-                <a href="http://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_IA64.EXE">
-                  <center>
-                    vcredist_IA64.exe for VS2005 SP1, version 6195/June 2011 (6.3 Mb)</center>
-                </a>
-				</center>
-				
+                <center>
+                    <a href="http://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_IA64.EXE">
+                        <center>
+                            vcredist_IA64.exe for VS2005 SP1, version 6195/June 2011 (6.3 Mb)
+                        </center>
+                    </a>
+                </center>
 
-				<br>
-				Afterwards install the
-					<br><center><a href="http://www.schinagl.priv.at/nt/dupemerge/dupemergeItanium.zip">
-				  dupemergeItanium.zip (347kB)</a></center>
-				
-				<br>
+
+                <br>
+                Afterwards install the
+                <br><center>
+                    <a href="http://www.schinagl.priv.at/nt/dupemerge/dupemergeItanium.zip">
+                        dupemergeItanium.zip (347kB)
+                    </a>
+                </center>
+
+                <br>
             </td>
           </tr>
 

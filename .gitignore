@@ -15,6 +15,8 @@
 
 [Oo]bj/
 [Ll]og/
+[Ll]ib/
+[Bb]in/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -35,7 +37,7 @@ TestResult.xml
 *.obj
 *.iobj
 *.pch
-vc80.pdb
+*.pdb
 *.ipdb
 *.pgc
 *.pgd

@@ -2239,7 +2239,7 @@ tre_version(void)
   if (str[0] == 0)
     {
       (void) tre_config(TRE_CONFIG_VERSION, &version);
-      (void) snprintf(str, sizeof(str), "TRE %s (BSD)", version);
+      (void) sprintf_s(str, sizeof(str), "TRE %s (BSD)", version);
     }
   return str;
 }

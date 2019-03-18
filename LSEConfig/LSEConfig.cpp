@@ -1,5 +1,7 @@
-// LSEConfig.cpp : Defines the class behaviors for the application.
-//
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
+
 
 #include "stdafx.h"
 #include "LSEConfig.h"
@@ -31,7 +33,7 @@ END_MESSAGE_MAP()
 
 CLSEConfigApp::CLSEConfigApp()
 {
-	// TODO: add construction code here,
+	// TODO:: add construction code here,
 	// Place all significant initialization in InitInstance
 }
 
@@ -65,7 +67,7 @@ BOOL CLSEConfigApp::InitInstance()
 	// of your final executable, you should remove from the following
 	// the specific initialization routines you do not need
 	// Change the registry key under which our settings are stored
-	// TODO: You should modify this string to be something appropriate
+	// TODO:: You should modify this string to be something appropriate
 	// such as the name of your company or organization
 	SetRegistryKey(_T("LSEConfig"));
 

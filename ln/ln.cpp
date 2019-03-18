@@ -1,25 +1,15 @@
-﻿ 
-#define _WIN32_WINNT		0x500
+﻿/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
+// TODO ERROR: 'test\hardlinks' and '' are not on same volume, wenn der Pfad falsch ist
+// TODO Bei --delete das Root verzeichnis löschen
 
 #include "stdafx.h"
-
-#include "resource.h"
-
-#include "..\hardlink\include\hardlink_types.h"
-#include "..\hardlink\src\MmfObject.h"
 
 #include "AsyncContext.h"
 #include "hardlink.h"
 #include "HardlinkUtils.h"
-
-#define ULTRAGETOPT_REPLACE_GETOPT
-#include "..\Shared\ultragetopt.h"
-
-#if defined USE_ROCKALL_HEAPMANAGER
-#  include "FastHeap.hpp"
-   extern FAST_HEAP MyHeap;
-#endif
 
 #include "ln.h"
 
@@ -27,7 +17,6 @@
 #pragma comment( lib, "advapi32.lib" )
 
 extern _locale_t g_locale_t;
-
 
 const char						exec_name[] = "ln";
 
@@ -97,9 +86,10 @@ static struct option	long_options_symbolic[] =
 	{ "progress", no_argument, NULL, '\0' }, // Shows the progress
 	{ "merge", required_argument, NULL, '\0' }, // Merges two delorean sets
 	{ "delete", required_argument, NULL, '\0' }, // Deletes a tree and take care of hardlinks
+  { "supportfs", required_argument, NULL, '\0' }, 
   { "follow", optional_argument, NULL, '\0' },
   { "followregexp", optional_argument, NULL, '\0' },
-	{ 0, 0, 0, 0 }
+  { 0, 0, 0, 0 }
 };
 
 static struct option	long_options[] =
@@ -167,10 +157,14 @@ static struct option	long_options[] =
 	{ "progress", no_argument, NULL, '\0' }, // undocumented, Shows the progress
 	{ "merge", required_argument, NULL, '\0' }, // Merges two delorean sets
 	{ "delete", required_argument, NULL, '\0' }, // Deletes a tree and take care of hardlinks
+  { "supportfs", required_argument, NULL, '\0' },
   { "follow", optional_argument, NULL, '\0' },
   { "followregexp", optional_argument, NULL, '\0' },
-	{ 0, 0, 0, 0 }
+  { 0, 0, 0, 0 }
 };
+
+
+// TODO Es gibt ein neues getopt
 
 // With symbolic options on the index of just long opts starts with
 //
@@ -223,51 +217,55 @@ HardlinkList(
   bool    aTradtional
 )
 {
-	wchar_t	LinkName[HUGE_PATH + 2];
-	DWORD LinkNameLength = HUGE_PATH; 
-	PWCHAR	FilePart;
+  wchar_t	LinkName[HUGE_PATH + 2];
+  DWORD LinkNameLength = HUGE_PATH;
+  PWCHAR	FilePart;
   int RetVal = ERROR_SUCCESS;
-	
-	if (!pfnFindNextFileNameW || aTradtional)
-	{
-		FileInfoContainer	FileList;
-		ln_EnumHardlinkSiblingsGlue	Glue;
-  	_PathNameStatusList PathNameStatusList;
-		FileList.EnumHardlinkSiblings(fromFile, L"", &Glue, false, &PathNameStatusList, NULL);
+
+  if (true == aTradtional || PathIsUNC(fromFile))
+  {
+    // Enumerate the home-grown way, but for UNC Path this is the only way to acchieve results
+    FileInfoContainer	FileList;
+    ln_EnumHardlinkSiblingsGlue	Glue;
+    _PathNameStatusList PathNameStatusList;
+
+    wchar_t uncPath[HUGE_PATH];
+    wchar_t* pUncPath = nullptr;
+    pUncPath = ResolveUNCPath(fromFile, uncPath);
+
+    FileList.EnumHardlinkSiblings(pUncPath ? uncPath : fromFile, L"", &Glue, false, &PathNameStatusList, NULL);
 
     DeletePathNameStatusList(PathNameStatusList);
 
-		return RetVal;
-	}
-
-  int LinkNameIdx = 0;
-  if (!PathIsUNC(fromFile))
-  {
-	  wchar_t FullName[HUGE_PATH];
-	  GetFullPathName(fromFile, HUGE_PATH, FullName, &FilePart); 
-
-    if (IsVeryLongPath(FullName))
-      LinkNameIdx = PATH_PARSE_SWITCHOFF_SIZE;
-
-    // Follow a possible subst chain, until we end up with e.g \Device\HardDisk\Volume4
-    do
-    {
-      wcscpy_s(LinkName, HUGE_PATH, &FullName[LinkNameIdx]);
-      LinkName[2] = 0x00;
-      QueryDosDevice(LinkName, FullName, HUGE_PATH);
-    }
-    // a subst on a subst can be recognized by \??\ as prefix to e.g. \??\f:\tmp
-    while(FullName[1] == '?');
+    return RetVal;
   }
 
-	HANDLE FindHardLinkHandle = pfnFindFirstFileNameW(fromFile, 0, &LinkNameLength, &LinkName[2]);
-	if (INVALID_HANDLE_VALUE != FindHardLinkHandle)
+  // Enumerate with built-in functions
+  int LinkNameIdx = 0;
+  wchar_t FullName[HUGE_PATH];
+  GetFullPathName(fromFile, HUGE_PATH, FullName, &FilePart);
+
+  if (IsVeryLongPath(FullName))
+    LinkNameIdx = PATH_PARSE_SWITCHOFF_SIZE;
+
+  // Follow a possible subst chain, until we end up with e.g \Device\HardDisk\Volume4
+  do
   {
-		do
-		{
-			fwprintf(gStdOutFile, L"%s\n", LinkName);
-			LinkNameLength = HUGE_PATH; 
-		} while (pfnFindNextFileNameW(FindHardLinkHandle, &LinkNameLength, &LinkName[2]));
+    wcscpy_s(LinkName, HUGE_PATH, &FullName[LinkNameIdx]);
+    LinkName[2] = 0x00;
+    QueryDosDevice(LinkName, FullName, HUGE_PATH);
+  }
+  // a subst on a subst can be recognized by \??\ as prefix to e.g. \??\f:\tmp
+  while (FullName[1] == '?');
+
+  HANDLE FindHardLinkHandle = FindFirstFileNameW(fromFile, 0, &LinkNameLength, &LinkName[2]);
+  if (INVALID_HANDLE_VALUE != FindHardLinkHandle)
+  {
+    do
+    {
+      fwprintf(gStdOutFile, L"%s\n", LinkName);
+      LinkNameLength = HUGE_PATH;
+    } while (FindNextFileNameW(FindHardLinkHandle, &LinkNameLength, &LinkName[2]));
 
     FindClose(FindHardLinkHandle);
   }
@@ -278,11 +276,11 @@ HardlinkList(
     size_t FromFileIdx = 0;
     if (IsVeryLongPath(fromFile))
       FromFileIdx = PATH_PARSE_SWITCHOFF_SIZE;
-    fwprintf (gStdOutFile, L"!?d(0x%08x) %s\n", LastError, &fromFile[FromFileIdx]);
+    fwprintf(gStdOutFile, L"!?d(0x%08x) %s\n", LastError, &fromFile[FromFileIdx]);
     RetVal = LastError;
   }
 
-	return RetVal;
+  return RetVal;
 }
 
 int
@@ -366,50 +364,38 @@ HardlinkEnum(
 	return hardlinksgroups;
 }
 
-void PrintProgress(__int64 aPercentage, SYSTEMTIME& aTimeLeft)
+void PrintProgress(__int64 aPercentage, ProgressPrediction& aProgressPrediction)
 {
-  wprintf (L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b%3d%%, Time left: %02d:%02d:%02d",
-    (int)aPercentage,
-    aTimeLeft.wHour,
-    aTimeLeft.wMinute,
-    aTimeLeft.wSecond);
-}
-
-void PrintProgressEnd(FILETIME64& aStartTime)
-{
-  FILETIME64 TimeElapsed, CurrentTime;
-
-  SYSTEMTIME time;
-  GetSystemTime(&time);
-  SystemTimeToFileTime(&time, &CurrentTime.FileTime);
-  
-  TimeElapsed.ul64DateTime = CurrentTime.ul64DateTime - aStartTime.ul64DateTime;
-
-  FileTimeToSystemTime(&TimeElapsed.FileTime, &time);
-
-  wprintf (L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b100%%, Time elapsed: %02d:%02d:%02d\n",
-    time.wHour,
-    time.wMinute,
-    time.wSecond);
-}
-
-void CalcProgress(int aPercentage, __int64 aMaxProgress, __int64 aCurrentProgress, FILETIME64& aStartTime)
-{
-  if (aCurrentProgress > 0)
+  SYSTEMTIME timeLeft;
+  Effort  effort;
+  // Only print progress if prediction was possible
+  if (aProgressPrediction.TimeLeft(timeLeft, effort))
   {
-    FILETIME64  CurrentTime, TimeLeft;
-
-    SYSTEMTIME ct;
-    GetSystemTime(&ct);
-    SystemTimeToFileTime(&ct, &CurrentTime.FileTime);
-
-    TimeLeft.ul64DateTime = CurrentTime.ul64DateTime - aStartTime.ul64DateTime;
-    // Calc in __int64 but * 100 is needed so that we come around the rouding problems
-    TimeLeft.ul64DateTime = ((aMaxProgress * 100 ) / aCurrentProgress * TimeLeft.ul64DateTime) / 100 - TimeLeft.ul64DateTime;
-    FileTimeToSystemTime(&TimeLeft.FileTime, &ct);
-
-    PrintProgress(aPercentage, ct);
+    char nItems[MAX_PATH];
+    FormatNumber(nItems, effort.m_Items.load());
+    wprintf (L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b%3d%%, Items %14S, Time left: %02d:%02d:%02d",
+      (int)aPercentage,
+      nItems,
+      timeLeft.wHour,
+      timeLeft.wMinute,
+      timeLeft.wSecond
+    );
   }
+}
+
+void PrintElapsed(ProgressPrediction& aProgressPrediction)
+{
+  SYSTEMTIME duration;
+  Effort effort;
+  aProgressPrediction.Duration(duration, effort);
+
+  char nItems[MAX_PATH];
+  FormatNumber(nItems, effort.m_Items.load());
+  wprintf (L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b100%%, Items %14S, Time elapsed: %02d:%02d:%02d\n",
+    nItems,
+    duration.wHour,
+    duration.wMinute,
+    duration.wSecond);
 }
 
 
@@ -534,12 +520,13 @@ LnSmartXXX(
 // __int64 MaxProgress = 123456;
 #else
   wchar_t ModeLiteral[MAX_PATH];
-  __int64 MaxProgress = FileList.PrepareSmartCopy(aMode, &aStats);
+  Effort MaxProgress;
+  FileList.Prepare(aMode, &aStats, &MaxProgress);
   switch (aMode)
   {
     case FileInfoContainer::eSmartCopy:
       FileList.SmartCopy (&aStats, &PathNameStatusList, pContext);
-      wcscpy_s(ModeLiteral, MAX_PATH, L"Copying");
+      wcscpy_s(ModeLiteral, MAX_PATH, L"Copying ");
     break;
   
     case FileInfoContainer::eSmartClone:
@@ -561,17 +548,12 @@ LnSmartXXX(
   // 
   if (gProgress)
   {
-    FILETIME64  StartTime;
-    SYSTEMTIME  ct;
+    wprintf (L"\n%s ...      0%%, Items              , Time left:         ", ModeLiteral);
 
-    GetSystemTime(&ct);
-    SystemTimeToFileTime(&ct, &StartTime.FileTime);
-
-    wprintf (L"\n%s ...        0%%, Time left:         ", ModeLiteral);
-    int Percentage = 0;
-    __int64 Increment = MaxProgress / 100;
     Context.Reset();
-
+    ProgressPrediction progressPrediction;
+    progressPrediction.SetStart(MaxProgress);
+    int Percentage = 0;
 
 #if defined SIM_CONTEXT
     __int64 SimContext = 0;
@@ -583,12 +565,13 @@ LnSmartXXX(
     int UpdCnt = gUpdateIntervall;
     while (!Context.Wait(250))
     {
-      int NewPercentage = (int)(Context.Get() / Increment);
+      int NewPercentage = progressPrediction.AddSample(Context.GetProgress());
 #endif
       if (NewPercentage != Percentage)
       {
         Percentage = NewPercentage;
-        CalcProgress(Percentage, MaxProgress, Context.Get(), StartTime);
+        PrintProgress(Percentage, progressPrediction);
+
 #if defined SIM_CONTEXT
         Sleep (250);
         if (100 < Percentage)
@@ -598,38 +581,38 @@ LnSmartXXX(
       if (!--UpdCnt)
       {
         UpdCnt = gUpdateIntervall;
-        CalcProgress(Percentage, MaxProgress, Context.Get(), StartTime);
+        PrintProgress(Percentage, progressPrediction);
       }
     }
-    PrintProgressEnd(StartTime);
+    PrintElapsed(progressPrediction);
   }
 
   if (FileInfoContainer::eSmartClean == aMode)
   {
     // Delete the anchor directories too
-    for (_ArgvListIterator iter = aSourceDirList.begin(); iter != aSourceDirList.end(); ++iter )
+    for (auto iter : aSourceDirList)
     {
-      if (iter->FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
+      if (iter.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
       {
-        BOOL removeDir = RemoveDir(iter->Argv.c_str(), TRUE);
+        BOOL removeDir = RemoveDir(iter.Argv.c_str(), TRUE);
         if (removeDir)
         {
           aStats.m_DirectoriesCleaned++;
           if (gLogLevel != FileInfoContainer::eLogQuiet)
-            fwprintf(gStdOutFile, L"-d %s\n", &iter->Argv.c_str()[PATH_PARSE_SWITCHOFF_SIZE]);
+            fwprintf(gStdOutFile, L"-d %s\n", &iter.Argv.c_str()[PATH_PARSE_SWITCHOFF_SIZE]);
 
           // TODO das geht mit json sicher nicht
         }
         else
         {
           aStats.m_DirectoriesCleanedFailed++;
-          PathNameStatus pns(MinusD, &iter->Argv.c_str()[PATH_PARSE_SWITCHOFF_SIZE], GetLastError());
+          PathNameStatus pns(MinusD, &iter.Argv.c_str()[PATH_PARSE_SWITCHOFF_SIZE], GetLastError());
           PathNameStatusList.push_back(pns);
         }
       }
     }
   }
-	GetLocalTime(&aStats.m_EndTime);
+  GetLocalTime(&aStats.m_EndTime);
 
   // Analyse the result of the whole process
   int r = AnalysePathNameStatus(gStdOutFile, PathNameStatusList, true, gLogLevel, gJson, &JsonWriterState);
@@ -672,7 +655,7 @@ LnSmartXXX(
 #endif
 
   DeletePathNameStatusList(PathNameStatusList);
-  FileList.Dispose(NULL);
+  FileList.Dispose(NULL, &aStats);
 
 #if defined PRINT_DISPOSE_DURATION
   GetSystemTime(&DisposeEndTime);
@@ -805,6 +788,101 @@ QueryTooManyLinks(
     return QueryTooManyLinksNormal(a_OutputFile, a_PathNameStatusList, a_Verbose);
 }
 
+void _Mirror(
+  FileInfoContainer&    CloneList,
+  FileInfoContainer&    MirrorList,
+  CopyStatistics&       MirrorStatistics,
+  _PathNameStatusList&  PathNameStatusList,
+  bool                  aDeloreanMerge
+)
+{
+  // Sequentially run Clean and Mirror, because it won't work in parallel.
+  // Why: If we would just deal with items there or not, parallel would work, but
+  // unfortunatley items can also be renamed during mirror and this breaks the parallel
+  // approach
+
+  AsyncContext  MirrorContext;
+  AsyncContext* pMirrorContext = NULL;
+  if (gProgress)
+    pMirrorContext = &MirrorContext;
+
+  Effort MaxProgress;
+  MirrorList.Prepare(FileInfoContainer::eSmartMirror, &MirrorStatistics, &MaxProgress);
+
+  // Lets clean the cloned backup
+  CloneList.SetLookAsideContainer(&MirrorList);
+  CopyStatistics	CleanStatistics;
+  Effort NullEffort;
+  if (!aDeloreanMerge)
+  {
+    CloneList.Prepare(FileInfoContainer::eSmartClean, &CleanStatistics, &NullEffort);
+    CloneList.SmartClean(&MirrorStatistics, &PathNameStatusList, pMirrorContext);
+  }
+
+
+  // TODO Check if NullEffort passt was die Anzahl der Files betrifft
+
+  // Print SmartClean progress
+  //
+  int Percentage = 0;
+  Effort CleanOverallProgress;
+  ProgressPrediction progressPrediction;
+  if (gProgress)
+  {
+    wprintf(L"Mirroring...    0%%, Items                , Time left:         ");
+
+    progressPrediction.SetStart(MaxProgress);
+
+    int UpdCnt = gUpdateIntervall;
+    while (!MirrorContext.Wait(250))
+    {
+      int NewPercentage = progressPrediction.AddSample(MirrorContext.GetProgress());
+      if (NewPercentage != Percentage)
+      {
+        Percentage = NewPercentage;
+        PrintProgress(Percentage, progressPrediction);
+      }
+      if (!--UpdCnt)
+      {
+        UpdCnt = gUpdateIntervall;
+        PrintProgress(Percentage, progressPrediction);
+      }
+    }
+    CleanOverallProgress = MirrorContext.GetProgress();
+    progressPrediction.AddSample(MirrorContext.GetProgress(), &CleanOverallProgress);
+    PrintProgress(Percentage, progressPrediction);
+
+    MirrorContext.Reset();
+  }
+
+  MirrorList.SetLookAsideContainer(&CloneList);
+  MirrorList.SmartMirror(&MirrorStatistics, &PathNameStatusList, pMirrorContext);
+
+  // Print mirror progress 
+  //
+  if (gProgress)
+  {
+    int UpdCnt = gUpdateIntervall;
+    while (!MirrorContext.Wait(250))
+    {
+      int NewPercentage = progressPrediction.AddSample(MirrorContext.GetProgress(), &CleanOverallProgress);
+      if (NewPercentage != Percentage)
+      {
+        Percentage = NewPercentage;
+        PrintProgress(Percentage, progressPrediction);
+      }
+      if (!--UpdCnt)
+      {
+        UpdCnt = gUpdateIntervall;
+        PrintProgress(Percentage, progressPrediction);
+      }
+    }
+    PrintElapsed(progressPrediction);
+  }
+
+  GetLocalTime(&MirrorStatistics.m_EndTime);
+}
+
 int
 Delorean(
 	_ArgvList&                                aSourceDirList,
@@ -923,7 +1001,7 @@ Delorean(
     fwprintf (gStdOutFile, L"{\n\"Statistics\":\n[\n{\n\"Items\":[\n");
   }
 
-  AsyncContext MirrorContext;
+  AsyncContext MirrorFindContext;
   GetLocalTime(&CloneStatistics.m_CopyTime);
 
   // Set Filters in the source
@@ -950,7 +1028,7 @@ Delorean(
 #if defined SEPERATED_CLONE_MIRROR
   MirrorList.FindHardLink (aSourceDirList, 0, &MirrorStatistics, &PathNameStatusList, NULL );
 #else
-  MirrorList.FindHardLink (aSourceDirList, 0, &MirrorStatistics, &PathNameStatusList, &MirrorContext);
+  MirrorList.FindHardLink (aSourceDirList, 0, &MirrorStatistics, &PathNameStatusList, &MirrorFindContext);
 #endif
 
 
@@ -965,16 +1043,16 @@ Delorean(
   aDestPath.ArgvDest = aBackupPath.Argv;
   CloneDestination.push_back(aDestPath);
 
-  AsyncContext Context;
-  AsyncContext* pContext = NULL;
+  AsyncContext CloneContext;
+  AsyncContext* pCloneContext = NULL;
   int ProgressCount = 0;
   if (gProgress)
-    pContext = &Context;
+    pCloneContext = &CloneContext;
 
-  CloneList.FindHardLink (CloneDestination, 0, &CloneStatistics, &PathNameStatusListClone, pContext);
+  CloneList.FindHardLink (CloneDestination, 0, &CloneStatistics, &PathNameStatusListClone, pCloneContext);
   if (gProgress)
   {
-    while (!Context.Wait(250))
+    while (!CloneContext.Wait(250))
     {
       if (!ProgressCount)
         wprintf (L"Enumerating ...  ");
@@ -983,42 +1061,40 @@ Delorean(
   }
 
   GetLocalTime(&CloneStatistics.m_CopyTime);
-  __int64 MaxProgress = CloneList.PrepareSmartCopy(FileInfoContainer::eSmartClean, &CloneStatistics);
+  Effort MaxProgress;
+  CloneList.Prepare(FileInfoContainer::eSmartClone, &CloneStatistics, &MaxProgress);
 
   if (gProgress)
-    Context.Reset();
-  CloneList.SmartClone (&CloneStatistics, &PathNameStatusListClone, pContext);
+    CloneContext.Reset();
+  CloneList.SmartClone (&CloneStatistics, &PathNameStatusListClone, pCloneContext);
 
   // Print clone progress
   //
-  FILETIME64  StartTime;
-  SYSTEMTIME  ct;
   if (gProgress)
   {
-    GetSystemTime(&ct);
-    SystemTimeToFileTime(&ct, &StartTime.FileTime);
-
-    wprintf (L"\nCloning     ...    0%%, Time left:         ");
+    wprintf (L"\nCloning  ...    0%%, Items                , Time left:         ");
     int Percentage = 0;
-    __int64 Increment = MaxProgress / 100;
+
+    ProgressPrediction progressPrediction;
+    progressPrediction.SetStart(MaxProgress);
 
     // Wait until Cloning is over
     int UpdCnt = gUpdateIntervall;
-    while (!Context.Wait(250))
+    while (!CloneContext.Wait(250))
     {
-      int NewPercentage = (int)(Context.Get() / Increment);
+      int NewPercentage = progressPrediction.AddSample(CloneContext.GetProgress());
       if (NewPercentage != Percentage)
       {
         Percentage = NewPercentage;
-        CalcProgress(Percentage, MaxProgress, Context.Get(), StartTime);
+        PrintProgress(Percentage, progressPrediction);
       }
       if (!--UpdCnt)
       {
         UpdCnt = gUpdateIntervall;
-        CalcProgress(Percentage, MaxProgress, Context.Get(), StartTime);
+        PrintProgress(Percentage, progressPrediction);
       }
     }
-    PrintProgressEnd(StartTime);
+    PrintElapsed(progressPrediction);
   }
 
 
@@ -1102,10 +1178,11 @@ Delorean(
 
 
 #if !defined SEPERATED_CLONE_MIRROR
-  // Wait until the Mirror also has finished. Normally Find and clone on the bkp should take longer
-  // than find on the source. But in rare cases we have to wait here. Well for progress printing this
-  // is not optimal, but I don't want to intorduce another complexity here.
-  while (!MirrorContext.Wait(250));
+  // Wait until the MirrorFindContext also has finished with Findhardlink. Normally Findhardlink on the Mirrorsource should take longer 
+  // than Clone on the bkp. An the other way we also have to wait for CloneContext if no progress printing is active
+  // Anyhow syncing at this point is crucial. 
+  // Well for progress printing this is not optimal, because we are stuck showing nothing until FindHardlink on MirrorSource is done
+  while (!MirrorFindContext.Wait(100));
 #endif
 
 
@@ -1121,89 +1198,19 @@ Delorean(
   // Iterate over all source path and replace all source path in Clonelist
   for (_ArgvListIterator iter = aSourceDirList.begin(); iter != aSourceDirList.end(); ++iter)
     iter->ArgvDest = iter->Argv;
-  
-  AsyncContext* pMirrorContext = NULL;
-  if (gProgress)
-  {
-    pMirrorContext = &MirrorContext;
-    pMirrorContext->Reset();
-  }
 
   CloneList.ChangePath(aBackupPath.Argv.c_str(), aSourceDirList);
-  CloneList.SetLookAsideContainer(&MirrorList);
-  CopyStatistics	CleanStatistics;
-  MaxProgress = CloneList.PrepareSmartCopy(FileInfoContainer::eSmartClean, &CleanStatistics);
-  CloneList.SmartClean (&MirrorStatistics, &PathNameStatusList, pMirrorContext);
 
-  MaxProgress += MirrorList.PrepareSmartCopy(FileInfoContainer::eSmartCopy, &MirrorStatistics);
-
-  // Print smartclean progress
-  //
-  int Percentage = 0;
-  __int64 Increment = MaxProgress / 100;
-  __int64 CleanOverallProgress = 0;
-  if (gProgress)
-  {
-    GetSystemTime(&ct);
-    SystemTimeToFileTime(&ct, &StartTime.FileTime);
-
-    wprintf (L"Mirroring   ...    0%%, Time left:         ");
-
-    int UpdCnt = gUpdateIntervall;
-    while (!MirrorContext.Wait(250))
-    {
-      int NewPercentage = (int)(MirrorContext.Get() / Increment);
-      if (NewPercentage != Percentage)
-      {
-        Percentage = NewPercentage;
-        CalcProgress(Percentage, MaxProgress, MirrorContext.Get(), StartTime);
-      }
-      if (!--UpdCnt)
-      {
-        UpdCnt = gUpdateIntervall;
-        CalcProgress(Percentage, MaxProgress, MirrorContext.Get(), StartTime);
-      }
-    }
-    CleanOverallProgress = MirrorContext.Get();
-    MirrorContext.Reset();
-    PrintProgress(Percentage, ct);
-  }
-
-  MirrorList.SetLookAsideContainer(&CloneList);
-  MirrorList.SmartMirror (&MirrorStatistics, &PathNameStatusList, pMirrorContext);
-
-  // Print mirror progress 
-  //
-  if (gProgress)
-  {
-    int UpdCnt = gUpdateIntervall;
-    while (!MirrorContext.Wait(250))
-    {
-      int NewPercentage = (int)((MirrorContext.Get() + CleanOverallProgress) / Increment);
-      if (NewPercentage != Percentage)
-      {
-        Percentage = NewPercentage;
-        CalcProgress(Percentage, MaxProgress, MirrorContext.Get(), StartTime);
-      }
-      if (!--UpdCnt)
-      {
-        UpdCnt = gUpdateIntervall;
-        CalcProgress(Percentage, MaxProgress, MirrorContext.Get(), StartTime);
-      }
-    }
-    PrintProgressEnd(StartTime);
-  }
-
-  GetLocalTime(&MirrorStatistics.m_EndTime);
-
+  _Mirror(CloneList, MirrorList, MirrorStatistics, PathNameStatusList, false);
 
   // Start releasing data async, because releasing data really takes time
   const int nHandles = 2;
   HANDLE  WaitEvents[nHandles];
   AsyncContext CloneDisposeContext;
   AsyncContext MirrorDisposeContext;
-  MirrorList.Dispose(&MirrorDisposeContext);
-  CloneList.Dispose(&CloneDisposeContext);
+  MirrorList.Dispose(&MirrorDisposeContext, &MirrorStatistics);
+  CopyStatistics	CleanStatistics;
+  CloneList.Dispose(&CloneDisposeContext, &CleanStatistics);
 
   WaitEvents[0] = MirrorDisposeContext.m_WaitEvent;
   WaitEvents[1] = CloneDisposeContext.m_WaitEvent;
@@ -1450,90 +1457,7 @@ Mirror(
     CloneList.SetFlags(gLogLevel);
   }
 
-  // Clean Data for mirror
-  //
-  AsyncContext* pMirrorContext = NULL;
-  if (gProgress)
-  {
-    pMirrorContext = &MirrorContext;
-    pMirrorContext->Reset();
-  }
-
-  CloneList.SetLookAsideContainer(&MirrorList);
-  CopyStatistics	CleanStatistics;
-  __int64 MaxProgress = 0;
-  
-  // With Deloreanmerge, there shall be no cleaning
-  if (!aDeloreanMerge)
-  {
-    MaxProgress = CloneList.PrepareSmartCopy(FileInfoContainer::eSmartClone, &CleanStatistics);
-    CloneList.SmartClean (&MirrorStatistics, &PathNameStatusList, pMirrorContext);
-  }
-
-  MaxProgress += MirrorList.PrepareSmartCopy(FileInfoContainer::eSmartCopy, &MirrorStatistics);
-
-  // Print mirror progress
-  //
-  int Percentage = 0;
-  __int64 Increment = MaxProgress / 100;
-  __int64 CleanOverallProgress = 0;
-  FILETIME64  StartTime;
-  if (gProgress)
-  {
-    SYSTEMTIME  ct;
-    GetSystemTime(&ct);
-    SystemTimeToFileTime(&ct, &StartTime.FileTime);
-
-    wprintf (L"\nMirroring   ...    0%%, Time left:         ");
-    int UpdCnt = gUpdateIntervall;
-    while (!MirrorContext.Wait(250))
-    {
-      int NewPercentage = (int)(MirrorContext.Get() / Increment);
-      if (NewPercentage != Percentage)
-      {
-        Percentage = NewPercentage;
-        CalcProgress(Percentage, MaxProgress, MirrorContext.Get(), StartTime);
-      }
-      if (!--UpdCnt)
-      {
-        UpdCnt = gUpdateIntervall;
-        CalcProgress(Percentage, MaxProgress, MirrorContext.Get(), StartTime);
-      }
-    }
-    CleanOverallProgress = MirrorContext.Get();
-    MirrorContext.Reset();
-    PrintProgress(Percentage, ct);
-  }
-
-  // Mirror Data
-  //
-  MirrorList.SetLookAsideContainer(&CloneList);
-  MirrorList.SmartMirror (&MirrorStatistics, &PathNameStatusList, pMirrorContext);
-  
-  // Print progress if requested
-  //
-  if (gProgress)
-  {
-    int UpdCnt = gUpdateIntervall;
-    while (!MirrorContext.Wait(250))
-    {
-      int NewPercentage = (int)((MirrorContext.Get() + CleanOverallProgress) / Increment);
-      if (NewPercentage != Percentage)
-      {
-        Percentage = NewPercentage;
-        CalcProgress(Percentage, MaxProgress, MirrorContext.Get(), StartTime);
-      }
-      if (!--UpdCnt)
-      {
-        UpdCnt = gUpdateIntervall;
-        CalcProgress(Percentage, MaxProgress, MirrorContext.Get(), StartTime);
-      }
-    }
-    PrintProgressEnd(StartTime);
-  }
-
-  GetLocalTime(&MirrorStatistics.m_EndTime);
-
+  _Mirror(CloneList, MirrorList, MirrorStatistics, PathNameStatusList, aDeloreanMerge);
 
 #if defined PRINT_DISPOSE_DURATION
   // Start releasing data async, because releasing data really takes time
@@ -1545,8 +1469,9 @@ Mirror(
   HANDLE  WaitEvents[nHandles];
   AsyncContext CloneDisposeContext;
   AsyncContext MirrorDisposeContext;
-  MirrorList.Dispose(&MirrorDisposeContext);
-  CloneList.Dispose(&CloneDisposeContext);
+  MirrorList.Dispose(&MirrorDisposeContext, &MirrorStatistics);
+  CopyStatistics	CleanStatistics;
+  CloneList.Dispose(&CloneDisposeContext, &CleanStatistics);
 
   WaitEvents[0] = MirrorDisposeContext.m_WaitEvent;
   WaitEvents[1] = CloneDisposeContext.m_WaitEvent;
@@ -2166,6 +2091,13 @@ wmain(
     retval = regwexec (compiled, L"temp", 32, pmatch, 0);
 #endif
 
+#if 0
+    // std regex test
+    wregex RegEx(_T("\\.*\\.ini$"));
+    wcmatch match;
+    regex_search(_T("\\\\?\\c:\\$RECYCLE.BIN\\S-1-5-21-1054053922-559824688-2072063007-3334\\desktop.ini"), match, RegEx);
+#endif
+
 
 #if 0
     wchar_t NewLocation[HUGE_PATH];
@@ -2213,6 +2145,10 @@ wmain(
     exit(1);
 #endif
 
+#if 0
+    bool SupportedFS = gSupportedFileSystems.IsSupportedFileSystem(L"btrfs");
+#endif
+
     gStdOutHandle = (intptr_t)GetStdHandle(STD_OUTPUT_HANDLE);
     int StdOutDesc = _open_osfhandle(gStdOutHandle, _O_TEXT);
     gStdOutFile = _fdopen(StdOutDesc, "w");
@@ -2224,9 +2160,9 @@ wmain(
     // Convert the wide options to ansi options
 		char**a_argv = new char*[argc + 1];
 		int i;
-		for (i = 0; i < argc; i++)
-		{
-			int argv_length = (int)wcslen (argv[i]) + 1;
+    for (i = 0; i < argc; i++)
+    {
+      int argv_length = (int)wcslen(argv[i]) + 1;
       a_argv[i] = new char[argv_length];
       WideCharToMultiByte(
         CP_ACP,
@@ -2238,7 +2174,7 @@ wmain(
         NULL,
         NULL
       );
-		}
+    }
     a_argv[argc] = NULL;
 
 		TCHAR	Argv1[HUGE_PATH];
@@ -3138,8 +3074,16 @@ wmain(
             }
             break;
 
-            // --follow
+            // --supportfs
             case cBaseJustLongOpts + 0x27:
+            {
+              gSupportedFileSystems.Add(argv[optind - 1]);
+              Argv2[0] = 0x00;
+            }
+            break;
+
+            // --follow
+            case cBaseJustLongOpts + 0x28:
             {
               if (NULL == optarg)
                 AlwaysFollow = true;
@@ -3151,19 +3095,19 @@ wmain(
                 else
                   RawArgs.push_back(wstring(argv[optind - 1]));
 
-                for (_StringListIterator iter = RawArgs.begin(); iter != RawArgs.end(); ++iter)
+                for (auto iter : RawArgs)
                 {
-                  stringreplace(*iter, wstring(L"."), wstring(L"\\."));
-                  stringreplace(*iter, wstring(L"*"), wstring(L".*"));
-                  stringreplace(*iter, wstring(L"?"), wstring(L"."));
-                  FollowDirList.push_back(*iter);
+                  stringreplace(iter, wstring(L"."), wstring(L"\\."));
+                  stringreplace(iter, wstring(L"*"), wstring(L".*"));
+                  stringreplace(iter, wstring(L"?"), wstring(L"."));
+                  FollowDirList.push_back(iter);
                 }
               }
             }
             break;
 
             // --followregexp
-            case cBaseJustLongOpts + 0x28:
+            case cBaseJustLongOpts + 0x29:
             {
               if (NULL == optarg)
                 AlwaysFollow = true;
@@ -3178,7 +3122,9 @@ wmain(
             break;
 
             default:
-              fwprintf (gStdOutFile, L"Unknown LongOpt %d:'%s'\n", longind, gpfCreateSymbolicLink ? long_options_symbolic[longind].name : long_options[longind].name);
+              fwprintf (gStdOutFile, L"Unknown LongOpt %d:'%S'\n", longind, gpfCreateSymbolicLink ? long_options_symbolic[longind].name : long_options[longind].name);
+
+              // TODO: Try to remove gpfCreateSymbolicLink since we are under Windows7 anyhow
             break;
           }
                     
@@ -3803,7 +3749,7 @@ wmain(
 #endif
 
         DeletePathNameStatusList(PathNameStatusList);
-        FileList.Dispose(NULL);
+        FileList.Dispose(NULL, &aStats);
 
 #if defined PRINT_DISPOSE_DURATION
         GetSystemTime(&DisposeEndTime);
@@ -3831,6 +3777,9 @@ wmain(
         fprintf(gStdOutFile, "%s", DisposeDurationStr);
 #endif
 
+#if defined DEBUG_STOPWATCH
+        PrintInternalCounters(gStdOutFile, aStats);
+#endif
         Exit(1);
       }
       else

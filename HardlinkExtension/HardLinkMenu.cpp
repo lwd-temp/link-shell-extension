@@ -1,20 +1,19 @@
-  /*
-	Copyright (C) 1999-2010, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
 
 #include "stdafx.h"
-#include "resource.h"
+
 #include "Progressbar.h"
 #include "HardLinkMenu.h"
-#include "Utils.h"
-
-#include "multilang.h"
-
-#include "strsafe.h"
+#include "UACReuse.h"
 
 #include "HardlinkUtils.h"
 
+// TODO: Im BackupMode über Netzwerklaufwerke haben die FIles 0 Bytes bei Smartmirror. Wenn das in-proc LSE ausgeführt wird geht es
+// Das kommt daher, dass man die Rechte nicht hat um die SACL via SMB anzugreifen. Se_SECURITY_NAME reicht nicht. Ob das am Server
+// liegt oder am Client hab ich noch nicht rausgefunden
 
 extern HINSTANCE g_hInstance;
 extern _LSESettings gLSESettings;
@@ -23,7 +22,6 @@ extern PWCHAR  MenuEntries[eMenue__Free__ * 2];
 extern PWCHAR  HelpTextW[eCommandType__Free__];
 extern PCHAR   HelpTextA[eCommandType__Free__];
 extern PWCHAR  TopMenuEntries[eTopMenu__Free__];
-
 
 
 HRESULT
@@ -1391,13 +1389,7 @@ QueryContextMenu(
 				  m_Command[aCommandIdx++] = ePickLinkSource;
         }
 #if !defined REMOVE_DELETE_JUNCTION
-				// With Vista and Windows7 there is no need to show _Delete Junction_
-        //     gpfCreateSymbolicLink gbXpSymlinks
-        // 1   0                     0
-        // 1   0                     1
-        // 0   1                     0
-        // 1   1                     1
-        if (m_bTargetsFlag & eJunction && !(gpfCreateSymbolicLink && !gbXpSymlinks))
+        if ((m_bTargetsFlag & eJunction) && !gpfCreateSymbolicLink )
 				{
 					InsertMenu(hMenu, indexMenu++, MF_STRING|MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuDeleteJunction]);
 					m_Command[aCommandIdx++] = eDeleteJunction;
@@ -1634,7 +1626,6 @@ SelectionToClipboard
 }
 
 
-// TODO return status ob erfolgreich
 HRESULT 
 HardLinkExt::
 ClipboardToSelection( 
@@ -1846,7 +1837,7 @@ DropSymbolicLink(
 	wchar_t curdir[HUGE_PATH];	
   FILE* SymlinkArgs = NULL;
   
-  if (!gbXpSymlinks && Elevation)
+  if (Elevation)
     SymlinkArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
 	// Write the args
@@ -1889,23 +1880,22 @@ DropSymbolicLink(
         dwSymLinkAllowUnprivilegedCreation = SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
       }
       
-      if (gbXpSymlinks || !Elevation)
-      {
-        // Used when UAC is switched off thus making it possible 
-        // to call CreateSymboliclink directly from explorer
-        // or if the symlink driver is installed under XP
-        CreateSymboliclink(
-          dest, 
-          m_pTargets[i].m_Path, 
-          (gLSESettings.Flags & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation
-        );
-      }
-      else
+      if (Elevation)
       {
         if (gLSESettings.Flags & eForceAbsoluteSymbolicLinks)
           fwprintf(SymlinkArgs, L"-F \"%s\" \"%s\"\n", dest, m_pTargets[i].m_Path);
         else
           fwprintf(SymlinkArgs, L"-f \"%s\" \"%s\"\n", dest, m_pTargets[i].m_Path);
+      }
+      else
+      {
+        // Used when UAC is switched off thus making it possible 
+        // to call CreateSymboliclink directly from explorer
+        // or if the symlink driver is installed under XP
+        CreateSymboliclink(dest,
+          m_pTargets[i].m_Path, 
+          (gLSESettings.Flags & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation
+        );
       }
     }
 
@@ -1937,7 +1927,7 @@ DropSymbolicLink(
           dwSymLinkAllowUnprivilegedCreation = SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
         }
         
-        if (gbXpSymlinks || !Elevation)
+        if (!Elevation)
         {
           // Used for debugging purposes, when UAC is switched off thus making it possible 
           // to call CreateSymboliclink directly from explorer, but not from symlink.exe
@@ -1957,10 +1947,15 @@ DropSymbolicLink(
       }
     }
 	}
-  if (!gbXpSymlinks && Elevation)
+  if (Elevation)
 	  fclose (SymlinkArgs);
 
-  if (!gbXpSymlinks && Elevation)
+  
+#if defined SYMLINK_FORCE
+  if (SYMLINK_OUTPROC)
+#else
+  if (Elevation)
+#endif
   {
     // Create the Symbolic Links
     DWORD r = ForkExeHelper(curdir, sla_quoted);
@@ -2053,7 +2048,7 @@ DropJunction(
 					// With Vista & W7, we are not allowed to create Junctions in folders like
 					// c:\Program Files (x86) wihtout UAC, so in this special case, the creation
 					// of junction has to be relayed to an elevated .exe as done with Symbolic links
-					if ((ERROR_ALREADY_EXISTS != r) && !gbXpSymlinks && ElevationNeeded())
+					if ((ERROR_ALREADY_EXISTS != r) && ElevationNeeded())
 					{
 						// Write the file for the args
 						if (!JunctionArgs)
@@ -2103,7 +2098,11 @@ DropJunction(
 		}
 	}
 
-	if (CreateJunctionsViaHelperExe)
+#if defined SYMLINK_FORCE
+  if (SYMLINK_OUTPROC)
+#else
+  if (CreateJunctionsViaHelperExe)
+#endif
 	{
 		fclose(JunctionArgs);
 		DWORD r = ForkExeHelper(curdir, sla_quoted);
@@ -2191,7 +2190,7 @@ DeleteJunction(
 				// With Vista & W7, we are not allowed to delete Directories in folders like
 				// c:\Program Files (x86) wihtout UAC, so in this special case, the deletion
 				// of junction has to be relayed to an elevated .exe as done with Symbolic links
-			  if (!gbXpSymlinks && ElevationNeeded())
+			  if (ElevationNeeded())
 				{
 					if (!JunctionArgs)
 					{
@@ -2216,7 +2215,11 @@ DeleteJunction(
 			}
 		}
 	}
-	if (CreateJunctionsViaHelperExe)
+#if defined SYMLINK_FORCE
+  if (SYMLINK_OUTPROC)
+#else
+  if (CreateJunctionsViaHelperExe)
+#endif
 	{
 		fclose(JunctionArgs);
 		DWORD r = ForkExeHelper(curdir, sla_quoted);
@@ -2282,9 +2285,13 @@ DropMountPoint(
 			int RetVal;
 			HTRACE(L"LSE::MountPoint: '%s' -> '%s', %ld\n", m_pTargets[0].m_Path, dest, m_pTargets[0].m_Flags);
 
-			// Check if we are on Vista. With Vista, thanks to UAC, 
+#if defined SYMLINK_FORCE
+      if (SYMLINK_OUTPROC)
+#else
+      // Check if we are on Vista. With Vista, thanks to UAC, 
 			// we have to fork an extra process to perform this operation
-			if (!gbXpSymlinks && ElevationNeeded())
+			if (ElevationNeeded())
+#endif
 			{
 				wchar_t sla_quoted[HUGE_PATH];
 				wchar_t curdir[HUGE_PATH];	
@@ -2355,7 +2362,7 @@ DeleteMountPoint(
 		{
 			// With Vista it is not allowed to unmount a drive
 			// without being Administrator
-			if (!gbXpSymlinks && ElevationNeeded())
+			if (ElevationNeeded())
 			{
 				// Write the command file, which is read by the elevated process
 				fwprintf(Arguments, L"-n \"%s\" \"empty\"\n", m_pTargets[i].m_Path);
@@ -2374,7 +2381,11 @@ DeleteMountPoint(
 	if (gpfCreateSymbolicLink)
     fclose(Arguments);
 
+#if defined SYMLINK_FORCE
+  if (SYMLINK_OUTPROC)
+#else
   if (RelayToSymlink)
+#endif
   {
     DWORD r = ForkExeHelper(curdir, sla_quoted);
 		if (r)
@@ -2409,17 +2420,7 @@ SmartMirror(
 
   // ProgressBar
   { 
-    wchar_t         CurrentPath[HUGE_PATH];
-
-    const int MaxEndlessProgress = 50;
-    Progressbar* pProgressbar = new Progressbar(
-      aIDS_ProgressBarHeading, 
-      IDS_STRING_ProgressCanceling,
-      g_hInstance, 
-      gLSESettings.LanguageID,
-      lpcmi->hwnd,
-      MaxEndlessProgress
-      );
+    Progressbar* pProgressbar = new Progressbar();
 
     int progress = 0;
 
@@ -2634,11 +2635,6 @@ SmartMirror(
     }
     else // if (gLSESettings.Flags & eBackupMode)
     {
-#if defined _DEBUG
-      pProgressbar->Show();
-      pProgressbar->SetTitle(L"DEBUG: Explorer::FindHardlinks SmartMirror");
-#endif
-
       // Enumerate all files in the source
       AsyncContext    Context;
       MirrorList.FindHardLink (
@@ -2659,45 +2655,36 @@ SmartMirror(
       );
 
       // In parallel wait for the searches to finish
-      while (!Context.Wait(125) || !CleanContext.Wait(125))
+      while (!Context.Wait(50) || !CleanContext.Wait(50))
       {
-        Context.GetStatus(CurrentPath);
-        pProgressbar->SetProgress (progress++);
-        pProgressbar->SetCurrentPath(CurrentPath);
-        pProgressbar->Show();
-        if (pProgressbar->HasUserCancelled())
+        if (pProgressbar->Update(Context, PDM_PREFLIGHT))
         {
           Context.Cancel();
           CleanContext.Cancel();
           Context.Wait(INFINITE);
           CleanContext.Wait(INFINITE);
-          progress = -1;
           break;
         }
-        
-        // This is an endless bar during searching for files
-        if (progress >= MaxEndlessProgress)
-        {
-          pProgressbar->SetRange(MaxEndlessProgress);
-          progress = 0;
-        }
-      } // while (!Context.Wait(125) && !CleanContext.Wait(125))
+      }
+      pProgressbar->SetMode(PDM_DEFAULT);
 
       MirrorList.HeadLogging(LogFile);
 
       // Only continue if nobody pressed cancel
-      if ( progress >= 0 )
+      if (Context.IsRunning())
       {
         // Reset the Progressbar since we now know the number of files to be copied
         // The cost of an operation depends on the size of files
-        __int64 MaxProgressMirror = MirrorList.PrepareSmartCopy(FileInfoContainer::eSmartCopy, &MirrorStatistics);
+        Effort MirrorEffort;
+        MirrorList.Prepare(FileInfoContainer::eSmartMirror, &MirrorStatistics, &MirrorEffort);
         
         // During Clean the cost of an operation is always 1 so we go with eSmartClone
-        __int64 MaxProgressClean = CleanList.PrepareSmartCopy(FileInfoContainer::eSmartClone, &CleanStatistics);
+        Effort CleanEffort;
+        CleanList.Prepare(FileInfoContainer::eSmartClean, &CleanStatistics, &CleanEffort);
 
         // If during search either one file was a symbolic link, we have to elevate the rest
-#if defined SYMLINK_INPROC
-        if (0)
+#if defined SYMLINK_FORCE
+        if (SYMLINK_OUTPROC)
 #else
         int ContainsSymlinks = MirrorList.CheckSymbolicLinks() | CleanList.CheckSymbolicLinks();
         if (ContainsSymlinks)
@@ -2714,11 +2701,11 @@ SmartMirror(
         
         if (
           TRUE == ContainsSymlinks && 
-          !gbXpSymlinks &&
           ElevationNeeded()
         )
 #endif
         {
+#pragma region ForkSmartCopy
           MirrorList.StopLogging(LogFile);
           
           // Stop bar
@@ -2745,6 +2732,7 @@ SmartMirror(
           fwprintf(SmartCopyArgs, L"%x,%x,%x,%x\n", ProgressbarPosition.left, ProgressbarPosition.top, ProgressbarPosition.right, ProgressbarPosition.bottom);
           fclose(SmartCopyArgs);
           MirrorList.StopLogging(LogFile);
+#pragma endregion 
 
   #if 0 // DEBUG_DEFINES
           // Use this coding to test the integrity of container persistence
@@ -2775,69 +2763,25 @@ SmartMirror(
         }
         else
         {
-          wchar_t         CurrentPath[HUGE_PATH];
-          CurrentPath[0] = 0x00;
+          pProgressbar->SetRange(MirrorEffort + CleanEffort);
 
-          HTRACE (L"Progress Start %08x, %08x\n", MaxProgressMirror, MaxProgressClean);
-          pProgressbar->SetRange(MaxProgressMirror + MaxProgressClean);
-
-  #if defined _DEBUG  
-          pProgressbar->SetTitle(L"DEBUG: Explorer::SmartMirror");
-  #endif
-          AsyncContext  MirrorContext;
-          AsyncContext  CleanContext;
-      
-          MirrorList.SetLookAsideContainer(&CleanList);
-          MirrorList.SmartMirror (&MirrorStatistics, &MirrorPathNameStatusList, &MirrorContext);
-          CleanList.SetLookAsideContainer(&MirrorList);
-          CleanList.SmartClean (&CleanStatistics, &CleanPathNameStatusList, &CleanContext);
-
-          while (!MirrorContext.Wait(125) || !CleanContext.Wait(125))
-          {
-            MirrorContext.GetStatus(CurrentPath);
-            pProgressbar->SetProgress (MirrorContext.Get() + CleanContext.Get());
-            pProgressbar->SetCurrentPath(CurrentPath);
-            pProgressbar->Show();
-            if (pProgressbar->HasUserCancelled())
-            {
-              MirrorContext.Cancel();
-              CleanContext.Cancel();
-              MirrorContext.Wait(INFINITE);
-              CleanContext.Wait(INFINITE);
-              break;
-            } // if
-          } // while
+          Effort        Progress;
+          _SmartMirror(CleanList, MirrorList, MirrorStatistics, MirrorPathNameStatusList, nullptr, Progress, pProgressbar);
           delete pProgressbar;
 
         } // Does not contain symlinks
-      } // if ( Progress >= 0 )
+      } // if Context is still running
       else
       {
         // In case of Cancel during FindHardlink the progressbar has to be deleted
         delete pProgressbar;
       }
 
-
-      // Start releasing data async, because releasing data really takes time
-      AsyncContext MirrorDisposeContext;
-      AsyncContext CleanDisposeContext;
-      
-      const int nHandles = 2;
-      HANDLE  WaitEvents[nHandles];
-      
-      MirrorList.Dispose(&MirrorDisposeContext);
-      CleanList.Dispose(&CleanDisposeContext);
-
-      WaitEvents[0] = MirrorDisposeContext.m_WaitEvent;
-      WaitEvents[1] = CleanDisposeContext.m_WaitEvent;
-
-      // Wait till releasing of resources has finished
-      WaitForMultipleObjects(nHandles, WaitEvents, TRUE, INFINITE);
+      DisposeAsync(MirrorList, CleanList, MirrorStatistics, CleanStatistics);
 
       GetLocalTime(&CleanStatistics.m_EndTime);
       GetLocalTime(&MirrorStatistics.m_EndTime);
-      MirrorList.EndLogging(LogFile, MirrorPathNameStatusList, MirrorStatistics);
-
+      MirrorList.EndLogging(LogFile, MirrorPathNameStatusList, MirrorStatistics, FileInfoContainer::eSmartMirror);
     } // ProgressBar
 
     // TBD do the errorhandling based on PathNameStatusList. 
@@ -2895,17 +2839,7 @@ SmartXXX(
 
   // ProgressBar
   { 
-    wchar_t         CurrentPath[HUGE_PATH];
-
-    const int MaxEndlessProgress = 50;
-    Progressbar* pProgressbar = new Progressbar(
-      aIDS_ProgressBarHeading, 
-      IDS_STRING_ProgressCanceling,
-      g_hInstance, 
-      gLSESettings.LanguageID,
-      lpcmi->hwnd,
-      MaxEndlessProgress
-    );
+    Progressbar* pProgressbar = new Progressbar();
 
     int progress = 0;
 
@@ -3074,10 +3008,14 @@ SmartXXX(
       }
     } // for (ULONG i = 0; i < m_nTargets; i++)
 
+#if defined SYMLINK_FORCE
+    if (SYMLINK_OUTPROC)
+#else
     // Check if we are in Backup Mode. If yes we also have to do the FindHardlink elevated, because
     // it might happen, that FindHardlink should run over directories, which the explorer does not
     // have access permissions.
     if (gLSESettings.Flags & eBackupMode)
+#endif
     {
       // Stop bar
       RECT  ProgressbarPosition;
@@ -3118,14 +3056,9 @@ SmartXXX(
     }
     else // if (gLSESettings.Flags & eBackupMode)
     {
-      // Enumerate all files
-      ULONG Count = 0;
+      // Enumerate all files in-proc in .dll
       AsyncContext    Context;
 
-#if defined _DEBUG
-      pProgressbar->Show();
-      pProgressbar->SetTitle(L"DEBUG: Explorer::FindHardlink");
-#endif
 
       int r = FileList.FindHardLink (
         TargetPathList,
@@ -3137,40 +3070,30 @@ SmartXXX(
 
       while (!Context.Wait(250))
       {
-        Context.GetStatus(CurrentPath);
-        pProgressbar->SetProgress (progress++);
-        pProgressbar->SetCurrentPath(CurrentPath);
-        pProgressbar->Show();
-        if (pProgressbar->HasUserCancelled())
+        if (pProgressbar->Update(Context, PDM_PREFLIGHT))
         {
           Context.Cancel();
           Context.Wait(INFINITE);
-          progress = -1;
           break;
         }
-        
-        // This is an endless bar during searching for files
-        if (progress >= MaxEndlessProgress)
-        {
-          pProgressbar->SetRange(MaxEndlessProgress);
-          progress = 0;
-        }
-      } // while (!Context.Wait(250))
+      }
+      pProgressbar->SetMode(PDM_DEFAULT);
 
       FileList.HeadLogging(LogFile);
 
       // Only continue if nobody pressed cancel
-      if ( progress >= 0 )
-      {
-        __int64 MaxProgress = FileList.PrepareSmartCopy(aMode, &aStats);
+	  if (Context.IsRunning())
+	  {
+        Effort MaxProgress;
+        FileList.Prepare(aMode, &aStats, &MaxProgress);
 
         // If during SmartCopy either one file was a symbolic link, we have
         // to elevate the rest. The same applies if a SymbolicLink Clone should
         // be created. But do this only under > Windows Vista
 
 
-  #if defined SYMLINK_INPROC || defined DEBUG_DO_NOT_DELETE_SYMLINKS_ARGS
-        if (1)
+  #if defined SYMLINK_FORCE || defined DEBUG_DO_NOT_DELETE_SYMLINKS_ARGS
+        if (SYMLINK_OUTPROC)
   #else
         int ContainsSymlinks = FileList.CheckSymbolicLinks();
         if (ContainsSymlinks)
@@ -3187,7 +3110,6 @@ SmartXXX(
         // Determine if we have to elevate
         if (
           ( TRUE == ContainsSymlinks || aHardVsSymbolic ) && 
-          !gbXpSymlinks &&
           ElevationNeeded()
         )
   #endif
@@ -3260,18 +3182,14 @@ SmartXXX(
           // Do not elevate
           // We are here because either the operation did not contain symlinks or we are under XP
           // and the XPSymlink functionality is up and running.
-          wchar_t         CurrentPath[HUGE_PATH];
 
           // Reset the Progressbar since we now know the number of files to be copied
           HTRACE (L"Progress Start%08x\n", MaxProgress);
           pProgressbar->SetRange(MaxProgress);
 
-  #if defined _DEBUG
-          pProgressbar->SetTitle(L"DEBUG: Explorer::Smartcopy");
-  #endif
           AsyncContext  Context;
       
-          // TBD ALLOWCREATION: Hand over AllowCreation Flag to whole operation
+          // TODO ALLOWCREATION: Hand over AllowCreation Flag to whole operation
           switch (aMode)
           {
             case FileInfoContainer::eSmartCopy:
@@ -3285,21 +3203,17 @@ SmartXXX(
 
           while (!Context.Wait(250))
           {
-            Context.GetStatus(CurrentPath);
-            pProgressbar->SetProgress (Context.Get());
-            pProgressbar->SetCurrentPath(CurrentPath);
-            pProgressbar->Show();
-            if (pProgressbar->HasUserCancelled())
+            if (pProgressbar->Update(Context, Context.GetProgress()))
             {
               Context.Cancel();
               Context.Wait(INFINITE);
               break;
-            } // if
-          } // while
+            }
+          }
           delete pProgressbar;
 
         } // Does not contain symlinks
-      } // if ( Progress >= 0 )
+      } // if Context is still running
       else
       {
         delete pProgressbar;
@@ -3372,12 +3286,16 @@ ReplaceJunction(
   if (!(gLSESettings.Flags & eBackupMode))
     bRemoveDir = RemoveDirectory(aSource);
 
-	// With Vista & W7, we are not allowed to operate on Junctions in folders like
+#if defined SYMLINK_FORCE
+  if (SYMLINK_OUTPROC)
+#else
+  // With Vista & W7, we are not allowed to operate on Junctions in folders like
 	// c:\Program Files (x86) without UAC, so in this very case the modification
 	// of Junctions has to be relayed to an elevated .exe as done with Symbolic links
 	if (FALSE == bRemoveDir)
+#endif
 	{
-	  if (!gbXpSymlinks && ElevationNeeded() || (gLSESettings.Flags & eBackupMode))
+	  if (ElevationNeeded() || (gLSESettings.Flags & eBackupMode))
 		{
       wchar_t sla_quoted[HUGE_PATH];
       wchar_t curdir[HUGE_PATH];	
@@ -3471,13 +3389,15 @@ ReplaceSymbolicLink(
   if (SymLinkAllowUnprivilegedCreation(&gVersionInfo))
     SymbolicLinkRelation |= SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
     
+#if defined SYMLINK_FORCE
+  if (SYMLINK_OUTPROC)
+#else
   // Check if we have to elevate
   if (
-    !gbXpSymlinks && 
-    ElevationNeeded() && 
-    !(SymbolicLinkRelation & ~SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE) || 
+    (ElevationNeeded() && !(SymbolicLinkRelation & SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE)) || 
     (gLSESettings.Flags & eBackupMode)
   )
+#endif
 	{
     wchar_t sla_quoted[HUGE_PATH];
     wchar_t curdir[HUGE_PATH];	
@@ -3506,16 +3426,13 @@ ReplaceSymbolicLink(
 	}
   else
   {
+    // Used when UAC is switched off thus making it possible to call CreateSymboliclink directly from explorer
     // 
-    // Used when UAC is switched off thus making it possible 
-    // to call CreateSymboliclink directly from explorer
-    // 
-    
     if (Attribs & FILE_ATTRIBUTE_DIRECTORY)
     {
       RemoveDirectory(aSource);
       RetVal = CreateSymboliclink(aSource,  
-        aTarget,
+        aTarget, 
         SymbolicLinkRelation | SYMLINK_FLAG_DIRECTORY
       );
     }
@@ -3574,9 +3491,13 @@ ReplaceMountPoint(
 	DWORD RetVal = ERROR_SUCCESS;
   BOOL bRemoveDir = FALSE;
 	
+#if defined SYMLINK_FORCE
+  if (SYMLINK_OUTPROC)
+#else
   // With Windows7 elevation is needed to unmount a drive. Furthermore when in 
   // Backup Mode we also have to elevate
-	if (!gbXpSymlinks && ElevationNeeded() || (gLSESettings.Flags & eBackupMode))
+	if (ElevationNeeded() || (gLSESettings.Flags & eBackupMode))
+#endif
 	{
     wchar_t sla_quoted[HUGE_PATH];
     wchar_t curdir[HUGE_PATH];	
@@ -3665,6 +3586,8 @@ DropSmartMirror(
   return NOERROR;
 }
 
+
+
 HRESULT
 HardLinkExt::
 DropDeloreanCopy(
@@ -3683,20 +3606,9 @@ DropDeloreanCopy(
 
   // ProgressBar
   { 
-    wchar_t         CurrentPath[HUGE_PATH];
+    Progressbar* pProgressbar = new Progressbar();
 
-    const int MaxEndlessProgress = 50;
-    Progressbar* pProgressbar = new Progressbar(
-      IDS_STRING_ProgressCreatingDeLoreanCopy,  
-      IDS_STRING_ProgressCanceling,
-      g_hInstance, 
-      gLSESettings.LanguageID,
-      lpcmi->hwnd,
-      MaxEndlessProgress
-    );
-
-    __int64 Progress = 0;
-
+    Effort Progress;
 
     // Data for Mirrorlist
     CopyStatistics  MirrorStats;
@@ -3777,9 +3689,6 @@ DropDeloreanCopy(
           Backup0Path.ArgvDest = Backup1;
           if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
           {
-#if defined _DEBUG
-            pProgressbar->SetTitle(L"DEBUG: Explorer::FindHardlink SmartClone");
-#endif
             // No inital backup exists so clone and thus enum files in Backup0
 
             // If junctions should be spliced, then already spliced
@@ -3802,9 +3711,6 @@ DropDeloreanCopy(
           }
           else // if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
           {
-#if defined _DEBUG
-            pProgressbar->SetTitle(L"DEBUG: Explorer::FindHardlink DeloreanCopy");
-#endif
             // In case of copying set the unroll/splice flags, if necessary
             if (gLSESettings.Flags & eUnrollReparsePoints)
               CloneList.SetUnrollDirList(NULL);
@@ -3912,12 +3818,6 @@ DropDeloreanCopy(
     }
     else // if (gLSESettings.Flags & eBackupMode)
     {
-#if defined _DEBUG
-      pProgressbar->Show();
-      pProgressbar->SetTitle(L"DEBUG: Explorer::FindHardlink DeloreanCopy");
-#endif
-
-      ULONG Count = 0;
       AsyncContext    Context;
 
       // Find the files in Backup0
@@ -3941,33 +3841,19 @@ DropDeloreanCopy(
 
       // First we have to wait for the find on the Clone side
       // 
-      while (!Context.Wait(250))
+      while (!Context.Wait(50))
       {
-        Context.GetStatus(CurrentPath);
-        pProgressbar->SetProgress (Progress++);
-        pProgressbar->SetCurrentPath(CurrentPath);
-        pProgressbar->Show();
-        if (pProgressbar->HasUserCancelled())
+        if (pProgressbar->Update(Context, PDM_PREFLIGHT))
         {
           Context.Cancel();
           Context.Wait(INFINITE);
-          Progress = -1;
           break;
         }
-        
-        // This is an endless bar during searching for files
-        if (Progress >= MaxEndlessProgress)
-        {
-          pProgressbar->SetRange(MaxEndlessProgress);
-          Progress = 0;
-        }
-      } // while (!Context.Wait(250))
-
+      }
 
       MirrorList.HeadLogging(LogFile);
 
-      // If we are going for the smartmirror, we also have to wait for 
-      // the mirror directory scan
+      // If we are going for the smartmirror, we also have to wait for FindHardlink on MirrorList
       if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
       {
         while (!MirrorContext.Wait(250))
@@ -3977,48 +3863,44 @@ DropDeloreanCopy(
           {
             MirrorContext.Cancel();
             MirrorContext.Wait(INFINITE);
-            Progress = -1;
             break;
           } // if
 
-          // This is an endless bar during searching for files
-          if (Progress >= MaxEndlessProgress)
-          {
-            pProgressbar->SetRange(MaxEndlessProgress);
-            Progress = 0;
-          }
-
         } // while (!MirrorContext.Wait(250))
       } // if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
+      pProgressbar->SetMode(PDM_DEFAULT);
 
 
       // Only continue if nobody pressed cancel
-      if ( Progress >= 0 )
+      if (MirrorContext.IsRunning())
       {
-          // The containers have to be prepared here because we need to sort
-          // the reparse points early
-          __int64 MaxProgress;
-          if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
-          {
-            MaxProgress = CloneList.PrepareSmartCopy(FileInfoContainer::eSmartClone, &aStats);
-            MirrorList.PrepareSmartCopy(FileInfoContainer::eSmartClean, &MirrorStats);
-            
-            // 1 Clonen
-            // 2 Clean 
-            // 3 Mirror
-            MaxProgress *= 3;
-          }
-          else
-            MaxProgress = CloneList.PrepareSmartCopy(FileInfoContainer::eSmartCopy, &aStats);
+        // The containers have to be prepared here because we need to sort the reparse points early
+        Effort MaxProgress;
+        if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
+        {
+          CloneList.Prepare(FileInfoContainer::eSmartClone, &aStats, &MaxProgress);
 
+          Effort CleanEffort;
+          CloneList.EstimateEffort(FileInfoContainer::eSmartClean, &CleanEffort);
+          MaxProgress += CleanEffort;
+
+          Effort MirrorEffort;
+          MirrorList.Prepare(FileInfoContainer::eSmartMirror, &MirrorStats, &MirrorEffort);
+          MaxProgress += MirrorEffort;
+        }
+        else
+        {
+          // Initial Copy during Delorean process
+          CloneList.Prepare(FileInfoContainer::eSmartCopy, &aStats, &MaxProgress);
+        }
 
         if (!(gLSESettings.Flags & eForceAbsoluteSymbolicLinks))
           CloneList.SetFlags(FileInfoContainer::eRelativeSymboliclinks);
 
         // If there is one symbolic link among the list, we have
         // to elevate the whole operation. 
-  #if defined SYMLINK_INPROC 
-        if (0)
+  #if defined SYMLINK_FORCE 
+        if (SYMLINK_OUTPROC)
   #else
         int ContainsSymlinks = MirrorList.CheckSymbolicLinks() | CloneList.CheckSymbolicLinks();
         if (ContainsSymlinks)
@@ -4035,13 +3917,19 @@ DropDeloreanCopy(
         
         if (
           TRUE == ContainsSymlinks && 
-          !gbXpSymlinks &&
           ElevationNeeded()
         )
   #endif
         {
+          // Delegate the operation to Symlink.exe
+          //
           MirrorList.StopLogging(LogFile);
           
+          // TODO Das Positionieren des Progressbars funktioniert nicht mehr im symlink.exe
+
+          // TODO Das Mirror & Delorean mit Backup Mode geht überhaupt nicht mehr. Es wird zwar das symlink.args geschrieben
+          // aber danach tut sich nix mehr.
+
           // Stop bar
           RECT  ProgressbarPosition;
           ZeroMemory(&ProgressbarPosition, sizeof(RECT));
@@ -4103,159 +3991,66 @@ DropDeloreanCopy(
   #endif
           // persist Pathnamestatuslist
 
-          if (Progress >= 0 )
+          if (MirrorContext.IsRunning())
           {
             // Fork Process
-	          DWORD r = ForkExeHelper(curdir, sla_quoted);
+            DWORD r = ForkExeHelper(curdir, sla_quoted);
           }
         }
         else // if DO ELEVATE
         {
-          wchar_t         CurrentPath[HUGE_PATH];
+          // No ELevation, we stay in DLL
+          Effort CurrentProgress;
+          Effort LastProgress;
 
-            __int64 CurrentProgress = 0;
-            __int64 LastProgress = 0;
-
-          HTRACE (L"Progress Start%08x\n", MaxProgress);
           pProgressbar->SetRange(MaxProgress);
 
-  #if defined _DEBUG
-          pProgressbar->SetTitle(L"DEBUG: Explorer::Smartcopy");
-  #endif
           AsyncContext  Context;
-      
+
+          // Decide wether we are in the mid of Delorean or just do the initial Copy
           if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
           {
-  #if defined _DEBUG
-            pProgressbar->SetTitle(L"DEBUG: Explorer::SmartClone");
-  #endif
-            CloneList.SmartClone (&aStats, &ClonePathNameStatusList, &Context);
+            // In the middle of Delorean
+            CloneList.SmartClone(&aStats, &ClonePathNameStatusList, &Context);
           }
           else
           {
-  #if defined _DEBUG
-            pProgressbar->SetTitle(L"DEBUG: Explorer::SmartCopy");
-  #endif
-            CloneList.SmartCopy (&aStats, &ClonePathNameStatusList, &Context);
+            // Initial Copy of Delorean
+            CloneList.SmartCopy(&aStats, &ClonePathNameStatusList, &Context);
           }
 
-          LastProgress = 0;
-          CurrentPath[0] = 0x00;
-
-          // Wait for the SmartCopy to finish
+          // Wait for the SmartCopy/SmartClone to finish
           while (!Context.Wait(250))
           {
-            Context.GetStatus(CurrentPath);
-            
             // Progress calculation over multiple operations
-            CurrentProgress = Context.Get();
-            Progress += CurrentProgress - LastProgress ;
+            CurrentProgress = Context.GetProgress();
+            Progress += CurrentProgress - LastProgress;
             LastProgress = CurrentProgress;
-            pProgressbar->SetProgress (Progress);
-            
-            pProgressbar->SetCurrentPath(CurrentPath);
-            pProgressbar->Show();
-            if (pProgressbar->HasUserCancelled())
+
+            if (pProgressbar->Update(Context, Progress))
             {
               Context.Cancel();
               Context.Wait(INFINITE);
-              Progress = -1;
               break;
-            } // if
-          } // while
+            }
+          }
+
+          // Sum up the rest of progress, which happened during wait
+          Progress += Context.GetProgress() - LastProgress;
+          pProgressbar->SetProgress(Progress);
 
           // if it is not the initial backup start cleaning up
           if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
           {
             // Only continue if Cancel was not pressed
-            if (Progress >= 0)
+            if (Context.IsRunning())
             {
-  #if defined _DEBUG
-              pProgressbar->SetTitle(L"DEBUG: Explorer::DeloreanCopy Cleanup");
-  #endif
               // Iterate over all source path and replace all source path in Clonelist
               for (_ArgvListIterator iter = MirrorPathList.begin(); iter != MirrorPathList.end(); ++iter)
                 iter->ArgvDest = iter->Argv;
-    
               CloneList.ChangePath(Backup1, MirrorPathList);
 
-              CloneList.SetLookAsideContainer(&MirrorList);
-              CloneList.SmartClean (&MirrorStats, &MirrorPathNameStatusList, &Context);
-
-              // Wait for the find to finish
-              LastProgress = 0;
-              while (!Context.Wait(250))
-              {
-                Context.GetStatus(CurrentPath);
-                
-                // Progress calculation over multiple operations
-                CurrentProgress = Context.Get();
-                Progress += CurrentProgress - LastProgress;
-                LastProgress = CurrentProgress;
-                pProgressbar->SetProgress (Progress);
-                
-                pProgressbar->SetCurrentPath(CurrentPath);
-                pProgressbar->Show();
-                if (pProgressbar->HasUserCancelled())
-                {
-                  Context.Cancel();
-                  Context.Wait(INFINITE);
-                  Progress = -1;
-                  break;
-                } // if
-              } // while
-
-
-              if (Progress >= 0)
-              {
-                while (!MirrorContext.Wait(250))
-                {
-                  if (pProgressbar->HasUserCancelled())
-                  {
-                    // Finding Files on the source is not part of the progress
-                    // because it is running in parallel to the clone
-                    MirrorContext.Cancel();
-                    MirrorContext.Wait(INFINITE);
-                    Progress = -1;
-                    break;
-                  } // if
-                }
-
-                if (Progress >= 0)
-                {
-  #if defined _DEBUG
-                  pProgressbar->SetTitle(L"DEBUG: Explorer::SmartMirror");
-  #endif
-                  MirrorList.SetLookAsideContainer(&CloneList);
-                  MirrorList.SmartMirror (&MirrorStats, &MirrorPathNameStatusList, &MirrorContext);
-                  LastProgress = 0;
-                  while (!MirrorContext.Wait(250))
-                  {
-                    MirrorContext.GetStatus(CurrentPath);
-                    
-                    // Progress calculation over multiple operations
-                    CurrentProgress = MirrorContext.Get();
-                    Progress += CurrentProgress - LastProgress;
-                    LastProgress = CurrentProgress;
-                    pProgressbar->SetProgress (Progress);
-                    
-                    pProgressbar->SetCurrentPath(CurrentPath);
-                    pProgressbar->Show();
-                    if (pProgressbar->HasUserCancelled())
-                    {
-                      MirrorContext.Cancel();
-                      MirrorContext.Wait(INFINITE);
-                      break;
-                    } // if
-                  } // while
-                } // if (Progress >= 0) 
-              }
-              else
-              {
-                // Cancel was pressed, so wait for the mirror file scan to finish
-                MirrorContext.Cancel();
-                MirrorContext.Wait(INFINITE);
-              }
+              _SmartMirror(CloneList, MirrorList, MirrorStats, MirrorPathNameStatusList, &MirrorContext, Progress, pProgressbar);
             }
             else
             {
@@ -4271,29 +4066,16 @@ DropDeloreanCopy(
           delete pProgressbar;
 
         } // Does not contain symlinks
-      } // if ( progress >= 0 )
-      else 
+      } // if Context is still running
+      else
       {
         delete pProgressbar;
       }
 
-      // Start releasing data async, because releasing data really takes time
-      AsyncContext FileDisposeContext;
-      AsyncContext MirrorDisposeContext;
-
-      const int nHandles = 2;
-      HANDLE  WaitEvents[nHandles];
-      MirrorList.Dispose(&MirrorDisposeContext);
-      CloneList.Dispose(&FileDisposeContext);
-
-      WaitEvents[0] = MirrorDisposeContext.m_WaitEvent;
-      WaitEvents[1] = FileDisposeContext.m_WaitEvent;
-
-      // Wait till releasing of resources has finished
-      WaitForMultipleObjects(nHandles, WaitEvents, TRUE, INFINITE);
+      DisposeAsync(MirrorList, CloneList, MirrorStats, aStats);
 
       GetLocalTime(&MirrorStats.m_EndTime);
-      MirrorList.EndLogging(LogFile, MirrorPathNameStatusList, MirrorStats);
+      MirrorList.EndLogging(LogFile, MirrorPathNameStatusList, MirrorStats, FileInfoContainer::eSmartMirror);
 
     } // ProgressBar
 
@@ -4302,13 +4084,13 @@ DropDeloreanCopy(
     {
       // Dump Errors
       _PathNameStatusList::iterator	iter;
-      for (iter = ClonePathNameStatusList.begin (); iter != ClonePathNameStatusList.end (); ++iter)
+      for (iter = ClonePathNameStatusList.begin(); iter != ClonePathNameStatusList.end(); ++iter)
       {
         PathNameStatus pns = *iter;
         if (pns.m_ErrorCode == ERROR_TOO_MANY_LINKS)
         {
-          ErrorCreating(pns.m_PathName, 
-            IDS_STRING_ErrExplorerCanNotCreateHardlink, 
+          ErrorCreating(pns.m_PathName,
+            IDS_STRING_ErrExplorerCanNotCreateHardlink,
             IDS_STRING_ErrCreatingHardlink,
             IDS_STRING_ErrHardlinkFailed
           );
@@ -4316,7 +4098,7 @@ DropDeloreanCopy(
         }
       }
     } // if (PathNameStatusList.size())
-    
+
     DeletePathNameStatusList(ClonePathNameStatusList);
   }
 

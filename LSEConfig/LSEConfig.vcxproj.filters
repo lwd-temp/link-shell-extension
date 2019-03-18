@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HighColorTab.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hookwnd.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LSEConfig.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="memdc.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiLanguage.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropPageCustomize.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropPageFrame.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropPageFrameBordered.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropPageFrameEx.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropPageGeneral.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropPageIconHardlink.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropPageIconJunction.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropPageIconSymlink.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResizableGrip.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResizableLayout.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResizableMinMax.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResizableMsgSupport.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResizableState.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThemeLibEx.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TreePropSheetBase.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TreePropSheetBordered.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TreePropSheetEx.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TreePropSheetResizableLibHook.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TreePropSheetSplitter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TreePropSheetTreeCtrl.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TreePropSheetUtil.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XIcon.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="hookwnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LSEConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiLanguage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropPageCustomize.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropPageFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropPageFrameBordered.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropPageFrameEx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropPageGeneral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropPageIconHardlink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropPageIconJunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropPageIconSymlink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResizableGrip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResizableLayout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResizableMinMax.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResizableState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThemeLibEx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TreePropSheetBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TreePropSheetBordered.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TreePropSheetEx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TreePropSheetResizableLibHook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TreePropSheetSplitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TreePropSheetTreeCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XIcon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\EmptyImageList.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\HardlinkExtension\res\Hardlink_Vista.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\HardlinkExtension\res\JunctionIcon_Vista.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\LSEConfig.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\LSEConfig.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\HardlinkExtension\res\Rectangle.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\HardlinkExtension\res\SymbolicLink_Vista.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="LSEConfig.exe.trust.manifest">
+      <Filter>Resource Files</Filter>
+    </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LSEConfig.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

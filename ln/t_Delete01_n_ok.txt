@@ -1,0 +1,78 @@
+
+
+C:\data\cpp\hardlinks\ln>REM Delete and check if we stop on inner/outer reparse boundaries 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delete test\delete\source\F1  1>sortout 
+
+
+-d C:\data\cpp\hardlinks\ln\test\delete\source\F1
+-d C:\data\cpp\hardlinks\ln\test\delete\source\F1\F1_F0
+-f C:\data\cpp\hardlinks\ln\test\delete\source\F1\F1.txt
+-f C:\data\cpp\hardlinks\ln\test\delete\source\F1\F1_F0\F1_F0.txt
+-j C:\data\cpp\hardlinks\ln\test\delete\source\F1\F1_F0\F1_F0_J0
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:       928         0         0         0         0         0
+    File:         2         0         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         2         0         -         0         0         0
+ Symlink:         0         -         0         0         0         0
+Junction:         1         -         0         0         0         0
+8 matching file(s) found, using 3712 bytes.
+C:\data\cpp\hardlinks\ln\test\delete\source\F0\F0.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\F0\F0_F1\F0_F1.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\F0\F0_F1\F0_F1_F1\F0_F1_F1.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\F0\F0_F1\F0_F1_J2\F0_F1_F1.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\J4\F0.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\J4\F0_F1\F0_F1.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\J4\F0_F1\F0_F1_F1\F0_F1_F1.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\J4\F0_F1\F0_F1_J2\F0_F1_F1.txt
+
+C:\data\cpp\hardlinks\ln>REM Delete and go over the boundary for a certain wildcard 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --follow F2_J0 --delete test\delete\source\F2  1>sortout 
+
+
+-d C:\data\cpp\hardlinks\ln\test\delete\source\F2
+-d C:\data\cpp\hardlinks\ln\test\delete\source\F2\F2_J0
+-d C:\data\cpp\hardlinks\ln\test\delete\source\F2\F2_J0\F1_FX
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:         0         0         0         0         0         0
+    File:         0         0         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         3         0         -         0         0         0
+ Symlink:         0         -         0         0         0         0
+Junction:         0         -         0         0         0         0
+8 matching file(s) found, using 3712 bytes.
+C:\data\cpp\hardlinks\ln\test\delete\source\F0\F0.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\F0\F0_F1\F0_F1.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\F0\F0_F1\F0_F1_F1\F0_F1_F1.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\F0\F0_F1\F0_F1_J2\F0_F1_F1.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\J4\F0.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\J4\F0_F1\F0_F1.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\J4\F0_F1\F0_F1_F1\F0_F1_F1.txt
+C:\data\cpp\hardlinks\ln\test\delete\source\J4\F0_F1\F0_F1_J2\F0_F1_F1.txt
+
+C:\data\cpp\hardlinks\ln>REM Check if locked anchor can not be delted 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delete test\delete\source  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:         0         0         0         0         0         0
+    File:         0         0         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         1         0         -         0         0         2
+ Symlink:         0         -         0         0         0         0
+!-d(0x00000005) C:\data\cpp\hardlinks\ln\test\delete\source
+!?d(0x00000005) C:\data\cpp\hardlinks\ln\test\delete\source
+Junction:         0         -         0         0         0         0
+WARNING: Delete finished successfully but see output for errors.

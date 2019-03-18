@@ -1,39 +1,17 @@
 
-D:\data\cpp\hardlinks\ln>REM ----------------- 
+C:\data\cpp\hardlinks\ln>REM ----------------- 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Check regular expressions 
+C:\data\cpp\hardlinks\ln>REM Check regular expressions 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --exclude 
+C:\data\cpp\hardlinks\ln>REM --exclude 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.txt --copy test\regexp\source test\regexp\dest  1>sortout 
-
-
-                      Overall
-              Total    Copied    Linked   Skipped  Excluded    Failed
-    Byte:   152.398   133.991         0         0    18.407         0
-    File:         6         5         0         0         1         0
-   Times:        00:00:00.002
-  Folder:         3         3         -         0         0         0
- Symlink:         0         -         0         0         0         0
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\history.txt
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
-Junction:         0         -         0         0         0         0
-ErrorLevel == 0
-
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.h --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.txt --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -43,19 +21,41 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\file.h
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\history.txt
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.rc --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.h --copy test\regexp\source test\regexp\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:   152.398   133.991         0         0    18.407         0
+    File:         6         5         0         0         1         0
+   Times:        00:00:00.002
+  Folder:         3         3         -         0         0         0
+ Symlink:         0         -         0         0         0         0
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\file.h
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.rc --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -65,19 +65,19 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Res\poi.rc
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Res\poi.rc
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.cxx --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.cxx --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -87,19 +87,19 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\licence.cxx
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\poitcp.cxx
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\licence.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.cxx --exclude *.h --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.cxx --exclude *.h --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -109,19 +109,19 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\file.h
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\licence.cxx
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\poitcp.cxx
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\file.h
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\licence.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude @filter.txt --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.cXx --exclude *.h --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -131,19 +131,41 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude @f
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\file.h
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\licence.cxx
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\poitcp.cxx
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\file.h
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\licence.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.cXx --exclude *.H --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude History.txt --copy test\regexp\source test\regexp\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:   152.398   133.991         0         0    18.407         0
+    File:         6         5         0         0         1         0
+   Times:        00:00:00.002
+  Folder:         3         3         -         0         0         0
+ Symlink:         0         -         0         0         0         0
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\history.txt
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude @filter.txt --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -153,23 +175,67 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\file.h
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\licence.cxx
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\poitcp.cxx
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\file.h
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\licence.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM --excluderegexp 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude @filter.txt --copy test\regexp\source test\regexp\dest  1>sortout 
 
-D:\data\cpp\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excluderegexp "cxx$" --copy test\regexp\source test\regexp\dest   1>sortout 
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:   152.398    21.571         0         0   130.827         0
+    File:         6         2         0         0         4         0
+   Times:        00:00:00.002
+  Folder:         3         3         -         0         0         0
+ Symlink:         0         -         0         0         0         0
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\file.h
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\licence.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *.cXx --exclude *.H --copy test\regexp\source test\regexp\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:   152.398    21.571         0         0   130.827         0
+    File:         6         2         0         0         4         0
+   Times:        00:00:00.002
+  Folder:         3         3         -         0         0         0
+ Symlink:         0         -         0         0         0         0
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\file.h
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\licence.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\hardlinks\ln>REM --excluderegexp 
+
+C:\data\cpp\hardlinks\ln>REM
+
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excluderegexp "cxx$" --copy test\regexp\source test\regexp\dest   1>sortout 
 
 
                       Overall
@@ -179,19 +245,19 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludereg
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\licence.cxx
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\poitcp.cxx
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\licence.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excluderegexp "^poi.*" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excluderegexp "^poi.*" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -201,19 +267,19 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludereg
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excluderegexp "^poi.+" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excluderegexp "^poi.+" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -223,23 +289,23 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludereg
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM --excludedir 
+C:\data\cpp\hardlinks\ln>REM --excludedir 
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "s?c" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "s?c" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -249,16 +315,16 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:         3         2         -         0         1         0
  Symlink:         0         -         0         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir @filter.txt --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir @filter.txt --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -268,16 +334,16 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:         3         2         -         0         1         0
  Symlink:         0         -         0         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *nction.cxx --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *nction.cxx --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -287,20 +353,20 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude *n
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Src\nction.cxx
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\function.cxx
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Src\nction.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -310,19 +376,19 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:         4         3         -         0         1         0
  Symlink:         0         -         0         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src*" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src*" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -332,18 +398,18 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:         4         2         -         0         2         0
  Symlink:         0         -         0         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -353,21 +419,21 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:         5         4         -         0         1         0
  Symlink:         0         -         0         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder\history.txt
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder\history.txt
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src*" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src*" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -377,18 +443,18 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:         4         2         -         0         2         0
  Symlink:         0         -         0         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src2" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src2" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -398,26 +464,26 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:         4         3         -         0         1         0
  Symlink:         0         -         0         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM --include 
+C:\data\cpp\hardlinks\ln>REM --include 
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include *.cxx --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include *.cxx --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -427,16 +493,16 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include *.
    Times:        00:00:00.002
   Folder:         2         2         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include *.cxx --exclude *n.cxx --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include *.cxx --exclude *n.cxx --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -446,14 +512,14 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include *.
    Times:        00:00:00.002
   Folder:         2         2         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include @filter.txt --exclude *n.cxx --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include @filter.txt --exclude *n.cxx --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -463,18 +529,18 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include @f
    Times:        00:00:00.002
   Folder:         2         2         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM --includedir 
+C:\data\cpp\hardlinks\ln>REM --includedir 
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --includedir src --excludedir src2 --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --includedir src --excludedir src2 --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -484,18 +550,18 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --includedir
    Times:        00:00:00.002
   Folder:         2         2         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --includedir @filter.txt --excludedir src2 --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --includedir @filter.txt --excludedir src2 --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -505,24 +571,24 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --includedir
    Times:        00:00:00.002
   Folder:         2         2         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --symbolic test\regexp\source\ResSymlink 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --symbolic test\regexp\source\ResSymlink 
 test\regexp\source\ResSymlink -> Res
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --noitcnuj test\regexp\source\ResJunction 
-D:\data\cpp\hardlinks\ln\test\regexp\source\ResJunction -> D:\data\cpp\hardlinks\ln\test\regexp\source\Res
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --noitcnuj test\regexp\source\ResJunction 
+C:\data\cpp\hardlinks\ln\test\regexp\source\ResJunction -> C:\data\cpp\hardlinks\ln\test\regexp\source\Res
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include *.cxx --exclude *n.cxx --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include *.cxx --exclude *n.cxx --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -532,14 +598,14 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include *.
    Times:        00:00:00.002
   Folder:         2         2         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --includedir src --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --includedir src --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -549,18 +615,18 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --includedir
    Times:        00:00:00.002
   Folder:         2         2         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir su??older --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir su??older --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -570,29 +636,29 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:         8         4         -         0         4         0
  Symlink:         1         -         1         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\subfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\subvolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\supfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\supvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
-+j D:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
-+s D:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\subfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\subvolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\supfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\supvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
++j C:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
++s C:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
 Junction:         1         -         1         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir u??older --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir u??older --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -602,41 +668,41 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:        12        12         -         0         0         0
  Symlink:         1         -         1         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder\history.txt
-+j D:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
-+s D:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder\history.txt
++j C:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
++s C:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
 Junction:         1         -         1         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir *u??older --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir *u??older --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -646,33 +712,33 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:        12         4         -         0         8         0
  Symlink:         1         -         1         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src\subfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src\subvolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src\supfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src\supvolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\subfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\subvolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\supfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\supvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
-+j D:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
-+s D:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src\subfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src\subvolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src\supfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src\supvolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\subfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\subvolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\supfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\supvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
++j C:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
++s C:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
 Junction:         1         -         1         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src2\\su??older" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src2\\su??older" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -682,37 +748,37 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:        12         8         -         0         4         0
  Symlink:         1         -         1         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\subfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\subvolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\supfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\supvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
-+j D:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
-+s D:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\subfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\subvolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\supfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\supvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
++j C:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
++s C:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
 Junction:         1         -         1         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "rc2\\su??older" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "rc2\\su??older" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -722,41 +788,41 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:        12        12         -         0         0         0
  Symlink:         1         -         1         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder\history.txt
-+j D:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
-+s D:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder\history.txt
++j C:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
++s C:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
 Junction:         1         -         1         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "*rc2\\su??older" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "*rc2\\su??older" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -766,37 +832,37 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:        12         8         -         0         4         0
  Symlink:         1         -         1         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\subfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\subvolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\supfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\supvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
-+j D:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
-+s D:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\subfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\subvolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\supfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\supvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
++j C:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
++s C:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
 Junction:         1         -         1         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src*\\su??older" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir "src*\\su??older" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -806,33 +872,33 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludedir
    Times:        00:00:00.002
   Folder:        12         4         -         0         8         0
  Symlink:         1         -         1         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src\subfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src\subvolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src\supfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src\supvolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\subfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\subvolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\supfolder
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2\supvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
-+j D:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
-+s D:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src\subfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src\subvolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src\supfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src\supvolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\subfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\subvolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\supfolder
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2\supvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
++j C:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
++s C:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
 Junction:         1         -         1         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude "w()[]{}-+$^" --excludedir sr* --excludedir re* --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude "w()[]{}-+$^" --excludedir sr* --excludedir re* --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -842,19 +908,19 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude "w
    Times:        00:00:00.002
   Folder:         4         1         -         0         3         0
  Symlink:         1         -         0         0         1         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Res
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\w()[]{}-+$^
-~j D:\data\cpp\hardlinks\ln\test\regexp\source\ResJunction
-~s D:\data\cpp\hardlinks\ln\test\regexp\source\ResSymlink
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Res
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\w()[]{}-+$^
+~j C:\data\cpp\hardlinks\ln\test\regexp\source\ResJunction
+~s C:\data\cpp\hardlinks\ln\test\regexp\source\ResSymlink
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
 Junction:         1         -         0         0         1         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude "~*.txt" --excludedir sr* --excludedir re* --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude "~*.txt" --excludedir sr* --excludedir re* --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -864,19 +930,19 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude "~
    Times:        00:00:00.002
   Folder:         4         1         -         0         3         0
  Symlink:         1         -         0         0         1         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Res
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Src
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\src2
-~j D:\data\cpp\hardlinks\ln\test\regexp\source\ResJunction
-~s D:\data\cpp\hardlinks\ln\test\regexp\source\ResSymlink
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file~1.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Res
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Src
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\src2
+~j C:\data\cpp\hardlinks\ln\test\regexp\source\ResJunction
+~s C:\data\cpp\hardlinks\ln\test\regexp\source\ResSymlink
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file~1.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
 Junction:         1         -         0         0         1         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude "*\\Res\\*\\history.t*" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude "*\\Res\\*\\history.t*" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -886,65 +952,65 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --exclude "*
    Times:        00:00:00.002
   Folder:        21        21         -         0         0         0
  Symlink:         1         -         1         0         0         0
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub1\Res\history.txt
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub1\Res\subsubRes\history.txt
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub1\unter1\history.txt
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub1\unter2\history.txt
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub2\Res\history.txt
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub2\s2s1\history.txt
-~f D:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub2\s2s2\history.txt
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder\history.txt
-+j D:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
-+s D:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub1\Res\history.txt
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub1\Res\subsubRes\history.txt
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub1\unter1\history.txt
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub1\unter2\history.txt
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub2\Res\history.txt
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub2\s2s1\history.txt
+~f C:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub2\s2s2\history.txt
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder\history.txt
++j C:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
++s C:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
 Junction:         1         -         1         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include "*\\Res\\*\\history.t*" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include "*\\Res\\*\\history.t*" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -954,28 +1020,28 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --include "*
    Times:        00:00:00.002
   Folder:        11        11         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2\history.txt
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2\history.txt
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excluderegexpdir "\\Res\\.+\\unter?\\?" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excluderegexpdir "\\Res\\.+\\unter?\\?" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -985,61 +1051,61 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --excludereg
    Times:        00:00:00.002
   Folder:        21        19         -         0         2         0
  Symlink:         1         -         1         0         0         0
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub1\unter1
-~d D:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub1\unter2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder\history.txt
-+j D:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
-+s D:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub1\unter1
+~d C:\data\cpp\hardlinks\ln\test\regexp\source\Res\sub1\unter2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\function.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\licence.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\nction.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\poitcp.cxx
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\subvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Src\supvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\subvolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supfolder\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\src2\supvolder\history.txt
++j C:\data\cpp\hardlinks\ln\test\regexp\dest\ResJunction
++s C:\data\cpp\hardlinks\ln\test\regexp\dest\ResSymlink
 Junction:         1         -         1         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --includedir "Res\\sub*" --copy test\regexp\source test\regexp\dest  1>sortout 
+C:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --includedir "Res\\sub*" --copy test\regexp\source test\regexp\dest  1>sortout 
 
 
                       Overall
@@ -1049,35 +1115,35 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --includedir
    Times:        00:00:00.002
   Folder:        11        11         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1
-+d D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2\history.cpp
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2\history.txt
-+f D:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
++d C:\data\cpp\hardlinks\ln\test\regexp\dest
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1
++d C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\file.h
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\poi.rc
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\Res\subsubRes\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter1\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub1\unter2\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\Res\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s1\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2\history.cpp
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\sub2\s2s2\history.txt
++f C:\data\cpp\hardlinks\ln\test\regexp\dest\Res\xyz.src
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0

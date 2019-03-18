@@ -1,0 +1,1473 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Japanese resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Link Shell Extension ê›íË"
+    IDS_SELECT_SUBPAGE      "ê›íËÇµÇΩÇ¢ã@î\ÇëIë"
+    IDS_ABOUTBOX            "ÉoÅ[ÉWÉáÉìèÓïÒ(&A)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "ÉlÉbÉgÉèÅ[ÉNÉhÉâÉCÉuÇ≈égóp"
+    IDS_CHECK_SmartMove     "ÉXÉ}Å[Égà⁄ìÆ"
+    IDS_RADIO_Absolute_Symbolic_Links "ê‚ëŒÉpÉX"
+    IDS_RADIO_Relative_Symbolic_Links "ëäëŒÉpÉX"
+    IDS_STATIC_Symlink_Caption "ÉVÉìÉ{ÉäÉbÉNÉäÉìÉNÇÃÉpÉXéwíË"
+    IDS_STATIC_Localisation "çëç€âª"
+    IDS_STATIC_SelectLanguage "åæåÍ:"
+    IDS_STATIC_Miscellaneous "ÇªÇÃëº"
+    IDS_RADIO_OuterJunctionCrop "ÉRÉsÅ[ÇµÇ»Ç¢"
+    IDS_RADIO_OuterJunctionUnroll "é¿ÉtÉ@ÉCÉãÇÉRÉsÅ["
+    IDS_RADIO_OuterJunctionSplice "ÉäÉìÉNÇï€éù"
+    IDS_STATIC_OuterReparse "ÉXÉ}Å[ÉgÉRÉsÅ[Ç≈ÇÃäOïîÉäÉìÉNÇÃàµÇ¢"
+    IDS_CHECK_Logging       "ÉçÉOï€ë∂"
+    IDS_General             "àÍî "
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "ÉnÅ[ÉhÉäÉìÉNÇÃÉAÉCÉRÉìÉIÅ[ÉoÅ[ÉåÉC"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "ÉIÅ[ÉoÅ[ÉåÉCÉAÉCÉRÉìÇÃóDêÊìx:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "ÉAÉCÉRÉì"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "óDêÊìx"
+    IDS_CHECK_Hardlink_Overlay_Path "ÉJÉXÉ^ÉÄÉAÉCÉRÉì"
+    IDS_BUTTON_Hardlink_Overlay_Path "éQè∆"
+    IDS_Icon_Hardlink       "ÉAÉCÉRÉì::ÉnÅ[ÉhÉäÉìÉN"
+    IDS_CHECK_Junction_Overlay_Icon "ÉWÉÉÉìÉNÉVÉáÉìÇÃÉAÉCÉRÉìÉIÅ[ÉoÅ[ÉåÉC"
+    IDS_Icon_Junction       "ÉAÉCÉRÉì::ÉWÉÉÉìÉNÉVÉáÉì"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon "ÉVÉìÉ{ÉäÉbÉNÉäÉìÉNÇÃÉAÉCÉRÉìÉIÅ[ÉoÅ[ÉåÉC"
+    IDS_Icon_Symboliclink   "ÉAÉCÉRÉì::ÉVÉìÉ{ÉäÉbÉNÉäÉìÉN"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "ê¢ë„ÉRÉsÅ["
+    IDS_CHECK_SmartMirror   "ÉXÉ}Å[ÉgÉ~ÉâÅ[ÉäÉìÉO"
+    IDS_CHECK_ExtendedMenue "ägí£ÉÅÉjÉÖÅ["
+    IDS_CHECK_BackupMode    "ÉoÉbÉNÉAÉbÉv"
+    IDS_GROUPBOX_Miscellaneous "ÇªÇÃëº"
+    IDS_Customize           "ÉJÉXÉ^ÉÄ"
+    IDS_STATIC_Backup_Caption "ÉRÉsÅ[ÉÇÅ[Éh"
+END
+
+#endif    // Japanese resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "NTFS Œƒº˛¡¨Ω”¿©’π≈‰÷√π§æﬂ"
+    IDS_SELECT_SUBPAGE      "«Î—°‘Òœ¬º∂“≥√Ê"
+    IDS_ABOUTBOX            "πÿ”⁄(&G)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "÷ß≥÷Õ¯¬ÁŒƒº˛¡¨Ω”(&W)"
+    IDS_CHECK_SmartMove     "÷ß≥÷÷«ƒ‹“∆∂Ø(&Z)"
+    IDS_RADIO_Absolute_Symbolic_Links "æ¯∂‘¬∑æ∂(&J)"
+    IDS_RADIO_Relative_Symbolic_Links "œ‡∂‘¬∑æ∂(&X)"
+    IDS_STATIC_Symlink_Caption "¥¥Ω®∑˚∫≈¡¨Ω”µƒ∑Ω Ω"
+    IDS_STATIC_Localisation "”Ô—‘"
+    IDS_STATIC_SelectLanguage "«Î—°‘Òƒ˙µƒ”Ô—‘£∫"
+    IDS_STATIC_Miscellaneous "‘”œÓ"
+    IDS_RADIO_OuterJunctionCrop "Ωÿ∂œ¡¨Ω”"
+    IDS_RADIO_OuterJunctionUnroll "¥¥Ω®∏±±æ"
+    IDS_RADIO_OuterJunctionSplice "¡¨Ω”‘≠Œƒº˛"
+    IDS_STATIC_OuterReparse "Õ‚≤ø¡¨Ω”µ„/∑˚∫≈¡¨Ω”"
+    IDS_CHECK_Logging       "º«¬º»’÷æ"
+    IDS_General             "≥£πÊ"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "‘⁄”≤¡¨Ω”Œƒº˛…œÃÌº”Õº±Í"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "Õº±Í”≈œ»º∂£®Ωœ–° ˝÷µ”≈œ»£©£∫"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "Õº±Í"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "”≈œ»º∂"
+    IDS_CHECK_Hardlink_Overlay_Path "◊‘∂®“ÂÕº±Í"
+    IDS_BUTTON_Hardlink_Overlay_Path "‰Ø¿¿"
+    IDS_Icon_Hardlink       "Õº±Í::”≤¡¨Ω”"
+    IDS_CHECK_Junction_Overlay_Icon "‘⁄ƒø¬º¡¨Ω”µ„…œÃÌº”Õº±Í"
+    IDS_Icon_Junction       "Õº±Í::ƒø¬º¡¨Ω”µ„"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon "‘⁄∑˚∫≈¡¨Ω”Œƒº˛…œÃÌº”Õº±Í"
+    IDS_Icon_Symboliclink   "Õº±Í::∑˚∫≈¡¨Ω”"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "÷ß≥÷∂‡∞Ê±æ±∏∑›"
+    IDS_CHECK_SmartMirror   "÷ß≥÷÷«ƒ‹æµœÒ±∏∑›"
+    IDS_CHECK_ExtendedMenue "¿©’π≤Àµ•"
+    IDS_CHECK_BackupMode    "±∏∑›"
+    IDS_GROUPBOX_Miscellaneous "‘”œÓ"
+    IDS_Customize           "◊‘∂®“Â—°œÓ"
+    IDS_STATIC_Backup_Caption "±∏∑›ƒ£ Ω"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Link Shell Extension º≥¡§"
+    IDS_SELECT_SUBPAGE      "«œ¿ß∆‰¿Ã¡ˆ∏¶ º±≈√«ÿ¡÷ººø‰"
+    IDS_ABOUTBOX            "&¡§∫∏"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "ø¯∞› »£»Øº∫"
+    IDS_CHECK_SmartMove     "Ω∫∏∂∆Æ ¿Ãµø"
+    IDS_RADIO_Absolute_Symbolic_Links "¿˝¥Î"
+    IDS_RADIO_Relative_Symbolic_Links "ªÛ¥Î"
+    IDS_STATIC_Symlink_Caption "Ω…∫º∏Ø∏µ≈© ª˝º∫"
+    IDS_STATIC_Localisation "¥Ÿ±πæÓ"
+    IDS_STATIC_SelectLanguage "ªÁøÎ«œΩ« ææÓ∏¶ º±≈√«œººø‰:"
+    IDS_STATIC_Miscellaneous "±‚≈∏"
+    IDS_RADIO_OuterJunctionCrop "¿ﬂ∂Û≥ª±‚"
+    IDS_RADIO_OuterJunctionUnroll "∆Ó√ƒ±‚"
+    IDS_RADIO_OuterJunctionSplice "∞„ƒ°±‚"
+    IDS_STATIC_OuterReparse "ø‹∫Œ ¡§º«/Ω…∫º∏Ø∏µ≈©"
+    IDS_CHECK_Logging       "∑Œ±◊±‚∑œ"
+    IDS_General             "¿œπ›"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "«œµÂ∏µ≈©ø° æ∆¿Ãƒ‹ µ°∫Ÿ¿Ã±‚"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "µ°∫Ÿ¿œ æ∆¿Ãƒ‹¿« øÏº±±«:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "æ∆¿Ãƒ‹"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "øÏº±±«"
+    IDS_CHECK_Hardlink_Overlay_Path "æ∆¿Ãƒ‹ º≥¡§"
+    IDS_BUTTON_Hardlink_Overlay_Path "≈Ωªˆ°¶"
+    IDS_Icon_Hardlink       "æ∆¿Ãƒ‹::«œµÂ∏µ≈©"
+    IDS_CHECK_Junction_Overlay_Icon "¡§º«ø° æ∆¿Ãƒ‹ µ°∫Ÿ¿Ã±‚"
+    IDS_Icon_Junction       "æ∆¿Ãƒ‹::¡§º«"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon "Ω…∫º∏Ø∏µ≈©ø° æ∆¿Ãƒ‹ µ°∫Ÿ¿Ã±‚"
+    IDS_Icon_Symboliclink   "æ∆¿Ãƒ‹::Ω…∫º∏Ø∏µ≈©"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "Delorean ∫πªÁ"
+    IDS_CHECK_SmartMirror   "Ω∫∏∂∆Æ πÃ∑Ø"
+    IDS_CHECK_ExtendedMenue "»Æ¿Âµ» ∏ﬁ¥∫"
+    IDS_CHECK_BackupMode    "πÈæ˜"
+    IDS_GROUPBOX_Miscellaneous "±‚≈∏"
+    IDS_Customize           "ªÁøÎ¿⁄ ¡§¿«"
+    IDS_STATIC_Backup_Caption "∫πªÁ ∏µÂ"
+END
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Czech resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CSY)
+#ifdef _WIN32
+LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Moûnosti Link Shell Extension"
+    IDS_SELECT_SUBPAGE      "ProsÌm zvolte podstr·nku"
+    IDS_ABOUTBOX            "&O programu"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "SÌùovÈ jednotky"
+    IDS_CHECK_SmartMove     "Chytr˝ p¯esun"
+    IDS_RADIO_Absolute_Symbolic_Links "AbsolutnÌ"
+    IDS_RADIO_Relative_Symbolic_Links "RelativnÌ"
+    IDS_STATIC_Symlink_Caption "Tvorba symbolick˝ch odkaz˘"
+    IDS_STATIC_Localisation "Lokalizace"
+    IDS_STATIC_SelectLanguage "Zvolte jazyk:"
+    IDS_STATIC_Miscellaneous "R˘znÈ"
+    IDS_RADIO_OuterJunctionCrop "Od¯Ìznout"
+    IDS_RADIO_OuterJunctionUnroll "Rozbalit"
+    IDS_RADIO_OuterJunctionSplice "Na zdroje"
+    IDS_STATIC_OuterReparse "VnÏjöÌ rozcestÌ / symbolickÈ odkazy"
+    IDS_CHECK_Logging       "Logov·nÌ"
+    IDS_General             "ObecnÈ"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "P¯ekryvn· ikona pevn˝ch odkaz˘"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "Priorita p¯ekryvnÈ ikony:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "Ikona"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "Priorita"
+    IDS_CHECK_Hardlink_Overlay_Path "VlastnÌ ikona"
+    IDS_BUTTON_Hardlink_Overlay_Path "Proch·zetÖ"
+    IDS_Icon_Hardlink       "Ikona::Pevn˝ odkaz"
+    IDS_CHECK_Junction_Overlay_Icon "P¯ekryvn· ikona rozcestÌ"
+    IDS_Icon_Junction       "Ikona::RozcestÌ"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon "P¯ekryvn· ikona symbolick˝ch odkaz˘"
+    IDS_Icon_Symboliclink   "Ikona::Symbolick˝ odkaz"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "DeLoreanovsk· kopie"
+    IDS_CHECK_SmartMirror   "ChytrÈ zrcadlo"
+    IDS_CHECK_ExtendedMenue "RozöÌ¯enÈ menu"
+    IDS_CHECK_BackupMode    "Z·loha"
+    IDS_GROUPBOX_Miscellaneous "R˘znÈ"
+    IDS_Customize           "P¯izp˘sobit"
+    IDS_STATIC_Backup_Caption "Reûim z·lohov·nÌ"
+END
+
+#endif    // Czech resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Polish resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PLK)
+#ifdef _WIN32
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Konfiguracja Link Shell Extension"
+    IDS_SELECT_SUBPAGE      "Wybierz podstronÍ"
+    IDS_ABOUTBOX            "&O programie"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "Dyski sieciowe"
+    IDS_CHECK_SmartMove     "Popr. przenosiny"
+    IDS_RADIO_Absolute_Symbolic_Links "BezwzglÍdne"
+    IDS_RADIO_Relative_Symbolic_Links "WzglÍdne"
+    IDS_STATIC_Symlink_Caption "Tworzenie dowiπzania symbolicznego"
+    IDS_STATIC_Localisation "Lokalizacja"
+    IDS_STATIC_SelectLanguage "Wybierz swÛj jÍzyk:"
+    IDS_STATIC_Miscellaneous "RÛøne"
+    IDS_RADIO_OuterJunctionCrop "UsuÒ"
+    IDS_RADIO_OuterJunctionUnroll "Przekopiuj cel"
+    IDS_RADIO_OuterJunctionSplice "OdtwÛrz"
+    IDS_STATIC_OuterReparse "ZewnÍtrzne powiπzanie/dowiπzanie twarde"
+    IDS_CHECK_Logging       "ProtokÛ≥owanie"
+    IDS_General             "G≥Ûwne"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "Ikona dla dowiπzaÒ twardych"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "Priorytet ikon:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "Ikona"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "Priorytet"
+    IDS_CHECK_Hardlink_Overlay_Path "W≥asne ikony"
+    IDS_BUTTON_Hardlink_Overlay_Path "PrzeglπdajÖ"
+    IDS_Icon_Hardlink       "Ikona::Dow. twarde"
+    IDS_CHECK_Junction_Overlay_Icon "Ikona dla powiπzaÒ"
+    IDS_Icon_Junction       "Ikona::Powiπzanie"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon "Ikona dla dowiπzaÒ symbolicznych"
+    IDS_Icon_Symboliclink   "Ikona::Dow. symboliczne"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "Kopia DeLoreanska"
+    IDS_CHECK_SmartMirror   "Poprawny duplikat"
+    IDS_CHECK_ExtendedMenue "Menu rozszerzone"
+    IDS_CHECK_BackupMode    "Zachowywanie"
+    IDS_GROUPBOX_Miscellaneous "RÛøne"
+    IDS_Customize           "Dostosuj"
+    IDS_STATIC_Backup_Caption "Tryb zachowywania"
+END
+
+#endif    // Polish resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Slovak resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SKY)
+#ifdef _WIN32
+LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Nastavenie Link Shell Extension"
+    IDS_SELECT_SUBPAGE      "Vyberte podponuku"
+    IDS_ABOUTBOX            "&O programe"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "Sie?ovÈ jednotky"
+    IDS_CHECK_SmartMove     "Inteligentn˝ presun"
+    IDS_RADIO_Absolute_Symbolic_Links "Absol˙tna"
+    IDS_RADIO_Relative_Symbolic_Links "RelatÌvna"
+    IDS_STATIC_Symlink_Caption "Tvorba symbolick˝ch odkazov"
+    IDS_STATIC_Localisation "Lokaliz·cia"
+    IDS_STATIC_SelectLanguage "Vyberte jazyk:"
+    IDS_STATIC_Miscellaneous "RÙzne"
+    IDS_RADIO_OuterJunctionCrop "Orezaù"
+    IDS_RADIO_OuterJunctionUnroll "Rozbaliù"
+    IDS_RADIO_OuterJunctionSplice "Spojiù"
+    IDS_STATIC_OuterReparse "Vonkajöie prepojenie/symbolick˝ odkaz"
+    IDS_CHECK_Logging       "Logovanie"
+    IDS_General             "VöeobecnÈ"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "Ikona pre pevnÈ odkazy"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "Priorita ikony:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "Ikona"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "Priorita"
+    IDS_CHECK_Hardlink_Overlay_Path "Vlastn· ikona"
+    IDS_BUTTON_Hardlink_Overlay_Path "Prehæad·vaù"
+    IDS_Icon_Hardlink       "Ikona::Pevn˝ odkaz"
+    IDS_CHECK_Junction_Overlay_Icon "Ikona pre prepojenie"
+    IDS_Icon_Junction       "Ikona::Prepojenie"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon "Ikona pre symbolickÈ odkazy"
+    IDS_Icon_Symboliclink   "Ikona::Symbolick˝ odkaz"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "DeLoreansk· kÛpia"
+    IDS_CHECK_SmartMirror   "InteligentnÈ zrkadlenie"
+    IDS_CHECK_ExtendedMenue "RozöÌren· ponuka"
+    IDS_CHECK_BackupMode    "Z·loha"
+    IDS_GROUPBOX_Miscellaneous "RÙzne"
+    IDS_Customize           "PrispÙsobiù"
+    IDS_STATIC_Backup_Caption "Reûim Z·lohy"
+END
+
+#endif    // Slovak resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Õ‡ÒÚÓÈÍË Link Shell Extension"
+    IDS_SELECT_SUBPAGE      "¬˚·ÂËÚÂ ÒÚ‡ÌËˆÛ"
+    IDS_ABOUTBOX            "Œ &ÔÓ„‡ÏÏÂ"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "—ÂÚÂ‚˚Â ÒÒ˚ÎÍË"
+    IDS_CHECK_SmartMove     "”ÏÌ˚È ÔÂÂÌÓÒ"
+    IDS_RADIO_Absolute_Symbolic_Links "¿·ÒÓÎ˛ÚÌ‡ˇ"
+    IDS_RADIO_Relative_Symbolic_Links "ŒÚÌÓÒËÚÂÎ¸Ì‡ˇ"
+    IDS_STATIC_Symlink_Caption "“ËÔ —ËÏ‚ÓÎË˜ÂÒÍÓÈ ÒÒ˚ÎÍË"
+    IDS_STATIC_Localisation "ﬂÁ˚ÍË"
+    IDS_STATIC_SelectLanguage "¬˚·ÂËÚÂ ‚‡¯ ˇÁ˚Í:"
+    IDS_STATIC_Miscellaneous "–‡ÁÌÓÂ"
+    IDS_RADIO_OuterJunctionCrop "œÓÔÛÒÚËÚ¸"
+    IDS_RADIO_OuterJunctionUnroll "»ÒıÓ‰Ì˚È Ó·˙ÂÍÚ"
+    IDS_RADIO_OuterJunctionSplice "—Ò˚ÎÍÛ Í‡Í ÂÒÚ¸"
+    IDS_STATIC_OuterReparse " ‡Í ÍÓÔËÓ‚‡Ú¸ ¬ÌÂ¯ÌËÂ ÒÒ˚ÎÍË"
+    IDS_CHECK_Logging       "¬ÂÒÚË ÓÚ˜∏Ú"
+    IDS_General             "Œ·˘ËÂ"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "«Ì‡˜ÓÍ-ÏÂÚÍ‡ ‰Îˇ ∆∏ÒÚÍÓÈ ÒÒ˚ÎÍË"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "œËÓËÚÂÚ ‰Îˇ ÁÌ‡˜Í‡-ÏÂÚÍË:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "«Ì‡˜ÓÍ"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "œËÓËÚÂÚ"
+    IDS_CHECK_Hardlink_Overlay_Path "—Ó·ÒÚ‚ÂÌÌ˚È ÁÌ‡˜ÓÍ"
+    IDS_BUTTON_Hardlink_Overlay_Path "œÓÎËÒÚ‡Ú¸..."
+    IDS_Icon_Hardlink       "«Ì‡˜ÓÍ ÒÒ˚ÎÍË::∆ÂÒÚÍÓÈ"
+    IDS_CHECK_Junction_Overlay_Icon "«Ì‡˜ÓÍ-ÏÂÚÍ‡ ‰Îˇ ”ÁÎ‡"
+    IDS_Icon_Junction       "«Ì‡˜ÓÍ ÒÒ˚ÎÍË::”ÁÎ‡"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon 
+                            "«Ì‡˜ÓÍ-ÏÂÚÍ‡ ‰Îˇ —ËÏ‚ÓÎË˜ÂÒÍÓÈ ÒÒ˚ÎÍË"
+    IDS_Icon_Symboliclink   "«Ì‡˜ÓÍ ÒÒ˚ÎÍË::—ËÏ‚ÓÎË˜ÂÒÍÓÈ"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "—ÓÁ‰‡Ú¸ DeLorean ÍÓÔË˛"
+    IDS_CHECK_SmartMirror   "—ËÌıÓÌËÁ‡ˆËˇ"
+    IDS_CHECK_ExtendedMenue "–‡Ò¯ËÂÌÌÓÂ ÏÂÌ˛"
+    IDS_CHECK_BackupMode    "–ÂÁÂ‚ËÓ‚‡ÌËÂ"
+    IDS_GROUPBOX_Miscellaneous "–‡ÁÌÓÂ"
+    IDS_Customize           "Õ‡ÒÚÓËÚ¸"
+    IDS_STATIC_Backup_Caption " –ÂÁÂ‚ËÓ‚‡ÌËÂ"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// French (Neutral) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "Cibles distantes"
+    IDS_CHECK_SmartMove     " DÈpl. intelligent"
+    IDS_RADIO_Absolute_Symbolic_Links "Absolus"
+    IDS_RADIO_Relative_Symbolic_Links "Relatifs"
+    IDS_STATIC_Symlink_Caption " CrÈation de liens symboliques"
+    IDS_STATIC_Localisation "Localisation"
+    IDS_STATIC_SelectLanguage "Choix du langage :"
+    IDS_STATIC_Miscellaneous "Divers"
+    IDS_RADIO_OuterJunctionCrop "Supprimer"
+    IDS_RADIO_OuterJunctionUnroll "Exprimer"
+    IDS_RADIO_OuterJunctionSplice "PrÈserver"
+    IDS_STATIC_OuterReparse "Jonction/Lien symbolique sortant"
+    IDS_CHECK_Logging       "Journalisation"
+    IDS_General             "GÈnÈral"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon 
+                            "IcÙne de superposition pour les liens physiques"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "PrioritÈ de l'icÙne :"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "IcÙne"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "PrioritÈ"
+    IDS_CHECK_Hardlink_Overlay_Path "IcÙne personnalisÈe"
+    IDS_BUTTON_Hardlink_Overlay_Path "ParcourirÖ"
+    IDS_Icon_Hardlink       "IcÙne::Lien physique"
+    IDS_CHECK_Junction_Overlay_Icon 
+                            "IcÙne de superposition pour les jonctions"
+    IDS_Icon_Junction       "IcÙne::Jonction"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon 
+                            "IcÙne de superposition pour les liens symboliques"
+    IDS_Icon_Symboliclink   "IcÙne::Lien symbolique"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Configuration du Gestionnaire de liens LSE"
+    IDS_SELECT_SUBPAGE      "Choisissez une sous-page"
+    IDS_ABOUTBOX            "¿ &propos"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "Copie DeLorean"
+    IDS_CHECK_SmartMirror   "Miroir intelligent"
+    IDS_CHECK_ExtendedMenue "Menu expert"
+    IDS_CHECK_BackupMode    "Sauvegarde"
+    IDS_GROUPBOX_Miscellaneous "Divers"
+    IDS_Customize           "Personnaliser"
+    IDS_STATIC_Backup_Caption "Mode copie de s˚retÈ"
+END
+
+#endif    // French (Neutral) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Dutch (Neutral) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
+#ifdef _WIN32
+LANGUAGE LANG_DUTCH, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Link Shell Extension Configuration"
+    IDS_SELECT_SUBPAGE      "Select a sub-page"
+    IDS_ABOUTBOX            "&About"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "Remote Capabilities"
+    IDS_CHECK_SmartMove     "Smart Move"
+    IDS_RADIO_Absolute_Symbolic_Links "Absolute"
+    IDS_RADIO_Relative_Symbolic_Links "Relative"
+    IDS_STATIC_Symlink_Caption "Symbolic Link Creation"
+    IDS_STATIC_Localisation "Localisation"
+    IDS_STATIC_SelectLanguage "Select your language:"
+    IDS_STATIC_Miscellaneous "Miscellaneous"
+    IDS_RADIO_OuterJunctionCrop "Crop"
+    IDS_RADIO_OuterJunctionUnroll "Unroll"
+    IDS_RADIO_OuterJunctionSplice "Splice"
+    IDS_STATIC_OuterReparse "Outer Junction/Symbolic Link"
+    IDS_CHECK_Logging       "Logging"
+    IDS_General             "General"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "Overlay icon for Hardlinks"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "Priority for overlay icon:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "Icon"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "Priority"
+    IDS_CHECK_Hardlink_Overlay_Path "Custom icon"
+    IDS_BUTTON_Hardlink_Overlay_Path "BrowseÖ"
+    IDS_Icon_Hardlink       "Icon::Hardlink"
+    IDS_CHECK_Junction_Overlay_Icon "Overlay icon for Junctions"
+    IDS_Icon_Junction       "Icon::Junction"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon "Overlay icon for Symbolic Links"
+    IDS_Icon_Symboliclink   "Icon::Symbolic Link"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "DeloreanCopy"
+    IDS_CHECK_SmartMirror   "Smart Mirror"
+    IDS_CHECK_ExtendedMenue "Extended Menue"
+    IDS_CHECK_BackupMode    "Backup Mode"
+    IDS_GROUPBOX_Miscellaneous "Miscellaneous"
+    IDS_Customize           "Customize"
+END
+
+#endif    // Dutch (Neutral) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Swedish (Neutral) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SVE)
+#ifdef _WIN32
+LANGUAGE LANG_SWEDISH, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Link Shell Extension Konfiguration"
+    IDS_SELECT_SUBPAGE      "V‰lj underobjekt i menyn"
+    IDS_ABOUTBOX            "&Om"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "N‰tverksfunktioner"
+    IDS_CHECK_SmartMove     "Smart flyttning"
+    IDS_RADIO_Absolute_Symbolic_Links "Absolut"
+    IDS_RADIO_Relative_Symbolic_Links "Relativ"
+    IDS_STATIC_Symlink_Caption "Sˆkv‰g fˆr Symboliska L‰nkar"
+    IDS_STATIC_Localisation "SprÂkinst‰llningar"
+    IDS_STATIC_SelectLanguage "V‰lj sprÂk:"
+    IDS_STATIC_Miscellaneous "Extra funktioner"
+    IDS_RADIO_OuterJunctionCrop "Bryt"
+    IDS_RADIO_OuterJunctionUnroll "BehÂll"
+    IDS_RADIO_OuterJunctionSplice "≈terskapa"
+    IDS_STATIC_OuterReparse "Yttre Knutpunkter/Symboliska L‰nkar(vid flytt/kopiering)"
+    IDS_CHECK_Logging       "Loggning"
+    IDS_General             "Allm‰nt"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "Ikon fˆr HÂrdl‰nkar"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "Prioritet fˆr ikon:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "Ikon"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "Prioritet"
+    IDS_CHECK_Hardlink_Overlay_Path "Egen ikon"
+    IDS_BUTTON_Hardlink_Overlay_Path "Bl‰ddraÖ"
+    IDS_Icon_Hardlink       "Ikon::HÂrdl‰nk"
+    IDS_CHECK_Junction_Overlay_Icon "Ikon fˆr knutpunkter"
+    IDS_Icon_Junction       "Ikon::Knutpunkt"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon "Ikon for Symboliska L‰nkar"
+    IDS_Icon_Symboliclink   "Ikon::Symbolisk L‰nk"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "Deloreankopia"
+    IDS_CHECK_SmartMirror   "Smart spegling"
+    IDS_CHECK_ExtendedMenue "Utˆkad meny"
+    IDS_CHECK_BackupMode    "S‰kerhetskopiera"
+    IDS_GROUPBOX_Miscellaneous "Extra funktioner"
+    IDS_Customize           "Anpassa"
+    IDS_STATIC_Backup_Caption "S‰kerhetskopieringsl‰ge"
+END
+
+#endif    // Swedish (Neutral) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Link Shell Extension Konfiguration"
+    IDS_SELECT_SUBPAGE      "W‰hle eine Unterkategorie"
+    IDS_ABOUTBOX            "‹ber"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "Netzwerk Funktionen"
+    IDS_CHECK_SmartMove     "Smart Move"
+    IDS_RADIO_Absolute_Symbolic_Links "Absolut"
+    IDS_RADIO_Relative_Symbolic_Links "Relativ"
+    IDS_STATIC_Symlink_Caption "Erstellung Symbolischer Links"
+    IDS_STATIC_Localisation "Sprache"
+    IDS_STATIC_SelectLanguage "Sprachauswahl"
+    IDS_STATIC_Miscellaneous "Verschiedenes"
+    IDS_RADIO_OuterJunctionCrop "Abschneiden"
+    IDS_RADIO_OuterJunctionUnroll "Duplizieren"
+    IDS_RADIO_OuterJunctionSplice "Verbinden"
+    IDS_STATIC_OuterReparse "ƒussere Junctions/Symbolische Links"
+    IDS_CHECK_Logging       "Protokollieren"
+    IDS_General             "Allgemein"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "Overlay Icon f¸r Hardlinks"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "Priorit‰t f¸r Overlay icon:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "Icon"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "Priorit‰t"
+    IDS_CHECK_Hardlink_Overlay_Path "Eigenes Icon"
+    IDS_BUTTON_Hardlink_Overlay_Path "BrowseÖ"
+    IDS_Icon_Hardlink       "Icon::Hardlink"
+    IDS_CHECK_Junction_Overlay_Icon "Overlay Icon f¸r Junctions"
+    IDS_Icon_Junction       "Icon::Junction"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon "Overlay Icon f¸r Symbolische Links"
+    IDS_Icon_Symboliclink   "Icon::Symbolischer Link"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "Delorean Copie"
+    IDS_CHECK_SmartMirror   "Smart Spiegel Kopie"
+    IDS_CHECK_ExtendedMenue "Erweitertes Menue"
+    IDS_CHECK_BackupMode    "Backup"
+    IDS_GROUPBOX_Miscellaneous "Verschiedenes"
+    IDS_Customize           "Anpassen"
+    IDS_STATIC_Backup_Caption "Kopier Mode"
+END
+
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_EMPTY_IMAGE_LIST    BITMAP                  "res\\EmptyImageList.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 256, 45
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,11,20,20
+    LTEXT           "Link Shellextension 1.0",IDC_STATIC_LSE_VERSION,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 1999 - 2015 Hermann Schinagl",IDC_STATIC,40,25,157,8
+    DEFPUSHBUTTON   "OK",IDOK,196,17,50,16,WS_GROUP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,8,6,5
+ PRODUCTVERSION 3,8,6,5
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "Hermann Schinagl"
+            VALUE "FileDescription", "Link Shell Extension"
+            VALUE "FileVersion", "3, 8, 6, 5"
+            VALUE "InternalName", "LSEConfig.exe"
+            VALUE "LegalCopyright", "Copyright © 1999-2016 Hermann Schinagl"
+            VALUE "OriginalFilename", "LSEConfig.exe"
+            VALUE "ProductName", "Link Shell Extension Configuration"
+            VALUE "ProductVersion", "3, 8, 6, 5"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)\r\n"
+    "LANGUAGE 7, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\LSEConfig.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\LSEConfig.ico"
+IDI_ICON_HardlinkOverlay ICON                    "..\\HardlinkExtension\\res\\Hardlink_Vista.ico"
+IDI_ICON_JunctionOverlay ICON                    "..\\HardlinkExtension\\res\\JunctionIcon_Vista.ico"
+IDI_ICON_SymboliclinkOverlay ICON                    "..\\HardlinkExtension\\res\\SymbolicLink_Vista.ico"
+IDI_ICON_Rectangle      ICON                    "..\\HardlinkExtension\\res\\Rectangle.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Link Shell Extension Configuration"
+    IDS_SELECT_SUBPAGE      "Select a sub-page"
+    IDS_ABOUTBOX            "&About"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "Remote Capabilities"
+    IDS_CHECK_SmartMove     "Smart Move"
+    IDS_RADIO_Absolute_Symbolic_Links "Absolute"
+    IDS_RADIO_Relative_Symbolic_Links "Relative"
+    IDS_STATIC_Symlink_Caption "Symbolic Link Creation"
+    IDS_STATIC_Localisation "Localisation"
+    IDS_STATIC_SelectLanguage "Select your language:"
+    IDS_STATIC_Miscellaneous "Miscellaneous"
+    IDS_RADIO_OuterJunctionCrop "Crop"
+    IDS_RADIO_OuterJunctionUnroll "Unroll"
+    IDS_RADIO_OuterJunctionSplice "Splice"
+    IDS_STATIC_OuterReparse "Outer Junction/Symbolic Link"
+    IDS_CHECK_Logging       "Logging"
+    IDS_General             "General"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "Overlay icon for Hardlinks"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "Priority for overlay icon:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "Icon"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "Priority"
+    IDS_CHECK_Hardlink_Overlay_Path "Custom icon"
+    IDS_BUTTON_Hardlink_Overlay_Path "BrowseÖ"
+    IDS_Icon_Hardlink       "Icon::Hardlink"
+    IDS_CHECK_Junction_Overlay_Icon "Overlay icon for Junctions"
+    IDS_Icon_Junction       "Icon::Junction"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon "Overlay icon for Symbolic Links"
+    IDS_Icon_Symboliclink   "Icon::Symbolic Link"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "DeloreanCopy"
+    IDS_CHECK_SmartMirror   "Smart Mirror"
+    IDS_CHECK_ExtendedMenue "Extended Menue"
+    IDS_CHECK_BackupMode    "Backup"
+    IDS_GROUPBOX_Miscellaneous "Miscellaneous"
+    IDS_Customize           "Customize"
+    IDS_STATIC_Backup_Caption "Copy Mode"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Configurazione di Link Shell Extension"
+    IDS_SELECT_SUBPAGE      "Seleziona una Sottopagina"
+    IDS_ABOUTBOX            "&?Informazioni"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "Funzionalit‡ Remote"
+    IDS_CHECK_SmartMove     "Spost. Intelligente"
+    IDS_RADIO_Absolute_Symbolic_Links "Assoluto"
+    IDS_RADIO_Relative_Symbolic_Links "Relativo"
+    IDS_STATIC_Symlink_Caption "Creazione Collegamento Simbolico"
+    IDS_STATIC_Localisation "Localizzazione"
+    IDS_STATIC_SelectLanguage "Seleziona la lingua:"
+    IDS_STATIC_Miscellaneous "Miscellanea"
+    IDS_RADIO_OuterJunctionCrop "Elimina"
+    IDS_RADIO_OuterJunctionUnroll "Srotola"
+    IDS_RADIO_OuterJunctionSplice "Mantieni"
+    IDS_STATIC_OuterReparse "Giunzione Esterna/Collegamento Simbolico"
+    IDS_CHECK_Logging       "Logging"
+    IDS_General             "Generale"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "Icona per Collegamento Reale"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "Priorit‡ dell'Icona:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "Icona"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "Priorit‡"
+    IDS_CHECK_Hardlink_Overlay_Path "Icona Personalizzata"
+    IDS_BUTTON_Hardlink_Overlay_Path "ScegliÖ"
+    IDS_Icon_Hardlink       "Icona::Reale"
+    IDS_CHECK_Junction_Overlay_Icon "Icon per Giunzione"
+    IDS_Icon_Junction       "Icona::Giunzione"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon "Icona per Collegamento Simbolico"
+    IDS_Icon_Symboliclink   "Icona::Simbolico"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "Copia Delorean"
+    IDS_CHECK_SmartMirror   "Sincronizzazione Intelligente"
+    IDS_CHECK_ExtendedMenue "Menu Avanzato"
+    IDS_CHECK_BackupMode    "Modalit‡ Backup"
+    IDS_GROUPBOX_Miscellaneous "Miscellanea"
+    IDS_Customize           "Personalizza"
+    IDS_STATIC_Backup_Caption "Backup"
+END
+
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Portuguese (Brazil) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
+#ifdef _WIN32
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "ConfiguraÁ„o do Link Shell Extension"
+    IDS_SELECT_SUBPAGE      "Selecione uma categoria"
+    IDS_ABOUTBOX            "&Sobre"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "Capacidades Remotas"
+    IDS_CHECK_SmartMove     "Mover Inteligente"
+    IDS_RADIO_Absolute_Symbolic_Links "Absoluto"
+    IDS_RADIO_Relative_Symbolic_Links "Relativo"
+    IDS_STATIC_Symlink_Caption "CriaÁ„o de link simbÛlico"
+    IDS_STATIC_Localisation "LocalizaÁ„o"
+    IDS_STATIC_SelectLanguage "Selecione sua lÌngua:"
+    IDS_STATIC_Miscellaneous "Miscel‚neos"
+    IDS_RADIO_OuterJunctionCrop "Eliminar"
+    IDS_RADIO_OuterJunctionUnroll "Reconstruir"
+    IDS_RADIO_OuterJunctionSplice "Manter"
+    IDS_STATIC_OuterReparse "JunÁ„o/Links SimbÛlicos Externos"
+    IDS_CHECK_Logging       "Arquivo de Log"
+    IDS_General             "Geral"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "Õcone de sobreposiÁ„o para Hardlinks"
+    IDS_STATIC_Hardlink_Overlay_Priority02 
+                            "Prioridade para o Ìcone de sobreposiÁ„o:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "Õcone"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "Prioridade"
+    IDS_CHECK_Hardlink_Overlay_Path "Õcone customizado"
+    IDS_BUTTON_Hardlink_Overlay_Path "LocalizarÖ"
+    IDS_Icon_Hardlink       "Õcone::Hardlink"
+    IDS_CHECK_Junction_Overlay_Icon "Õcone de sobreposiÁ„o para JunÁıes"
+    IDS_Icon_Junction       "Õcone::JunÁ„o"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon 
+                            "Õcone de sobreposiÁ„o para Links SimbÛlicos"
+    IDS_Icon_Symboliclink   "Õcone::Link SimbÛlico"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "CÛpia Delorean"
+    IDS_CHECK_SmartMirror   "Espelho Inteligente"
+    IDS_CHECK_ExtendedMenue "Menu Extendido"
+    IDS_CHECK_BackupMode    "Backup"
+    IDS_GROUPBOX_Miscellaneous "Miscel‚neos"
+    IDS_Customize           "Customizar"
+    IDS_STATIC_Backup_Caption "Modo Backup"
+END
+
+#endif    // Portuguese (Brazil) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral (Sys. Default) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEUSD)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_SYS_DEFAULT
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_GENERAL DIALOGEX 0, 0, 268, 147
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "#MLG#10013"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "#MLG#10005",IDC_STATIC_Localisation,6,3,255,30
+    COMBOBOX        IDC_COMBO_Language,166,15,88,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "#MLG#10006",IDC_STATIC,12,17,102,8
+    GROUPBOX        "#MLG#10007",IDC_STATIC_Miscellaneous,6,39,255,30
+    CONTROL         "#MLG#10001",IDC_CHECK_SmartMove,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,53,74,10
+    CONTROL         "#MLG#10012",IDC_CHECK_Logging,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,92,53,65,10
+    CONTROL         "#MLG#10000",IDC_CHECK_RemoteCapabilities,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,166,53,94,10
+    GROUPBOX        "#MLG#10011",IDC_STATIC_OuterReparse,6,75,255,30
+    CONTROL         "#MLG#10008",IDC_RADIO_OuterJunctionCrop,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,89,75,10
+    CONTROL         "#MLG#10009",IDC_RADIO_OuterJunctionUnroll,"Button",BS_AUTORADIOBUTTON,92,89,70,10
+    CONTROL         "#MLG#10010",IDC_RADIO_OuterJunctionSplice,"Button",BS_AUTORADIOBUTTON,166,89,94,10
+    GROUPBOX        "#MLG#10004",IDC_STATIC_Symlink_Caption,6,111,146,30,NOT WS_VISIBLE
+    CONTROL         "#MLG#10002",IDC_RADIO_Absolute_Symbolic_Links,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE | WS_GROUP,12,125,72,10
+    CONTROL         "#MLG#10003",IDC_RADIO_Relative_Symbolic_Links,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,92,125,59,10
+    GROUPBOX        "#MLG#10086",IDC_STATIC_Backup_Caption,160,111,101,30
+    CONTROL         "#MLG#10083",IDC_CHECK_BackupMode,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,166,125,94,10
+END
+
+IDD_ICONHARDLINK DIALOGEX 0, 0, 268, 148
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "#MLG#10056"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "#MLG#10050",IDC_CHECK_Hardlink_Overlay_Icon,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,10,229,10
+    EDITTEXT        IDC_EDIT_Hardlink_Overlay_Priority,228,35,22,14,ES_AUTOHSCROLL
+    LTEXT           "#MLG#10051",IDC_STATIC_Hardlink_Overlay_Priority02,12,39,198,8
+    CONTROL         "",IDC_BUTTON_Hardlink_Icon,"Button",BS_OWNERDRAW | WS_TABSTOP,12,76,64,64
+    GROUPBOX        "#MLG#10052",IDC_STATIC_Hardlink_Overlay_Priority03,6,60,255,84
+    GROUPBOX        "#MLG#10053",IDC_STATIC_Hardlink_Overlay_Priority01,6,28,255,24
+    CONTROL         "#MLG#10054",IDC_CHECK_Hardlink_Overlay_Path,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,162,73,84,10
+    EDITTEXT        IDC_EDIT_Hardlink_Overlay_Path,84,126,108,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "#MLG#10055",IDC_BUTTON_Hardlink_Overlay_Path,198,126,56,14
+END
+
+IDD_ICONJUNCTION DIALOGEX 0, 0, 268, 148
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "#MLG#10061"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "#MLG#10060",IDC_CHECK_Junction_Overlay_Icon,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,10,229,10
+    EDITTEXT        IDC_EDIT_Junction_Overlay_Priority,228,35,22,14,ES_AUTOHSCROLL
+    LTEXT           "#MLG#10051",IDC_STATIC_Junction_Overlay_Priority02,12,39,198,8
+    CONTROL         "",IDC_BUTTON_Junction_Icon,"Button",BS_OWNERDRAW | WS_TABSTOP,12,76,64,64
+    GROUPBOX        "#MLG#10052",IDC_STATIC_Junction_Overlay_Priority03,6,60,255,84
+    GROUPBOX        "#MLG#10053",IDC_STATIC_Junction_Overlay_Priority01,6,28,255,24
+    CONTROL         "#MLG#10054",IDC_CHECK_Junction_Overlay_Path,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,162,73,84,10
+    EDITTEXT        IDC_EDIT_Junction_Overlay_Path,84,126,108,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "#MLG#10055",IDC_BUTTON_Junction_Overlay_Path,198,126,56,14
+END
+
+IDD_ICONSYMLINK DIALOGEX 0, 0, 268, 148
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "#MLG#10071"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "#MLG#10070",IDC_CHECK_Symboliclink_Overlay_Icon,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,10,229,10
+    EDITTEXT        IDC_EDIT_Symboliclink_Overlay_Priority,228,35,22,14,ES_AUTOHSCROLL
+    LTEXT           "#MLG#10051",IDC_STATIC_Symboliclink_Overlay_Priority02,12,39,198,8
+    CONTROL         "",IDC_BUTTON_Symboliclink_Icon,"Button",BS_OWNERDRAW | WS_TABSTOP,12,76,64,64
+    GROUPBOX        "#MLG#10052",IDC_STATIC_Symboliclink_Overlay_Priority03,6,60,255,84
+    GROUPBOX        "#MLG#10053",IDC_STATIC_Symboliclink_Overlay_Priority01,6,28,255,24
+    CONTROL         "#MLG#10054",IDC_CHECK_Symboliclink_Overlay_Path,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,162,73,84,10
+    EDITTEXT        IDC_EDIT_Symboliclink_Overlay_Path,84,126,108,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "#MLG#10055",IDC_BUTTON_Symboliclink_Overlay_Path,198,126,56,14
+END
+
+IDD_CUSTOMIZE DIALOGEX 0, 0, 268, 147
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CLIPSIBLINGS | WS_CAPTION | WS_SYSMENU
+CAPTION "#MLG#10085"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "#MLG#10084",-1,12,7,246,93
+    CONTROL         "#MLG#10080",IDC_CHECK_DeloreanCopy,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,22,125,10
+    CONTROL         "#MLG#10081",IDC_CHECK_SmartMirror,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,38,121,10
+    CONTROL         "#MLG#10082",IDC_CHECK_ExtendedMenue,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,54,130,10
+    CONTROL         "#MLG#10083",IDC_CHECK_BackupMode,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,70,116,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_GENERAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 140
+    END
+
+    IDD_ICONHARDLINK, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 140
+    END
+
+    IDD_ICONJUNCTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 140
+    END
+
+    IDD_ICONSYMLINK, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 140
+    END
+
+    IDD_CUSTOMIZE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 140
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Neutral (Sys. Default) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Spanish resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)
+#ifdef _WIN32
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MODERN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "ConfiguraciÛn de Link Shell Extension"
+    IDS_SELECT_SUBPAGE      "Seleccione una categorÌa"
+    IDS_ABOUTBOX            "&Sobre"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "Remoto Modo"
+    IDS_CHECK_SmartMove     "Movimiento Inteligente"
+    IDS_RADIO_Absolute_Symbolic_Links "Absoluto"
+    IDS_RADIO_Relative_Symbolic_Links "Relativo"
+    IDS_STATIC_Symlink_Caption "CreaciÛn del VÌnculo SimbÛlico"
+    IDS_STATIC_Localisation "LocalizaciÛn"
+    IDS_STATIC_SelectLanguage "Seleccionar el idioma:"
+    IDS_STATIC_Miscellaneous "Varios"
+    IDS_RADIO_OuterJunctionCrop "Cortar"
+    IDS_RADIO_OuterJunctionUnroll "Incluir"
+    IDS_RADIO_OuterJunctionSplice "Referenciar"
+    IDS_STATIC_OuterReparse "Externo UniÛn/VÌnculo SimbÛlico"
+    IDS_CHECK_Logging       "Crear fichero"
+    IDS_General             "General"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "SuperposiciÛn del icono VÌnculo Fuerte"
+    IDS_STATIC_Hardlink_Overlay_Priority02 
+                            "Prioridad para icono de superposiciÛn:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "Icono"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "Prioridad"
+    IDS_CHECK_Hardlink_Overlay_Path "Icono de cliente"
+    IDS_BUTTON_Hardlink_Overlay_Path "BuscarÖ"
+    IDS_Icon_Hardlink       "Icono::VÌnculo Fuerte"
+    IDS_CHECK_Junction_Overlay_Icon "SuperposiciÛn del icono para Uniones"
+    IDS_Icon_Junction       "Icono::UniÛn"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon 
+                            "SuperposiciÛn del icono VÌnculo SimbÛlico"
+    IDS_Icon_Symboliclink   "Icono::VÌnculo SimbÛlico"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "Copia DeLorean"
+    IDS_CHECK_SmartMirror   "Espejo Inteligente"
+    IDS_CHECK_ExtendedMenue "Men˙ avanzado"
+    IDS_CHECK_BackupMode    "Backup"
+    IDS_GROUPBOX_Miscellaneous "Varios"
+    IDS_Customize           "Personalizar"
+    IDS_STATIC_Backup_Caption "Modo de seguridad"
+END
+
+#endif    // Spanish resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Turkish resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_TRK)
+#ifdef _WIN32
+LANGUAGE LANG_TURKISH, SUBLANG_DEFAULT
+#pragma code_page(1254)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LinkShellExtConfig  "Link Shell Extension Yap˝land˝rmas˝"
+    IDS_SELECT_SUBPAGE      "Bir Alt Sayfa SeÁin"
+    IDS_ABOUTBOX            "&Hakk˝nda"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_RemoteCapabilities "Uzak Masa¸st¸ SÁnk."
+    IDS_CHECK_SmartMove     "Ak˝ll˝ Ta˛˝ma"
+    IDS_RADIO_Absolute_Symbolic_Links "Mutlak"
+    IDS_RADIO_Relative_Symbolic_Links "Gˆreli"
+    IDS_STATIC_Symlink_Caption "Sembolik Link Olu˛turma"
+    IDS_STATIC_Localisation "Yerelle˛tirme"
+    IDS_STATIC_SelectLanguage "Dil SeÁ:"
+    IDS_STATIC_Miscellaneous "«e˛itli"
+    IDS_RADIO_OuterJunctionCrop "K˝rp"
+    IDS_RADIO_OuterJunctionUnroll "Yay"
+    IDS_RADIO_OuterJunctionSplice "Birle˛tir"
+    IDS_STATIC_OuterReparse "Hedefi d˝˛ar˝da olan Junction'lar˝/Sembolik Linkleri:"
+    IDS_CHECK_Logging       "Veri G¸nl¸kleme"
+    IDS_General             "Genel"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Hardlink_Overlay_Icon "Hardlinkler iÁin ¸st ikon"
+    IDS_STATIC_Hardlink_Overlay_Priority02 "‹st ikon ˆncelii:"
+    IDS_STATIC_Hardlink_Overlay_Priority03 "›kon"
+    IDS_STATIC_Hardlink_Overlay_Priority01 "÷ncelik"
+    IDS_CHECK_Hardlink_Overlay_Path "÷zel ikon"
+    IDS_BUTTON_Hardlink_Overlay_Path "GˆzatÖ"
+    IDS_Icon_Hardlink       "›kon::Hardlink"
+    IDS_CHECK_Junction_Overlay_Icon "Junction'lar iÁin ¸st ikon"
+    IDS_Icon_Junction       "›kon::Junction"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_Symboliclink_Overlay_Icon "Sembolik Linkler iÁin ¸st ikon"
+    IDS_Icon_Symboliclink   "›kon::Sembolik Link"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHECK_DeloreanCopy  "DeloreanKopyas˝"
+    IDS_CHECK_SmartMirror   "Ak˝ll˝ Yans˝"
+    IDS_CHECK_ExtendedMenue "Geni˛letilmi˛ Men¸"
+    IDS_CHECK_BackupMode    "Yedekleme Modu"
+    IDS_GROUPBOX_Miscellaneous "«e˛itli"
+    IDS_Customize           "÷zelle˛tir"
+END
+
+#endif    // Turkish resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+LANGUAGE 7, 1
+#pragma code_page(1252)
+#include "res\LSEConfig.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

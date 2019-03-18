@@ -1,9 +1,8 @@
 /*
-	Copyright (C) 1999 - 2012, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
-#ifndef _HARDLINKUTILS_208FA8F3_654E_45c6_BFC2_9F6DC87CA83D
-#define _HARDLINKUTILS_208FA8F3_654E_45c6_BFC2_9F6DC87CA83D
+#pragma once
 
 class WaitQueue 
 {
@@ -31,8 +30,48 @@ protected:
 
 };
 
+// https://www.statisticshowto.datasciencecentral.com/probability-and-statistics/regression-analysis/find-a-linear-regression-equation/
+// TODO: calculate the regression based prediction
+class ProgressPrediction
+{
+private:
+    const int           cMaxSamples = 5;
+    const int           cAccuracy = 18;
 
+    typedef pair<FILETIME64, Effort> _ProgressSample;
+    typedef list<_ProgressSample>	_ProgressSamples;
   
+    _ProgressSamples m_Values;
+    _ProgressSample  m_Start;
+
+    __int64 m_Increment;
+
+public:
+  ProgressPrediction();
+  ~ProgressPrediction();
+
+  int AddSample(const Effort& aProgress, const Effort* apProgressOffset = 0);
+  void SetStart(const Effort& aMaxProgress);
+  void Duration(SYSTEMTIME& aDuration, Effort& a_Effort);
+  bool TimeLeft(SYSTEMTIME& a_TimeStamp, Effort& a_Effort);
+};
+
+class use_WSA {
+  WSADATA d;
+  WORD ver;
+public:
+  use_WSA() : ver(MAKEWORD(2, 2)) {
+    if ((WSAStartup(ver, &d) != 0) || (ver != d.wVersion))
+      throw(std::runtime_error("Error starting Winsock"));
+  }
+  ~use_WSA() { WSACleanup(); }
+};
+
+
+char* FormatNumber(
+  char* aResult,
+  ULONG64 aNumber
+);
 
 char* FormatG(
   char* aResult, 
@@ -90,6 +129,11 @@ int PrintDupeMergeCopyStats(
   bool                                      a_AutomatedTest
 );
 
+void PrintInternalCounters(
+  FILE*                                     a_OutputFile,
+  CopyStatistics&                           aStats
+);
+
 int AnalysePathNameStatus(
   FILE*                 a_OutputFile,
   _PathNameStatusList&  a_PathNameStatusList, 
@@ -143,8 +187,8 @@ SetFileBasicInformation (
 //
 int
 GetFileBasicInformation (
-  __in     HANDLE         lpExistingFileHandle,
-  __inout  PDWORD         dwFileAttributes,
+  __in       HANDLE       lpExistingFileHandle,
+  __inout    PDWORD       dwFileAttributes,
   __inout    PFILETIME    ftCreationTime,
   __inout    PFILETIME    ftLastAccessTime,
   __inout    PFILETIME    ftLastWriteTime
@@ -204,17 +248,17 @@ CopyEaRecords(
 
 int
 GetSecurityAttributesByName( 
-  __in    PWSTR                 aSrcName,
+  __in    PCWSTR                aSrcName,
   __inout PSECURITY_DESCRIPTOR* a_pSecDesc,
   __inout int*                  a_SecDescSize,
-  __in    int                   aFlagsAndAttributes
+  __in    const int             aFlagsAndAttributes
 );
 
 int
 SetSecurityAttributesByName( 
-  __in    PWSTR                 aDstName,
+  __in    PCWSTR                aDstName,
   __in    PSECURITY_DESCRIPTOR  a_pSecDesc,
-  __in    int                   aFlagsAndAttributes
+  __in    const int             aFlagsAndAttributes
 );
 
 int
@@ -240,11 +284,11 @@ SetSecurityAttributes(
 
 int
 CopySecurityAttributesByName( 
-  __in    PWSTR                 aSrcName,
-  __in    PWSTR                 aDstName,
+  __in    PCWSTR                aSrcName,
+  __in    PCWSTR                aDstName,
   __inout PSECURITY_DESCRIPTOR* a_pSecDesc,
   __inout int*                  a_SecDescSize,
-  __in    int                   aFlagsAndAttributes
+  __in    const int             aFlagsAndAttributes
 );
 
 
@@ -422,11 +466,14 @@ ReadArgsFromFile(
 
 void
 WildCard2RegExp(
-  std::wstring&  aString
+  ::wstring&  aString
 );
 
 bool 
 IsDeveloperModeEnabled();
 
-
-#endif
+wchar_t*
+ResolveUNCPath(
+  wchar_t* aUNCPath,
+  wchar_t* aResolvedUNCPath
+);

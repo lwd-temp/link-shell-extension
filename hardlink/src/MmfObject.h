@@ -1,13 +1,8 @@
-// MmfObject.h: interface for the MmfObject class.
-//
-//////////////////////////////////////////////////////////////////////
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
-#if !defined(AFX_MMFOBJECT_H__999C97DC_79EE_4E1E_B1E9_24884586A846__INCLUDED_)
-#define AFX_MMFOBJECT_H__999C97DC_79EE_4E1E_B1E9_24884586A846__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
 
 enum DmErrorCodes
 {
@@ -60,5 +55,3 @@ class MmfObject
 		virtual ~MmfObject();
 
 };
-
-#endif // !defined(AFX_MMFOBJECT_H__999C97DC_79EE_4E1E_B1E9_24884586A846__INCLUDED_)

@@ -1,10 +1,10 @@
 /*
-	Copyright (C) 1999_2006, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
 
-#ifndef _HARDLINK_39ABD724_8121_4bd1_BD66_3A0BADAC9767
-#define _HARDLINK_39ABD724_8121_4bd1_BD66_3A0BADAC9767
+#pragma once
+
 
 void
 LoadMlgTexts(
@@ -57,7 +57,3 @@ private:
 	ULONG	m_cRef;
 };
 
-
-#endif
-
-/////////////////////////////////////////////////////////////////////////////

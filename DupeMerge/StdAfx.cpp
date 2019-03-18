@@ -1,6 +1,6 @@
-// stdafx.cpp : source file that includes just the standard includes
-//	Sig.pch will be the pre-compiled header
-//	stdafx.obj will contain the pre-compiled type information
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
 #include "stdafx.h"
 

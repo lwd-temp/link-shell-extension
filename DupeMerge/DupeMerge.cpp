@@ -1,24 +1,12 @@
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
+
 #include <stdafx.h>
 
-#include <fcntl.h>
-#include <io.h>
-#include <conio.h>
-
-#include <iostream>
-#include <sstream>
-
-#include "resource.h"
-
-#include "..\hardlink\include\hardlink_types.h"
-
-#include "..\hardlink\include\AsyncContext.h"
-#include "..\hardlink\src\mmfobject.h"
 
 #include "hardlink.h"
 #include "HardlinkUtils.h"
-
-#define ULTRAGETOPT_REPLACE_GETOPT
-#include "..\Shared\ultragetopt.h"
 
 using namespace std;
 
@@ -397,7 +385,7 @@ wmain(
             else
               RawArgs.push_back(wstring(argv[optind - 1]));
 
-            for (_StringListIterator iter = RawArgs.begin(); iter != RawArgs.end(); iter++)
+            for (_StringListIterator iter = RawArgs.begin(); iter != RawArgs.end(); ++iter)
             {
 				      WildCard2RegExp(*iter);
 
@@ -422,7 +410,7 @@ wmain(
             else
               RawArgs.push_back(wstring(argv[optind - 1]));
 
-            for (_StringListIterator iter = RawArgs.begin(); iter != RawArgs.end(); iter++)
+            for (_StringListIterator iter = RawArgs.begin(); iter != RawArgs.end(); ++iter)
             {
 				      WildCard2RegExp(*iter);
 
@@ -453,7 +441,7 @@ wmain(
             else
               RawArgs.push_back(wstring(argv[optind - 1]));
 
-            for (_StringListIterator iter = RawArgs.begin(); iter != RawArgs.end(); iter++)
+            for (_StringListIterator iter = RawArgs.begin(); iter != RawArgs.end(); ++iter)
             {
 			        WildCard2RegExp(*iter);
 
@@ -479,16 +467,17 @@ wmain(
             else
               RawArgs.push_back(wstring(argv[optind - 1]));
 
-            for (_StringListIterator iter = RawArgs.begin(); iter != RawArgs.end(); iter++)
+//            for (_StringListIterator iter = RawArgs.begin(); iter != RawArgs.end(); ++iter)
+            for (auto iter : RawArgs)
             {
-			        WildCard2RegExp(*iter);
+			        WildCard2RegExp(iter);
 
               // Check if it is an absolute path, e.g e:\\bla...
-              if (iter->length() > 1 && iter->at(1) != ':')
-                *iter = L"\\\\" + *iter + L"$";
+              if (iter.length() > 1 && iter.at(1) != ':')
+                iter = L"\\\\" + iter + L"$";
               else
-                *iter += L"$";
-              ExcludeDirList.push_back(*iter);
+                iter += L"$";
+              ExcludeDirList.push_back(iter);
             }
           }
           break;
@@ -1006,7 +995,7 @@ wmain(
       ExcludeFileList.clear();
       SourceDirList.clear();
       DeletePathNameStatusList(PathNameStatusList);
-      dc.Dispose(NULL);
+      dc.Dispose(NULL, &DupeMergeStatistics);
 
     } 
     // This bracket is only here so that we can leave a scope and all the automatic variables 

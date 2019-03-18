@@ -1,29 +1,12 @@
-#include <windows.h>
-#include <winbase.h>
+#include "stdafx.h"
 
-#include <wchar.h>
-#include <errno.h>
-#include <io.h>
-
-#include <iostream>
-#include <sstream>
-
-#include <list>
-#include <vector>
-
-#include <..\..\shared\tre-0.8.0\lib\regex.h>
-
-#include "hardlink_types.h"
-#include "..\hardlink\src\mmfobject.h"
-
-#include "AsyncContext.h"
 #include "hardlink.h"
 
 ULONG64 gSize, gCount, gDirectories;
 
 void Usage()
 {
-	wprintf(L"Prints Disk Usage of specified path recursively. (C) 1990-2012 Hermann Schinagl\n");
+	wprintf(L"Prints Disk Usage of specified path recursively. (C) 1990-2019 Hermann Schinagl\n");
 	wprintf(L"Parameter error. Usage : DU [[drive]:[searchpath]]. Version 5.10\n");
 }
 

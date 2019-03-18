@@ -10,19 +10,17 @@ int _tmain(int argc, _TCHAR* argv[])
   _StringList Modules;
   _StringMap  Processes;
 
-  Modules.push_back(L"rockalldll.dll");
   Modules.push_back(L"HardlinkShellExt.dll");
-//  Modules.push_back(L"ntdll.dll");
   NtQueryProcessByModule(Modules, Processes);
 
   wchar_t TempPath[MAX_PATH];
   GetTempPath(MAX_PATH, TempPath);
-  wcscat(TempPath, L"LseInstallerCollidingProcesses.txt");
+  wcscat_s(TempPath, MAX_PATH, L"LseInstallerCollidingProcesses.txt");
 
   FILE* processes = _wfopen (TempPath, L"wb");
   if (processes)
   {
-    for (_StringMap::iterator iter = Processes.begin(); iter != Processes.end(); iter++)
+    for (_StringMap::iterator iter = Processes.begin(); iter != Processes.end(); ++iter)
       fwprintf (processes, L"%s\n", iter->first.c_str());
 
     fclose(processes);

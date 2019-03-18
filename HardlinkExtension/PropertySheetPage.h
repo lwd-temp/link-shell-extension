@@ -1,16 +1,16 @@
 /*
-	Copyright (C) 1999-2010, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
-#ifndef _PropertySheetPage_A964DA21_1F5F_11d5_AAC7_0004AC2568AA
-#define _PropertySheetPage_A964DA21_1F5F_11d5_AAC7_0004AC2568AA
+#pragma once
+
+
 
 DEFINE_GUID(CLSID_HardLinkPropertySheetPage, 0xa479751, 0x2bc, 0x11d3, 0xa8, 0x55, 0x0, 0x4, 0xac, 0x25, 0x68, 0xcc);
 
 INT_PTR CALLBACK PropPageDlgProc ( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 UINT CALLBACK PropPageCallbackProc ( HWND hwnd, UINT uMsg, LPPROPSHEETPAGE ppsp );
 BOOL OnInitDialog ( HWND hwnd, LPARAM lParam );
-void OnSearchSiblings ( HWND hwnd, LPARAM lParam );
 void OnExploreTarget ( HWND hwnd, LPARAM lParam );
 BOOL OnApply ( HWND hwnd, PSHNOTIFY* phdr );
 
@@ -103,16 +103,6 @@ private:
 
 };
 
-class	lse_EnumHardlinkSiblingsGlue : public EnumHardlinkSiblingsGlue
-{
-	public:
-		virtual void Print(wchar_t* pSiblingFileName);
-
-	HWND	m_EditControl;
-
-	lse_EnumHardlinkSiblingsGlue();
-};
-
 struct ReparseProperties
 {
   ReparseProperties() 
@@ -163,4 +153,3 @@ struct ReparseProperties
 
 };
 
-#endif

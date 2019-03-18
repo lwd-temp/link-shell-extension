@@ -1,5 +1,10 @@
-#if !defined REPARSE_H_1967
-#define	REPARSE_H_1967
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
+
+#pragma once
+
+
 //
 // Maximum reparse buffer info size. The max user defined reparse
 // data is 16KB, plus there's a header.
@@ -16,7 +21,6 @@
 //
 // Undocumented FSCTL_SET_REPARSE_POINT structure definition
 //
-#define IO_REPARSE_TAG_DEDUP		        0x80000013
 #define IO_REPARSE_TAG_SYMBOLIC_LINK		0xa000000c
 #define REPARSE_MOUNTPOINT_HEADER_SIZE   8
 typedef struct {
@@ -65,4 +69,4 @@ typedef struct _REPARSE_DATA_BUFFER {
         } GenericReparseBuffer;
     };
 } REPARSE_DATA_BUFFER, *PREPARSE_DATA_BUFFER;
-#endif
+

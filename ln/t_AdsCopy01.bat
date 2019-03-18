@@ -107,7 +107,7 @@ REM
 REM Copy encrypted streams
 REM
 @set CIPHEROPT=/e /a
-@if [Win7] == [%OS%] set CIPHEROPT=/e 
+set CIPHEROPT=/e 
 @cipher %CIPHEROPT% %TESTROOTSRC%\BigData > nul
 @%TIMESTAMP% --eawrite %TESTROOTSRC%\BigData test\ln.h test\y test\readme.txt
 echo AlternativeDataStream > %TESTROOTSRC%\BigData:ADS1

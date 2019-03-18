@@ -1,5 +1,7 @@
-// LSEConfig.h : main header file for the PROJECT_NAME application
-//
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
+
 
 #pragma once
 

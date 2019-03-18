@@ -1,26 +1,21 @@
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
+
 
 #include "stdafx.h"
 
-#include "resource.h"
 #include "..\HardlinkExtension\resource.h"
-
-#include "..\..\shared\tre-0.8.0\lib\regex.h" 
-
-#include "hardlink_types.h"
-#include "..\hardlink\src\mmfobject.h"
 
 #include "AsyncContext.h"
 #include "hardlink.h"
 #include "HardlinkUtils.h"
 
-#include <ShlObj.h>
-
-#include "multilang.h"
 #include "ProgressBar.h"
+#include "UacReuse.h"
 
 #include "symlink.h"
 
-int           gColourDepth = 8;
 _LSESettings  gLSESettings;
 HINSTANCE     gLSEInstance = NULL;
 
@@ -75,27 +70,15 @@ SmartMirror(
     // Walk through all the files
     CopyStatistics	MirrorStatistics;
     CopyStatistics	CleanStatistics;
-    int progress = 0;
-    const int MaxEndlessProgress = 50;
     FILE* LogFile;
 
-    Progressbar aProgressbar(
-      IDS_STRING_ProgressCreatingSmartMirror, 
-      IDS_STRING_ProgressCanceling,
-      gLSEInstance,
-      gLSESettings.LanguageID,
-      hwnd,
-      MaxEndlessProgress
-    );
+    Progressbar aProgressbar;
 
     // If we are in Backup Mode, the number of files is 0 
+    AsyncContext    MirrorContext, CleanContext;
     if (MirrorList.BackupMode())
     {
-#if defined _DEBUG  
-      aProgressbar.SetTitle(L"DEBUG: Symlink::SmartMirror FindHardlink");
-#endif
       // Enumerate all files in the source
-      AsyncContext    Context;
       _ArgvList MirrorPathList;
       MirrorList.GetAnchorPath(MirrorPathList);
       MirrorList.FindHardLink(
@@ -103,10 +86,9 @@ SmartMirror(
         0,
         &MirrorStatistics, 
         &MirrorPathNameStatusList,
-        &Context
+        &MirrorContext
       );
 
-      AsyncContext    CleanContext;
       _ArgvList CleanPathList;
       CleanList.GetAnchorPath(CleanPathList);
       CleanList.FindHardLink(
@@ -118,31 +100,18 @@ SmartMirror(
       );
 
       // In parallel wait for the searches to finish
-      wchar_t         CurrentPath[HUGE_PATH];
-      CurrentPath[0] = 0x00;
-      while (!Context.Wait(125) || !CleanContext.Wait(125))
+      while (!MirrorContext.Wait(125) || !CleanContext.Wait(125))
       {
-        Context.GetStatus(CurrentPath);
-        aProgressbar.SetProgress (progress++);
-        aProgressbar.SetCurrentPath(CurrentPath);
-        aProgressbar.Show();
-        if (aProgressbar.HasUserCancelled())
+        if (aProgressbar.Update(MirrorContext, PDM_PREFLIGHT))
         {
-          Context.Cancel();
+          MirrorContext.Cancel();
           CleanContext.Cancel();
-          Context.Wait(INFINITE);
+          MirrorContext.Wait(INFINITE);
           CleanContext.Wait(INFINITE);
-          progress = -1;
           break;
         }
-        
-        // This is an endless bar during searching for files
-        if (progress >= MaxEndlessProgress)
-        {
-          aProgressbar.SetRange(MaxEndlessProgress);
-          progress = 0;
-        }
-      } // while (!Context.Wait(125) && !CleanContext.Wait(125))
+      } // while (!MirrorContext.Wait(125) && !CleanContext.Wait(125))
+      aProgressbar.SetMode(PDM_DEFAULT);
 
       LogFile = MirrorList.AppendLogging();
       MirrorList.HeadLogging(LogFile);
@@ -151,80 +120,33 @@ SmartMirror(
       LogFile = MirrorList.AppendLogging();
 
 
-    // Only continue if nobody pressed cancel
-    if ( progress >= 0 )
+    // Only continue if nobody pressed cancel during FindHardlink
+    if ( CleanContext.IsRunning() )
     {
-      __int64 MaxProgressMirror = MirrorList.PrepareSmartCopy(FileInfoContainer::eSmartCopy, &MirrorStatistics);
+      Effort MirrorEffort;
+      MirrorList.Prepare(FileInfoContainer::eSmartMirror, &MirrorStatistics, &MirrorEffort);
 
-      // During Clean the cost of a operation is always 1 so we go with eSmartClone
-      __int64 MaxProgressClean = CleanList.PrepareSmartCopy(FileInfoContainer::eSmartClone, &CleanStatistics);
-      aProgressbar.SetRange(MaxProgressMirror + MaxProgressClean);
+      Effort CleanEffort;
+      CleanList.Prepare(FileInfoContainer::eSmartClean, &CleanStatistics, &CleanEffort);
+      aProgressbar.SetRange(MirrorEffort + CleanEffort);
 
       LogFile = MirrorList.AppendLogging();
       if (LogFile)
         CleanList.SetOutputFile(LogFile);
 
-  #if defined _DEBUG
-      aProgressbar.SetTitle(L"DEBUG: Symlink::SmartMirror");
-  #endif
-      AsyncContext  MirrorContext;
-      AsyncContext  CleanContext;
+      MirrorContext.Reset();
+      CleanContext.Reset();
 
-      MirrorList.SetLookAsideContainer(&CleanList);
-      MirrorList.SmartMirror (&MirrorStatistics, &MirrorPathNameStatusList, &MirrorContext);
-      CleanList.SetLookAsideContainer(&MirrorList);
-      CleanList.SmartClean (&CleanStatistics, &CleanPathNameStatusList, &CleanContext);
-
-
-      wchar_t         CurrentPath[HUGE_PATH];
-      CurrentPath[0] = 0x00;
-
-      while (!MirrorContext.Wait(125) || !CleanContext.Wait(125))
-      {
-        MirrorContext.GetStatus(CurrentPath);
-        aProgressbar.SetProgress (MirrorContext.Get() + CleanContext.Get());
-        aProgressbar.SetCurrentPath(CurrentPath);
-
-        if (aProgressbar.HasUserCancelled())
-        {
-          MirrorContext.Cancel();
-          CleanContext.Cancel();
-          MirrorContext.Wait(INFINITE);
-          CleanContext.Wait(INFINITE);
-          break;
-        } // if
-        
-        // Check if LSE had a progressbar visible. If yes restore the old position
-        // but do this only once. 
-        if (ProgressbarPosition.left >= 0)
-        {
-          if (ProgressbarPosition.bottom > 0)
-            aProgressbar.SetWindowPos(ProgressbarPosition);
-          ProgressbarPosition.left = -1;
-          aProgressbar.Show();
-        }
-
-      } // while
+      Effort        Progress;
+      _SmartMirror(CleanList, MirrorList, MirrorStatistics, MirrorPathNameStatusList, NULL, Progress, &aProgressbar);
     }
 
-    // Start releasing data async, because releasing data really takes time
-    AsyncContext MirrorDisposeContext;
-    AsyncContext CleanDisposeContext;
-    
-    const int nHandles = 2;
-    HANDLE  WaitEvents[nHandles];
-    
-    MirrorList.Dispose(&MirrorDisposeContext);
-    CleanList.Dispose(&CleanDisposeContext);
+    aProgressbar.RestoreProgressbar(ProgressbarPosition);
 
-    WaitEvents[0] = MirrorDisposeContext.m_WaitEvent;
-    WaitEvents[1] = CleanDisposeContext.m_WaitEvent;
-
-    // Wait till releasing of resources has finished
-    WaitForMultipleObjects(nHandles, WaitEvents, TRUE, INFINITE);
+    DisposeAsync(MirrorList, CleanList, MirrorStatistics, CleanStatistics);
 
     GetLocalTime(&MirrorStatistics.m_EndTime);
-    MirrorList.EndLogging(LogFile, MirrorPathNameStatusList, MirrorStatistics);
+    MirrorList.EndLogging(LogFile, MirrorPathNameStatusList, MirrorStatistics, FileInfoContainer::eSmartMirror);
 
   } // Progressbar
 
@@ -259,17 +181,9 @@ SmartXXX(
     // Walk through all the files
     CopyStatistics	aStats;
     int progress = 0;
-    const int MaxEndlessProgress = 50;
     FILE* LogFile;
 
-    Progressbar aProgressbar(
-      IDS_STRING_ProgressCreatingSmartCopy, 
-      IDS_STRING_ProgressCanceling,
-      gLSEInstance,
-      gLSESettings.LanguageID,
-      hwnd,
-      MaxEndlessProgress
-    );
+    Progressbar aProgressbar;
 
     GetLocalTime(&aStats.m_StartTime);
 
@@ -280,9 +194,6 @@ SmartXXX(
       ULONG Count = 0;
       AsyncContext    Context;
 
-#if defined _DEBUG  
-      aProgressbar.SetTitle(L"DEBUG: Symlink::SmartXXX FindHardLink");
-#endif
       _ArgvList TargetPathList;
       FileList.GetAnchorPath(TargetPathList);
       int r = FileList.FindHardLink (
@@ -293,29 +204,17 @@ SmartXXX(
         &Context
       );
 
-      wchar_t         CurrentPath[HUGE_PATH];
-      CurrentPath[0] = 0x00;
       while (!Context.Wait(250))
       {
-        Context.GetStatus(CurrentPath);
-        aProgressbar.SetProgress (progress++);
-        aProgressbar.SetCurrentPath(CurrentPath);
-        aProgressbar.Show();
-        if (aProgressbar.HasUserCancelled())
+        if (aProgressbar.Update(Context, PDM_PREFLIGHT))
         {
           Context.Cancel();
           Context.Wait(INFINITE);
           progress = -1;
           break;
         }
-        
-        // This is an endless bar during searching for files
-        if (progress >= MaxEndlessProgress)
-        {
-          aProgressbar.SetRange(MaxEndlessProgress);
-          progress = 0;
-        }
       } // while (!Context.Wait(250))
+      aProgressbar.SetMode(PDM_DEFAULT);
 
       LogFile = FileList.AppendLogging();
       FileList.HeadLogging(LogFile);
@@ -326,13 +225,9 @@ SmartXXX(
     // Only continue if nobody pressed cancel
     if ( progress >= 0 )
     {
-      __int64 MaxProgress = FileList.PrepareSmartCopy(aMode, &aStats);
+      Effort MaxProgress;
+      FileList.Prepare(aMode, &aStats, &MaxProgress);
       aProgressbar.SetRange(MaxProgress);
-      HTRACE (L"Progress Start%08x\n", MaxProgress);
-
-  #if defined _DEBUG 
-      aProgressbar.SetTitle(L"DEBUG: Symlink::SmartXXX");
-  #endif
 
       AsyncContext  Context;
       switch (aMode)
@@ -346,30 +241,18 @@ SmartXXX(
         break;
       }
 
-      wchar_t         CurrentPath[HUGE_PATH];
-      CurrentPath[0] = 0x00;
       while (!Context.Wait(250))
       {
-        Context.GetStatus(CurrentPath);
-        aProgressbar.SetProgress (Context.Get());
-        aProgressbar.SetCurrentPath(CurrentPath);
-        
-        // Check if LSE had a progressbar visible. If yes restore the old position
-        // but do this only once. 
-        if (ProgressbarPosition.left >= 0)
-        {
-          if (ProgressbarPosition.bottom > 0)
-            aProgressbar.SetWindowPos(ProgressbarPosition);
-          ProgressbarPosition.left = -1;
-          aProgressbar.Show();
-        }
-
-        if (aProgressbar.HasUserCancelled())
+        if (aProgressbar.Update(Context, Context.GetProgress()))
         {
           Context.Cancel();
           Context.Wait(INFINITE);
           break;
         } // if
+
+        // Check if LSE had a progressbar visible. If yes restore the old position
+        aProgressbar.RestoreProgressbar(ProgressbarPosition);
+
       } // while
     
       GetLocalTime(&aStats.m_EndTime);
@@ -403,26 +286,16 @@ SmartMove(FILE* ArgFile)
 
     // Walk through all the files
     CopyStatistics	aStats;
-    const int MaxEndlessProgress = 50;
     int progress = 0;
 
-    Progressbar aProgressbar(
-      IDS_STRING_ProgressSmartMove, 
-      IDS_STRING_ProgressCanceling,
-      gLSEInstance,
-      gLSESettings.LanguageID,
-      hwnd,
-      MaxEndlessProgress
-    );
+    Progressbar aProgressbar;
 
     GetLocalTime(&aStats.m_StartTime);
     FILE* LogFile = FileList.StartLogging(gLSESettings, L"SmartMove");
-    if (FileList.BackupMode())
+	AsyncContext    Context;
+	if (FileList.BackupMode())
     {
       // Backup Mode. Also find the files elevated in symlink
-      AsyncContext    Context;
-      wchar_t         CurrentPath[HUGE_PATH];
-
       int   RefCount;
       if (gVersionInfo.dwMajorVersion >= 6)
         // With Vista & W7 we also have to search files, because symbolic links are 
@@ -436,9 +309,6 @@ SmartMove(FILE* ArgFile)
       _ArgvList MoveLocation;
       FileList.GetAnchorPath(MoveLocation);
 
-#if defined _DEBUG 
-      aProgressbar.SetTitle(L"DEBUG: Symlink::SmartMove FindHardlink");
-#endif
       int r = FileList.FindHardLink (MoveLocation, RefCount, &aStats, &PathNameStatusList, &Context);
       FileList.HeadLogging(LogFile);
       
@@ -447,76 +317,53 @@ SmartMove(FILE* ArgFile)
 
       while (!Context.Wait(250))
       {
-        Context.GetStatus(CurrentPath);
-        aProgressbar.SetProgress (progress++);
-        aProgressbar.SetCurrentPath(CurrentPath);
-        aProgressbar.Show();
-        if (aProgressbar.HasUserCancelled())
+        if (aProgressbar.Update(Context, PDM_PREFLIGHT))
         {
           Context.Cancel();
           Context.Wait(INFINITE);
-          progress = -1;
           break;
         }
         
-        // This is an endless bar during searching for files
-        if (progress >= MaxEndlessProgress)
-        {
-          aProgressbar.SetRange(MaxEndlessProgress);
-          progress = 0;
-        }
       } // while (!Context.Wait(250))
+      aProgressbar.SetMode(PDM_DEFAULT);
     }
 
     // Only continue if nobody pressed cancel
-    if ( progress >= 0 )
+    if ( Context.IsRunning() )
     {
-      FileList.PrepareSmartCopy(FileInfoContainer::eSmartClone, &aStats);
-      __int64 MaxProgress = FileList.PrepareSmartMove();
+      Effort MaxProgress;
+      FileList.Prepare(FileInfoContainer::eSmartMove, &aStats, &MaxProgress);
       aProgressbar.SetRange(MaxProgress);
 
-  #if defined _DEBUG 
-      aProgressbar.SetTitle(L"DEBUG: Symlink::SmartMove");
-  #endif
-
-      AsyncContext  Context;
+      AsyncContext  MoveContext;
       FileList.SmartMove (&aStats, 
         &PathNameStatusList, 
-        &Context
+        &MoveContext
         );
 
-      wchar_t         CurrentPath[HUGE_PATH];
-      CurrentPath[0] = 0x00;
-      while (!Context.Wait(250))
+      while (!MoveContext.Wait(250))
       {
-        Context.GetStatus(CurrentPath);
-        aProgressbar.SetProgress (Context.Get());
-        aProgressbar.SetCurrentPath(CurrentPath);
-
-        // Check if LSE had a progressbar visible. If yes restore the old position
-        // but do this only once. 
-        if (ProgressbarPosition.left >= 0)
+        if (aProgressbar.Update(MoveContext, MoveContext.GetProgress()))
         {
-          if (ProgressbarPosition.bottom > 0)
-            aProgressbar.SetWindowPos(ProgressbarPosition);
-          ProgressbarPosition.left = -1;
-          aProgressbar.Show();
-        }
-
-        if (aProgressbar.HasUserCancelled())
-        {
-          Context.Cancel();
-          Context.Wait(INFINITE);
+          MoveContext.Cancel();
+          MoveContext.Wait(INFINITE);
           break;
         } // if
+
+        // Check if LSE had a progressbar visible. If yes restore the old position
+        aProgressbar.RestoreProgressbar(ProgressbarPosition);
+
       } // while
-    } // if ( progress >= 0 )
+    } // if (Context.IsRunning())
 
     GetLocalTime(&aStats.m_EndTime);
     FileList.EndLogging(LogFile, PathNameStatusList, aStats);
   } // Progressbar
 
   DeletePathNameStatusList(PathNameStatusList);
+
+  // TODO: Warum wird beim SmartMove der Speicher nicht freigegeben? Notwendig ist es nicht, weil der
+  // Prozess eh terminiert, aber unsauber ist es
 
   CoUninitialize();
   return RetVal;
@@ -586,37 +433,22 @@ DeloreanCopy(
       HUGE_PATH
     );
 
-    wchar_t         CurrentPath[HUGE_PATH];
-
-    __int64 CurrentProgress = 0;
-    __int64 Progress = 0;
-    __int64 LastProgress = 0;
+    Effort CurrentProgress;
+    Effort Progress;
+    Effort LastProgress;
 
     CopyStatistics	aStats;
     CopyStatistics	MirrorStats;
-    const int MaxEndlessProgress = 50;
     FILE* LogFile;
     
-    Progressbar aProgressbar(
-      IDS_STRING_ProgressCreatingDeLoreanCopy, 
-      IDS_STRING_ProgressCanceling,
-      gLSEInstance,
-      gLSESettings.LanguageID,
-      hwnd,
-      MaxEndlessProgress
-      );
+    Progressbar aProgressbar;
 
     // If we are in Backup Mode, the number of files is 0 
+    AsyncContext    Context, MirrorContext;
     if (CloneList.BackupMode())
     {
+#pragma region BackupMode 
       ULONG Count = 0;
-      AsyncContext    Context;
-      AsyncContext    MirrorContext;
-
-#if defined _DEBUG
-      aProgressbar.Show();
-      aProgressbar.SetTitle(L"DEBUG: Symlink::FindHardlink DeloreanCopy");
-#endif
 
       // Find the files in Backup0
       _ArgvList Backup0PathList;
@@ -642,207 +474,107 @@ DeloreanCopy(
         );
       }
 
-      // First we have to wait for the find on the Clone side
+      // Wait for the FindHardLink with DST
       // 
-      while (!Context.Wait(250))
+      while (!Context.Wait(50))
       {
-        Context.GetStatus(CurrentPath);
-        aProgressbar.SetProgress (Progress++);
-        aProgressbar.SetCurrentPath(CurrentPath);
-        aProgressbar.Show();
-        if (aProgressbar.HasUserCancelled())
+        if (aProgressbar.Update(Context, PDM_PREFLIGHT))
         {
           Context.Cancel();
           Context.Wait(INFINITE);
-          Progress = -1;
           break;
         }
         
-        // This is an endless bar during searching for files
-        if (Progress >= MaxEndlessProgress)
-        {
-          aProgressbar.SetRange(MaxEndlessProgress);
-          Progress = 0;
-        }
       } // while (!Context.Wait(250))
 
       LogFile = MirrorList.AppendLogging();
       MirrorList.HeadLogging(LogFile);
 
-      // If we are going for the smartmirror, we also have to wait for 
-      // the mirror directory scan
+      // If we are going for the smartmirror, we also have to wait for the mirror directory scan
       if (Backup0PathList.size())
       {
-        while (!MirrorContext.Wait(250))
+        while (!MirrorContext.Wait(50))
         {
           // Check for cancel
           if (aProgressbar.HasUserCancelled())
           {
             MirrorContext.Cancel();
             MirrorContext.Wait(INFINITE);
-            Progress = -1;
             break;
           } // if
 
-          // This is an endless bar during searching for files
-          if (Progress >= MaxEndlessProgress)
-          {
-            aProgressbar.SetRange(MaxEndlessProgress);
-            Progress = 0;
-          }
-
         } // while (!MirrorContext.Wait(250))
       } // if (Backup0PathList.size())
-    }
+
+      aProgressbar.SetMode(PDM_DEFAULT);
+#pragma endregion
+    } 
 
     // Only continue if Cancel was not pressed
-    if (Progress >= 0)
+    if (Context.IsRunning())
     {
-      __int64 MaxProgress = CloneList.PrepareSmartCopy(FileInfoContainer::eSmartClone, &aStats);
-
-      // 1 Clonen
-      // 2 Clean 
-      // 3 Mirror
-      MaxProgress *= 3;
+      Effort CloneEffort;
+      CloneList.Prepare(FileInfoContainer::eSmartClone, &aStats, &CloneEffort);
+      Effort CleanEffort;
+      CloneList.EstimateEffort(FileInfoContainer::eSmartClean, &CleanEffort);
+      Effort MirrorEffort;
+      MirrorList.Prepare(FileInfoContainer::eSmartMirror, &MirrorStats, &MirrorEffort);
 
       LogFile = MirrorList.AppendLogging();
       if (LogFile)
         CloneList.SetOutputFile(LogFile);
 
-      HTRACE (L"Progress Start%08x\n", MaxProgress);
-      aProgressbar.SetRange(MaxProgress);
+      HTRACE(L"Progress Start%08x\n", CloneEffort.m_Points + CleanEffort.m_Points + MirrorEffort.m_Points);
+      aProgressbar.SetRange(CloneEffort + CleanEffort + MirrorEffort);
 
-  #if defined _DEBUG
-      aProgressbar.SetTitle(L"DEBUG: Symlink::DeloreanCopy SmartClone");
-  #endif
-      AsyncContext  Context;
-      CloneList.SmartClone (&aStats, &ClonePathNameStatusList, &Context);
+      Context.Reset();
+      CloneList.SmartClone(&aStats, &ClonePathNameStatusList, &Context);
 
-      LastProgress = 0;
       // Wait for the Clone to finish
-      CurrentPath[0] = 0x00;
       while (!Context.Wait(250))
       {
-        Context.GetStatus(CurrentPath);
-
         // Progress calculation over multiple operations
-        CurrentProgress = Context.Get();
-        Progress += CurrentProgress - LastProgress ;
+        CurrentProgress = Context.GetProgress();
+        Progress += CurrentProgress - LastProgress;
         LastProgress = CurrentProgress;
-        aProgressbar.SetProgress (Progress);
 
-        aProgressbar.SetCurrentPath(CurrentPath);
-        aProgressbar.Show();
-        if (aProgressbar.HasUserCancelled())
+        if (aProgressbar.Update(Context, Progress))
         {
           Context.Cancel();
           Context.Wait(INFINITE);
-          Progress = -1;
           break;
         } // if
       } // while
 
-#if defined _DEBUG
-      aProgressbar.SetTitle(L"DEBUG: Symlink::DeloreanCopy Cleanup");
-#endif
+      // Sum up the rest of progress, which happened during wait
+      Progress += Context.GetProgress() - LastProgress;
+      aProgressbar.SetProgress(Progress);
 
       // Only continue if Cancel was not pressed
-      if (Progress >= 0)
+      AsyncContext CleanContext;
+      if (Context.IsRunning())
       {
         // Create a temporary List of anchorpath for ChangePath()
         _ArgvList argvlist;
         _ArgvList& rAnchorPath = MirrorList.m_AnchorPathCache.m_AnchorPaths;
         for (_ArgvListIterator iter = rAnchorPath.begin(); iter != rAnchorPath.end(); ++iter)
-        { 
+        {
           _ArgvPath argv;
           argv.Argv = iter->Argv;
           argv.ArgvDest = iter->Argv;
           argvlist.push_back(argv);
         }
-        
+
         CloneList.ChangePath(Backup1, argvlist);
-        CloneList.SetLookAsideContainer(&MirrorList);
-        CloneList.PrepareSmartCopy(FileInfoContainer::eSmartClean, &aStats);
-        AsyncContext CleanContext;
-        CloneList.SmartClean (&MirrorStats, &MirrorPathNameStatusList, &CleanContext);
 
-        // Wait for the SmartClean to finish
-        LastProgress = 0;
-        CurrentPath[0] = 0x00;
-        while (!CleanContext.Wait(250))
-        {
-          CleanContext.GetStatus(CurrentPath);
-
-          // Progress calculation over multiple operations
-          CurrentProgress = CleanContext.Get();
-          Progress += CurrentProgress - LastProgress;
-          LastProgress = CurrentProgress;
-          aProgressbar.SetProgress (Progress);
-
-          aProgressbar.SetCurrentPath(CurrentPath);
-          aProgressbar.Show();
-          if (aProgressbar.HasUserCancelled())
-          {
-            CleanContext.Cancel();
-            CleanContext.Wait(INFINITE);
-            Progress = -1;
-            break;
-          } // if
-        } // while
+        _SmartMirror(CloneList, MirrorList, MirrorStats, MirrorPathNameStatusList, nullptr, Progress, &aProgressbar);
       }
+    } // if (Context.IsRunning())
 
-
-      if (Progress >= 0)
-      {
-#if defined _DEBUG
-        aProgressbar.SetTitle(L"DEBUG: Symlink::DeloreanCopy  Mirror");
-#endif
-        MirrorList.PrepareSmartCopy(FileInfoContainer::eSmartCopy, &MirrorStats);
-        MirrorList.SetLookAsideContainer(&CloneList);
-
-        AsyncContext MirrorContext;
-        
-        MirrorList.SmartMirror (&MirrorStats, &MirrorPathNameStatusList, &MirrorContext);
-        LastProgress = 0;
-        CurrentPath[0] = 0x00;
-        while (!MirrorContext.Wait(250))
-        {
-          MirrorContext.GetStatus(CurrentPath);
-
-          // Progress calculation over multiple operations
-          CurrentProgress = MirrorContext.Get();
-          Progress += CurrentProgress - LastProgress;
-          LastProgress = CurrentProgress;
-          aProgressbar.SetProgress (Progress);
-
-          aProgressbar.SetCurrentPath(CurrentPath);
-          aProgressbar.Show();
-          if (aProgressbar.HasUserCancelled())
-          {
-            MirrorContext.Cancel();
-            MirrorContext.Wait(INFINITE);
-            break;
-          } // if
-        } // while
-      } // if (Progress > 0) 
-    } // if (Progress > 0)
-
-    // Start releasing data async, because releasing data really takes time
-    const int nHandles = 2;
-    HANDLE  WaitEvents[nHandles];
-    AsyncContext FileDisposeContext;
-    AsyncContext MirrorDisposeContext;
-    MirrorList.Dispose(&MirrorDisposeContext);
-    CloneList.Dispose(&FileDisposeContext);
-
-    WaitEvents[0] = MirrorDisposeContext.m_WaitEvent;
-    WaitEvents[1] = FileDisposeContext.m_WaitEvent;
-
-    // Wait till releasing of resources has finished
-    WaitForMultipleObjects(nHandles, WaitEvents, TRUE, INFINITE);
+    DisposeAsync(MirrorList, CloneList, MirrorStats, aStats);
 
     GetLocalTime(&MirrorStats.m_EndTime);
-    MirrorList.EndLogging(LogFile, MirrorPathNameStatusList, MirrorStats);
+    MirrorList.EndLogging(LogFile, MirrorPathNameStatusList, MirrorStats, FileInfoContainer::eSmartMirror);
 
   } // end of Progress Bar
 
@@ -1020,7 +752,7 @@ ReplaceSymbolicLink(
   }
 
   // Create the symbolic link
-  iResult = CreateSymboliclink (SymLinkSource, SymLinkTarget, dwFlags);  
+  iResult = CreateSymboliclink (SymLinkSource, SymLinkTarget, dwFlags);
 
   if (gLSESettings.Flags & eBackupMode)
   {
@@ -1143,11 +875,6 @@ extern "C"
     // destroy memory during wcscpy_s() with _FILL_STRING
     _CrtSetDebugFillThreshold(0);
 
-    // Get the Colordepth so that we load the proper progress bar animation
-    HDC hDC = GetDC(0);
-    gColourDepth = GetDeviceCaps(hDC, BITSPIXEL);
-    ReleaseDC(0, hDC);
-
     GetLSESettings(gLSESettings);
 
     gLSEInstance = LoadLibraryEx( 
@@ -1172,7 +899,8 @@ extern "C"
     {
       BOOL b = EnableTokenPrivilege(SE_BACKUP_NAME);
       BOOL r = EnableTokenPrivilege(SE_RESTORE_NAME);
-			RetVal = GetLastError();
+      BOOL s = EnableTokenPrivilege(SE_SECURITY_NAME);
+      RetVal = GetLastError();
       if ( (FALSE == b) || (FALSE == r) )
       {
 	      wchar_t	MsgReason[MAX_PATH];
@@ -1204,6 +932,8 @@ extern "C"
     }
 
 		InitCreateHardlink();
+    gSupportedFileSystems.ReadFromRegistry();
+
 
 		if (argc != 2)
 		{
@@ -1426,7 +1156,7 @@ extern "C"
             SmartXXX(SymlinkArgs, FileInfoContainer::eSmartClone);
 					break;
 
-          // Smart Mirror
+          // Smart Clone
 					case 'u':
             SmartXXX(SymlinkArgs, FileInfoContainer::eSmartClone);
 					break;

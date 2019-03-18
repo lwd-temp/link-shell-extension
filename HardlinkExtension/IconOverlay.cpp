@@ -1,7 +1,11 @@
+/*
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
+
 #include "stdafx.h"
+
 #include "IconOverlay.h"
 
-// extern int		 gLSE_Flag;
 extern _LSESettings gLSESettings;
 
 

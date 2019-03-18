@@ -27,9 +27,6 @@ char* wstr2astr (wchar_t* pwStr, char* paStr)
 int where (wchar_t* aRegExpr, wchar_t* aPath)
 {
 	wchar_t 				PathWid[8192];
-#if defined _DEBUG
-	char					PathAsc[8192];
-#endif
 	struct _wfinddata_t		wfind;
 
 	wcscpy (PathWid, aPath);

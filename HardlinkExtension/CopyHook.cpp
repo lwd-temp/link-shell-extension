@@ -1,12 +1,12 @@
 /*
-	Copyright (C) 1999_2006, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
+
 
 #include "stdafx.h"
-#include "resource.h"
+
 #include "Progressbar.h"
 #include "CopyHook.h"
-#include "Utils.h"
 #include "HardlinkUtils.h"
 
 
@@ -198,15 +198,9 @@ CopyCallback ( HWND hwnd,
         { 
           CoInitialize(NULL);
           
-          const int MaxEndlessProgress = 50;
-          Progressbar* pProgressbar = new Progressbar(
-            IDS_STRING_ProgressSmartMove, 
-            IDS_STRING_ProgressCanceling,
-            g_hInstance, 
-            gLSESettings.LanguageID,
-            hwnd,
-            MaxEndlessProgress
-            );
+          Progressbar* pProgressbar = new Progressbar();
+
+          pProgressbar->SetOperation(SPACTION_MOVING);
 
           int progress = 0;
 
@@ -223,10 +217,14 @@ CopyCallback ( HWND hwnd,
           MovePath.ArgvDest += pszDestFile;
           MoveLocation.push_back(MovePath);
 
+#if defined SYMLINK_FORCE
+          if (SYMLINK_OUTPROC)
+#else
           // Check if we are in Backup Mode. If yes we also have to do the FindHardlink elevated, because
           // it might happen, that FindHardlink should run over directories, which the explorer does not
           // have access permissions.
           if (gLSESettings.Flags & eBackupMode)
+#endif
           {
             // Stop bar
             RECT  ProgressbarPosition;
@@ -259,8 +257,6 @@ CopyCallback ( HWND hwnd,
           else
           {
             AsyncContext    Context;
-            wchar_t         CurrentPath[HUGE_PATH];
-
             CopyStatistics	aStats;
             
             int   RefCount;
@@ -281,11 +277,7 @@ CopyCallback ( HWND hwnd,
 
             while (!Context.Wait(250))
             {
-              Context.GetStatus(CurrentPath);
-              pProgressbar->SetProgress (progress++);
-              pProgressbar->SetCurrentPath(CurrentPath);
-              pProgressbar->Show();
-              if (pProgressbar->HasUserCancelled())
+              if (pProgressbar->Update(Context, PDM_PREFLIGHT))
               {
                 Context.Cancel();
                 Context.Wait(INFINITE);
@@ -293,20 +285,15 @@ CopyCallback ( HWND hwnd,
                 break;
               }
               
-              // This is an endless bar during searching for files
-              if (progress >= MaxEndlessProgress)
-              {
-                pProgressbar->SetRange(MaxEndlessProgress);
-                progress = 0;
-              }
             } // while (!Context.Wait(250))
+            pProgressbar->SetMode(PDM_DEFAULT);
 
 
             if (progress >= 0)
             {
               // See if there are Symbolic Links
-#if defined SYMLINK_INPROC
-              if (0)
+#if defined SYMLINK_FORCE
+              if (SYMLINK_OUTPROC)
 #else
               int ContainsSymlinks = FileList.CheckSymbolicLinks();
               if (ContainsSymlinks)
@@ -323,7 +310,6 @@ CopyCallback ( HWND hwnd,
               // Do we have to elevate?
               if (
                 TRUE == ContainsSymlinks && 
-                !gbXpSymlinks && 
                 ElevationNeeded()
               )
 #endif
@@ -359,8 +345,8 @@ CopyCallback ( HWND hwnd,
                 FileList.HeadLogging(LogFile);
 
                 // Reset the Progressbar since we now know the number of files to be renamed
-                FileList.PrepareSmartCopy(FileInfoContainer::eSmartClone, &aStats);  // Call it for SmartClone, it is trashed anyway
-                __int64 MaxProgress = FileList.PrepareSmartMove();
+                Effort MaxProgress;
+                FileList.Prepare(FileInfoContainer::eSmartMove, &aStats, &MaxProgress);
                 HTRACE (L"Progress Start%08x\n", MaxProgress);
                 pProgressbar->SetRange(MaxProgress);
 
@@ -373,17 +359,13 @@ CopyCallback ( HWND hwnd,
 
                 while (!Context.Wait(250))
                 {
-                  Context.GetStatus(CurrentPath);
-                  pProgressbar->SetProgress (Context.Get());
-                  pProgressbar->SetCurrentPath(CurrentPath);
-                  pProgressbar->Show();
-                  if (pProgressbar->HasUserCancelled())
+                  if (pProgressbar->Update(Context, Context.GetProgress()))
                   {
                     Context.Cancel();
                     Context.Wait(INFINITE);
                     break;
-                  } // if
-                } // while
+                  }
+                }
                 delete pProgressbar;
               }
             }

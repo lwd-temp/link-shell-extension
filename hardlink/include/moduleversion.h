@@ -4,8 +4,10 @@
 // If this code works, it was written by Paul DiLascia.
 // If not, I don't know who wrote it.
 //
-#ifndef __MODULEVER_H
-#define __MODULEVER_H
+
+#pragma once
+
+
 
 // tell linker to link with version.lib for VerQueryValue, etc.
 #pragma comment(linker, "/defaultlib:version.lib")
@@ -46,5 +48,3 @@ public:
 
 	virtual ~CModuleVersion();
 };
-
-#endif

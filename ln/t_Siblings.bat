@@ -24,10 +24,10 @@ if [%3] NEQ [] (
   )
 )
 
+@echo on
 REM
 REM Show Hardlink Sibblings
 REM
-@echo on
 %LN% %OPTION% --list %TESTROOTSRC%\Folder0\A > sortout
 @set ERRLEV=%errorlevel%
 @sort sortout
@@ -133,7 +133,7 @@ REM Delete files with ReadOnly from a hardlink-set with --deeppathdelete
 @%TIMESTAMP% --readfile %TESTROOTDST%\set2\bkp05\Folder1\A_4
 @%TIMESTAMP% --readfile %TESTROOTDST%\set2\bkp06\Folder0\A_1
 
-%RD% %TESTROOTDST%\set2\bkp04 > sortout
+@%RD% %TESTROOTDST%\set2\bkp04 > sortout
 @set ERRLEV=%errorlevel%
 @sort sortout
 
@@ -204,7 +204,6 @@ REM
 REM Clean up
 REM
 if [%DEEPPATH%] == [] %NETSHAREDEL% %SHARENAME% > nul
-%RD% %TESTROOT% > nul
-@REM %LN% --deeppathdelete %TESTROOT%
+@%RD% %TESTROOT% > nul
 
 

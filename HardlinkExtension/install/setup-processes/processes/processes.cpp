@@ -151,11 +151,6 @@ ExtractAndFork(
 	{
 		if (!stricmp(aPlattform, "x64"))
 			id_plattform = IDR_VCREDISTPROBE_X64 + aOffset;
-		else
-		{
-			if (!stricmp(aPlattform, "itanium"))
-				id_plattform = IDR_VCREDISTPROBE_ITANIUM + aOffset;
-		}
 	}
 
 // #define _PROCESSES_DEBUG
@@ -317,7 +312,6 @@ bool	CheckPlatt( char* aPlattform )
 {
     HKEY RegKey;
 	DWORD aSize;
-	int r = 0;
 	DWORD aType;
 
 	bool Retval = false;
@@ -356,14 +350,6 @@ bool	CheckPlatt( char* aPlattform )
 			{
 				if (!stricmp(ProcessorArchitecture, "x86"))
 					Retval = true;
-			}
-			else
-			{
-				if (!stricmp(aPlattform, "itanium"))
-				{
-					if (!stricmp(ProcessorArchitecture, "ia64"))
-						RetVal = true;
-				}
 			}
 		}
 		::RegCloseKey(RegKey);

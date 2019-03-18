@@ -5,7 +5,7 @@ Versionsresource symlink.exe
 Versionsresource LSEConfig.exe
 
 Check version number for registry settings
-   #define LSE_CURRENT_VERSION                     3872
+   #define LSE_CURRENT_VERSION                     3913
 
 Check if all plattforms are selected in Batch Build
 
@@ -20,7 +20,7 @@ Docu Versionsnummer linkshellextension_fr.html unten
 Docu Datum linkshellextension_fr.html unten
 
 Docu Versionsnummer ln\Doc\ln.html oben
-Docu Versionsnummer ln\Doc\ln.html  'The 2.8.7.x version is a stable version'
+Docu Versionsnummer ln\Doc\ln.html  'The 2.9.1.x version is a stable version'
 
 Docu Versionsnummer lse.xml: <title> <pubDate> <description> <![CDATA[> <guid> 
     <item>
@@ -42,12 +42,12 @@ Docu Versionsnummer lse.xml: <title> <pubDate> <description> <![CDATA[> <guid>
 
 
 Im HardlinkShellExt.nsi File unter
-  LSE_VERSION "3.8.7.2"
+  LSE_VERSION "3.9.1.0"
 die Versionsnummer anpassen
 
 Im Stampver.inf die Version anpasen
-  FileVersion=3.8.7.2
-  ProductVersion=3.8.7.2
+  FileVersion=3.9.0.0
+  ProductVersion=3.9.0.0
 
 Unter Windows10 einen Admin Command Prompt aufmachen und dann 'Run As Admin' machen, sonst können die
 Stubs nicht nach Programm Files zurückkopiert werden

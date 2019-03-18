@@ -1,9 +1,9 @@
 /*
-	Copyright (C) 1999-2010, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
-#ifndef _HARDLINKMENUE_A964DA21_1F5F_11d5_AAC7_0004AC2568AA
-#define _HARDLINKMENUE_A964DA21_1F5F_11d5_AAC7_0004AC2568AA
+#pragma once
+
 
 #define CFSTR_HARDLINK        TEXT("HardLink")
 
@@ -293,7 +293,3 @@ ReplaceMountPoint(
   wchar_t*  aTarget,
   wchar_t*  aSource
 );
-
-
-
-#endif

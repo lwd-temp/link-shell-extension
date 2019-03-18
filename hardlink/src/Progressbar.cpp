@@ -1,64 +1,27 @@
 /*
-	Copyright (C) 1999 - 2009, Hermann Schinagl, Hermann.Schinagl@gmx.net
-*/
+ * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ */
 
 #include "stdafx.h"
+
 #include "multilang.h"
+#include "hardlink_types.h"
+#include "AsyncContext.h"
+
 #include "Progressbar.h"
 
-#if _MSC_VER < 1300 // 1200 == VC++ 6.0
-// Necessary for getting gpfCreateHardlink defined
-#  include "AsyncContext.h"
-#  include "hardlink.h"
-#endif
-
-extern int  gColourDepth;
 
 Progressbar::
-Progressbar(
-  int         aTitleId,
-  int         aCancelMsgId,
-  HINSTANCE   aLSEInstance,
-  int         aLanguageID,
-  HWND        ahWnd,
-  __int64     aMaximum
-  ) : m_pIDlg(NULL), m_Rect()
+Progressbar() : m_pIOperDlg{nullptr}, m_Rect{}, m_PreflightProgress{0}
 {
-#if _MSC_VER < 1300 // 1200 == VC++ 6.0
-  // For Nt4 we need a CoInitialize, otherwise it crashes
-  if (!gpfCreateHardlink) 
-    CoInitialize(NULL);
-#endif
-
-  HRESULT hr = CoCreateInstance ( CLSID_ProgressDialog, NULL, CLSCTX_INPROC_SERVER,
-                          IID_IProgressDialog, (void**) &m_pIDlg );
-
-  m_LSEInstance = aLSEInstance;
-  
-	wchar_t	MlgMessage[MAX_PATH];
-	LoadStringEx(m_LSEInstance, aTitleId, MlgMessage, MAX_PATH, aLanguageID);
-  m_pIDlg->SetTitle(MlgMessage);
-
-  m_Shell32Instance = LoadLibraryEx( 
-	  L"shell32.dll\0",
-	  NULL, 
-	  DONT_RESOLVE_DLL_REFERENCES | LOAD_LIBRARY_AS_DATAFILE 
+  HRESULT hr = CoCreateInstance(CLSID_ProgressDialog, NULL, CLSCTX_INPROC_SERVER, IID_IOperationsProgressDialog, (void**)&m_pIOperDlg);
+  hr = m_pIOperDlg->StartProgressDialog(NULL,
+    PROGDLG_NORMAL | PROGDLG_MODAL | PROGDLG_AUTOTIME
   );
 
-  // Depending on resolution load resource id 161 for high color depth or 168 for low color depth
-  if (m_Shell32Instance)
-    m_pIDlg->SetAnimation ( m_Shell32Instance, gColourDepth == 8 ? 168 : 161);
+  hr = m_pIOperDlg->SetMode(PDM_DEFAULT);
+  SetOperation(SPACTION_COPYING);
 
-	LoadStringEx(m_LSEInstance, aCancelMsgId, MlgMessage, MAX_PATH, aLanguageID);
-  m_pIDlg->SetCancelMsg (MlgMessage, NULL );
-
-  hr = m_pIDlg->StartProgressDialog ( ahWnd, 
-    NULL,
-    PROGDLG_NORMAL | /* PROGDLG_MODAL | */ PROGDLG_AUTOTIME ,
-    NULL 
-  );
-
-  SetRange(aMaximum);
   m_Visible = false;
 }
 
@@ -67,21 +30,9 @@ Progressbar::
 ~Progressbar(
 )
 {
-  if (m_pIDlg)
-  {
-    Hide();
-    m_pIDlg->StopProgressDialog();
-    m_pIDlg->Release();
-    m_pIDlg = NULL;
-  }
-
-  if (m_Shell32Instance)
-    FreeLibrary(m_Shell32Instance);
-
-#if _MSC_VER < 1300 
-  if (!gpfCreateHardlink)
-    CoUninitialize();
-#endif
+  m_pIOperDlg->StopProgressDialog();
+  m_pIOperDlg->Release();
+  m_pIOperDlg = NULL;
 }
 
 HWND
@@ -91,16 +42,25 @@ GetDlghWnd()
   // Show Window
   HWND hDlgWnd = NULL;
   IOleWindow *pOleWindow;
-  HRESULT hr = m_pIDlg->QueryInterface(IID_IOleWindow,(LPVOID *)&pOleWindow);
-  if(SUCCEEDED(hr))
+  HRESULT hr = m_pIOperDlg->QueryInterface(IID_IOleWindow, (LPVOID *)&pOleWindow);
+
+  if (SUCCEEDED(hr))
   {
     hr = pOleWindow->GetWindow(&hDlgWnd);
-    if(FAILED(hr))
+    if (FAILED(hr))
       hDlgWnd = NULL;
 
     pOleWindow->Release();
   }
   return hDlgWnd;
+}
+
+bool 
+Progressbar::
+SetMode(DWORD aMode)
+{
+  m_pIOperDlg->SetMode(aMode);
+  return true;
 }
 
 void
@@ -127,58 +87,91 @@ Hide()
   }
 }
 
-void
+bool 
 Progressbar::
-SetTitle(
-  wchar_t* aTitle
-) 
+Update(AsyncContext& aContext, DWORD aMode)
+{
+  wchar_t         SourcePath[HUGE_PATH], DestPath[HUGE_PATH];
+  aContext.GetStatus(SourcePath, DestPath);
+  SetMode(aMode);
+  SetCurrentPath(SourcePath, DestPath);
+  Show();
+  return HasUserCancelled();
+}
+
+bool
+Progressbar::
+Update(AsyncContext& aContext, const Effort& aEffort)
+{
+  wchar_t         SourcePath[HUGE_PATH], DestPath[HUGE_PATH];
+  aContext.GetStatus(SourcePath, DestPath);
+  SetProgress(aEffort);
+  SetCurrentPath(SourcePath, DestPath);
+  Show();
+  return HasUserCancelled();
+}
+
+
+bool 
+Progressbar::
+HasUserCancelled() 
 { 
-  HWND h = GetDlghWnd(); 
-  SetWindowText(h, aTitle);
+  PDOPSTATUS OperationStatus;
+  m_pIOperDlg->GetOperationStatus(&OperationStatus);
+  return OperationStatus == PDOPS_CANCELLED;
+}
+
+
+bool 
+Progressbar::
+SetOperation(SPACTION aAction) 
+{ 
+  return ERROR_SUCCESS == m_pIOperDlg->SetOperation(aAction);
 }
 
 void 
 Progressbar::
 SetCurrentPath(
-  wchar_t* aCurrentPath
-) 
+  wchar_t* aSourcePath,
+  wchar_t* aDestPath
+)
 { 
-  wchar_t* pFileName = PathFindFileName(aCurrentPath);
-  if (pFileName != aCurrentPath)
-  {
-    if (*(pFileName - 2) == L':')
-    {
-      // x:\file.txt
-      wchar_t Save = *pFileName; 
-      *pFileName = 0x00;
-      m_pIDlg->SetLine ( 2, aCurrentPath, true, NULL ); 
-      *pFileName = Save;
-    }
-    else
-    {
-      // x:\dir\file.txt
-      wchar_t Save = *(pFileName - 1); 
-      *(pFileName - 1) = 0x00;
-      m_pIDlg->SetLine ( 2, aCurrentPath, true, NULL ); 
-      *(pFileName - 1) = Save;
-    }
-    m_pIDlg->SetLine ( 1, pFileName, true, NULL ); 
-  }
-  else
-  {
-    // x:\ 
-    m_pIDlg->SetLine ( 1, L" ", true, NULL ); 
-    m_pIDlg->SetLine ( 2, pFileName, true, NULL ); 
-  }
-};
+  IShellItem* FileItem;
+  HRESULT hr = SHCreateItemFromParsingName(aSourcePath, NULL, IID_IShellItem, (void**)&FileItem);
+
+  PathRemoveFileSpecW(aSourcePath);
+  IShellItem* SourceItem;
+  hr = SHCreateItemFromParsingName(aSourcePath, NULL, IID_IShellItem, (void**)&SourceItem);
+
+  PathRemoveFileSpecW(aDestPath);
+  IShellItem* TargetItem;
+  hr = SHCreateItemFromParsingName(aDestPath, NULL, IID_IShellItem, (void**)&TargetItem);
+
+  hr = m_pIOperDlg->UpdateLocations(SourceItem, TargetItem, FileItem);
+
+  if (SourceItem)
+    SourceItem->Release();
+  if (TargetItem)
+    TargetItem->Release();
+  if (FileItem)
+    FileItem->Release();
+}
 
 void
 Progressbar::
-SetRange(__int64 aMaximum)
+SetRange(const Effort& aMaximum)
 {
-  m_pIDlg->Timer (PDTIMER_RESET, NULL);
   m_Maximum = aMaximum;
-  m_pIDlg->SetProgress64 (0, m_Maximum);
+}
+
+void
+Progressbar::
+SetProgress(const Effort& aProgress)
+{ 
+  m_pIOperDlg->UpdateProgress(aProgress.m_Points, m_Maximum.m_Points,
+    aProgress.m_Size, m_Maximum.m_Size,
+    aProgress.m_Items, m_Maximum.m_Items
+  );
 }
 
 int
@@ -210,4 +203,20 @@ SetWindowPos(
     RetVal = MoveWindow(h, aRect.left, aRect.top, aRect.right - aRect.left, aRect.bottom - aRect.top, TRUE);
   }
   return RetVal;
+}
+
+
+bool 
+Progressbar::
+RestoreProgressbar(RECT&   aProgressbarPosition)
+{
+  if (aProgressbarPosition.left >= 0)
+  {
+    if (aProgressbarPosition.bottom > 0)
+      SetWindowPos(aProgressbarPosition);
+    aProgressbarPosition.left = -1;
+    Show();
+    return true;
+  }
+  return false;
 }
