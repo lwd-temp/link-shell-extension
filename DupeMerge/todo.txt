@@ -1,0 +1,186 @@
+
+Im Moment werden die Hashes fuer die hlreps durch md5 der
+  fileidx generiert, was eine potentielle Fehlerquelle ist,
+  weil ein File nur den Inhalt eines Fileidx haben muesste 
+  und schon sind zwei File verchained, die ungleich sind.
+
+Es gibt bei dem in .ru noch immer Probleme, dass
+  Files mit unterschiedlicher Groesse in einer
+  Dupegroup sind.
+
+Die Anzahl der Dupegruppen stimmt nur ungefaehr
+
+Es werden Dupes mit 0 Bytes angezeigt. Durschauen
+  ob Dupes mit 0 Byte durchgehend ignoriert werden
+
+Sollte man die filewritetime nicht beim ersten Hashen
+  nehmen und nicht beim enumerieren?
+
+da mehrere Pfade angegeben werden koennen, muss man
+  nach dem Suchen der files, ein Unique auf die
+  gefundenen Files machen, damit man da nicht
+  doppelt und dreifach hashed.
+
+den md5 gegen einen sha1 oder was aehnliches sicheres
+  tauschen
+
+Locking beim Verlinken einführen, sodass auch in
+  einer Racecondition nix passieren kann.
+
+Kommandozeilen Optionen einbauen
+	--exclude == excludiert aus dem Pfad Teile
+	--priority
+
+Wie wird das ausgewertet, wenn sich das Fíle nicht oeffnen
+  hat lassen. Da wird zwar in der Fileinfo ein Flag gesetzt
+  aber sonst nix getan
+
+Das Finden von Dupegruppen ist die naechste Herausforderung
+
+files ausprobieren, die genau 8192 oder 2^n lang sind.
+
+In der Round 0 wird noch mit voller Filesize gemapped. Das kann
+  reduziert werden.
+
+die vmsize ist schon emorm, vielleicht wird das kleiner
+  wenn man das memmapping auch kleiner macht, und nicht
+  nur ddas mapView
+
+Die Strings der Filenamen fressen irrsinnig viel. Vielleicht
+  sollte man das Ergebnis des Sizedupe checks auf ein File
+  schreiben und dann sequentiell abarbeiten.
+
+Der Output muss in ein LogFile geschrieben werden koennen
+
+# Das Statemodel beim Threadpeek macht noch immer
+  Probleme. Dupemerge bleibt dauernd in Scanning
+  finished haengen.
+
+# Die Uebersetzung der Wildcards in regular expressions
+  ist nicht ganz ok. *.* liefert bei mir nur files die
+  eine extension haben, aber das DOS *.* liefert alle Files
+  auch solche die keine extension haben. Meiner Meinung
+  nach ist das DOS *.* falsch, aber was solls...
+
+# Es muessen extensions angegeben werden können,
+  damit nicht immer alle Files abgesucht werden
+
+# Die Prozentanzeige ist irgendwie nicht linear. Am Anfang geht
+  es in 100tel Prozent schritten, und dann gegen SChluss in
+  Riesenschritten, und das obwohl die singles schon entfernt
+  wurden.
+
+# Beim cardinality Sortieren ist das Ding ueberhaupt
+  haengen geblieben
+
+# Das Ding ist einmal auf 100% gelaufen, aber nicht fertig
+  geworden. % Anzeige war auf 100, und ist aber dann
+  die Zeit weitergelaufen.
+
+# Wenn es den Pfad nicht gibt, der zur Suche angeben wird, dann
+  kommt keine Meldung
+
+# Der Output muss noch mit dem Thread synchronisiert
+  werden. Am Ende spuckt das Ding die Dupes aus
+  und die Statistik geht verloren.
+
+# Statistik reparieren. Die Prozent Anzeige geht
+  nicht linear
+
+# Kommandozeilen Optionen einbauen
+	--minsize
+	--maxsize
+	--list == Soll nur ausdrucken der gefundenen Dupes sein
+	--help
+	--quiet
+	--sort FileSize Reihenfolge der Gruppen nach FileSize
+	--sort Cardinality Reihenfolge der Gruppen nach Groesse der Dupegruppen
+	--extension == reduce to extension(s)
+
+
+# Aus irgendeinem Grund bekommen wir immer ein Usage()
+
+# Geht das atoL64?
+
+# die Uhrzeit wann das File gemd5ed wurde muss gespeichert werden,
+  damit, dann wenn verlinkt wird, nur mehr ueberpueft werden
+  muss, und nicht noch ein md5 check vor dem verlinken
+  gemacht werden muss,
+
+# Wenn distance(HasDupe) == refcount von 1.element der
+  hashdupe, dann gar nix tun, denn dann ist die Sache
+  eh schon erledigt
+
+# Die Sache mit dem Verlinken mal mit Nt4 ausprobieren
+
+# Die Filenumber, die bei der statinfo eines Files erkennen
+   laesst was ein Hardlink ist oder nicht muss noch
+   eingearbeitet werden.
+
+# das ganze muss ulong64 proof sein, was die filesize betrifft
+
+# Da gibts eine algorithmische Schwaeche, wenn 5 files gleich
+  lang sind, und davon 3 eine Gruppe bilden und 2 eine
+  Gruppe bilden. Die Gruppenbildung kommt aber erst
+  nach der 4.runde raus, und in der fuenften Runde sind
+  dann alle Files wieder gleich
+
+  Dann werden im Moment alle 5 Files als ein Dupe behandelt.
+
+  Hier muss man die Dupegroups dann splitten.
+
+  ==> Oder die Hashsums miteinander verketten, dann
+      pflanzt sich eine einmalige Aenderung durch
+
+# Check ob das delete der singles auch fuer das item middle
+  -1 funktioniert. Tut es!
+
+# Die files, die singles sind, und am Anfang erkannt werden
+  koennen im Speicher freigegeben werden. In Unique
+  Bringts aber net;-(
+
+# % anzeige, damit man weiss wie weit das Ding ist.
+
+# Es muss illegale hashes geben, weil files  unter umstaenden nicht
+  geoeffnet werden koennen, oder in der Zwischenzeit verschwunden
+  sind, da das Dupemerge doch eine lange Laufzeit hat.
+
+# Wenn die files 0 bytes in size sind, dann keine hardlinks erstellen
+
+# das dupesorting ist noch nicht optimal. sort by cardinality!
+  improve algorithm
+
+# vom memory verbrauch waer es guenstiger immer nur 1 file offen zuhaben
+  und nicht alle in der gleichen Sizegroup
+  und da waer es gut immer nur das Teil eingemappt zu haben
+  das gerade gehashed wird. ==> mmfobject muss geaendert werden
+
+# wenn in einer sizedupegroup lauter single sind, wird nicht abgebrochen.
+
+# manchmal werden singles nicht ausgeschieden. Siege test/dm.log
+
+---------- 0.984
+
+# Außerdem hab ich dupemerge auf einer FAT32-Partition laufen lassen und hab
+  mich gefreut über den vielen freien Platz, der geschaffen wurde, allerdings
+  durch löschen, wie mir später auffiel. Schlecht für mein Programm-Archiv...
+  Sollte es nicht eine Warnung geben, wenn das Programm auf FAT gestartet
+  wird?
+
+---------- 0.985
+
+
+> Just one curiosity: Does
+> running dupermerge multiple times present any risk? This volume had been
+> dupemerged in December without any problems. It was only when I
+> dupemerged the volume a second time that the issues cropped up.
+
+---------- 0.990
+
+Die Sagvingsberechnung fehlt und ist fehlerhaft
+
+---------- 0.991      18.3.2006
+
+Der recursive Runner ist noch alt, und langsam
+
+

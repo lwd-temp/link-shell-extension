@@ -1,0 +1,22 @@
+17:13
+
+>call t_Settings.bat 
+
+>REM
+
+>REM Only delete reparse points 
+
+>REM
+
+>pause
+Press any key to continue . . . 
+
+>REM ..\bin\PLATT\CONFIG\xdel.exe  --reparse test\reparse\source  
+ErrorLevel == 0
+
+>WHERE *.*    | sort
+No matching files found.
+Could not remove 'BasePath\--quiet'
+Could not remove 'BasePath\--deeppathdelete'
+Could not remove 'BasePath\test\reparse\source'
+17:23

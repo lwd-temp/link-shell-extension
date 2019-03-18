@@ -1,0 +1,22 @@
+17:13
+
+>call t_Settings.bat 
+
+>REM
+
+>REM Only delete reparse points 
+
+>REM
+
+>pause
+Press any key to continue . . . 
+
+>REM ..\bin\X64\Release\xdel.exe  --reparse test\reparse\source  
+ErrorLevel == 0
+
+>..\Tools\where.exe *.*    | sort
+No matching files found.
+Could not remove 'D:\data\cpp\hardlinks\XDel\--quiet'
+Could not remove 'D:\data\cpp\hardlinks\XDel\--deeppathdelete'
+Could not remove 'D:\data\cpp\hardlinks\XDel\test\reparse\source'
+17:23

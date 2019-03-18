@@ -1,0 +1,438 @@
+
+E:\data\cpp\hardlinks\ln>echo.
+
+
+E:\data\cpp\hardlinks\ln>REM
+
+E:\data\cpp\hardlinks\ln>REM Straight forward Smart Copy/Clone 
+
+E:\data\cpp\hardlinks\ln>REM
+
+E:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --keepsymlinkrelation --backup --unroll --copy test\ads\source test\ads\dest  1>sortout 
+
+
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     5.568     5.568         0         0         0         0
+    File:        12        12         0         0         0         0
+  Folder:        21        21         -         0         0         0
+ Symlink:        19         -        19         0         0         0
++d E:\data\cpp\hardlinks\ln\test\ads\dest
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2_F0
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F1\F0_F1_F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_F2\F1_F0_F2.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1_F0\F2_F1_F0.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1_F1\F2_F1_F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F2\F2_F2_F2.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2_F0\F3_F2_F0.txt
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F0\F0_F1_F0.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_J2
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_F2\F1_F0_F2.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_J0
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_J1
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1_F0\F1_F1_F0.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1_J1
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F1\F2_F2_F1.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3_J0
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3_J1
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_J0
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_J0
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2_J1
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_J0
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_J1
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+E:\data\cpp\hardlinks\ln>call :ChangePermissions test\ads\dest outfile symbolic  
+E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_J2 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_J0 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_J0 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_J0 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3_J0 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_J0 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F1\F2_F2_F1.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1_F0\F1_F1_F0.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_F2\F1_F0_F2.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F0\F0_F1_F0.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2_F0\F3_F2_F0.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F2\F2_F2_F2.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1_F1\F2_F1_F1.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F1\F0_F1_F1.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0.txt USERNAME:N 
+
+test\ads\dest\F0\F0_F1\F0_F1_J2 -> F0_F1_F1
+test\ads\dest\F1\F1_F0\F1_F0_J0 -> E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1
+test\ads\dest\F1\F1_F0\F1_F0_J1 -> F1_F0_F2
+test\ads\dest\F1\F1_F1\F1_F1_J1 -> E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_F2
+test\ads\dest\F2\F2_J0 -> ..\F1
+test\ads\dest\F2\F2_F2\F2_F2_J0 -> E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1_F1
+test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3_J0 -> ..\F2_F2_F2
+test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3_J1 -> E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1_F0
+test\ads\dest\F3\F3_J0 -> ..\F2
+test\ads\dest\F3\F3_J1 -> E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0
+test\ads\dest\F3\F3_F2\F3_F2_J1 -> F3_F2_F0
+
+E:\data\cpp\hardlinks\ln>REM
+
+E:\data\cpp\hardlinks\ln>REM Straight Copy/Clone with locked directories 
+
+E:\data\cpp\hardlinks\ln>REM
+
+E:\data\cpp\hardlinks\ln>call :ChangeDirectoryPermissions test\ads\source outfile symbolic  
+E:\data\cpp\hardlinks\ln\test\ads\source\F2\F2_F2 USERNAME:(OI)(CI)N 
+
+
+E:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --keepsymlinkrelation --backup --unroll --copy test\ads\source test\ads\dest  1>sortout 
+
+
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     5.568     5.568         0         0         0         0
+    File:        12        12         0         0         0         0
+  Folder:        21        21         -         0         0         0
+ Symlink:        19         -        19         0         0         0
++d E:\data\cpp\hardlinks\ln\test\ads\dest
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2_F0
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F1\F0_F1_F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_F2\F1_F0_F2.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1_F0\F2_F1_F0.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1_F1\F2_F1_F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F2\F2_F2_F2.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2_F0\F3_F2_F0.txt
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F0\F0_F1_F0.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_J2
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_F2\F1_F0_F2.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_J0
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_J1
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1_F0\F1_F1_F0.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1_J1
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F1\F2_F2_F1.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3_J0
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3_J1
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_J0
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_J0
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2_J1
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_J0
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_J1
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+E:\data\cpp\hardlinks\ln>call :ChangeDirectoryPermissions test\ads\dest outfile symbolic  
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_J2 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_J0 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_J0 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_J0 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3_J0 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_J0 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F3\F2_F2_F3.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F1\F2_F2_F1.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1_F0\F1_F1_F0.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0_F2\F1_F0_F2.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F0\F0_F1_F0.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3\F3_F2\F3_F2_F0\F3_F2_F0.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F2\F2_F2_F2\F2_F2_F2.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F2\F2_F1\F2_F1_F1\F2_F1_F1.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F1\F1_F1.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1\F1_F0\F1_F0.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0_F1\F0_F1_F1\F0_F1_F1.txt USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F0\F0.txt USERNAME:N 
+
+
+E:\data\cpp\hardlinks\ln>REM
+
+E:\data\cpp\hardlinks\ln>REM Unroll/Splice all junctions, small test 
+
+E:\data\cpp\hardlinks\ln>REM
+
+E:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --keepsymlinkrelation --backup --unroll --copy test\ads\source\F3\F3_J1 test\ads\dest  1>sortout 
+
+
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     1.856     1.856         0         0         0         0
+    File:         4         4         0         0         0         0
+  Folder:         5         5         -         0         0         0
+ Symlink:         4         -         4         0         0         0
++d E:\data\cpp\hardlinks\ln\test\ads\dest
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_J0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_J0\F0_F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_J0\F0_F1_F1
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_F2\F1_F0_F2.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_J0\F0_F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_J0\F0_F1_F1\F0_F1_F1.txt
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_F2\F1_F0_F2.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_J0\F0_F1_F0\F0_F1_F0.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_J0\F0_F1_J2
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_J1
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+E:\data\cpp\hardlinks\ln>call :ChangePermissionsSmallTest test\ads\dest outfile symbolic unroll 
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_F2\F1_F0_F2.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_J0\F0_F1_F0\F0_F1_F0.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_J0\F0_F1_J2 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F1_F0_J1 USERNAME:(OI)(CI)N 
+
+
+E:\data\cpp\hardlinks\ln>REM
+
+E:\data\cpp\hardlinks\ln>REM Unroll/Splice all junctions, large test 
+
+E:\data\cpp\hardlinks\ln>REM
+
+E:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --keepsymlinkrelation --backup --unroll --copy test\ads\source\F3 test\ads\dest  1>sortout 
+
+
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     7.424     5.568     1.856         0         0         0
+    File:        16        12         4         0         0         0
+  Folder:        24        24         -         0         0         0
+ Symlink:        18         -        18         0         0         0
+*h E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0.txt
+*h E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_F2\F1_F0_F2.txt
+*h E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J0\F0_F1.txt
+*h E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J0\F0_F1_F1\F0_F1_F1.txt
++d E:\data\cpp\hardlinks\ln\test\ads\dest
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_F2\F3_F2_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F1\F2_F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F1\F2_F1_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F3
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J0\F0_F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J0\F0_F1_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F1\F1_F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_F2
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_J0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_J0\F0_F1_F0
++d E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_J0\F0_F1_F1
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3_F2\F3_F2_F0\F3_F2_F0.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F1\F2_F1_F0\F2_F1_F0.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F1\F2_F1_F1\F2_F1_F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2.syl
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F2\F2_F2_F2.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F1\F1_F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_F2\F1_F0_F2.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_J0\F0_F1.txt
++f E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_J0\F0_F1_F1\F0_F1_F1.txt
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_F2\F3_F2.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_F2\F3_F2_J1
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F1\F2_F1.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F1\F2_F2_F1.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F3\F2_F2_F3.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F3\F2_F2_F3_J0
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F3\F2_F2_F3_J1
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_J0
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_F2\F1_F0_F2.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J0\F0_F1_F0\F0_F1_F0.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J0\F0_F1_J2
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J1
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F1\F1_F1_F0\F1_F1_F0.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F1\F1_F1_J1
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_F2\F1_F0_F2.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_J0\F0_F1_F0\F0_F1_F0.syl
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_J0\F0_F1_J2
++s E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_J1
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+E:\data\cpp\hardlinks\ln>call :ChangePermissionsLargeTest test\ads\dest outfile symbolic unroll 
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_J0\F0_F1_J2 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J0\F0_F1_J2 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F1\F1_F1_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_J0 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F3\F2_F2_F3_J0 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F3\F2_F2_F3_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_F2\F3_F2_J1 USERNAME:(OI)(CI)N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_F2\F3_F2.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F3\F2_F2_F3.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F1\F2_F2_F1.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F1\F2_F1.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_F2\F1_F0_F2.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F1\F1_F1_F0\F1_F1_F0.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J0\F0_F1_F0\F0_F1_F0.syl USERNAME:N 
+
+E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2.syl USERNAME:N 
+
+test\ads\dest\F3_F2\F3_F2_J1 -> F3_F2_F0
+test\ads\dest\F3_J1\F1_F0_J1 -> F1_F0_F2
+test\ads\dest\F3_J1\F1_F0_J0\F0_F1_J2 -> F0_F1_F1
+test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J1 -> F1_F0_F2
+test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J0\F0_F1_J2 -> F0_F1_F1
+test\ads\dest\F3_J0\F2_J0\F1_F1\F1_F1_J1 -> E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_F2
+test\ads\dest\F3_J0\F2_F2\F2_F2_J0 -> E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F1\F2_F1_F1
+test\ads\dest\F3_J0\F2_F2\F2_F2_F3\F2_F2_F3_J0 -> ..\F2_F2_F2
+test\ads\dest\F3_J0\F2_F2\F2_F2_F3\F2_F2_F3_J1 -> E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F1\F2_F1_F0
+test\ads\dest\F3_F2\F3_F2.syl -> E:\data\cpp\hardlinks\ln\test\ads\dest\F3_F2\F3_F2_F0\F3_F2_F0.txt
+test\ads\dest\F3_J0\F2_F2\F2_F2_F3\F2_F2_F3.syl -> E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F2\F2_F2_F2\F2_F2_F2.txt
+test\ads\dest\F3_J0\F2_F2\F2_F2_F1\F2_F2_F1.syl -> E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_F1\F2_F1_F1\F2_F1_F1.txt
+test\ads\dest\F3_J0\F2_F1\F2_F1.syl -> E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F1\F1_F1.txt
+test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_F2\F1_F0_F2.syl -> E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0.txt
+test\ads\dest\F3_J0\F2_J0\F1_F1\F1_F1_F0\F1_F1_F0.syl -> E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J1\F1_F0_J0\F0_F1.txt
+test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J0\F0_F1_F0\F0_F1_F0.syl -> E:\data\cpp\hardlinks\ln\test\ads\dest\F3_J0\F2_J0\F1_F0\F1_F0_J0\F0_F1_F1\F0_F1_F1.txt
+test\ads\dest\F3_J0\F2_F2\F2_F2.syl:1

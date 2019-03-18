@@ -1,0 +1,483 @@
+*********************************************
+* POI.EXE Component History File *
+
+Date:       08. Nov. 1999
+Build:      7, 1, 0, 1
+Developer:  Wolfgang
+Comment:    Initial version, ported Version
+            of POI 5.6.1 and additional connection
+			      to Systemchannel, Messageserver, and systemcontroller
+
+Date:       18. Nov. 1999
+Build:      7, 1, 0, 2
+Developer:  Wolfgang
+Comment:    Inserted Syco and Tracer
+
+Date:       24. Nov. 1999
+Build:      7, 1, 0, 3
+Developer:  Wolfgang
+Comment:    New Displayobject embedded object
+
+Date:       25. Jan. 2000
+Build:      7100, 7103, 1111, 2222
+Developer:  Wolfgang
+Comment:    New tracer inserted + embedding!
+
+Date:       31. Jan. 2000
+Build:      7100, 7104, 1111, 2222
+Developer:  Wolfgang
+Comment:    Adapted to new PCI lib + new resultdlg and paramdlg form V5.6.1
+
+Date:       16. Feb. 2000
+Build:      7100, 7105, 1111, 2222
+Developer:  Wolfgang
+Comment:    Improved embedding + Procctrl event implemented
+
+Date:       24. Feb. 2000
+Build:      7100, 7106, 1111, 2222
+Developer:  Wolfgang
+Comment:    New Systemcontroller inserted
+
+Date:       01. Mar. 2000
+Build:      7100, 7106, 1111, 2222
+Developer:  Heinz
+Comment:    Add parameter access
+
+Date:       09. Mar. 2000
+Build:      7100, 7107, 1111, 2222
+Developer:  Wolfgang
+
+Date:       21. Mar. 2000
+Build:      7100, 7108, 1111, 2222
+Developer:  Wolfgang,Heinz
+
+Comment:    Integrated Ringbuffer and replaced in build extended graphic with the ocx also 
+            1 new setting in poi.ini under the 
+			[SETTING]
+            NUMPADFORWND=[0,1] if 1 then numpads are used for opening wnds
+
+Date:       22. Mar. 2000
+Build:      7100, 7109, 1111, 2222
+Developer:  Wolfgang,Heinz
+Comment:    Poi got an automation interface called PoiComServer and an Event interface called
+            PoiAtlComServerEvents
+
+Date:       28. Mar. 2000
+Build:      7100, 7110, 1111, 2222
+Developer:  Wolfgang
+Comment:    Improved focushandling for embedding objects
+
+
+Date:       02. Apr. 2000
+Build:      7100, 7111, 1111, 2222
+Developer:  Wolfgang
+Comment:    Bug in keyboad handling removed and made poi drag and drop enabled. Datasource 
+            exchange via drag and drop out of somviewer is now possible
+
+Date:       25. Apr. 2000
+Build:      7100, 7112, 1111, 2222
+Developer:  Wolfgang
+Comment:    Extend the Hashtable for normnames to ULONG instead USHORT.
+
+Date:       02. May. 2000
+Build:      7100, 7113, 1111, 2222
+Developer:  Wolfgang
+Comment:    New Normnamebrowser+...when string is to long
+
+Date:       08. May. 2000
+Build:      7100, 7114, 1111, 2222
+Developer:  Wolfgang
+Comment:    statistic values + status information
+
+Date:       06. June. 2000
+Build:      7100, 7115, 1111, 2222
+Developer:  Wolfgang
+Comment:    Ringbufferrelease of Float DS in clear release. Switching of
+            menues only in design and ade mode
+
+Date:       15. June. 2000
+Build:      7100, 7117, 1111, 2222
+Developer:  Wolfgang
+Comment:    Under [SETTINGS] a new entry UPDATE_FREQ inserted. 
+
+Date:       21. June. 2000
+Build:      7100, 7118, 1111, 2222
+Developer:  Wolfgang
+Comment:    Protocol printing with messageviewer
+
+Date:       28. June. 2000
+Build:      7100, 7119, 1111, 2222
+Developer:  Wolfgang
+Comment:    Listbox is only updating if necessary,Toolbox window and MDI-Child color
+            changed (COL_BKGRND inserted for defining the background color of the mdi window)
+
+Date:       17. Juli. 2000
+Build:      7100, 7120, 1111, 2222
+Developer:  Wolfgang
+Comment:    PoiInterface changed so open and closing of wnds is possible
+
+Date:       31. Juli. 2000
+Build:      7100, 7121, 1111, 2222
+Developer:  Wolfgang
+Comment:    Made changes in the datasource, so it is like in POI 5.6.1. Normcode DS only 
+            requests the values which are displayed in table.
+			Inserted a new entry in poi.ini under settings called DBLIMITWARN. It gives the database 
+			limit in percent when a warning message should be issued. So if the database for instance 
+			has a filling level of 80 percent, a exception is issued.
+
+Date:       31. Juli. 2000
+Build:      7100, 7122, 1111, 2222
+Developer:  Wolfgang
+Comment:    It can happen that PUMA is sending slices which are not correct, so a message
+            BSLICE ERROR: slice extends beyond bslice is displayed in the debugwindow. 
+			If this happens POI still tries to interpret the slice, so no reinit is needed,
+			but still information can be lost!
+			Made changes in open desktop, so that it displays the window with correct size.                                            
+
+Date:       08. Aug. 2000
+Build:      7100, 7123, 1111, 2222
+Developer:  Wolfgang
+Comment:    In modeless dialogs, there was a problem that it was not possible to get back to
+            the dialog via keyboard. To solve this, internal a timer is set up with a timeout period
+			of x seconds. There is a Poi.ini entry in settings called USEAUTOFOCUSONDLG This timer is triggered, 
+			when the dialog loses focus. If the timer expires,
+			the dialog looks if POI is activated and if so it comes again into foreground.
+
+Date:       23. Aug. 2000
+Build:      7100, 7124, 1111, 2222
+Developer:  Wolfgang
+Comment:    Improved focus handling for mouseless, new entry in settings called USEKEYBOARD. If set than Poi
+            tries to use the keyboard for switching from one control to the next and so on. The limitations are
+			when there is an activex control inside, the controls sometimes didn't give back focus.
+            Fixed a bug with enable and disable
+
+Date:       22. Sep. 2000
+Build:      7100, 7124, 1111, 2222
+Developer:  Heinz
+Comment:    Add change value handling for ParameterDatasource
+
+Date:       11. Nov. 2000
+Build:      7100, 7127, 1111, 2222
+Developer:  Wolfgang
+Comment:    Poi checks all 3 Minutes if the available free memory is more than 32 MB, if not it inserts
+            a warning in the messageviewer
+
+Date:       07. Dez. 2000
+Build:      7100, 7128, 1111, 2222
+Developer:  Wolfgang
+Comment:    It happen that the keyboard e.g. funtion keys didn't work after a edit field was visible.
+            This is fixed now.
+
+Date:       11. Jan. 2001
+Build:      7100, 7129, 1111, 2222
+Developer:  Wolfgang
+Comment:    Before showing message or protocol windows it gets copied to a tmp file. Reason was
+            a sharing violation with the viewer program
+
+Date:       30. Jan. 2001
+Build:      7100, 7130, 1111, 2222
+Developer:  Wolfgang
+Comment:    Before sending a message to the messageviewer it is checked if it is available
+
+Date:       07. Feb. 2001
+Build:      7100, 7131, 1111, 2222
+Developer:  Wolfgang
+Comment:    Check for "Not a not number" of ringbuffervalues before sending to graphic
+
+Date:       08.Mar.2001
+Build:      7100, 7132, 1111, 2222
+Developer:  Wolfgang
+Comment:    Boot Puma allowed if Pumastate is less or equal Monitor, Increased Timeout for checking
+            connection to 30 sec and than reset Pumastate to Power up.
+
+Date:       27.Mar.2001
+Build:      7100, 7133, 1111, 2222
+Developer:  Wolfgang
+Comment:    Boot Puma allowed if Pumastate is less or equal Monitor, Increased Timeout for checking
+            connection to 30 sec and than reset Pumastate to Power up.
+
+Date:       09.Apr.2001
+Build:      7100, 7134, 1111, 2222
+Developer:  Wolfgang
+Comment:    Perform a reinit of status if connection was down.
+
+Date:       17.Apr.2001
+Build:      7100, 7135, 1111, 2222
+Developer:  Wolfgang
+Comment:    Implemented Licesehandling and changed the switching to ADE mode!
+
+Date:       23.Apr.2001
+Build:      7100, 7136, 1111, 2222
+Developer:  Wolfgang
+Comment:    Improved getting the temp channels
+
+Date:       02.May.2001
+Build:      7100, 7137, 1111, 2222
+Developer:  Wolfgang
+Comment:    The inputwindow grabbed the focus, when it was hidden, so it appeared that poi has lost focus.
+
+
+Date:       08.May.2001
+Build:      7100, 7138, 1111, 2222
+Developer:  Wolfgang
+Comment:    When changing the duration of the graphic, a new ringbuffer is requested with a new samplerate. 
+
+Date:       21. May.2001
+Build:      7100, 7139, 1111, 2222
+Developer:  Wolfgang
+Comment:    Shutdown didn't revoke the classobjects. 
+
+Date:       10. Jun.2001
+Build:      7101, 7139, 1111, 2222
+Developer:  Wolfgang
+Comment:    Bugfixes from V1.0 to V1.1 (IvecoArbon) Poipsv in slices
+
+Date:       23. Jun.2001
+Build:      7101, 7139, 1111, 2222
+Developer:  Wolfgang
+Comment:    Bugfixes from V5.62 to V1.1 Resultdialog didn't initialize correctly.
+            Postmortemdialog disabled because of new one.
+
+Date:       27. Aug.2001
+Build:      7101, 7140, 1111, 2222
+Developer:  Wolfgang
+Comment:    When ADE-mode is enabled, POI displays it in the caption and issues a warning
+
+Date:       10. Sep. 2001
+Build:      7101, 7141, 1111, 2222
+Developer:  Wolfgang
+Comment:    Editfield now also accepts character "," as decimal point
+            ParamSelDlg was crashing when opened it in ...MON and closing it in MON.
+            Behaviour of Extended graphic adapted when zooming
+
+Date:       02. Oct. 2001
+Build:      7101, 7142, 1111, 2222
+Developer:  Wolfgang
+Comment:    Poi crashed in exhaustm.wnd because of a stack overflow. Checking of DB limit also is
+            done when Manual is reached
+
+Date:       08. Oct. 2001
+Build:      7101, 7143, 1111, 2222
+Developer:  Wolfgang
+Comment:    New keyword for actionargument <AOS>. With this keyword, the activation object server is triggered
+            with the command which follows. The deviceclass, devicename and method have to be comma separated.
+            eg. <AOS>Recorder,Reco1,Start
+
+Date:       23 Oct. 2001
+Build:      7101, 7144,1111, 2222
+Developer:  Wolfgang
+Comment:    New keyword <PSV>Normname=value. With this keyword the value of an normname can
+            be set from outside via WM_COPYDATA, also it can be used as an argument in an 
+            action argument.
+
+Date:       05 Nov. 2001
+Build:      7101, 7145,1111, 2222
+Developer:  Wolfgang
+Comment:    Changing of normnames via NNbrowser was not possible because of an error in implementing
+            <PSV>....
+
+Date:       20 Nov. 2001
+Build:      7101, 7146,1111, 2222
+Developer:  Wolfgang
+Comment:    Fixed a placing problem of messagewindow if opened via toolbar
+
+Date:       29 Nov. 2001
+Build:      7101, 7147,1111, 2222
+Developer:  Wolfgang
+Comment:    Do a relogin to the host if connection was lost
+
+Date:       03. Dez. 2001
+Build:      7101, 7148,1111, 2222
+Developer:  Wolfgang
+Comment:    With <CTRL><KEY_UP,_DOWN,_LEFT,_RIGHT> it is possible to move the DO by 1 pixel
+            in each direction.
+            With <SHIFT><KEY_UP,_DOWN,_LEFT,_RIGHT> is is possible to set the size, but
+            not all objects are resizable, or they resize not in 1 pixel increments.
+
+Date:       06. Dez. 2001
+Build:      7101, 7149,1111, 2222
+Developer:  Wolfgang
+Comment:    Setting the value via <PSV> did not work when the DS was not attached to a DO.
+*********************************************
+* HISTORY                                   *
+*********************************************
+Date:       12. Dez. 2001
+Build:      7101, 7150,1111, 2222
+Developer:  Wolfgang
+Comment:    New Extended graphic
+
+Date:       18. Jan. 2002
+Build:      7101, 7151,1111, 2222
+Developer:  Wolfgang
+Comment:    Packinitialze and Uninitialize for pack32 implemented
+
+Date:       28. Jan. 2002
+Build:      7101, 7152,1111, 2222
+Developer:  Wolfgang
+Comment:    If Poi hat ademode license it is NOT started with highest userlevel. Switching to 
+            ADE-mode only possible in highest user level. 
+
+Date:       30. Jan. 2002
+Build:      7101, 7153,1111, 2222
+Developer:  Wolfgang
+Comment:    Inserted an timer in parameterfiledialog, so opening the dialog and retrieving
+            values from the database is not done synchronus.
+
+Date:       05. Feb. 2002
+Build:      7101, 7154,1111, 2222
+Developer:  Wolfgang
+Comment:    Startup of messageviewer is done in 2 steps (first the process ist started explict) 
+            not as an ole server and second than the embedding is done. Shutdown of messageviewer
+            should work now
+
+Date:       13. Feb. 2002
+Build:      7101, 7155,1111, 2222
+Developer:  Wolfgang
+Comment:    New Dataaccess string substitute implemented, changed window version from 5.65 to 7.01
+
+Date:       20. Feb. 2002
+Build:      7101, 7156,1111, 2222
+Developer:  Wolfgang
+Comment:    New method GetUserLevel implemented in Idl. Checking if DB full also done in Monitor state
+
+Date:       26. Feb. 2002
+Build:      7101, 7157,1111, 2222
+Developer:  Wolfgang
+Comment:    When try to connect to database in paramselection dialog this is done via 
+            separate thread, and display an progress bar, so user gets info that POI is
+            still alive and waits for the parameter. If frequency of an channel = 0 and 
+            graphic wants to disply it a ringbuffer with freq 5Hz is created.
+
+Date:       04. Mar. 2002
+Build:      7101, 7158,1111, 2222
+Developer:  Wolfgang
+Comment:    Till the Normnames are not loaded, it is not possible to open the normnamebrowser.
+            If a Modaldialog is open, than POI inhibits all closing and opening of windows!!!!!
+
+Date:       12. Mar. 2002
+Build:      7101, 7159,1111, 2222
+Developer:  Wolfgang
+Comment:    Adaption for japanese in w2k and take the systemcolor for background
+
+Date:       22. Mar. 2002
+Build:      7101, 7160,1111, 2222
+Developer:  Wolfgang
+Comment:    POI crashed if a dialog is opened and you go to desin mode 
+
+Date:       06. Apr. 2002
+Build:      7101, 7161,1111, 2222
+Developer:  Wolfgang
+Comment:    New delay variable from scaccess
+
+Date:       06. Mai. 2002
+Build:      7102, 7162,1111, 2222
+Developer:  Wolfgang
+Comment:    Time displayed too short in japanese
+/** new POI for PUMA Open 1.2 **/
+Date:       07. Mai. 2002
+Build:      7102, 7163,1111, 2222
+Developer:  Wolfgang
+Comment:    CQ-4962 Pap line didn't display correct 
+ 
+Date:       10. Juni. 2002
+Build:      7102, 7164,1111, 2222
+Developer:  Wolfgang
+Comment:    New functionality for PUMA standalone. This allows POI to work without a database
+            New entries in POI.ini under the [STAND_ALONE] section.
+			[STAND_ALONE]
+			;RUN_STANDALONE=1
+			;USE_DATABASE=1
+			;STATE_STRG=Stand alone
+			;FLAGPAGE=test.bmp 
+			;CHECK_LICENSE=0
+			;STARTUP_SEQ=POWERUP;SYSVALID;TSTVALID;TSTBEGIN
+
+Date:       28. Aug. 2002
+Build:      7102, 7165,1111, 2222
+Developer:  Wolfgang
+Comment:    Show windows after 200 msec and not immediatly, because it takes time to
+            get values from PUMA or send values to PUMA (200 msec seems to work) not
+			a real solution but a relief.
+
+Date:       30. Aug. 2002
+Build:      7102, 7166,1111, 2222
+Comment:	CQ-6101 always convert date to user form
+
+Date:       09. Okt. 2002
+Build:      7102, 7201,1111, 2222
+Comment:	CQ-6637 Poi checks local settings and issues a warning if decimal point is not '.'
+            CQ-6629 Poi does not use the inplacereader for ringbuffer 
+
+Date:       25. Nov. 2002
+Build:      7102, 7203,1111, 2222
+Comment:	CQ-7092 In graphic if not enough points are available for displaying a warning
+			is issued furthermore only make a SetBgColor or SetColor if the color has changed
+			Furthermore CQ7171 was done! New way of getting values out of ringbuffer.
+
+Date:       06. Dez. 2002
+Build:      7102, 7204,1111, 2222
+Comment:	CQ-7101 Issue a warning if invoke fails not a dialog
+
+
+Date:       17. Dez. 2002
+Build:      7102, 7205,1111, 2222
+Comment:	CQ-7364 POI crashed if a long ringbufer was aquired.
+
+Date:       22. Jan. 2003
+Build:      7102, 7206,1111, 2222
+Comment:	CQ-7689-7794 POI displayed a wrong message if connected with argus. Poi 
+            does not change Status if connection to VDOS is lost. 
+
+Date:       29. Jan. 2003
+Build:      7102, 7207,1111, 2222
+Comment:	CQ-7895 POI crashe if a graphic with less than 4 graphs were inserted
+
+Date:       14. Feb. 2003
+Build:      7102, 7208,1111, 2222
+Comment:	CQ-8252 POI allows now to open windows and dialogs even if a modal dialog is open, but
+			closing is still not possible!!!!!
+
+Date:       28. Feb. 2003
+Build:      7102, 7209,1111, 2222
+Comment:	  If only one display object is on a window, and when it is an activex object,
+            than POI resizes it always to full size.
+
+Date:       04. Mar. 2003
+Build:      7102, 7210,1111, 2222
+Comment:	  PSV items only filled into the normnamebrowser when in design or ade mode, not in 
+            workmode anymore!!!!! Make a reload of Normnames short before monitor and not in
+            sysstartcyclic because of 5 kHz ringbuffer and graphic
+
+Date:       18. Mar. 2003
+Build:      7102, 7211,1111, 2222
+Comment:	  CQ-8638 the pushbutton sometimes didn't get a click event
+
+Date:       25. Mar. 2003
+Build:      7102, 7212,1111, 2222
+Comment:	  CQ-8657 POI has the possiblitiy ot define the type of the datasource name in ADE-Mode
+            Right click in the ADE-mode on a datasource show a menu, where you can specify if POI should
+            store the system name the full (with device) devicename or only the devicechannel name.
+            This can be used for building of windows which are not related to the nornames.
+
+Date:       30. Jun. 2003
+Build:      7102, 7213.111, 2222
+Comment:	  CQ-10180 Poi checks the slow slices if they are still valid!
+
+Date:       08. Jul. 2003
+Build:      7102, 7214.111, 2222
+Comment:	  get rid of some warnings during compilation
+
+Date:       08. Jul. 2003
+Build:      7102, 7215.111, 2222
+Comment:	  CQ-10427 Values didn't ge updated correctly!!! This error was introduced with
+            package CQ-10105
+
+Date:       28. Jul. 2003
+Build:      7102, 7216.111, 2222
+Comment:	  CQ-10515 POI issues a waring if connection is not established to PUMA
+
+Date:       8. Oct. 2003
+Build:      7102, 7217.111, 2222
+Comment:	  CQ-LICENSING Redirect Poi's access for license.dat to flexmlm calls
+              This means the license file needs not be on local disk, but can now 
+			  also be on a license server

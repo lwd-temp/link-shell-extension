@@ -1,0 +1,4 @@
+
+# LSE specific files
+*.lib
+!ntdll.lib

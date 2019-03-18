@@ -1,0 +1,21 @@
+HardLink Shell Extension allows you to comfortably create hardlinks
+within a NTFS volume under Windows NT40/W2K/XP via the Shell Explorer.
+
+Press the right mouse button on selected files, choose 
+'Pick HardLink' and drop the selection on the destination
+via 'Drop HardLink' right mouse  menue
+
+Select some file in the explorer, press right mouse button, select
+'Pick HardLink', navigate	 to the destination directory, press the right
+mouse button, and select 'Drop HardLink'.
+
+Or you prefer drag and drop. No problem hardlink shell extension
+also supports drag an drop creation of hardlinks,
+
+With WindowsXP also harlinks among directories are possible
+using the junction point feature
+
+
+Create Unix like hardlinks via right mouse click in the shell explorer
+
+HardLink ShellExtension

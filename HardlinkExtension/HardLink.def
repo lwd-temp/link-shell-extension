@@ -1,0 +1,9 @@
+; HardLink.def : Declares the module parameters for the DLL.
+
+LIBRARY      "HardlinkShellExt"
+
+EXPORTS
+    ; Explicit exports can go here
+    DllMain                     PRIVATE               ;DLL Init
+    DllCanUnloadNow             PRIVATE               ;DLL unloading
+    DllGetClassObject           PRIVATE               ;Component object model

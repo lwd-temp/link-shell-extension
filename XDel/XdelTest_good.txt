@@ -1,0 +1,26 @@
+06:58
+
+>call t_Settings.bat 
+'t_DeepPathOff.bat' is not recognized as an internal or external command,
+operable program or batch file.
+
+>REM
+
+>REM Only delete reparse points 
+
+>REM
+'--noitcnuj' is not recognized as an internal or external command,
+operable program or batch file.
+'--symbolic' is not recognized as an internal or external command,
+operable program or batch file.
+
+>pause
+Press any key to continue . . . 
+
+>REM ..\bin\PLATT\CONFIG\ln.exe  --reparse test\source  
+ErrorLevel == 0
+
+>WHERE *.*    | sort
+No matching files found.
+ln 2.87301
+06:58

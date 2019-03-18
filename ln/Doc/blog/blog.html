@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="HTML Tidy for Windows (vers 1st February 2003), see www.w3.org" name="generator"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii"/>
+  <title>Link Shell Extension & ln.exe blog</title>
+  
+  <style type="text/css">
+   body,td,th {
+	font-family: Arial, 'Segoe UI', Verdana, Geneva, sans-serif;
+	color: #000;
+	background-color: #FFF;
+}
+  .bodytext {
+	font-family: Arial, 'Segoe UI', Helvetica, sans-serif;
+	font-size: .8em;
+}
+ 
+  .hanger {
+	font-weight: bold;
+	color: #25049F;
+	font-size: .9em;
+	vertical-align: top;
+}
+  .ascode {
+	font-family: "Courier New", Courier;
+	font-weight: bold;
+	padding-left: 1em;
+	font-size: 1.0em;
+}
+
+  .outputtable {
+	font-family: "Courier New", Courier;
+	padding-left: 1em;
+	font-size: .9em;
+}
+
+  .hanger2 {
+	font-size: .8em;
+	vertical-align: top;
+}
+  </style>
+  
+  
+  <script type="text/javascript">
+  /* <![CDATA[ */
+      (function() {
+          var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+          t.parentNode.insertBefore(s, t);
+      })();
+  /* ]]> */
+  </script>
+</head>
+<body bgcolor="#FFFFFF">
+  <table cellspacing="10" cellpadding="0" width="97%" border="0">
+    <tr>
+      <td colspan="2">
+        <img src="blog.png" alt="LinkShell Extension & ln.exe"/>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" height="22">
+        <div align="right">
+          <i><font face="arial" size="-2">Last Updated May 2, 2014</font></i>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" bgcolor="#F2F2F2">
+        <img src="../../images/spacer.gif" alt="spacer" width="1" height="5"/>
+      </td>
+    </tr>
+
+
+    <!-- 15th Anniversary -->
+    <tr>
+      <td align="right" valign="top" width="130" class="hanger">
+        <a name="15thanniversary">15th Anniversary</a>
+      </td>
+      <td valign="bottom" class="bodytext">
+        It all started 15 years ago with a small project, just to play a bit with explorer and hardlinks. Over the years it grew
+        into a project which reassembles a 
+        <a href="../../hardlinkshellext/linkshellextension.html">NTFS swiss army knife.</a>
+        It handles not just Hardlinks, but Junctions, Symbolic Links and Mountpoints
+        and all <b>the usecases</b> one can do.<br />
+        <br />
+        Unfortunatley Microsoft put Hardlinks, Junction and Symbolic Links primitives into the operating system
+        but completley forgot the things which can be done with these primitives. As soon as you have used hardlinks, and e.g. 
+        <a href="../../hardlinkshellext/linkshellextension.html#smartcopy">wanted to copy them</a>
+        with Windows-means to a different drive, the mess would begin, because one would break all hardlinks during the copy. 
+        There are many other issues like this, and this is the point where LinkShellExtension and its commandline sibling 
+        <a href="../ln.html">ln.exe</a>
+        jump in.<br />
+        <br />
+        But not only jump in, but also go ahead and implement uses cases, like the 
+        <a href="../../hardlinkshellext/linkshellextension.html#deloreancopy">famous delorean</a> copy, 
+        which is an incremental hardlink based backup solution. Some other vendors call very similar functionality Time Machine.... 
+        BTW: Have you ever guessed why it is called <i>Delorean</i> Copy? Knowing that a <i>Delorean</i> and a Flux Compensator was the 
+        first working time machine should give you a hint;-)<br />
+        <br />
+        In the meantime I jumped deep into the Win32 filesystem API, sometimes deeper than it is allowed. LSE and ln.exe bypass the 
+        Kernel32 API in wide ranges and rely on Ntdll.dll to improve speed and do things which can't be done that easy otherwise.<br />
+        <br />
+        I don't know how many times my tools have been downloaded, but 
+        <a href="../../hardlinkshellext/linkshellextension.html">Link Shell Extension</a>
+        and ln.exe are quite popular on many free/shareware download sites, 
+        like <a href="http://www.heise.de/download/link-shell-extension.html">heise</a>, CNet .... Both tools found its way also
+        into many small articles of magazines and accompanying DVDs.<br />
+        <br />
+        From the <a href="../../hardlinkshellext/linkshellextension.html#faq">feedback</a> and questions I received, I know that those two 
+        beasts are heavily used, even in semi-professional use cases and for sure hobbiest areas.<br />
+        <br />
+        So .... enough said, use it have fun, be happy that these beasts save your time and celebrate!<br />
+        <br />
+        <br />
+        <img src="lnbirthday.png" alt="15th Anniversary"/>
+        <br />
+        <br />
+        <br />
+        <br />
+        
+        <a href="../../hardlinkshellext/linkshellextension.html">Link Shell Extension</a>
+        <br />
+        <br />
+        <a href="../ln.html">ln.exe</a>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </td>
+    </tr>
+    <!-- Deleting files -->
+    <tr>
+      <td align="right" valign="top" width="130" class="hanger">
+        <a name="deloreandelete">Deleting<br />Delorean<br />Copies</a>
+      </td>
+      <td valign="bottom" class="bodytext">
+        Creating and keeping many Delorean Copies in a Delorean Set is something which is fairly simple, and even when it comes 
+        to deleting a specific Delorean Copy from a Delorean Set it is easy. Simply press delete in Explorer, or use the --deeppathdelete
+        option from ln.exe:
+        <br />
+        <br />
+        <img src="deloreandelete.png" alt="Deleting Delorean Copies"/>
+        <br />
+        <br />
+        <br />
+        <br />
+        Wait! It is easy if a Delorean Copy contains no files with ReadOnly attributes. Otherwise it's getting sophisticated: 
+        <br />
+        (Management summary: ln.exe --deeppathdelete can do it from 2.873 on)
+        <br />
+        <br />
+        <img src="deloreandelete_sequence.png" alt="Deleting Delorean Copies - Use Case"/>
+        <br />
+        <br />
+        <ol>
+          <li>
+            A <i>Source</i> was used to create three successive Delorean Copies: <i>Bkp1</i>,<i>Bkp2</i>,<i>Bkp3</i>. File B is ReadOnly in the Source and 
+            in all Delorean Copies. So far so good.
+          </li>
+          <br />
+          <li>
+            When it comes to delete <i>Bkp2</i> the Readonly attribute of <i>Bkp2/B</i> has to be removed, otherwise deletion is impossible. 
+          </li>
+          <br />
+          <li>
+            Due to the fact that all siblings of a hardlink share the same attribute and the same date, the readonly attributes of <i>Bkp1/B</i> and <i>Bkp3/B</i> are also 
+            'changed'. This is shown via the blue dotted lines. Called it 'Hardlink Attribute Teleportation'
+          </li>
+          <br />
+          <li>
+            This results now in having a different attribute in <i>Bkp1/B</i> and <i>Bkp3/B</i> than in <i>Source/B</i>. This is shown via the grey dotted line.
+          </li>
+          <br />
+          <li>
+            A fourth delorean copy with <i>Source</i> and <i>Bkp3</i> as Backup to <i>Bkp4</i> is created.
+          </li>
+          <br />
+          <li>
+            Since the attributes of <i>Bkp3/B</i> and <i>Source/B</i> are different, the file <i>Bkp4/B</i> was copied over freshly from <i>Source/B</i>. So there is no 
+            hardlink between <i>Bkp3/B</i> and <i>Bkp4/B</i>, which is shown with the light red dotted line, and which is the basic problem.
+          </li>
+          <br />
+        </ol>
+        So how to overcome this:
+        <ol>
+          <li>
+            Before deleting <i>Bkp2/B</i> retrieve at least one hardlink sibling, e.g. <i>Bkp1/B</i>
+          </li>
+          <br />
+          <li>
+            Delete <i>Bkp2/B</i>
+          </li>
+          <br />
+          <li>
+            Restore the attribute of <i>Bkp2/B</i> to one hardlink sibling, which has been retrieved in 1. e.g. <i>Bkp1/B</i> and rely on Hardlink Attribute Teleportation, so 
+            that it spreads to all other siblings.
+          </li>
+          <br />
+        </ol>
+        Basically this is what the --deeppathdelete option does. Well this only works with Windows7 and greater, because retrieval of hardlink siblings is (currently) not that efficient 
+        with e.g WindowsXP. 
+      </td>
+    </tr>
+
+
+  </table>
+</body>
+</html>

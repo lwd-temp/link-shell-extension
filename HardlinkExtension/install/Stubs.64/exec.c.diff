@@ -1,0 +1,81 @@
+113c113
+< static LONG NSISCALL myRegDeleteKeyEx(HKEY thiskey, LPCTSTR lpSubKey, int onlyifempty, DWORD samDesired)
+---
+> static LONG NSISCALL myRegDeleteKeyEx(HKEY thiskey, LPCTSTR lpSubKey, int onlyifempty)
+116,118c116
+<   int retval;
+< 
+<   retval=RegOpenKeyEx(thiskey, lpSubKey, 0, KEY_ENUMERATE_SUB_KEYS | samDesired,&key);
+---
+>   int retval=RegOpenKeyEx(thiskey,lpSubKey,0,KEY_ENUMERATE_SUB_KEYS,&key);
+130,132c128
+<       retval = myRegDeleteKeyEx(key, buffer, 0, samDesired);
+<       if (ERROR_SUCCESS != retval) 
+<         break;
+---
+>       if ((retval=myRegDeleteKeyEx(key,buffer,0)) != ERROR_SUCCESS) break;
+135,143c131
+<     {
+<       typedef LONG (WINAPI * RegDeleteKeyExAPtr)(HKEY, LPCTSTR, REGSAM, DWORD);
+<       RegDeleteKeyExAPtr pfnRegDeleteKeyExA = (RegDeleteKeyExAPtr) myGetProcAddress("ADVAPI32", "RegDeleteKeyExA");
+< 
+<       if (pfnRegDeleteKeyExA)
+<         retval = pfnRegDeleteKeyExA(thiskey, lpSubKey, samDesired, 0);
+<       else
+<         retval = RegDeleteKey(thiskey,lpSubKey);
+<     }
+---
+>     retval=RegDeleteKey(thiskey,lpSubKey);
+160,173c148
+<   DWORD dwResult;
+<   char *buf1=GetStringFromParm(0x22);
+< 
+<   if (buf1[0] == '3' && buf1[1] == '2' )
+<   {
+<     buf1 += 2;
+<   }
+<   else
+<   {
+<     samDesired |= KEY_WOW64_64KEY;
+<   }
+< 
+<   dwResult = RegOpenKeyEx(GetRegRootKey(parms[1]), buf1, 0, samDesired, &hKey);
+<   if (ERROR_SUCCESS == dwResult)
+---
+>   if (RegOpenKeyEx(GetRegRootKey(parms[1]), GetStringFromParm(0x22), 0, samDesired, &hKey) == ERROR_SUCCESS)
+1164d1138
+<         DWORD samDesired = 0;
+1182,1193c1156
+< 
+<           if (buf2[0] == '3' && buf2[1] == '2' )
+<           {
+<             buf2 += 2;
+<           }
+<           else
+<           {
+<             samDesired = KEY_WOW64_64KEY;
+<           }
+< 
+< 
+<           res = myRegDeleteKeyEx(GetRegRootKey(parm1),buf2,parm4&2, samDesired);
+---
+>           res = myRegDeleteKeyEx(GetRegRootKey(parm1),buf2,parm4&2);
+1202,1204d1164
+<         REGSAM samDesired;
+<         DWORD dwResult;
+< 
+1213,1224c1173
+<         if (buf1[0] == '3' && buf1[1] == '2' )
+<         {
+<           samDesired = KEY_SET_VALUE;
+<           buf1 += 2;
+<         }
+<         else
+<         {
+<           samDesired = KEY_SET_VALUE | KEY_WOW64_64KEY;
+<         }
+< 
+<         dwResult = RegCreateKeyEx(rootkey, buf1, 0, 0, REG_OPTION_NON_VOLATILE, samDesired, 0, &hKey, 0);
+<         if (ERROR_SUCCESS == dwResult)
+---
+>         if (RegCreateKeyEx(rootkey,buf1,0,0,REG_OPTION_NON_VOLATILE,KEY_SET_VALUE,0,&hKey,0) == ERROR_SUCCESS)

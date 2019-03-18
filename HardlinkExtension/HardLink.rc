@@ -1,0 +1,3945 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Japanese resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "__unused__Drive "
+    IDS_STRING_LanguageID   "0x0411"
+    IDS_STRING_PropPageLinkType "ƒŠƒ“ƒN‚Ìí—Ş:"
+    IDS_STRING_PropPageRefCount "QÆƒJƒEƒ“ƒg:"
+    IDS_STRING_ProgressCreatingSmartMirror "ƒXƒ}[ƒgƒ~ƒ‰[ƒŠƒ“ƒO‚ğÀs’†c"
+    IDS_STRING_PropPageCaption "ƒŠƒ“ƒN"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "ƒGƒNƒXƒvƒ[ƒ‰‚ÍƒXƒ}[ƒgƒRƒs[‚ğì¬‚Å‚«‚Ü‚¹‚ñ: %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "ƒGƒNƒXƒvƒ[ƒ‰‚ÍƒXƒ}[ƒgƒ~ƒ‰[ƒŠƒ“ƒO‚ğÀs‚Å‚«‚Ü‚¹‚ñ: %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "ƒGƒNƒXƒvƒ[ƒ‰‚Í¢‘ãƒRƒs[‚ğì¬‚Å‚«‚Ü‚¹‚ñ: %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy "ƒXƒ}[ƒgƒRƒs[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"
+    IDS_STRING_ErrCreatingSmartMirror "ƒXƒ}[ƒgƒ~ƒ‰[ƒŠƒ“ƒO‚ÌÀs‚É¸”s‚µ‚Ü‚µ‚½B"
+    IDS_STRING_ErrCreatingDeloreanCopy "¢‘ãƒRƒs[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"
+    IDS_STRING_BackupPrivilegesNotHeld "ƒoƒbƒNƒAƒbƒv‚ğs‚¤Œ ŒÀ‚ª‚ ‚è‚Ü‚¹‚ñB"
+    IDS_STRING_BackupFailed "ƒoƒbƒNƒAƒbƒv¸”s"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "ƒn[ƒhƒŠƒ“ƒN"
+    IDS_STRING_Junction     "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“"
+    IDS_STRING_LinkTypeSymlink "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN"
+    IDS_STRING_ErrDestSrcCircular " : ‘ÎÛ‚ÌƒtƒHƒ‹ƒ_‚ÍƒŠƒ“ƒNŒ³‚ÌƒTƒuƒtƒHƒ‹ƒ_‚Å‚·B"
+    IDS_STRING_ProgressCreatingSmartCopy "ƒXƒ}[ƒgƒRƒs[‚ğÀs’†c"
+    IDS_STRING_MountPoint   "ƒ}ƒEƒ“ƒgƒ|ƒCƒ“ƒg"
+    IDS_STRING_ProgressCloning "•¡»’†c"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "¢‘ãƒRƒs[‚ğÀs’†c"
+    IDS_STRING_ErrDirectoryNotEmpty " : ‘ÎÛ‚ÌƒtƒHƒ‹ƒ_‚Í‹ó‚Å‚Í‚ ‚è‚Ü‚¹‚ñB"
+    IDS_STRING_SymbolicLinkClone "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚ÌˆêŠ‡ì¬"
+    IDS_STRING_HardlinkClone "ƒn[ƒhƒŠƒ“ƒN‚ÌˆêŠ‡ì¬"
+    IDS_STRING_ErrHardlinkFailed ": ƒtƒ@ƒCƒ‹‚Ìƒn[ƒhƒŠƒ“ƒNQÆ”‚ªãŒÀ (1023) ‚É’B‚µ‚Ä‚¢‚Ü‚·B"
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "ƒGƒNƒXƒvƒ[ƒ‰‚Íƒ}ƒEƒ“ƒgƒ|ƒCƒ“ƒg‚ğì¬‚Å‚«‚Ü‚¹‚ñ: %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink "ƒGƒNƒXƒvƒ[ƒ‰‚Íƒn[ƒhƒŠƒ“ƒN‚ğì¬‚Å‚«‚Ü‚¹‚ñ: %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "ƒGƒNƒXƒvƒ[ƒ‰‚ÍƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚ğì¬‚Å‚«‚Ü‚¹‚ñ: %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "ƒGƒNƒXƒvƒ[ƒ‰‚ÍƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚ğì¬‚Å‚«‚Ü‚¹‚ñ: %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "ƒGƒNƒXƒvƒ[ƒ‰‚Íƒn[ƒhƒŠƒ“ƒN‚ğˆêŠ‡ì¬‚Å‚«‚Ü‚¹‚ñ: %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "ƒGƒNƒXƒvƒ[ƒ‰‚ÍƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚ğˆêŠ‡ì¬‚Å‚«‚Ü‚¹‚ñ: %1!s!"
+    IDS_STRING_ErrCreatingMountpoint "ƒ}ƒEƒ“ƒgƒ|ƒCƒ“ƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"
+    IDS_STRING_ErrCreatingHardlink "ƒn[ƒhƒŠƒ“ƒN‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"
+    IDS_STRING_ErrCreatingJunction "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"
+    IDS_STRING_ErrCreatingSymlink "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"
+    IDS_STRING_ErrCreatingHardlinkClone "ƒn[ƒhƒŠƒ“ƒN‚ÌˆêŠ‡ì¬‚É¸”s‚µ‚Ü‚µ‚½B"
+    IDS_STRING_ErrCreatingSymlinkClone "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚ÌˆêŠ‡ì¬‚É¸”s‚µ‚Ü‚µ‚½B"
+    IDS_STRING_Target       "ƒŠƒ“ƒNæ:"
+    IDS_STRING_MountPointTarget "ƒ}ƒEƒ“ƒgæ:"
+    IDS_STRING_PropPageHardlinkEnum "ƒn[ƒhƒŠƒ“ƒNî•ñ:"
+    IDS_STRING_PropPageEnumSiblings "ƒŠƒ“ƒN‚Ì—ñ‹“"
+    IDS_STRING_ProgressEnumerating "ƒŠƒ“ƒNî•ñ‚ğ—ñ‹“‚µ‚Ä‚¢‚Ü‚·c"
+    IDS_STRING_ProgressCanceling "’†~‚µ‚Ä‚¢‚Ü‚·c"
+    IDS_STRING_ExploreTarget "ƒŠƒ“ƒNæ‚ÌQÆ"
+    IDS_STRING_ProgressSmartMove "ƒXƒ}[ƒgˆÚ“®‚ğÀs’†c"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "ƒn[ƒhƒŠƒ“ƒN(&H)"
+    IDS_STRING_eMenuSymbolicLink "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN(&S)"
+    IDS_STRING_eMenuJunction "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“(&J)"
+    IDS_STRING_eMenuHardLinkClone "ƒn[ƒhƒŠƒ“ƒN‚ÌˆêŠ‡ì¬(&C)"
+    IDS_STRING_eMenuSymbolicLinkClone "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚ÌˆêŠ‡ì¬(&L)"
+    IDS_STRING_eMenuReplaceJunction "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚Ì•ÏX(&R)"
+    IDS_STRING_eMenuSmartCopy "ƒXƒ}[ƒgƒRƒs[(&S)"
+    IDS_STRING_eMenuReplaceSymbolicLink "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚Ì’uŠ·(&Y)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "ƒ}ƒEƒ“ƒgƒ|ƒCƒ“ƒg‚Ì’uŠ·(&M)"
+    IDS_STRING_eMenuSmartMirror "ƒXƒ}[ƒgƒ~ƒ‰[ƒŠƒ“ƒO(&I)"
+    IDS_STRING_eMenuDeloreanCopy "¢‘ãƒRƒs[(&T)"
+    IDS_STRING_eMenuCreateMountPoint "ƒ{ƒŠƒ…[ƒ€‚Ìƒ}ƒEƒ“ƒg(&V)"
+    IDS_STRING_eMenuDropeAs "ƒŠƒ“ƒN‚ğì¬c"
+    IDS_STRING_eMenuDropHardlink "ƒn[ƒhƒŠƒ“ƒN‚Ìì¬(&D)"
+    IDS_STRING_eMenuDropHardLinkClone "ƒn[ƒhƒŠƒ“ƒN‚ÌˆêŠ‡ì¬(&D)"
+    IDS_STRING_eMenuDropJunction "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚Ìì¬(&D)"
+    IDS_STRING_eMenuDropReplaceJunction "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚Ì•ÏX(&D)"
+    IDS_STRING_eMenuDropSmartCopy "ƒXƒ}[ƒgƒRƒs[‚ÌÀs(&D)"
+    IDS_STRING_eMenuDropSymbolicLink "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚Ìì¬(&D)"
+    IDS_STRING_eMenuDropReplaceSymbolicLink "‚±‚±‚ÉƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚Ì’uŠ·‚ğ“K—p(&C)"
+    IDS_STRING_eMenuDropReplaceMountPoint "‚±‚±‚Éƒ}ƒEƒ“ƒgƒ|ƒCƒ“ƒg‚Ì’uŠ·‚ğ“K—p(&C)"
+    IDS_STRING_eMenuDropSmartMirror "ƒXƒ}[ƒgƒ~ƒ‰[ƒŠƒ“ƒO‚ÌÀs(&I)"
+    IDS_STRING_eMenuDropDeloreanCopy "‚±‚±‚É¢‘ãƒRƒs[‚ğì¬(&T)"
+    IDS_STRING_eMenuHardlink1 "ƒn[ƒhƒŠƒ“ƒN(&H)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN(&S)"
+    IDS_STRING_eMenuJunction1 "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“(&J)"
+    IDS_STRING_eMenuHardLinkClone1 "ƒn[ƒhƒŠƒ“ƒN‚ÌˆêŠ‡ì¬(&C)"
+    IDS_STRING_eMenuSymbolicLinkClone1 "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚ÌˆêŠ‡ì¬(&L)"
+    IDS_STRING_eMenuReplaceJunction1 "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“æ‚ğ•ÏX(&R)"
+    IDS_STRING_eMenuSmartCopy1 "ƒXƒ}[ƒgƒRƒs[(&S)"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚Ì’uŠ·(&Y)"
+    IDS_STRING_eMenuReplaceMountPoint1 "ƒ}ƒEƒ“ƒgƒ|ƒCƒ“ƒg‚Ì’uŠ·(&M)"
+    IDS_STRING_eMenuSmartMirror1 "ƒXƒ}[ƒgƒ~ƒ‰[ƒŠƒ“ƒO(&I)"
+    IDS_STRING_eMenuDeloreanCopy1 "¢‘ãƒRƒs[(&T)"
+    IDS_STRING_eMenuCreateMountPoint1 "ƒ{ƒŠƒ…[ƒ€‚Ìƒ}ƒEƒ“ƒg(&V)"
+    IDS_STRING_eMenuDropeAs1 "‚±‚±‚ÉƒŠƒ“ƒN‚ğì¬c"
+    IDS_STRING_eMenuDropHardlink1 "‚±‚±‚Éƒn[ƒhƒŠƒ“ƒN‚ğì¬(&C)"
+    IDS_STRING_eMenuDropHardLinkClone1 "‚±‚±‚Éƒn[ƒhƒŠƒ“ƒN‚ğˆêŠ‡ì¬(&C)"
+    IDS_STRING_eMenuDropJunction1 "‚±‚±‚ÉƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚ğì¬(&C)"
+    IDS_STRING_eMenuDropReplaceJunction1 "‚±‚±‚ÌƒWƒƒƒ“ƒNƒVƒ‡ƒ“æ‚ğ•ÏX(&C)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "‚±‚±‚ÉƒXƒ}[ƒgƒRƒs[‚ğÀs(&C)"
+    IDS_STRING_eMenuDropSymbolicLink1 "‚±‚±‚ÉƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚ğì¬(&C)"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 "‚±‚±‚ÉƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚Ì’uŠ·‚ğ“K—p(&C)"
+    IDS_STRING_eMenuDropReplaceMountPoint1 "‚±‚±‚Éƒ}ƒEƒ“ƒgƒ|ƒCƒ“ƒg‚Ì’uŠ·‚ğ“K—p(&C)"
+    IDS_STRING_eMenuDropSmartMirror1 "ƒXƒ}[ƒgƒ~ƒ‰[ƒŠƒ“ƒO‚ÌÀs(&I)"
+    IDS_STRING_eMenuDropDeloreanCopy1 "‚±‚±‚É¢‘ãƒRƒs[‚ğì¬(&T)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "ƒtƒ@ƒCƒ‹‚Ü‚½‚ÍƒtƒHƒ‹ƒ_‚ğƒŠƒ“ƒNŒ³‚Æ‚µ‚Ä‘I‘ğ‚µAƒVƒ“ƒ{ƒŠƒbƒNEƒn[ƒhƒŠƒ“ƒN‚Ìì¬‚ğŠJn‚µ‚Ü‚·B"
+    IDS_STRING_HelpText02   "ƒŠƒ“ƒNŒ³‚Æ‚µ‚Ä‘I‘ğ‚µ‚½ƒtƒ@ƒCƒ‹‚Ìƒn[ƒhƒŠƒ“ƒN‚ğì¬‚µ‚Ü‚·B"
+    IDS_STRING_HelpText03   "ƒŠƒ“ƒNŒ³‚Æ‚µ‚Ä‘I‘ğ‚µ‚½ƒtƒ@ƒCƒ‹‚ÌƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚ğì¬‚µ‚Ü‚·B"
+    IDS_STRING_HelpText04   "ƒŠƒ“ƒNŒ³‚Æ‚µ‚Ä‘I‘ğ‚µ‚½ƒtƒHƒ‹ƒ_‚ÌƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚ğì¬‚µ‚Ü‚·B"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "ƒtƒHƒ‹ƒ_\¬‚ğƒRƒs[‚µA‚»‚Ì’†‚ÉŠÜ‚Ü‚ê‚éƒtƒ@ƒCƒ‹‚Ìƒn[ƒhƒŠƒ“ƒN‚ğì¬‚µ‚Ü‚·B"
+    IDS_STRING_HelpText06   "ƒtƒHƒ‹ƒ_\¬‚ğƒRƒs[‚µA‚»‚Ì’†‚ÉŠÜ‚Ü‚ê‚éƒtƒ@ƒCƒ‹‚ÌƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚ğì¬‚µ‚Ü‚·B"
+    IDS_STRING_HelpText07   "‘I‘ğ‚µ‚½ƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚ğíœ‚µ‚Ü‚·B"
+    IDS_STRING_HelpText08   "ì¬‚·‚éƒŠƒ“ƒN‚Ìí—Ş‚ğ‘I‘ğ‚µ‚Ü‚·B"
+    IDS_STRING_HelpText09   "ƒŠƒ“ƒNŒ³‚Ìƒtƒ@ƒCƒ‹‚Ü‚½‚ÍƒtƒHƒ‹ƒ_‘I‘ğó‘Ô‚ğ‰ğœ‚µAƒŠƒ“ƒNì¬‚ğ’†~‚µ‚Ü‚·B"
+    IDS_STRING_HelpText10   "w’è‚³‚ê‚½ˆÊ’u‚Éƒ{ƒŠƒ…[ƒ€‚ğƒ}ƒEƒ“ƒg‚µ‚Ü‚·B"
+    IDS_STRING_HelpText11   "ƒ{ƒŠƒ…[ƒ€‚ğƒAƒ“ƒ}ƒEƒ“ƒg‚µ‚Ü‚·B"
+    IDS_STRING_HelpText12   "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚ÌƒŠƒ“ƒNæ‚ğAƒŠƒ“ƒNŒ³‚Æ‚µ‚Ä‘I‘ğ‚µ‚½ƒtƒHƒ‹ƒ_‚É•ÏX‚µ‚Ü‚·B"
+    IDS_STRING_HelpText13   "ƒtƒHƒ‹ƒ_“à‚É‚ ‚éƒtƒ@ƒCƒ‹‚Ìƒn[ƒhƒŠƒ“ƒN‚ğˆÛ‚µ‚È‚ª‚çAƒtƒHƒ‹ƒ_\¬‚ğƒRƒs[‚µ‚Ü‚·B"
+    IDS_STRING_HelpText14   "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚ÌƒŠƒ“ƒNæ‚ğAƒŠƒ“ƒNŒ³‚Æ‚µ‚Ä‘I‘ğ‚µ‚½êŠ‚É•ÏX‚µ‚Ü‚·B"
+    IDS_STRING_HelpText15   "ƒ}ƒEƒ“ƒgƒ|ƒCƒ“ƒg‚ÌƒŠƒ“ƒNæ‚ğAƒŠƒ“ƒNŒ³‚Æ‚µ‚Ä‘I‘ğ‚µ‚½êŠ‚É•ÏX‚µ‚Ü‚·B"
+    IDS_STRING_HelpText16   "“à•”‚Ìƒn[ƒhƒŠƒ“ƒNAƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒNAƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚ğˆÛ‚µ‚½‚Ü‚ÜƒtƒHƒ‹ƒ_\‘¢‚²‚ÆƒRƒs[‚µ‚Ü‚·B"
+    IDS_STRING_HelpText17   "1 ¢‘ã‚Ìuƒ^ƒCƒ€ƒ}ƒV[ƒ“ ƒoƒbƒNƒAƒbƒvv‚ğì¬‚µ‚Ü‚·B"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "ƒŠƒ“ƒNŒ³‚Æ‚µ‚Ä‘I‘ğ(&L)"
+    IDS_STRING_eTopMenuDeleteJunction "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚Ìíœ(&J)"
+    IDS_STRING_eTopMenuCancelLinkCreation "ƒŠƒ“ƒN‚Ìì¬‚ğ’†~(&L)"
+    IDS_STRING_eTopMenuHardlink "ƒn[ƒhƒŠƒ“ƒN"
+    IDS_STRING_eTopMenuJunction "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“"
+    IDS_STRING_eTopMenuSymbolicLink "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN"
+    IDS_STRING_eTopMenuTo   " ‚Ö‚Ì "
+    IDS_STRING_eTopMenuOf   " ‚Ö‚Ì "
+    IDS_STRING_eTopMenuReference "ƒŠƒ“ƒN‚ÌQÆ"
+    IDS_STRING_eTopMenuHardlinkClone "ƒn[ƒhƒŠƒ“ƒNˆêŠ‡¶¬"
+    IDS_STRING_eTopMenuSymbolicLinkClone "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒNˆêŠ‡¶¬"
+    IDS_STRING_eTopMenuReferenceHelpText "QÆƒJƒEƒ“ƒg: ƒn[ƒhƒŠƒ“ƒN / ƒWƒƒƒ“ƒNƒVƒ‡ƒ“"
+    IDS_STRING_eTopMenuDeleteMountPoint "ƒ{ƒŠƒ…[ƒ€‚ÌƒAƒ“ƒ}ƒEƒ“ƒg(&V)"
+    IDS_STRING_eTopMenuMountPoint "ƒ}ƒEƒ“ƒgƒ|ƒCƒ“ƒg"
+    IDS_STRING_eTopMenuSmartCopy "ƒXƒ}[ƒgƒRƒs["
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%4!s!%3!s!%2!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%4!s! (*)%3!s!%2!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%5!s! (%3!d!)%4!s!%2!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Japanese resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "CHS_Drive"
+    IDS_STRING_LanguageID   "0x0804"
+    IDS_STRING_PropPageLinkType "Á¬½ÓÀàĞÍ£º"
+    IDS_STRING_PropPageRefCount "ÒıÓÃ¼ÆÊı:"
+    IDS_STRING_ProgressCreatingSmartMirror "ÕıÔÚÖ´ĞĞÖÇÄÜ¾µÏñ±¸·İ..."
+    IDS_STRING_PropPageCaption "Á¬½ÓÊôĞÔ"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy "ÎŞ·¨´´½¨ÖÇÄÜ¸±±¾£º%1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror "ÎŞ·¨´´½¨ÖÇÄÜ¾µÏñ±¸·İ£º%1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy "ÎŞ·¨´´½¨¶à°æ±¾Ä¿Â¼±¸·İ£º%1!s!"
+    IDS_STRING_ErrCreatingSmartCopy "ÔÚ´´½¨ÖÇÄÜ¸±±¾Ê±³ö´í"
+    IDS_STRING_ErrCreatingSmartMirror "ÔÚ´´½¨ÖÇÄÜ¾µÏñ±¸·İÊ±³ö´í"
+    IDS_STRING_ErrCreatingDeloreanCopy "ÔÚ´´½¨¶à°æ±¾Ä¿Â¼±¸·İÊ±³ö´í"
+    IDS_STRING_BackupPrivilegesNotHeld "È±ÉÙ·ÃÎÊ±¸·İÎÄ¼şËùĞèµÄÈ¨ÏŞ"
+    IDS_STRING_BackupFailed "±¸·İ²Ù×÷Ê§°Ü"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Ó²Á¬½Ó"
+    IDS_STRING_Junction     "Ä¿Â¼Á¬½Óµã"
+    IDS_STRING_LinkTypeSymlink "·ûºÅÁ¬½Ó"
+    IDS_STRING_ErrDestSrcCircular " : Ä¿±êÄ¿Â¼²»ÄÜÊÇÔ´Ä¿Â¼µÄ×ÓÄ¿Â¼"
+    IDS_STRING_ProgressCreatingSmartCopy "ÕıÔÚ´´½¨ÖÇÄÜ¸±±¾..."
+    IDS_STRING_MountPoint   "´ÅÅÌ¹Ò½Óµã"
+    IDS_STRING_ProgressCloning "ÕıÔÚ¸´ÖÆ¸±±¾..."
+    IDS_STRING_ProgressCreatingDeLoreanCopy "ÕıÔÚÖ´ĞĞ¶à°æ±¾Ä¿Â¼±¸·İ..."
+    IDS_STRING_ErrDirectoryNotEmpty " : Ä¿±êÄ¿Â¼±ØĞëÎª¿ÕÄ¿Â¼"
+    IDS_STRING_SymbolicLinkClone "·ûºÅÁ¬½Ó¸±±¾"
+    IDS_STRING_HardlinkClone "Ó²Á¬½Ó¸±±¾"
+    IDS_STRING_ErrHardlinkFailed ": Ã¿¸öÎÄ¼şµÄÓ²Á¬½ÓÊıÁ¿²»ÄÜ³¬¹ı 1023 ¸ö¡£"
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint "ÎŞ·¨´´½¨´ÅÅÌ¹Ò½Óµã %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink "ÎŞ·¨´´½¨Ó²Á¬½Ó %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction "ÎŞ·¨´´½¨Ä¿Â¼Á¬½Óµã %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink "ÎŞ·¨´´½¨·ûºÅÁ¬½Ó %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone "ÎŞ·¨´´½¨Ó²Á¬½Ó¸±±¾ %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone "ÎŞ·¨´´½¨·ûºÅÁ¬½Ó¸±±¾ %1!s!"
+    IDS_STRING_ErrCreatingMountpoint "ÔÚ´´½¨´ÅÅÌ¹Ò½ÓµãÊ±³öÏÖ´íÎó"
+    IDS_STRING_ErrCreatingHardlink "ÔÚ´´½¨Ó²Á¬½ÓÊ±³öÏÖ´íÎó"
+    IDS_STRING_ErrCreatingJunction "ÔÚ´´½¨Ä¿Â¼Á¬½ÓµãÊ±³öÏÖ´íÎó"
+    IDS_STRING_ErrCreatingSymlink "ÔÚ´´½¨·ûºÅÁ¬½ÓÊ±³öÏÖ´íÎó"
+    IDS_STRING_ErrCreatingHardlinkClone "ÔÚ´´½¨Ó²Á¬½ÓÊ±³öÏÖ´íÎó"
+    IDS_STRING_ErrCreatingSymlinkClone "ÔÚ´´½¨·ûºÅÁ¬½Ó¸±±¾Ê±³öÏÖ´íÎó"
+    IDS_STRING_Target       "Á¬½ÓÄ¿±ê£º"
+    IDS_STRING_MountPointTarget "´ÅÅÌ¾í¹Ò½ÓµãÄ¿±ê£º"
+    IDS_STRING_PropPageHardlinkEnum "Ó²Á¬½ÓµÄÒıÓÃÎ»ÖÃ£º"
+    IDS_STRING_PropPageEnumSiblings "ÁĞ³öÒıÓÃÎ»ÖÃ"
+    IDS_STRING_ProgressEnumerating "ÁĞ³öÓ²Á¬½ÓµÄÒıÓÃÎ»ÖÃ..."
+    IDS_STRING_ProgressCanceling "ÕıÔÚÈ¡Ïû²Ù×÷..."
+    IDS_STRING_ExploreTarget "´ò¿ªÄ¿±êÎÄ¼ş¼Ğ(&D)"
+    IDS_STRING_ProgressSmartMove "ÕıÔÚÖ´ĞĞÖÇÄÜÒÆ¶¯²Ù×÷..."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "Ó²Á¬½Ó(&L)"
+    IDS_STRING_eMenuSymbolicLink "·ûºÅÁ¬½Ó(&H)"
+    IDS_STRING_eMenuJunction "Ä¿Â¼Á¬½Óµã(&M)"
+    IDS_STRING_eMenuHardLinkClone "Ó²Á¬½Ó¸±±¾(&Y)"
+    IDS_STRING_eMenuSymbolicLinkClone "·ûºÅÁ¬½Ó¸±±¾(&F)"
+    IDS_STRING_eMenuReplaceJunction "Ìæ»»Á¬½Óµã(&T)"
+    IDS_STRING_eMenuSmartCopy "ÖÇÄÜ¸±±¾(&Z)"
+    IDS_STRING_eMenuReplaceSymbolicLink "Ìæ»»·ûºÅÁ¬½Ó"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "Ìæ»»´ÅÅÌ¾í¹Ò½Óµã"
+    IDS_STRING_eMenuSmartMirror "ÖÇÄÜ¾µÏñ(&J)"
+    IDS_STRING_eMenuDeloreanCopy "¶à°æ±¾ÖÇÄÜ¸±±¾(&B)"
+    IDS_STRING_eMenuCreateMountPoint "´ÅÅÌ¾í¹Ò½Óµã(&V)"
+    IDS_STRING_eMenuDropeAs "´´½¨Îª..."
+    IDS_STRING_eMenuDropHardlink "´´½¨Ó²Á¬½Ó(&D)"
+    IDS_STRING_eMenuDropHardLinkClone "´´½¨Ó²Á¬½Ó¸±±¾(&D)"
+    IDS_STRING_eMenuDropJunction "´´½¨Ä¿Â¼Á¬½Óµã(&D)"
+    IDS_STRING_eMenuDropReplaceJunction "Ìæ»»Ä¿Â¼Á¬½Óµã(&D)"
+    IDS_STRING_eMenuDropSmartCopy "´´½¨ÖÇÄÜ¸±±¾(&D)"
+    IDS_STRING_eMenuDropSymbolicLink "´´½¨·ûºÅÁ¬½Ó(&D)"
+    IDS_STRING_eMenuDropReplaceSymbolicLink "Ìæ»»·ûºÅÁ¬½Ó(&C)"
+    IDS_STRING_eMenuDropReplaceMountPoint "Ìæ»»´ÅÅÌ¾í¹Ò½Óµã(&C)"
+    IDS_STRING_eMenuDropSmartMirror "´´½¨ÖÇÄÜ¾µÏñ(&J)"
+    IDS_STRING_eMenuDropDeloreanCopy "´´½¨¶à°æ±¾ÖÇÄÜ¸±±¾(&B)"
+    IDS_STRING_eMenuHardlink1 "Ó²Á¬½Ó(&L)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "·ûºÅÁ¬½Ó(&H)"
+    IDS_STRING_eMenuJunction1 "Ä¿Â¼Á¬½Óµã(&M)"
+    IDS_STRING_eMenuHardLinkClone1 "Ó²Á¬½Ó¸±±¾(&Y)"
+    IDS_STRING_eMenuSymbolicLinkClone1 "·ûºÅÁ¬½Ó¸±±¾(&F)"
+    IDS_STRING_eMenuReplaceJunction1 "Ìæ»»Á¬½Óµã(&T)"
+    IDS_STRING_eMenuSmartCopy1 "ÖÇÄÜ¸±±¾(&Z)"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "Ìæ»»·ûºÅÁ¬½Ó"
+    IDS_STRING_eMenuReplaceMountPoint1 "Ìæ»»´ÅÅÌ¾í¹Ò½Óµã"
+    IDS_STRING_eMenuSmartMirror1 "ÖÇÄÜ¾µÏñ(&J)"
+    IDS_STRING_eMenuDeloreanCopy1 "¶à°æ±¾ÖÇÄÜ¸±±¾(&B)"
+    IDS_STRING_eMenuCreateMountPoint1 "´ÅÅÌ¾í¹Ò½Óµã(&V)"
+    IDS_STRING_eMenuDropeAs1 "´´½¨Á¬½Óµã..."
+    IDS_STRING_eMenuDropHardlink1 "´´½¨Ó²Á¬½Ó(&C)"
+    IDS_STRING_eMenuDropHardLinkClone1 "´´½¨Ó²Á¬½Ó¸±±¾(&C)"
+    IDS_STRING_eMenuDropJunction1 "´´½¨Ä¿Â¼Á¬½Óµã(&C)"
+    IDS_STRING_eMenuDropReplaceJunction1 "Ìæ»»Ä¿Â¼Á¬½Óµã(&C)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "´´½¨ÖÇÄÜ¸±±¾(&C)"
+    IDS_STRING_eMenuDropSymbolicLink1 "´´½¨·ûºÅÁ¬½Ó(&C)"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 "Ìæ»»·ûºÅÁ¬½Ó(&C)"
+    IDS_STRING_eMenuDropReplaceMountPoint1 "Ìæ»»´ÅÅÌ¾í¹Ò½Óµã(&C)"
+    IDS_STRING_eMenuDropSmartMirror1 "´´½¨ÖÇÄÜ¾µÏñ(&J)"
+    IDS_STRING_eMenuDropDeloreanCopy1 "´´½¨¶à°æ±¾ÖÇÄÜ¸±±¾(&B)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Ñ¡ÔñĞèÁ¬½ÓµÄÎÄ¼ş»òÄ¿Â¼¡£"
+    IDS_STRING_HelpText02   "ÎªÑ¡ÖĞµÄÏîÄ¿´´½¨Ó²Á¬½Ó¡£"
+    IDS_STRING_HelpText03   "ÎªÑ¡ÖĞµÄÏîÄ¿´´½¨·ûºÅÁ¬½Ó¡£"
+    IDS_STRING_HelpText04   "ÎªÑ¡¶¨Ä¿Â¼´´½¨Á¬½Óµã¡£"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Ñ­»·¸´ÖÆÖ¸¶¨Ä¿Â¼µÄ½á¹¹£¬²¢ÎªÆäÖĞµÄÎÄ¼ş´´½¨Ó²Á¬½Ó¡£"
+    IDS_STRING_HelpText06   "Ñ­»·¸´ÖÆÖ¸¶¨Ä¿Â¼µÄ½á¹¹£¬²¢ÎªÆäÖĞµÄÎÄ¼ş´´½¨·ûºÅÁ¬½Ó¡£"
+    IDS_STRING_HelpText07   "É¾³ıÑ¡ÖĞµÄÁ¬½Óµã¡£"
+    IDS_STRING_HelpText08   "´´½¨Á¬½Óµã..."
+    IDS_STRING_HelpText09   "È¡ÏûÒÑÑ¡¶¨µÄÁ¬½Óµã¡£"
+    IDS_STRING_HelpText10   "½«´ÅÅÌ¾í¹Ò½Óµ½Ö¸¶¨Â·¾¶¡£"
+    IDS_STRING_HelpText11   "½â³ıÖ¸¶¨Â·¾¶Ëù¹Ò½ÓµÄ´ÅÅÌ¾í¡£"
+    IDS_STRING_HelpText12   "½«Á¬½ÓµãµÄÄ¿±êÌæ»»ÎªÑ¡ÔñµÄÂ·¾¶¡£"
+    IDS_STRING_HelpText13   "½«Ä¿Â¼½á¹¹¸´ÖÆµ½ÆäËüÎ»ÖÃ£¬µ«±£³ÖÄ¿Â¼ÄÚ²¿µÄÓ²Á¬½Ó½á¹¹¡£"
+    IDS_STRING_HelpText14   "½«·ûºÅÁ¬½ÓµÄÄ¿±êÌæ»»ÎªÑ¡ÔñµÄÂ·¾¶¡£"
+    IDS_STRING_HelpText15   "½«´ÅÅÌ¾í¹Ò½ÓµãµÄÄ¿±êÌæ»»ÎªÑ¡ÔñµÄÂ·¾¶¡£"
+    IDS_STRING_HelpText16   "±£³ÖÓ²Á¬½Ó¹ØÏµ£¬¶ÔÓ¦¸´ÖÆÑ¡¶¨Ä¿Â¼µ½Ä¿±êÎÄ¼ş¼Ğ£¨É¾³ıÄ¿±êÎŞ¶ÔÓ¦ÏîµÄÎÄ¼ş£©¡£"
+    IDS_STRING_HelpText17   "´´½¨¶à°æ±¾µÄ±¸·İ¸±±¾£¬¸±±¾¼äÏàÍ¬µÄÎÄ¼şÊ¹ÓÃÓ²Á¬½Ó¹ØÁªÒÔ½ÚÊ¡¿Õ¼ä¡£"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "Ñ¡ÔñÔ´Á¬½Óµã(&L)"
+    IDS_STRING_eTopMenuDeleteJunction "É¾³ıÄ¿Â¼Á¬½Óµã(&M)"
+    IDS_STRING_eTopMenuCancelLinkCreation "È¡ÏûÑ¡¶¨µÄÁ¬½Ó(&Q)"
+    IDS_STRING_eTopMenuHardlink "Ó²Á¬½Ó"
+    IDS_STRING_eTopMenuJunction "Ä¿Â¼Á¬½Óµã"
+    IDS_STRING_eTopMenuSymbolicLink "·ûºÅÁ¬½Ó"
+    IDS_STRING_eTopMenuTo   " - "
+    IDS_STRING_eTopMenuOf   " - "
+    IDS_STRING_eTopMenuReference "ÒıÓÃ"
+    IDS_STRING_eTopMenuHardlinkClone "Ó²Á¬½Ó¸±±¾"
+    IDS_STRING_eTopMenuSymbolicLinkClone "·ûºÅÁ¬½Ó¸±±¾"
+    IDS_STRING_eTopMenuReferenceHelpText "ÒıÓÃ¼ÆÊı: Ó²Á¬½ÓÎÄ¼ş/ Ô­Á¬½Óµã"
+    IDS_STRING_eTopMenuDeleteMountPoint "É¾³ı´ÅÅÌ¹Ò½Óµã(&J)"
+    IDS_STRING_eTopMenuMountPoint "´ÅÅÌ¹Ò½Óµã"
+    IDS_STRING_eTopMenuSmartCopy "ÖÇÄÜ¸±±¾"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "µå¶óÀÌºê"
+    IDS_STRING_LanguageID   "0x0409"
+    IDS_STRING_PropPageLinkType "¸µÅ©Çü½Ä:"
+    IDS_STRING_PropPageRefCount "ÂüÁ¶¼ö:"
+    IDS_STRING_ProgressCreatingSmartMirror "½º¸¶Æ® ¹Ì·¯ »ı¼ºÁß..."
+    IDS_STRING_PropPageCaption "¸µÅ© ¼Ó¼º"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "ÇÏµå¸µÅ©"
+    IDS_STRING_Junction     "Á¤¼Ç"
+    IDS_STRING_LinkTypeSymlink "½Éº¼¸¯ ¸µÅ©"
+    IDS_STRING_ErrDestSrcCircular " : µµÂø µğ·ºÅÍ¸®°¡ Ãâ¹ß¼Ò½ºÀÇ ÇÏÀ§ µğ·ºÅä¸®ÀÔ´Ï´Ù"
+    IDS_STRING_ProgressCreatingSmartCopy "½º¸¶Æ® º¹»ç »ı¼ºÁß..."
+    IDS_STRING_MountPoint   "¸¶¿îÆ® ÁöÁ¡"
+    IDS_STRING_ProgressCloning "Å¬·Ğ Áß..."
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Å¬·Ğ Áß..."
+    IDS_STRING_ErrDirectoryNotEmpty " : µµÂø µğ·ºÅÍ¸®°¡ ºñ¾îÀÖÁö ¾ÊÀ½"
+    IDS_STRING_SymbolicLinkClone "½Éº¼¸¯ ¸µÅ© Å¬·Ğ"
+    IDS_STRING_HardlinkClone "ÇÏµå¸µÅ© Å¬·Ğ"
+    IDS_STRING_ErrHardlinkFailed ": \nÆÄÀÏ´ç ÇÏµå¸µÅ©ÀÇ ÃÖ´ñ°ª¿¡ (1023) µµ´Ş ÇÏ¿´½À´Ï´Ù."
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Å½»ö±â°¡ ¸¶¿îÆ® ÁöÁ¡ %1!s!À» ¸¸µé ¼ö ¾ø½À´Ï´Ù"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink "Å½»ö±â°¡ ÇÏµå¸µÅ© %1!s!¸¦ ¸¸µé ¼ö ¾ø½À´Ï´Ù"
+    IDS_STRING_ErrExplorerCanNotCreateJunction "Å½»ö±â°¡ Á¤¼Ç %1!s!À» ¸¸µé ¼ö ¾ø½À´Ï´Ù"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink "Å½»ö±â°¡ ½Éº¼¸¯ ¸µÅ© %1!s!¸¦ ¸¸µé ¼ö ¾ø½À´Ï´Ù"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Å½»ö±â°¡ ÇÏµå¸µÅ© Å¬·Ğ %1!s!À» ¸¸µé ¼ö ¾ø½À´Ï´Ù"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Å½»ö±â°¡ ½Éº¼¸¯ ¸µÅ© Å¬·Ğ %1!s!À» ¸¸µé ¼ö ¾ø½À´Ï´Ù"
+    IDS_STRING_ErrCreatingMountpoint "¸¶¿îÆ® ÁöÁ¡À» ¸¸µå´Â µ¥ ¿À·ù"
+    IDS_STRING_ErrCreatingHardlink "ÇÏµå¸µÅ©¸¦ ¸¸µå´Â µ¥ ¿À·ù"
+    IDS_STRING_ErrCreatingJunction "Á¤¼ÇÀ» ¸¸µå´Â µ¥ ¿À·ù"
+    IDS_STRING_ErrCreatingSymlink "½Éº¼¸¯ ¸µÅ©¸¦ ¸¸µå´Â µ¥ ¿À·ù"
+    IDS_STRING_ErrCreatingHardlinkClone "ÇÏµå¸µÅ© Å¬·ĞÀ» ¸¸µå´Â µ¥ ¿À·ù"
+    IDS_STRING_ErrCreatingSymlinkClone "½Éº¼¸¯ ¸µÅ© Å¬·ĞÀ» ¸¸µå´Â µ¥ ¿À·ù"
+    IDS_STRING_Target       "´ë»ó:"
+    IDS_STRING_MountPointTarget "¸¶¿îÆ® ÁöÁ¡ ´ë»ó:"
+    IDS_STRING_PropPageHardlinkEnum "ÇÏµå¸µÅ© ¿­°Å :"
+    IDS_STRING_PropPageEnumSiblings "ÀÚ¸Å ¿­°Å"
+    IDS_STRING_ProgressEnumerating "ÇÏµå¸µÅ© ÀÚ¸Å ¿­°ÅÁß..."
+    IDS_STRING_ProgressCanceling "Ãë¼ÒÁß..."
+    IDS_STRING_ExploreTarget "´ë»ó Å½»ö"
+    IDS_STRING_ProgressSmartMove "½º¸¶Æ® ÀÌµ¿ÀÌ ÁøÇàÁß..."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy "Å½»ö±â°¡ ½º¸¶Æ® º¹»ç %1!s!¸¦ ¸¸µé ¼ö ¾ø½À´Ï´Ù"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Å½»ö±â°¡½º¸¶Æ® ¹Ì·¯ %1!s!¸¦ ¸¸µé ¼ö ¾ø½À´Ï´Ù"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Å½»ö±â°¡ Delorean º¹»ç %1!s!¸¦ ¸¸µé ¼ö ¾ø½À´Ï´Ù"
+    IDS_STRING_ErrCreatingSmartCopy "½º¸¶Æ® º¹»ç¸¦ ¸¸µå´Â Áß ¿À·ù"
+    IDS_STRING_ErrCreatingSmartMirror "½º¸¶Æ® ¹Ì·¯¸¦ ¸¸µå´Â Áß ¿À·ù"
+    IDS_STRING_ErrCreatingDeloreanCopy "Delorean º¹»ç¸¦ ¸¸µå´Â Áß ¿À·ù"
+    IDS_STRING_BackupPrivilegesNotHeld "¹é¾÷ ÀÛ¾÷À» ÇÒ ±ÇÇÑÀÌ ¾øÀ½"
+    IDS_STRING_BackupFailed "¹é¾÷¿¡ ½ÇÆĞÇÔ"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "&ÇÏµå¸µÅ©"
+    IDS_STRING_eMenuSymbolicLink "&½Éº¼¸¯ ¸µÅ©"
+    IDS_STRING_eMenuJunction "&Á¤¼Ç"
+    IDS_STRING_eMenuHardLinkClone "ÇÏµå¸µÅ© &Å¬·Ğ"
+    IDS_STRING_eMenuSymbolicLinkClone "½Éº¼¸¯ ¸µÅ© &Å¬·Ğ"
+    IDS_STRING_eMenuReplaceJunction "&Á¤¼Ç ´ëÃ¼"
+    IDS_STRING_eMenuSmartCopy "&½º¸¶Æ® º¹»ç"
+    IDS_STRING_eMenuReplaceSymbolicLink "´ëÃ¼ &½Éº¼¸¯ ¸µÅ©"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "¸¶¿îÆ® ÁöÁ¡ &´ëÃ¼"
+    IDS_STRING_eMenuSmartMirror "½º¸¶Æ® &¹Ì·¯"
+    IDS_STRING_eMenuDeloreanCopy "&DeLorean º¹»ç"
+    IDS_STRING_eMenuCreateMountPoint "&º¼·ı ¸¶¿îÆ® ÁöÁ¡"
+    IDS_STRING_eMenuDropeAs "´ÙÀ½À¸·Î ¸¸µé±â..."
+    IDS_STRING_eMenuDropHardlink "&ÇÏµå¸µÅ© ¸¸µé±â"
+    IDS_STRING_eMenuDropHardLinkClone "&ÇÏµå¸µÅ© Å¬·Ğ ¸¸µé±â"
+    IDS_STRING_eMenuDropJunction "&Á¤¼Ç ¸¸µé±â"
+    IDS_STRING_eMenuDropReplaceJunction "&´ëÃ¼ Á¤¼Ç ¸¸µé±â"
+    IDS_STRING_eMenuDropSmartCopy "&½º¸¶Æ® º¹»ç ¸¸µé±â"
+    IDS_STRING_eMenuDropSymbolicLink "&½Éº¼¸¯ ¸µÅ© ¸¸µé±â"
+    IDS_STRING_eMenuDropReplaceSymbolicLink "&¿©±â¿¡ ´ëÃ¼ ½Éº¼¸¯ ¸µÅ© ¸¸µé±â"
+    IDS_STRING_eMenuDropReplaceMountPoint "&¿©±â¿¡ ´ëÃ¼ ¸¶¿îÆ® ÁöÁ¡ ¸¸µé±â"
+    IDS_STRING_eMenuDropSmartMirror "¿©±â¿¡ ½º¸¶Æ® &¹Ì·¯ ¸¸µé±â"
+    IDS_STRING_eMenuDropDeloreanCopy "¿©±â¿¡ &DeLorean º¹»ç ¸¸µé±â"
+    IDS_STRING_eMenuHardlink1 "&ÇÏµå¸µÅ©"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "&½Éº¼¸¯ ¸µÅ©"
+    IDS_STRING_eMenuJunction1 "&Á¤¼Ç"
+    IDS_STRING_eMenuHardLinkClone1 "ÇÏµå¸µÅ© &Å¬·Ğ"
+    IDS_STRING_eMenuSymbolicLinkClone1 "½Éº¼¸¯ ¸µÅ© &Å¬·Ğ"
+    IDS_STRING_eMenuReplaceJunction1 "&´ëÃ¼ Á¤¼Ç"
+    IDS_STRING_eMenuSmartCopy1 "&½º¸¶Æ® º¹»ç"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "´ëÃ¼ ½Éº¼¸¯ ¸µÅ©"
+    IDS_STRING_eMenuReplaceMountPoint1 "´ëÃ¼ ¸¶¿îÆ® ÁöÁ¡"
+    IDS_STRING_eMenuSmartMirror1 "½º¸¶Æ® &¹Ì·¯"
+    IDS_STRING_eMenuDeloreanCopy1 "&DeLorean º¹»ç"
+    IDS_STRING_eMenuCreateMountPoint1 "&º¼·ı ¸¶¿îÆ® ÁöÁ¡"
+    IDS_STRING_eMenuDropeAs1 "¿©±â¿¡ ¸¸µé±â..."
+    IDS_STRING_eMenuDropHardlink1 "&¿©±â¿¡ ÇÏµå¸µÅ© ¸¸µé±â"
+    IDS_STRING_eMenuDropHardLinkClone1 "&¿©±â¿¡ ÇÏµå¸µÅ© Å¬·Ğ ¸¸µé±â"
+    IDS_STRING_eMenuDropJunction1 "&¿©±â¿¡ Á¤¼Ç ¸¸µé±â"
+    IDS_STRING_eMenuDropReplaceJunction1 "&¿©±â¿¡ ´ëÃ¼ Á¤¼Ç ¸¸µé±â"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&¿©±â¿¡ ½º¸¶Æ® º¹»ç ¸¸µé±â"
+    IDS_STRING_eMenuDropSymbolicLink1 "&¿©±â¿¡ ½Éº¼¸¯ ¸µÅ© ¸¸µé±â"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 "&¿©±â¿¡ ´ëÃ¼ ½Éº¼¸¯ ¸µÅ© ¸¸µé±â"
+    IDS_STRING_eMenuDropReplaceMountPoint1 "&¿©±â¿¡ ´ëÃ¼ ¸¶¿îÆ® ÁöÁ¡ ¸¸µé±â"
+    IDS_STRING_eMenuDropSmartMirror1 "¿©±â¿¡ ½º¸¶Æ® &¹Ì·¯ ¸¸µé±â"
+    IDS_STRING_eMenuDropDeloreanCopy1 "¿©±â¿¡ &DeLorean º¹»ç ¸¸µé±â"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "ÆÄÀÏÀÌ³ª µğ·ºÅÍ¸® ¼±ÅÃ."
+    IDS_STRING_HelpText02   "¼±ÅÃÀ» ÇÏµå¸µÅ©·Î ¸¸µé±â."
+    IDS_STRING_HelpText03   "¼±ÅÃÀ» ½Éº¼¸¯ ¸µÅ©·Î ¸¸µé±â."
+    IDS_STRING_HelpText04   "¼±ÅÃµÈ µğ·ºÅÍ¸®¿¡ Á¤¼ÇÀ» ¸¸µé±â."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "¼±ÅÃµÈ µğ·ºÅÍ¸® ±¸Á¶¸¦ Àç±ÍÀûÀ¸·Î Å¬·ĞÇÏ°í, Æ÷ÇÔµÈ ÆÄÀÏÀ» À§ÇÑ ÇÏµå¸µÅ© »ı¼º."
+    IDS_STRING_HelpText06   "¼±ÅÃµÈ µğ·ºÅÍ¸® ±¸Á¶¸¦ Àç±ÍÀûÀ¸·Î Å¬·ĞÇÏ°í, Æ÷ÇÔµÈ ÆÄÀÏÀ» À§ÇÑ ½Éº¼¸¯ ¸µÅ© »ı¼º."
+    IDS_STRING_HelpText07   "¼±ÅÃµÈ Á¤¼Ç Á¦°Å."
+    IDS_STRING_HelpText08   "¿©±â¿¡ ´ÙÀ½À¸·Î ¸¸µé±â..."
+    IDS_STRING_HelpText09   "ÇöÀç ¼±ÅÃ¸µÅ© ÀÛ¾÷ Ãë¼Ò."
+    IDS_STRING_HelpText10   "ÁöÁ¤µÈ °æ·Î·Î º¼·ı ¸¶¿îÆ®."
+    IDS_STRING_HelpText11   "ÁöÁ¤µÈ °æ·Î¿¡¼­ º¼·ı ¸¶¿îÆ® ÇØÁ¦."
+    IDS_STRING_HelpText12   "¸¸µé¾îÁø Á¤¼ÇÀÇ ´ë»óÀ» ¼±ÅÃµÈ À§Ä¡·Î ´ëÃ¼."
+    IDS_STRING_HelpText13   "³»ºÎ ÇÏµå¸µÅ©/½Éº¼¸¯¸µÅ©/Á¤¼Ç ±¸Á¶¸¦ À¯ÁöÇÑÃ¤·Î µğ·ºÅÍ¸® ±¸Á¶¸¦ ´Ù¸¥ °æ·Î·Î º¹»ç."
+    IDS_STRING_HelpText14   "¸¸µé¾îÁø ½Éº¼¸¯ ¸µÅ©ÀÇ ´ë»óÀ» ¼±ÅÃµÈ À§Ä¡·Î ´ëÃ¼."
+    IDS_STRING_HelpText15   "¸¸µé¾îÁø ¸¶¿îÆ® ÁöÁ¡ÀÇ ´ë»óÀ» ¼±ÅÃµÈ À§Ä¡·Î ´ëÃ¼."
+    IDS_STRING_HelpText16   "³»ºÎ ÇÏµå¸µÅ©/½Éº¼¸¯¸µÅ©/Á¤¼Ç ±¸Á¶¸¦ À¯ÁöÇÑÃ¤·Î µğ·ºÅÍ¸® ±¸Á¶ ¹Ì·¯¸µ."
+    IDS_STRING_HelpText17   "DeLorean º¹»çÀÇ µÇÇ®ÀÌ ÇÏ³ª »ı¼º"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "¸µÅ©¼Ò½º &¼±ÅÃ"
+    IDS_STRING_eTopMenuDeleteJunction "Á¤¼Ç &Á¦°Å"
+    IDS_STRING_eTopMenuCancelLinkCreation "¸µÅ©»ı¼º &Ãë¼Ò"
+    IDS_STRING_eTopMenuHardlink "ÇÏµå¸µÅ©"
+    IDS_STRING_eTopMenuJunction "Á¤¼Ç"
+    IDS_STRING_eTopMenuSymbolicLink "½Éº¼¸¯ ¸µÅ©"
+    IDS_STRING_eTopMenuTo   " of "
+    IDS_STRING_eTopMenuOf   " of "
+    IDS_STRING_eTopMenuReference "ÂüÁ¶"
+    IDS_STRING_eTopMenuHardlinkClone "ÇÏµå¸µÅ© Å¬·Ğ"
+    IDS_STRING_eTopMenuSymbolicLinkClone "½Éº¼¸¯ ¸µÅ© Å¬·Ğ"
+    IDS_STRING_eTopMenuReferenceHelpText "ÂüÁ¶¼ö: ÇÏµå¸µÅ©µÈ ÆÄÀÏ / Á¤¼ÇÀÇ ¿øº»"
+    IDS_STRING_eTopMenuDeleteMountPoint "º¼·ı ¸¶¿îÆ® ÇØÁ¦"
+    IDS_STRING_eTopMenuMountPoint "¸¶¿îÆ® ÁöÁ¡"
+    IDS_STRING_eTopMenuSmartCopy "½º¸¶Æ® º¹»ç"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Czech resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CSY)
+#ifdef _WIN32
+LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Jednotka"
+    IDS_STRING_LanguageID   "0x0405"
+    IDS_STRING_PropPageLinkType "Typ odkazu:"
+    IDS_STRING_PropPageRefCount "Poèet referencí:"
+    IDS_STRING_ProgressCreatingSmartMirror "Vytváøení chytrého zrcadla…"
+    IDS_STRING_PropPageCaption "Vlastnosti odkazu"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Prùzkumník nemohl vytvoøit chytrou kopii %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Prùzkumník nemohl vytvoøit chytré zrcadlo %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Prùzkumník nemohl vytvoøit DeLoreanovskou kopii %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy "Nastala chyba pøi vytváøení chytré kopie"
+    IDS_STRING_ErrCreatingSmartMirror 
+                            "Nastala chyba pøi vytváøení chytrého zrcadla"
+    IDS_STRING_ErrCreatingDeloreanCopy 
+                            "Nastala chyba pøi vytváøení DeLoreanovské kopie"
+    IDS_STRING_BackupPrivilegesNotHeld 
+                            "Nemáte dostateèná oprávnìní pro spuštìní zálohování"
+    IDS_STRING_BackupFailed "Zálohování selhalo"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Pevnı odkaz"
+    IDS_STRING_Junction     "Rozcestí"
+    IDS_STRING_LinkTypeSymlink "Symbolickı odkaz"
+    IDS_STRING_ErrDestSrcCircular 
+                            " : Cílová sloka je podøízená sloka zdroje"
+    IDS_STRING_ProgressCreatingSmartCopy "Vytváøení chytré kopie…"
+    IDS_STRING_MountPoint   "Pøípojnı bod"
+    IDS_STRING_ProgressCloning "Klonování…"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Vytváøení DeLoreanovské kopie…"
+    IDS_STRING_ErrDirectoryNotEmpty " : Cílová sloka není prázdná"
+    IDS_STRING_SymbolicLinkClone "Klon symbolického odkazu"
+    IDS_STRING_HardlinkClone "Klon pevného odkazu"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": \nMaximální poèet pevnıch odkazù na soubor (1023) byl dosaen."
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Prùzkumník nemohl vytvoøit pøípojnı bod %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Prùzkumník nemohl vytvoøit pevnı odkaz %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Prùzkumník nemohl vytvoøit rozcestí %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Prùzkumník nemohl vytvoøit symbolickı odkaz %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Prùzkumník nemohl vytvoøit klon pevného odkazu %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Prùzkumník nemohl vytvoøit klon symbolického odkazu %1!s!"
+    IDS_STRING_ErrCreatingMountpoint 
+                            "Nastala chyba pøi vytváøení pøípojného bodu"
+    IDS_STRING_ErrCreatingHardlink 
+                            "Nastala chyba pøi vytváøení pevného odkazu"
+    IDS_STRING_ErrCreatingJunction "Nastala chyba pøi vytváøení rozcestí"
+    IDS_STRING_ErrCreatingSymlink 
+                            "Nastala chyba pøi vytváøení symbolického odkazu"
+    IDS_STRING_ErrCreatingHardlinkClone 
+                            "Nastala chyba pøi vytváøení klonu pevného odkazu"
+    IDS_STRING_ErrCreatingSymlinkClone 
+                            "Nastala chyba pøi vytváøení klonu symbolického odkazu"
+    IDS_STRING_Target       "Cíl:"
+    IDS_STRING_MountPointTarget "Cíl pøípojného bodu:"
+    IDS_STRING_PropPageHardlinkEnum "Seznam pevnıch odkazù:"
+    IDS_STRING_PropPageEnumSiblings "Najít pøíbuzné"
+    IDS_STRING_ProgressEnumerating "Hledání pøíbuznıch pevnıch odkazù…"
+    IDS_STRING_ProgressCanceling "Rušení…"
+    IDS_STRING_ExploreTarget "Zobrazit cíl"
+    IDS_STRING_ProgressSmartMove "Probíhá chytrı pøesun…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "&Pevnı odkaz"
+    IDS_STRING_eMenuSymbolicLink "&Symbolickı odkaz"
+    IDS_STRING_eMenuJunction "&Rozcestí"
+    IDS_STRING_eMenuHardLinkClone "&Klon pevného odkazu"
+    IDS_STRING_eMenuSymbolicLinkClone "K&lon symbolického odkazu"
+    IDS_STRING_eMenuReplaceJunction "&Nahradit rozcestí"
+    IDS_STRING_eMenuSmartCopy "&Chytrá kopie"
+    IDS_STRING_eMenuReplaceSymbolicLink "Nahradit s&ymbolickı odkaz"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "Nahradit pøípojnı &bod"
+    IDS_STRING_eMenuSmartMirror "Chytré z&rcadlo"
+    IDS_STRING_eMenuDeloreanCopy "&DeLoreanovská kopie"
+    IDS_STRING_eMenuCreateMountPoint "&Pøípojnı bod svazku"
+    IDS_STRING_eMenuDropeAs "Vloit jako…"
+    IDS_STRING_eMenuDropHardlink "&Vloit pevnı odkaz"
+    IDS_STRING_eMenuDropHardLinkClone "&Vloit klon pevného odkazu"
+    IDS_STRING_eMenuDropJunction "&Vloit rozcestí"
+    IDS_STRING_eMenuDropReplaceJunction "&Nahradit rozcestí"
+    IDS_STRING_eMenuDropSmartCopy "&Vloit chytrou kopii"
+    IDS_STRING_eMenuDropSymbolicLink "&Vloit symbolickı odkaz"
+    IDS_STRING_eMenuDropReplaceSymbolicLink "&Nahradit symbolickı odkaz"
+    IDS_STRING_eMenuDropReplaceMountPoint "&Nahradit pøípojnı bod"
+    IDS_STRING_eMenuDropSmartMirror "Vytvoøit chytré z&rcadlo"
+    IDS_STRING_eMenuDropDeloreanCopy "Vytvoøit &DeLoreanovskou kopii"
+    IDS_STRING_eMenuHardlink1 "&Pevnı odkaz"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "&Symbolickı odkaz"
+    IDS_STRING_eMenuJunction1 "&Rozcestí"
+    IDS_STRING_eMenuHardLinkClone1 "&Klon pevného odkazu"
+    IDS_STRING_eMenuSymbolicLinkClone1 "K&lon symbolického odkazu"
+    IDS_STRING_eMenuReplaceJunction1 "&Nahradit rozcestí"
+    IDS_STRING_eMenuSmartCopy1 "&Chytrá kopie"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "Nahradit symbolickı odkaz"
+    IDS_STRING_eMenuReplaceMountPoint1 "Nahradit pøípojnı &bod"
+    IDS_STRING_eMenuSmartMirror1 "Chytré z&rcadlo"
+    IDS_STRING_eMenuDeloreanCopy1 "&DeLoreanovská kopie"
+    IDS_STRING_eMenuCreateMountPoint1 "Pøípojnı &bod svazku"
+    IDS_STRING_eMenuDropeAs1 "Vloit sem…"
+    IDS_STRING_eMenuDropHardlink1 "&Vytvoøit zde pevnı odkaz"
+    IDS_STRING_eMenuDropHardLinkClone1 "&Vytvoøit zde klon pevného odkazu"
+    IDS_STRING_eMenuDropJunction1 "&Vytvoøit zde rozcestí"
+    IDS_STRING_eMenuDropReplaceJunction1 "&Nahradit zde rozcestí"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Vytvoøit zde chytrou kopii"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Vytvoøit zde symbolickı odkaz"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 "&Nahradit zde symbolickı odkaz"
+    IDS_STRING_eMenuDropReplaceMountPoint1 "&Nahradit zde pøípojnı bod"
+    IDS_STRING_eMenuDropSmartMirror1 "Vytvoøit zde chytré &zrcadlo"
+    IDS_STRING_eMenuDropDeloreanCopy1 "Vytvoøit zde &DeLoreanovskou kopii"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Oznaèí soubor nebo sloku pro práci s odkazy."
+    IDS_STRING_HelpText02   "Vloí oznaèenou poloku jako pevnı odkaz."
+    IDS_STRING_HelpText03   "Vloí oznaèenou poloku jako symbolickı odkaz."
+    IDS_STRING_HelpText04   "Vytvoøí rozcestí k oznaèené sloce."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Rekurzivnì naklonuje strukturu oznaèené sloky a vytvoøí pevné odkazy souborùm v ní obsaené."
+    IDS_STRING_HelpText06   "Rekurzivnì naklonuje strukturu oznaèené sloky a vytvoøí symbolické odkazy souborùm v ní obsaené."
+    IDS_STRING_HelpText07   "Odstraní vybrané rozcestí."
+    IDS_STRING_HelpText08   "Vloit sem jako…"
+    IDS_STRING_HelpText09   "Zruší oznaèení poloky pro práci s odkazy."
+    IDS_STRING_HelpText10   "Pøipojí svazek do cílové sloky."
+    IDS_STRING_HelpText11   "Odpojí svazek z cílové sloky."
+    IDS_STRING_HelpText12   "Nahradí cíl rozcestí oznaèenou slokou."
+    IDS_STRING_HelpText13   "Zkopíruje strukturu sloky do jiného umístìní se zachováním vnitøní struktury pevnıch/symbolickıch odkazù a rozcestí."
+    IDS_STRING_HelpText14   "Nahradí cíl symbolického odkazu oznaèenou polokou."
+    IDS_STRING_HelpText15   "Nahradí cíl pøípojného bodu oznaèenou slokou."
+    IDS_STRING_HelpText16   "Zrcadlí strukturu sloky se zachováním vnitøní struktury pevnıch/symbolickıch odkazù a rozcestí."
+    IDS_STRING_HelpText17   "Vytvoøí jednu iteraci DeLoreanovské kopie."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "Oznaèit jako &zdroj odkazu"
+    IDS_STRING_eTopMenuDeleteJunction "Odstranit &rozcestí"
+    IDS_STRING_eTopMenuCancelLinkCreation "Zrušit tvorbu &odkazu"
+    IDS_STRING_eTopMenuHardlink "Pevnı odkaz"
+    IDS_STRING_eTopMenuJunction "Rozcestí"
+    IDS_STRING_eTopMenuSymbolicLink "Symbolickı odkaz"
+    IDS_STRING_eTopMenuTo   " do "
+    IDS_STRING_eTopMenuOf   " z "
+    IDS_STRING_eTopMenuReference "Reference"
+    IDS_STRING_eTopMenuHardlinkClone "Klon pevného odkazu"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Klon symbolického obrazu"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "Poèet referencí: pevnıch odkazù / zdrojù rozcestí"
+    IDS_STRING_eTopMenuDeleteMountPoint "Odpojit svazek"
+    IDS_STRING_eTopMenuMountPoint "Pøípojnı bod"
+    IDS_STRING_eTopMenuSmartCopy "Chytrá kopie"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Czech resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Polish resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PLK)
+#ifdef _WIN32
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Dysk"
+    IDS_STRING_LanguageID   "0x0415"
+    IDS_STRING_PropPageLinkType "Rodzaj ³¹cza:"
+    IDS_STRING_PropPageRefCount "Liczba odwo³añ:"
+    IDS_STRING_ProgressCreatingSmartMirror "Tworzê poprawny duplikat…"
+    IDS_STRING_PropPageCaption "W³aœciwoœci ³¹cza"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Eksplorator nie mo¿e utworzyæ poprawnej kopii %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Eksplorator nie mo¿e utworzyæ poprawnego duplikatu %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Eksplorator nie mo¿e utworzyæ kopii deLoreañskiej %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy "B³¹d przy tworzeniu poprawnej kopii"
+    IDS_STRING_ErrCreatingSmartMirror 
+                            "B³¹d przy tworzeniu poprawnego duplikatu"
+    IDS_STRING_ErrCreatingDeloreanCopy 
+                            "B³¹d przy tworzeniu kopii deLoreañskiej"
+    IDS_STRING_BackupPrivilegesNotHeld "Brak wystarczaj¹cych uprawnieñ"
+    IDS_STRING_BackupFailed "Tworzenie kopii nieudane"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Dowi¹zanie twarde"
+    IDS_STRING_Junction     "Powi¹zanie"
+    IDS_STRING_LinkTypeSymlink "Dowi¹zanie symboliczne"
+    IDS_STRING_ErrDestSrcCircular 
+                            " : Katalog docelowy stanowi podkatalog Ÿród³a"
+    IDS_STRING_ProgressCreatingSmartCopy "Tworzê poprawn¹ kopiê…"
+    IDS_STRING_MountPoint   "Punkt montowania"
+    IDS_STRING_ProgressCloning "Klonujê…"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Tworzê kopiê deloreañsk¹…"
+    IDS_STRING_ErrDirectoryNotEmpty " : Katalog docelowy nie jest pusty"
+    IDS_STRING_SymbolicLinkClone "Klonowanie z dowi¹zaniami symbolicznymi"
+    IDS_STRING_HardlinkClone "Klonowanie z dowi¹zaniami twardymi"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": Zosta³a osi¹gniêta maksymalna liczba dowi¹zañ twardych dla pliku (1023)."
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Eksplorator nie mo¿e utworzyæ punktu montowania %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Eksplorator nie mo¿e utworzyæ dowi¹zania twardego %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Eksplorator nie mo¿e utworzyæ powi¹zania %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Eksplorator nie mo¿e utworzyæ dowi¹zania symbolicznego %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Eksplorator nie mo¿e utworzyæ klonu dowi¹zania twardego %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Eksplorator nie mo¿e utworzyæ klonu dowi¹zania symbolicznego %1!s!"
+    IDS_STRING_ErrCreatingMountpoint "B³¹d przy tworzeniu punktu montowania"
+    IDS_STRING_ErrCreatingHardlink "B³¹d przy tworzeniu dowi¹zania twardego"
+    IDS_STRING_ErrCreatingJunction "B³¹d przy tworzeniu powi¹zania"
+    IDS_STRING_ErrCreatingSymlink 
+                            "B³¹d przy tworzeniu dowi¹zania symbolicznego"
+    IDS_STRING_ErrCreatingHardlinkClone 
+                            "B³¹d przy tworzeniu klonu dowi¹zania twardego"
+    IDS_STRING_ErrCreatingSymlinkClone 
+                            "B³¹d przy tworzeniu klonu dowi¹zania symbolicznego"
+    IDS_STRING_Target       "Cel:"
+    IDS_STRING_MountPointTarget "Cel montowania:"
+    IDS_STRING_PropPageHardlinkEnum "Wyliczenie dowi¹zañ twardych :"
+    IDS_STRING_PropPageEnumSiblings "Wylicz duplikaty"
+    IDS_STRING_ProgressEnumerating "Wyliczam duplikaty dowi¹zañ twardych…"
+    IDS_STRING_ProgressCanceling "Rezygnacja…"
+    IDS_STRING_ExploreTarget "Eksploruj cel"
+    IDS_STRING_ProgressSmartMove "Poprawne przenosiny w toku…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "Dowi¹zanie &twarde"
+    IDS_STRING_eMenuSymbolicLink "Dowi¹zanie &symboliczne"
+    IDS_STRING_eMenuJunction "&Powi¹zanie"
+    IDS_STRING_eMenuHardLinkClone "&Klonuj dowi¹zania twarde"
+    IDS_STRING_eMenuSymbolicLinkClone "K&lonuj dowi¹zania symboliczne"
+    IDS_STRING_eMenuReplaceJunction "&Zamiana powi¹zania"
+    IDS_STRING_eMenuSmartCopy "&Poprawna kopia"
+    IDS_STRING_eMenuReplaceSymbolicLink "Zamiana dowi¹zania s&ymbolicznego"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "Zamiana p&unktu montowania"
+    IDS_STRING_eMenuSmartMirror "Poprawny dupli&at"
+    IDS_STRING_eMenuDeloreanCopy "Kopia deLo&reanska"
+    IDS_STRING_eMenuCreateMountPoint "Utwórz punkt montowania &woluminu"
+    IDS_STRING_eMenuDropeAs "Utwórz ³¹cze…"
+    IDS_STRING_eMenuDropHardlink "Utwórz dowi¹zanie &twarde"
+    IDS_STRING_eMenuDropHardLinkClone "Utwórz &klony dowi¹zañ twardych"
+    IDS_STRING_eMenuDropJunction "Utwórz &powi¹zanie"
+    IDS_STRING_eMenuDropReplaceJunction "&Zamieñ powi¹zanie"
+    IDS_STRING_eMenuDropSmartCopy "P&oprawna kopia"
+    IDS_STRING_eMenuDropSymbolicLink "Utwórz dowi¹zanie &symboliczne"
+    IDS_STRING_eMenuDropReplaceSymbolicLink 
+                            "Zamiana dow&iazania symbolicznego tutaj"
+    IDS_STRING_eMenuDropReplaceMountPoint "Zamiana p&unktu montowania tutaj"
+    IDS_STRING_eMenuDropSmartMirror "Poprawny duplik&at tutaj"
+    IDS_STRING_eMenuDropDeloreanCopy "Kopia deLo&reanska tutaj"
+    IDS_STRING_eMenuHardlink1 "Dowi¹zanie &twarde"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "Dowi¹zanie &symboliczne"
+    IDS_STRING_eMenuJunction1 "&Powi¹zanie"
+    IDS_STRING_eMenuHardLinkClone1 "&Klonuj dowi¹zania twarde"
+    IDS_STRING_eMenuSymbolicLinkClone1 "K&lonuj dowi¹zania symboliczne"
+    IDS_STRING_eMenuReplaceJunction1 "&Zamiana powi¹zania"
+    IDS_STRING_eMenuSmartCopy1 "P&oprawna kopia"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "Zamiana dowi¹zania s&ymbolicznego"
+    IDS_STRING_eMenuReplaceMountPoint1 "Zamiana p&unktu montowania"
+    IDS_STRING_eMenuSmartMirror1 "Poprawny dupli&at"
+    IDS_STRING_eMenuDeloreanCopy1 "Kopia deLo&reanska"
+    IDS_STRING_eMenuCreateMountPoint1 
+                            "Utwórz tutaj punkt montowania &woluminu"
+    IDS_STRING_eMenuDropeAs1 "Utwórz tutaj ³¹cze…"
+    IDS_STRING_eMenuDropHardlink1 "Utwórz tutaj dowi¹zanie tw&arde"
+    IDS_STRING_eMenuDropHardLinkClone1 "Utwórz tutaj klo&ny dowi¹zañ twardych"
+    IDS_STRING_eMenuDropJunction1 "Utwórz tutaj &powi¹zanie"
+    IDS_STRING_eMenuDropReplaceJunction1 "&Zamiana powi¹zania tutaj"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "P&oprawna kopia tutaj"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Utwórz tutaj dowi¹zanie symboliczne"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 
+                            "Zamiana dow&iazania symbolicznego tutaj"
+    IDS_STRING_eMenuDropReplaceMountPoint1 "Zamiana p&unktu montowania tutaj"
+    IDS_STRING_eMenuDropSmartMirror1 "Poprawny duplik&at tutaj"
+    IDS_STRING_eMenuDropDeloreanCopy1 "Kopia deLo&reanska tutaj"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "U¿ywa pliku lub katalogu."
+    IDS_STRING_HelpText02   "Tworzy dowi¹zanie twarde do wybranego obiektu."
+    IDS_STRING_HelpText03   "Tworzy dowi¹zanie symboliczne do wybranego obiektu."
+    IDS_STRING_HelpText04   "Tworzy powi¹zanie z wybranym katalogiem."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Klonuje rekursywnie strukturê wybranego katalogu i wype³nia j¹ dowi¹zaniami twardymi do plików w odpowiednich katalogach Ÿród³owych."
+    IDS_STRING_HelpText06   "Klonuje rekursywnie strukturê wybranego katalogu i wype³nia j¹ dowi¹zaniami symbolicznymi do plików w odpowiednich katalogach Ÿród³owych."
+    IDS_STRING_HelpText07   "Usuwa wybrane powi¹zanie z katalogiem."
+    IDS_STRING_HelpText08   "Utwórz ³¹cze…"
+    IDS_STRING_HelpText09   "Odwo³uje bie¿¹c¹ operacjê tworzenia ³¹cza."
+    IDS_STRING_HelpText10   "Montuje wolumin w wybranym miejscu."
+    IDS_STRING_HelpText11   "Odmontowuje wolumin w wybranym miejscu."
+    IDS_STRING_HelpText12   "Zamienia cel wybranego powi¹zania na wybrany katalog."
+    IDS_STRING_HelpText13   "Kopiuje strukturê katalogów w wybranym miejscu zachowuj¹c istniej¹c¹ strukturê wewnêtrznych dowi¹zañ twardych."
+    IDS_STRING_HelpText14   "Zamienia cel dowi¹zania symbolicznego na wybrane miejsce."
+    IDS_STRING_HelpText15   "Zamienia cel punkru montowania na wybrane miejsce."
+    IDS_STRING_HelpText16   "Duplikuje strukture katalogów w wybranym miejscu zachowujac istniejacy uklad wewnetrznych dowiazan i powiazan."
+    IDS_STRING_HelpText17   "Przeprowadza cykl tworzenia kopii zapasowej w wybranym katalogu"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "U¿y&j jako Ÿród³a ³¹cza"
+    IDS_STRING_eTopMenuDeleteJunction "&Usuñ powi¹zanie"
+    IDS_STRING_eTopMenuCancelLinkCreation "Zrezy&gnuj z tworzenia ³¹cza"
+    IDS_STRING_eTopMenuHardlink "Dowi¹zanie twarde"
+    IDS_STRING_eTopMenuJunction "Powi¹zanie"
+    IDS_STRING_eTopMenuSymbolicLink "Dowi¹zanie symboliczne"
+    IDS_STRING_eTopMenuTo   " do "
+    IDS_STRING_eTopMenuOf   " do "
+    IDS_STRING_eTopMenuReference "Odwo³anie"
+    IDS_STRING_eTopMenuHardlinkClone "Klon dowi¹zania twardego"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Klon dowi¹zania symbolicznego"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "Liczba odwo³añ: pliki dowi¹zane twardo / powi¹zane katalogi"
+    IDS_STRING_eTopMenuDeleteMountPoint "Odmontuj wolumin"
+    IDS_STRING_eTopMenuMountPoint "Punkt montowania"
+    IDS_STRING_eTopMenuSmartCopy "Poprawna kopia"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Polish resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Slovak resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SKY)
+#ifdef _WIN32
+LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Jednotka"
+    IDS_STRING_LanguageID   "0x041b"
+    IDS_STRING_PropPageLinkType "Typ odkazu:"
+    IDS_STRING_PropPageRefCount "Poèet referencií:"
+    IDS_STRING_ProgressCreatingSmartMirror 
+                            "Vytvára sa inteligentné zrkadlenie…"
+    IDS_STRING_PropPageCaption "Vlastnosti odkazu"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Prieskumník nemôe vytvori inteligentnú kópiu %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Prieskumník nemôe vytvori inteligentné zrkadlenie %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Prieskumník nemôe vytvori DeLoreanskú kópiu %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy "Chyba pri vytváraní inteligentnej kópie"
+    IDS_STRING_ErrCreatingSmartMirror 
+                            "Chyba pri vytváraní inteligentného zrkadlenia"
+    IDS_STRING_ErrCreatingDeloreanCopy 
+                            "Chyba pri vytváraní DeLoreanskej kópie"
+    IDS_STRING_BackupPrivilegesNotHeld "Nemáte oprávnenie pre operáciu zálohy"
+    IDS_STRING_BackupFailed "Záloha zlyhala"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Pevnı odkaz"
+    IDS_STRING_Junction     "Prepojenie"
+    IDS_STRING_LinkTypeSymlink "Symbolickı odkaz"
+    IDS_STRING_ErrDestSrcCircular 
+                            " : Cie¾ovı prieèinok je podprieèinok zdrojového prieèinku"
+    IDS_STRING_ProgressCreatingSmartCopy "Vytvára sa inteligentná kópia…"
+    IDS_STRING_MountPoint   "Bod pripojenia"
+    IDS_STRING_ProgressCloning "Klonuje sa…"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Vytvára sa DeLoreanská kópia…"
+    IDS_STRING_ErrDirectoryNotEmpty " : Cie¾ovı prieèinok nie je prázdny"
+    IDS_STRING_SymbolicLinkClone "Klonova so symbolickımi odkazmi"
+    IDS_STRING_HardlinkClone "Klonova s pevnımi odkazmi"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": \nBol dosiahnutı limit pre maximálny poèet pevnıch odkazov na súbor (1023)."
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Prieskumník nemôe vytvori bod pripojenia %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Prieskumník nemôe vytvori pevnı odkaz %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Prieskumník nemôe vytvori prepojenie %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Prieskumník nemôe vytvori symbolickı odkaz %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Prieskumník nemôe vytvori klon pevného odkazu %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Prieskumník nemôe vytvori klon symbolického odkazu %1!s!"
+    IDS_STRING_ErrCreatingMountpoint "Chyba pri vytváraní bodu pripojenia"
+    IDS_STRING_ErrCreatingHardlink "Chyba pri vytváraní pevného odkazu"
+    IDS_STRING_ErrCreatingJunction "Chyba pri vytváraní prepojenia"
+    IDS_STRING_ErrCreatingSymlink "Chyba pri vytváraní symbolického odkazu"
+    IDS_STRING_ErrCreatingHardlinkClone 
+                            "Chyba pri vytváraní klonu pevného odkazu"
+    IDS_STRING_ErrCreatingSymlinkClone 
+                            "Chyba pri vytváraní klonu symbolického odkazu"
+    IDS_STRING_Target       "Cie¾:"
+    IDS_STRING_MountPointTarget "Cie¾ bodu pripojenia:"
+    IDS_STRING_PropPageHardlinkEnum "Zoznam pevnıch odkazov :"
+    IDS_STRING_PropPageEnumSiblings "Nájs príbuzné"
+    IDS_STRING_ProgressEnumerating "Vyh¾adávajú sa príbuzné pevné odkazy…"
+    IDS_STRING_ProgressCanceling "Ruší sa…"
+    IDS_STRING_ExploreTarget "Preskúma cie¾"
+    IDS_STRING_ProgressSmartMove "Prebieha inteligentnı presun…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "&Pevnı odkaz"
+    IDS_STRING_eMenuSymbolicLink "&Symbolickı odkaz"
+    IDS_STRING_eMenuJunction "P&repojenie"
+    IDS_STRING_eMenuHardLinkClone "&Klonova s pevnımi odkazmi"
+    IDS_STRING_eMenuSymbolicLinkClone "K&lonova so symbolickımi odkazmi"
+    IDS_STRING_eMenuReplaceJunction "&Nahradi prepojenie"
+    IDS_STRING_eMenuSmartCopy "&Inteligentná kópia"
+    IDS_STRING_eMenuReplaceSymbolicLink "Nahradi s&ymbolickı odkaz"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "Nahradi &bod pripojenia"
+    IDS_STRING_eMenuSmartMirror "&Inteligentné zrkadlenie"
+    IDS_STRING_eMenuDeloreanCopy "&DeLoreanská kópia"
+    IDS_STRING_eMenuCreateMountPoint "Bod pripojenia &zväzku"
+    IDS_STRING_eMenuDropeAs "Prilepi ako…"
+    IDS_STRING_eMenuDropHardlink "&Prilepi pevnı odkaz"
+    IDS_STRING_eMenuDropHardLinkClone "&Prilepi klonovanie s pevnımi odkazmi"
+    IDS_STRING_eMenuDropJunction "&Prilepi prepojenie"
+    IDS_STRING_eMenuDropReplaceJunction "&Nahradi prepojenie"
+    IDS_STRING_eMenuDropSmartCopy "&Prilepi inteligentnú kópiu"
+    IDS_STRING_eMenuDropSymbolicLink "&Prilepi symbolickı odkaz"
+    IDS_STRING_eMenuDropReplaceSymbolicLink "&Nahradi symbolickı odkaz"
+    IDS_STRING_eMenuDropReplaceMountPoint "&Nahradi bod pripojenia"
+    IDS_STRING_eMenuDropSmartMirror "Vytvori &inteligentné zrkadlenie"
+    IDS_STRING_eMenuDropDeloreanCopy "Vytvori &DeLoreanskú kópiu"
+    IDS_STRING_eMenuHardlink1 "P&evnı odkaz"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "&Symbolickı odkaz"
+    IDS_STRING_eMenuJunction1 "&Prepojenie"
+    IDS_STRING_eMenuHardLinkClone1 "&Klonova s pevnımi odkazmi"
+    IDS_STRING_eMenuSymbolicLinkClone1 "K&lonova so symbolickımi odkazmi"
+    IDS_STRING_eMenuReplaceJunction1 "&Nahradi prepojenie"
+    IDS_STRING_eMenuSmartCopy1 "&Inteligentná kópia"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "Nahradi symbolickı odkaz"
+    IDS_STRING_eMenuReplaceMountPoint1 "Nahradi bod pripojenia"
+    IDS_STRING_eMenuSmartMirror1 "&Inteligentné zrkadlenie"
+    IDS_STRING_eMenuDeloreanCopy1 "&Deloreanská kópia"
+    IDS_STRING_eMenuCreateMountPoint1 "&Bod pripojenia zväzku"
+    IDS_STRING_eMenuDropeAs1 "Prilepi…"
+    IDS_STRING_eMenuDropHardlink1 "&Vytvori pevnı odkaz"
+    IDS_STRING_eMenuDropHardLinkClone1 
+                            "&Vytvori klonovanie s pevnımi odkazmi"
+    IDS_STRING_eMenuDropJunction1 "&Vytvor prepojenie"
+    IDS_STRING_eMenuDropReplaceJunction1 "&Nahradi prepojenie"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Vytvori inteligentnú kópiu"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Vytvori symbolickı odkaz"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 "&Nahradi symbolickı odkaz"
+    IDS_STRING_eMenuDropReplaceMountPoint1 "&Nahradi bod pripojenia"
+    IDS_STRING_eMenuDropSmartMirror1 "Vytvori &inteligentné zrkadlenie"
+    IDS_STRING_eMenuDropDeloreanCopy1 "Vytvori &DeLoreanskú kópiu"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Vyberie súbor alebo prieèinok pre prácu s odkazmi."
+    IDS_STRING_HelpText02   "Prilepí vıber ako pevnı odkaz."
+    IDS_STRING_HelpText03   "Prilepí vıber ako symbolickı odkaz."
+    IDS_STRING_HelpText04   "Vytvorí prepojenie k oznaèenému prieèinku."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Rekurzívne naklonuje štruktúru vybratého prieèinku a vytvorí pevné odkazy na súbory, ktoré obsahuje."
+    IDS_STRING_HelpText06   "Rekurzívne naklonuje štruktúru vybratého prieèinku a vytvorí symbolické odkazy na súbory, ktoré obsahuje."
+    IDS_STRING_HelpText07   "Odstrány vybraté prepojenie."
+    IDS_STRING_HelpText08   "Prilepi ako…"
+    IDS_STRING_HelpText09   "Zruší aktuálny vıber pre prácu s odkazmi."
+    IDS_STRING_HelpText10   "Pripojí zväzok do cie¾ového prieèinku."
+    IDS_STRING_HelpText11   "Odpojí zväzok z cie¾ového prieèinku."
+    IDS_STRING_HelpText12   "Nahradí cie¾ prepojenia vybratım prieèinkom."
+    IDS_STRING_HelpText13   "Skopíruje štruktúru prieèinkov do iného umiestnenia so zachovaním vnútornej štruktúry pevnıch/symbolickıch odkazov a prepojení."
+    IDS_STRING_HelpText14   "Nahradí cie¾ symbolického odkazu vybratou polokou."
+    IDS_STRING_HelpText15   "Nahradí cie¾ bodu pripojenia vybratım prieèinkom."
+    IDS_STRING_HelpText16   "Zrkadlí štruktúru prieèinka so zachovaním vnútornej štruktúry pevnıch/symbolickıch odkazov a prepojení."
+    IDS_STRING_HelpText17   "Vytvorí jednu iteráciu DeLoreanskej kópie."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "Vybra &zdroj odkazu"
+    IDS_STRING_eTopMenuDeleteJunction "Odstráni &prepojenie"
+    IDS_STRING_eTopMenuCancelLinkCreation "Zruši &tvorbu odkazu"
+    IDS_STRING_eTopMenuHardlink "Pevnı odkaz"
+    IDS_STRING_eTopMenuJunction "Prepojenie"
+    IDS_STRING_eTopMenuSymbolicLink "Symbolickı odkaz"
+    IDS_STRING_eTopMenuTo   " na "
+    IDS_STRING_eTopMenuOf   " z "
+    IDS_STRING_eTopMenuReference "Referencia"
+    IDS_STRING_eTopMenuHardlinkClone "Klonova s pevnımi odkazmi"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Klonova so symbolickımi odkazmi"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "Poèet referencií: pevnıch odkazov / zdrojov prepojenia"
+    IDS_STRING_eTopMenuDeleteMountPoint "Odpoji zväzok"
+    IDS_STRING_eTopMenuMountPoint "Bod pripojenia"
+    IDS_STRING_eTopMenuSmartCopy "Inteligentné kopírovanie"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Slovak resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Äèñê"
+    IDS_STRING_LanguageID   "0x0419"
+    IDS_STRING_PropPageLinkType "Òèï ññûëêè:"
+    IDS_STRING_PropPageRefCount "Ñ÷åò÷èê ññûëîê:"
+    IDS_STRING_ProgressCreatingSmartMirror "Ñîçäàíèå óìíîãî Smart çåğêàëà…"
+    IDS_STRING_PropPageCaption "Ñâîéñòâà ññûëêè"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Ïğîâîäíèê íå ìîæåò ñîçäàòü óìíóş Smart êîïèş %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Ïğîâîäíèê íå ìîæåò ñîçäàòü óìíîå Smart çåğêàëî %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Ïğîâîäíèê íå ìîæåò ñîçäàòü Delorean êîïèş %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy "Îøèáêà ñîçäàíèÿ óìíîé Smart êîïèè"
+    IDS_STRING_ErrCreatingSmartMirror "Îøèáêà ñîçäàíèÿ óìíîãî Smart çåğêàëà"
+    IDS_STRING_ErrCreatingDeloreanCopy "Îøèáêà ñîçäàíèÿ Delorean êîïèè"
+    IDS_STRING_BackupPrivilegesNotHeld 
+                            "Íåäîñòàòî÷íî ïğàâ äëÿ âûïîëíåíèÿ ğåçåğâíîãî êîïèğîâàíèÿ"
+    IDS_STRING_BackupFailed "Îøèáêà âûïîëíåíèÿ ğåçåâíîãî êîïèğîâàíèÿ"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Æåñòêàÿ ññûëêà"
+    IDS_STRING_Junction     "Junction ñâÿçü"
+    IDS_STRING_LinkTypeSymlink "Ñèìâîëè÷åñêàÿ ññûëêà"
+    IDS_STRING_ErrDestSrcCircular 
+                            " : Ïàïêà íàçíà÷åíèÿ ÿâëÿåòñÿ ïîäïàïêîé èñòî÷íèêà"
+    IDS_STRING_ProgressCreatingSmartCopy "Ñîçäàíèå óìíîé Smart êîïèè…"
+    IDS_STRING_MountPoint   "Òî÷êà ìîíòèğîâàíèÿ"
+    IDS_STRING_ProgressCloning "Êëîíèğîâàíèå…"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Ñîçäàíèå DeLorean êîïèè…"
+    IDS_STRING_ErrDirectoryNotEmpty " : Ïàïêà íàçíà÷åíèÿ íå ïóñòà"
+    IDS_STRING_SymbolicLinkClone "Êëîí ñèìâîëè÷åñêîé ññûëêè"
+    IDS_STRING_HardlinkClone "Êëîí æåñòêîé ññûëêè"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": \nÄîñòèãíóòî ìàêñèìàëüíîå ÷èñëî æåñòêèõ ññûëîê íà îäèí ôàéë (1023)."
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Ïğîâîäíèê íå ìîæåò ñîçäàòü òî÷êó ìîíòèğîâàíèÿ %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Ïğîâîäíèê íå ìîæåò ñîçäàòü æåñòêóş ññûëêó %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Ïğîâîäíèê íå ìîæåò ñîçäàòü Junction ñâÿçü %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Ïğîâîäíèê íå ìîæåò ñîçäàòü ñèìâîëè÷åñêóş ññûëêó %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Ïğîâîäíèê íå ìîæåò ñîçäàòü êëîí æåñòêîé ññûëêè %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Ïğîâîäíèê íå ìîæåò ñîçäàòü êëîí ñèìâîëè÷åñêîé ññûëêè %1!s!"
+    IDS_STRING_ErrCreatingMountpoint "Îøèáêà ïğè ñîçäàíèè òî÷êè ìîíòèğîâàíèÿ"
+    IDS_STRING_ErrCreatingHardlink "Îøèáêà ïğè ñîçäàíèè æåñòêîé ññûëêè"
+    IDS_STRING_ErrCreatingJunction "Îøèáêà ïğè ñîçäàíèè Junction ñâÿçè"
+    IDS_STRING_ErrCreatingSymlink "Îøèáêà ïğè ñîçäàíèè ñèìâîëè÷åñêîé ññûëêè"
+    IDS_STRING_ErrCreatingHardlinkClone 
+                            "Îøèáêà ïğè ñîçäàíèè êëîíà æåñòêîé ññûëêè"
+    IDS_STRING_ErrCreatingSymlinkClone 
+                            "Îøèáêà ïğè ñîçäàíèè êëîíà ñèìâîëè÷åñêîé ññûëêè"
+    IDS_STRING_Target       "Öåëü:"
+    IDS_STRING_MountPointTarget "Àäğåñ òî÷êè:"
+    IDS_STRING_PropPageHardlinkEnum "Ïîäñ÷åò æåñòêèõ ññûëîê:"
+    IDS_STRING_PropPageEnumSiblings "Ïîäñ÷èòàòü ıëåìåíòû"
+    IDS_STRING_ProgressEnumerating 
+                            "Ïîäñ÷åò ğîäñòâåííûõ ıëåìåíòîâ æåñòêèõ ññûëîê…"
+    IDS_STRING_ProgressCanceling "Îòìåíà…"
+    IDS_STRING_ExploreTarget "Ïåğåéòè ê öåëè"
+    IDS_STRING_ProgressSmartMove "Âûïîëíÿåòñÿ óìíîå Smart ïåğåìåùåíèå…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "&Æåñòêóş ññûëêó"
+    IDS_STRING_eMenuSymbolicLink "&Ñèìâîëè÷åñêóş ññûëêó"
+    IDS_STRING_eMenuJunction "&Junction ñâÿçü"
+    IDS_STRING_eMenuHardLinkClone "&Êëîí æåñòêîé ññûëêè"
+    IDS_STRING_eMenuSymbolicLinkClone "Ê&ëîí ñèìâîëè÷åñêîé ññûëêè"
+    IDS_STRING_eMenuReplaceJunction "&Çàìåíó Junction ñâÿçè"
+    IDS_STRING_eMenuSmartCopy "&Óìíóş Smart êîïèş"
+    IDS_STRING_eMenuReplaceSymbolicLink "Çàìåíó ñèìâîëè÷åñêîé ññûëêè"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "Çàìåíó òî÷êè ìîíòèğîâàíèÿ"
+    IDS_STRING_eMenuSmartMirror "Óìíîå Smart çåğêàëî"
+    IDS_STRING_eMenuDeloreanCopy "DeLorean êîïèş"
+    IDS_STRING_eMenuCreateMountPoint "Òî÷êó ìîíòèğîâàíèÿ &òîìà"
+    IDS_STRING_eMenuDropeAs "Ïîìåñòèòü êàê…"
+    IDS_STRING_eMenuDropHardlink "&Ïîìåñòèòü æåñòêóş ññûëêó"
+    IDS_STRING_eMenuDropHardLinkClone "&Ïîìåñòèòü êëîí æåñòêîé ññûëêè"
+    IDS_STRING_eMenuDropJunction "&Ïîìåñòèòü Junction ñâÿçü"
+    IDS_STRING_eMenuDropReplaceJunction "&Ïîìåñòèòü çàìåíó Junction ñâÿçè"
+    IDS_STRING_eMenuDropSmartCopy "&Ïîìåñòèòü óìíóş Smart êîïèş"
+    IDS_STRING_eMenuDropSymbolicLink "&Ïîìåñòèòü ñèìâîëè÷åñêóş ññûëêó"
+    IDS_STRING_eMenuDropReplaceSymbolicLink 
+                            "Çàìåíèòü çäåñü ñèìâîëè÷åñêóş ññûëêó"
+    IDS_STRING_eMenuDropReplaceMountPoint "Çàìåíèòü çäåñü òî÷êó ìîíòèğîâàíèÿ"
+    IDS_STRING_eMenuDropSmartMirror "Ñîçäàòü óìíîå Smart çåğêàëî"
+    IDS_STRING_eMenuDropDeloreanCopy "Ñîçäàòü DeLorean êîïèş"
+    IDS_STRING_eMenuHardlink1 "&Æåñòêàÿ ññûëêà"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "&Ñèìâîëè÷åñêàÿ ññûëêà"
+    IDS_STRING_eMenuJunction1 "&Junction ñâÿçü"
+    IDS_STRING_eMenuHardLinkClone1 "&Êëîí æåñòêîé ññûëêè"
+    IDS_STRING_eMenuSymbolicLinkClone1 "Ê&ëîí ñèìâîëè÷åñêîé ññûëêè"
+    IDS_STRING_eMenuReplaceJunction1 "&Çàìåíèòü Junction ñâÿçü"
+    IDS_STRING_eMenuSmartCopy1 "&Óìíóş Smart êîïèş"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "Çàìåíèòü ñèìâîëè÷åñêóş ññûëêó"
+    IDS_STRING_eMenuReplaceMountPoint1 "Çàìåíèòü òî÷êó ìîíòèğîâàíèÿ"
+    IDS_STRING_eMenuSmartMirror1 "Óìíîå Smart çåğêàëî"
+    IDS_STRING_eMenuDeloreanCopy1 "DeLorean êîïèş"
+    IDS_STRING_eMenuCreateMountPoint1 "&Òî÷êó ìîíòèğîâàíèÿ"
+    IDS_STRING_eMenuDropeAs1 "Ïîìåñòèòü çäåñü…"
+    IDS_STRING_eMenuDropHardlink1 "&Ñîçäàòü çäåñü æåñòêóş ññûëêó"
+    IDS_STRING_eMenuDropHardLinkClone1 "&Ñîçäàòü çäåñü êëîí æåñòêîé ññûëêè"
+    IDS_STRING_eMenuDropJunction1 "&Ñîçäàòü çäåñü Junction ñâÿçü"
+    IDS_STRING_eMenuDropReplaceJunction1 "&Çàìåíèòü çäåñü Junction ñâÿçü"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Ñîçäàòü çäåñü óìíóş Smart êîïèş"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Ñîçäàòü çäåñü ñèìâîëè÷åñêóş ññûëêó"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 
+                            "Çàìåíèòü çäåñü ñèìâîëè÷åñêóş ññûëêó"
+    IDS_STRING_eMenuDropReplaceMountPoint1 "Çàìåíèòü çäåñü òî÷êó ìîíòèğîâàíèÿ"
+    IDS_STRING_eMenuDropSmartMirror1 "Ñîçäàòü çäåñü óìíîå Smart çåğêàëî"
+    IDS_STRING_eMenuDropDeloreanCopy1 "Ñîçäàòü çäåñü DeLorean êîïèş"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Çàïîìíèòü ïóòü ôàéëà èëè êàòàëîãà."
+    IDS_STRING_HelpText02   "Ïîìåñòèòü âûáğàííîå êàê æåñòêóş ññûëêó."
+    IDS_STRING_HelpText03   "Ïîìåñòèòü âûáğàííîå êàê ñèìâîëè÷åñêóş ññûëêó."
+    IDS_STRING_HelpText04   "Ñîçäà¸ò Junction ñâÿçü â âûáğàíîé ïàïêå."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Ğåêóğñèâíî êëîíèğóåò ñòğóêòóğó âûáğàííîé ïàïêè è ñîçäà¸ò æåñòêèå ññûëêè äëÿ ñîäåğæàùèõñÿ â íåé ôàéëîâ."
+    IDS_STRING_HelpText06   "Ğåêóğñèâíî êëîíèğóåò ñòğóêòóğó âûáğàííîé ïàïêè è ñîçäà¸ò ñèìâîëè÷åñêèå ññûëêè äëÿ ñîäåğæàùèõñÿ â íåé ôàéëîâ."
+    IDS_STRING_HelpText07   "Óäàëÿåò âûáğàííóş junction ñâÿçü."
+    IDS_STRING_HelpText08   "Ïîìåñòèòü çäåñü êàê…"
+    IDS_STRING_HelpText09   "Îòìåíÿåò òåêóùóş îïåğàöèş âûáîğà ññûëêè."
+    IDS_STRING_HelpText10   "Ìîíòèğóåò òîì ïî óêàçàííîìó ïóòè."
+    IDS_STRING_HelpText11   "Îòìîíòèğóåò òîì îò óêàçàííîãî ïóòè."
+    IDS_STRING_HelpText12   "Çàìåíÿåò öåëü junction ñâÿçè íà âûáğàííóş ïàïêó."
+    IDS_STRING_HelpText13   "Êîïèğóåò ñòğóêòóğó êàòàëîãà â âûáğàííîå ìåñòî, ïóòåì ñîõğàíåíèÿ âíóòğåííåé ñòğóêòóğû æåñòêèõ/ñèìâîëè÷åñêèõ/junction ññûëîê."
+    IDS_STRING_HelpText14   "Çàìåíÿåò öåëü ñèìâîëè÷åñêîé ññûëêè íà âûáğàííóş ïàïêó."
+    IDS_STRING_HelpText15   "Çàìåíÿåò öåëü òî÷êè ìîíòèğîâàíèÿ íà âûáğàííóş ïàïêó."
+    IDS_STRING_HelpText16   "Çåğêàëèğóåò ñòğóêòóğó êàòàëîãà ïóòåì ñîõğàíåíèÿ âíóòğåííåé ñòğóêòóğû æåñòêèõ/ñèìâîëè÷åñêèõ/junction ññûëîê."
+    IDS_STRING_HelpText17   "Ñîçäàåò îäèí öèêë DeLorean êîïèè."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "Çàïîìíèòü &èñòî÷íèê ññûëêè"
+    IDS_STRING_eTopMenuDeleteJunction "Óäàëèòü &Junction ñâÿçü"
+    IDS_STRING_eTopMenuCancelLinkCreation "Îòìåíèòü ñîçäàíèå &ññûëêè"
+    IDS_STRING_eTopMenuHardlink "Æåñòêàÿ ññûëêà"
+    IDS_STRING_eTopMenuJunction "Junction ñâÿçü"
+    IDS_STRING_eTopMenuSymbolicLink "Ñèìâîëè÷åñêàÿ ññûëêà"
+    IDS_STRING_eTopMenuTo   " äëÿ "
+    IDS_STRING_eTopMenuOf   " äëÿ "
+    IDS_STRING_eTopMenuReference "Ñ÷åò÷èê ññûëîê"
+    IDS_STRING_eTopMenuHardlinkClone "Êëîí æåñòêîé ññûëêè"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Êëîí ñèìâîëè÷åñêîé ññûëêè"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "×èñëî ññûëîê: ôàéëîâ ñ æåñòêèìè ññûëêàìè /èñòî÷íèêîâ junction ñâÿçåé"
+    IDS_STRING_eTopMenuDeleteMountPoint "Îòìîíòèğîâàòü òîì"
+    IDS_STRING_eTopMenuMountPoint "Òî÷êà ìîíòèğîâàíèÿ"
+    IDS_STRING_eTopMenuSmartCopy "Óìíàÿ Smart êîïèÿ"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// French (Neutral) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Lecteur"
+    IDS_STRING_LanguageID   "0x040c"
+    IDS_STRING_PropPageLinkType "Type de lien :"
+    IDS_STRING_PropPageRefCount "Nombre de liens :"
+    IDS_STRING_ProgressCreatingSmartMirror "Création du miroir intelligent…"
+    IDS_STRING_PropPageCaption "Lien"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Impossible de créer la copie intelligente %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Impossible de créer le miroir intelligent %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Impossible de créer la copie DeLorean %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy 
+                            "Erreur lors de la création de la copie intelligente"
+    IDS_STRING_ErrCreatingSmartMirror 
+                            "Erreur lors de la création du miroir intelligent"
+    IDS_STRING_ErrCreatingDeloreanCopy 
+                            "Erreur lors de la création de la copie DeLorean"
+    IDS_STRING_BackupPrivilegesNotHeld 
+                            "Les privilèges pour l'opération de Sauvegarde n'ont pas été obtenus"
+    IDS_STRING_BackupFailed "Échec de la Sauvegarde"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Lien physique"
+    IDS_STRING_Junction     "Jonction"
+    IDS_STRING_LinkTypeSymlink "Lien symbolique"
+    IDS_STRING_ErrDestSrcCircular " : Ce serait un sous-dossier de la cible."
+    IDS_STRING_ProgressCreatingSmartCopy "Copie intelligente en cours…"
+    IDS_STRING_MountPoint   "Point de montage"
+    IDS_STRING_ProgressCloning "Clonage en cours…"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Création de la copie DeLorean…"
+    IDS_STRING_ErrDirectoryNotEmpty 
+                            " : Le dossier de destination n’est pas vide."
+    IDS_STRING_SymbolicLinkClone "Clone symbolique"
+    IDS_STRING_HardlinkClone "Clone physique"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": Le nombre maximal de liens physiques par fichier (1023) a été atteint."
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Impossible de créer le point de montage %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Impossible de créer le lien physique %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Impossible de créer la jonction %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Impossible de créer le lien symbolique %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Impossible de créer le lien physique %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Impossible de créer le clone symbolique %1!s!"
+    IDS_STRING_ErrCreatingMountpoint 
+                            "Erreur lors de la création du point de montage."
+    IDS_STRING_ErrCreatingHardlink 
+                            "Erreur lors de la création du lien physique."
+    IDS_STRING_ErrCreatingJunction 
+                            "Erreur lors de la création de la jonction."
+    IDS_STRING_ErrCreatingSymlink 
+                            "Erreur lors de la création du lien symbolique."
+    IDS_STRING_ErrCreatingHardlinkClone 
+                            "Erreur lors de la création du clone physique."
+    IDS_STRING_ErrCreatingSymlinkClone 
+                            "Erreur lors de la création du clone symbolique."
+    IDS_STRING_Target       "Cible :"
+    IDS_STRING_MountPointTarget "Volume cible:"
+    IDS_STRING_PropPageHardlinkEnum "Liens physiques vers le fichier :"
+    IDS_STRING_PropPageEnumSiblings "Énumérer les liens"
+    IDS_STRING_ProgressEnumerating "Énumération des liens frères en cours…"
+    IDS_STRING_ProgressCanceling "Annulation…"
+    IDS_STRING_ExploreTarget "Explorer la ci&ble"
+    IDS_STRING_ProgressSmartMove "Déplacement intelligent en cours…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "un lien p&hysique"
+    IDS_STRING_eMenuSymbolicLink "un lien &symbolique"
+    IDS_STRING_eMenuJunction "une j&onction"
+    IDS_STRING_eMenuHardLinkClone "un clone p&hysique"
+    IDS_STRING_eMenuSymbolicLinkClone "un clone &symbolique"
+    IDS_STRING_eMenuReplaceJunction "en &remplacement de la jonction"
+    IDS_STRING_eMenuSmartCopy "une co&pie intelligente"
+    IDS_STRING_eMenuReplaceSymbolicLink "en &remplacement du lien symbolique"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "en &remplacement du point de &montage"
+    IDS_STRING_eMenuSmartMirror "un m&iroir intelligent"
+    IDS_STRING_eMenuDeloreanCopy "une copie &DeLorean"
+    IDS_STRING_eMenuCreateMountPoint "&un point de montage"
+    IDS_STRING_eMenuDropeAs "C&oller…"
+    IDS_STRING_eMenuDropHardlink "Coller le lien p&hysique"
+    IDS_STRING_eMenuDropHardLinkClone "Coller le clone p&hysique"
+    IDS_STRING_eMenuDropJunction "&Coller la jonction"
+    IDS_STRING_eMenuDropReplaceJunction 
+                            "Coller en &remplacement de la jonction"
+    IDS_STRING_eMenuDropSmartCopy "C&oller une copie intelligente"
+    IDS_STRING_eMenuDropSymbolicLink "___C&oller lien &symbolique"
+    IDS_STRING_eMenuDropReplaceSymbolicLink 
+                            "Rempla&cer la cible de ce lien symbolique"
+    IDS_STRING_eMenuDropReplaceMountPoint 
+                            "Rempla&cer la cible de ce point de montage"
+    IDS_STRING_eMenuDropSmartMirror "Créer un m&iroir intelligent ici"
+    IDS_STRING_eMenuDropDeloreanCopy "Créer une copie &DeLorean ici"
+    IDS_STRING_eMenuHardlink1 "un lien &physique"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "un lien &symbolique"
+    IDS_STRING_eMenuJunction1 "une j&onction"
+    IDS_STRING_eMenuHardLinkClone1 "un clone p&hysique"
+    IDS_STRING_eMenuSymbolicLinkClone1 "un clone &symbolique"
+    IDS_STRING_eMenuReplaceJunction1 "en &remplacement de la jonction"
+    IDS_STRING_eMenuSmartCopy1 "une co&pie intelligente"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "en &remplacement du lien symbolique"
+    IDS_STRING_eMenuReplaceMountPoint1 "en &remplacement du point de &montage"
+    IDS_STRING_eMenuSmartMirror1 "un m&iroir intelligent"
+    IDS_STRING_eMenuDeloreanCopy1 "une copie &DeLorean"
+    IDS_STRING_eMenuCreateMountPoint1 "un &point de montage"
+    IDS_STRING_eMenuDropeAs1 "Dép&oser ici…"
+    IDS_STRING_eMenuDropHardlink1 "Créer le lien p&hysique ici"
+    IDS_STRING_eMenuDropHardLinkClone1 "Créer un clone p&hysique ici"
+    IDS_STRING_eMenuDropJunction1 "&Créer la Jonction ici"
+    IDS_STRING_eMenuDropReplaceJunction1 "&Remplacer cette jonction"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Créer une co&pie intelligente ici"
+    IDS_STRING_eMenuDropSymbolicLink1 "___&Créer un lien symbolique ici"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 
+                            "Rempla&cer la cible de ce lien symbolique"
+    IDS_STRING_eMenuDropReplaceMountPoint1 
+                            "Rempla&cer la cible de ce point de montage"
+    IDS_STRING_eMenuDropSmartMirror1 "Créer un m&iroir intelligent ici"
+    IDS_STRING_eMenuDropDeloreanCopy1 "Créer une copie &DeLorean ici"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Prend note de la sélection aux fins de création ultérieure de liens physiques."
+    IDS_STRING_HelpText02   "Crée un lien physique vers la sélection."
+    IDS_STRING_HelpText03   "Crée un lien symbolique vers la sélection."
+    IDS_STRING_HelpText04   "Crée une jonction vers le dossier sélectionné."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Clone le dossier choisi et ses sous-dossiers, créant des liens physiques vers les fichiers contenus."
+    IDS_STRING_HelpText06   "Clone le dossier choisi et ses sous-dossiers, créant des liens symboliques vers les fichiers contenus."
+    IDS_STRING_HelpText07   "Supprime le point de jonction sans affecter le contenu joint."
+    IDS_STRING_HelpText08   "Déposer…"
+    IDS_STRING_HelpText09   "Annule la sélection courante (aux fins de création ultérieure de liens physiques)."
+    IDS_STRING_HelpText10   "Monte un volume à l’endroit spécifié."
+    IDS_STRING_HelpText11   "Démonte le volume associé au point de montage."
+    IDS_STRING_HelpText12   "Remplace la destination de la jonction cible par la cible choisie précédemment."
+    IDS_STRING_HelpText13   "Crée une copie du dossier choisi et de ses sous-dossiers, reproduisant les liens physiques internes."
+    IDS_STRING_HelpText14   "Redirige le lien symbolique ciblé (celui sur lequel la souris dépose sa charge) vers la destination glissée."
+    IDS_STRING_HelpText15   "Redirige la jonction ciblée (celle sur laquelle la souris dépose sa charge) vers la destination glissée."
+    IDS_STRING_HelpText16   "Dupliquer une structure de dossiers et de fichiers qui préserve les jonctions internes et les liens (symboliques et physiques) relatifs."
+    IDS_STRING_HelpText17   "Créer une itération d’une copie DeLorean."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "Prendre comme cible du &lien"
+    IDS_STRING_eTopMenuDeleteJunction "Supprimer la j&onction"
+    IDS_STRING_eTopMenuCancelLinkCreation "Oublier la cible du &lien"
+    IDS_STRING_eTopMenuHardlink "Lien physique"
+    IDS_STRING_eTopMenuJunction "Jonction"
+    IDS_STRING_eTopMenuSymbolicLink "Lien symbolique"
+    IDS_STRING_eTopMenuTo   " vers "
+    IDS_STRING_eTopMenuOf   " de "
+    IDS_STRING_eTopMenuReference "Référence"
+    IDS_STRING_eTopMenuHardlinkClone "Clone physique"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Clone symbolique"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "Nombre de pseudonymes du fichier / Emplacement physique de la jonction"
+    IDS_STRING_eTopMenuDeleteMountPoint "&Démonter le volume"
+    IDS_STRING_eTopMenuMountPoint "Point de montage"
+    IDS_STRING_eTopMenuSmartCopy "Copie intelligente"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // French (Neutral) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Dutch (Neutral) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
+#ifdef _WIN32
+LANGUAGE LANG_DUTCH, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Drive"
+    IDS_STRING_LanguageID   "0x0409"
+    IDS_STRING_PropPageLinkType "Type of link:"
+    IDS_STRING_PropPageRefCount "Reference count:"
+    IDS_STRING_ProgressCreatingSmartMirror "Creating Smart Mirror…"
+    IDS_STRING_PropPageCaption "Link Properties"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Explorer can not create Smart Copy %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Explorer can not create Smart Mirror %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Explorer can not create Delorean Copy %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy "Error creating Smart Copy"
+    IDS_STRING_ErrCreatingSmartMirror "Error creating Smart Mirror"
+    IDS_STRING_ErrCreatingDeloreanCopy "Error creating Delorean Copy"
+    IDS_STRING_BackupPrivilegesNotHeld 
+                            "Privileges for Backup operation not held"
+    IDS_STRING_BackupFailed "Backup Failed"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Hardlink"
+    IDS_STRING_Junction     "Junction"
+    IDS_STRING_LinkTypeSymlink "Symbolic Link"
+    IDS_STRING_ErrDestSrcCircular 
+                            " : The destination directory is a subdirectory of the source"
+    IDS_STRING_ProgressCreatingSmartCopy "Creating Smart Copy…"
+    IDS_STRING_MountPoint   "Mountpoint"
+    IDS_STRING_ProgressCloning "Cloning…"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Creating DeLorean Copy…"
+    IDS_STRING_ErrDirectoryNotEmpty 
+                            " : The destination directory is not empty"
+    IDS_STRING_SymbolicLinkClone "Symbolic Link Clone"
+    IDS_STRING_HardlinkClone "Hardlink Clone"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": \nThe maximum number of hardlinks per file (1023) has been reached."
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Explorer can not create the Mountpoint %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Explorer can not create the Hardlink %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Explorer can not create the Junction %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Explorer can not create the Symbolic Link %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Explorer can not create the Hardlink Clone %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Explorer can not create the Symbolic Link Clone %1!s!"
+    IDS_STRING_ErrCreatingMountpoint "Error creating mountpoint"
+    IDS_STRING_ErrCreatingHardlink "Error creating Hardlink"
+    IDS_STRING_ErrCreatingJunction "Error creating Junction"
+    IDS_STRING_ErrCreatingSymlink "Error creating Symbolic Link"
+    IDS_STRING_ErrCreatingHardlinkClone "Error creating Hardlink Clone"
+    IDS_STRING_ErrCreatingSymlinkClone "Error creating Symbolic Link Clone"
+    IDS_STRING_Target       "Target:"
+    IDS_STRING_MountPointTarget "Mountpoint Target:"
+    IDS_STRING_PropPageHardlinkEnum "Hardlink Enumeration :"
+    IDS_STRING_PropPageEnumSiblings "Enumerate Siblings"
+    IDS_STRING_ProgressEnumerating "Enumerating Hardlink Siblings…"
+    IDS_STRING_ProgressCanceling "Canceling…"
+    IDS_STRING_ExploreTarget "Explore Target"
+    IDS_STRING_ProgressSmartMove "Smart Move in progress…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "&Hardlink"
+    IDS_STRING_eMenuSymbolicLink "&Symbolic Link"
+    IDS_STRING_eMenuJunction "&Junction"
+    IDS_STRING_eMenuHardLinkClone "Hardlink &Clone"
+    IDS_STRING_eMenuSymbolicLinkClone "Symbolic Link C&lone"
+    IDS_STRING_eMenuReplaceJunction "&Replacement Junction"
+    IDS_STRING_eMenuSmartCopy "&Smart Copy"
+    IDS_STRING_eMenuReplaceSymbolicLink "Replacement S&ymbolic Link"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "Replacement &Mountpoint"
+    IDS_STRING_eMenuSmartMirror "Smart M&irror"
+    IDS_STRING_eMenuDeloreanCopy "&DeLorean Copy"
+    IDS_STRING_eMenuCreateMountPoint "&Volume Mountpoint"
+    IDS_STRING_eMenuDropeAs "Drop As…"
+    IDS_STRING_eMenuDropHardlink "&Drop Hardlink"
+    IDS_STRING_eMenuDropHardLinkClone "&Drop Hardlink Clone"
+    IDS_STRING_eMenuDropJunction "&Drop Junction"
+    IDS_STRING_eMenuDropReplaceJunction "&Drop Replacement Junction"
+    IDS_STRING_eMenuDropSmartCopy "&Drop Smart Copy"
+    IDS_STRING_eMenuDropSymbolicLink "&Drop Symbolic Link"
+    IDS_STRING_eMenuDropReplaceSymbolicLink 
+                            "&Create Replacement Symbolic Link Here"
+    IDS_STRING_eMenuDropReplaceMountPoint 
+                            "&Create Replacement Mountpoint Here"
+    IDS_STRING_eMenuDropSmartMirror "Create Smart M&irror here"
+    IDS_STRING_eMenuDropDeloreanCopy "Create &DeLorean Copy here"
+    IDS_STRING_eMenuHardlink1 "&Hardlink"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "&Symbolic Link"
+    IDS_STRING_eMenuJunction1 "&Junction"
+    IDS_STRING_eMenuHardLinkClone1 "Hardlink &Clone"
+    IDS_STRING_eMenuSymbolicLinkClone1 "Symbolic Link C&lone"
+    IDS_STRING_eMenuReplaceJunction1 "&Replacement Junction"
+    IDS_STRING_eMenuSmartCopy1 "&Smart Copy"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "Replacement Symbolic Link"
+    IDS_STRING_eMenuReplaceMountPoint1 "Replacement Mountpoint"
+    IDS_STRING_eMenuSmartMirror1 "Smart M&irror"
+    IDS_STRING_eMenuDeloreanCopy1 "&DeLorean Copy"
+    IDS_STRING_eMenuCreateMountPoint1 "&Volume Mountpoint"
+    IDS_STRING_eMenuDropeAs1 "Drop Here…"
+    IDS_STRING_eMenuDropHardlink1 "&Create Hardlink Here"
+    IDS_STRING_eMenuDropHardLinkClone1 "&Create Hardlink Clone Here"
+    IDS_STRING_eMenuDropJunction1 "&Create Junction Here"
+    IDS_STRING_eMenuDropReplaceJunction1 "&Create Replacement Junction Here"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Create Smart Copy Here"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Create Symbolic Link Here"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 
+                            "&Create Replacement Symbolic Link Here"
+    IDS_STRING_eMenuDropReplaceMountPoint1 
+                            "&Create Replacement Mountpoint Here"
+    IDS_STRING_eMenuDropSmartMirror1 "Create Smart M&irror here"
+    IDS_STRING_eMenuDropDeloreanCopy1 "Create &DeLorean Copy here"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Picks a file or directory."
+    IDS_STRING_HelpText02   "Drops the selection as HardLink."
+    IDS_STRING_HelpText03   "Drops the selection as Symbolic Link."
+    IDS_STRING_HelpText04   "Creates a Junction to the selected directory."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Recursively clones the selected directory structure, and creates HardLinks for the contained files."
+    IDS_STRING_HelpText06   "Recursively clones the selected directory structure, and creates Symbolic Links for the contained files."
+    IDS_STRING_HelpText07   "Deletes the selected junction."
+    IDS_STRING_HelpText08   "Drop Here As…"
+    IDS_STRING_HelpText09   "Cancels the current Pick Link operation."
+    IDS_STRING_HelpText10   "Mounts a volume to the specified path."
+    IDS_STRING_HelpText11   "Unmounts a volume from the specified path."
+    IDS_STRING_HelpText12   "Replaces the dropped-on junction's target with the picked location."
+    IDS_STRING_HelpText13   "Copy a directory structure to a different path by preserving the inner hardlink/symboliclink/junction structure."
+    IDS_STRING_HelpText14   "Replaces the dropped-on Symbolic Links's target with the picked location."
+    IDS_STRING_HelpText15   "Replaces the dropped-on Mountpoints's target with the picked location."
+    IDS_STRING_HelpText16   "Mirror a directory structure by preserving the inner hardlink/symboliclink/junction structure."
+    IDS_STRING_HelpText17   "Create one iteration of DeLorean Copy"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "Pick &Link Source"
+    IDS_STRING_eTopMenuDeleteJunction "Delete &Junction"
+    IDS_STRING_eTopMenuCancelLinkCreation "Cancel &Link Creation"
+    IDS_STRING_eTopMenuHardlink "Hardlink"
+    IDS_STRING_eTopMenuJunction "Junction"
+    IDS_STRING_eTopMenuSymbolicLink "SymbolicLink"
+    IDS_STRING_eTopMenuTo   " of "
+    IDS_STRING_eTopMenuOf   " of "
+    IDS_STRING_eTopMenuReference "Reference"
+    IDS_STRING_eTopMenuHardlinkClone "Hardlink Clone"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Symbolic Link Clone"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "Reference count: of hardlinked files / Origin of junctions"
+    IDS_STRING_eTopMenuDeleteMountPoint "Unmount Volume"
+    IDS_STRING_eTopMenuMountPoint "Mountpoint"
+    IDS_STRING_eTopMenuSmartCopy "Smart Copy"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Dutch (Neutral) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Swedish (Neutral) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SVE)
+#ifdef _WIN32
+LANGUAGE LANG_SWEDISH, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Disk"
+    IDS_STRING_LanguageID   "0x041D"
+    IDS_STRING_PropPageLinkType "Typ av länk:"
+    IDS_STRING_PropPageRefCount "Referenser(antal):"
+    IDS_STRING_ProgressCreatingSmartMirror "Skapar Smart spegling…"
+    IDS_STRING_PropPageCaption "Länkegenskaper"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Utforskaren kan inte skapa Smart kopia %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Utforskaren kan inte skapa Smart spegling %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Utforskaren kan inte skapa Delorean kopia %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy 
+                            "Ett fel uppstod vid skapandet av Smart kopia"
+    IDS_STRING_ErrCreatingSmartMirror 
+                            "Ett fel uppstod vid skapandet av Smart spegling"
+    IDS_STRING_ErrCreatingDeloreanCopy 
+                            "Ett fel uppstod vid skapandet av Delorean kopia"
+    IDS_STRING_BackupPrivilegesNotHeld 
+                            "Behörigheterna vid säkerhetskopieringen kunde inte sparas"
+    IDS_STRING_BackupFailed "Säkerhetskopiering misslyckades"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Hårdlänk"
+    IDS_STRING_Junction     "Knutpunkt"
+    IDS_STRING_LinkTypeSymlink "Symbolisk länk"
+    IDS_STRING_ErrDestSrcCircular 
+                            " : Målmappen är en undermapp till källmappen"
+    IDS_STRING_ProgressCreatingSmartCopy "Skapar Smart kopia…"
+    IDS_STRING_MountPoint   "Monteringspunkt"
+    IDS_STRING_ProgressCloning "Klonar…"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Skapar DeLorean kopia…"
+    IDS_STRING_ErrDirectoryNotEmpty " : Målmappen är inte tom"
+    IDS_STRING_SymbolicLinkClone "Klon av symbolisk länk"
+    IDS_STRING_HardlinkClone "Klon av hårdlänk"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": \nDet maximala antalet hårdlänkar för en fil (1023) har uppnåtts."
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Utforskaren kan inte skapa monteringspunkten %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Utforskaren kan inte skapa hårdlänken %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Utforskaren kan inte skapa knutpunkten %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Utforskaren kan inte skapa den symboliska länken %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Utforskaren kan inte skapa klon för hårdlänken %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Utforskaren kan inte skapa klon för den symboliska länken %1!s!"
+    IDS_STRING_ErrCreatingMountpoint 
+                            "Ett fel uppstod vid skapande av monteringspunkt"
+    IDS_STRING_ErrCreatingHardlink "Ett fel uppstod vid skapande av hårdlänk"
+    IDS_STRING_ErrCreatingJunction "Ett fel uppstod vid skapande av knutpunkt"
+    IDS_STRING_ErrCreatingSymlink 
+                            "Ett fel uppstod vid skapande av symbolisk länk"
+    IDS_STRING_ErrCreatingHardlinkClone 
+                            "Ett fel uppstod vid skapande av klon för hårdlänk"
+    IDS_STRING_ErrCreatingSymlinkClone 
+                            "Ett fel uppstod vid skapande av klon för symbolisk länk"
+    IDS_STRING_Target       "Mål:"
+    IDS_STRING_MountPointTarget "Monteringspunktens mål:"
+    IDS_STRING_PropPageHardlinkEnum "Hårdlänksreferenser :"
+    IDS_STRING_PropPageEnumSiblings "Referensuppräknare"
+    IDS_STRING_ProgressEnumerating "Räknar hårdlänksreferenser…"
+    IDS_STRING_ProgressCanceling "Avbryter…"
+    IDS_STRING_ExploreTarget "Utforska mål"
+    IDS_STRING_ProgressSmartMove "Smart flyttning pågår…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "&Hårdlänk"
+    IDS_STRING_eMenuSymbolicLink "&Symbolisk länk"
+    IDS_STRING_eMenuJunction "&Knutpunkt"
+    IDS_STRING_eMenuHardLinkClone "&Klon av hårdlänk"
+    IDS_STRING_eMenuSymbolicLinkClone "K&lon av symbolisk länk"
+    IDS_STRING_eMenuReplaceJunction "&Ersätt knutpunkt"
+    IDS_STRING_eMenuSmartCopy "&Smart kopia"
+    IDS_STRING_eMenuReplaceSymbolicLink "Ersätt s&ymbolisk länk"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "Ersätt &monteringspunkt"
+    IDS_STRING_eMenuSmartMirror "Smart s&pegling"
+    IDS_STRING_eMenuDeloreanCopy "&DeLorean kopia"
+    IDS_STRING_eMenuCreateMountPoint "Monteringspunkt för &volym"
+    IDS_STRING_eMenuDropeAs "Släpp som…"
+    IDS_STRING_eMenuDropHardlink "&Skapa hårdlänk"
+    IDS_STRING_eMenuDropHardLinkClone "&Skapa klon av hårdlänk"
+    IDS_STRING_eMenuDropJunction "&Skapa knutpunkt"
+    IDS_STRING_eMenuDropReplaceJunction "&Ersätt knutpunkt"
+    IDS_STRING_eMenuDropSmartCopy "&Skapa en Smart kopia"
+    IDS_STRING_eMenuDropSymbolicLink "&Skapa symbolisk länk"
+    IDS_STRING_eMenuDropReplaceSymbolicLink "&Ersätt symbolisk länk"
+    IDS_STRING_eMenuDropReplaceMountPoint "&Ersätt monteringspunkt"
+    IDS_STRING_eMenuDropSmartMirror "Skapa en Smart s&pegling här"
+    IDS_STRING_eMenuDropDeloreanCopy "Skapa en &DeLorean kopia här"
+    IDS_STRING_eMenuHardlink1 "&Hårdlänk"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "&Symbolisk länk"
+    IDS_STRING_eMenuJunction1 "&Knutpunkt"
+    IDS_STRING_eMenuHardLinkClone1 "&Klon av hårdlänk"
+    IDS_STRING_eMenuSymbolicLinkClone1 "K&lon av symbolisk länk"
+    IDS_STRING_eMenuReplaceJunction1 "&Ersätt knutpunkt"
+    IDS_STRING_eMenuSmartCopy1 "&Smart kopia"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "Ersätt symbolisk länk"
+    IDS_STRING_eMenuReplaceMountPoint1 "Ersätt monteringspunkt"
+    IDS_STRING_eMenuSmartMirror1 "Smart s&pegling"
+    IDS_STRING_eMenuDeloreanCopy1 "&DeLorean kopia"
+    IDS_STRING_eMenuCreateMountPoint1 "Monteringspunkt för &volym"
+    IDS_STRING_eMenuDropeAs1 "Släpp här…"
+    IDS_STRING_eMenuDropHardlink1 "&Skapa hårdlänk här"
+    IDS_STRING_eMenuDropHardLinkClone1 "&Skapa klon av hårdlänk här"
+    IDS_STRING_eMenuDropJunction1 "&Skapa knutpunkt här"
+    IDS_STRING_eMenuDropReplaceJunction1 "&Ersätt knutpunkt"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Skapa en Smart kopia här"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Skapa symbolisk länk här"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 "&Ersätt symbolisk länk"
+    IDS_STRING_eMenuDropReplaceMountPoint1 "&Ersätt monteringspunkt"
+    IDS_STRING_eMenuDropSmartMirror1 "Skapa en Smart s&pegling här"
+    IDS_STRING_eMenuDropDeloreanCopy1 "Skapa en &DeLorean kopia här"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Väljer fil eller mapp."
+    IDS_STRING_HelpText02   "Skapar en hårdlänk till valt objekt."
+    IDS_STRING_HelpText03   "Skapar en symbolisk länk till valt objekt."
+    IDS_STRING_HelpText04   "Skapar en knutpunkt till vald mapp."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Klonar vald mappstruktur och skapar hårdlänkar för alla filer."
+    IDS_STRING_HelpText06   "Klonar vald mappstruktur och skapar symboliska länkar för alla filer."
+    IDS_STRING_HelpText07   "Tar bort vald knutpunkt."
+    IDS_STRING_HelpText08   "Släpp här som…"
+    IDS_STRING_HelpText09   "Avbryter skapandet av länk."
+    IDS_STRING_HelpText10   "Monterar en volym till den valda sökvägen."
+    IDS_STRING_HelpText11   "Avmonterar en volym från den valda sökvägen."
+    IDS_STRING_HelpText12   "Ersätter knutpunktens mål med vald källsökväg."
+    IDS_STRING_HelpText13   "Kopierar vald mappstruktur till en annan plats och behåller alla hårdlänkar/symboliska länkar/knutpunkter intackta."
+    IDS_STRING_HelpText14   "Ersätter den valda symboliska länkens mål med vald sökväg."
+    IDS_STRING_HelpText15   "Ersätter monteringspunktens mål med vald sökväg."
+    IDS_STRING_HelpText16   "Speglar vald mappstruktur och behåller alla hårdlänkar/symboliska länkar/knutpunkter intackta."
+    IDS_STRING_HelpText17   "Skapar en DeLorean kopia."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "Välj källa för &länk"
+    IDS_STRING_eTopMenuDeleteJunction "Ta bort &knutpunkt"
+    IDS_STRING_eTopMenuCancelLinkCreation "Avbryt skapande av &länk"
+    IDS_STRING_eTopMenuHardlink "Hårdlänk"
+    IDS_STRING_eTopMenuJunction "Knutpunkt"
+    IDS_STRING_eTopMenuSymbolicLink "Symbolisk länk"
+    IDS_STRING_eTopMenuTo   " av "
+    IDS_STRING_eTopMenuOf   " av "
+    IDS_STRING_eTopMenuReference "Referens"
+    IDS_STRING_eTopMenuHardlinkClone "Klon av hårdlänk"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Klon av symbolisk länk"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "Referensräknare: för hårdlänkar / knutpunkter"
+    IDS_STRING_eTopMenuDeleteMountPoint "Avmontera volym"
+    IDS_STRING_eTopMenuMountPoint "Monteringspunkt"
+    IDS_STRING_eTopMenuSmartCopy "Smart kopiering"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Swedish (Neutral) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Laufwerk"
+    IDS_STRING_LanguageID   "0x0407"
+    IDS_STRING_PropPageLinkType "Link Typ:"
+    IDS_STRING_PropPageRefCount "Anzahl der Referenzen:"
+    IDS_STRING_ProgressCreatingSmartMirror "Smarte Spiegelkopie…"
+    IDS_STRING_PropPageCaption "Link Eigenschaften"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Explorer kann die Smarte Kopie %1!s! nicht erstellen"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Explorer kann die Smarte Spiegel Kopie %1!s! nicht erstellen"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Explorer kann Delorean Kopie %1!s! nicht erstellen"
+    IDS_STRING_ErrCreatingSmartCopy "Fehler beim Erstellen der Smarten Kopie"
+    IDS_STRING_ErrCreatingSmartMirror 
+                            "Fehler beim Erstellen der Smarten Spiegel Kopie"
+    IDS_STRING_ErrCreatingDeloreanCopy 
+                            "Fehler beim Erstellen der Delorean Kopie"
+    IDS_STRING_BackupPrivilegesNotHeld "Backup Privilegien nicht verfügbar"
+    IDS_STRING_BackupFailed "Backup fehlgeschlagen"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Hardlink"
+    IDS_STRING_Junction     "Junction"
+    IDS_STRING_LinkTypeSymlink "Symbolischer Link"
+    IDS_STRING_ErrDestSrcCircular 
+                            " : Das Zielverzeichnis ist ein Unterverzeichnis des Quellverzeichnises"
+    IDS_STRING_ProgressCreatingSmartCopy "Erstellen von Smarter Kopie…"
+    IDS_STRING_MountPoint   "Bereitstellungspunkt"
+    IDS_STRING_ProgressCloning "Klonen…"
+    IDS_STRING_ProgressCreatingDeLoreanCopy " Erstellen von DeLorean Kopie…"
+    IDS_STRING_ErrDirectoryNotEmpty " : Das Zielverzeichnis ist nicht leer"
+    IDS_STRING_SymbolicLinkClone "Symbolischer Link Klon"
+    IDS_STRING_HardlinkClone "Hardlink Klon"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": Die maximale Anzahl (1023) an Hardlinks pro File wurde erreicht."
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Explorer kann den Mountpoint %1!s! nicht erstellen"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Explorer kann den Hardlink %1!s! nicht erstellen"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Explorer kann die Junction %1!s! nicht erstellen"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Explorer kann den symbolischen Link %1!s! nicht erstellen"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Explorer kann den Hardlink Klon %1!s! nicht erstellen"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Explorer kann den Symbolischen Link Klon %1!s! nicht erstellen"
+    IDS_STRING_ErrCreatingMountpoint 
+                            "Fehler beim Erstellen des Bereitstellungspunkts"
+    IDS_STRING_ErrCreatingHardlink "Fehler beim Erstellen des Hardlinks"
+    IDS_STRING_ErrCreatingJunction "Fehler beim Erstellen der Junction"
+    IDS_STRING_ErrCreatingSymlink 
+                            "Fehler beim Erstellen des Symbolischen Links"
+    IDS_STRING_ErrCreatingHardlinkClone 
+                            "Fehler beim Erstellen des Hardlink Klons"
+    IDS_STRING_ErrCreatingSymlinkClone 
+                            "Fehler beim Erstellen des Symbolischen Link Klons"
+    IDS_STRING_Target       "Ziel :"
+    IDS_STRING_MountPointTarget "Ziel des Bereitstellungspunkts"
+    IDS_STRING_PropPageHardlinkEnum "Hardlink Auflistung :"
+    IDS_STRING_PropPageEnumSiblings "Hardlink Referenzen"
+    IDS_STRING_ProgressEnumerating "Hardlinks auflisten…"
+    IDS_STRING_ProgressCanceling "Beenden…"
+    IDS_STRING_ExploreTarget "Ziel öffnen"
+    IDS_STRING_ProgressSmartMove "Smart Move…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "&Hardlink"
+    IDS_STRING_eMenuSymbolicLink "&Symbolischer Link"
+    IDS_STRING_eMenuJunction "&Junction"
+    IDS_STRING_eMenuHardLinkClone "&Hardlink Klon"
+    IDS_STRING_eMenuSymbolicLinkClone "&Symbolischer Link Klon"
+    IDS_STRING_eMenuReplaceJunction "&Veränderte Junction"
+    IDS_STRING_eMenuSmartCopy "&Smarte Kopie"
+    IDS_STRING_eMenuReplaceSymbolicLink "Veränderter S&ymbolischer Link"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "Veränderter &Bereitstellungspunkt"
+    IDS_STRING_eMenuSmartMirror "Smarte Spiegelkopie"
+    IDS_STRING_eMenuDeloreanCopy "DeLorean Kopie"
+    IDS_STRING_eMenuCreateMountPoint "&Bereitstellungspunkt"
+    IDS_STRING_eMenuDropeAs "Einfügen als…"
+    IDS_STRING_eMenuDropHardlink "Hardlink einfügen"
+    IDS_STRING_eMenuDropHardLinkClone "Hier als Hardlink Klon einfügen"
+    IDS_STRING_eMenuDropJunction "&Junction einfügen"
+    IDS_STRING_eMenuDropReplaceJunction "&Veränderte Junction einfügen"
+    IDS_STRING_eMenuDropSmartCopy "&Smarte Kopie einfügen"
+    IDS_STRING_eMenuDropSymbolicLink "&Symbolischen Link einfügen"
+    IDS_STRING_eMenuDropReplaceSymbolicLink 
+                            "&Veränderten Symbolischen Link hier einfügen"
+    IDS_STRING_eMenuDropReplaceMountPoint 
+                            "&Veränderten Bereitstellungspunkt hier einfügen"
+    IDS_STRING_eMenuDropSmartMirror "Smarte Spiegelkopie einfügen"
+    IDS_STRING_eMenuDropDeloreanCopy "DeLorean Kopie einfügen"
+    IDS_STRING_eMenuHardlink1 "&Hardlink"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "&Symbolischer Link"
+    IDS_STRING_eMenuJunction1 "&Junction"
+    IDS_STRING_eMenuHardLinkClone1 "&Hardlink Klon"
+    IDS_STRING_eMenuSymbolicLinkClone1 "&Symbolischer Link Klon"
+    IDS_STRING_eMenuReplaceJunction1 "&Veränderte Junction"
+    IDS_STRING_eMenuSmartCopy1 "&Smarte Kopie"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "Veränderter S&ymbolischer Link"
+    IDS_STRING_eMenuReplaceMountPoint1 "Veränderter &Bereitstellungspunkt"
+    IDS_STRING_eMenuSmartMirror1 "Smarte Spiegelkopie"
+    IDS_STRING_eMenuDeloreanCopy1 "DeLorean Kopie"
+    IDS_STRING_eMenuCreateMountPoint1 "Veränderter &Bereitstellungspunkt"
+    IDS_STRING_eMenuDropeAs1 "Hier einfügen als…"
+    IDS_STRING_eMenuDropHardlink1 "&Hardlink hier erstellen"
+    IDS_STRING_eMenuDropHardLinkClone1 "&Hardlink Clone hier erstellen"
+    IDS_STRING_eMenuDropJunction1 "&Junction hier erstellen"
+    IDS_STRING_eMenuDropReplaceJunction1 "&Veränderte Junction hier erstellen"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Smarte Kopie hier erstellen"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Smarte Kopie hier erstellen"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 
+                            "&Veränderten Symbolischen Link hier einfügen"
+    IDS_STRING_eMenuDropReplaceMountPoint1 
+                            "&Veränderten Bereitstellungspunkt hier einfügen"
+    IDS_STRING_eMenuDropSmartMirror1 "Smarte Spiegelkopie hier einfügen"
+    IDS_STRING_eMenuDropDeloreanCopy1 "DeLorean Kopie hier einfügen"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Selektiert ein File oder Verzeichnis."
+    IDS_STRING_HelpText02   "Erstellt Hardlinks fuer die ausgewählten Dateien."
+    IDS_STRING_HelpText03   "Erstellt symbolische Links fuer die ausgewählten Dateien."
+    IDS_STRING_HelpText04   "Erstellt eine Junction zum ausgewählten Verzeichnis."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Klont die erstellte Verzeichnisstruktur rekursiv, und erstellt Hardlinks für die enthaltenen Dateien."
+    IDS_STRING_HelpText06   "Klont die erstellte Verzeichnisstruktur rekursiv, und erstellt symbolische Links für die enthaltenen Dateien."
+    IDS_STRING_HelpText07   "Löscht die ausgewählte Junction."
+    IDS_STRING_HelpText08   "Hier einfügen als…"
+    IDS_STRING_HelpText09   "Abbruch der Erstellung der Links."
+    IDS_STRING_HelpText10   "Erstellt einen Bereitstellungspunkt unter dem ausgewählten Pfad."
+    IDS_STRING_HelpText11   "Löscht einen Bereitstellungspunkt vom ausgewählten Pfad."
+    IDS_STRING_HelpText12   "Verändert das Ziel der Junction mit dem ausgewählten Verzeichnis."
+    IDS_STRING_HelpText13   "Kopiert den Inhalt eines Verzeichnisbaumes unter Beibehaltung der inneren Hardlink Struktur."
+    IDS_STRING_HelpText14   "Verändert das Ziel des Symbolischen Links mit dem ausgewählten Verzeichnis."
+    IDS_STRING_HelpText15   "Verändert das Ziel des Bereitstellungspunkts mit dem ausgewählten Verzeichnis."
+    IDS_STRING_HelpText16   "Spiegelt den Inhalt eines Verzeichnisbaumes unter Beibehaltung der inneren Hardlink/Junction/Symbolic Link  Struktur."
+    IDS_STRING_HelpText17   "Eine Iteration einer DeLorean Kopie erstellen."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "&Link Quelle festsetzen"
+    IDS_STRING_eTopMenuDeleteJunction "&Junction löschen"
+    IDS_STRING_eTopMenuCancelLinkCreation "&Link Erstellung abbrechen"
+    IDS_STRING_eTopMenuHardlink "Hardlink"
+    IDS_STRING_eTopMenuJunction "Junction"
+    IDS_STRING_eTopMenuSymbolicLink "Symbolischer Link"
+    IDS_STRING_eTopMenuTo   " von "
+    IDS_STRING_eTopMenuOf   " von "
+    IDS_STRING_eTopMenuReference "Referenz"
+    IDS_STRING_eTopMenuHardlinkClone "Hardlink Klon"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Symbolischer Link Klon"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "Anzahl der Referenzen / Quellverzeichnis bei Junctions"
+    IDS_STRING_eTopMenuDeleteMountPoint "Bereitstellungspunkt löschen"
+    IDS_STRING_eTopMenuMountPoint "Bereitstellungspunkt"
+    IDS_STRING_eTopMenuSmartCopy "Smarte Kopie"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\HardLink.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,8,7,2
+ PRODUCTVERSION 3,8,7,2
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Hermann Schinagl"
+            VALUE "FileDescription", "Link Shell Extension"
+            VALUE "FileVersion", "3, 8, 7, 2"
+            VALUE "InternalName", "Link Shell Extension"
+            VALUE "LegalCopyright", "Copyright © 1999-2019 Hermann Schinagl"
+            VALUE "OriginalFilename", "Hardlinkshellext.dll"
+            VALUE "ProductName", "Link Shell Extension"
+            VALUE "ProductVersion", "3, 8, 7, 2"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Drive"
+    IDS_STRING_LanguageID   "0x0409"
+    IDS_STRING_PropPageLinkType "Type of link:"
+    IDS_STRING_PropPageRefCount "Reference count:"
+    IDS_STRING_ProgressCreatingSmartMirror "Creating Smart Mirror…"
+    IDS_STRING_PropPageCaption "Link Properties"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Hardlink"
+    IDS_STRING_Junction     "Junction"
+    IDS_STRING_LinkTypeSymlink "Symbolic Link"
+    IDS_STRING_ErrDestSrcCircular 
+                            " : The destination directory is a subdirectory of the source"
+    IDS_STRING_ProgressCreatingSmartCopy "Creating Smart Copy…"
+    IDS_STRING_MountPoint   "Mountpoint"
+    IDS_STRING_ProgressCloning "Cloning…"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Creating DeLorean Copy…"
+    IDS_STRING_ErrDirectoryNotEmpty 
+                            " : The destination directory is not empty"
+    IDS_STRING_SymbolicLinkClone "Symbolic Link Clone"
+    IDS_STRING_HardlinkClone "Hardlink Clone"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": \nThe maximum number of hardlinks per file (1023) has been reached."
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Explorer can not create the Mountpoint %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Explorer can not create the Hardlink %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Explorer can not create the Junction %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Explorer can not create the Symbolic Link %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Explorer can not create the Hardlink Clone %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Explorer can not create the Symbolic Link Clone %1!s!"
+    IDS_STRING_ErrCreatingMountpoint "Error creating mountpoint"
+    IDS_STRING_ErrCreatingHardlink "Error creating Hardlink"
+    IDS_STRING_ErrCreatingJunction "Error creating Junction"
+    IDS_STRING_ErrCreatingSymlink "Error creating Symbolic Link"
+    IDS_STRING_ErrCreatingHardlinkClone "Error creating Hardlink Clone"
+    IDS_STRING_ErrCreatingSymlinkClone "Error creating Symbolic Link Clone"
+    IDS_STRING_Target       "Target:"
+    IDS_STRING_MountPointTarget "Mountpoint Target:"
+    IDS_STRING_PropPageHardlinkEnum "Hardlink Enumeration :"
+    IDS_STRING_PropPageEnumSiblings "Enumerate Siblings"
+    IDS_STRING_ProgressEnumerating "Enumerating Hardlink Siblings…"
+    IDS_STRING_ProgressCanceling "Canceling…"
+    IDS_STRING_ExploreTarget "Explore Target"
+    IDS_STRING_ProgressSmartMove "Smart Move in progress…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Explorer can not create Smart Copy %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Explorer can not create Smart Mirror %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Explorer can not create Delorean Copy %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy "Error creating Smart Copy"
+    IDS_STRING_ErrCreatingSmartMirror "Error creating Smart Mirror"
+    IDS_STRING_ErrCreatingDeloreanCopy "Error creating Delorean Copy"
+    IDS_STRING_BackupPrivilegesNotHeld 
+                            "Privileges for Backup operation not held"
+    IDS_STRING_BackupFailed "Backup Failed"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "&Hardlink"
+    IDS_STRING_eMenuSymbolicLink "&Symbolic Link"
+    IDS_STRING_eMenuJunction "&Junction"
+    IDS_STRING_eMenuHardLinkClone "Hardlink &Clone"
+    IDS_STRING_eMenuSymbolicLinkClone "Symbolic Link C&lone"
+    IDS_STRING_eMenuReplaceJunction "&Replacement Junction"
+    IDS_STRING_eMenuSmartCopy "&Smart Copy"
+    IDS_STRING_eMenuReplaceSymbolicLink "Replacement S&ymbolic Link"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "Replacement &Mountpoint"
+    IDS_STRING_eMenuSmartMirror "Smart M&irror"
+    IDS_STRING_eMenuDeloreanCopy "&DeLorean Copy"
+    IDS_STRING_eMenuCreateMountPoint "&Volume Mountpoint"
+    IDS_STRING_eMenuDropeAs "Drop As…"
+    IDS_STRING_eMenuDropHardlink "&Drop Hardlink"
+    IDS_STRING_eMenuDropHardLinkClone "&Drop Hardlink Clone"
+    IDS_STRING_eMenuDropJunction "&Drop Junction"
+    IDS_STRING_eMenuDropReplaceJunction "&Drop Replacement Junction"
+    IDS_STRING_eMenuDropSmartCopy "&Drop Smart Copy"
+    IDS_STRING_eMenuDropSymbolicLink "&Drop Symbolic Link"
+    IDS_STRING_eMenuDropReplaceSymbolicLink 
+                            "&Create Replacement Symbolic Link Here"
+    IDS_STRING_eMenuDropReplaceMountPoint 
+                            "&Create Replacement Mountpoint Here"
+    IDS_STRING_eMenuDropSmartMirror "Create Smart M&irror here"
+    IDS_STRING_eMenuDropDeloreanCopy "Create &DeLorean Copy here"
+    IDS_STRING_eMenuHardlink1 "&Hardlink"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "&Symbolic Link"
+    IDS_STRING_eMenuJunction1 "&Junction"
+    IDS_STRING_eMenuHardLinkClone1 "Hardlink &Clone"
+    IDS_STRING_eMenuSymbolicLinkClone1 "Symbolic Link C&lone"
+    IDS_STRING_eMenuReplaceJunction1 "&Replacement Junction"
+    IDS_STRING_eMenuSmartCopy1 "&Smart Copy"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "Replacement Symbolic Link"
+    IDS_STRING_eMenuReplaceMountPoint1 "Replacement Mountpoint"
+    IDS_STRING_eMenuSmartMirror1 "Smart M&irror"
+    IDS_STRING_eMenuDeloreanCopy1 "&DeLorean Copy"
+    IDS_STRING_eMenuCreateMountPoint1 "&Volume Mountpoint"
+    IDS_STRING_eMenuDropeAs1 "Drop Here…"
+    IDS_STRING_eMenuDropHardlink1 "&Create Hardlink Here"
+    IDS_STRING_eMenuDropHardLinkClone1 "&Create Hardlink Clone Here"
+    IDS_STRING_eMenuDropJunction1 "&Create Junction Here"
+    IDS_STRING_eMenuDropReplaceJunction1 "&Create Replacement Junction Here"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Create Smart Copy Here"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Create Symbolic Link Here"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 
+                            "&Create Replacement Symbolic Link Here"
+    IDS_STRING_eMenuDropReplaceMountPoint1 
+                            "&Create Replacement Mountpoint Here"
+    IDS_STRING_eMenuDropSmartMirror1 "Create Smart M&irror here"
+    IDS_STRING_eMenuDropDeloreanCopy1 "Create &DeLorean Copy here"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Picks a file or directory."
+    IDS_STRING_HelpText02   "Drops the selection as HardLink."
+    IDS_STRING_HelpText03   "Drops the selection as Symbolic Link."
+    IDS_STRING_HelpText04   "Creates a Junction to the selected directory."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Recursively clones the selected directory structure, and creates HardLinks for the contained files."
+    IDS_STRING_HelpText06   "Recursively clones the selected directory structure, and creates Symbolic Links for the contained files."
+    IDS_STRING_HelpText07   "Deletes the selected junction."
+    IDS_STRING_HelpText08   "Drop Here As…"
+    IDS_STRING_HelpText09   "Cancels the current Pick Link operation."
+    IDS_STRING_HelpText10   "Mounts a volume to the specified path."
+    IDS_STRING_HelpText11   "Unmounts a volume from the specified path."
+    IDS_STRING_HelpText12   "Replaces the dropped-on junction's target with the picked location."
+    IDS_STRING_HelpText13   "Copy a directory structure to a different path by preserving the inner hardlink/symboliclink/junction structure."
+    IDS_STRING_HelpText14   "Replaces the dropped-on Symbolic Links's target with the picked location."
+    IDS_STRING_HelpText15   "Replaces the dropped-on Mountpoints's target with the picked location."
+    IDS_STRING_HelpText16   "Mirror a directory structure by preserving the inner hardlink/symboliclink/junction structure."
+    IDS_STRING_HelpText17   "Create one iteration of DeLorean Copy"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "Pick &Link Source"
+    IDS_STRING_eTopMenuDeleteJunction "Delete &Junction"
+    IDS_STRING_eTopMenuCancelLinkCreation "Cancel &Link Creation"
+    IDS_STRING_eTopMenuHardlink "Hardlink"
+    IDS_STRING_eTopMenuJunction "Junction"
+    IDS_STRING_eTopMenuSymbolicLink "SymbolicLink"
+    IDS_STRING_eTopMenuTo   " of "
+    IDS_STRING_eTopMenuOf   " of "
+    IDS_STRING_eTopMenuReference "Reference"
+    IDS_STRING_eTopMenuHardlinkClone "Hardlink Clone"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Symbolic Link Clone"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "Reference count: of hardlinked files / Origin of junctions"
+    IDS_STRING_eTopMenuDeleteMountPoint "Unmount Volume"
+    IDS_STRING_eTopMenuMountPoint "Mountpoint"
+    IDS_STRING_eTopMenuSmartCopy "Smart Copy"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Unità"
+    IDS_STRING_LanguageID   "0x0410"
+    IDS_STRING_PropPageLinkType "Collegamento:"
+    IDS_STRING_PropPageRefCount "Numero riferimenti:"
+    IDS_STRING_ProgressCreatingSmartMirror "Sincronizzazione intelligente…"
+    IDS_STRING_PropPageCaption "Proprietà del collegamento"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Esplora risorse non può creare la copia intelligente %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Esplora risorse non può creare la sincronizzazione intelligente %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Esplora risorse non può creare la copia DeLorean %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy 
+                            "Errore durante la creazione della copia intelligente"
+    IDS_STRING_ErrCreatingSmartMirror 
+                            "Errore durante la creazione della sincronizzazione intelligente"
+    IDS_STRING_ErrCreatingDeloreanCopy 
+                            "Errore durante la creazione della copia DeLorean"
+    IDS_STRING_BackupPrivilegesNotHeld 
+                            "Non si possiedono i privilegi per l'operazione di backup"
+    IDS_STRING_BackupFailed "Backup Fallito"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Reale"
+    IDS_STRING_Junction     "Giunzione"
+    IDS_STRING_LinkTypeSymlink "Simbolico"
+    IDS_STRING_ErrDestSrcCircular 
+                            ": la cartella di destinazione è una sottodirectory della directory di partenza"
+    IDS_STRING_ProgressCreatingSmartCopy "Copia intelligente…"
+    IDS_STRING_MountPoint   "Punto di montaggio"
+    IDS_STRING_ProgressCloning "Clonazione…"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Copia DeLorean…"
+    IDS_STRING_ErrDirectoryNotEmpty 
+                            ": la cartella di destinazione non è vuota"
+    IDS_STRING_SymbolicLinkClone "Clone collegamento simbolico"
+    IDS_STRING_HardlinkClone "Clone collegamento reale"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": è stato raggiunto il numero massimo di 1023 collegamenti reali per file"
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Esplora risorse non può creare il punto di montaggio %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Esplora risorse non può creare il collegamento reale %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Esplora risorse non può creare la giunzione %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Esplora risorse non può creare il collegamento simbolico %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Esplora risorse non può clonare il collegamento reale %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Esplora risorse non può clonare il collegamento simbolico %1!s!"
+    IDS_STRING_ErrCreatingMountpoint 
+                            "Errore nella creazione del punto di montaggio"
+    IDS_STRING_ErrCreatingHardlink 
+                            "Errore nella creazione del collegamento reale"
+    IDS_STRING_ErrCreatingJunction 
+                            "Errore durante la creazione della giunzione"
+    IDS_STRING_ErrCreatingSymlink 
+                            "Errore durante la creazione del collegamento simbolico"
+    IDS_STRING_ErrCreatingHardlinkClone 
+                            "Errore durante la clonazione del collegamento reale"
+    IDS_STRING_ErrCreatingSymlinkClone 
+                            "Errore durante la clonazione del collegamento simbolico"
+    IDS_STRING_Target       "Destinazione:"
+    IDS_STRING_MountPointTarget "Punto di montaggio di destinazione:"
+    IDS_STRING_PropPageHardlinkEnum "Enumerazione collegamenti reali:"
+    IDS_STRING_PropPageEnumSiblings "Mostra riferimenti"
+    IDS_STRING_ProgressEnumerating 
+                            "Enumerazione riferimenti a collegamenti reali…"
+    IDS_STRING_ProgressCanceling "Annullamento…"
+    IDS_STRING_ExploreTarget "Esplora destinazione"
+    IDS_STRING_ProgressSmartMove "Spostamento intelligente…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "Collegamento &reale"
+    IDS_STRING_eMenuSymbolicLink "Collegamento &simbolico"
+    IDS_STRING_eMenuJunction "&Giunzione"
+    IDS_STRING_eMenuHardLinkClone "C&lona collegamento reale"
+    IDS_STRING_eMenuSymbolicLinkClone "&Clona collegamento simbolico"
+    IDS_STRING_eMenuReplaceJunction "Sos&tituisci giunzione"
+    IDS_STRING_eMenuSmartCopy "Co&pia intelligente"
+    IDS_STRING_eMenuReplaceSymbolicLink "S&ostituzione collegamento simbolico"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "Sostizione punto di &montaggio"
+    IDS_STRING_eMenuSmartMirror "Sincroni&zzazione intelligente"
+    IDS_STRING_eMenuDeloreanCopy "Copia &DeLorean"
+    IDS_STRING_eMenuCreateMountPoint "&Punto di montaggio disco"
+    IDS_STRING_eMenuDropeAs "Crea come…"
+    IDS_STRING_eMenuDropHardlink "&Crea collegamento reale"
+    IDS_STRING_eMenuDropHardLinkClone "&Crea clone collegamento reale"
+    IDS_STRING_eMenuDropJunction "&Crea giunzione"
+    IDS_STRING_eMenuDropReplaceJunction "&Crea giunzione sostitutiva"
+    IDS_STRING_eMenuDropSmartCopy "&Crea copia intelligente"
+    IDS_STRING_eMenuDropSymbolicLink "&Crea collegamento simbolico"
+    IDS_STRING_eMenuDropReplaceSymbolicLink 
+                            "&Crea collegamento simbolico sostitutivo qui"
+    IDS_STRING_eMenuDropReplaceMountPoint 
+                            "&Crea punto di montaggio sostitutivo qui"
+    IDS_STRING_eMenuDropSmartMirror "Crea sincronizzazione intelligente qui"
+    IDS_STRING_eMenuDropDeloreanCopy "Crea copia DeLorean qui"
+    IDS_STRING_eMenuHardlink1 "Collegamento &reale"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "Collegamento &simbolico"
+    IDS_STRING_eMenuJunction1 "&Giunzione"
+    IDS_STRING_eMenuHardLinkClone1 "&Clona collegamento reale"
+    IDS_STRING_eMenuSymbolicLinkClone1 "C&lona collegamento simbolico"
+    IDS_STRING_eMenuReplaceJunction1 "&Sostituisci giunzione"
+    IDS_STRING_eMenuSmartCopy1 "Copia i&ntelligente"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "Sostituzione collegamento simbolico"
+    IDS_STRING_eMenuReplaceMountPoint1 "Sostizione punto di montaggio"
+    IDS_STRING_eMenuSmartMirror1 "Sin&cronizzazione intelligente"
+    IDS_STRING_eMenuDeloreanCopy1 "Copia &DeLorean"
+    IDS_STRING_eMenuCreateMountPoint1 "&Punto di montaggio disco"
+    IDS_STRING_eMenuDropeAs1 "Crea qui…"
+    IDS_STRING_eMenuDropHardlink1 "&Crea collegamento reale qui"
+    IDS_STRING_eMenuDropHardLinkClone1 "&Clona collegamento reale qui"
+    IDS_STRING_eMenuDropJunction1 "&Crea giunzione qui"
+    IDS_STRING_eMenuDropReplaceJunction1 "&Crea giunzione sostitutiva qui"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Crea qui copia intelligente"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Crea qui collegamento simbolico"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 
+                            "&Crea collegamento simbolico sostitutivo qui"
+    IDS_STRING_eMenuDropReplaceMountPoint1 
+                            "&Crea punto di montaggio sostitutivo qui"
+    IDS_STRING_eMenuDropSmartMirror1 "Crea s&incronizzazione intelligente qui"
+    IDS_STRING_eMenuDropDeloreanCopy1 "Crea copia &DeLorean qui"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Seleziona un file o una cartella"
+    IDS_STRING_HelpText02   "Crea collegamento reale alla selezione"
+    IDS_STRING_HelpText03   "Crea collegamento simbolico alla selezione"
+    IDS_STRING_HelpText04   "Crea giunzione alla cartella selezionata"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Clona ricorsivamente la struttura delle cartelle selezionata e crea collegamenti reali per i file all'interno"
+    IDS_STRING_HelpText06   "Clona ricorsivamente la struttura delle cartelle selezionata e crea collegamenti simbolici per i file all'interno"
+    IDS_STRING_HelpText07   "Elimina la giunzione selezionata."
+    IDS_STRING_HelpText08   "Crea qui come…"
+    IDS_STRING_HelpText09   "Interrompi la scelta del collegamento corrente"
+    IDS_STRING_HelpText10   "Monta disco nel percorso specificato"
+    IDS_STRING_HelpText11   "Smonta disco dalla cartella specificata"
+    IDS_STRING_HelpText12   "Rimpiazza la giunzione da creare con la posizione selezionata"
+    IDS_STRING_HelpText13   "Copia una struttura di cartelle in una posizione differente mantenedo la struttura dei collegamenti all'interno"
+    IDS_STRING_HelpText14   "Sostituisce il collegamento simbolico con la posizione selezionata"
+    IDS_STRING_HelpText15   "Sostituisce il punto di montaggio con la posizione selezionata"
+    IDS_STRING_HelpText16   "Crea una copia della struttura delle cartelle preservando la struttura dei collegamenti all'interno"
+    IDS_STRING_HelpText17   "Copia DeLorean crea un nuovo backup dai dati esistenti e mantiene lo storico dei backup precedenti"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "Usa come origine del collegamento"
+    IDS_STRING_eTopMenuDeleteJunction "Elimina giunzione"
+    IDS_STRING_eTopMenuCancelLinkCreation "Abbandona creazione collegamento"
+    IDS_STRING_eTopMenuHardlink "Reale"
+    IDS_STRING_eTopMenuJunction "Giunzione"
+    IDS_STRING_eTopMenuSymbolicLink "Simbolico"
+    IDS_STRING_eTopMenuTo   " di "
+    IDS_STRING_eTopMenuOf   " di "
+    IDS_STRING_eTopMenuReference "Riferimento"
+    IDS_STRING_eTopMenuHardlinkClone "Clone collegamento reale"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Clone collegamento simbolico"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "Numero riferimenti: collegamenti reali a file / origini di giunzioni"
+    IDS_STRING_eTopMenuDeleteMountPoint "Smonta disco"
+    IDS_STRING_eTopMenuMountPoint "Punto di montaggio"
+    IDS_STRING_eTopMenuSmartCopy "Copia intelligente"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Portuguese (Brazil) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
+#ifdef _WIN32
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Unidade"
+    IDS_STRING_LanguageID   "0x0c0a"
+    IDS_STRING_PropPageLinkType "Tipo de vínculo:"
+    IDS_STRING_PropPageRefCount "Quantidade de Referências:"
+    IDS_STRING_ProgressCreatingSmartMirror "Criando Espelho Inteligente"
+    IDS_STRING_PropPageCaption "Propiedades do vínculo"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Explorer não pode criar o Cópia Inteligente %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Explorer não pode criar o Espelho Inteligente %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Explorer não pode criar o Cópia DeLorean %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy "Erro ao criar o Cópia Inteligente"
+    IDS_STRING_ErrCreatingSmartMirror "Erro ao criar o Espelho Inteligente"
+    IDS_STRING_ErrCreatingDeloreanCopy "Erro ao criar o Cópia DeLorean"
+    IDS_STRING_BackupPrivilegesNotHeld 
+                            "Privilégios não concedidos para a operação de Backup"
+    IDS_STRING_BackupFailed "Operação de Backup falhou"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Hardlink"
+    IDS_STRING_Junction     "Junção"
+    IDS_STRING_LinkTypeSymlink "Vínculo Simbólico"
+    IDS_STRING_ErrDestSrcCircular 
+                            ": diretório de destino é um sub-diretório da origem."
+    IDS_STRING_ProgressCreatingSmartCopy "Criando Cópia Inteligente…"
+    IDS_STRING_MountPoint   "Ponto de Montajem"
+    IDS_STRING_ProgressCloning "Clonando …"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Criando Cópia DeLorean…"
+    IDS_STRING_ErrDirectoryNotEmpty ": diretório de destino não está vazio"
+    IDS_STRING_SymbolicLinkClone "Clone de Vínculo Simbólico"
+    IDS_STRING_HardlinkClone "Clone de Hardlink"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": número máximo de Hardlinks (1023) por arquivo foi atingido"
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Explorer não pode criar o Ponto de Montajem %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Explorer não pode criar o Hardlink %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Explorer não pode criar a Junção %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Explorer não pode criar o Vínculo Simbólico %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Explorer não pode criar o Clone de Hardlink %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Explorer não pode criar o Clone de Vínculo Simbólico %1!s!"
+    IDS_STRING_ErrCreatingMountpoint "Erro ao criar o Ponto de Montajem."
+    IDS_STRING_ErrCreatingHardlink "Erro ao criar o Hardlink."
+    IDS_STRING_ErrCreatingJunction "Erro ao criar a Junção."
+    IDS_STRING_ErrCreatingSymlink "Erro ao criar o Vínculo Simbólico."
+    IDS_STRING_ErrCreatingHardlinkClone "Erro ao criar o Clone de Hardlink."
+    IDS_STRING_ErrCreatingSymlinkClone 
+                            "Erro ao criar o Clone de Vínculo Simbólico."
+    IDS_STRING_Target       "Destino:"
+    IDS_STRING_MountPointTarget "Destino do Ponto de Montajem do Volúme:"
+    IDS_STRING_PropPageHardlinkEnum "Enumeração de Hardlinks"
+    IDS_STRING_PropPageEnumSiblings "Enumerar Vínculos"
+    IDS_STRING_ProgressEnumerating "Enumerar Vínculos…"
+    IDS_STRING_ProgressCanceling "Cancelando…"
+    IDS_STRING_ExploreTarget "Explorar destino"
+    IDS_STRING_ProgressSmartMove "Mover Inteligente em progresso…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "&Hardlink"
+    IDS_STRING_eMenuSymbolicLink "Vínculo &Simbólico"
+    IDS_STRING_eMenuJunction "&Junção"
+    IDS_STRING_eMenuHardLinkClone "&Clone de Hardlink"
+    IDS_STRING_eMenuSymbolicLinkClone "Clone de &Vínculo Simbólico"
+    IDS_STRING_eMenuReplaceJunction "J&unção de Substituição"
+    IDS_STRING_eMenuSmartCopy "Cópia &Inteligente"
+    IDS_STRING_eMenuReplaceSymbolicLink "Vínculo Simbólico de Substituição"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "Ponto de Montagem de Substituição"
+    IDS_STRING_eMenuSmartMirror "Espelho Inteligente"
+    IDS_STRING_eMenuDeloreanCopy "Cópia DeLorean"
+    IDS_STRING_eMenuCreateMountPoint "Ponto de &Montajem"
+    IDS_STRING_eMenuDropeAs "So&ltar como…"
+    IDS_STRING_eMenuDropHardlink "Soltar &Hardlink"
+    IDS_STRING_eMenuDropHardLinkClone "Soltar &Clone de Hardlink"
+    IDS_STRING_eMenuDropJunction "Soltar &Junção"
+    IDS_STRING_eMenuDropReplaceJunction "Soltar Junção de &Substituição"
+    IDS_STRING_eMenuDropSmartCopy "Soltar Cópia &Inteligente"
+    IDS_STRING_eMenuDropSymbolicLink "Soltar &Vínculo Simbólico"
+    IDS_STRING_eMenuDropReplaceSymbolicLink 
+                            "Soltar Ví&nculo Simbólico de Substituição"
+    IDS_STRING_eMenuDropReplaceMountPoint "Ponto de &Montagem de Substituição"
+    IDS_STRING_eMenuDropSmartMirror "Criar Espelho Inteligente aqui"
+    IDS_STRING_eMenuDropDeloreanCopy "Criar Cópia DeLorean aqui"
+    IDS_STRING_eMenuHardlink1 "&Hardlink"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "&Vínculo Simbólico"
+    IDS_STRING_eMenuJunction1 "&Junção"
+    IDS_STRING_eMenuHardLinkClone1 "&Clone de Hardlink"
+    IDS_STRING_eMenuSymbolicLinkClone1 "Clone de Vínculo &Simbólico"
+    IDS_STRING_eMenuReplaceJunction1 "&Junção de Substituição"
+    IDS_STRING_eMenuSmartCopy1 "&Cópia Inteligente"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "Vínculo Simbólico de Substituição"
+    IDS_STRING_eMenuReplaceMountPoint1 "Ponto de Montagem de Substituição"
+    IDS_STRING_eMenuSmartMirror1 "Espelho Inteligente"
+    IDS_STRING_eMenuDeloreanCopy1 "Cópia DeLorean"
+    IDS_STRING_eMenuCreateMountPoint1 "&Ponto de Montajem"
+    IDS_STRING_eMenuDropeAs1 "&Soltar aqui…"
+    IDS_STRING_eMenuDropHardlink1 "&Hardlink aqui"
+    IDS_STRING_eMenuDropHardLinkClone1 "&Clone de Hardlink aqui"
+    IDS_STRING_eMenuDropJunction1 "&Junção aqui"
+    IDS_STRING_eMenuDropReplaceJunction1 "Junção de &Substituição aqui"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Criar Cópia Inteligente aqui"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Criar Vínculo Simbólico aqui"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 
+                            "Criar Vínculo Simbólico de Substituição aqui"
+    IDS_STRING_eMenuDropReplaceMountPoint1 
+                            "Criar Ponto de Montagem de Substituição aqui"
+    IDS_STRING_eMenuDropSmartMirror1 "Criar Espelho Inteligente aqui"
+    IDS_STRING_eMenuDropDeloreanCopy1 "Criar Cópia DeLorean aqui"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Seleciona um arquivo ou diretório"
+    IDS_STRING_HelpText02   "Solta a selecão como um Hardlink"
+    IDS_STRING_HelpText03   "Solta a selecão como um Vínculo Simbólico"
+    IDS_STRING_HelpText04   "Cria uma Junção no diretório selecionado"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Clona recursivamente a estrutura do diretório selecionado, e cria Hardlinks para os arquivos contidos"
+    IDS_STRING_HelpText06   "Clona recursivamente a estrutura do diretório selecionado, e cria Vínculos Simbólicos para os arquivos contidos"
+    IDS_STRING_HelpText07   "Exclui a Junção selecionada."
+    IDS_STRING_HelpText08   "Soltar aqui como…"
+    IDS_STRING_HelpText09   "Cancela a selecão de orirem de Vínculo atual."
+    IDS_STRING_HelpText10   "Monta uma unidade no caminho indicado."
+    IDS_STRING_HelpText11   "Desmonta uma unidade do caminho indicado."
+    IDS_STRING_HelpText12   "Substitui o destino da Junção com o atual caminho selecionado."
+    IDS_STRING_HelpText13   "Copiar uma estrutura de diretório para um novo destino preservando a estrutura interna de Hardlinks"
+    IDS_STRING_HelpText14   "Substitui o destino do Vínculo Simbólico pela localização selecionada."
+    IDS_STRING_HelpText15   "Substitui o destino do Ponto de Montagem pela localização selecionada."
+    IDS_STRING_HelpText16   "Copiar uma estrutura de diretório preservando sua estrutura interna de hardlinks, junções e vínculos simbólicos."
+    IDS_STRING_HelpText17   "Criar uma interação da Cópia DeLorean"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "Selecionar a origem do Vínculo"
+    IDS_STRING_eTopMenuDeleteJunction "Excluir Junção"
+    IDS_STRING_eTopMenuCancelLinkCreation "Cancelar a criação de Vínculo"
+    IDS_STRING_eTopMenuHardlink "Hardlink"
+    IDS_STRING_eTopMenuJunction "Junção"
+    IDS_STRING_eTopMenuSymbolicLink "Vínculo Simbólico"
+    IDS_STRING_eTopMenuTo   " de "
+    IDS_STRING_eTopMenuOf   " de "
+    IDS_STRING_eTopMenuReference "Referência"
+    IDS_STRING_eTopMenuHardlinkClone "Clone de Hardlink"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Clone de Vínculo Simbólico"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "Contagem de referência: de Hardlinks / Origens da Junção"
+    IDS_STRING_eTopMenuDeleteMountPoint "Desmontar volúme"
+    IDS_STRING_eTopMenuMountPoint "Ponto de Montajem"
+    IDS_STRING_eTopMenuSmartCopy "Cópia Inteligente"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Portuguese (Brazil) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral (Sys. Default) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEUSD)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_SYS_DEFAULT
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "res\\JunctionIcon_XP.ico"
+IDI_LINKSHLEXT_ICON_TAB ICON                    "res\\Hardlink_XP.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_LINKSHLEXT_PROPPAGE DIALOGEX 0, 0, 222, 249
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,4,30,212,1
+    CONTROL         "Type of link:",IDC_PROPPAGE_LINKSHLEXT_LINKTYPE,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,6,38,59,8
+    CONTROL         "Reference Count:",IDC_PROPPAGE_LINKSHLEXT_REFTARGET,
+                    "Static",SS_LEFTNOWORDWRAP | WS_GROUP,6,55,72,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,3,72,213,1
+    EDITTEXT        IDC_PROPPAGE_LINKSHLEXT_FILENAME,42,10,174,13,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE,78,53,138,14,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Static",IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,78,38,134,11
+    EDITTEXT        IDC_PROPPAGE_LINKSHLEXT_HARDLINKS,6,96,210,130,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | NOT WS_VISIBLE | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Static",IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM,6,78,205,8,SS_NOPREFIX | NOT WS_VISIBLE
+    PUSHBUTTON      "Enumerate Siblings",IDC_ENUMERATE_HARDLINK_SIBLINGS,121,231,95,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Explore Target",IDC_EXPLORE_TARGET,120,78,95,14,NOT WS_VISIBLE
+    LTEXT           "Static",IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE,8,234,61,8,NOT WS_VISIBLE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_LINKSHLEXT_PROPPAGE, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 242
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Neutral (Sys. Default) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Spanish resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)
+#ifdef _WIN32
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MODERN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Unidad"
+    IDS_STRING_LanguageID   "0x0c0a"
+    IDS_STRING_PropPageLinkType "Tipo de vínculo:"
+    IDS_STRING_PropPageRefCount "Cantidad de Referencias:"
+    IDS_STRING_ProgressCreatingSmartMirror "Creando Espejo Inteligente…"
+    IDS_STRING_PropPageCaption "Propiedades del vínculo"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Explorer no puede crear Copia Inteligente %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Explorer no puede crear Espejo Inteligente %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Explorer no puede crear Copia DeLorean %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy "Error al crear Copia Inteligente"
+    IDS_STRING_ErrCreatingSmartMirror "Error al crear Espejo Inteligente"
+    IDS_STRING_ErrCreatingDeloreanCopy "Error al crear Copia DeLorean"
+    IDS_STRING_BackupPrivilegesNotHeld 
+                            "Privileges for Backup operation not held"
+    IDS_STRING_BackupFailed "Backup Failed"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Vínculo Fuerte"
+    IDS_STRING_Junction     "Unión"
+    IDS_STRING_LinkTypeSymlink "Vínculo Simbólico"
+    IDS_STRING_ErrDestSrcCircular 
+                            ": El directorio de destino es un subdirectorio del origen."
+    IDS_STRING_ProgressCreatingSmartCopy "Creando Copia Inteligente…"
+    IDS_STRING_MountPoint   "Punto de montaje"
+    IDS_STRING_ProgressCloning "Clonando …"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Creando Copia de DeLorean…"
+    IDS_STRING_ErrDirectoryNotEmpty ": El directorio de destino no está vacío"
+    IDS_STRING_SymbolicLinkClone "Clon de Vínculo Simbólico"
+    IDS_STRING_HardlinkClone "Clon de Vínculo Fuerte"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": El número máximo de 1023 vínculos fuertes por archivo ha sido"
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Explorer no puede crear Punto de montaje %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Explorer no puede crear Vínculo Fuerte %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Explorer no puede crear Unión %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Explorer no puede crear Vínculo Simbólico %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Explorer no puede crear Clon de Vínculo Fuerte %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Explorer no puede crear Clon de Vínculo Simbólico %1!s!"
+    IDS_STRING_ErrCreatingMountpoint "Error al crear Punto de montaje."
+    IDS_STRING_ErrCreatingHardlink "Error al crear Vínculo Fuerte."
+    IDS_STRING_ErrCreatingJunction "Error al crear Unión."
+    IDS_STRING_ErrCreatingSymlink "Error al crear Vínculo Simbólico."
+    IDS_STRING_ErrCreatingHardlinkClone 
+                            "Error al crear Clon de Vínculo Fuerte."
+    IDS_STRING_ErrCreatingSymlinkClone 
+                            "Error al crear Clon de Vínculo Simbólico."
+    IDS_STRING_Target       "Destino:"
+    IDS_STRING_MountPointTarget "Destino del punto de montaje del Volúmen:"
+    IDS_STRING_PropPageHardlinkEnum "Enumeración de Vínculos Fuertes"
+    IDS_STRING_PropPageEnumSiblings "Enumerar Vinculados"
+    IDS_STRING_ProgressEnumerating "Enumerar Vinculados…"
+    IDS_STRING_ProgressCanceling "Cancelando…"
+    IDS_STRING_ExploreTarget "Explorar Objetivo"
+    IDS_STRING_ProgressSmartMove "Movimiento inteligente en progreso…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "Vínculo &Fuerte"
+    IDS_STRING_eMenuSymbolicLink "Vínculo &Simbólico"
+    IDS_STRING_eMenuJunction "&Unión"
+    IDS_STRING_eMenuHardLinkClone "&Clon de Vínculo Fuerte"
+    IDS_STRING_eMenuSymbolicLinkClone "&Clon de Vínculo Simbólico"
+    IDS_STRING_eMenuReplaceJunction "&Unión de reemplazo"
+    IDS_STRING_eMenuSmartCopy "&Copia Inteligente"
+    IDS_STRING_eMenuReplaceSymbolicLink "&Remplazo de vínculo simbólico"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "R&emplazo de punto de montaje"
+    IDS_STRING_eMenuSmartMirror "Espejo Inteligente"
+    IDS_STRING_eMenuDeloreanCopy "Copia &DeLorean"
+    IDS_STRING_eMenuCreateMountPoint "&Punto de montaje"
+    IDS_STRING_eMenuDropeAs "Soltar &como…"
+    IDS_STRING_eMenuDropHardlink "Soltar Vínculo &Fuerte"
+    IDS_STRING_eMenuDropHardLinkClone "&Soltar Clon de Vínculo Fuerte aquí"
+    IDS_STRING_eMenuDropJunction "&Soltar Unión"
+    IDS_STRING_eMenuDropReplaceJunction "&Soltar Unión de reemplazo"
+    IDS_STRING_eMenuDropSmartCopy "&Soltar Copia Inteligente"
+    IDS_STRING_eMenuDropSymbolicLink "&Soltar Vínculo Simbólico"
+    IDS_STRING_eMenuDropReplaceSymbolicLink "&Remplazo de vínculo simbólico"
+    IDS_STRING_eMenuDropReplaceMountPoint "R&emplazo de punto de montaje"
+    IDS_STRING_eMenuDropSmartMirror "Crear Espejo Inteligente aquí"
+    IDS_STRING_eMenuDropDeloreanCopy "Crear Copia de &DeLorean aquí"
+    IDS_STRING_eMenuHardlink1 "Vínculo &Fuerte"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "Vínculo &Simbólico"
+    IDS_STRING_eMenuJunction1 "&Unión"
+    IDS_STRING_eMenuHardLinkClone1 "&Clon de Vínculo Fuerte"
+    IDS_STRING_eMenuSymbolicLinkClone1 "&Clon de Vínculo Simbólico"
+    IDS_STRING_eMenuReplaceJunction1 "&Unión de reemplazo"
+    IDS_STRING_eMenuSmartCopy1 "Copia Inteligente"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "&Remplazo de vínculo simbólico"
+    IDS_STRING_eMenuReplaceMountPoint1 "R&emplazo de punto de montaje"
+    IDS_STRING_eMenuSmartMirror1 "Espejo Inteligente"
+    IDS_STRING_eMenuDeloreanCopy1 "Copia &DeLorean"
+    IDS_STRING_eMenuCreateMountPoint1 "&Punto de montaje"
+    IDS_STRING_eMenuDropeAs1 "Soltar &aquí…"
+    IDS_STRING_eMenuDropHardlink1 "&Vínculo Fuerte aquí"
+    IDS_STRING_eMenuDropHardLinkClone1 "&Clon de Vínculo Fuerte aquí"
+    IDS_STRING_eMenuDropJunction1 "&Unión aquí"
+    IDS_STRING_eMenuDropReplaceJunction1 "&Unión de reemplazo aquí"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Crear Copia Inteligente aquí"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Crear Vínculo Simbólico aquí"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 
+                            "&'Crear remplazo de vínculo simbólico aquí"
+    IDS_STRING_eMenuDropReplaceMountPoint1 
+                            "&Crear remplazo de punto de montaje aquí"
+    IDS_STRING_eMenuDropSmartMirror1 "Crear Espejo Inteligente aquí"
+    IDS_STRING_eMenuDropDeloreanCopy1 "Crear Copia de &DeLorean aquí"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Selecciona un archivo o directorio"
+    IDS_STRING_HelpText02   "Suelta la selección como un Vínculo Fuerte"
+    IDS_STRING_HelpText03   "Suelta la selección como un Vínculo Simbólico"
+    IDS_STRING_HelpText04   "Crea una Unión al directorio seleccionado"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Clona recursivamente la estructura de directorio seleccionada, y crea Vínculos Fuertes para los archivos contenidos"
+    IDS_STRING_HelpText06   "Clona recursivamente la estructura de directorio seleccionada, y crea Vínculos Simbólicos para los archivos contenidos"
+    IDS_STRING_HelpText07   "Elimina la Unión seleccionada."
+    IDS_STRING_HelpText08   "Soltar aquí como…"
+    IDS_STRING_HelpText09   "Cancela la operación de Selección de Vínculo en curso"
+    IDS_STRING_HelpText10   "Monta una unidad a la ubicación dada"
+    IDS_STRING_HelpText11   "Desmonta una unidad desde el punto de montaje dado"
+    IDS_STRING_HelpText12   "Mueve la Unión preestablecida a la ubicación seleccionada."
+    IDS_STRING_HelpText13   "Copiar una estructura de directorio a una ruta diferente, preservando la estructura interna de vínculos fuertes"
+    IDS_STRING_HelpText14   "Remplaza el objetivo del vínculo simbólico liberado con la ubicación seleccionada."
+    IDS_STRING_HelpText15   "Remplaza el objetivo del punto de montaje liberado con la ubicación seleccionada."
+    IDS_STRING_HelpText16   "Reflejar la estructura de un directorio conservando la estructura interna Vínculo Fuerte/Vínculo Simbólico/Unión."
+    IDS_STRING_HelpText17   "Crear una iteración de la copia del DeLorean"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "Seleccionar el origen del Vínculo"
+    IDS_STRING_eTopMenuDeleteJunction "Eliminar Unión"
+    IDS_STRING_eTopMenuCancelLinkCreation "Cancelar la creación del Vínculo"
+    IDS_STRING_eTopMenuHardlink "Vínculo Fuerte"
+    IDS_STRING_eTopMenuJunction "Unión"
+    IDS_STRING_eTopMenuSymbolicLink "Vínculo Simbólico"
+    IDS_STRING_eTopMenuTo   " de "
+    IDS_STRING_eTopMenuOf   " de "
+    IDS_STRING_eTopMenuReference "Referencia"
+    IDS_STRING_eTopMenuHardlinkClone "Clon de Vínculo Fuerte"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Clon de Vínculo Simbólico"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "Conteo de referencias a archivos fuertemente vinculados / Origen de las uniones"
+    IDS_STRING_eTopMenuDeleteMountPoint "Desmontar volúmen"
+    IDS_STRING_eTopMenuMountPoint "Punto de montaje"
+    IDS_STRING_eTopMenuSmartCopy "Copia Inteligente"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Spanish resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Greek resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ELL)
+#ifdef _WIN32
+LANGUAGE LANG_GREEK, SUBLANG_DEFAULT
+#pragma code_page(1253)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Ïäçãüò"
+    IDS_STRING_LanguageID   "0x0408"
+    IDS_STRING_PropPageLinkType "Ôığïò äåóìïı:"
+    IDS_STRING_PropPageRefCount "ÁíáöïñÜ êáôáìİôñçóçò:"
+    IDS_STRING_ProgressCreatingSmartMirror "Äçìéïõñãßá İîõğíïõ êáôïğôñéóìïı…"
+    IDS_STRING_PropPageCaption "Éäéüôçôåò äåóìïı"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Äåóìüò õëéêïı"
+    IDS_STRING_Junction     "Óçìåßï óıíäåóçò"
+    IDS_STRING_LinkTypeSymlink "Óõìâïëéêüò äåóìüò"
+    IDS_STRING_ErrDestSrcCircular 
+                            " : Ï êáôÜëïãïò áğüèåóçò åßíáé õğïêáôÜëïãïò ôïõ ğñïïñéóìïı"
+    IDS_STRING_ProgressCreatingSmartCopy "Äçìéïõñãßá İîõğíïõ áíôßãñáöïõ…"
+    IDS_STRING_MountPoint   "Óçìåßï ìïíôáñßóìáôïò"
+    IDS_STRING_ProgressCloning "Êëùíïğïßçóç…"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "Äçìéïõñãßá áíôßãñáöïõ DeLorean…"
+    IDS_STRING_ErrDirectoryNotEmpty 
+                            " : Ï êáôÜëïãïò ğñïïñéóìïı äåí åßíáé êåíüò"
+    IDS_STRING_SymbolicLinkClone "Êëşíïò óõìâïëéêïı äåóìïı"
+    IDS_STRING_HardlinkClone "Êëşíïò äåóìïı õëéêïı"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": \nÏ ìİãéóôïò áñéèìüò äåóìşí õëéêïı áíÜ áñ÷åßï (1023) İ÷åé åğéôåõ÷èåß."
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Ç Åîåñåıíçóç ôùí Windows äå ìğïñåß íá äçìéïõñãŞóåé ôï óçìåßï ìïíôáñßóìáôïò %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Ç Åîåñåıíçóç ôùí Windows äå ìğïñåß íá äçìéïõñãŞóåé ôï äåóìü õëéêïı %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Ç Åîåñåıíçóç ôùí Windows äå ìğïñåß íá äçìéïõñãŞóåé ôï óçìåßï óıíäåóçò %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Ç Åîåñåıíçóç ôùí Windows äå ìğïñåß íá äçìéïõñãŞóåé ôç óõìâïëéêŞ óıíäåóç %1!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Ç Åîåñåıíçóç ôùí Windows äå ìğïñåß íá äçìéïõñãŞóåé ôïí êëşíï äåóìïı õëéêïı %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Ç Åîåñåıíçóç ôùí Windows äå ìğïñåß íá äçìéïõñãŞóåé ôïí êëşíï óõìâïëéêïı äåóìïı %1!s!"
+    IDS_STRING_ErrCreatingMountpoint 
+                            "ÓöÜëìá êáôÜ ôç äçìéïõñãßá óçìåßïõ ìïíôáñßóìáôïò"
+    IDS_STRING_ErrCreatingHardlink "ÓöÜëìá êáôÜ ôç äçìéïõñãßá äåóìïı õëéêïı"
+    IDS_STRING_ErrCreatingJunction 
+                            "ÓöÜëìá êáôÜ ôç äçìéïõñãßá óçìåßïõ óıíäåóçò"
+    IDS_STRING_ErrCreatingSymlink 
+                            "ÓöÜëìá êáôÜ ôç äçìéïõñãßá óõìâïëéêïı äåóìïı"
+    IDS_STRING_ErrCreatingHardlinkClone 
+                            "ÓöÜëìá êáôÜ ôç äçìéïõñãßá êëşíïõ äåóìïı õëéêïı"
+    IDS_STRING_ErrCreatingSymlinkClone 
+                            "ÓöÜëìá êáôÜ ôç äçìéïõñãßá êëşíïõ óõìâïëéêïı äåóìïı"
+    IDS_STRING_Target       "Target:"
+    IDS_STRING_MountPointTarget "Ğñïïñéóìüò:"
+    IDS_STRING_PropPageHardlinkEnum "Áğáñßèìçóç äåóìşí õëéêïı :"
+    IDS_STRING_PropPageEnumSiblings "Áğáñßèìçóç ïìïåéäşí"
+    IDS_STRING_ProgressEnumerating "Ãßíåôáé áğáñßèìçóç ïìïåéäşí äåóìşí õëéêïı"
+    IDS_STRING_ProgressCanceling "Ãßíåôáé áêıñùóç…"
+    IDS_STRING_ExploreTarget "Åîåñåıíçóç ğñïïñéóìïı"
+    IDS_STRING_ProgressSmartMove "¸îõğíç ìåôáêßíçóç óå åîİëéîç…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Ç Åîåñåıíçóç ôùí Windows äå ìğïñåß íá äçìéïõñãŞóåé ôï İîõğíï áíôßãñáöï %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Ç Åîåñåıíçóç ôùí Windows äå ìğïñåß íá äçìéïõñãŞóåé ôïí İîõğíï êáôïğôñéóìü %1!s!"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Ç Åîåñåıíçóç ôùí Windows äå ìğïñåß íá äçìéïõñãŞóåé ôï áíôßãñáöï Delorean %1!s!"
+    IDS_STRING_ErrCreatingSmartCopy 
+                            "ÓöÜëìá êáôÜ ôç äçìéïõñãßá İîõğíïõ áíôßãñáöïõ"
+    IDS_STRING_ErrCreatingSmartMirror 
+                            "ÓöÜëìá êáôÜ ôç äçìéïõñãßá İîõğíïõ êáôïğôñéóìïı"
+    IDS_STRING_ErrCreatingDeloreanCopy 
+                            "ÓöÜëìá êáôÜ ôç äçìéïõñãßá áíôßãñáöïõ Delorean"
+    IDS_STRING_BackupPrivilegesNotHeld 
+                            "Privileges for Backup operation not held"
+    IDS_STRING_BackupFailed "Äåí İ÷åôå ğñïíüìéá ãéá ôç ëåéôïõñãßá äçìéïõñãßáò áíôéãñÜöùí áóöáëåßáò"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Ç áõôüìáôç ìåôïíïìáóßá áğİôõ÷å: %1!s! ÅğéêïéíùíŞóôå ìå ôçí õğïóôŞñéîç"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "&Äåóìü õëéêïı"
+    IDS_STRING_eMenuSymbolicLink "Ó&õìâïëéêü äåóìü"
+    IDS_STRING_eMenuJunction "&Óçìåßï óıíäåóçò"
+    IDS_STRING_eMenuHardLinkClone "&Êëşíï äåóìïı õëéêïı"
+    IDS_STRING_eMenuSymbolicLinkClone "Ê&ëşíï óõìâïëéêïı äåóìïı"
+    IDS_STRING_eMenuReplaceJunction "&ÁíôéêáôÜóôáôï óçìåßïõ óıíäåóçò"
+    IDS_STRING_eMenuSmartCopy "¸îõ&ğíï áíôßãñáöï"
+    IDS_STRING_eMenuReplaceSymbolicLink "&ÁíôéêáôÜóôáôï óõìâïëéêïı äåóìïı"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "&ÁíôéêáôÜóôáôï óçìåßïõ ìïíôáñßóìáôïò"
+    IDS_STRING_eMenuSmartMirror "¸îõğíï êá&ôïğôñéóìü"
+    IDS_STRING_eMenuDeloreanCopy "Áíôßãñáöï &DeLorean"
+    IDS_STRING_eMenuCreateMountPoint "Óçìåßï ìïíôáñßóìáôïò &ôüìïõ"
+    IDS_STRING_eMenuDropeAs "Áğüèåóç åäş ùò…"
+    IDS_STRING_eMenuDropHardlink "Áğü&èåóç äåóìïı õëéêïı"
+    IDS_STRING_eMenuDropHardLinkClone "Áğü&èåóç êëşíïõ äåóìïı õëéêïı"
+    IDS_STRING_eMenuDropJunction "Áğü&èåóç óçìåßïõ óıíäåóçò"
+    IDS_STRING_eMenuDropReplaceJunction 
+                            "Áğü&èåóç áíôéêáôÜóôáôïõ óçìåßïõ óıíäåóçò"
+    IDS_STRING_eMenuDropSmartCopy "Áğü&èåóç İîõğíïõ áíôßãñáöïõ"
+    IDS_STRING_eMenuDropSymbolicLink "Áğü&èåóç óõìâïëéêïı äåóìïı"
+    IDS_STRING_eMenuDropReplaceSymbolicLink 
+                            "&Äçìéïõñãßá áíôéêáôÜóôáôïõ óõìâïëéêïı äåóìïı åäş"
+    IDS_STRING_eMenuDropReplaceMountPoint 
+                            "&Äçìéïõñãßá áíôéêáôÜóôáôïõ óçìåßïõ ìïíôáñßóìáôïò åäş"
+    IDS_STRING_eMenuDropSmartMirror "&Äçìéïõñãßá İîõğíïõ êáôïğôñéóìïı åäş"
+    IDS_STRING_eMenuDropDeloreanCopy "&Äçìéïõñãßá áíôßãñáöïõ DeLorean åäş"
+    IDS_STRING_eMenuHardlink1 "&Äåóìüò õëéêïı"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "Ó&õìâïëéêŞ óıíäåóç"
+    IDS_STRING_eMenuJunction1 "&Óçìåßï óıíäåóçò"
+    IDS_STRING_eMenuHardLinkClone1 "&Êëşíïò äåóìïı õëéêïı"
+    IDS_STRING_eMenuSymbolicLinkClone1 "&Ê&ëşíïò óõìâïëéêïı äåóìïı"
+    IDS_STRING_eMenuReplaceJunction1 "ÁíôéêáôÜóôáôï &óçìåßïõ óıíäåóçò"
+    IDS_STRING_eMenuSmartCopy1 "¸îõ&ğíï áíôßãñáöï"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "ÁíôéêáôÜóôáôï óõìâïëéêïı äåóìïı"
+    IDS_STRING_eMenuReplaceMountPoint1 "ÁíôéêáôÜóôáôï óçìåßïõ ìïíôáñßóìáôïò"
+    IDS_STRING_eMenuSmartMirror1 "¸îõğíïò êá&ôïğôñéóìüò"
+    IDS_STRING_eMenuDeloreanCopy1 "Áíôßãñáöï &DeLorean"
+    IDS_STRING_eMenuCreateMountPoint1 "Óçìåßï ìïíôáñßóìáôïò &ôüìïõ"
+    IDS_STRING_eMenuDropeAs1 "Áğüèåóç åäş…"
+    IDS_STRING_eMenuDropHardlink1 "&Äçìéïõñãßá äåóìïı õëéêïı åäş"
+    IDS_STRING_eMenuDropHardLinkClone1 "&Äçìéïõñãßá êëşíïõ äåóìïı õëéêïı åäş"
+    IDS_STRING_eMenuDropJunction1 "&Äçìéïõñãßá óçìåßïõ óıíäåóçò åäş"
+    IDS_STRING_eMenuDropReplaceJunction1 
+                            "&Äçìéïõñãßá áíôéêáôÜóôáôïõ óçìåßïõ óıíäåóçò åäş"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Äçìéïõñãßá İîõğíïõ áíôßãñáöïõ åäş"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Äçìéïõñãßá óõìâïëéêïı äåóìïı åäş"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 
+                            "&Äçìéïõñãßá áíôéêáôÜóôáôïõ óõìâïëéêïı äåóìïı åäş"
+    IDS_STRING_eMenuDropReplaceMountPoint1 
+                            "&Äçìéïõñãßá áíôéêáôÜóôáôïõ óçìåßïõ ìïíôáñßóìáôïò åäş"
+    IDS_STRING_eMenuDropSmartMirror1 "&Äçìéïõñãßá İîõğíïõ êáôïğôñéóìïı åäş"
+    IDS_STRING_eMenuDropDeloreanCopy1 "&Äçìéïõñãßá áíôßãñáöïõ DeLorean åäş"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Åğéëİãåé İíá áñ÷åßï Ş êáôÜëïãï."
+    IDS_STRING_HelpText02   "Áğïèİôåé ôçí åğéëïãŞ ùò äåóìü õëéêïı."
+    IDS_STRING_HelpText03   "Áğïèİôåé ôçí åğéëïãŞ ùò óõìâïëéêü äåóìü."
+    IDS_STRING_HelpText04   "Äçìéïõñãåß ìéá óıíäåóç ìå ôïí åğéëåãìİíï êáôÜëïãï."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Êëùíïğïéåß áíáäñïìéêÜ ôçí åğéëåãìİíç äïìŞ êáôáëüãïõ êáé äçìéïõñãåß äåóìïıò õëéêïı ìå ôá ğåñéå÷üìåíá áñ÷åßá."
+    IDS_STRING_HelpText06   "Êëùíïğïéåß áíáäñïìéêÜ ôçí åğéëåãìİíç äïìŞ êáôáëüãïõ êáé äçìéïõñãåß óõìâïëéêïıò äåóìïıò ìå ôá ğåñéå÷üìåíá áñ÷åßá."
+    IDS_STRING_HelpText07   "ÄéáãñÜöåé ôï åğéëåãìİíï óçìåßï óıíäåóçò."
+    IDS_STRING_HelpText08   "Áğüèåóç åäş ùò…"
+    IDS_STRING_HelpText09   "Áêõñşíåé ôçí ôñİ÷ïõóá åğéëïãŞ ğñïïñéóìïı ãéá äçìéïõñãßá äåóìïı."
+    IDS_STRING_HelpText10   "ÌïíôÜñåé İíáí ôüìï óôçí êáèïñéóìİíç äéáäñïìŞ."
+    IDS_STRING_HelpText11   "ÁğïìïíôÜñåé İíáí ôüìï áğü ôçí êáèïñéóìİíç äéáäñïìŞ."
+    IDS_STRING_HelpText12   "ÁíôéêáèéóôÜ ôïí ğñïïñéóìü ôçò óıíäåóçò ìå ôçí åğéëåãìİíç ôïğïèåóßá."
+    IDS_STRING_HelpText13   "ÁíôéãñÜöåé ôç äïìŞ åíüò êáôáëüãïõ óå äéáöïñåôéêŞ äéáäñïìŞ, äéáôçñşíôáò ôçí åóùôåñéêŞ äïìŞ äåóìşí õëéêïı êáé óõìâïëéêşí äåóìşí."
+    IDS_STRING_HelpText14   "ÁíôéêáèéóôÜ ôïí ğñïïñéóìü ôïõ óõìâïëéêïı äåóìïı ìå ôçí åğéëåãìİíç ôïğïèåóßá."
+    IDS_STRING_HelpText15   "ÁíôéêáèéóôÜ ôïí ğñïïñéóìü ôïõ óçìåßïõ ìïíôáñßóìáôïò ìå ôçí åğéëåãìİíç ôïğïèåóßá."
+    IDS_STRING_HelpText16   "Äçìéïõñãåß êáôïğôñéóìü ôçò äïìŞò åíüò êáôáëüãïõ, äéáôçñşíôáò ôçí åóùôåñéêŞ äïìŞ äåóìşí õëéêïı, óõìâïëéêşí äåóìşí êáé óçìåßùí óóıíäåóçò."
+    IDS_STRING_HelpText17   "Äçìéïõñãåß ìßá åğáíÜëçøç ôïõ áíôßãñáöïõ DeLorean"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "Åğé&ëïãŞ ùò ğñïïñéóìü äåóìïı"
+    IDS_STRING_eTopMenuDeleteJunction "ÄéáãñáöŞ &óçìåßïõ óıíäåóçò"
+    IDS_STRING_eTopMenuCancelLinkCreation "Á&êıñùóç äçìéïõñãßáò äåóìïı"
+    IDS_STRING_eTopMenuHardlink "Äåóìüò õëéêïı"
+    IDS_STRING_eTopMenuJunction "Óçìåßï óıíäåóçò"
+    IDS_STRING_eTopMenuSymbolicLink "Óõìâïëéêüò äåóìüò"
+    IDS_STRING_eTopMenuTo   " áğü "
+    IDS_STRING_eTopMenuOf   " áğü "
+    IDS_STRING_eTopMenuReference "ÁíáöïñÜ"
+    IDS_STRING_eTopMenuHardlinkClone "Êëşíïò äåóìïı õëéêïı"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Êëşíïò óõìâïëéêïı äåóìïı"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "ÁíáöïñÜ êáôáìİôñçóçò: áğü áñ÷åßá ìå äåóìïıò õëéêïı / ğñïİëåõóç óçìåßùí óıíäåóçò"
+    IDS_STRING_eTopMenuDeleteMountPoint "ÁğïìïíôÜñéóìá ôüìïõ"
+    IDS_STRING_eTopMenuMountPoint "Óçìåßï ìïíôáñßóìáôïò"
+    IDS_STRING_eTopMenuSmartCopy "¸îõğíï áíôßãñáöï"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Greek resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Turkish resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_TRK)
+#ifdef _WIN32
+LANGUAGE LANG_TURKISH, SUBLANG_DEFAULT
+#pragma code_page(1254)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_DrivePrefix  "Sürücü"
+    IDS_STRING_LanguageID   "0x041f"
+    IDS_STRING_PropPageLinkType "Bağlantı türü:"
+    IDS_STRING_PropPageRefCount "Referans sayısı:"
+    IDS_STRING_ProgressCreatingSmartMirror "Akıllı Yansı Oluşturuluyor…"
+    IDS_STRING_PropPageCaption "Bağlantı özellikleri"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateSmartCopy 
+                            "Explorer %1!s! Akıllı Kopyasını oluşturamıyor"
+    IDS_STRING_ErrExplorerCanNotCreateSmartMirror 
+                            "Explorer %1!s! Akıllı Yansısını oluşturamıyor"
+    IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy 
+                            "Explorer %1!s! DeLorean Kopyasını oluşturamıyor"
+    IDS_STRING_ErrCreatingSmartCopy "Akıllı Kopya oluşturulurken hata"
+    IDS_STRING_ErrCreatingSmartMirror "Akıllı Yansı oluşturulurken hata"
+    IDS_STRING_ErrCreatingDeloreanCopy "DeLorean Kopyası oluşturulurken hata"
+    IDS_STRING_BackupPrivilegesNotHeld 
+                            "Yedekleme işlemi için Ayrıcalıkları tutmuyo"
+    IDS_STRING_BackupFailed "Yedekleme başarısız"
+    IDS_STRING_ErrExplorerAutoRenAlreadyExists 
+                            "Auto Rename failed: %1!s! Please contact support"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_Hardlink     "Hardlink"
+    IDS_STRING_Junction     "Junction"
+    IDS_STRING_LinkTypeSymlink "Sembolik Link"
+    IDS_STRING_ErrDestSrcCircular " : Hedef dizin kaynağın alt dizini"
+    IDS_STRING_ProgressCreatingSmartCopy "Akıllı kopya oluşturuluyor…"
+    IDS_STRING_MountPoint   "Disk Bölümü Bağlama noktası"
+    IDS_STRING_ProgressCloning "Klonluyor…"
+    IDS_STRING_ProgressCreatingDeLoreanCopy "DeLorean Kopyası oluşturuluyor…"
+    IDS_STRING_ErrDirectoryNotEmpty " : Hedef Dizin Boş Değil"
+    IDS_STRING_SymbolicLinkClone "Sembolik Link Klonu"
+    IDS_STRING_HardlinkClone "Hardlink Klonu"
+    IDS_STRING_ErrHardlinkFailed 
+                            ": \nDosya için azami hardlink sayısına (1023) ulaşıldı."
+    IDS_STRING_ErrExplorerCanNotCreateMountpoint 
+                            "Explorer %1!s! Disk Bölümü Bağlama Noktasını oluşturamıyor"
+    IDS_STRING_ErrExplorerCanNotCreateHardlink 
+                            "Explorer %1!s! Hardlinkini oluşturamıyor"
+    IDS_STRING_ErrExplorerCanNotCreateJunction 
+                            "Explorer %1!s! Junction'ını oluşturamıyor"
+    IDS_STRING_ErrExplorerCanNotCreateSymlink 
+                            "Explorer %1!s! Sembolik Linkini oluşturamıyor"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_ErrExplorerCanNotCreateHardlinkClone 
+                            "Explorer %1!s! Hardlink Klonunu oluşturamıyor"
+    IDS_STRING_ErrExplorerCanNotCreateSymlinkClone 
+                            "Explorer %1!s! Sembolik Link Klonunu oluşturamıyor"
+    IDS_STRING_ErrCreatingMountpoint 
+                            "Disk Bölümü Bağlama noktası oluşturulurken hata"
+    IDS_STRING_ErrCreatingHardlink "Hardlink oluşturulurken hata"
+    IDS_STRING_ErrCreatingJunction "Junction oluşturulurken hata"
+    IDS_STRING_ErrCreatingSymlink "Sembolik Link oluşturulurken hata"
+    IDS_STRING_ErrCreatingHardlinkClone "Hardlink Klonu oluşturulurken hata"
+    IDS_STRING_ErrCreatingSymlinkClone 
+                            "Sembolik Link Klonu oluşturulurken hata"
+    IDS_STRING_Target       "Hedef:"
+    IDS_STRING_MountPointTarget "Disk Bölümü Bağlama Noktası Hedefi:"
+    IDS_STRING_PropPageHardlinkEnum "Hardlink Numaralandırması :"
+    IDS_STRING_PropPageEnumSiblings "Kardeşleri Numaralandır"
+    IDS_STRING_ProgressEnumerating "Hardlink Kardeşlerini Numaralandır…"
+    IDS_STRING_ProgressCanceling "İptal Ediliyor…"
+    IDS_STRING_ExploreTarget "Hedefe Gözat"
+    IDS_STRING_ProgressSmartMove "Akıllı taşıma gerçekleştiriliyor…"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuHardlink "&Hardlink"
+    IDS_STRING_eMenuSymbolicLink "&Sembolik Link"
+    IDS_STRING_eMenuJunction "&Junction"
+    IDS_STRING_eMenuHardLinkClone "Hardlink &Klonu"
+    IDS_STRING_eMenuSymbolicLinkClone "Sembolik Link K&lonu"
+    IDS_STRING_eMenuReplaceJunction "&Yedek Junction"
+    IDS_STRING_eMenuSmartCopy "&Akıllı Kopya"
+    IDS_STRING_eMenuReplaceSymbolicLink "Yedek S&embolik Link"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuReplaceMountPoint "Yedek Disk Bölümü &Bağlama Noktası"
+    IDS_STRING_eMenuSmartMirror "Akıllı &Yansı"
+    IDS_STRING_eMenuDeloreanCopy "&DeLorean Kopyası"
+    IDS_STRING_eMenuCreateMountPoint "Disk &Bölümü Bağlama Noktası"
+    IDS_STRING_eMenuDropeAs "Oluşturulacak bağlantı türü:"
+    IDS_STRING_eMenuDropHardlink "&Hardlink Olarak Yapıştır"
+    IDS_STRING_eMenuDropHardLinkClone "&Hardlink Klonu Olarak Yapıştır"
+    IDS_STRING_eMenuDropJunction "&Junction Olarak Yapıştır"
+    IDS_STRING_eMenuDropReplaceJunction "Yedek Junction &Olarak Yapıştır"
+    IDS_STRING_eMenuDropSmartCopy "&Akıllı Kopya Olarak Yapıştır"
+    IDS_STRING_eMenuDropSymbolicLink "&Sembolik Link Olarak Yapıştır"
+    IDS_STRING_eMenuDropReplaceSymbolicLink 
+                            "&Burada Yedek Sembolik Link Oluştur"
+    IDS_STRING_eMenuDropReplaceMountPoint 
+                            "&Burada Yedek Disk Bölümü Bağlama Noktası Oluştur"
+    IDS_STRING_eMenuDropSmartMirror "Burada Akıllı &Yansı Oluştur"
+    IDS_STRING_eMenuDropDeloreanCopy "Burada &DeLorean Koyası oluştur"
+    IDS_STRING_eMenuHardlink1 "&Hardlink"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuSymbolicLink1 "&Sembolik Link"
+    IDS_STRING_eMenuJunction1 "&Junction"
+    IDS_STRING_eMenuHardLinkClone1 "Hardlink &Klonu"
+    IDS_STRING_eMenuSymbolicLinkClone1 "Sembolik Link K&lonu"
+    IDS_STRING_eMenuReplaceJunction1 "&Yedek Junction"
+    IDS_STRING_eMenuSmartCopy1 "&Akıllı Kopya"
+    IDS_STRING_eMenuReplaceSymbolicLink1 "Yedek Sembolik Link"
+    IDS_STRING_eMenuReplaceMountPoint1 "Yedek Disk Bölümü Bağlama Noktası"
+    IDS_STRING_eMenuSmartMirror1 "Akıllı &Yansı"
+    IDS_STRING_eMenuDeloreanCopy1 "&DeLorean Kopyası"
+    IDS_STRING_eMenuCreateMountPoint1 "&Disk Bölümü Bağlama Noktası"
+    IDS_STRING_eMenuDropeAs1 "Buraya Yapıştır…"
+    IDS_STRING_eMenuDropHardlink1 "&Burada HardLink Oluştur"
+    IDS_STRING_eMenuDropHardLinkClone1 "&Burada HardLink Klonu Oluştur"
+    IDS_STRING_eMenuDropJunction1 "&Burada Junction Oluştur"
+    IDS_STRING_eMenuDropReplaceJunction1 "&Burada Yedek Junction Oluştur"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eMenuDropSmartCopy1 "&Burada Akıllı Kopya Oluştur"
+    IDS_STRING_eMenuDropSymbolicLink1 "&Burada Sembolik Link Oluştur"
+    IDS_STRING_eMenuDropReplaceSymbolicLink1 
+                            "&Burada Yedek Sembolik Link Oluştur"
+    IDS_STRING_eMenuDropReplaceMountPoint1 
+                            "&Burada Yedek Disk Bölümü Bağlama Noktası Oluştur"
+    IDS_STRING_eMenuDropSmartMirror1 "Burada Akıllı &Yansı Oluştur"
+    IDS_STRING_eMenuDropDeloreanCopy1 "Burada &DeLorean Kopyası oluştur"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText01   "Bir dosya ya da dizin seçer."
+    IDS_STRING_HelpText02   "Seçimi HardLink olarak yapıştırır."
+    IDS_STRING_HelpText03   "Seçimi Sembolik Link olarak yapıştırır."
+    IDS_STRING_HelpText04   "Seçili dizine bir Junction oluşturur."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_HelpText05   "Dizin yapısını alt dizinlerle birlikte klonlar ve içerdiği dosyaların HardLinklerini oluşturur."
+    IDS_STRING_HelpText06   "Dizin yapısını alt dizinlerle birlikte klonlar ve içerdiği dosyaların Sembolik Linklerini oluşturur."
+    IDS_STRING_HelpText07   "Seçili junction'ı siler."
+    IDS_STRING_HelpText08   "Oluşturulacak bağlantı türü:"
+    IDS_STRING_HelpText09   "Mevcut Link Kaynağı Seçme işlemini iptal eder."
+    IDS_STRING_HelpText10   "Belirtilen konuma bir disk bölümü bağlar."
+    IDS_STRING_HelpText11   "Belirtilen konumdan bir disk bölümünü ayırır."
+    IDS_STRING_HelpText12   "Oluşturulan junction'ın hedefini seçili konumla değiştirir."
+    IDS_STRING_HelpText13   "Bir dizin yapısını içindeki hardlink/sembolik link/junction yapısını koruyarak başka bir konuma kopyala."
+    IDS_STRING_HelpText14   "Oluşturulan Sembolik Linkin hedefini seçili konumla değiştirir."
+    IDS_STRING_HelpText15   "Oluşturulan Disk Bölümü Bağlama Noktasının hedefini seçili konumla değiştirir."
+    IDS_STRING_HelpText16   "Bir dizin yapısının içindeki hardlink/sembolik link/junction yapısını koruyarak başka bir konumda yansısını oluştur."
+    IDS_STRING_HelpText17   "DeLorean Kopyasının bir yinelemesini oluştur"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuPickLinkSource "&Link Kaynağını Seç"
+    IDS_STRING_eTopMenuDeleteJunction "&Junction'ı Sil"
+    IDS_STRING_eTopMenuCancelLinkCreation "&Linki İptal Et"
+    IDS_STRING_eTopMenuHardlink "Hardlinki"
+    IDS_STRING_eTopMenuJunction "Junction'ı"
+    IDS_STRING_eTopMenuSymbolicLink "SembolikLinki"
+    IDS_STRING_eTopMenuTo   "  "
+    IDS_STRING_eTopMenuOf   "  "
+    IDS_STRING_eTopMenuReference "Referans"
+    IDS_STRING_eTopMenuHardlinkClone "Hardlink Klonu"
+    IDS_STRING_eTopMenuSymbolicLinkClone "Sembolik Link Klonu"
+    IDS_STRING_eTopMenuReferenceHelpText 
+                            "Referans sayısı (hardlink verilmiş dosyaların / Junction kaynaklarının"
+    IDS_STRING_eTopMenuDeleteMountPoint "Disk Bölümünü Ayır"
+    IDS_STRING_eTopMenuMountPoint "Bağlama Noktası"
+    IDS_STRING_eTopMenuSmartCopy "Akıllı Kopya"
+    IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+    IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+    IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+    IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+    IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+    IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+    IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+#endif    // Turkish resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif
+#include "res\HardLink.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

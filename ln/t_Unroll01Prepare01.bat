@@ -1,0 +1,132 @@
+REM
+REM Preparation for Unroll test
+REM
+REM 1: directory
+REM 2: junction/symbolic
+REM 3: absolute/[relative]
+
+REM @echo off
+
+set TESTROOT=%1
+set TESTROOTSRC=%TESTROOT%%DEEPPATH%\source
+set TESTROOTDST=%TESTROOT%%DEEPPATH%\dest
+set TESTROOTBKP=%TESTROOT%%DEEPPATH%\bk1
+
+set PREP_SAVE_OPTION=%2
+
+if [%3] == [] ( 
+  set OPTION=--%2
+) else (
+  set OPTION=--%2 --%3
+)
+
+%RD% %TESTROOT% 
+
+REM
+%MKDIR% %TESTROOTSRC%\F0 > nul
+%COPY% test\ln.h %TESTROOTSRC%\F0\F0.txt > nul
+
+%MKDIR% %TESTROOTSRC%\F0\F0_F1 > nul
+%COPY% test\ln.h %TESTROOTSRC%\F0\F0_F1\F0_F1.txt > nul
+
+%MKDIR% %TESTROOTSRC%\F0\F0_F1\F0_F1_F0 > nul
+%MKDIR% %TESTROOTSRC%\F0\F0_F1\F0_F1_F1 > nul
+%COPY% test\ln.h %TESTROOTSRC%\F0\F0_F1\F0_F1_F1\F0_F1_F1.txt > nul
+%LN% %OPTION% %TESTROOTSRC%\F0\F0_F1\F0_F1_F1 %TESTROOTSRC%\F0\F0_F1\F0_F1_J2 > nul
+call :FlipAbsRel
+
+REM
+%MKDIR% %TESTROOTSRC%\F1 > nul
+%COPY% test\ln.h %TESTROOTSRC%\F1\F1.txt > nul
+
+%MKDIR% %TESTROOTSRC%\F1\F1_F0 > nul
+%COPY% test\ln.h %TESTROOTSRC%\F1\F1_F0\F1_F0.txt > nul
+%MKDIR% %TESTROOTSRC%\F1\F1_F1 > nul
+
+%LN% %OPTION% %TESTROOTSRC%\F0\F0_F1 %TESTROOTSRC%\F1\F1_F0\F1_F0_J0 > nul
+call :FlipAbsRel
+%MKDIR% %TESTROOTSRC%\F1\F1_F0\F1_F0_F2 > nul
+%COPY% test\ln.h %TESTROOTSRC%\F1\F1_F0\F1_F0_F2\F1_F0_F2.txt > nul
+%LN% %OPTION% %TESTROOTSRC%\F1\F1_F0\F1_F0_F2 %TESTROOTSRC%\F1\F1_F0\F1_F0_J1 > nul
+call :FlipAbsRel
+
+%MKDIR% %TESTROOTSRC%\F1\F1_F1\F1_F1_F0 > nul
+%LN% %OPTION% %TESTROOTSRC%\F1\F1_F0\F1_F0_F2 %TESTROOTSRC%\F1\F1_F1\F1_F1_J1 > nul
+call :FlipAbsRel
+
+REM
+%MKDIR% %TESTROOTSRC%\F2 > nul
+%COPY% test\ln.h %TESTROOTSRC%\F2\F2.txt > nul
+
+%LN% %OPTION% %TESTROOTSRC%\F1 %TESTROOTSRC%\F2\F2_J0 > nul
+call :FlipAbsRel
+%MKDIR% %TESTROOTSRC%\F2\F2_F1 > nul
+%MKDIR% %TESTROOTSRC%\F2\F2_F2 > nul
+
+%MKDIR% %TESTROOTSRC%\F2\F2_F1\F2_F1_F0 > nul
+%COPY% test\ln.h %TESTROOTSRC%\F2\F2_F1\F2_F1_F0\F2_F1_F0.txt > nul
+%MKDIR% %TESTROOTSRC%\F2\F2_F1\F2_F1_F1 > nul
+%COPY% test\ln.h %TESTROOTSRC%\F2\F2_F1\F2_F1_F1\F2_F1_F1.txt > nul
+
+%LN% %OPTION% %TESTROOTSRC%\F2\F2_F1\F2_F1_F1 %TESTROOTSRC%\F2\F2_F2\F2_F2_J0 > nul
+call :FlipAbsRel
+%MKDIR% %TESTROOTSRC%\F2\F2_F2\F2_F2_F1 > nul
+%MKDIR% %TESTROOTSRC%\F2\F2_F2\F2_F2_F2 > nul
+%COPY% test\ln.h %TESTROOTSRC%\F2\F2_F2\F2_F2_F2\F2_F2_F2.txt > nul
+%MKDIR% %TESTROOTSRC%\F2\F2_F2\F2_F2_F3 > nul
+
+%LN% %OPTION% %TESTROOTSRC%\F2\F2_F2\F2_F2_F2 %TESTROOTSRC%\F2\F2_F2\F2_F2_F3\F2_F2_F3_J0 > nul
+call :FlipAbsRel
+%LN% %OPTION% %TESTROOTSRC%\F2\F2_F1\F2_F1_F0 %TESTROOTSRC%\F2\F2_F2\F2_F2_F3\F2_F2_F3_J1 > nul
+call :FlipAbsRel
+
+REM
+%MKDIR% %TESTROOTSRC%\F3 > nul
+
+%LN% %OPTION% %TESTROOTSRC%\F2 %TESTROOTSRC%\F3\F3_J0 > nul
+call :FlipAbsRel
+%LN% %OPTION% %TESTROOTSRC%\F1\F1_F0 %TESTROOTSRC%\F3\F3_J1 > nul
+call :FlipAbsRel
+%MKDIR% %TESTROOTSRC%\F3\F3_F2 > nul
+
+%MKDIR% %TESTROOTSRC%\F3\F3_F2\F3_F2_F0 > nul
+%COPY% test\ln.h %TESTROOTSRC%\F3\F3_F2\F3_F2_F0\F3_F2_F0.txt > nul
+%LN% %OPTION% %TESTROOTSRC%\F3\F3_F2\F3_F2_F0 %TESTROOTSRC%\F3\F3_F2\F3_F2_J1 > nul
+call :FlipAbsRel
+
+@if [%2] == [symbolic] ( 
+  %LN% %OPTION% %TESTROOTSRC%\F3\F3_F2\F3_F2_F0\F3_F2_F0.txt %TESTROOTSRC%\F3\F3_F2\F3_F2.syl > nul
+  call :FlipAbsRel
+  %LN% %OPTION% %TESTROOTSRC%\F2\F2_F2\F2_F2_F2\F2_F2_F2.txt %TESTROOTSRC%\F2\F2_F2\F2_F2_F3\F2_F2_F3.syl > nul
+  call :FlipAbsRel
+  %LN% %OPTION% %TESTROOTSRC%\F2\F2_F1\F2_F1_F1\F2_F1_F1.txt %TESTROOTSRC%\F2\F2_F2\F2_F2_F1\F2_F2_F1.syl > nul
+  call :FlipAbsRel
+  %COPY% test\ln.h %TESTROOTSRC%\F1\F1_F1\F1_F1.txt > nul
+  %LN% %OPTION% %TESTROOTSRC%\F1\F1_F1\F1_F1.txt %TESTROOTSRC%\F2\F2_F1\F2_F1.syl > nul
+  call :FlipAbsRel
+  %LN% %OPTION% %TESTROOTSRC%\F0\F0_F1\F0_F1.txt %TESTROOTSRC%\F1\F1_F1\F1_F1_F0\F1_F1_F0.syl > nul
+  call :FlipAbsRel
+  %LN% %OPTION% %TESTROOTSRC%\F1\F1_F0\F1_F0.txt %TESTROOTSRC%\F1\F1_F0\F1_F0_F2\F1_F0_F2.syl > nul
+  call :FlipAbsRel
+  %LN% %OPTION% %TESTROOTSRC%\F0\F0_F1\F0_F1_F1\F0_F1_F1.txt %TESTROOTSRC%\F0\F0_F1\F0_F1_F0\F0_F1_F0.syl > nul
+  call :FlipAbsRel
+  %LN% %OPTION% %TESTROOTSRC%\F0\F0.txt %TESTROOTSRC%\F2\F2_F2\F2_F2.syl > nul
+  call :FlipAbsRel
+) 
+
+@echo on
+echo.
+
+@goto :EOF 
+
+:FlipAbsRel
+@if [%FLIPABSREL%] == [flipabsrel] (
+  @if [%FLIPABSRELSTATE%] == [absolute] (
+    @set FLIPABSRELSTATE=relative
+    @set OPTION=--%PREP_SAVE_OPTION%
+  ) else (
+    @set FLIPABSRELSTATE=absolute
+    @set OPTION=--absolute --%PREP_SAVE_OPTION%
+  )
+) 
+@exit /b
