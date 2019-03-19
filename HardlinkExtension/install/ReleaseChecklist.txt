@@ -1,15 +1,13 @@
 DEBUG_DEFINES müssen im Source in hardlink.h alle ok sein
-Versionsresource hardlinkshellext.dll
-Versionsresource ln.exe über die Defines im ln\resource.h
-Versionsresource symlink.exe
-Versionsresource LSEConfig.exe
 
-Check version number for registry settings
-   #define LSE_CURRENT_VERSION                     3913
+Versionsresource ln.exe über die Defines im ln\resource.h
+
+Edit BuildWord.bat and update version number
+
+Unter Windows10 einen Admin Command Prompt aufmachen und dann 'Run As Admin' machen, sonst können die Stubs nicht nach Programm Files zurückkopiert werden
 
 Check if all plattforms are selected in Batch Build
-
-Rebuild All
+BuildWorld.bat
 
 Docu Versionsnummer linkshellextension.html oben
 Docu Versionsnummer linkshellextension.html unten
@@ -41,22 +39,7 @@ Docu Versionsnummer lse.xml: <title> <pubDate> <description> <![CDATA[> <guid>
     </item>
 
 
-Im HardlinkShellExt.nsi File unter
-  LSE_VERSION "3.9.1.0"
-die Versionsnummer anpassen
-
-Im Stampver.inf die Version anpasen
-  FileVersion=3.9.0.0
-  ProductVersion=3.9.0.0
-
-Unter Windows10 einen Admin Command Prompt aufmachen und dann 'Run As Admin' machen, sonst können die
-Stubs nicht nach Programm Files zurückkopiert werden
-HardlinkExtension\install\CodeSign.bat
-
-Site\nt\hardlinkshellext\pack.bat
-copy neue Bilder nach $website
-
-Site\nt\ln\pack.bat
+Copy neue Bilder nach $website
 
 Post to facebook
 

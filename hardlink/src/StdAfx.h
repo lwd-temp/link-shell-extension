@@ -4,13 +4,8 @@
 
 #pragma once
 
-#if _WIN32_WINNT == 0x601
-# include <ShObjIdl.h>
-#else
- // Uncomment this if you would like to compile for windows XP
-# define PDM_DEFAULT    0
-# define PDM_PREFLIGHT  2
-#endif
+#include "..\..\Shared\version\version.h"
+#include <ShObjIdl.h>
 
 
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
