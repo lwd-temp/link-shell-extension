@@ -51,12 +51,11 @@ goto eof
 REM
 REM Win7_quadtatz
 REM
-set HOME=c:\Data\cpp\hardlinks\HardlinkExtension
+set HOME=c:\Data\cpp\git\hardlinks\HardlinkExtension
 set INST=c:\Program Files\LinkShellExtension
 set TOOLS=d:\tools
 set PLATT=X64
 set OS=Win7
-REM set OS=Xp
 set NSISDIR=c:\Program Files\NSIS
 set LH=quadtatz
 set USERNAME=schinagl
