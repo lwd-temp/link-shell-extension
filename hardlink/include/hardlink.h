@@ -157,7 +157,6 @@ const int cMaxHardlinkLimit = 1023;
 #define LSE_REGISTRY_HARDLINK_ICON              L"Hardlink Icon"
 #define LSE_REGISTRY_JUNCTION_ICON              L"Junction Icon"
 #define LSE_REGISTRY_SYMBOLICLINK_ICON          L"SymbolicLink Icon"
-#define LSE_CURRENT_VERSION                     3913
 #define LSE_REGISTRY_SUPPORTED_FILESYSTEMS      L"ThirdPartyFileSystems"
 
 #define SE_INCREASE_WORKINGSET_PRIVILEGE             TEXT("SeIncreaseWorkingSetPrivilege")

@@ -18,7 +18,7 @@
 !define LANG_SWEDISH "1053"
 !define LANG_TURKISH "1055"
 
-!define LSE_VERSION "3.9.1.3"
+!include "LSE_version.nsh"
 
 Var WINDOWS_VERSION
 Var COM_SERVER_PATH
