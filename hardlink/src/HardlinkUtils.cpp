@@ -4344,6 +4344,7 @@ ResolveUNCPath(
     }
     catch (std::exception const &exc)
     {
+      exc;
     }
 
     // Check if name could be resolved
