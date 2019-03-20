@@ -92,7 +92,7 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\hardlink\include;..\hardlink\src;..\shared\tre-0.8.0\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_UNICODE;_WIN32_WINNT=0x0601;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <BrowseInformation>true</BrowseInformation>

@@ -509,8 +509,8 @@ CreateContextMenu(
         nEntries++;
 		}
 
-		// The source is a directory and do not allow to create junctions from a dir on NT4
-    if ( (m_bTargetsFlag & eDir) && gpfCreateHardlink)
+		// The source is a directory 
+    if ( m_bTargetsFlag & eDir )
 		{
 			// Droptarget is a Directory?
 			if (m_DropTarget.m_Flags & (eDir|eVolume|eJunction|eMountPoint))
@@ -532,10 +532,10 @@ CreateContextMenu(
 				// [0415] Drop a directory on a Volume, which is create Hardlink clone
 				// [0420] Drop a directory on a Mountpoint, which is create Hardlink clone
 				nEntries ++;
-		} // if ( (m_bTargetsFlag & eDir) && gpfCreateHardlink)
+		} // if ( m_bTargetsFlag & eDir )
 
 		// DropSource is a junction
-    if ((m_bTargetsFlag & eJunction) && gpfCreateHardlink)
+    if ( m_bTargetsFlag & eJunction )
 		{
 			// Droptarget is a Junction, a Directory, a Mountpoint?
 			if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint) )
@@ -559,7 +559,7 @@ CreateContextMenu(
     }
 
 		// DropSource is a Volume?
-    if ((m_bTargetsFlag & eVolume) && gpfCreateHardlink)
+    if ( m_bTargetsFlag & eVolume )
     {
       if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint))
         // [0602] Drop a Volume onto a Mountpoint, which is junction creation
@@ -588,10 +588,10 @@ CreateContextMenu(
 				// [0650] Drop a directory on a Mountpoint, which is create Hardlink clone
         nEntries++;
 
-    } // if ((m_bTargetsFlag & eVolume) && gpfCreateHardlink)
+    } // if ( m_bTargetsFlag & eVolume )
 
 		// DropSource is a MountPoint?
-    if ((m_bTargetsFlag & eMountPoint) && gpfCreateHardlink)
+    if ( m_bTargetsFlag & eMountPoint )
     {
       if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint))
         // [0902] Drop a MountPoint onto a MountPoint, which is junction creation
@@ -611,7 +611,7 @@ CreateContextMenu(
         // [0960] Drop a MountPoint onto a Junction, which is junction replacement
         nEntries++;
 
-    } // if ((m_bTargetsFlag & eMountPoint) && gpfCreateHardlink)
+    } // if ( m_bTargetsFlag & eMountPoint )
 
 		// Smartcopies can be created from any non eFile source
     if (m_bTargetsFlag & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
@@ -809,7 +809,7 @@ CreateContextMenu(
 		}
 		
 		// DropSource is a Directory?
-		if ( (m_bTargetsFlag & eDir) && gpfCreateHardlink)
+		if ( m_bTargetsFlag & eDir )
 		{
 			// DropTarget is a Junction?
 			if (m_DropTarget.m_Flags & (eDir|eVolume|eJunction|eMountPoint) )
@@ -846,10 +846,10 @@ CreateContextMenu(
 				InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
 			}
 
-		} // if ( (m_bTargetsFlag & eDir) && gpfCreateHardlink)
+		} // if ( m_bTargetsFlag & eDir )
 
 		// DropSource is a Junction?
-    if ((m_bTargetsFlag & eJunction) && gpfCreateHardlink)
+    if ( m_bTargetsFlag & eJunction )
     {
 			// Droptarget is a Junction, a Directory, a Mountpoint?
 			if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint) )
@@ -885,10 +885,10 @@ CreateContextMenu(
 				// [0245] Drop a directory on a Mountpoint, which is create Hardlink clone
 				InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
 			}
-    } // if ((m_bTargetsFlag & eJunction) && gpfCreateHardlink)
+    } // if ( m_bTargetsFlag & eJunction )
 
 		// DropSource is a Volume?
-		if ((m_bTargetsFlag & eVolume) && gpfCreateHardlink)
+		if ( m_bTargetsFlag & eVolume )
 		{
       if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint))
       {
@@ -933,10 +933,10 @@ CreateContextMenu(
 				InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
 			}
 
-    } // if ((m_bTargetsFlag & eVolume) && gpfCreateHardlink)
+    } // if ( m_bTargetsFlag & eVolume )
 
 		// DropSource is a MountPoint?
-    if ((m_bTargetsFlag & eMountPoint) && gpfCreateHardlink)
+    if ( m_bTargetsFlag & eMountPoint )
     {
       if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint))
       {
@@ -970,7 +970,7 @@ CreateContextMenu(
 				// [0950] Drop a MountPoint on a Mountpoint, which is create Hardlink clone
 				InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
       }
-    } // if ((m_bTargetsFlag & eMountPoint) && gpfCreateHardlink)
+    } // if ( m_bTargetsFlag & eMountPoint )
 
 
     // [0100]
@@ -1222,7 +1222,7 @@ CreateContextMenu(
 			}
     }
 
-		if ((m_bTargetsFlag & eVolume) && gpfCreateHardlink)
+		if ( m_bTargetsFlag & eVolume )
 		{
       if ( (m_DropTarget.m_Flags & eMountPoint) && m_nTargets == 1)
       {

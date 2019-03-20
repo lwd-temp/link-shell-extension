@@ -28,13 +28,6 @@ enum PrivilegeModification_t
   eProbePrivilege
 } ;
 
-
-
-DWORD
-CreateHardLinkNt4(const TCHAR* fromFile,
-				  const TCHAR* toFile);
-
-
 #if ! defined _DEBUG
 typedef vector<int>	_Of;
 

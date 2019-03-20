@@ -261,18 +261,6 @@ InitCreateHardlink()
   HMODULE	hKernel32 = LoadLibrary (_T ("kernel32.dll"));
   if (hKernel32 > (HMODULE) 32)
   {
-    // Createhardlink is only available with > NT4
-    gpfCreateHardlink = (CreateHardlinkW_t) GetProcAddress (hKernel32, CREATEHARDLINK);
-
-    // Check whether we go with the built in mechanism or our own Hardlink creation
-    if (!gpfCreateHardlink)
-    {
-      // If we are on NT4 or W2K we have to enable certain priviliges to 
-      // be succesfull with Hardlink creation
-      EnableTokenPrivilege(SE_BACKUP_NAME);
-      EnableTokenPrivilege(SE_RESTORE_NAME);
-    }
-
 #if defined FAKE_SYMBOLIC_LINK 
     // This is a fake to switch on functionality for Symbolic Links even under WXP
     gpfCreateSymbolicLink = (CreateSymboliclinkW_t)0x042;
@@ -399,33 +387,6 @@ HardlinkExists(
 
 
 int
-CreateHardlinkIntl(
-  __in LPCWSTR	fromFile,
-  __in LPCWSTR	toFile
-)
-{
-  int RetVal; 
-
-    // with W2K even with Sp4, CreateHardlink() is broken with ultra long 
-    // filenames like (\\?\) so we intentionally want to go with our own method
-    if (NULL == gpfCreateHardlink || (gVersionInfo.dwMajorVersion == 5 && gVersionInfo.dwMinorVersion == 0) )
-    {
-      RetVal = CreateHardLinkNt4 (fromFile, toFile);
-    }
-    else
-    {
-      // Use the systemcall from kernel32.dll
-      BOOL b = gpfCreateHardlink (toFile, fromFile, NULL);
-      if (b)
-        RetVal = ERROR_SUCCESS;
-      else
-        RetVal = GetLastError();
-    }
-
-  return RetVal;
-}
-
-int
 CreateHardlink(
   LPCWSTR	fromFile,
   LPCWSTR	toFile,
@@ -434,10 +395,10 @@ CreateHardlink(
 {
   int	RetVal = HardlinkExists(toFile, pFileInfo);
   if (ERROR_SUCCESS == RetVal)
-    RetVal = CreateHardlinkIntl(fromFile, toFile);
+    RetVal = TRUE == CreateHardLink(toFile, fromFile, NULL) ? ERROR_SUCCESS : GetLastError();
 
   return RetVal;
-  }
+}
 
 int
 CreateHardlink(
@@ -448,7 +409,7 @@ CreateHardlink(
 
   int	RetVal = HardlinkExists(fromFile, toFile);
   if (ERROR_SUCCESS == RetVal)
-    RetVal = CreateHardlinkIntl(fromFile, toFile);
+    RetVal = TRUE == CreateHardLink(toFile, fromFile, NULL) ? ERROR_SUCCESS : GetLastError();
 
   return RetVal;
 }
@@ -930,81 +891,6 @@ CreateSymboliclink(
     RetVal = GetLastError();
 
   return RetVal;
-}
-
-DWORD
-CreateHardLinkNt4(const TCHAR* fromFile,
-                  const TCHAR* toFile)
-{
-  static TCHAR			buf1[HUGE_PATH];
-  TCHAR*					p;
-  void*					ctx = NULL;
-  static wchar_t			buf2[HUGE_PATH * 2];
-  DWORD					numwritten;
-  wchar_t					FullPathBuffer[HUGE_PATH];
-
-  GetFullPathName (toFile, HUGE_PATH, FullPathBuffer, &p);
-  HANDLE fh = CreateFile (FullPathBuffer, 0, 0, 0, OPEN_EXISTING, 0, 0);
-  if (INVALID_HANDLE_VALUE != fh )
-  {
-    CloseHandle (fh);
-    SetLastError (ERROR_ALREADY_EXISTS);
-    return ERROR_ALREADY_EXISTS;
-  }
-
-  GetFullPathName (fromFile, HUGE_PATH, FullPathBuffer, &p);
-
-  DWORD attrib = GetFileAttributesW(FullPathBuffer);
-  if (!(attrib & FILE_ATTRIBUTE_NORMAL))
-    SetFileAttributesW(FullPathBuffer, FILE_ATTRIBUTE_NORMAL);
-
-  fh = CreateFile (FullPathBuffer, GENERIC_WRITE, 0, NULL, OPEN_EXISTING,
-    FILE_FLAG_BACKUP_SEMANTICS, NULL);
-
-  if (fh == INVALID_HANDLE_VALUE)
-  {
-    SetLastError (ERROR_FILE_NOT_FOUND);
-    return ERROR_FILE_NOT_FOUND;
-  }
-
-  GetFullPathName (toFile, HUGE_PATH, &buf1[0], &p);
-
-  WIN32_STREAM_ID	wsi;
-  wsi.dwStreamId = BACKUP_LINK;
-  wsi.dwStreamAttributes = 0;
-  wsi.dwStreamNameSize = 0;
-  _tcsncpy (buf2, buf1, HUGE_PATH * 2);
-  wsi.Size.QuadPart = (wcslen (buf2) + 1) * sizeof (wchar_t);
-
-  if (!BackupWrite (fh, (unsigned char *) &wsi,
-    linkoffsetof (WIN32_STREAM_ID, cStreamName), &numwritten, FALSE,
-    FALSE, &ctx))
-  {
-    return ERROR_INVALID_DATA;
-  }
-  if (numwritten != linkoffsetof (WIN32_STREAM_ID, cStreamName))
-  {
-    return ERROR_INVALID_DATA;
-  }
-
-  if (!BackupWrite (fh, (unsigned char*) buf2, wsi.Size.LowPart, &numwritten, FALSE, FALSE, &ctx))
-  {
-    return ERROR_INVALID_DATA;
-  }
-  if (numwritten != wsi.Size.LowPart)
-  {
-    return ERROR_INVALID_DATA;
-  }
-
-  // make NT release the context
-  BackupWrite (fh, (unsigned char*) &buf1[0], 0, &numwritten, TRUE, FALSE, &ctx);
-
-  CloseHandle (fh);
-
-  if (!(attrib & FILE_ATTRIBUTE_NORMAL))
-    SetFileAttributesW(FullPathBuffer, attrib);
-
-  return ERROR_SUCCESS;
 }
 
 void DeletePathNameStatusList(_PathNameStatusList &p)
@@ -8038,7 +7924,7 @@ CopyHardlink(
                     for (_StringListIterator iter = Siblings.begin(); iter != Siblings.end(); ++iter)
                     {
                       BOOL bDeleted = DeleteSibling(iter->c_str(), GetFileAttributes(iter->c_str())); 
-                      HardlinkResult = CreateHardlinkIntl(pF->m_FileName, iter->c_str());
+                      HardlinkResult = TRUE == CreateHardLink(iter->c_str(), pF->m_FileName, NULL) ? ERROR_SUCCESS : GetLastError();
 
                       if (ERROR_SUCCESS == HardlinkResult)
                       {

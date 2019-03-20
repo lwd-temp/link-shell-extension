@@ -26,9 +26,6 @@
     <ClCompile Include="..\Shared\ultragetopt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Shared\ultragetopt.h">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
@@ -37,6 +34,7 @@
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Shared\ultragetopt.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Xdel.rc">

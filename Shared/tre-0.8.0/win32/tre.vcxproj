@@ -94,7 +94,7 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../win32;../lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;TRE_EXPORTS;TRE_DEBUG;HAVE_CONFIG_H;_WIN32_WINNT=0x0601;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ProgramDataBaseFileName>..\..\..\Lib\$(Platform)\$(Configuration)\$(TargetName).pdb</ProgramDataBaseFileName>

@@ -199,7 +199,6 @@ extern "C"
 }
 
 EXTERN CreateSymboliclinkW_t		gpfCreateSymbolicLink;
-EXTERN CreateHardlinkW_t			  gpfCreateHardlink;
 EXTERN IsUserAnAdmin_t			    gpfIsUserAnAdmin;
 
 EXTERN OSVERSIONINFO            gVersionInfo;
