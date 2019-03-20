@@ -20,161 +20,85 @@ extern _locale_t g_locale_t;
 
 const char						exec_name[] = "ln";
 
-static struct option	long_options_symbolic[] =
-{
-	{ "recursive", optional_argument, NULL, 'r' },
-	{ "enum", required_argument, NULL, 'e' },
-	{ "quiet", optional_argument, NULL, 'q' }, 
-	{ "copy", required_argument, NULL, 'c' }, 
-	{ "junction", required_argument, NULL, 'j' }, 
-	{ "noitcnuj", required_argument, NULL, 'J' }, 
-	{ "symbolic", no_argument, NULL, 's' }, 
-	{ "absolute", no_argument, NULL, 'a' }, 
-	{ "list", required_argument, NULL, 'l' }, 
-	{ "automated_test", no_argument, NULL, 'A' }, 
-	{ "move", required_argument, NULL, 'm' }, 
-	{ "mirror", required_argument, NULL, 'o' }, 
-	{ "deeppathcreate", required_argument, NULL, 'z' }, // undocumented, for automated test only
-	{ "deeppathdelete", required_argument, NULL, 'Z' }, // undocumented, for automated test only
-	{ "delorean", required_argument, NULL, 'd' }, 
-	{ "exclude", required_argument, NULL, 'x' }, 
-	{ "excludedir", required_argument, NULL, 'X' }, 
-	{ "excluderegexp", required_argument, NULL, 'p' }, 
-	{ "excluderegexpdir", required_argument, NULL, 'P' }, 
-	{ "unroll", optional_argument, NULL, 'u' }, 
-	{ "unrollregexp", optional_argument, NULL, 'U' }, 
-	{ "splice", optional_argument, NULL, 'i' }, 
-	{ "spliceregexp", optional_argument, NULL, 'I' }, 
-	{ "backup", no_argument, NULL, 'b' }, 
-	{ "help", no_argument, NULL, 'h' },
-	{ "source", required_argument, NULL, '\0' },
-	{ "deeppathcopy", required_argument, NULL, '\0' }, // undocumented, for automated test only
-	{ "skipfiles", no_argument, NULL, '\0' }, 
-	{ "traditional", no_argument, NULL, '\0' },
-	{ "smartrename", required_argument, NULL, '\0' }, 
-	{ "xp", no_argument, NULL, '\0' }, // undocumented, for automated test only
-	{ "destination", required_argument, NULL, '\0' }, 
-	{ "datetime", no_argument, NULL, '\0' }, // undocumented
-	{ "output", required_argument, NULL, '\0' },
-	{ "truesize", required_argument, NULL, '\0' },
-	{ "adsdev", required_argument, NULL, '\0' }, // undocumented, for automated test only
-	{ "automated_traditional", no_argument, NULL, '\0' },// undocumented
-	{ "keepsymlinkrelation", no_argument, NULL, '\0' },
-	{ "timetolerance", required_argument, NULL, '\0' },
-	{ "include", required_argument, NULL, '\0' }, 
-	{ "includedir", required_argument, NULL, '\0' }, 
-	{ "includeregexp", required_argument, NULL, '\0' }, 
-	{ "includeregexpdir", required_argument, NULL, '\0' }, 
-	{ "dupemerge", no_argument, NULL, '\0' },  
-	{ "probefs", required_argument, NULL, '\0' }, 
-	{ "enumvolumes", no_argument, NULL, '\0' },   // undocumented
-	{ "clone", optional_argument, NULL, 'R' },
-	{ "switchoffntfscheck", no_argument, NULL, '\0' },   // undocumented, for automated test only
-	{ "noads", no_argument, NULL, '\0' },   
-	{ "noea", no_argument, NULL, '\0' },   
-	{ "nosparsefile", no_argument, NULL, '\0' },   // undocumented
-	{ "nolocaluncresolve", no_argument, NULL, '\0' },   // undocumented, for automated test only
-	{ "anchor", required_argument, NULL, '\0' },
-	{ "utf", no_argument, NULL, '\0' },   // undocumented
-	{ "deloreanverbose", no_argument, NULL, '\0' },   // undocumented: Also prints the logging after the clone process
-	{ "deloreansleep", required_argument, NULL, '\0' }, // undocumented: Specify a time which should be waited after clone during delorean, due to ln.html#smb2redirectorcache
-	{ "hardlinklimit", required_argument, NULL, '\0' }, // undocumented: Specify the hardlink limit. By default 1023, for testing can be set seperatley. Used in Autoamted Test
-	{ "generatehardlinks", required_argument, NULL, '\0' }, // undocumented: Specify how many hardlinks are generated automatically. for automated test only
-	{ "1023safe", no_argument, NULL, '\0' }, 
-	{ "json", no_argument, NULL, '\0' }, // undocumented: Output is in json format
-	{ "forcestats", no_argument, NULL, '\0' }, // undocumented, for automated test only. Show stats regardless of automated test
-	{ "progress", no_argument, NULL, '\0' }, // Shows the progress
-	{ "merge", required_argument, NULL, '\0' }, // Merges two delorean sets
-	{ "delete", required_argument, NULL, '\0' }, // Deletes a tree and take care of hardlinks
-  { "supportfs", required_argument, NULL, '\0' }, 
-  { "follow", optional_argument, NULL, '\0' },
-  { "followregexp", optional_argument, NULL, '\0' },
-  { 0, 0, 0, 0 }
-};
-
 static struct option	long_options[] =
 {
-	{ "recursive", optional_argument, NULL, 'r' },
-	{ "enum", required_argument, NULL, 'e' },
-	{ "quiet", optional_argument, NULL, 'q' }, 
-	{ "copy", required_argument, NULL, 'c' }, 
-	{ "junction", required_argument, NULL, 'j' }, 
-	{ "noitcnuj", required_argument, NULL, 'J' }, 
-	{ "absolute", no_argument, NULL, 'a' }, 
-	{ "list", required_argument, NULL, 'l' }, 
-	{ "automated_test", no_argument, NULL, 'A' }, 
-	{ "move", required_argument, NULL, 'm' }, 
-	{ "mirror", required_argument, NULL, 'o' }, 
-	{ "deeppathcreate", required_argument, NULL, 'z' }, 
-	{ "deeppathdelete", required_argument, NULL, 'Z' }, 
-	{ "delorean", required_argument, NULL, 'd' }, 
-	{ "exclude", required_argument, NULL, 'x' }, 
-	{ "excludedir", required_argument, NULL, 'X' }, 
-	{ "excluderegexp", required_argument, NULL, 'p' }, 
-	{ "excluderegexpdir", required_argument, NULL, 'P' }, 
-	{ "unroll", optional_argument, NULL, 'u' }, 
-	{ "unrollregexp", optional_argument, NULL, 'U' }, 
-	{ "splice", optional_argument, NULL, 'i' }, 
-	{ "spliceregexp", optional_argument, NULL, 'I' }, 
-	{ "backup", no_argument, NULL, 'b' }, 
-	{ "help", no_argument, NULL, 'h' },
-	{ "source", required_argument, NULL, '\0' },
-	{ "deeppathcopy", required_argument, NULL, '\0' },
-	{ "skipfiles", no_argument, NULL, '\0' },
-	{ "traditional", no_argument, NULL, '\0' },
-	{ "smartrename", required_argument, NULL, '\0' }, 
-	{ "xp", no_argument, NULL, '\0' },
-	{ "destination", required_argument, NULL, '\0' },
-	{ "datetime", no_argument, NULL, '\0' },
-	{ "output", required_argument, NULL, '\0' },
-	{ "truesize", required_argument, NULL, '\0' },
-	{ "adsdev", required_argument, NULL, '\0' }, // undocumented, for automated test only
-	{ "automated_traditional", no_argument, NULL, '\0' },
-	{ "keepsymlinkrelation", no_argument, NULL, '\0' },
-	{ "timetolerance", required_argument, NULL, '\0' },
-	{ "include", required_argument, NULL, '\0' }, 
-	{ "includedir", required_argument, NULL, '\0' }, 
-	{ "includeregexp", required_argument, NULL, '\0' }, 
-	{ "includeregexpdir", required_argument, NULL, '\0' }, 
-	{ "dupemerge", no_argument, NULL, '\0' }, 
-	{ "probefs", required_argument, NULL, '\0' }, 
-	{ "enumvolumes", no_argument, NULL, '\0' },   // undocumented
-	{ "clone", optional_argument, NULL, 'R' },
-	{ "switchoffntfscheck", no_argument, NULL, '\0' },   // undocumented, for automated test only
-	{ "noads", no_argument, NULL, '\0' },   // undocumented
-	{ "noea", no_argument, NULL, '\0' },   // undocumented
-	{ "nosparsefile", no_argument, NULL, '\0' },   // undocumented
-	{ "nolocaluncresolve", no_argument, NULL, '\0' },   // undocumented, for automated test only
-	{ "anchor", required_argument, NULL, '\0' },
-	{ "utf", no_argument, NULL, '\0' },   // undocumented
-	{ "deloreanverbose", no_argument, NULL, '\0' },   // undocumented: Also prints the logging after the clone process
-	{ "deloreansleep", required_argument, NULL, '\0' }, // undocumented: Specify a time which should be waited after clone during delorean, due to ln.html#smb2redirectorcache
-	{ "hardlinklimit", required_argument, NULL, '\0' }, // undocumented: Specify the hardlink limit. By default 1023, for testing can be set seperatley
-	{ "generatehardlinks", required_argument, NULL, '\0' }, // undocumented: Specify how many hardlinks are generated automatically. for automated test only
-	{ "1023safe", no_argument, NULL, '\0' }, 
-	{ "json", no_argument, NULL, '\0' }, // undocumented: Output is in json format
-	{ "forcestats", no_argument, NULL, '\0' }, // undocumented, for automated test only. Show stats reagrdless of automated test
-	{ "progress", no_argument, NULL, '\0' }, // undocumented, Shows the progress
-	{ "merge", required_argument, NULL, '\0' }, // Merges two delorean sets
-	{ "delete", required_argument, NULL, '\0' }, // Deletes a tree and take care of hardlinks
+  { "recursive", optional_argument, NULL, 'r' },
+  { "enum", required_argument, NULL, 'e' },
+  { "quiet", optional_argument, NULL, 'q' },
+  { "copy", required_argument, NULL, 'c' },
+  { "junction", required_argument, NULL, 'j' },
+  { "noitcnuj", required_argument, NULL, 'J' },
+  { "symbolic", no_argument, NULL, 's' },
+  { "absolute", no_argument, NULL, 'a' },
+  { "list", required_argument, NULL, 'l' },
+  { "automated_test", no_argument, NULL, 'A' },
+  { "move", required_argument, NULL, 'm' },
+  { "mirror", required_argument, NULL, 'o' },
+  { "deeppathcreate", required_argument, NULL, 'z' }, // undocumented, for automated test only
+  { "deeppathdelete", required_argument, NULL, 'Z' }, // undocumented, for automated test only
+  { "delorean", required_argument, NULL, 'd' },
+  { "exclude", required_argument, NULL, 'x' },
+
+  { "excludedir", required_argument, NULL, 'X' },
+  { "excluderegexp", required_argument, NULL, 'p' },
+  { "excluderegexpdir", required_argument, NULL, 'P' },
+  { "unroll", optional_argument, NULL, 'u' },
+  { "unrollregexp", optional_argument, NULL, 'U' },
+  { "splice", optional_argument, NULL, 'i' },
+  { "spliceregexp", optional_argument, NULL, 'I' },
+  { "backup", no_argument, NULL, 'b' },
+  { "help", no_argument, NULL, 'h' },
+
+  { "source", required_argument, NULL, '\0' },
+  { "deeppathcopy", required_argument, NULL, '\0' }, // undocumented, for automated test only
+  { "skipfiles", no_argument, NULL, '\0' },
+  { "traditional", no_argument, NULL, '\0' },
+  { "smartrename", required_argument, NULL, '\0' },
+  { "destination", required_argument, NULL, '\0' },
+  { "datetime", no_argument, NULL, '\0' }, // undocumented
+
+  { "output", required_argument, NULL, '\0' },
+  { "truesize", required_argument, NULL, '\0' },
+  { "adsdev", required_argument, NULL, '\0' }, // undocumented, for automated test only
+  { "automated_traditional", no_argument, NULL, '\0' },// undocumented
+  { "keepsymlinkrelation", no_argument, NULL, '\0' },
+  { "timetolerance", required_argument, NULL, '\0' },
+  { "include", required_argument, NULL, '\0' },
+  { "includedir", required_argument, NULL, '\0' },
+  { "includeregexp", required_argument, NULL, '\0' },
+  { "includeregexpdir", required_argument, NULL, '\0' },
+  { "dupemerge", no_argument, NULL, '\0' },
+  { "probefs", required_argument, NULL, '\0' },
+  { "enumvolumes", no_argument, NULL, '\0' },   // undocumented
+  { "switchoffntfscheck", no_argument, NULL, '\0' },   // undocumented, for automated test only
+  { "noads", no_argument, NULL, '\0' },
+  { "noea", no_argument, NULL, '\0' },
+
+  { "nosparsefile", no_argument, NULL, '\0' },   // undocumented
+  { "nolocaluncresolve", no_argument, NULL, '\0' },   // undocumented, for automated test only
+  { "anchor", required_argument, NULL, '\0' },
+  { "utf", no_argument, NULL, '\0' },   // undocumented
+  { "deloreanverbose", no_argument, NULL, '\0' },   // undocumented: Also prints the logging after the clone process
+  { "deloreansleep", required_argument, NULL, '\0' }, // undocumented: Specify a time which should be waited after clone during delorean, due to ln.html#smb2redirectorcache
+  { "hardlinklimit", required_argument, NULL, '\0' }, // undocumented: Specify the hardlink limit. By default 1023, for testing can be set seperatley. Used in Autoamted Test
+  { "generatehardlinks", required_argument, NULL, '\0' }, // undocumented: Specify how many hardlinks are generated automatically. for automated test only
+  { "1023safe", no_argument, NULL, '\0' },
+  { "json", no_argument, NULL, '\0' }, // undocumented: Output is in json format
+  { "forcestats", no_argument, NULL, '\0' }, // undocumented, for automated test only. Show stats regardless of automated test
+  { "progress", no_argument, NULL, '\0' }, // Shows the progress
+  { "merge", required_argument, NULL, '\0' }, // Merges two delorean sets
+  { "delete", required_argument, NULL, '\0' }, // Deletes a tree and take care of hardlinks
   { "supportfs", required_argument, NULL, '\0' },
   { "follow", optional_argument, NULL, '\0' },
+
   { "followregexp", optional_argument, NULL, '\0' },
   { 0, 0, 0, 0 }
 };
 
-
-// TODO Es gibt ein neues getopt
 
 // With symbolic options on the index of just long opts starts with
 //
 const int cBaseJustLongOpts = 0x19;
-
-// under XP, with no symbolic options available, we have a few arguments less
-// So once we are indexing into the longopts array this has to be counted
-//
-const int cDeltaNonSymbolicJustLongOpts = 1;
-
 
 int							  gLogLevel = FileInfoContainer::eLogVerbose;
 bool              gAutomatedTest = false;
@@ -1769,8 +1693,7 @@ Usage()
 	fwprintf (gStdOutFile, L"      --includeregexp REGEXP          Include file <reg expr filename>\n");
 	fwprintf (gStdOutFile, L"      --includeregexpdir REGEXP       Include directory <reg expr directory>\n");
   fwprintf (gStdOutFile, L"  -j, --junction JUNCTION [TARGETDIR] Show/Create a junction\n");
-	if (gpfCreateSymbolicLink && !gAutomatedTest)
-		fwprintf (gStdOutFile, L"  -l, --list FILENAME                 List hardlink siblings\n");
+	fwprintf (gStdOutFile, L"  -l, --list FILENAME                 List hardlink siblings\n");
 
 	fwprintf (gStdOutFile, L"  -o, --mirror SRCPATH DESTPATH\n");
   fwprintf (gStdOutFile, L"  -m, --move SRCPATH DESTPATH\n");
@@ -1779,29 +1702,25 @@ Usage()
   fwprintf (gStdOutFile, L"  -r, --recursive SRCPATH DESTPATH    Create a clone\n");
 	fwprintf (gStdOutFile, L"      --source SRCPATH                Specify additional source directories\n");
 	fwprintf (gStdOutFile, L"  -i, --splice [WILDCARD]             Splice Junctions/Symlink dirs <wildcard>\n");
-	if (gpfCreateSymbolicLink && !gAutomatedTest)
-		fwprintf (gStdOutFile, L"  -s, --symbolic SYMBOLICLINK         Show symbolic link target\n");
+	fwprintf (gStdOutFile, L"  -s, --symbolic SYMBOLICLINK         Show symbolic link target\n");
 
   fwprintf (gStdOutFile, L"      --timetolerance MILLISECONDS    File comparison tolerance <miliseconds>\n");
 	fwprintf (gStdOutFile, L"      --truesize SRCPATH              Used space taking into account hardlinks\n");
 	fwprintf (gStdOutFile, L"  -u, --unroll [WILDCARD]             Unroll Junctions/Symlink dirs <wildcard>\n");
 	fwprintf (gStdOutFile, L"\nOptions\n");
 	fwprintf (gStdOutFile, L"  -b, --backup                        Backup mode copies also ACLs\n");
-	if (gpfCreateSymbolicLink && !gAutomatedTest)
-	  fwprintf (gStdOutFile, L"  -a, --absolute                      Force symbolic links target to absolute\n");
+	fwprintf (gStdOutFile, L"  -a, --absolute                      Force symbolic links target to absolute\n");
 
 	fwprintf (gStdOutFile, L"      --dupemerge                     Use Dupemerge' hashing to find hardlinks\n");
 	fwprintf (gStdOutFile, L"  -h, --help                          This help\n");
 	fwprintf (gStdOutFile, L"      --json                          Prints the output in json format\n");
-	if (gpfCreateSymbolicLink && !gAutomatedTest)
-  	fwprintf (gStdOutFile, L"      --keepsymlinkrelation           Save absolute/relative state of symlinks\n");
+  fwprintf (gStdOutFile, L"      --keepsymlinkrelation           Save absolute/relative state of symlinks\n");
 	fwprintf (gStdOutFile, L"      --noea                          Do not copy EA Records\n");
 	fwprintf (gStdOutFile, L"      --noads                         Do not copy Alternative Data Streams (ADS)\n");
   fwprintf (gStdOutFile, L"      --progress                      Show a progress indicator on the console\n");
   fwprintf (gStdOutFile, L"  -q, --quiet                         Operation with no output\n");
 	fwprintf (gStdOutFile, L"      --skipfiles                     Don't operate on files, but only on dirs\n");
-	if (gpfCreateSymbolicLink && !gAutomatedTest)
-	  fwprintf (gStdOutFile, L"  -s, --symbolic                      Create symbolic link\n");
+	fwprintf (gStdOutFile, L"  -s, --symbolic                      Create symbolic link\n");
 
   fwprintf (gStdOutFile, L"      --traditional                   Use compatibility mode for remote drives\n");
   fwprintf (gStdOutFile, L"      --1023safe                      Workaround the 1023 hardlink limit\n\n");
@@ -1819,12 +1738,10 @@ Usage()
 	fwprintf (gStdOutFile, L"  ln --source x:\\src\\loc1 --copy x:\\source\\dir2 x:\\dest\\dir2\n");
 	fwprintf (gStdOutFile, L"  ln --junction x:\\source\\junction x:\\dest\\junction target\n");
 	fwprintf (gStdOutFile, L"  ln --junction x:\\source\\junction\n");
-	if (gpfCreateSymbolicLink && !gAutomatedTest)
-	{
-		fwprintf (gStdOutFile, L"  ln --symbolic sourcefile.txt destination.txt\n");
-		fwprintf (gStdOutFile, L"  ln --list sourcefile.txt\n");
-	}
-	return 42;
+	fwprintf (gStdOutFile, L"  ln --symbolic sourcefile.txt destination.txt\n");
+	fwprintf (gStdOutFile, L"  ln --list sourcefile.txt\n");
+
+  return 42;
 }
 
 void 
@@ -1918,7 +1835,6 @@ wmain(
     bool  SkipFiles = false;
     bool  Traditional = false;
     bool  SmartRename = false;
-    bool  Xp = false;
     bool  TrueSize = false;
     bool  DeloreanDelete = false;
     bool  AdsDev = false;
@@ -2188,8 +2104,8 @@ wmain(
       char c = ultragetopt_tunable (
 				argc, 
 				a_argv, 
-        gpfCreateSymbolicLink ? "R:r:e:q::c:j:J:sal:Am:o:z:Z:d:x:X:p:P:u::U::i::I::bh" : "R:r:e:q::c:j:J:al:Am:o:z:Z:d:x:X:p:P:u::U::i::I::bh", 
-				gpfCreateSymbolicLink ? long_options_symbolic : long_options,
+        "R:r:e:q::c:j:J:sal:Am:o:z:Z:d:x:X:p:P:u::U::i::I::bh", 
+				long_options,
 				&longind,
         "=",
         "-",
@@ -2581,11 +2497,6 @@ wmain(
         // We end up here if it was just long opts
         case 0:
 				{
-          // If we are in XP Mode, we have a few arguments less, so we have to adapt the
-          // index into the longopts array
-          if (!gpfCreateSymbolicLink)
-            longind += cDeltaNonSymbolicJustLongOpts;
-          
           switch (longind)
           {
             // --source
@@ -2667,20 +2578,12 @@ wmain(
             }
             break;
 
-            // --Xp
-            // 
-            case cBaseJustLongOpts + 0x05:
-              Xp = true;
-              gpfCreateSymbolicLink = NULL;
-            break;
-
-
             // --destination
             // 
             // Additional destination directories to simualte the behaviour from LSE. Make 
             // sure that after each --source a ---destination must follow, so that the 
             // source destination pairs match
-            case cBaseJustLongOpts + 0x06:
+            case cBaseJustLongOpts + 0x05:
             {
               // Check the argument and convert it to Fullpath
               _ArgvPath       ArgvDest;
@@ -2696,7 +2599,7 @@ wmain(
             // --datetime
             // 
             // Simply print out the date and time for the deloreancopy.bat
-            case cBaseJustLongOpts + 0x07:
+            case cBaseJustLongOpts + 0x06:
             {
               _SYSTEMTIME SysTime;
               GetLocalTime(&SysTime);
@@ -2716,7 +2619,7 @@ wmain(
 
             // --output
             // 
-            case cBaseJustLongOpts + 0x08:
+            case cBaseJustLongOpts + 0x07:
             {
               FILE* Output = _wfopen(argv[optind - 1], L"wt,ccs=UNICODE");
               if (Output)
@@ -2735,7 +2638,7 @@ wmain(
 
             // --truesize
             // 
-            case cBaseJustLongOpts + 0x09:
+            case cBaseJustLongOpts + 0x08:
             {
 					    wcscpy_s(Argv1, HUGE_PATH, argv[optind - 1]);
 					    Argv2[0] = 0x00;
@@ -2745,7 +2648,7 @@ wmain(
 
             // --AdsDev
             // 
-            case cBaseJustLongOpts + 0x0a:
+            case cBaseJustLongOpts + 0x09:
             {
 					    wcscpy_s(Argv1, HUGE_PATH, argv[optind - 1]);
 					    wcscpy_s(Argv2, HUGE_PATH, argv[optind]);
@@ -2758,13 +2661,13 @@ wmain(
             // This is the same as --traditional, but during automated test an --traditional option is
             // needed which can be removed in the output gia GSAR, so that a full testrun produces the
             // same output with --automated_traditional and without
-            case cBaseJustLongOpts + 0x0b:
+            case cBaseJustLongOpts + 0x0a:
               Traditional = true;
             break;
 
             // --KeepSymlinkRelation
             // 
-            case cBaseJustLongOpts + 0x0c:
+            case cBaseJustLongOpts + 0x0b:
             {
               KeepSymlinkRelation = true;
             }
@@ -2772,7 +2675,7 @@ wmain(
 
             // --timetolerance
             // 
-            case cBaseJustLongOpts + 0x0d:
+            case cBaseJustLongOpts + 0x0c:
             {
               if(EOF == swscanf_s(argv[optind - 1], L"%d", &TimeToleranceValue))
               {
@@ -2790,7 +2693,7 @@ wmain(
 
             // --include
             // 
-            case cBaseJustLongOpts + 0x0e:
+            case cBaseJustLongOpts + 0x0d:
 				    {
               if (optind == argc)
               {
@@ -2816,7 +2719,7 @@ wmain(
 
             // --includedir
             // 
-            case cBaseJustLongOpts + 0x0f:
+            case cBaseJustLongOpts + 0x0e:
 				    {
               if (optind == argc)
               {
@@ -2848,7 +2751,7 @@ wmain(
 
             // --includeregexp
             // 
-            case cBaseJustLongOpts + 0x10:
+            case cBaseJustLongOpts + 0x0f:
 				    {
               if (optind == argc)
               {
@@ -2865,7 +2768,7 @@ wmain(
 
             // --includeregexpdir
             // 
-            case cBaseJustLongOpts + 0x11:
+            case cBaseJustLongOpts + 0x10:
 				    {
               if (optind == argc)
               {
@@ -2882,13 +2785,13 @@ wmain(
 
             // --dupemerge
             // 
-            case cBaseJustLongOpts + 0x12:
+            case cBaseJustLongOpts + 0x11:
               gDupemerge = true;
             break;
 
             // --probefs
             // 
-            case cBaseJustLongOpts + 0x13:
+            case cBaseJustLongOpts + 0x12:
 					    wcscpy_s(Argv1, HUGE_PATH, argv[optind - 1]);
 					    Argv2[0] = 0x00;
               ProbeFs = true;
@@ -2896,49 +2799,45 @@ wmain(
 
             // --enumvolumes
             // 
-            case cBaseJustLongOpts + 0x14:
+            case cBaseJustLongOpts + 0x13:
               EnumVolumes = true;
             break;
 
-            // --clone
-            // 
-            // cBaseJustLongOpts + 0x15:
-
             // --switchoffntfscheck
             // 
-            case cBaseJustLongOpts + 0x16:
+            case cBaseJustLongOpts + 0x14:
               if (gAutomatedTest)
                 gSwitchOffNtfsCheck = true;
             break;
 
             // --noads
             // 
-            case cBaseJustLongOpts + 0x17:
+            case cBaseJustLongOpts + 0x15:
                 gNoAds = true;
             break;
 
             // --noea
             // 
-            case cBaseJustLongOpts + 0x18:
+            case cBaseJustLongOpts + 0x16:
                 gNoEa = true;
             break;
 
             // --nosparsefile
             // 
-            case cBaseJustLongOpts + 0x19:
+            case cBaseJustLongOpts + 0x17:
                 gNoSparseFile = true;
             break;
 
             // --nolocaluncresolve
             // 
-            case cBaseJustLongOpts + 0x1a:
+            case cBaseJustLongOpts + 0x18:
               if (gAutomatedTest)
                 gResolveUNC = false;
             break;
 
             // --anchor
             // 
-            case cBaseJustLongOpts + 0x1b:
+            case cBaseJustLongOpts + 0x19:
             {
               // Create/fake a virtual source, so that junction and symlink resolvals work
 		          _ArgvPath       ArgvXPath;
@@ -2953,7 +2852,7 @@ wmain(
 
             // --utf
             // 
-            case cBaseJustLongOpts + 0x1c:
+            case cBaseJustLongOpts + 0x1a:
             {
               int StdOutDesc = _open_osfhandle(gStdOutHandle, _O_WTEXT);
               gStdOutFile = _fdopen(StdOutDesc, "w");
@@ -2962,7 +2861,7 @@ wmain(
 
             // --deloreanverbose
             // 
-            case cBaseJustLongOpts + 0x1d:
+            case cBaseJustLongOpts + 0x1b:
             {
               gDeloreanVerbose = true;
             }
@@ -2970,7 +2869,7 @@ wmain(
 
             // --deloreansleep
             // 
-            case cBaseJustLongOpts + 0x1e:
+            case cBaseJustLongOpts + 0x1c:
             {
               if(EOF == swscanf_s(argv[optind - 1], L"%d", &gDeloreanSleep))
               {
@@ -2983,7 +2882,7 @@ wmain(
 
             // --hardlinklimit
             // 
-            case cBaseJustLongOpts + 0x1f:
+            case cBaseJustLongOpts + 0x1d:
             {
               if (gAutomatedTest)
               {
@@ -2998,7 +2897,7 @@ wmain(
 
             // --generatehardlinks
             // 
-            case cBaseJustLongOpts + 0x20:
+            case cBaseJustLongOpts + 0x1e:
             {
               if (gAutomatedTest)
               {
@@ -3013,7 +2912,7 @@ wmain(
 
             // --1023safe
             // 
-            case cBaseJustLongOpts + 0x21:
+            case cBaseJustLongOpts + 0x1f:
             {
               g1023safe = true;
             }
@@ -3021,7 +2920,7 @@ wmain(
 
             // --json
             // 
-            case cBaseJustLongOpts + 0x22:
+            case cBaseJustLongOpts + 0x20:
             {
               gJson = true;
             }
@@ -3029,44 +2928,36 @@ wmain(
 
             // --forcestatts
             // 
-            case cBaseJustLongOpts + 0x23:
+            case cBaseJustLongOpts + 0x21:
             break;
 
             // --json
             // 
-            case cBaseJustLongOpts + 0x24:
+            case cBaseJustLongOpts + 0x22:
             {
               gProgress = true;
             }
             break;
 
 				    // --merge
-            case cBaseJustLongOpts + 0x25:
+            case cBaseJustLongOpts + 0x23:
 				    {
-              if (gpfCreateSymbolicLink)
+              DeloreanMerge = true;
+              if (optind + 1 == argc)
               {
-                DeloreanMerge = true;
-                if (optind + 1 == argc)
-                {
-                  wcscpy_s(Argv1, HUGE_PATH, argv[optind - 1]);
-                  wcscpy_s(Argv2, HUGE_PATH, argv[optind]);
-                }
-                else
-                {
-                  Usage ();
-                  Exit (ERR_LESS_CMD_ARGUMENTS);
-                }
+                wcscpy_s(Argv1, HUGE_PATH, argv[optind - 1]);
+                wcscpy_s(Argv2, HUGE_PATH, argv[optind]);
               }
               else
               {
                 Usage ();
-                Exit (ERR_OPERATION_NOT_SUPPORTED);
+                Exit (ERR_LESS_CMD_ARGUMENTS);
               }
             }
             break;
 
             // --delete
-            case cBaseJustLongOpts + 0x26:
+            case cBaseJustLongOpts + 0x24:
             {
               wcscpy_s(Argv1, HUGE_PATH, argv[optind - 1]);
               Argv2[0] = 0x00;
@@ -3075,7 +2966,7 @@ wmain(
             break;
 
             // --supportfs
-            case cBaseJustLongOpts + 0x27:
+            case cBaseJustLongOpts + 0x25:
             {
               gSupportedFileSystems.Add(argv[optind - 1]);
               Argv2[0] = 0x00;
@@ -3083,7 +2974,7 @@ wmain(
             break;
 
             // --follow
-            case cBaseJustLongOpts + 0x28:
+            case cBaseJustLongOpts + 0x26:
             {
               if (NULL == optarg)
                 AlwaysFollow = true;
@@ -3107,7 +2998,7 @@ wmain(
             break;
 
             // --followregexp
-            case cBaseJustLongOpts + 0x29:
+            case cBaseJustLongOpts + 0x27:
             {
               if (NULL == optarg)
                 AlwaysFollow = true;
@@ -3122,9 +3013,7 @@ wmain(
             break;
 
             default:
-              fwprintf (gStdOutFile, L"Unknown LongOpt %d:'%S'\n", longind, gpfCreateSymbolicLink ? long_options_symbolic[longind].name : long_options[longind].name);
-
-              // TODO: Try to remove gpfCreateSymbolicLink since we are under Windows7 anyhow
+              fwprintf (gStdOutFile, L"Unknown LongOpt %d:'%S'\n", longind, long_options[longind].name);
             break;
           }
                     
@@ -3617,7 +3506,7 @@ wmain(
         _ArgvList MoveDestination;
         Argv1Path.ArgvDest = Argv2;
         MoveDestination.push_back(Argv1Path);
-        int r = FileList.FindHardLink (MoveDestination, gpfCreateSymbolicLink ? 0 : -1, &aStats, &PathNameStatusList, NULL);
+        int r = FileList.FindHardLink (MoveDestination, 0, &aStats, &PathNameStatusList, NULL);
 
         if (!Absolute)
           FileList.SetFlags(FileInfoContainer::eRelativeSymboliclinks);
@@ -3666,7 +3555,7 @@ wmain(
       _ArgvList MoveDestination;
       Argv1Path.ArgvDest = Argv2;
       MoveDestination.push_back(Argv1Path);
-      int r = FileList.FindHardLink (MoveDestination, gpfCreateSymbolicLink ? 0 : -1, &aStats, &PathNameStatusList, NULL);
+      int r = FileList.FindHardLink (MoveDestination, 0, &aStats, &PathNameStatusList, NULL);
 
       if (!Absolute)
         FileList.SetFlags(FileInfoContainer::eRelativeSymboliclinks);

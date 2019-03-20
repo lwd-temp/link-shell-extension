@@ -258,35 +258,12 @@ InitCreateHardlink()
   DbgOsPrint(L"InitCreateHardlink");
 #endif
   // first, try the easy (NT5) way
-  HMODULE	hKernel32 = LoadLibrary (_T ("kernel32.dll"));
-  if (hKernel32 > (HMODULE) 32)
-  {
-#if defined FAKE_SYMBOLIC_LINK 
-    // This is a fake to switch on functionality for Symbolic Links even under WXP
-    gpfCreateSymbolicLink = (CreateSymboliclinkW_t)0x042;
-#else
-    gpfCreateSymbolicLink = (CreateSymboliclinkW_t) GetProcAddress (hKernel32, CREATESYMBOLICLINK);
-//    gpfCreateSymbolicLink = (CreateSymboliclinkW_t) 0;
-#endif
+  // One might not be able to get the privileges for CreateSymbolicLink with Windows10, especially
+  // if you are not running ln.exe from an administrative command prompt.
+  BOOL b = EnableTokenPrivilege(SE_CREATE_SYMBOLICLINK_PRIVILEGE);
 
-    // By default we do not have symlinks under XP
-    if (gpfCreateSymbolicLink)
-    {
-      BOOL b;
-      
-      // One might not be able to get the privileges for CreateSymbolicLink with Windows10, especially
-      // if you are not running ln.exe from an administrative command prompt.
-      b = EnableTokenPrivilege(SE_CREATE_SYMBOLICLINK_PRIVILEGE);
-
-      // With W10 if not run from a commandprompt with Admin Rights, one can not enable SE_CREATE_SYMBOLICLINK_PRIVILEGE
-      // because the process does not hold this very privilege. So fail with Symlinks
-#if 0
-      if (!b && (gVersionInfo.dwMajorVersion >= WINDOWS_VERSION_WIN10))
-        gpfCreateSymbolicLink = (CreateSymboliclinkW_t) 0;
-#endif
-    }
-    FreeLibrary(hKernel32);
-  }
+  // With W10 if not run from a commandprompt with Admin Rights, one can not enable SE_CREATE_SYMBOLICLINK_PRIVILEGE
+  // because the process does not hold this very privilege. So fail with Symlinks
 
   // Now Load stuff from shell32.dll
   HMODULE	hShell32 = LoadLibrary (_T ("shell32.dll"));
@@ -673,7 +650,7 @@ inline BOOL CreateSymboliclinkMS(
     dwSymLinkFlag &= ~SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
     dwSymLinkFlag |= SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
   }
-  return gpfCreateSymbolicLink (lpSymlinkFileName, lpTargetFileName, dwSymLinkFlag);
+  return CreateSymbolicLink (lpSymlinkFileName, lpTargetFileName, dwSymLinkFlag);
 }
 
 ///--------------------------------------------------------------------
@@ -2498,13 +2475,8 @@ ProbeSymbolicLink(
   __inout LPWSTR  aDestination
 )
 {
-  if (gpfCreateSymbolicLink)
-  {
     int r = ProbeReparsePoint(aFileName, aDestination);
     return REPARSE_POINT_SYMBOLICLINK == r ? TRUE:FALSE;
-  }
-  else
-    return FALSE;
 }
 
 //--------------------------------------------------------------------

@@ -90,25 +90,7 @@ BOOL PropPageGeneral::OnInitDialog()
   ChangegFlags(eEnableRemote, &m_RemoteCapabilities, true);
   CheckDlgButton(IDC_CHECK_RemoteCapabilities, !m_RemoteCapabilities);
 
-  if (!gpfCreateSymbolicLink)
-  {
-    // With WindowsXP gray out the Backup Option if the user does not hold the backup privs
-    BOOL b = EnableTokenPrivilege(SE_BACKUP_NAME);
-    BOOL r = EnableTokenPrivilege(SE_RESTORE_NAME);
-    EnableTokenPrivilege(SE_SECURITY_NAME);
-    if ( ((FALSE == b) || (FALSE == r)) )
-    {
-      // And disable the backup
-      ChangegFlags(eBackupMode, NULL, m_BackupMode);
-
-      CButton* pButton = (CButton*)GetDlgItem(IDC_CHECK_BackupMode);
-      pButton->EnableWindow(FALSE);
-    }
-    else
-      ChangegFlags(eBackupMode, &m_BackupMode, true);
-  }
-  else
-    ChangegFlags(eBackupMode, &m_BackupMode, true);
+  ChangegFlags(eBackupMode, &m_BackupMode, true);
 
   CheckDlgButton(IDC_CHECK_BackupMode, m_BackupMode);
 
@@ -122,20 +104,17 @@ BOOL PropPageGeneral::OnInitDialog()
   CheckDlgButton(IDC_RADIO_OuterJunctionSplice, m_SpliceReparsePoints);
 
 
-  // If we are under Vsita/Windows7 show all dialogs for symlinks
-  if (gpfCreateSymbolicLink)
-  {
-    CButton* pButton = (CButton*)GetDlgItem(IDC_RADIO_Relative_Symbolic_Links);
-    pButton->ShowWindow(SW_SHOW);
-    pButton = (CButton*)GetDlgItem(IDC_RADIO_Absolute_Symbolic_Links);
-    pButton->ShowWindow(SW_SHOW);
-    pButton = (CButton*)GetDlgItem(IDC_STATIC_Symlink_Caption);
-    pButton->ShowWindow(SW_SHOW);
+  CButton* pButton = (CButton*)GetDlgItem(IDC_RADIO_Relative_Symbolic_Links);
+  pButton->ShowWindow(SW_SHOW);
+  pButton = (CButton*)GetDlgItem(IDC_RADIO_Absolute_Symbolic_Links);
+  pButton->ShowWindow(SW_SHOW);
+  pButton = (CButton*)GetDlgItem(IDC_STATIC_Symlink_Caption);
+  pButton->ShowWindow(SW_SHOW);
 
-    ChangegFlags(eForceAbsoluteSymbolicLinks, &m_SymlinkAbsRel, true);
-    CheckDlgButton(IDC_RADIO_Relative_Symbolic_Links, !m_SymlinkAbsRel);
-    CheckDlgButton(IDC_RADIO_Absolute_Symbolic_Links, m_SymlinkAbsRel);
-  }
+  ChangegFlags(eForceAbsoluteSymbolicLinks, &m_SymlinkAbsRel, true);
+  CheckDlgButton(IDC_RADIO_Relative_Symbolic_Links, !m_SymlinkAbsRel);
+  CheckDlgButton(IDC_RADIO_Absolute_Symbolic_Links, m_SymlinkAbsRel);
+
   // Fill the Combo Box
   int i = 0;
   do {

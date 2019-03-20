@@ -354,16 +354,10 @@ int PrintTrueSizeCopyStatsNormal(
   oss << setfill(' ') << setw(20) << "-";
 	oss << endl;
 
-  // Only show the statistics for Symbolic links with Windows7 or show it
-  // if we are under XP, but someone has a symbolic link on a filesystem
-  // and accessing this symbolic link caused an error
-  if (gpfCreateSymbolicLink || aStats.m_SymlinksTotal)
-  {
-    oss << " Symlink:";
-    oss << setfill(' ') << setw(20) << aStats.m_SymlinksTotal;
-    oss << setfill(' ') << setw(20) << "-";
-	  oss << endl;
-  }
+  oss << " Symlink:";
+  oss << setfill(' ') << setw(20) << aStats.m_SymlinksTotal;
+  oss << setfill(' ') << setw(20) << "-";
+  oss << endl;
   oss << endl;
     
   if (!a_AutomatedTest)
@@ -582,35 +576,28 @@ int PrintDeloreanCopyStatsNormal(
 	  oss << endl;
   }
 
-
-  // Only show the statistics for Symbolic links with Windows7 or show it
-  // if we are under XP, but someone has a symbolic link on a filesystem
-  // and accessing this symbolic link caused an error
-  if (gpfCreateSymbolicLink || aStats.m_SymlinksTotal)
-  {
-    oss << " Symlink:";
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksTotal);
-    oss << setfill(' ') << setw(10) << "-";
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestored + aStats.m_SymlinksDangling);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestoreSkipped);
-    if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-      oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksCleaned);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksExcluded + aStats.m_SymlinksCropped);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestoreFailed + aStats.m_SymlinksCleanedFailed);
-	  oss << endl;
-  }
+  oss << " Symlink:";
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksTotal);
+  oss << setfill(' ') << setw(10) << "-";
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestored + aStats.m_SymlinksDangling);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestoreSkipped);
+  if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksCleaned);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksExcluded + aStats.m_SymlinksCropped);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestoreFailed + aStats.m_SymlinksCleanedFailed);
+	oss << endl;
     
-    oss << "    Byte:";
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesTotal);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCopied);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesLinked);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCopySkippped + aStats.m_BytesLinkSkipped);
-    if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-      oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCleaned);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesExcluded);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCopyFailed + aStats.m_BytesLinkFailed);
-	  oss << endl;
-	  oss << endl;
+  oss << "    Byte:";
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesTotal);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCopied);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesLinked);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCopySkippped + aStats.m_BytesLinkSkipped);
+  if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCleaned);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesExcluded);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCopyFailed + aStats.m_BytesLinkFailed);
+	oss << endl;
+	oss << endl;
 
   // Time calculations
   FILETIME64 StartTime, EndTime;

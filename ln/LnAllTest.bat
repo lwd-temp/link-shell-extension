@@ -20,7 +20,6 @@ copy LnTest_current.txt LnTest_current_org.txt
 %GSAR% -s%~p0 -r\BasePath -o LnTest_current.txt
 
 %GSAR% -s..\Tools\where.exe -rWHERE -o LnTest_current.txt
-%GSAR% -s--Xp -r -o LnTest_current.txt
 %GSAR% -s--automated_traditional -r -o LnTest_current.txt
 %GSAR% -s--automated_test -r -o LnTest_current.txt
 

@@ -8,10 +8,6 @@
 #define EXTERN extern
 #endif
 
-// If we are under WXP the creation of symbolic link can
-// be faked through the creation of Hardlinks with _sl appended
-// #define FAKE_SYMBOLIC_LINK // DEBUG_DEFINES
-
 #define USE_VECTOR
 
 // define if we don't want to fork symlink.exe to perform operations
@@ -198,7 +194,6 @@ extern "C"
 	);
 }
 
-EXTERN CreateSymboliclinkW_t		gpfCreateSymbolicLink;
 EXTERN IsUserAnAdmin_t			    gpfIsUserAnAdmin;
 
 EXTERN OSVERSIONINFO            gVersionInfo;

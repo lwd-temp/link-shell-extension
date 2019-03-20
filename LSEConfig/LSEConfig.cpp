@@ -102,11 +102,8 @@ BOOL CLSEConfigApp::InitInstance()
   sheet.AddPage( &aPropPageIconJunction );
   aPropPageIconJunction.m_psp.dwFlags &= ~PSP_HASHELP;
 
-  if (gpfCreateSymbolicLink)
-  {
-    sheet.AddPage( &aPropPageIconSymlink );
-    aPropPageIconSymlink.m_psp.dwFlags &= ~PSP_HASHELP;
-  }
+  sheet.AddPage( &aPropPageIconSymlink );
+  aPropPageIconSymlink.m_psp.dwFlags &= ~PSP_HASHELP;
 
 #if defined _DEBUG
   sheet.AddPage( &aPropPageCustomize);

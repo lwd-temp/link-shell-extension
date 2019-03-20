@@ -9,11 +9,9 @@ REM
 REM The test should be done with everything running under --traditional
 REM
 REM set LN_TEST_OPTIONS=--automated_traditional --automated_test
-REM --Xp
+
 set LN=..\bin\%PLATT%\%CONFIG%\ln.exe %LN_TEST_OPTIONS%
 set LNPURE=..\bin\%PLATT%\%CONFIG%\ln.exe
-REM set LN=..\bin\%PLATT%\%CONFIG%\ln2759.exe %LN_TEST_OPTIONS%
-REM set LN=E:\iBackup20110205\data\cpp\hardlinks\Bin\win32\release\ln.exe %LN_TEST_OPTIONS%
 
 set GSAR=..\Tools\gsar.exe
 set GREP=..\Tools\grep.exe
