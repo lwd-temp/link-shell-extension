@@ -22,7 +22,7 @@ HINSTANCE     gLSEInstance = NULL;
 int
 Usage()
 {
-	_tprintf (_T ("symlink. symlink helper for Windows Vista/W7 elevation\n"));
+	_tprintf (_T ("symlink. symlink helper for Windows 7 elevation\n"));
 	return 42;
 }
 

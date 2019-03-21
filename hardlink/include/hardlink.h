@@ -194,8 +194,6 @@ extern "C"
 	);
 }
 
-EXTERN IsUserAnAdmin_t			    gpfIsUserAnAdmin;
-
 EXTERN OSVERSIONINFO            gVersionInfo;
 
 #define SYMLINK_FLAG_FILE 	                    0x00

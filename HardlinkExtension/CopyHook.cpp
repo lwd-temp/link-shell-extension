@@ -261,8 +261,7 @@ CopyCallback ( HWND hwnd,
             
             int   RefCount;
             if (gVersionInfo.dwMajorVersion >= 6)
-              // With Vista & W7 we also have to search files, because symbolic links are 
-              // also reparsepoints
+              // With Vista & W7 we also have to search files, because symbolic links are also reparsepoints
               RefCount = 0;
             else
               // With XP, we know there are now symbolic links, so we can speed up search by

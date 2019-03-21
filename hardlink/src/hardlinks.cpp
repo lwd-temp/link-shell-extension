@@ -265,15 +265,6 @@ InitCreateHardlink()
   // With W10 if not run from a commandprompt with Admin Rights, one can not enable SE_CREATE_SYMBOLICLINK_PRIVILEGE
   // because the process does not hold this very privilege. So fail with Symlinks
 
-  // Now Load stuff from shell32.dll
-  HMODULE	hShell32 = LoadLibrary (_T ("shell32.dll"));
-  if (hShell32 > (HMODULE) 32)
-  {
-    // Dynamically access IsUserAnAdmin, because this is not available on W2K
-    // and we want LSE at least to load on W2K
-    gpfIsUserAnAdmin = (IsUserAnAdmin_t) GetProcAddress (hShell32, ISUSERANADMIN);
-    FreeLibrary(hShell32);
-  }
 }
 
 int

@@ -1413,16 +1413,12 @@ ElevationNeeded(
   {
     // Elevation is not needed, due to the split token, but this could also be a normal user
     // and not an Admin, so overrule this
-    if (gpfIsUserAnAdmin)
+    if (!IsUserAnAdmin())
     {
-      if (!gpfIsUserAnAdmin())
-      {
-        if (!ProbeTokenPrivilege(SE_CREATE_SYMBOLICLINK_PRIVILEGE))
-          Elevation = true;
-      }
+      if (!ProbeTokenPrivilege(SE_CREATE_SYMBOLICLINK_PRIVILEGE))
+        Elevation = true;
     }
   }
-
 
   return Elevation;
 }
