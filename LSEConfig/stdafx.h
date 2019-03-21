@@ -23,6 +23,8 @@
 #include <list>
 #include <vector>
 #include <atomic>
+#include <map>
+#include <algorithm>
 
 using namespace std;
 

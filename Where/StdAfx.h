@@ -43,3 +43,5 @@
 #include <StrSafe.h>
 #include "shlobj.h"
 
+#define HUGE_PATH 8192
+

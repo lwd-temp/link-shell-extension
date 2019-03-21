@@ -158,18 +158,6 @@ const int cMaxHardlinkLimit = 1023;
 #define SE_INCREASE_WORKINGSET_PRIVILEGE             TEXT("SeIncreaseWorkingSetPrivilege")
 #define SE_CREATE_SYMBOLICLINK_PRIVILEGE             TEXT("SeCreateSymbolicLinkPrivilege")
 
-
-
-//disable warnings on 255 char debug symbols
-#pragma warning (disable : 4786)
-//disable warnings on extern before template instantiation
-#pragma warning (disable : 4231)
-#include <vector>
-#include <algorithm>
-#include <string>
-#include <map>
-
-
 #include <ntsysteminfo.h>
 
 
@@ -217,10 +205,6 @@ EXTERN OSVERSIONINFO            gVersionInfo;
 
 #define WINDOWS_VERSION_WIN10   0x0A
 
-
-#if defined _DEBUG
-#include <vector>
-#endif
 
 enum LSE_Flags
 {

@@ -296,7 +296,7 @@ void PrintProgress(__int64 aPercentage, ProgressPrediction& aProgressPrediction)
   if (aProgressPrediction.TimeLeft(timeLeft, effort))
   {
     char nItems[MAX_PATH];
-    FormatNumber(nItems, effort.m_Items.load());
+    FormatNumber(nItems, MAX_PATH, effort.m_Items.load());
     wprintf (L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b%3d%%, Items %14S, Time left: %02d:%02d:%02d",
       (int)aPercentage,
       nItems,
@@ -314,7 +314,7 @@ void PrintElapsed(ProgressPrediction& aProgressPrediction)
   aProgressPrediction.Duration(duration, effort);
 
   char nItems[MAX_PATH];
-  FormatNumber(nItems, effort.m_Items.load());
+  FormatNumber(nItems, MAX_PATH, effort.m_Items.load());
   wprintf (L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b100%%, Items %14S, Time elapsed: %02d:%02d:%02d\n",
     nItems,
     duration.wHour,

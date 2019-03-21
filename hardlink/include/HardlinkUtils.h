@@ -70,11 +70,13 @@ public:
 
 char* FormatNumber(
   char* aResult,
+  int aLength, 
   ULONG64 aNumber
 );
 
 char* FormatG(
-  char* aResult, 
+  char* aResult,
+  int aLength,
   ULONG64 aNumber
 );
 

@@ -26,11 +26,11 @@ char* wstr2astr (wchar_t* pwStr, char* paStr)
 
 int where (wchar_t* aRegExpr, wchar_t* aPath)
 {
-	wchar_t 				PathWid[8192];
+	wchar_t 				PathWid[HUGE_PATH];
 	struct _wfinddata_t		wfind;
 
-	wcscpy (PathWid, aPath);
-	wcscat (PathWid, L"*.*");
+	wcscpy_s(PathWid, HUGE_PATH, aPath);
+	wcscat_s(PathWid, HUGE_PATH, L"*.*");
 	long sh = _wfindfirst (PathWid, &wfind);
 	if (sh > 0)
 		do
@@ -41,9 +41,9 @@ int where (wchar_t* aRegExpr, wchar_t* aPath)
 				{
 					if (wfind.attrib & _A_SUBDIR )
 					{
-						wcscpy (PathWid, aPath);
-						wcscat (PathWid, wfind.name);
-						wcscat (PathWid, L"\\");
+						wcscpy_s(PathWid, HUGE_PATH, aPath);
+						wcscat_s(PathWid, HUGE_PATH, wfind.name);
+						wcscat_s(PathWid, HUGE_PATH, L"\\");
 						where (aRegExpr, PathWid);
 						
 					}
@@ -53,8 +53,8 @@ int where (wchar_t* aRegExpr, wchar_t* aPath)
 		_findclose(sh);
 
 	// Search for files
-	wcscpy (PathWid, aPath);
-	wcscat (PathWid, aRegExpr);
+	wcscpy_s(PathWid, HUGE_PATH, aPath);
+	wcscat_s(PathWid, HUGE_PATH, aRegExpr);
 
 	sh = _wfindfirst (PathWid, &wfind);
 	if (sh > 0)
@@ -88,15 +88,15 @@ int wmain (int argc, wchar_t* argv[])
 	int i = 2;
 	while (i < argc)
 	{
-		wchar_t 	Path[8192];
-		wcscpy(Path, PATH_PARSE_SWITCHOFF );
+		wchar_t 	Path[HUGE_PATH];
+		wcscpy_s(Path, HUGE_PATH, PATH_PARSE_SWITCHOFF );
     wchar_t*  pFilePart;     
     GetFullPathNameW(argv[i], 8192 - PATH_PARSE_SWITCHOFF_SIZE, &Path[PATH_PARSE_SWITCHOFF_SIZE], &pFilePart);
 
     WCHAR u = Path[wcslen(Path) - 1];
 		if (u != L'\\')
 			if (u != L':')
-				wcscat(Path, L"\\");
+				wcscat_s(Path, HUGE_PATH, L"\\");
 
     where (argv[1], Path);
 		i++;

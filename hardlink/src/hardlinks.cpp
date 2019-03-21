@@ -49,8 +49,6 @@ HTRACE (wchar_t* aFormat ...)
 #pragma hdrstop
 #pragma comment( lib, "advapi32.lib" )
 
-# define linkoffsetof(t,m) ((size_t) &(((t *) 0)->m))
-
 void
 MakeAnsiString(
   const wchar_t*  unistring,
@@ -1476,11 +1474,13 @@ ProbeReparsePoint(
               // Mount points and junctions
               //
               reparseData = (PBYTE) &msReparseInfo->MountPointReparseBuffer.PathBuffer;
-              _tcsncpy( name, 
+              _tcsncpy_s( name, 
+                HUGE_PATH,
                 (PWCHAR) (reparseData + msReparseInfo->MountPointReparseBuffer.PrintNameOffset),
                 msReparseInfo->MountPointReparseBuffer.PrintNameLength );
               name[msReparseInfo->MountPointReparseBuffer.PrintNameLength] = 0;
-              _tcsncpy( name1, 
+              _tcsncpy_s( name1, 
+                HUGE_PATH,
                 (PWCHAR) (reparseData + msReparseInfo->MountPointReparseBuffer.SubstituteNameOffset),
                 msReparseInfo->MountPointReparseBuffer.SubstituteNameLength );
               name1[msReparseInfo->MountPointReparseBuffer.SubstituteNameLength] = 0;
@@ -1521,13 +1521,15 @@ ProbeReparsePoint(
             {
               reparseData = (PBYTE) &msReparseInfo->SymbolicLinkReparseBuffer.PathBuffer;
               // Probe for the printname
-              _tcsncpy( name, 
+              _tcsncpy_s( name, 
+                HUGE_PATH,
                 (PWCHAR) (reparseData + msReparseInfo->SymbolicLinkReparseBuffer.PrintNameOffset),
                 msReparseInfo->SymbolicLinkReparseBuffer.PrintNameLength );
               name[msReparseInfo->SymbolicLinkReparseBuffer.PrintNameLength / sizeof(wchar_t)] = 0;
 
               // Probe for the subsitutename
-              _tcsncpy( name1, 
+              _tcsncpy_s( name1, 
+                HUGE_PATH,
                 (PWCHAR) (reparseData + msReparseInfo->SymbolicLinkReparseBuffer.SubstituteNameOffset),
                 msReparseInfo->SymbolicLinkReparseBuffer.SubstituteNameLength );
               name1[msReparseInfo->SymbolicLinkReparseBuffer.SubstituteNameLength / sizeof(wchar_t) ] = 0;
@@ -2142,7 +2144,7 @@ CreateFileName(
       wchar_t save_wfind[MAX_PATH];
 
       do {
-        wcscpy(save_wfind, wfind.cFileName);
+        wcscpy_s(save_wfind, MAX_PATH, wfind.cFileName);
         openpos = wcsstr(wfind.cFileName, L" (");
         closepos = wcsstr(wfind.cFileName, closefind);
 
@@ -7026,7 +7028,7 @@ Load(
   wchar_t Filename[HUGE_PATH];
 
   int FileInfoSize = 0;
-  fwscanf (aSourceFile, L"%x\n", &FileInfoSize);
+  fwscanf_s(aSourceFile, L"%x\n", &FileInfoSize);
   while (!feof(aSourceFile) && FileInfoSize-- > 0)
   {
     FileInfo*	pFileInfo = new FileInfo;
@@ -7069,7 +7071,7 @@ Load(
     {
       if (eDupeMergePersistance == aMode)
       {
-        r = fwscanf (aSourceFile, L"%I64x,%I64x,%x,%x,%I64x,%I64x\n", 
+        r = fwscanf_s(aSourceFile, L"%I64x,%I64x,%x,%x,%I64x,%I64x\n", 
           &pFileInfo->m_FileIndex.ul64,
           &pFileInfo->m_FileSize.ul64,
           &pFileInfo->m_DiskIndex,
@@ -7080,7 +7082,7 @@ Load(
       }
       else
       {
-        r = fwscanf (aSourceFile, L"%I64x,%I64x,%x,%x\n", 
+        r = fwscanf_s(aSourceFile, L"%I64x,%I64x,%x,%x\n",
           &pFileInfo->m_FileIndex.ul64,
           &pFileInfo->m_FileSize.ul64,
           &pFileInfo->m_DiskIndex,
@@ -7105,11 +7107,11 @@ Load(
   CompileRegExpList(&m_SpliceDirList, m_RegExpSpliceDirList);
 
   // Save DiskSerialCache needed due to BackupMode
-  fwscanf(aSourceFile, L"%x\n", &m_CurrentSerialNumber); 
+  fwscanf_s(aSourceFile, L"%x\n", &m_CurrentSerialNumber);
   m_DiskSerialCache.Load(aSourceFile);
 
   // Load misc data
-  fwscanf (aSourceFile, L"%x,%x\n", &m_Flags, &m_Flags2);
+  fwscanf_s(aSourceFile, L"%x,%x\n", &m_Flags, &m_Flags2);
 
   return 1;
 }
@@ -7125,7 +7127,7 @@ LoadStringList(
   int DestPathSize = 0;
   wchar_t Filename[HUGE_PATH];
 
-  fwscanf (aFile, L"%x\n", &DestPathSize);
+  fwscanf_s(aFile, L"%x\n", &DestPathSize);
   while (!feof(aFile) && DestPathSize-- > 0)
   {
     int r = fwscanf_s (aFile, L"%[^\"]\"\n", Filename, HUGE_PATH);
@@ -13063,7 +13065,7 @@ StartLogging(
     GetTempPath(MAX_PATH, LogFileName);
     wcscat_s(LogFileName, L"LinkShellExtension.log");
     
-    LogFile = _wfopen (LogFileName, L"wt,ccs=UNICODE");
+    _wfopen_s(&LogFile, LogFileName, L"wt,ccs=UNICODE");
     if (LogFile)
     {
       SetFlags(eLogVerbose);
@@ -13090,7 +13092,7 @@ AppendLogging(
     GetTempPath(MAX_PATH, LogFileName);
     wcscat_s(LogFileName, L"LinkShellExtension.log");
     
-    LogFile = _wfopen (LogFileName, L"at,ccs=UNICODE");
+    _wfopen_s(&LogFile, LogFileName, L"at,ccs=UNICODE");
     if (LogFile)
       SetOutputFile(LogFile);
   }
@@ -13455,7 +13457,7 @@ Load(
   wchar_t SourcePath[HUGE_PATH];
   wchar_t DestPath[HUGE_PATH];
 
-  fwscanf (aFile, L"%x\n", &Size);
+  fwscanf_s(aFile, L"%x\n", &Size);
   while (!feof(aFile) && Size-- > 0)
   {
     _ArgvPath AnchorPath;
@@ -13543,7 +13545,7 @@ Lookup(
   wchar_t LocalRootPath[HUGE_PATH];
   wcscpy_s(LocalRootPath, HUGE_PATH, &a_pRootPathName[PathParseSwitchOffSize]);
   PathStripToRoot(LocalRootPath);
-  _wcslwr(LocalRootPath);
+  _wcslwr_s(LocalRootPath, HUGE_PATH);
 
   _DiskSerialMap::iterator  iterDsm =  m_DiskSerialMap.find(LocalRootPath);
   if (iterDsm == m_DiskSerialMap.end())
@@ -13658,7 +13660,7 @@ Load(
 )
 {
   int size;
-  fwscanf (a_File, L"%x\n", &size);
+  fwscanf_s(a_File, L"%x\n", &size);
   for (int i = 0; i < size; ++i)
   {
     wchar_t LocalRootPathName[MAX_PATH];
@@ -13755,10 +13757,11 @@ ReadFromRegistry()
     {
 	    // Parse Filesystems from the registry
       TCHAR		seps[] = _T(";");
-	    PTCHAR	token = _tcstok (SuppFs, seps);
+      PTCHAR  NextToken;
+	    PTCHAR	token = _tcstok_s(SuppFs, seps, &NextToken);
       if (token)
         m_ThirdPartyFileSystems.push_back(token);
-      while (PTCHAR ppp = _tcstok (NULL, seps))
+      while (PTCHAR ppp = _tcstok_s(NULL, seps, &NextToken))
         m_ThirdPartyFileSystems.push_back(ppp);
     }
 
@@ -14267,7 +14270,7 @@ _DupeMerge(
   {
     // Use this code to save a container which contains uniqe constellation of testdata
     _ArgvListIterator iter = aSrcPathList.begin();
-		SlurpAfterFind = _wfopen (iter->Argv.c_str(), L"rb");
+		_wfopen_s(&SlurpAfterFind, iter->Argv.c_str(), L"rb");
 
     aSrcPathList.erase(aSrcPathList.begin());
   }
@@ -14278,7 +14281,7 @@ _DupeMerge(
   {
     // Use this code to save a container which contains uniqe constellation of testdata
     _ArgvListIterator iter = aSrcPathList.begin();
-		DumpAfterFind = _wfopen (iter->Argv.c_str(), L"wb");
+		_wfopen_s(&DumpAfterFind, iter->Argv.c_str(), L"wb");
 
     aSrcPathList.erase(aSrcPathList.begin());
   }
@@ -14289,7 +14292,7 @@ _DupeMerge(
   {
     // Use this code to save a container which contains uniqe constellation of testdata
     _ArgvListIterator iter = aSrcPathList.begin();
-		SlurpAfterCalc = _wfopen (iter->Argv.c_str(), L"rb");
+		_wfopen_s(&SlurpAfterCalc, iter->Argv.c_str(), L"rb");
 
     aSrcPathList.erase(aSrcPathList.begin());
   }
@@ -14300,7 +14303,7 @@ _DupeMerge(
   {
     // Use this code to save a container which contains uniqe constellation of testdata
     _ArgvListIterator iter = aSrcPathList.begin();
-		DumpAfterCalc = _wfopen (iter->Argv.c_str(), L"wb");
+		_wfopen_s(&DumpAfterCalc, iter->Argv.c_str(), L"wb");
 
     aSrcPathList.erase(aSrcPathList.begin());
   }

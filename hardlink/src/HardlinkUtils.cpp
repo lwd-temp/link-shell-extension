@@ -228,7 +228,7 @@ TimeLeft(SYSTEMTIME& a_TimeLeft, Effort& a_Effort)
 #endif
 }
 
-char* FormatNumber(char* aResult, ULONG64 aNumber)
+char* FormatNumber(char* aResult, int aLength, ULONG64 aNumber)
 {
   locale::global(locale(""));
 
@@ -237,11 +237,11 @@ char* FormatNumber(char* aResult, ULONG64 aNumber)
   ostringstream oss;
 
   oss << aNumber;
-  strcpy(aResult, oss.str().c_str());
+  strcpy_s(aResult, aLength, oss.str().c_str());
   return aResult;
 }
 
-char* FormatG(char* aResult, ULONG64 aNumber)
+char* FormatG(char* aResult,int aLength, ULONG64 aNumber)
 {
   locale::global(locale(""));
 
@@ -253,7 +253,7 @@ char* FormatG(char* aResult, ULONG64 aNumber)
   if (aNumber < 1024 * 1024)
   {
     oss << aNumber;
-    strcpy(aResult, oss.str().c_str());
+    strcpy_s(aResult, aLength, oss.str().c_str());
   }
   else
   {
@@ -261,7 +261,7 @@ char* FormatG(char* aResult, ULONG64 aNumber)
     if (aNumber < 1024)
     {
       oss << aNumber << " k";
-      strcpy(aResult, oss.str().c_str());
+      strcpy_s(aResult, aLength, oss.str().c_str());
     }
     else
     {
@@ -269,7 +269,7 @@ char* FormatG(char* aResult, ULONG64 aNumber)
       if (aNumber < 1024)
       {
         oss << aNumber << " m";
-        strcpy(aResult, oss.str().c_str());
+        strcpy_s(aResult, aLength, oss.str().c_str());
       }
       else
       {
@@ -277,12 +277,12 @@ char* FormatG(char* aResult, ULONG64 aNumber)
         if (aNumber < 1024)
         {
           oss << aNumber * 1024 << " m";
-          strcpy(aResult, oss.str().c_str());
+          strcpy_s(aResult, aLength, oss.str().c_str());
         }
         else
         {
           oss << aNumber << " g";
-          strcpy(aResult, oss.str().c_str());
+          strcpy_s(aResult, aLength, oss.str().c_str());
         }
       }
     }
@@ -494,36 +494,36 @@ int PrintDeloreanCopyStatsNormal(
   oss << "  Excluded    Failed" << endl; 
 
   oss << "  Folder:";
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_DirectoryTotal);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_DirectoryCreated);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_DirectoryTotal);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_DirectoryCreated);
   oss << setfill(' ') << setw(10) << "-";
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_DirectoryCreateSkipped);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_DirectoryCreateSkipped);
   if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_DirectoriesCleaned);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_DirectoriesExcluded);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_DirectoryCreateFailed + aStats.m_DirectoriesCleanedFailed);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_DirectoriesCleaned);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_DirectoriesExcluded);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_DirectoryCreateFailed + aStats.m_DirectoriesCleanedFailed);
 	oss << endl;
 
   oss << "    File:";
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesTotal);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesCopied);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesLinked);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesCopySkipped + aStats.m_FilesLinkSkipped); 
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_FilesTotal);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_FilesCopied);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_FilesLinked);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_FilesCopySkipped + aStats.m_FilesLinkSkipped); 
   if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesCleaned);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesExcluded);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_FilesCopyFailed + aStats.m_FilesLinkFailed + aStats.m_FilesCleanedFailed);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_FilesCleaned);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_FilesExcluded);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_FilesCopyFailed + aStats.m_FilesLinkFailed + aStats.m_FilesCleanedFailed);
 	oss << endl;
 
   oss << "Junction:";
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_JunctionsTotal);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_JunctionsTotal);
   oss << setfill(' ') << setw(10) << "-";
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_JunctionsRestored + aStats.m_JunctionsDangling);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_JunctionsRestoreSkipped);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_JunctionsRestored + aStats.m_JunctionsDangling);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_JunctionsRestoreSkipped);
   if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_JunctionsCleaned);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_JunctionsExcluded + aStats.m_JunctionsCropped);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_JunctionsRestoreFailed + aStats.m_JunctionsCleanedFailed);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_JunctionsCleaned);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_JunctionsExcluded + aStats.m_JunctionsCropped);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_JunctionsRestoreFailed + aStats.m_JunctionsCleanedFailed);
 	oss << endl;
 
   // Mountpoints, but only if they were part of the operation
@@ -540,14 +540,14 @@ int PrintDeloreanCopyStatsNormal(
   )
   {
     oss << "MountPnt:";
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_MountpointsTotal);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_MountpointsTotal);
     oss << setfill(' ') << setw(10) << "-";
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_MountpointsRestored + aStats.m_MountpointsDangling);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_MountpointsRestoreSkipped);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_MountpointsRestored + aStats.m_MountpointsDangling);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_MountpointsRestoreSkipped);
     if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-      oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_MountpointsCleaned);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_MountpointsExcluded + aStats.m_MountpointsCropped);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_MountpointsRestoreFailed + aStats.m_MountpointsCleanedFailed);
+      oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_MountpointsCleaned);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_MountpointsExcluded + aStats.m_MountpointsCropped);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_MountpointsRestoreFailed + aStats.m_MountpointsCleanedFailed);
 	  oss << endl;
   }
 
@@ -565,37 +565,37 @@ int PrintDeloreanCopyStatsNormal(
   )
   {
     oss << "RparsUkn:";
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_ReparsePointTotal);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_ReparsePointTotal);
     oss << setfill(' ') << setw(10) << "-";
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_ReparsePointRestored + aStats.m_ReparsePointDangling);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_ReparsePointRestoreSkipped);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_ReparsePointRestored + aStats.m_ReparsePointDangling);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_ReparsePointRestoreSkipped);
     if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-      oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_ReparsePointCleaned);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_ReparsePointExcluded + aStats.m_ReparsePointCropped);
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_ReparsePointRestoreFailed + aStats.m_ReparsePointCleanedFailed);
+      oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_ReparsePointCleaned);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_ReparsePointExcluded + aStats.m_ReparsePointCropped);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_ReparsePointRestoreFailed + aStats.m_ReparsePointCleanedFailed);
 	  oss << endl;
   }
 
   oss << " Symlink:";
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksTotal);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_SymlinksTotal);
   oss << setfill(' ') << setw(10) << "-";
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestored + aStats.m_SymlinksDangling);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestoreSkipped);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_SymlinksRestored + aStats.m_SymlinksDangling);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_SymlinksRestoreSkipped);
   if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksCleaned);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksExcluded + aStats.m_SymlinksCropped);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_SymlinksRestoreFailed + aStats.m_SymlinksCleanedFailed);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_SymlinksCleaned);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_SymlinksExcluded + aStats.m_SymlinksCropped);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_SymlinksRestoreFailed + aStats.m_SymlinksCleanedFailed);
 	oss << endl;
     
   oss << "    Byte:";
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesTotal);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCopied);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesLinked);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCopySkippped + aStats.m_BytesLinkSkipped);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_BytesTotal);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_BytesCopied);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_BytesLinked);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_BytesCopySkippped + aStats.m_BytesLinkSkipped);
   if ((aFlags & FileInfoContainer::eSmartMirror) == FileInfoContainer::eSmartMirror)
-    oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCleaned);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesExcluded);
-  oss << setfill(' ') << setw(10) << FormatG(tmpstr, aStats.m_BytesCopyFailed + aStats.m_BytesLinkFailed);
+    oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_BytesCleaned);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_BytesExcluded);
+  oss << setfill(' ') << setw(10) << FormatG(tmpstr, MAX_PATH, aStats.m_BytesCopyFailed + aStats.m_BytesLinkFailed);
 	oss << endl;
 	oss << endl;
 
@@ -4204,7 +4204,9 @@ DbgOsPrint(
 		GetTempPath(HUGE_PATH, tmpfile);
 		wcscat_s(tmpfile, HUGE_PATH, L"\\OStrace.log");
 
-    FILE* f = _wfopen(tmpfile, L"wb");
+//    FILE* f = _wfopen(tmpfile, L"wb");
+    FILE* f;
+    _wfopen_s(&f, tmpfile, L"wb");
     if (f)
     {
       fwprintf(f, L"Tag: %s\n", aTag);
@@ -4235,7 +4237,8 @@ ReadArgsFromFile(
   _StringList&  aArgumentList
 )
 {
-  FILE* Args = _wfopen(aArgFileName, L"rt,ccs=UNICODE");
+  FILE* Args;
+  _wfopen_s(&Args, aArgFileName, L"rt,ccs=UNICODE");
   wchar_t Argument[HUGE_PATH];
   if (Args)
   {

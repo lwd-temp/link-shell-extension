@@ -15,9 +15,15 @@
 #include <iostream>
 #include <sstream>
 
+ //disable warnings on 255 char debug symbols
+#pragma warning (disable : 4786)
+//disable warnings on extern before template instantiation
+#pragma warning (disable : 4231)
 #include <list>
 #include <vector>
 #include <atomic>
+#include <map>
+#include <algorithm>
 
 using namespace std;
 

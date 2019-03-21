@@ -1827,7 +1827,7 @@ DropSymbolicLink(
     SymlinkArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
 	// Write the args
-	for (ULONG i = 0; i < m_nTargets; i++)
+	for (ULONG i = 0; i < m_nTargets; ++i)
 	{
 		wchar_t		dp[MAX_PATH];
 		wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
@@ -4157,25 +4157,6 @@ ErrorFromSystem(
 	}
 }
 
-// With VS6 the standard SDK has not shlwapi50, so we had to
-// 'emulate' the coding for PathIsNetworkPath. The code inside
-// the #if is from MS
-#if _MSC_VER < 1400
-__inline BOOL DBL_BSLASH(PWCHAR psz)
-{
-	return (psz[0] == TEXT('\\') && psz[1] == TEXT('\\'));
-}
-
-BOOL PathIsNetworkPath(PWCHAR pszPath)
-{
-	if (pszPath)
-	{
-	  return DBL_BSLASH(pszPath) || IsNetDrive(PathGetDriveNumber(pszPath));
-	}
-  
-	return FALSE;
-}
-#endif
 
 wchar_t*
 HardLinkExt::
