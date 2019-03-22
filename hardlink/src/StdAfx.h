@@ -67,7 +67,6 @@ using namespace std;
 #include "md5.h"
 
 #include "psapi.h"
-#pragma comment(lib, "psapi.lib")
 
 
 

@@ -29,7 +29,7 @@ BOOL CModuleVersion::GetFileVersionInfoWithoutLoadDll(LPCTSTR modulename)
 
 	// get module handle
 	TCHAR filename[_MAX_PATH];
-  _tcscpy_s(filename, _MAX_PATH, modulename);
+  wcscpy_s(filename, _MAX_PATH, modulename);
 	// read file version info
 	DWORD dwDummyHandle; // will always be set to zero
 	DWORD len = GetFileVersionInfoSize(filename, &dwDummyHandle);
@@ -75,7 +75,7 @@ GetFileVersionInfo(
 
   // get module handle
   TCHAR filename[_MAX_PATH];
-  _tcscpy_s(filename, _MAX_PATH, modulename);
+  wcscpy_s(filename, _MAX_PATH, modulename);
   HMODULE		hModule = GetModuleHandle(modulename);
   bool		Loaded = FALSE;
   if (hModule == NULL && modulename != NULL)
@@ -170,7 +170,7 @@ GetValue(
 		if (VerQueryValue(m_pVersionInfo, query, (LPVOID*)&pVal, &iLenVal)) 
 		{
 			int len = iLenVal < nSize ? iLenVal : nSize;
-			_tcsncpy(lpValue, pVal, len);
+			wcsncpy(lpValue, pVal, len);
 			lpValue[len] = 0;
 		}
 	}

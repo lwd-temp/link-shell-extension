@@ -3,7 +3,6 @@
  */
 
 // TODO ERROR: 'test\hardlinks' and '' are not on same volume, wenn der Pfad falsch ist
-// TODO Bei --delete das Root verzeichnis löschen
 
 #include "stdafx.h"
 
@@ -1480,11 +1479,11 @@ ResolveUNC(
 	PTCHAR	share;
 	PTCHAR	path;
 
-	token = _tcstok (src, seps);
-	share = _tcstok (NULL, seps);
+	token = _wcstok(src, seps);
+	share = _wcstok(NULL, seps);
 
   // Check if the share has a path appended \\quadtatz\vss_share\**
-  path = _tcstok (NULL, seps);
+  path = _wcstok (NULL, seps);
   if (!path)
   {
 	  // This is an empty path after the 
@@ -1495,7 +1494,7 @@ ResolveUNC(
   {
     // Collect the remaining path e.g \\quadtatz\vss_share\*tmp\src*
     PTCHAR ppp;
-    while (ppp = _tcstok (NULL, seps))
+    while (ppp = _wcstok (NULL, seps))
     {
       *--ppp = '\\';
     }
@@ -3166,7 +3165,7 @@ wmain(
       if (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
       {
         XDelStatistics xs;
-        XDel (Argv1, xs, FileInfoContainer::eQuiet);
+        XDel (Argv1, HUGE_PATH, xs, FileInfoContainer::eQuiet);
         RemoveDir(Argv1Path.Argv.c_str(), TRUE);
 	      if (gLogLevel != FileInfoContainer::eLogQuiet)
           fwprintf (gStdOutFile, L"-d %s\n", Argv1Path.ArgvOrg.c_str());

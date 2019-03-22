@@ -93,12 +93,8 @@ PropertySheetPage() : m_cRef(0L)
 	g_cRefThisDll++;
 
 	g_Themed = false;
-	// from Windows XP themes are possible
-	if(gVersionInfo.dwMajorVersion > 5 || ( gVersionInfo.dwMajorVersion == 5 && gVersionInfo.dwMinorVersion >= 1) )
-	{
-		if (IsThemeActive())
-			g_Themed = true;
-	}
+	if (IsThemeActive())
+		g_Themed = true;
 
 	m_File[0] = 0x00;
 }
@@ -232,7 +228,7 @@ Initialize(
 			// we can provide junction delete menue
 			if (!ProbeJunction(m_File, NULL))
 			{
-				if (!ProbeMountPoint(m_File, NULL, NULL))
+				if (!ProbeMountPoint(m_File, NULL, 0, NULL))
 				{
 					// Check if we are under Vista
 					if (!ProbeSymbolicLink(m_File, NULL))
@@ -441,7 +437,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
     else
     {
       WCHAR VolumeName[MAX_PATH];
-      if (ProbeMountPoint(pReparseProperties->Source, Dest, VolumeName))
+      if (ProbeMountPoint(pReparseProperties->Source, Dest, HUGE_PATH, VolumeName))
       {
         // Show Mountpoint
         //

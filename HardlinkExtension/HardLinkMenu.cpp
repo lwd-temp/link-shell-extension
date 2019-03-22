@@ -483,9 +483,9 @@ CreateContextMenu(
 
 	wchar_t     DropTarget[HUGE_PATH];
 	wchar_t     Targets[HUGE_PATH];
-  if (ERROR_SUCCESS != ReparseCanonicalize(m_DropTarget.m_Path, DropTarget))
+  if (ERROR_SUCCESS != ReparseCanonicalize(m_DropTarget.m_Path, DropTarget, HUGE_PATH))
     return;
-  if (ERROR_SUCCESS != ReparseCanonicalize(m_pTargets[0].m_Path, Targets))
+  if (ERROR_SUCCESS != ReparseCanonicalize(m_pTargets[0].m_Path, Targets, HUGE_PATH))
     return;
 	bool SrcDstOnSameDrive = CheckIfOnSameDrive(Targets, DropTarget);
 
@@ -1875,9 +1875,7 @@ DropSymbolicLink(
       }
       else
       {
-        // Used when UAC is switched off thus making it possible 
-        // to call CreateSymboliclink directly from explorer
-        // or if the symlink driver is installed under XP
+        // Used when UAC is switched off thus making it possible  to call CreateSymboliclink directly from explorer
         CreateSymboliclink(dest,
           m_pTargets[i].m_Path, 
           (gLSESettings.Flags & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation
@@ -1891,9 +1889,9 @@ DropSymbolicLink(
 			WCHAR	DestNoSymlink[HUGE_PATH];
 			WCHAR	SourceNoSymlink[HUGE_PATH];
 
-			ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoSymlink);
+			ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoSymlink, HUGE_PATH);
 			PathAddBackslash(SourceNoSymlink);
-			ReparseCanonicalize(dest, DestNoSymlink);
+			ReparseCanonicalize(dest, DestNoSymlink, HUGE_PATH);
 			if (StrStrI(DestNoSymlink, SourceNoSymlink))
 			{
 				HTRACE(L"LSE::DropSymboliclink ERR: '%s' -> '%s', %ld\n", SourceNoSymlink, DestNoSymlink, m_pTargets[i].m_Flags);
@@ -1915,9 +1913,8 @@ DropSymbolicLink(
         
         if (!Elevation)
         {
-          // Used for debugging purposes, when UAC is switched off thus making it possible 
-          // to call CreateSymboliclink directly from explorer, but not from symlink.exe
-          // or if the symlink driver is installed under XP
+          // Used for debugging purposes, when UAC is switched off thus making it possible to call CreateSymboliclink 
+          // directly from explorer, but not from symlink.exe
           CreateSymboliclink(dest, 
             m_pTargets[i].m_Path, 
             (gLSESettings.Flags & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation | SYMLINK_FLAG_DIRECTORY
@@ -2013,9 +2010,9 @@ DropJunction(
 				dest,
         IDS_STRING_eTopMenuOfOrderXP_1);
 	
-			ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction);
+			ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction, HUGE_PATH);
 			PathAddBackslash(SourceNoJunction);
-			ReparseCanonicalize(dest, DestNoJunction);
+			ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
 			if (StrStrI(DestNoJunction, SourceNoJunction))
 			{
 				HTRACE(L"LSE::DropJunction ERR: '%s' -> '%s', %ld\n", SourceNoJunction, DestNoJunction, m_pTargets[i].m_Flags);
@@ -2253,9 +2250,9 @@ DropMountPoint(
 			dest,
       IDS_STRING_eTopMenuOfOrderXP_1);
 
-		ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction);
+		ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction, HUGE_PATH);
 		PathAddBackslash(SourceNoJunction);
-		ReparseCanonicalize(dest, DestNoJunction);
+		ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
 		if (StrStrI(DestNoJunction, SourceNoJunction))
 		{
 			ErrorCreating(aTarget.m_Path, 
@@ -2469,9 +2466,9 @@ SmartMirror(
         WCHAR	SourceNoJunction[HUGE_PATH];
 
         // Check if a recursive Junction is about t be created 
-        ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction);
+        ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction, HUGE_PATH);
         PathAddBackslash(SourceNoJunction);
-        ReparseCanonicalize(dest, DestNoJunction);
+        ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
         if (StrStrI(DestNoJunction, SourceNoJunction))
         {
           // Bail out. Someone wanted to create recursive <something>
@@ -2888,9 +2885,9 @@ SmartXXX(
         WCHAR	SourceNoJunction[HUGE_PATH];
 
         // Check if a recursive Junction is about to be created 
-        ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction);
+        ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction, HUGE_PATH);
         PathAddBackslash(SourceNoJunction);
-        ReparseCanonicalize(dest, DestNoJunction);
+        ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
         if (StrStrI(DestNoJunction, SourceNoJunction))
         {
           // Bail out. Someone wanted to create recursive junctions
@@ -3163,10 +3160,7 @@ SmartXXX(
         }
         else
         {
-          // Do not elevate
-          // We are here because either the operation did not contain symlinks or we are under XP
-          // and the XPSymlink functionality is up and running.
-
+          // Do not elevate because the operation did not contain symlinks
           // Reset the Progressbar since we now know the number of files to be copied
           HTRACE (L"Progress Start%08x\n", MaxProgress);
           pProgressbar->SetRange(MaxProgress);
@@ -3320,7 +3314,7 @@ DropReplaceJunction(
 	{
 		WCHAR	SourceNoJunction[HUGE_PATH];
 
-		ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction);
+		ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction, HUGE_PATH);
 		PathAddBackslash(SourceNoJunction);
 		if (StrStrI(aTarget.m_Path, SourceNoJunction))
 		{
@@ -3447,7 +3441,7 @@ DropReplaceSymbolicLink(
 
 	WCHAR	PurePath[HUGE_PATH];
 
-	ReparseCanonicalize(m_pTargets[0].m_Path, PurePath);
+	ReparseCanonicalize(m_pTargets[0].m_Path, PurePath, HUGE_PATH);
 	PathAddBackslash(PurePath);
 	if (StrStrI(aTarget.m_Path, PurePath))
 	{
@@ -3524,7 +3518,7 @@ DropReplaceMountPoint(
 	{
 		WCHAR	PurePath[HUGE_PATH];
 
-		ReparseCanonicalize(m_pTargets[0].m_Path, PurePath);
+		ReparseCanonicalize(m_pTargets[0].m_Path, PurePath, HUGE_PATH);
 		PathAddBackslash(PurePath);
 		if (StrStrI(aTarget.m_Path, PurePath))
 		{
@@ -3652,9 +3646,9 @@ DropDeloreanCopy(
         WCHAR	SourceReparsePointFree[HUGE_PATH];
 
         // Check if a recursive junction is about to be created 
-        ReparseCanonicalize(m_pTargets[i].m_Path, SourceReparsePointFree);
+        ReparseCanonicalize(m_pTargets[i].m_Path, SourceReparsePointFree, HUGE_PATH);
         PathAddBackslash(SourceReparsePointFree);
-        ReparseCanonicalize(aTarget.m_Path, DestReparsePointFree);
+        ReparseCanonicalize(aTarget.m_Path, DestReparsePointFree, HUGE_PATH);
         if (StrStrI(DestReparsePointFree, SourceReparsePointFree))
         {
           // Bail out. Someone wanted to create a recursive delorean copy

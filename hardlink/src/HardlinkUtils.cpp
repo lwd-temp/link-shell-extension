@@ -3784,7 +3784,7 @@ CreateDirectoryHierarchy(
     if (ERROR_SUCCESS == rResult)
     {
       BOOL bResult = CreateDirectory(aPath, NULL);	
-      if (!bResult)
+      if (FALSE == bResult)
         return GetLastError();
       else
         return ERROR_SUCCESS;

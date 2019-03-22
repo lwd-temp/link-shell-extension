@@ -9,7 +9,7 @@ ULONG64 gSize, gCount;
 
 void Usage()
 {
-	wprintf(L"Searches whole drive recursively for file(s). (C) 1990-2012 Hermann Schinagl.\n");
+	wprintf(L"Searches whole drive recursively for file(s). (C) 1990-2019 Hermann Schinagl.\n");
 	wprintf(L"Parameter error. Usage : WHERE filename [[drive]:[searchpath]]. Version 4.10\n");
 }
 

@@ -894,6 +894,7 @@ BOOL RemoveDir (
 
 int XDel (
   wchar_t*          aSrcPath, 
+  const size_t      aSrcSize,
   XDelStatistics&   rXDelStatistics,
   int               aFlags
 )
@@ -923,7 +924,7 @@ int XDel (
     break;
 
     case REPARSE_POINT_FAIL:
-      XDel_recursive (aSrcPath, rXDelStatistics, aFlags);
+      XDel_recursive (aSrcPath, aSrcSize, rXDelStatistics, aFlags);
     break;
   }
 	return 42;
@@ -932,6 +933,7 @@ int XDel (
 
 int XDel_recursive (
   wchar_t*          aSrcPath, 
+  const size_t      aSrcSize,
   XDelStatistics&   rXDelStatistics,
   int               aFlags
 )
@@ -939,7 +941,7 @@ int XDel_recursive (
   WIN32_FIND_DATAW		wfind;
 
   size_t sSrcLen = wcslen(aSrcPath);
-  wcscat (aSrcPath, L"\\*.*");
+  wcscat_s(aSrcPath, aSrcSize, L"\\*.*");
   HANDLE sh = FindFirstFileW (aSrcPath, &wfind);
   aSrcPath[sSrcLen] = 0x00;
   if (INVALID_HANDLE_VALUE != sh)
@@ -952,8 +954,8 @@ int XDel_recursive (
           if (wcscmp(wfind.cFileName, L".."))
           {
             sSrcLen = wcslen(aSrcPath);
-            wcscat (aSrcPath, L"\\");
-            wcscat (aSrcPath, wfind.cFileName);
+            wcscat_s(aSrcPath, aSrcSize, L"\\");
+            wcscat_s(aSrcPath, aSrcSize, wfind.cFileName);
 
             int ReparseType = ProbeReparsePoint(aSrcPath, NULL);
             switch (ReparseType)
@@ -990,7 +992,7 @@ int XDel_recursive (
               case REPARSE_POINT_FAIL:
               {
                 // recursivley delete files
-                XDel_recursive (aSrcPath, rXDelStatistics, aFlags);
+                XDel_recursive (aSrcPath, aSrcSize, rXDelStatistics, aFlags);
                 if (0 == (aFlags & FileInfoContainer::eDelOnlyReparsePoints))
                 {
                   // Delete Dir and file only if selected
@@ -1012,8 +1014,8 @@ int XDel_recursive (
         if (0 == (aFlags & FileInfoContainer::eDelOnlyReparsePoints))
         {
           sSrcLen = wcslen(aSrcPath);
-          wcscat (aSrcPath, L"\\");
-          wcscat (aSrcPath, wfind.cFileName);
+          wcscat_s(aSrcPath, aSrcSize, L"\\");
+          wcscat_s(aSrcPath, aSrcSize, wfind.cFileName);
           BOOL b = DeleteSibling(aSrcPath, wfind.dwFileAttributes);
           if( !b && !(aFlags & FileInfoContainer::eQuiet) )
             wprintf( L"Could not delete '%s'\n", aSrcPath );
@@ -1092,13 +1094,14 @@ ProbeHardlink(
 //--------------------------------------------------------------------
 int
 CreateJunction( 
-  __in        PCWCH   LinkDirectory,
-  __in        PCWCH   LinkTarget,
+  __in        LPCWSTR LinkDirectory,
+  __in        LPCWSTR LinkTarget,
   __in        DWORD   dwFlags
 )
 {
   DWORD		RetVal = ERROR_SUCCESS;
-  char		reparseBuffer[HUGE_PATH*3];
+  // Size assumption: We have to copy 2 path with each HUGE_PATH long onto the structure. So we take 3 times HUGE_PATH
+  char		reparseBuffer[HUGE_PATH * 3];
   WCHAR		directoryFileName[HUGE_PATH];
   WCHAR		targetFileName[HUGE_PATH];
   PWCHAR		filePart;
@@ -1199,11 +1202,11 @@ CreateJunction(
 
   reparseJunctionInfo->JunctionReparseBuffer.SubstituteNameOffset = 0x00;
   reparseJunctionInfo->JunctionReparseBuffer.SubstituteNameLength = (USHORT)(wcslen(SubstituteName) * sizeof(wchar_t));
-  wcscpy(reparseJunctionInfo->JunctionReparseBuffer.PathBuffer, SubstituteName);
+  wcscpy_s(reparseJunctionInfo->JunctionReparseBuffer.PathBuffer, HUGE_PATH, SubstituteName);
 
-  reparseJunctionInfo->JunctionReparseBuffer.PrintNameOffset = reparseJunctionInfo->JunctionReparseBuffer.SubstituteNameLength + sizeof(WCHAR);
+  reparseJunctionInfo->JunctionReparseBuffer.PrintNameOffset = reparseJunctionInfo->JunctionReparseBuffer.SubstituteNameLength + sizeof(wchar_t);
   reparseJunctionInfo->JunctionReparseBuffer.PrintNameLength = (USHORT)(wcslen(targetFileName) * sizeof(wchar_t));
-  wcscpy(reparseJunctionInfo->JunctionReparseBuffer.PathBuffer + wcslen(SubstituteName) + 1, targetFileName);
+  wcscpy_s(reparseJunctionInfo->JunctionReparseBuffer.PathBuffer + wcslen(SubstituteName) + 1, HUGE_PATH, targetFileName);
 
 
   reparseJunctionInfo->ReparseDataLength = 
@@ -1246,7 +1249,7 @@ CreateSymboliclinkRaw(
 )
 {
   DWORD		RetVal = ERROR_SUCCESS;
-  char		reparseBuffer[HUGE_PATH*3];
+  char		reparseBuffer[HUGE_PATH * 3];
   WCHAR		SymlinkFileName[HUGE_PATH];
   WCHAR		targetFileName[HUGE_PATH];
   WCHAR   targetNativeFileName[HUGE_PATH];
@@ -1362,12 +1365,12 @@ CreateSymboliclinkRaw(
   // Prepare the Printname
   reparseInfo->SymbolicLinkReparseBuffer.PrintNameOffset = 0; 
   reparseInfo->SymbolicLinkReparseBuffer.PrintNameLength = (USHORT)(wcslen(SymlinkFileName) * sizeof(wchar_t));
-  wcscpy(reparseInfo->SymbolicLinkReparseBuffer.PathBuffer, SymlinkFileName);
+  wcscpy_s(reparseInfo->SymbolicLinkReparseBuffer.PathBuffer, HUGE_PATH, SymlinkFileName);
 
   // Prepare the Substitutename
   reparseInfo->SymbolicLinkReparseBuffer.SubstituteNameOffset = reparseInfo->SymbolicLinkReparseBuffer.PrintNameLength;
   reparseInfo->SymbolicLinkReparseBuffer.SubstituteNameLength = (USHORT)(wcslen(targetNativeFileName)  * sizeof(wchar_t));
-  wcscpy(reparseInfo->SymbolicLinkReparseBuffer.PathBuffer + wcslen(SymlinkFileName), targetNativeFileName);
+  wcscpy_s(reparseInfo->SymbolicLinkReparseBuffer.PathBuffer + wcslen(SymlinkFileName), HUGE_PATH, targetNativeFileName);
 
   reparseInfo->ReparseDataLength = reparseInfo->SymbolicLinkReparseBuffer.PrintNameLength + reparseInfo->SymbolicLinkReparseBuffer.SubstituteNameLength + 12;
 
@@ -1399,10 +1402,10 @@ CreateSymboliclinkRaw(
 
 
 
-int 
+void 
 CreateVeryLongPath( 
-  PWCHAR    aDestination,
-  PCWSTR	  aPath
+  __inout   LPWSTR      aDestination,
+  __in      LPCWSTR     aPath
 )
 {
   // Always return targets without the very long path prefix
@@ -1414,7 +1417,6 @@ CreateVeryLongPath(
   {
     wcscpy_s(aDestination, HUGE_PATH, aPath);
   }
-  return 42;
 }
 
 //--------------------------------------------------------------------
@@ -1432,8 +1434,8 @@ CreateVeryLongPath(
 //--------------------------------------------------------------------
 int 
 ProbeReparsePoint( 
-  __in      LPCWSTR  FileName,
-  __inout   PWCHAR	aDestination
+  __in      LPCWSTR   FileName,
+  __inout   LPWSTR    aDestination
 )
 {
   int	 RetVal = REPARSE_POINT_FAIL;
@@ -1474,12 +1476,12 @@ ProbeReparsePoint(
               // Mount points and junctions
               //
               reparseData = (PBYTE) &msReparseInfo->MountPointReparseBuffer.PathBuffer;
-              _tcsncpy_s( name, 
+              wcsncpy_s( name, 
                 HUGE_PATH,
                 (PWCHAR) (reparseData + msReparseInfo->MountPointReparseBuffer.PrintNameOffset),
                 msReparseInfo->MountPointReparseBuffer.PrintNameLength );
               name[msReparseInfo->MountPointReparseBuffer.PrintNameLength] = 0;
-              _tcsncpy_s( name1, 
+              wcsncpy_s( name1, 
                 HUGE_PATH,
                 (PWCHAR) (reparseData + msReparseInfo->MountPointReparseBuffer.SubstituteNameOffset),
                 msReparseInfo->MountPointReparseBuffer.SubstituteNameLength );
@@ -1490,7 +1492,7 @@ ProbeReparsePoint(
               // specifies a drive-letter based target, so I look for the drive letter colon
               // in the target, which should be in the form \??\D:\target
               //
-              PTCHAR p = _tcsstr( name1, _T(":") ); 
+              PTCHAR p = wcsstr( name1, _T(":") ); 
               if (p) 
               {
                 // This is a junction
@@ -1521,14 +1523,14 @@ ProbeReparsePoint(
             {
               reparseData = (PBYTE) &msReparseInfo->SymbolicLinkReparseBuffer.PathBuffer;
               // Probe for the printname
-              _tcsncpy_s( name, 
+              wcsncpy_s( name, 
                 HUGE_PATH,
                 (PWCHAR) (reparseData + msReparseInfo->SymbolicLinkReparseBuffer.PrintNameOffset),
                 msReparseInfo->SymbolicLinkReparseBuffer.PrintNameLength );
               name[msReparseInfo->SymbolicLinkReparseBuffer.PrintNameLength / sizeof(wchar_t)] = 0;
 
               // Probe for the subsitutename
-              _tcsncpy_s( name1, 
+              wcsncpy_s( name1, 
                 HUGE_PATH,
                 (PWCHAR) (reparseData + msReparseInfo->SymbolicLinkReparseBuffer.SubstituteNameOffset),
                 msReparseInfo->SymbolicLinkReparseBuffer.SubstituteNameLength );
@@ -1609,7 +1611,7 @@ bool
 IsFileSystemNtfs (
   const wchar_t*	aPath,
   DWORD*			    dwFileSystemFlags,
-  DWORD			      aFlags,
+  const DWORD			aFlags,
   int*            aDriveType
 )
 {
@@ -1756,8 +1758,9 @@ IsFileSystemNtfs (
 
 int 
 ReparseCanonicalize (
-  __in    LPCWSTR		aPath,
-  __inout LPWSTR		aDestination
+  __in    LPCWSTR		      aPath,
+  __inout LPWSTR		      aDestination,
+  __in    const size_t    aDestSize
 )
 {
   if (!aPath)
@@ -1780,7 +1783,7 @@ ReparseCanonicalize (
     if (REPARSE_POINT_FAIL != r)
     {
       if (REPARSE_POINT_MOUNTPOINT == r)
-        TranslateMountPoint(aDestination, aDestination);
+        TranslateMountPoint(aDestination, aDestSize, aDestination);
       
       if (PathIsRelative(aDestination))
       {
@@ -1795,7 +1798,7 @@ ReparseCanonicalize (
       {
         // Assume the result is absolute, and take the abolute path
         size_t olen = wcslen(aDestination);
-        wcscat(aDestination, &TempPath[len]);
+        wcscat_s(aDestination, aDestSize, &TempPath[len]);
         len = olen;
         wcscpy_s(TempPath, HUGE_PATH, aDestination);
       }
@@ -1811,9 +1814,9 @@ ReparseCanonicalize (
   // If the path didn't contain a junction at all
   // copy the source to the destination
   if (!done)
-    wcscpy(aDestination, aPath);
+    wcscpy_s(aDestination, aDestSize, aPath);
   else
-    wcscpy(aDestination, TempPath);
+    wcscpy_s(aDestination, aDestSize, TempPath);
 
   return ERROR_SUCCESS;
 }
@@ -1830,11 +1833,11 @@ ReparseCanonicalize (
 //--------------------------------------------------------------------
 void
 CreateTimeStampedFileName( 
-  PWCHAR        aDestPath,
+  LPCWSTR       aDestPath,
   PWCHAR        aBackup0Path,
   PWCHAR        aBackup1Path,
-  PWCHAR        aFilename,
-  _SYSTEMTIME*  a_pSysTime
+  LPCWSTR       aFilename,
+  _SYSTEMTIME*  const a_pSysTime
 )
 {
   wchar_t FileSearchPattern[HUGE_PATH];
@@ -1884,14 +1887,14 @@ CreateTimeStampedFileName(
 //--------------------------------------------------------------------
 int
 CreateFileName( 
-  HINSTANCE   aLSEInstance,
-  int         aLanguageID,
-  PWCHAR      aPrefix,
-  PWCHAR      aOf,
-  PWCHAR      aPath,
-  PWCHAR      aFilename,
-  PWCHAR      aNewFilename,
-  int         aOrderIdx
+  __in    const HINSTANCE  aLSEInstance,
+  __in    const int        aLanguageID,
+  __in    LPCWSTR          aPrefix,
+  __in    LPCWSTR          aOf,
+  __in    LPCWSTR          aPath,
+  __in    LPCWSTR          aFilename,
+  __inout LPWSTR           aNewFilename,
+  __in    const int        aOrderIdx
 )
 {
   // Check if the file exists, trying to get its attributes
@@ -1902,300 +1905,190 @@ CreateFileName(
     // ok the file didn't exist, so we got it. This is the easiest way
     return 1;
 
-  // The coding for name generation under Windows 7/8/10 and Windows XP is
-  // similar but different, and it is intentionally copy/paste coding
-  // because mixing both algorithms would generate a coding which can not be understood
-  // 
-  // gVersionInfo.dwMinorVersion == 4 is Windows10 Preview 9826, should be removed
-  if (
-       ((gVersionInfo.dwMajorVersion ==  6) && ((gVersionInfo.dwMinorVersion == 1) || (gVersionInfo.dwMinorVersion == 2) || (gVersionInfo.dwMinorVersion == 4))) ||
-       ((gVersionInfo.dwMajorVersion == 10) && (gVersionInfo.dwMinorVersion == 0))
-     )
+  // Windows7/8/10 compliant name generation
+  wcscpy_s(aNewFilename, HUGE_PATH, aFilename);
+  wchar_t* pExtension = PathFindExtension(aNewFilename);
+  if (*pExtension)
   {
-    // Windows7/8/10 compliant name generation
-    wcscpy_s(aNewFilename, HUGE_PATH, aFilename);
-    wchar_t* pExtension = PathFindExtension(aNewFilename);
+    // There was an extension so cut it off
+    *pExtension = 0x00;
+    pExtension++;
+  }
+
+    
+  wchar_t* pMsg;
+  // W7 behaves differently for directories and for files
+  if (FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
+  {
     if (*pExtension)
-    {
-      // There was an extension so cut it off
-      *pExtension = 0x00;
-      pExtension++;
-    }
-
-    
-    wchar_t* pMsg;
-    // W7 behaves differently for directories and for files
-    if (FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
-    {
-      if (*pExtension)
-        // Now check for '<aPath>\<aFilename>.<extension> - <aPrefix>'
-        // %1!s!%2!s!.%4!s! - %3!s!
-	      pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 6, 
-          aPath,
-          aNewFilename,
-          pExtension,
-          aPrefix
-        );
-      else
-        // Now check for '<aPath>\<aFilename> - <aPrefix>'
-        // %1!s!%2!s! - %3!s!
-	      pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 7, 
-          aPath,
-          aNewFilename,
-          aPrefix
-        );
-    }
+      // Now check for '<aPath>\<aFilename>.<extension> - <aPrefix>'
+      // %1!s!%2!s!.%4!s! - %3!s!
+	    pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 6, 
+        aPath,
+        aNewFilename,
+        pExtension,
+        aPrefix
+      );
     else
-    {
-      // Now check for '<aPath>\<aFilename> - <aPrefix>.<extension>'
-      // %1!s!%2!s! - %3!s!.%4!s!
-	    pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 3, 
+      // Now check for '<aPath>\<aFilename> - <aPrefix>'
+      // %1!s!%2!s! - %3!s!
+	    pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 7, 
+        aPath,
+        aNewFilename,
+        aPrefix
+      );
+  }
+  else
+  {
+    // Now check for '<aPath>\<aFilename> - <aPrefix>.<extension>'
+    // %1!s!%2!s! - %3!s!.%4!s!
+	  pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 3, 
+      aPath,
+      aNewFilename,
+      aPrefix,
+      pExtension
+    );
+    
+    if (!*pExtension)
+      PathRemoveExtension(pMsg);
+  }
+
+  if (INVALID_FILE_ATTRIBUTES == GetFileAttributes(pMsg))
+  {
+    // Found a free filename
+    wcscpy_s(aNewFilename, HUGE_PATH, pMsg);
+    LocalFree(pMsg);
+    return 2;
+  }
+
+  // Go on with wildcard search
+  if (FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
+  {
+    if (*pExtension)
+      // Now check for '<aPath>\<aFilename>.<extension> - <aPrefix> (n)'
+      // %1!s!%2!s!.%4!s! - %3!s! (*)
+	    pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 8, 
         aPath,
         aNewFilename,
         aPrefix,
         pExtension
       );
-    
-      if (!*pExtension)
-        PathRemoveExtension(pMsg);
-    }
-
-    if (INVALID_FILE_ATTRIBUTES == GetFileAttributes(pMsg))
-    {
-      // Found a free filename
-      wcscpy_s(aNewFilename, HUGE_PATH, pMsg);
-      LocalFree(pMsg);
-      return 2;
-    }
-
-    // Go on with wildcard search
-    if (FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
-    {
-      if (*pExtension)
-        // Now check for '<aPath>\<aFilename>.<extension> - <aPrefix> (n)'
-        // %1!s!%2!s!.%4!s! - %3!s! (*)
-	      pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 8, 
-          aPath,
-          aNewFilename,
-          aPrefix,
-          pExtension
-        );
-      else
-        // Now check for '<aPath>\<aFilename> - <aPrefix> (n)'
-        // %1!s!%2!s! - %3!s! (*)
-	      pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 9, 
-          aPath,
-          aNewFilename,
-          aPrefix
-        );
+    else
+      // Now check for '<aPath>\<aFilename> - <aPrefix> (n)'
+      // %1!s!%2!s! - %3!s! (*)
+	    pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 9, 
+        aPath,
+        aNewFilename,
+        aPrefix
+      );
       
-    }
-    else
-    {
-      // Now check for '<aPath>\<aFilename> - <aPrefix> (n).<extension>'
-      // %1!s!%2!s! - %3!s! (*).%4!s!
-      pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 4, 
-        aPath,
-        aNewFilename,
-        aPrefix,
-        pExtension
-      );
+  }
+  else
+  {
+    // Now check for '<aPath>\<aFilename> - <aPrefix> (n).<extension>'
+    // %1!s!%2!s! - %3!s! (*).%4!s!
+    pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 4, 
+      aPath,
+      aNewFilename,
+      aPrefix,
+      pExtension
+    );
 
-      if (!*pExtension)
-        PathRemoveExtension(pMsg);
-    }
+    if (!*pExtension)
+      PathRemoveExtension(pMsg);
+  }
 
-    WIN32_FIND_DATA	wfind;
-    HANDLE	sh = FindFirstFile (pMsg, &wfind);
+  WIN32_FIND_DATA	wfind;
+  HANDLE	sh = FindFirstFile (pMsg, &wfind);
 
-    // There is the need to start searching from an offset, otherwise the wrong opening bracket will be found.
-    // The files below would cause such a problem
-    //
-    // bw05image1 - Hardlink (2) - Hardlink (2).jpeg
-    // bw05image1 - Hardlink (2) - Hardlink.jpeg
-    // bw05image1 - Hardlink (2).jpeg
-    size_t SearchOffset = wcslen(aNewFilename);
+  // There is the need to start searching from an offset, otherwise the wrong opening bracket will be found.
+  // The files below would cause such a problem
+  //
+  // bw05image1 - Hardlink (2) - Hardlink (2).jpeg
+  // bw05image1 - Hardlink (2) - Hardlink.jpeg
+  // bw05image1 - Hardlink (2).jpeg
+  size_t SearchOffset = wcslen(aNewFilename);
 
-    // Search for the highest available number
-    int MaxOf = 2;
-    if (INVALID_HANDLE_VALUE != sh)
-    {
-      _Of		of;
+  // Search for the highest available number
+  int MaxOf = 2;
+  if (INVALID_HANDLE_VALUE != sh)
+  {
+    _Of		of;
 
-      do {
-        PWCHAR closepos = NULL;
-        PWCHAR openpos = wcsstr(&wfind.cFileName[SearchOffset], L" (");
-        if (openpos)
-          closepos = wcsrchr(openpos, L')');
+    do {
+      PWCHAR closepos = NULL;
+      PWCHAR openpos = wcsstr(&wfind.cFileName[SearchOffset], L" (");
+      if (openpos)
+        closepos = wcsrchr(openpos, L')');
 
-        if (openpos && closepos)
+      if (openpos && closepos)
+      {
+        openpos += sizeof(wchar_t);
+        *closepos = 0x00;
+
+        // Check if all parts of the number are digits. This can happen if there are files like
+        // foo - Hardlink (2).x
+        // foo - Hardlink (2) - Hardlink(2).x
+        // in a directory. This would push the number 2 two times on the _Of list, and later crash the sort
+        size_t idx;
+        size_t len = wcslen(openpos);
+        for ( idx = 0; (idx < len) && (openpos[idx] < '9') && (openpos[idx] > '0'); ++idx);
+        if (len == idx)
         {
-          openpos += sizeof(wchar_t);
-          *closepos = 0x00;
-
-          // Check if all parts of the number are digits. This can happen if there are files like
-          // foo - Hardlink (2).x
-          // foo - Hardlink (2) - Hardlink(2).x
-          // in a directory. This would push the number 2 two times on the _Of list, and later crash the sort
-          size_t idx;
-          size_t len = wcslen(openpos);
-          for ( idx = 0; (idx < len) && (openpos[idx] < '9') && (openpos[idx] > '0'); ++idx);
-          if (len == idx)
-          {
-            int num = _wtoi(openpos);
-            if (num > 1)
-              of.push_back(num);
-          }
+          int num = _wtoi(openpos);
+          if (num > 1)
+            of.push_back(num);
         }
       }
-      while (FindNextFile (sh, &wfind) > 0);
-
-      sort(of.begin(), of.end(), SizeSorter());
-      MaxOf = FindFreeNumber(of);
     }
-    FindClose (sh);
-    LocalFree(pMsg);
+    while (FindNextFile (sh, &wfind) > 0);
 
-    if (FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
-    {
-      if (*pExtension)
-        // generate the new name
-        // %1!s!%2!s!.%5!s! - %3!s! (%4!d!)
-	      pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 10,
-          aPath,
-          aNewFilename,
-          aPrefix,
-          MaxOf, 
-          pExtension
-        );
-      else
-        // generate the new name
-        // %1!s!%2!s! - %3!s! (%4!d!)
-	      pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 11,
-          aPath,
-          aNewFilename,
-          aPrefix,
-          MaxOf
-        );
-    }
-    else
-    {
+    sort(of.begin(), of.end(), SizeSorter());
+    MaxOf = FindFreeNumber(of);
+  }
+  FindClose (sh);
+  LocalFree(pMsg);
+
+  if (FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
+  {
+    if (*pExtension)
       // generate the new name
-      // %1!s!%2!s! - %3!s! (%4!d!).%5!s!
-	    pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 5, 
+      // %1!s!%2!s!.%5!s! - %3!s! (%4!d!)
+	    pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 10,
         aPath,
         aNewFilename,
         aPrefix,
         MaxOf, 
         pExtension
       );
-
-      if (!*pExtension)
-        PathRemoveExtension(pMsg);
-    }
-
-    wcscpy_s(aNewFilename, HUGE_PATH, pMsg);
-    LocalFree(pMsg);
+    else
+      // generate the new name
+      // %1!s!%2!s! - %3!s! (%4!d!)
+	    pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 11,
+        aPath,
+        aNewFilename,
+        aPrefix,
+        MaxOf
+      );
   }
   else
   {
-    // Windows XP compliant name generation
-
-    // Now check for '<aPath>\<aPrefix> of <aFilename>'
-    // %1!s!%4!s!%3!s!%2!s!
-	  wchar_t* pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx, 
-      aPath,
-      aPrefix,
-      aOf,
-      aFilename
-    );
-    wcscpy_s(aNewFilename, HUGE_PATH, pMsg);
-    LocalFree(pMsg);
-
-    if (INVALID_FILE_ATTRIBUTES == GetFileAttributes(aNewFilename))
-      return 2;
-
-    // Now check for '<aPath>\<aPrefix> (*) of <aFilename>'
-    // %1!s!%4!s! (*)%3!s!%2!s!
-	  pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 1, 
-      aPath,
-      aPrefix,
-      aOf,
-      aFilename
-      );
-
-    WIN32_FIND_DATA	wfind;
-    HANDLE	sh = FindFirstFile (pMsg, &wfind);
-
-    // Search for the highest available number
-    int MaxOf = 2;
-    if (INVALID_HANDLE_VALUE != sh)
-    {
-      _Of		of;
-
-      WCHAR	closefind[MAX_PATH];
-      wcscpy_s(closefind, MAX_PATH, L")");
-      wcscat_s(closefind, MAX_PATH, aOf);
-      wcscat_s(closefind, MAX_PATH, aFilename);
-
-      PWCHAR openpos;
-      PWCHAR closepos;
-
-      wchar_t save_wfind[MAX_PATH];
-
-      do {
-        wcscpy_s(save_wfind, MAX_PATH, wfind.cFileName);
-        openpos = wcsstr(wfind.cFileName, L" (");
-        closepos = wcsstr(wfind.cFileName, closefind);
-
-        if (openpos && closepos)
-        {
-          openpos += sizeof(wchar_t);
-          *closepos = 0x00;
-
-          // Check if all parts of the number are digits. This can happen if there are files like
-          // foo - Hardlink (2).x
-          // foo - Hardlink (2) - Hardlink(2).x
-          // in a directory. This would push the number 2 two times on the _Of list, and later crash the sort
-          size_t idx;
-          size_t len = wcslen(openpos);
-          for ( idx = 0; (idx < len) && (openpos[idx] < '9') && (openpos[idx] > '0'); ++idx);
-          
-          // Take care that we only get each index once onto _Of. Filenames like
-          // Hardlink (2) of bw05image1.jpeg
-          // Hardlink (2) of Hardlink (2) of bw05image1.jpeg
-          // Hardlink (3) of bw05image1.jpeg
-          // must not cause the index to to be twice on _Of. So we check if closepos is following the numbers
-          if ((len == idx) && (&openpos[idx] == closepos))
-          {
-            int num = _wtoi(openpos);
-            if (num > 1)
-            {
-              of.push_back(num);
-            }
-          }
-        }
-      }
-      while (FindNextFile (sh, &wfind) > 0);
-
-      sort(of.begin(), of.end(), SizeSorter());
-      MaxOf = FindFreeNumber(of);
-    }
-    FindClose (sh);
-    LocalFree(pMsg);
-
     // generate the new name
-    // %1!s!%5!s! (%3!d!)%4!s!%2!s!
-	  pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 2, 
+    // %1!s!%2!s! - %3!s! (%4!d!).%5!s!
+	  pMsg = GetFormattedMlgMessage(aLSEInstance, aLanguageID, aOrderIdx + 5, 
       aPath,
+      aNewFilename,
       aPrefix,
       MaxOf, 
-      aOf,
-      aFilename
+      pExtension
     );
-    wcscpy_s(aNewFilename, HUGE_PATH, pMsg);
-    LocalFree(pMsg);
+
+    if (!*pExtension)
+      PathRemoveExtension(pMsg);
   }
+
+  wcscpy_s(aNewFilename, HUGE_PATH, pMsg);
+  LocalFree(pMsg);
 
   return 3;
 }
@@ -2260,8 +2153,8 @@ Test_FindFreeNumber(
 // This procedure expects a vector with increasing numbers staring with a minimum value of 2
 int
 FindFreeNumber(
-               _Of&		of
-               )
+  _Of&		of
+)
 {
   if (of.empty())
     return 2;
@@ -2358,8 +2251,9 @@ CreateMountPoint (
 //--------------------------------------------------------------------
 BOOL
 TranslateMountPoint (
-  __inout LPWSTR  aDestination,
-  __in    LPCWSTR aVolumeName
+  __inout LPWSTR        aDestination,
+  __in    const size_t  aDestSize,
+  __in    LPCWSTR       aVolumeName
 )
 {
   if (aVolumeName)
@@ -2367,7 +2261,6 @@ TranslateMountPoint (
     DWORD  Error;
     PWCHAR Names;
 
-    // Make sure GetVolume... is only called when it is available
     DWORD  Chars = MAX_PATH + 1;
     for (;;)
     {
@@ -2393,9 +2286,9 @@ TranslateMountPoint (
     }
 
     if (ERROR_SUCCESS == Error)
-      wcscpy(aDestination, Names);
+      wcscpy_s(aDestination, aDestSize, Names);
     else
-      wcscpy(aDestination, aVolumeName);
+      wcscpy_s(aDestination, aDestSize, aVolumeName);
 
     delete[] Names;
   }
@@ -2412,14 +2305,15 @@ TranslateMountPoint (
 //--------------------------------------------------------------------
 BOOL
 ProbeMountPoint (
-  __in    LPCWSTR aDirectory,
-  __inout LPWSTR  aDestination,
-  __in    LPWSTR  aVolumeName
+  __in    LPCWSTR       aDirectory,
+  __inout LPWSTR        aDestination,
+  __in    const size_t  aDestSize,
+  __in    LPWSTR        aVolumeName
 )
 {
   int r = ProbeReparsePoint(aDirectory, aVolumeName);
   if (REPARSE_POINT_MOUNTPOINT == r)
-    return TranslateMountPoint(aDestination, aVolumeName);
+    return TranslateMountPoint(aDestination, aDestSize, aVolumeName);
   else
     return FALSE;
 }
@@ -3612,7 +3506,7 @@ FileInfoContainer() :
 
 //--------------------------------------------------------------------
 // 
-// Hardlink Sibling enumeration under XP
+// Hardlink Sibling enumeration the manual way. 
 // 
 //--------------------------------------------------------------------
 
@@ -3688,7 +3582,7 @@ _EnumHardlinkSiblings(
   if (ERROR_SUCCESS == rrr)
   {
     PathRemoveFileSpec(&SrcPath[PATH_PARSE_SWITCHOFF_SIZE]);
-    return _EnumHardlinkSiblingsUp(SrcPath, aExcludePath, pEnumHardlinkSiblingsGlue, aQuiet, aPathNameStatusList, apContext);
+    return _EnumHardlinkSiblingsUp(SrcPath, HUGE_PATH, aExcludePath, pEnumHardlinkSiblingsGlue, aQuiet, aPathNameStatusList, apContext);
   }
   else
     return GetLastError();
@@ -3698,7 +3592,8 @@ int
 FileInfoContainer::
 _EnumHardlinkSiblingsUp(
   PWCHAR						        aSrcPath, 
-  PWCHAR						        aExcludePath, 
+  const size_t              aSrcSize,
+  PWCHAR						        aExcludePath,
   EnumHardlinkSiblingsGlue*	pEnumHardlinkSiblingsGlue,
   bool						          aQuiet,
   _PathNameStatusList*      aPathNameStatusList,
@@ -3707,6 +3602,7 @@ _EnumHardlinkSiblingsUp(
 {
   int RetVal = _EnumHardlinkSiblingsDown(
     aSrcPath, 
+    aSrcSize,
     aExcludePath, 
     pEnumHardlinkSiblingsGlue, 
     aQuiet,
@@ -3747,7 +3643,8 @@ _EnumHardlinkSiblingsUp(
     {
       //				wprintf(L"^ %s\n",NewSrcPath); 
       RetVal = _EnumHardlinkSiblingsUp(NewSrcPath, 
-        aSrcPath, 
+        HUGE_PATH,
+        aSrcPath,
         pEnumHardlinkSiblingsGlue, 
         aQuiet,
         aPathNameStatusList,
@@ -3761,6 +3658,7 @@ int
 FileInfoContainer::
 _EnumHardlinkSiblingsDown(
   PWCHAR						        aSrcPath, 
+  const size_t              aSrcSize,
   PWCHAR						        aExcludePath, 
   EnumHardlinkSiblingsGlue*	pEnumHardlinkSiblingsGlue,
   bool						          aQuiet,
@@ -3771,10 +3669,10 @@ _EnumHardlinkSiblingsDown(
   WIN32_FIND_DATA	wfind;
   int							RetVal = ERROR_SUCCESS;
 
-  size_t			sSrcLen = _tcslen(aSrcPath);
+  size_t			sSrcLen = wcslen(aSrcPath);
 
   // Search the files under a given path
-  wcscat (aSrcPath, L"\\*.*");
+  wcscat_s(aSrcPath, aSrcSize, L"\\*.*");
   HANDLE	sh = FindFirstFile (aSrcPath, &wfind);
   aSrcPath[sSrcLen] = 0x00;
   if (INVALID_HANDLE_VALUE != sh)
@@ -3790,8 +3688,8 @@ _EnumHardlinkSiblingsDown(
         // Check if it is a hardlink
         sSrcLen = wcslen(aSrcPath);
         if (aSrcPath[sSrcLen - 1] != '\\')
-          wcscat (aSrcPath, L"\\");
-        wcscat (aSrcPath, wfind.cFileName);
+          wcscat_s(aSrcPath, aSrcSize, L"\\");
+        wcscat_s(aSrcPath, aSrcSize, wfind.cFileName);
 
         if (apContext)
         {
@@ -3852,7 +3750,7 @@ _EnumHardlinkSiblingsDown(
     return ERROR_REQUEST_ABORTED;
 
   // Search the directories below the current path
-  wcscat (aSrcPath, L"\\*.*");
+  wcscat_s(aSrcPath, aSrcSize, L"\\*.*");
   sh = FindFirstFile (aSrcPath, &wfind);
   aSrcPath[sSrcLen] = 0x00;
   if (INVALID_HANDLE_VALUE != sh && RetVal == ERROR_SUCCESS)
@@ -3864,9 +3762,9 @@ _EnumHardlinkSiblingsDown(
         if (wcscmp (wfind.cFileName, L".") )
           if ( wcscmp (wfind.cFileName, L"..") )
           {
-            sSrcLen = _tcslen(aSrcPath);
-            wcscat (aSrcPath, L"\\");
-            wcscat (aSrcPath, wfind.cFileName);
+            sSrcLen = wcslen(aSrcPath);
+            wcscat_s(aSrcPath, aSrcSize, L"\\");
+            wcscat_s(aSrcPath, aSrcSize, wfind.cFileName);
 
             // Check if we have been canceled from outside
             if (apContext)
@@ -3893,7 +3791,7 @@ _EnumHardlinkSiblingsDown(
               }
               else
               {
-                int	rr = _EnumHardlinkSiblingsDown (aSrcPath, aExcludePath, pEnumHardlinkSiblingsGlue, aQuiet, aPathNameStatusList, apContext);
+                int	rr = _EnumHardlinkSiblingsDown (aSrcPath, aSrcSize, aExcludePath, pEnumHardlinkSiblingsGlue, aQuiet, aPathNameStatusList, apContext);
                 aSrcPath[sSrcLen] = 0x00;
                 if (rr != ERROR_SUCCESS)
                 {
@@ -4206,7 +4104,8 @@ _FindHardLink(
         __int64 FileAddedOneLevelBelow = 0;
         RetVal = _FindHardLinkTraditionalRecursive(
           SrcPath, 
-          &pCurrentReparsePointReferencePath, 
+          HUGE_PATH,
+          &pCurrentReparsePointReferencePath,
           CurrentBoundaryCross, 
           aRefCount, 
           FileAddedOneLevelBelow, 
@@ -4223,6 +4122,7 @@ _FindHardLink(
         __int64 FileAddedOneLevelBelow = 0;
         RetVal = _FindHardLinkRecursive(
           SrcPath, 
+          HUGE_PATH,
           &pCurrentReparsePointReferencePath, 
           CurrentBoundaryCross, 
           aRefCount, 
@@ -4255,8 +4155,9 @@ _FindHardLink(
 int
 FileInfoContainer::
 _FindHardLinkTraditionalRecursive(
-  PWCHAR	                aSrcPath, 
-  PWCHAR*	                aCurrentReparsePointReferencePath, 
+  LPWSTR	                aSrcPath,
+  const size_t            aSrcSize,
+  PWCHAR*	                aCurrentReparsePointReferencePath,
   int&                    aCurrentBoundaryCross,
   int		                  aRefCount,
   __int64&                aFileAddedOneLevelBelow,
@@ -4317,7 +4218,7 @@ _FindHardLinkTraditionalRecursive(
   int							RetVal = 0;
 
   size_t			sSrcLen = wcslen(aSrcPath);
-  wcscat (aSrcPath, L"\\*.*");
+  wcscat_s(aSrcPath, aSrcSize, L"\\*.*");
   HANDLE	sh = FindFirstFile (aSrcPath, &wfind);
   aSrcPath[sSrcLen] = 0x00;
 
@@ -4337,11 +4238,11 @@ _FindHardLinkTraditionalRecursive(
             sSrcLen = wcslen(aSrcPath);
 
             if ('\\' != aSrcPath[sSrcLen - 1])
-              wcscat (aSrcPath, L"\\");
+              wcscat_s(aSrcPath, aSrcSize, L"\\");
             else
               sSrcLen--;
 
-            wcscat (aSrcPath, wfind.cFileName);
+            wcscat_s(aSrcPath, aSrcSize, wfind.cFileName);
             if (IsVeryLongPath(aSrcPath))
               PathParseSwitchOffSize = PATH_PARSE_SWITCHOFF_SIZE;
 
@@ -4432,6 +4333,7 @@ _FindHardLinkTraditionalRecursive(
               if (DoRecursion)
               {
                 int	rr = _FindHardLinkTraditionalRecursive (aSrcPath, 
+                  aSrcSize,
                   aCurrentReparsePointReferencePath, 
                   aCurrentBoundaryCross, 
                   aRefCount, 
@@ -4576,11 +4478,11 @@ _FindHardLinkTraditionalRecursive(
         // Check if it is a hardlink
         sSrcLen = wcslen(aSrcPath);
         if ('\\' != aSrcPath[sSrcLen - 1])
-          wcscat (aSrcPath, L"\\");
+          wcscat_s(aSrcPath, aSrcSize, L"\\");
         else
           sSrcLen--;
 
-        wcscat (aSrcPath, wfind.cFileName);
+        wcscat_s(aSrcPath, aSrcSize, wfind.cFileName);
 
         if (IsVeryLongPath(aSrcPath))
           PathParseSwitchOffSize = PATH_PARSE_SWITCHOFF_SIZE;
@@ -4874,8 +4776,9 @@ _FindHardLinkTraditionalRecursive(
 int
 FileInfoContainer::
 _FindHardLinkRecursive(
-  PWCHAR	                aSrcPath, 
-  PWCHAR*	                aCurrentReparsePointReferencePath, 
+  LPWSTR	                aSrcPath,
+  const size_t            aSrcSize,
+  PWCHAR*	                aCurrentReparsePointReferencePath,
   int&                    aCurrentBoundaryCross,
   int		                  aRefCount,
   __int64&                aFileAddedOneLevelBelow,
@@ -4947,7 +4850,7 @@ _FindHardLinkRecursive(
   int							              RetVal = 0;
   size_t			                  sSrcLen = wcslen(aSrcPath);
 
-  wcscat (aSrcPath, L"\\*");
+  wcscat_s(aSrcPath, aSrcSize, L"\\*");
   NTSTATUS TranslationStatus = RtlDosPathNameToNtPathName_U(
     aSrcPath,
     &PathName,
@@ -5041,11 +4944,11 @@ _FindHardLinkRecursive(
             {
               sSrcLen = wcslen(aSrcPath);
               if ('\\' != aSrcPath[sSrcLen - 1])
-                wcscat (aSrcPath, L"\\");
+                wcscat_s(aSrcPath, aSrcSize, L"\\");
               else
                 sSrcLen--;
 
-              wcsncat (aSrcPath, CurrentBothDirInfo->FileName, CurrentBothDirInfo->FileNameLength / sizeof(wchar_t));
+              wcsncat_s(aSrcPath, aSrcSize, CurrentBothDirInfo->FileName, CurrentBothDirInfo->FileNameLength / sizeof(wchar_t));
               aSrcPath[sSrcLen + CurrentBothDirInfo->FileNameLength / sizeof(wchar_t) + 1] = 0x00;
 
               if (IsVeryLongPath(aSrcPath))
@@ -5165,7 +5068,8 @@ _FindHardLinkRecursive(
                 if (DoRecursion)
                 {
                   int	rr = _FindHardLinkRecursive (aSrcPath, 
-                    aCurrentReparsePointReferencePath, 
+                    aSrcSize,
+                    aCurrentReparsePointReferencePath,
                     aCurrentBoundaryCross, 
                     aRefCount, 
                     FileAddedOneLevelBelow, 
@@ -5311,11 +5215,11 @@ _FindHardLinkRecursive(
 
           // Volume{GUID} path end with a slash, but we don't want to have two slashes
           if ('\\' != aSrcPath[sSrcLen - 1])
-            wcscat (aSrcPath, L"\\");
+            wcscat_s(aSrcPath, aSrcSize, L"\\");
           else
             sSrcLen--;
 
-          wcsncat (aSrcPath, CurrentBothDirInfo->FileName, CurrentBothDirInfo->FileNameLength / sizeof(wchar_t));
+          wcsncat_s(aSrcPath, aSrcSize, CurrentBothDirInfo->FileName, CurrentBothDirInfo->FileNameLength / sizeof(wchar_t));
           aSrcPath[sSrcLen + CurrentBothDirInfo->FileNameLength / sizeof(wchar_t) + 1] = 0x00;
 
           if (IsVeryLongPath(aSrcPath))
@@ -9329,6 +9233,8 @@ CopyReparsePoints(
 
                     SourceFilename = pF->m_FileName;
                     int rResult = ERROR_SUCCESS;
+                    // TODO Why can't we delete this with Windows7. IF we do regression fails in t_SmartMove02.bat horribly
+                    
                     // WindowsXP can not create dangling junctions. One would get 0x1128 as error code
                     // for illegal reparse data. So only for XP, we have to create the directory where the
                     // junction points to, create the junction, and later on remove the whole tree
@@ -9336,8 +9242,8 @@ CopyReparsePoints(
                       rResult = CreateDirectoryHierarchy(ReparseDestTarget, wcslen(ReparseDestTarget));
 
                     if (ERROR_SUCCESS == rResult)
-                      // CreateJunction implictly is long path safe so we use [PATH_PARSE_SWITCHOFF_SIZE]
-                      result = CreateJunction(pF->m_FileName, &ReparseDestTarget[PATH_PARSE_SWITCHOFF_SIZE]);
+                    // CreateJunction implictly is long path safe so we use [PATH_PARSE_SWITCHOFF_SIZE]
+                    result = CreateJunction(pF->m_FileName, &ReparseDestTarget[PATH_PARSE_SWITCHOFF_SIZE]);
                   }
                   break;
 
@@ -9435,9 +9341,7 @@ CopyReparsePoints(
                           &ReparseDestTarget[PATH_PARSE_SWITCHOFF_SIZE]
                         );
 
-                        // With Windows XP CreateJunction fails on dangling junctions, but from Windows Vista on dangling 
-                        // junctions can be created. CreateJunction returns ERROR_INVALID_REPARSE_DATA == 4392L (0x1128)
-                        // in this situation.
+                        // If creation of dangling junctions would fail, we would get ERROR_INVALID_REPARSE_DATA == 4392L (0x1128)
                         if (ERROR_INVALID_REPARSE_DATA == JunctionResult)
                           result = ERROR_BAD_PATHNAME;
 
@@ -9865,10 +9769,7 @@ CopyReparsePoints(
                         }
                         
 
-                        // With Windows XP CreateJunction fails on dangling junctions, but from Windows Vista on dangling 
-                        // junctions can be created. CreateJunction returns ERROR_INVALID_REPARSE_DATA == 4392L (0x1128)
-                        // in this situation.
-
+                        // If creation of dangling junctions would fail, we would get ERROR_INVALID_REPARSE_DATA == 4392L (0x1128)
                         if (ERROR_INVALID_REPARSE_DATA == JunctionResult)
                           result = ERROR_BAD_PATHNAME;
 
@@ -10026,10 +9927,7 @@ CopyReparsePoints(
                         }
                         
 
-                        // With Windows XP CreateJunction fails on dangling junctions, but from Windows Vista on dangling 
-                        // junctions can be created. CreateJunction returns ERROR_INVALID_REPARSE_DATA == 4392L (0x1128)
-                        // in this situation.
-
+                        // If creation of dangling junctions would fail, we would get ERROR_INVALID_REPARSE_DATA == 4392L (0x1128)
                         if (ERROR_INVALID_REPARSE_DATA == JunctionResult)
                           result = ERROR_BAD_PATHNAME;
 
@@ -12875,10 +12773,12 @@ _SmartMove(
   
   if (gVersionInfo.dwMajorVersion < 6)
   {
+    // TODO Why can't we delete this with Windows7. IF we do regression fails in t_SmartMove02.bat horribly
+
     // With WindowsXP we had to temporarily create target directories for junctions 
     // so that we were able to create the junctions. Now we have to delete them.
     XDelStatistics  rXDelStatistics;
-    XDel(DestPath, rXDelStatistics, TRUE);
+    XDel(DestPath, HUGE_PATH, rXDelStatistics, TRUE);
   }
   
   RemoveDir(DestPath, TRUE);
@@ -13214,8 +13114,7 @@ ContainsSource(
     wcscpy_s(Argv, HUGE_PATH, iter->Argv.c_str());
     size_t ArgvLength = iter->Argv.length();
 
-    // PathIsRoot does not work with XP with long path name (\\?\)
-    // but works in Windows7
+    // PathIsRoot does not work with XP with long path name (\\?\) but works in Windows7
     if (PathIsRoot(&Argv[PATH_PARSE_SWITCHOFF_SIZE]))
       Argv[ArgvLength - 1] = 0x00;
 
@@ -13329,8 +13228,9 @@ Get(
 size_t
 AnchorPathCache::
 GetDestPath(
-  wchar_t*    a_DestPath,
-  int         a_DestPathIdx
+  wchar_t*      a_DestPath,
+//  const size_t  a_DestSize,
+  int           a_DestPathIdx
 )
 {
   assert(a_DestPathIdx < m_AnchorPaths.size());
@@ -13758,10 +13658,10 @@ ReadFromRegistry()
 	    // Parse Filesystems from the registry
       TCHAR		seps[] = _T(";");
       PTCHAR  NextToken;
-	    PTCHAR	token = _tcstok_s(SuppFs, seps, &NextToken);
+	    PTCHAR	token = wcstok_s(SuppFs, seps, &NextToken);
       if (token)
         m_ThirdPartyFileSystems.push_back(token);
-      while (PTCHAR ppp = _tcstok_s(NULL, seps, &NextToken))
+      while (PTCHAR ppp = wcstok_s(NULL, seps, &NextToken))
         m_ThirdPartyFileSystems.push_back(ppp);
     }
 
@@ -13982,13 +13882,6 @@ NtQueryProcessByModule(
 	} while (status == 0xC0000004 /*STATUS_INFO_LENGTH_MISMATCH*/);
 
 
-  // Use K32EnumProcessModulesEx from kernel32.lib
-  //
-  K32EnumProcessModulesEx_t pfnK32EnumProcessModulesEx = NULL;
-  HMODULE	hKernel32 = LoadLibrary (L"kernel32.dll");
-  if (hKernel32 > (HMODULE) 32)
-    pfnK32EnumProcessModulesEx = (K32EnumProcessModulesEx_t)GetProcAddress (hKernel32, "K32EnumProcessModulesEx");
-
 	// Run through all processes
 	//
 	PSYSTEM_PROCESS_INFORMATION	pProcess = (PSYSTEM_PROCESS_INFORMATION)pBuffer;
@@ -14007,15 +13900,7 @@ NtQueryProcessByModule(
       DWORD errrr = GetLastError();
       if (hProcess != NULL)
       {
-        // With Windows7 try to use the functions from kernel32
-        BOOL bEnum;
-        if (pfnK32EnumProcessModulesEx)
-          bEnum = pfnK32EnumProcessModulesEx(hProcess, hMods, sizeof(hMods), &cbNeeded, LIST_MODULES_ALL);
-        else
-          // if not available use the psapi functions, but they do not always work to the full extent
-          // e.g. they deliver less hMods
-          bEnum = EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded);
-
+        BOOL bEnum = K32EnumProcessModulesEx(hProcess, hMods, sizeof(hMods), &cbNeeded, LIST_MODULES_ALL);
         DWORD LastError = GetLastError();
         if ( bEnum )
         {
@@ -14053,9 +13938,6 @@ NtQueryProcessByModule(
 	}
 	while (pProcess->NextEntryOffset != 0 );
 
-  if (hKernel32 > (HMODULE) 32)
-    FreeLibrary(hKernel32);
-
 	return true;
 }
 
@@ -14072,113 +13954,6 @@ NtQueryProcessByModule(
 // set this to '\\' for DOS or '/' for UNIX
 #define SLASH '\\'
 
-
-// Given the absolute current directory and an absolute file name, returns a relative file name.
-// For example, if the current directory is C:\foo\bar and the filename C:\foo\whee\text.txt is given,
-// GetRelativeFilename will return ..\whee\text.txt.
-
-wchar_t* GetRelativeFilename(wchar_t *relativeFilename, wchar_t *currentDirectory, wchar_t *absoluteFilename)
-{
-	// declarations - put here so this should work in a C compiler
-	int afMarker = 0, rfMarker = 0;
-	size_t cdLen = 0, afLen = 0;
-	int i = 0;
-	int levels = 0;
-
-	cdLen = wcslen(currentDirectory);
-	afLen = wcslen(absoluteFilename);
-	
-	// make sure the names are not too long or too short
-	if(cdLen > MAX_FILENAME_LEN || cdLen < ABSOLUTE_NAME_START+1 || 
-		afLen > MAX_FILENAME_LEN || afLen < ABSOLUTE_NAME_START+1)
-	{
-		return NULL;
-	}
-	
-	// Handle DOS names that are on different drives:
-	if(currentDirectory[0] != absoluteFilename[0])
-	{
-		// not on the same drive, so only absolute filename will do
-		wcscpy(relativeFilename, absoluteFilename);
-//		return relativeFilename;
-		return NULL;
-	}
-
-	// they are on the same drive, find out how much of the current directory
-	// is in the absolute filename
-	i = ABSOLUTE_NAME_START;
-	while(i < afLen && i < cdLen && currentDirectory[i] == absoluteFilename[i])
-	{
-		i++;
-	}
-
-	if(i == cdLen && (absoluteFilename[i] == SLASH || absoluteFilename[i-1] == SLASH))
-	{
-		// the whole current directory name is in the file name,
-		// so we just trim off the current directory name to get the
-		// current file name.
-		if(absoluteFilename[i] == SLASH)
-		{
-			// a directory name might have a trailing slash but a relative
-			// file name should not have a leading one...
-			i++;
-		}
-
-		wcscpy(relativeFilename, &absoluteFilename[i]);
-		return relativeFilename;
-	}
-
-
-	// The file is not in a child directory of the current directory, so we
-	// need to step back the appropriate number of parent directories by
-	// using "..\"s.  First find out how many levels deeper we are than the
-	// common directory
-	afMarker = i;
-	levels = 1;
-
-	// count the number of directory levels we have to go up to get to the
-	// common directory
-	while(i < cdLen)
-	{
-		i++;
-		if(currentDirectory[i] == SLASH)
-		{
-			// make sure it's not a trailing slash
-			i++;
-			if(currentDirectory[i] != '\0')
-			{
-				levels++;
-			}
-		}
-	}
-
-	// move the absolute filename marker back to the start of the directory name
-	// that it has stopped in.
-	while(afMarker > 0 && absoluteFilename[afMarker-1] != SLASH)
-	{
-		afMarker--;
-	}
-
-	// check that the result will not be too long
-	if(levels * 3 + afLen - afMarker > MAX_FILENAME_LEN)
-	{
-		return NULL;
-	}
-	
-	// add the appropriate number of "..\"s.
-	rfMarker = 0;
-	for(i = 0; i < levels; ++i)
-	{
-		relativeFilename[rfMarker++] = '.';
-		relativeFilename[rfMarker++] = '.';
-		relativeFilename[rfMarker++] = SLASH;
-	}
-
-	// copy the rest of the filename into the result string
-	wcscpy(&relativeFilename[rfMarker], &absoluteFilename[afMarker]);
-
-	return relativeFilename;
-}
 
 
 /*
