@@ -11,7 +11,8 @@ void Usage()
 }
 
 int du (
-	PWCHAR	aSrcPath
+	PWCHAR	aSrcPath,
+  size_t  aSrcPathLength
 )
 {
 	WIN32_FIND_DATAW		wfind;
@@ -20,7 +21,7 @@ int du (
   _CrtSetDebugFillThreshold(0);
 
   size_t sSrcLen = wcslen(aSrcPath);
-	wcscat (aSrcPath, L"\\*.*");
+	wcscat_s (aSrcPath, aSrcPathLength, L"\\*.*");
 	HANDLE	sh = FindFirstFileW (aSrcPath, &wfind);
 	aSrcPath[sSrcLen] = 0x00;
 	if (INVALID_HANDLE_VALUE != sh)
@@ -34,11 +35,11 @@ int du (
 					if (wcscmp (wfind.cFileName, L".."))
 					{
 						sSrcLen = wcslen(aSrcPath);
-						wcscat (aSrcPath, L"\\");
-						wcscat (aSrcPath, wfind.cFileName);
+						wcscat_s (aSrcPath, aSrcPathLength, L"\\");
+						wcscat_s (aSrcPath, aSrcPathLength, wfind.cFileName);
 
 						gDirectories++;
-						du(aSrcPath);
+						du(aSrcPath, aSrcPathLength);
 						aSrcPath[sSrcLen] = 0x00;
 					}
 				}
@@ -74,9 +75,9 @@ int wmain (int argc, wchar_t* argv[])
 	while (i < argc)
 	{
 		wchar_t 	Path[HUGE_PATH];
-		wcscpy(Path, PATH_PARSE_SWITCHOFF);
-		wcscat (Path, argv[i]);
-		du (Path);
+		wcscpy_s(Path, HUGE_PATH, PATH_PARSE_SWITCHOFF);
+		wcscat_s (Path, HUGE_PATH, argv[i]);
+		du (Path, HUGE_PATH);
 		i++;
 	}
 

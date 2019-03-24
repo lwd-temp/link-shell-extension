@@ -56,7 +56,7 @@ EnumProc(
 
   if (*pstrWndKey == _T('\0'))
     return TRUE;
-  if(_tcslen(pstrWndKey) >= cstrClassNameLength)
+  if(wcslen(pstrWndKey) >= cstrClassNameLength)
      return TRUE;
 
   ::SetWindowText(hwnd, pEWData->pLangObj->Replace(pstrWndKey));

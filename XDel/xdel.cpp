@@ -112,7 +112,7 @@ int wmain (int argc, wchar_t* argv[])
 
     wchar_t*	filePart;
     GetFullPathNameW(argv[optind], HUGE_PATH - PATH_PARSE_SWITCHOFF_SIZE, &Path[PATH_PARSE_SWITCHOFF_SIZE], &filePart);
-    XDel (Path, aXDelStatistics, XdelOptions);
+    XDel (Path, HUGE_PATH, aXDelStatistics, XdelOptions);
     if (0 == (XdelOptions & ~FileInfoContainer::eDelOnlyReparsePoints))
       RemoveDir(Path, FALSE);
 

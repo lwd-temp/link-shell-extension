@@ -33,8 +33,15 @@ set VERSION_FILE=HardlinkExtension\install\LSE_version.nsh
 
 REM Rebuild
 REM
+if not exist Media mkdir Media
 @echo Rebuild lnk.sln and press enter afertwards
 pause
+
+REM Copy over certificate
+REM
+echo provide Certificate for signing
+xcopy ..\hardlinks.supl\KnowledgeBase\certificate\LinkShellextension.pfx shared\certificate\LinkShellextension.pfx
+
 
 REM Create installer
 REM

@@ -483,9 +483,9 @@ CreateContextMenu(
 
 	wchar_t     DropTarget[HUGE_PATH];
 	wchar_t     Targets[HUGE_PATH];
-  if (ERROR_SUCCESS != ReparseCanonicalize(m_DropTarget.m_Path, DropTarget))
+  if (ERROR_SUCCESS != ReparseCanonicalize(m_DropTarget.m_Path, DropTarget, HUGE_PATH))
     return;
-  if (ERROR_SUCCESS != ReparseCanonicalize(m_pTargets[0].m_Path, Targets))
+  if (ERROR_SUCCESS != ReparseCanonicalize(m_pTargets[0].m_Path, Targets, HUGE_PATH))
     return;
 	bool SrcDstOnSameDrive = CheckIfOnSameDrive(Targets, DropTarget);
 
@@ -504,13 +504,12 @@ CreateContextMenu(
 				// [0700] Normal hardlinks
         nEntries++;
 
-      if (gpfCreateSymbolicLink)
-        // [0120] Drop a file, create a symbolic link
-        nEntries++;
+      // [0120] Drop a file, create a symbolic link
+      nEntries++;
 		}
 
-		// The source is a directory and do not allow to create junctions from a dir on NT4
-    if ( (m_bTargetsFlag & eDir) && gpfCreateHardlink)
+		// The source is a directory 
+    if ( m_bTargetsFlag & eDir )
 		{
 			// Droptarget is a Directory?
 			if (m_DropTarget.m_Flags & (eDir|eVolume|eJunction|eMountPoint))
@@ -532,10 +531,10 @@ CreateContextMenu(
 				// [0415] Drop a directory on a Volume, which is create Hardlink clone
 				// [0420] Drop a directory on a Mountpoint, which is create Hardlink clone
 				nEntries ++;
-		} // if ( (m_bTargetsFlag & eDir) && gpfCreateHardlink)
+		} // if ( m_bTargetsFlag & eDir )
 
 		// DropSource is a junction
-    if ((m_bTargetsFlag & eJunction) && gpfCreateHardlink)
+    if ( m_bTargetsFlag & eJunction )
 		{
 			// Droptarget is a Junction, a Directory, a Mountpoint?
 			if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint) )
@@ -559,7 +558,7 @@ CreateContextMenu(
     }
 
 		// DropSource is a Volume?
-    if ((m_bTargetsFlag & eVolume) && gpfCreateHardlink)
+    if ( m_bTargetsFlag & eVolume )
     {
       if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint))
         // [0602] Drop a Volume onto a Mountpoint, which is junction creation
@@ -588,10 +587,10 @@ CreateContextMenu(
 				// [0650] Drop a directory on a Mountpoint, which is create Hardlink clone
         nEntries++;
 
-    } // if ((m_bTargetsFlag & eVolume) && gpfCreateHardlink)
+    } // if ( m_bTargetsFlag & eVolume )
 
 		// DropSource is a MountPoint?
-    if ((m_bTargetsFlag & eMountPoint) && gpfCreateHardlink)
+    if ( m_bTargetsFlag & eMountPoint )
     {
       if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint))
         // [0902] Drop a MountPoint onto a MountPoint, which is junction creation
@@ -611,7 +610,7 @@ CreateContextMenu(
         // [0960] Drop a MountPoint onto a Junction, which is junction replacement
         nEntries++;
 
-    } // if ((m_bTargetsFlag & eMountPoint) && gpfCreateHardlink)
+    } // if ( m_bTargetsFlag & eMountPoint )
 
 		// Smartcopies can be created from any non eFile source
     if (m_bTargetsFlag & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
@@ -619,169 +618,164 @@ CreateContextMenu(
       nEntries ++;
 
     // [0100] Are we under Vista
-		if (gpfCreateSymbolicLink)
-		{
-			// ==> Vista 
+    // DropSource is a File and a the symbolic link is the target?
+		if (m_bTargetsFlag & eFile && m_DropTarget.m_Flags & eSymbolicLink)
+        // [0090] Replace Symbolic Link Files
+        nEntries ++;
 
-      // DropSource is a File and a the symbolic link is the target?
-			if (m_bTargetsFlag & eFile && m_DropTarget.m_Flags & eSymbolicLink)
-          // [0090] Replace Symbolic Link Files
-          nEntries ++;
-
-        // DropSource is a Directory?
-			if (m_bTargetsFlag & eDir )
+      // DropSource is a Directory?
+		if (m_bTargetsFlag & eDir )
+    {
+			// DropTarget is a Symbolic Link
+      if (m_DropTarget.m_Flags & eSymbolicLink)
       {
-			  // DropTarget is a Symbolic Link
-        if (m_DropTarget.m_Flags & eSymbolicLink)
-        {
-          // [0427] Drop a Volume on a Symbolic Link can create Junctions
+        // [0427] Drop a Volume on a Symbolic Link can create Junctions
+				nEntries ++;
+
+				if (m_nTargets == 1)
+        // [0110] Drop a Directory on an already existing Symbolic Link, do the replace stuff
+          nEntries++;
+
+        if (SrcDstOnSameDrive)
+          // [0425] Drop a Directory on a Directory, which is create Hardlink clone
 				  nEntries ++;
+      }
 
-				  if (m_nTargets == 1)
-          // [0110] Drop a Directory on an already existing Symbolic Link, do the replace stuff
-            nEntries++;
+			// DropTarget is a Junction?
+			if (m_DropTarget.m_Flags  & eJunction )
+        // [0150] Symbolic Links can refer to Junctions
+				nEntries++;
 
-          if (SrcDstOnSameDrive)
-            // [0425] Drop a Directory on a Directory, which is create Hardlink clone
-				    nEntries ++;
-        }
-
-			  // DropTarget is a Junction?
-			  if (m_DropTarget.m_Flags  & eJunction )
-          // [0150] Symbolic Links can refer to Junctions
-				  nEntries++;
-
-			  // DropTarget is a Everything
-			  if (m_DropTarget.m_Flags  & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink) )
-        {
-			    // [0130] Drop a everything but non file object onto everything
-  				nEntries++;
-
-          // [0140] Symbolic Link Clones are allowed on almost any type of object except for files
-          nEntries++;
-        }
-      } // if (m_bTargetsFlag & eDir )
-
-      // DropSource is a Volume?
-      if (m_bTargetsFlag & eVolume)
+			// DropTarget is a Everything
+			if (m_DropTarget.m_Flags  & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink) )
       {
-        // DropTarget is Symbolic Link
-        if (m_DropTarget.m_Flags & eSymbolicLink)
-        {
-          // [0192] Drop a Volume on a Symbolic Link can create Junctions
-          nEntries++;
+			  // [0130] Drop a everything but non file object onto everything
+  			nEntries++;
 
-				  // [0194] Drop a Directory on an already existing Symbolic Link, do the replace stuff
-          nEntries++;
+        // [0140] Symbolic Link Clones are allowed on almost any type of object except for files
+        nEntries++;
+      }
+    } // if (m_bTargetsFlag & eDir )
 
-		      if (SrcDstOnSameDrive)
-            // [0190] Drop a Volume on a Symbolic Link can create Hardlink Clones
-            nEntries++;
-        }
+    // DropSource is a Volume?
+    if (m_bTargetsFlag & eVolume)
+    {
+      // DropTarget is Symbolic Link
+      if (m_DropTarget.m_Flags & eSymbolicLink)
+      {
+        // [0192] Drop a Volume on a Symbolic Link can create Junctions
+        nEntries++;
 
-        // DropTarget is a Everything
-        if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
-          // [0160] Drop a Volume on a Directory can create Symbolic Link Clones
-          // [0162] Drop a Volume on a Junction can create Symbolic Link Clones
-          // [0164] Drop a Volume on a Volume can create Symbolic Link Clones
-          // [0166] Drop a Volume on a Mountpoint can create Symbolic Link Clones
-          // [0168] Drop a Volume on a Mountpoint can create Symbolic Link Clones
+				// [0194] Drop a Directory on an already existing Symbolic Link, do the replace stuff
+        nEntries++;
+
+		    if (SrcDstOnSameDrive)
+          // [0190] Drop a Volume on a Symbolic Link can create Hardlink Clones
           nEntries++;
       }
 
-      // DropSource is a Junction?
-      if (m_bTargetsFlag & eJunction)
+      // DropTarget is a Everything
+      if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
+        // [0160] Drop a Volume on a Directory can create Symbolic Link Clones
+        // [0162] Drop a Volume on a Junction can create Symbolic Link Clones
+        // [0164] Drop a Volume on a Volume can create Symbolic Link Clones
+        // [0166] Drop a Volume on a Mountpoint can create Symbolic Link Clones
+        // [0168] Drop a Volume on a Mountpoint can create Symbolic Link Clones
+        nEntries++;
+    }
+
+    // DropSource is a Junction?
+    if (m_bTargetsFlag & eJunction)
+    {
+      if (m_DropTarget.m_Flags & eSymbolicLink)
       {
-        if (m_DropTarget.m_Flags & eSymbolicLink)
-        {
-          // [0182] Drop a Junction on a Symbolic Link can create Junctions
-          nEntries++;
+        // [0182] Drop a Junction on a Symbolic Link can create Junctions
+        nEntries++;
 
-				  // [0184] Drop a Directory on an already existing Symbolic Link, do the replace stuff
-          nEntries++;
+				// [0184] Drop a Directory on an already existing Symbolic Link, do the replace stuff
+        nEntries++;
 
-		      if (SrcDstOnSameDrive)
-            // [0180] Drop a Junction on a Symbolic Link can create Hardlink Clones
-            nEntries++;
-        }
-
-        // DropTarget is a Everything
-        if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
-          // [0170] Drop a Junction on a Directory can create Symbolic Link Clones
-          // [0172] Drop a Junction on a Junction can create Symbolic Link Clones
-          // [0174] Drop a Junction on a Volume can create Symbolic Link Clones
-          // [0176] Drop a Junction on a Mountpoint can create Symbolic Link Clones
-          // [0178] Drop a Junction on a Symbolic Link can create Symbolic Link Clones
+		    if (SrcDstOnSameDrive)
+          // [0180] Drop a Junction on a Symbolic Link can create Hardlink Clones
           nEntries++;
       }
 
-      if (m_bTargetsFlag & eMountPoint)
+      // DropTarget is a Everything
+      if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
+        // [0170] Drop a Junction on a Directory can create Symbolic Link Clones
+        // [0172] Drop a Junction on a Junction can create Symbolic Link Clones
+        // [0174] Drop a Junction on a Volume can create Symbolic Link Clones
+        // [0176] Drop a Junction on a Mountpoint can create Symbolic Link Clones
+        // [0178] Drop a Junction on a Symbolic Link can create Symbolic Link Clones
+        nEntries++;
+    }
+
+    if (m_bTargetsFlag & eMountPoint)
+    {
+      // DropTarget is Symbolic Link
+      if (m_DropTarget.m_Flags & eSymbolicLink)
       {
-        // DropTarget is Symbolic Link
-        if (m_DropTarget.m_Flags & eSymbolicLink)
-        {
-          // [0982] Drop a MountPoint on a Symbolic Link can create Junctions
-          nEntries++;
+        // [0982] Drop a MountPoint on a Symbolic Link can create Junctions
+        nEntries++;
 
-		      if (SrcDstOnSameDrive)
-            // [0980] Drop a MountPoint on a Symbolic Link can create Hardlink Clones
-            nEntries++;
-        }
-
-        if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
-          // [0970] Drop a MountPoint on a Directory can create Symbolic Link Clones
-          // [0972] Drop a MountPoint on a Junction can create Symbolic Link Clones
-          // [0974] Drop a MountPoint on a Volume can create Symbolic Link Clones
-          // [0976] Drop a MountPoint on a Mountpoint can create Symbolic Link Clones
-          // [0978] Drop a MountPoint on a Symbolic Link can create Symbolic Link Clones
-          nEntries++;
-
-          // [0984] Drop a Directory on an already existing Symbolic Link, do the replace stuff
+		    if (SrcDstOnSameDrive)
+          // [0980] Drop a MountPoint on a Symbolic Link can create Hardlink Clones
           nEntries++;
       }
 
-			if (m_bTargetsFlag & eSymbolicLink)
+      if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
+        // [0970] Drop a MountPoint on a Directory can create Symbolic Link Clones
+        // [0972] Drop a MountPoint on a Junction can create Symbolic Link Clones
+        // [0974] Drop a MountPoint on a Volume can create Symbolic Link Clones
+        // [0976] Drop a MountPoint on a Mountpoint can create Symbolic Link Clones
+        // [0978] Drop a MountPoint on a Symbolic Link can create Symbolic Link Clones
+        nEntries++;
+
+        // [0984] Drop a Directory on an already existing Symbolic Link, do the replace stuff
+        nEntries++;
+    }
+
+		if (m_bTargetsFlag & eSymbolicLink)
+    {
+      if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
       {
-        if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
-        {
-          // [1000] Drop a Symbolic Link on a Directory can create chains of Symbolic Link
-          // [1010] Drop a Symbolic Link on a Junction can create Symbolic Link
-          // [1020] Drop a Symbolic Link on a Volume can create Symbolic Link
-          // [1030] Drop a Symbolic Link on a Mountpoint can create Symbolic Link
+        // [1000] Drop a Symbolic Link on a Directory can create chains of Symbolic Link
+        // [1010] Drop a Symbolic Link on a Junction can create Symbolic Link
+        // [1020] Drop a Symbolic Link on a Volume can create Symbolic Link
+        // [1030] Drop a Symbolic Link on a Mountpoint can create Symbolic Link
+        nEntries++;
+
+        // [1100] Drop a Symbolic Link on a Directory can create Junctions
+        // [1110] Drop a Symbolic Link on a Junction can create Junctions
+        // [1120] Drop a Symbolic Link on a Volume can create Junctions
+        // [1130] Drop a Symbolic Link on a Mountpoint can create Junctions
+        nEntries++;
+
+			  // [0800] Smart Copies can be done even on the same drive or not so we increment for Smart Copy anywhere
+        nEntries++;
+
+        // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
+        if (!(gLSESettings.Flags & eEnableSmartMirror))
           nEntries++;
 
-          // [1100] Drop a Symbolic Link on a Directory can create Junctions
-          // [1110] Drop a Symbolic Link on a Junction can create Junctions
-          // [1120] Drop a Symbolic Link on a Volume can create Junctions
-          // [1130] Drop a Symbolic Link on a Mountpoint can create Junctions
+        // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
+        if (!(gLSESettings.Flags & eDeloreanCopy))
           nEntries++;
 
-			    // [0800] Smart Copies can be done even on the same drive or not so we increment for Smart Copy anywhere
+        if (SrcDstOnSameDrive)
+          // [1400] Drop a Symbolic Link on a Directory can create Hardlink Clones
+          // [1410] Drop a Symbolic Link on a Junction can create Hardlink Clones
+          // [1420] Drop a Symbolic Link on a Volume can create Hardlink Clones
+          // [1430] Drop a Symbolic Link on a Mountpoint can create Hardlink Clones
           nEntries++;
 
-          // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-          if (!(gLSESettings.Flags & eEnableSmartMirror))
-            nEntries++;
-
-          // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-          if (!(gLSESettings.Flags & eDeloreanCopy))
-            nEntries++;
-
-          if (SrcDstOnSameDrive)
-            // [1400] Drop a Symbolic Link on a Directory can create Hardlink Clones
-            // [1410] Drop a Symbolic Link on a Junction can create Hardlink Clones
-            // [1420] Drop a Symbolic Link on a Volume can create Hardlink Clones
-            // [1430] Drop a Symbolic Link on a Mountpoint can create Hardlink Clones
-            nEntries++;
-
-          // [1200] Drop a Symbolic Link on a Directory can create Symbolic Link Clones
-          // [1210] Drop a Symbolic Link on a Junction can create Symbolic Link Clones
-          // [1220] Drop a Symbolic Link on a Volume can create Symbolic Link Clones
-          // [1230] Drop a Symbolic Link on a Mountpoint can create Symbolic Link Clones
-          nEntries++;
-        }
+        // [1200] Drop a Symbolic Link on a Directory can create Symbolic Link Clones
+        // [1210] Drop a Symbolic Link on a Junction can create Symbolic Link Clones
+        // [1220] Drop a Symbolic Link on a Volume can create Symbolic Link Clones
+        // [1230] Drop a Symbolic Link on a Mountpoint can create Symbolic Link Clones
+        nEntries++;
       }
-		} // if (gpfCreateSymbolicLink)
+    }
 	} // if (m_DropTarget.m_Flags & eNTFS)
 
 	// Create the menue
@@ -801,7 +795,7 @@ CreateContextMenu(
 		}
 
 		// [0100] 
-		if ( gpfCreateSymbolicLink && (m_bTargetsFlag & (eFile|eDir|eVolume|eJunction|eMountPoint)))
+		if ( m_bTargetsFlag & (eFile|eDir|eVolume|eJunction|eMountPoint ))
 		{
 			// [0130] Drop a everything but non file object onto everything
       // [0120] Drop a file, create a symbolic link
@@ -809,7 +803,7 @@ CreateContextMenu(
 		}
 		
 		// DropSource is a Directory?
-		if ( (m_bTargetsFlag & eDir) && gpfCreateHardlink)
+		if ( m_bTargetsFlag & eDir )
 		{
 			// DropTarget is a Junction?
 			if (m_DropTarget.m_Flags & (eDir|eVolume|eJunction|eMountPoint) )
@@ -846,10 +840,10 @@ CreateContextMenu(
 				InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
 			}
 
-		} // if ( (m_bTargetsFlag & eDir) && gpfCreateHardlink)
+		} // if ( m_bTargetsFlag & eDir )
 
 		// DropSource is a Junction?
-    if ((m_bTargetsFlag & eJunction) && gpfCreateHardlink)
+    if ( m_bTargetsFlag & eJunction )
     {
 			// Droptarget is a Junction, a Directory, a Mountpoint?
 			if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint) )
@@ -885,10 +879,10 @@ CreateContextMenu(
 				// [0245] Drop a directory on a Mountpoint, which is create Hardlink clone
 				InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
 			}
-    } // if ((m_bTargetsFlag & eJunction) && gpfCreateHardlink)
+    } // if ( m_bTargetsFlag & eJunction )
 
 		// DropSource is a Volume?
-		if ((m_bTargetsFlag & eVolume) && gpfCreateHardlink)
+		if ( m_bTargetsFlag & eVolume )
 		{
       if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint))
       {
@@ -933,10 +927,10 @@ CreateContextMenu(
 				InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
 			}
 
-    } // if ((m_bTargetsFlag & eVolume) && gpfCreateHardlink)
+    } // if ( m_bTargetsFlag & eVolume )
 
 		// DropSource is a MountPoint?
-    if ((m_bTargetsFlag & eMountPoint) && gpfCreateHardlink)
+    if ( m_bTargetsFlag & eMountPoint )
     {
       if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint))
       {
@@ -970,245 +964,237 @@ CreateContextMenu(
 				// [0950] Drop a MountPoint on a Mountpoint, which is create Hardlink clone
 				InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
       }
-    } // if ((m_bTargetsFlag & eMountPoint) && gpfCreateHardlink)
+    } // if ( m_bTargetsFlag & eMountPoint )
 
 
     // [0100]
-    if (gpfCreateSymbolicLink)
-		{
-			// ==> Vista 
-
-      // DropSource is a Directory?
-      if (m_bTargetsFlag & eDir)
+    // DropSource is a Directory?
+    if (m_bTargetsFlag & eDir)
+    {
+			// DropTarget is a Symbolic Link
+      if (m_DropTarget.m_Flags & eSymbolicLink)
       {
-			  // DropTarget is a Symbolic Link
-        if (m_DropTarget.m_Flags & eSymbolicLink)
+        // [0427] Drop a Volume on a Symbolic Link can create Junctions
+        InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuJunction + MenuOffset, eDropJunction, aCommandIdx);
+
+			  // [0800] Smart Copies can be done even on the same drive or not so we increment for Smart Copy anywhere
+			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
+
+        // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
+        if (!(gLSESettings.Flags & eEnableSmartMirror))
         {
-          // [0427] Drop a Volume on a Symbolic Link can create Junctions
-          InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuJunction + MenuOffset, eDropJunction, aCommandIdx);
-
-			    // [0800] Smart Copies can be done even on the same drive or not so we increment for Smart Copy anywhere
-			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
-
-          // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-          if (!(gLSESettings.Flags & eEnableSmartMirror))
-          {
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
-          }
-
-          // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-          if (!(gLSESettings.Flags & eDeloreanCopy))
-          {
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
-          }
-			    if (SrcDstOnSameDrive)
-			    {
-				    // [0425] Drop a Directory on a Directory, which is create Hardlink clone
-				    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
-          }
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
-        // The below if clause is useless but it illustrates the logical flow
-        // if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink) )
+        // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
+        if (!(gLSESettings.Flags & eDeloreanCopy))
         {
-          // [0140] Symbolic Link Clones are allowed on almost any type of object except for files
-          InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSymbolicLinkClone + MenuOffset, eDropSymbolicLinkClone, aCommandIdx);
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
+        }
+			  if (SrcDstOnSameDrive)
+			  {
+				  // [0425] Drop a Directory on a Directory, which is create Hardlink clone
+				  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
         }
       }
 
-      // DropSource is a Volume?
-      if (m_bTargetsFlag & eVolume)
+      // The below if clause is useless but it illustrates the logical flow
+      // if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink) )
       {
-        // DropTarget is Symbolic Link
-        if (m_DropTarget.m_Flags & eSymbolicLink)
+        // [0140] Symbolic Link Clones are allowed on almost any type of object except for files
+        InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSymbolicLinkClone + MenuOffset, eDropSymbolicLinkClone, aCommandIdx);
+      }
+    }
+
+    // DropSource is a Volume?
+    if (m_bTargetsFlag & eVolume)
+    {
+      // DropTarget is Symbolic Link
+      if (m_DropTarget.m_Flags & eSymbolicLink)
+      {
+        // [0192] Drop a Volume on a Symbolic Link can create Junctions
+        InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuJunction + MenuOffset, eDropJunction, aCommandIdx);
+
+			  // [0800] Smart Copies can be done even on the same drive or not so we increment for Smart Copy anywhere
+			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
+
+        // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
+        if (!(gLSESettings.Flags & eEnableSmartMirror))
         {
-          // [0192] Drop a Volume on a Symbolic Link can create Junctions
-          InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuJunction + MenuOffset, eDropJunction, aCommandIdx);
-
-			    // [0800] Smart Copies can be done even on the same drive or not so we increment for Smart Copy anywhere
-			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
-
-          // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-          if (!(gLSESettings.Flags & eEnableSmartMirror))
-          {
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
-          }
-
-          // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-          if (!(gLSESettings.Flags & eDeloreanCopy))
-          {
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
-          }
-
-          if (SrcDstOnSameDrive)
-		      {
-            // [0190] Drop a Volume on a Symbolic Link can create Hardlink Clones
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
-          }
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
-        // DropTarget is a Everything
-        if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
+        // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
+        if (!(gLSESettings.Flags & eDeloreanCopy))
         {
-          // [0160] Drop a Volume on a Directory can create Symbolic Link Clones
-          // [0162] Drop a Volume on a Junction can create Symbolic Link Clones
-          // [0164] Drop a Volume on a Volume can create Symbolic Link Clones
-          // [0166] Drop a Volume on a Mountpoint can create Symbolic Link Clones
-          // [0168] Drop a Volume on a Mountpoint can create Symbolic Link Clones
-          InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSymbolicLinkClone + MenuOffset, eDropSymbolicLinkClone, aCommandIdx);
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
+        }
+
+        if (SrcDstOnSameDrive)
+		    {
+          // [0190] Drop a Volume on a Symbolic Link can create Hardlink Clones
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
         }
       }
+
+      // DropTarget is a Everything
+      if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
+      {
+        // [0160] Drop a Volume on a Directory can create Symbolic Link Clones
+        // [0162] Drop a Volume on a Junction can create Symbolic Link Clones
+        // [0164] Drop a Volume on a Volume can create Symbolic Link Clones
+        // [0166] Drop a Volume on a Mountpoint can create Symbolic Link Clones
+        // [0168] Drop a Volume on a Mountpoint can create Symbolic Link Clones
+        InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSymbolicLinkClone + MenuOffset, eDropSymbolicLinkClone, aCommandIdx);
+      }
+    }
     
-      // DropSource is a Junction?
-      if (m_bTargetsFlag & eJunction)
+    // DropSource is a Junction?
+    if (m_bTargetsFlag & eJunction)
+    {
+      // DropTarget is Symbolic Link
+      if (m_DropTarget.m_Flags & eSymbolicLink)
       {
-        // DropTarget is Symbolic Link
-        if (m_DropTarget.m_Flags & eSymbolicLink)
+        // [0182] Drop a Junction on a Symbolic Link can create Junctions
+        InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuJunction + MenuOffset, eDropJunction, aCommandIdx);
+
+			  // [0800] Smart Copies can be done even on the same drive or not so we increment for Smart Copy anywhere
+			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
+
+        // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
+        if (!(gLSESettings.Flags & eEnableSmartMirror))
         {
-          // [0182] Drop a Junction on a Symbolic Link can create Junctions
-          InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuJunction + MenuOffset, eDropJunction, aCommandIdx);
-
-			    // [0800] Smart Copies can be done even on the same drive or not so we increment for Smart Copy anywhere
-			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
-
-          // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-          if (!(gLSESettings.Flags & eEnableSmartMirror))
-          {
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
-          }
-
-          // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-          if (!(gLSESettings.Flags & eDeloreanCopy))
-          {
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
-          }
-
-          if (SrcDstOnSameDrive)
-		      {
-            // [0180] Drop a Junction on a Symbolic Link can create Hardlink Clones
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
-          }
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
-        // DropTarget is everything
-        if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
+        // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
+        if (!(gLSESettings.Flags & eDeloreanCopy))
         {
-          // [0170] Drop a Junction on a Directory can create Symbolic Link Clones
-          // [0172] Drop a Junction on a Junction can create Symbolic Link Clones
-          // [0174] Drop a Junction on a Volume can create Symbolic Link Clones
-          // [0176] Drop a Junction on a Mountpoint can create Symbolic Link Clones
-          // [0178] Drop a Junction on a Symbolic Link can create Symbolic Link Clones
-          InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSymbolicLinkClone + MenuOffset, eDropSymbolicLinkClone, aCommandIdx);
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
+        }
+
+        if (SrcDstOnSameDrive)
+		    {
+          // [0180] Drop a Junction on a Symbolic Link can create Hardlink Clones
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
         }
       }
 
-      // DropSource is a Mountpoint?
-      if (m_bTargetsFlag & eMountPoint)
+      // DropTarget is everything
+      if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
       {
-        // DropTarget is Symbolic Link
-        if (m_DropTarget.m_Flags & eSymbolicLink)
+        // [0170] Drop a Junction on a Directory can create Symbolic Link Clones
+        // [0172] Drop a Junction on a Junction can create Symbolic Link Clones
+        // [0174] Drop a Junction on a Volume can create Symbolic Link Clones
+        // [0176] Drop a Junction on a Mountpoint can create Symbolic Link Clones
+        // [0178] Drop a Junction on a Symbolic Link can create Symbolic Link Clones
+        InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSymbolicLinkClone + MenuOffset, eDropSymbolicLinkClone, aCommandIdx);
+      }
+    }
+
+    // DropSource is a Mountpoint?
+    if (m_bTargetsFlag & eMountPoint)
+    {
+      // DropTarget is Symbolic Link
+      if (m_DropTarget.m_Flags & eSymbolicLink)
+      {
+        // [0982] Drop a MountPoint on a Symbolic Link can create Junctions
+        InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuJunction + MenuOffset, eDropJunction, aCommandIdx);
+
+			  // [0800] Smart Copies can be done even on the same drive or not so we increment for Smart Copy anywhere
+			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
+
+        // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
+        if (!(gLSESettings.Flags & eEnableSmartMirror))
         {
-          // [0982] Drop a MountPoint on a Symbolic Link can create Junctions
-          InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuJunction + MenuOffset, eDropJunction, aCommandIdx);
-
-			    // [0800] Smart Copies can be done even on the same drive or not so we increment for Smart Copy anywhere
-			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
-
-          // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-          if (!(gLSESettings.Flags & eEnableSmartMirror))
-          {
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
-          }
-
-          // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-          if (!(gLSESettings.Flags & eDeloreanCopy))
-          {
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
-          }
-
-          if (SrcDstOnSameDrive)
-          {
-            // [0980] Drop a MountPoint on a Symbolic Link can create Hardlink Clones
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
-          }
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
-        if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
+        // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
+        if (!(gLSESettings.Flags & eDeloreanCopy))
         {
-          // [0970] Drop a MountPoint on a Directory can create Symbolic Link Clones
-          // [0972] Drop a MountPoint on a Junction can create Symbolic Link Clones
-          // [0974] Drop a MountPoint on a Volume can create Symbolic Link Clones
-          // [0976] Drop a MountPoint on a Mountpoint can create Symbolic Link Clones
-          // [0978] Drop a MountPoint on a Symbolic Link can create Symbolic Link Clones
-          InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSymbolicLinkClone + MenuOffset, eDropSymbolicLinkClone, aCommandIdx);
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
+        }
+
+        if (SrcDstOnSameDrive)
+        {
+          // [0980] Drop a MountPoint on a Symbolic Link can create Hardlink Clones
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
         }
       }
 
-      // DropSource is a SymbolicLink?
-			if (m_bTargetsFlag & eSymbolicLink)
+      if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
       {
-        if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
-        {
-          // [1000] Drop a Symbolic Link on a Directory can create chains of Symbolic Link
-          // [1010] Drop a Symbolic Link on a Junction can create Symbolic Link
-          // [1020] Drop a Symbolic Link on a Volume can create Symbolic Link
-          // [1030] Drop a Symbolic Link on a Mountpoint can create Symbolic Link
-			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSymbolicLink + MenuOffset, eDropSymbolicLink, aCommandIdx);
-
-          // [1100] Drop a Symbolic Link on a Directory can create Junctions
-          // [1110] Drop a Symbolic Link on a Junction can create Junctions
-          // [1120] Drop a Symbolic Link on a Volume can create Junctions
-          // [1130] Drop a Symbolic Link on a Mountpoint can create Junctions
-          InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuJunction + MenuOffset, eDropJunction, aCommandIdx);
-
-			    // [0800] Smart Copies can be done even on the same drive or not so we increment for Smart Copy anywhere
-			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
-
-          // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-          if (!(gLSESettings.Flags & eEnableSmartMirror))
-          {
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
-          }
-
-          // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-          if (!(gLSESettings.Flags & eDeloreanCopy))
-          {
-			      InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
-          }
-
-          if (SrcDstOnSameDrive)
-			    {
-            // [1400] Drop a Symbolic Link on a Directory can create Hardlink Clones
-            // [1410] Drop a Symbolic Link on a Junction can create Hardlink Clones
-            // [1420] Drop a Symbolic Link on a Volume can create Hardlink Clones
-            // [1430] Drop a Symbolic Link on a Mountpoint can create Hardlink Clones
-				    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
-          }
-
-          // [1200] Drop a Symbolic Link on a Directory can create Symbolic Link Clones
-          // [1210] Drop a Symbolic Link on a Junction can create Symbolic Link Clones
-          // [1220] Drop a Symbolic Link on a Volume can create Symbolic Link Clones
-          // [1230] Drop a Symbolic Link on a Mountpoint can create Symbolic Link Clones
-          InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSymbolicLinkClone + MenuOffset, eDropSymbolicLinkClone, aCommandIdx);
-        }
+        // [0970] Drop a MountPoint on a Directory can create Symbolic Link Clones
+        // [0972] Drop a MountPoint on a Junction can create Symbolic Link Clones
+        // [0974] Drop a MountPoint on a Volume can create Symbolic Link Clones
+        // [0976] Drop a MountPoint on a Mountpoint can create Symbolic Link Clones
+        // [0978] Drop a MountPoint on a Symbolic Link can create Symbolic Link Clones
+        InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSymbolicLinkClone + MenuOffset, eDropSymbolicLinkClone, aCommandIdx);
       }
-    } // if (gpfCreateSymbolicLink)
+    }
+
+    // DropSource is a SymbolicLink?
+		if (m_bTargetsFlag & eSymbolicLink)
+    {
+      if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
+      {
+        // [1000] Drop a Symbolic Link on a Directory can create chains of Symbolic Link
+        // [1010] Drop a Symbolic Link on a Junction can create Symbolic Link
+        // [1020] Drop a Symbolic Link on a Volume can create Symbolic Link
+        // [1030] Drop a Symbolic Link on a Mountpoint can create Symbolic Link
+			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSymbolicLink + MenuOffset, eDropSymbolicLink, aCommandIdx);
+
+        // [1100] Drop a Symbolic Link on a Directory can create Junctions
+        // [1110] Drop a Symbolic Link on a Junction can create Junctions
+        // [1120] Drop a Symbolic Link on a Volume can create Junctions
+        // [1130] Drop a Symbolic Link on a Mountpoint can create Junctions
+        InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuJunction + MenuOffset, eDropJunction, aCommandIdx);
+
+			  // [0800] Smart Copies can be done even on the same drive or not so we increment for Smart Copy anywhere
+			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
+
+        // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
+        if (!(gLSESettings.Flags & eEnableSmartMirror))
+        {
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
+        }
+
+        // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
+        if (!(gLSESettings.Flags & eDeloreanCopy))
+        {
+			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
+        }
+
+        if (SrcDstOnSameDrive)
+			  {
+          // [1400] Drop a Symbolic Link on a Directory can create Hardlink Clones
+          // [1410] Drop a Symbolic Link on a Junction can create Hardlink Clones
+          // [1420] Drop a Symbolic Link on a Volume can create Hardlink Clones
+          // [1430] Drop a Symbolic Link on a Mountpoint can create Hardlink Clones
+				  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuHardLinkClone + MenuOffset, eDropHardLinkClone, aCommandIdx);
+        }
+
+        // [1200] Drop a Symbolic Link on a Directory can create Symbolic Link Clones
+        // [1210] Drop a Symbolic Link on a Junction can create Symbolic Link Clones
+        // [1220] Drop a Symbolic Link on a Volume can create Symbolic Link Clones
+        // [1230] Drop a Symbolic Link on a Mountpoint can create Symbolic Link Clones
+        InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSymbolicLinkClone + MenuOffset, eDropSymbolicLinkClone, aCommandIdx);
+      }
+    }
 
     // 
     // The Replacement Stuff is always at the end of the menues
     // 
 
     // [0100]
-    if (gpfCreateSymbolicLink)
-		{
-      // DropSource is a Everything?
-      if (m_bTargetsFlag & (eFile|eDir|eVolume|eJunction|eMountPoint|eSymbolicLink))
+    // DropSource is a Everything?
+    if (m_bTargetsFlag & (eFile|eDir|eVolume|eJunction|eMountPoint|eSymbolicLink))
+    {
+      if ((m_DropTarget.m_Flags & eSymbolicLink) && m_nTargets == 1)
       {
-        if ((m_DropTarget.m_Flags & eSymbolicLink) && m_nTargets == 1)
-        {
-				  // [0110] Drop a Directory on an already existing Symbolic Link, do the replace stuff
-          InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuReplaceSymbolicLink + MenuOffset, eDropReplaceSymbolicLink, aCommandIdx);
-        }
+				// [0110] Drop a Directory on an already existing Symbolic Link, do the replace stuff
+        InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuReplaceSymbolicLink + MenuOffset, eDropReplaceSymbolicLink, aCommandIdx);
       }
     }
 
@@ -1222,7 +1208,7 @@ CreateContextMenu(
 			}
     }
 
-		if ((m_bTargetsFlag & eVolume) && gpfCreateHardlink)
+		if ( m_bTargetsFlag & eVolume )
 		{
       if ( (m_DropTarget.m_Flags & eMountPoint) && m_nTargets == 1)
       {
@@ -1255,7 +1241,7 @@ CreateContextMenu(
       {
         case eFile:
         {
-			    if (gpfCreateSymbolicLink && (m_DropTarget.m_Flags & eNTFS))
+			    if (m_DropTarget.m_Flags & eNTFS)
 			    {
 			      // Some could try to create a symbolic link on a different drive
 				    InsertCommand(hMenu, indexMenu, idCmd, eMenuDropSymbolicLink + MenuOffset, eDropSymbolicLink, aCommandIdx);
@@ -1299,7 +1285,7 @@ CreateContextMenu(
 
         case eSymbolicLink:
 				  // A Junction was picked, and with Vista a Symbolic Link can point to a Junction
-				  if (gpfCreateSymbolicLink  && (m_DropTarget.m_Flags & eNTFS))
+				  if (m_DropTarget.m_Flags & eNTFS)
 				  {
 					  InsertCommand(hMenu, indexMenu, idCmd, eMenuSymbolicLink + MenuOffset, eDropSymbolicLink, aCommandIdx);
 				  }
@@ -1352,7 +1338,7 @@ QueryContextMenu(
 
   // The pick menue should only show up for files if the source is either NTFS or we are on Windows7
   bool ShowMenue = true;
-  if ((m_bTargetsFlag & eFile) && !gpfCreateSymbolicLink)
+  if ( m_bTargetsFlag & eFile )
     if (!(m_bTargetsFlag & eNTFS) )
         ShowMenue = false;
 
@@ -1389,7 +1375,7 @@ QueryContextMenu(
 				  m_Command[aCommandIdx++] = ePickLinkSource;
         }
 #if !defined REMOVE_DELETE_JUNCTION
-        if ((m_bTargetsFlag & eJunction) && !gpfCreateSymbolicLink )
+        if ( m_bTargetsFlag & eJunction )
 				{
 					InsertMenu(hMenu, indexMenu++, MF_STRING|MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuDeleteJunction]);
 					m_Command[aCommandIdx++] = eDeleteJunction;
@@ -1841,7 +1827,7 @@ DropSymbolicLink(
     SymlinkArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
 	// Write the args
-	for (ULONG i = 0; i < m_nTargets; i++)
+	for (ULONG i = 0; i < m_nTargets; ++i)
 	{
 		wchar_t		dp[MAX_PATH];
 		wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
@@ -1889,9 +1875,7 @@ DropSymbolicLink(
       }
       else
       {
-        // Used when UAC is switched off thus making it possible 
-        // to call CreateSymboliclink directly from explorer
-        // or if the symlink driver is installed under XP
+        // Used when UAC is switched off thus making it possible  to call CreateSymboliclink directly from explorer
         CreateSymboliclink(dest,
           m_pTargets[i].m_Path, 
           (gLSESettings.Flags & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation
@@ -1905,9 +1889,9 @@ DropSymbolicLink(
 			WCHAR	DestNoSymlink[HUGE_PATH];
 			WCHAR	SourceNoSymlink[HUGE_PATH];
 
-			ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoSymlink);
+			ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoSymlink, HUGE_PATH);
 			PathAddBackslash(SourceNoSymlink);
-			ReparseCanonicalize(dest, DestNoSymlink);
+			ReparseCanonicalize(dest, DestNoSymlink, HUGE_PATH);
 			if (StrStrI(DestNoSymlink, SourceNoSymlink))
 			{
 				HTRACE(L"LSE::DropSymboliclink ERR: '%s' -> '%s', %ld\n", SourceNoSymlink, DestNoSymlink, m_pTargets[i].m_Flags);
@@ -1929,9 +1913,8 @@ DropSymbolicLink(
         
         if (!Elevation)
         {
-          // Used for debugging purposes, when UAC is switched off thus making it possible 
-          // to call CreateSymboliclink directly from explorer, but not from symlink.exe
-          // or if the symlink driver is installed under XP
+          // Used for debugging purposes, when UAC is switched off thus making it possible to call CreateSymboliclink 
+          // directly from explorer, but not from symlink.exe
           CreateSymboliclink(dest, 
             m_pTargets[i].m_Path, 
             (gLSESettings.Flags & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation | SYMLINK_FLAG_DIRECTORY
@@ -2027,9 +2010,9 @@ DropJunction(
 				dest,
         IDS_STRING_eTopMenuOfOrderXP_1);
 	
-			ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction);
+			ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction, HUGE_PATH);
 			PathAddBackslash(SourceNoJunction);
-			ReparseCanonicalize(dest, DestNoJunction);
+			ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
 			if (StrStrI(DestNoJunction, SourceNoJunction))
 			{
 				HTRACE(L"LSE::DropJunction ERR: '%s' -> '%s', %ld\n", SourceNoJunction, DestNoJunction, m_pTargets[i].m_Flags);
@@ -2267,9 +2250,9 @@ DropMountPoint(
 			dest,
       IDS_STRING_eTopMenuOfOrderXP_1);
 
-		ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction);
+		ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction, HUGE_PATH);
 		PathAddBackslash(SourceNoJunction);
-		ReparseCanonicalize(dest, DestNoJunction);
+		ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
 		if (StrStrI(DestNoJunction, SourceNoJunction))
 		{
 			ErrorCreating(aTarget.m_Path, 
@@ -2352,8 +2335,7 @@ DeleteMountPoint(
 	bool RelayToSymlink = false;
 	FILE *Arguments = NULL;
 
-	if (gpfCreateSymbolicLink)
-    Arguments = OpenFileForExeHelper(curdir, sla_quoted);
+  Arguments = OpenFileForExeHelper(curdir, sla_quoted);
 
 	for (UINT i = 0; i < m_nTargets; i++)
 	{
@@ -2378,8 +2360,7 @@ DeleteMountPoint(
 		}
 	} // for (UINT i = 0; i < m_nTargets; i++)
 
-	if (gpfCreateSymbolicLink)
-    fclose(Arguments);
+  fclose(Arguments);
 
 #if defined SYMLINK_FORCE
   if (SYMLINK_OUTPROC)
@@ -2485,9 +2466,9 @@ SmartMirror(
         WCHAR	SourceNoJunction[HUGE_PATH];
 
         // Check if a recursive Junction is about t be created 
-        ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction);
+        ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction, HUGE_PATH);
         PathAddBackslash(SourceNoJunction);
-        ReparseCanonicalize(dest, DestNoJunction);
+        ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
         if (StrStrI(DestNoJunction, SourceNoJunction))
         {
           // Bail out. Someone wanted to create recursive <something>
@@ -2904,9 +2885,9 @@ SmartXXX(
         WCHAR	SourceNoJunction[HUGE_PATH];
 
         // Check if a recursive Junction is about to be created 
-        ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction);
+        ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction, HUGE_PATH);
         PathAddBackslash(SourceNoJunction);
-        ReparseCanonicalize(dest, DestNoJunction);
+        ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
         if (StrStrI(DestNoJunction, SourceNoJunction))
         {
           // Bail out. Someone wanted to create recursive junctions
@@ -3179,10 +3160,7 @@ SmartXXX(
         }
         else
         {
-          // Do not elevate
-          // We are here because either the operation did not contain symlinks or we are under XP
-          // and the XPSymlink functionality is up and running.
-
+          // Do not elevate because the operation did not contain symlinks
           // Reset the Progressbar since we now know the number of files to be copied
           HTRACE (L"Progress Start%08x\n", MaxProgress);
           pProgressbar->SetRange(MaxProgress);
@@ -3336,7 +3314,7 @@ DropReplaceJunction(
 	{
 		WCHAR	SourceNoJunction[HUGE_PATH];
 
-		ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction);
+		ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction, HUGE_PATH);
 		PathAddBackslash(SourceNoJunction);
 		if (StrStrI(aTarget.m_Path, SourceNoJunction))
 		{
@@ -3463,7 +3441,7 @@ DropReplaceSymbolicLink(
 
 	WCHAR	PurePath[HUGE_PATH];
 
-	ReparseCanonicalize(m_pTargets[0].m_Path, PurePath);
+	ReparseCanonicalize(m_pTargets[0].m_Path, PurePath, HUGE_PATH);
 	PathAddBackslash(PurePath);
 	if (StrStrI(aTarget.m_Path, PurePath))
 	{
@@ -3540,7 +3518,7 @@ DropReplaceMountPoint(
 	{
 		WCHAR	PurePath[HUGE_PATH];
 
-		ReparseCanonicalize(m_pTargets[0].m_Path, PurePath);
+		ReparseCanonicalize(m_pTargets[0].m_Path, PurePath, HUGE_PATH);
 		PathAddBackslash(PurePath);
 		if (StrStrI(aTarget.m_Path, PurePath))
 		{
@@ -3668,9 +3646,9 @@ DropDeloreanCopy(
         WCHAR	SourceReparsePointFree[HUGE_PATH];
 
         // Check if a recursive junction is about to be created 
-        ReparseCanonicalize(m_pTargets[i].m_Path, SourceReparsePointFree);
+        ReparseCanonicalize(m_pTargets[i].m_Path, SourceReparsePointFree, HUGE_PATH);
         PathAddBackslash(SourceReparsePointFree);
-        ReparseCanonicalize(aTarget.m_Path, DestReparsePointFree);
+        ReparseCanonicalize(aTarget.m_Path, DestReparsePointFree, HUGE_PATH);
         if (StrStrI(DestReparsePointFree, SourceReparsePointFree))
         {
           // Bail out. Someone wanted to create a recursive delorean copy
@@ -4173,25 +4151,6 @@ ErrorFromSystem(
 	}
 }
 
-// With VS6 the standard SDK has not shlwapi50, so we had to
-// 'emulate' the coding for PathIsNetworkPath. The code inside
-// the #if is from MS
-#if _MSC_VER < 1400
-__inline BOOL DBL_BSLASH(PWCHAR psz)
-{
-	return (psz[0] == TEXT('\\') && psz[1] == TEXT('\\'));
-}
-
-BOOL PathIsNetworkPath(PWCHAR pszPath)
-{
-	if (pszPath)
-	{
-	  return DBL_BSLASH(pszPath) || IsNetDrive(PathGetDriveNumber(pszPath));
-	}
-  
-	return FALSE;
-}
-#endif
 
 wchar_t*
 HardLinkExt::

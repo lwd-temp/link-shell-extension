@@ -22,7 +22,7 @@ HINSTANCE     gLSEInstance = NULL;
 int
 Usage()
 {
-	_tprintf (_T ("symlink. symlink helper for Windows Vista/W7 elevation\n"));
+	_tprintf (_T ("symlink. symlink helper for Windows 7 elevation\n"));
 	return 42;
 }
 
@@ -292,24 +292,14 @@ SmartMove(FILE* ArgFile)
 
     GetLocalTime(&aStats.m_StartTime);
     FILE* LogFile = FileList.StartLogging(gLSESettings, L"SmartMove");
-	AsyncContext    Context;
-	if (FileList.BackupMode())
+	  AsyncContext    Context;
+	  if (FileList.BackupMode())
     {
       // Backup Mode. Also find the files elevated in symlink
-      int   RefCount;
-      if (gVersionInfo.dwMajorVersion >= 6)
-        // With Vista & W7 we also have to search files, because symbolic links are 
-        // also reparsepoints
-        RefCount = 0;
-      else
-        // With XP, we know there are no symbolic links, so we can speed up search by
-        // only collecting directories/junctions
-        RefCount = -1;
-      
       _ArgvList MoveLocation;
       FileList.GetAnchorPath(MoveLocation);
 
-      int r = FileList.FindHardLink (MoveLocation, RefCount, &aStats, &PathNameStatusList, &Context);
+      int r = FileList.FindHardLink (MoveLocation, 0, &aStats, &PathNameStatusList, &Context);
       FileList.HeadLogging(LogFile);
       
       if (!(gLSESettings.Flags & eForceAbsoluteSymbolicLinks))

@@ -8,10 +8,6 @@
 #define EXTERN extern
 #endif
 
-// If we are under WXP the creation of symbolic link can
-// be faked through the creation of Hardlinks with _sl appended
-// #define FAKE_SYMBOLIC_LINK // DEBUG_DEFINES
-
 #define USE_VECTOR
 
 // define if we don't want to fork symlink.exe to perform operations
@@ -162,18 +158,6 @@ const int cMaxHardlinkLimit = 1023;
 #define SE_INCREASE_WORKINGSET_PRIVILEGE             TEXT("SeIncreaseWorkingSetPrivilege")
 #define SE_CREATE_SYMBOLICLINK_PRIVILEGE             TEXT("SeCreateSymbolicLinkPrivilege")
 
-
-
-//disable warnings on 255 char debug symbols
-#pragma warning (disable : 4786)
-//disable warnings on extern before template instantiation
-#pragma warning (disable : 4231)
-#include <vector>
-#include <algorithm>
-#include <string>
-#include <map>
-
-
 #include <ntsysteminfo.h>
 
 
@@ -198,10 +182,6 @@ extern "C"
 	);
 }
 
-EXTERN CreateSymboliclinkW_t		gpfCreateSymbolicLink;
-EXTERN CreateHardlinkW_t			  gpfCreateHardlink;
-EXTERN IsUserAnAdmin_t			    gpfIsUserAnAdmin;
-
 EXTERN OSVERSIONINFO            gVersionInfo;
 
 #define SYMLINK_FLAG_FILE 	                    0x00
@@ -225,10 +205,6 @@ EXTERN OSVERSIONINFO            gVersionInfo;
 
 #define WINDOWS_VERSION_WIN10   0x0A
 
-
-#if defined _DEBUG
-#include <vector>
-#endif
 
 enum LSE_Flags
 {
@@ -384,12 +360,14 @@ struct	XDelStatistics
 
 int XDel (
   wchar_t*          aSrcPath, 
+  const size_t      aSrcSize,
   XDelStatistics&   rXDelStatistics,
   int               aFlags
 );
 
 int XDel_recursive (
   wchar_t*          aSrcPath, 
+  const size_t      aSrcSize,
   XDelStatistics&   rXDelStatistics,
   int               aFlags
 );
@@ -418,8 +396,8 @@ ProbeHardlink(
 //--------------------------------------------------------------------
 int
 CreateJunction( 
-  __in  PCWCH   LinkDirectory,
-  __in  PCWCH   LinkTarget,
+  __in  LPCWSTR LinkDirectory,
+  __in  LPCWSTR LinkTarget,
   __in  DWORD   dwFlags = 0
 );
 
@@ -458,8 +436,8 @@ CreateSymboliclinkRaw(
 //--------------------------------------------------------------------
 int 
 ProbeReparsePoint( 
-  __in      LPCWSTR  FileName,
-  __inout   PWCHAR	aDestination
+  __in      LPCWSTR   FileName,
+  __inout   LPWSTR    aDestination
 );
 
 //--------------------------------------------------------------------
@@ -497,11 +475,11 @@ class SringSorter
 
 void
 CreateTimeStampedFileName( 
-  PWCHAR        aSourcePath,
+  LPCWSTR       aSourcePath,
   PWCHAR        aBackup0Path,
   PWCHAR        aBackup1Path,
-  PWCHAR        aFilename,
-  _SYSTEMTIME*  a_pSysTime
+  LPCWSTR       aFilename,
+  _SYSTEMTIME*  const a_pSysTime
 );
 //--------------------------------------------------------------------
 //
@@ -523,14 +501,14 @@ class SizeSorter
 
 int
 CreateFileName( 
-  HINSTANCE   aLSEInstance,
-  int         aLanguageID,
-  PWCHAR      aPrefix,
-  PWCHAR      aOf,
-  PWCHAR      aPath,
-  PWCHAR      aFilename,
-  PWCHAR      aNewFilename,
-  int         aOrderIdx
+  __in    const HINSTANCE  aLSEInstance,
+  __in    const int        aLanguageID,
+  __in    LPCWSTR          aPrefix,
+  __in    LPCWSTR          aOf,
+  __in    LPCWSTR          aPath,
+  __in    LPCWSTR          aFilename,
+  __inout LPWSTR           aNewFilename,
+  __in    const int        aOrderIdx
 );
 
 //--------------------------------------------------------------------
@@ -544,13 +522,14 @@ bool
 IsFileSystemNtfs (
 	const wchar_t*	aPath,
 	DWORD*		      dwFileSystemFlags,
-	DWORD			      aFlags,
+  const DWORD			aFlags,
   int*            aDriveType
 );
 
 int ReparseCanonicalize (
-  __in    LPCWSTR		aPath,
-	__inout LPWSTR		aDestination
+  __in    LPCWSTR		      aPath,
+  __inout LPWSTR		      aDestination,
+  __in    const size_t    aDestSize
 );
 
 typedef vector<int>	_Of;
@@ -589,23 +568,25 @@ CreateMountPoint (
 //--------------------------------------------------------------------
 BOOL
 TranslateMountPoint (
-  __inout LPWSTR  aDestination,
-  __in    LPCWSTR aVolumeName
+  __inout LPWSTR        aDestination,
+  __in    const size_t  aDestSize,
+  __in    LPCWSTR       aVolumeName
 );
 
 //--------------------------------------------------------------------
 //
 // ProbeMountPoint
 //
-// This routine cheks if a given location is  a NTFS mount point, 
+// This routine checks if a given location is a NTFS mount point, 
 // using the undocumented FSCTL_SET_REPARSE_POINT structure.
 //
 //--------------------------------------------------------------------
 BOOL
 ProbeMountPoint (
-  __in    LPCWSTR aDirectory,
-  __inout LPWSTR  aDestination,
-  __in    LPWSTR  aVolumeName
+  __in    LPCWSTR       aDirectory,
+  __inout LPWSTR        aDestination,
+  __in    const size_t  aDestSize,
+  __in    LPWSTR        aVolumeName
 );
 
 //--------------------------------------------------------------------
@@ -1430,8 +1411,9 @@ class AnchorPathCache
 
     size_t
     GetDestPath(
-      wchar_t*    a_DestPath,
-      int         a_DestPathIdx
+      wchar_t*      a_DestPath,
+//      const size_t  a_DestSize,
+      int           a_DestPathIdx
     );
 
     void
@@ -1652,34 +1634,36 @@ class FileInfoContainer
     };
 
 		int
-		_EnumHardlinkSiblings(
-			PWCHAR						          aSrcPath, 
-			PWCHAR						          aExcludePath, 
-			EnumHardlinkSiblingsGlue*	  pEnumHardlinkSiblingsGlue,
-			bool						            aQuiet,
+    _EnumHardlinkSiblings(
+      PWCHAR						          aSrcPath,
+      PWCHAR						          aExcludePath,
+      EnumHardlinkSiblingsGlue*	  pEnumHardlinkSiblingsGlue,
+      bool						            aQuiet,
       _PathNameStatusList*        aPathNameStatusList,
       AsyncContext*               apContext
-		);
+    );
 
     int
-		_EnumHardlinkSiblingsUp(
-			PWCHAR						        aSrcPath, 
-			PWCHAR						        aExcludePath, 
-			EnumHardlinkSiblingsGlue*	pEnumHardlinkSiblingsGlue,
-			bool						          aQuiet,
+    _EnumHardlinkSiblingsUp(
+      PWCHAR						        aSrcPath,
+      const size_t              aSrcSize,
+      PWCHAR						        aExcludePath,
+      EnumHardlinkSiblingsGlue*	pEnumHardlinkSiblingsGlue,
+      bool						          aQuiet,
       _PathNameStatusList*      aPathNameStatusList,
       AsyncContext*             apContext
-		);
+    );
 
 		int
-		_EnumHardlinkSiblingsDown(
-			PWCHAR						        aSrcPath, 
-			PWCHAR						        aExcludePath, 
-			EnumHardlinkSiblingsGlue*	pEnumHardlinkSiblingsGlue,
-			bool						          aQuiet,
+    _EnumHardlinkSiblingsDown(
+      PWCHAR						        aSrcPath,
+      const size_t              aSrcSize,
+      PWCHAR						        aExcludePath,
+      EnumHardlinkSiblingsGlue*	pEnumHardlinkSiblingsGlue,
+      bool						          aQuiet,
       _PathNameStatusList*      aPathNameStatusList,
       AsyncContext*             apContext
-		);
+    );
 
     static
     DWORD
@@ -1991,8 +1975,9 @@ class FileInfoContainer
 
 		int
     _FindHardLinkRecursive(
-      PWCHAR	                aSrcPath, 
-      PWCHAR*	                aReparsePointReferencePath, 
+      LPWSTR	                aSrcPath,
+      const size_t            aSrcSize,
+      PWCHAR*	                aReparsePointReferencePath,
       int&                    aCurrentBoundaryCross,
       int		                  aRefCount,
       __int64&                aFileAddedOneLevelBelow,
@@ -2003,8 +1988,9 @@ class FileInfoContainer
 
 		int
     _FindHardLinkTraditionalRecursive(
-      PWCHAR	                aSrcPath, 
-      PWCHAR*	                aReparsePointReferencePath, 
+      LPWSTR	                aSrcPath,
+      const size_t            aSrcSize,
+      PWCHAR*	                aReparsePointReferencePath,
       int&                    aCurrentBoundaryCross,
       int		                  aRefCount,
       __int64&                aFileAddedOneLevelBelow,

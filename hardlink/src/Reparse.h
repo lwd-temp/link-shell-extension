@@ -11,12 +11,6 @@
 //
 #define MAX_REPARSE_SIZE	17000
 
-// These have the wrong values in pre-W2k SDKs
-#if !defined(FSCTL_SET_REPARSE_POINT) || \
-	(FSCTL_SET_REPARSE_POINT != 0x900a4)
-#undef FSCTL_SET_REPARSE_POINT
-#define FSCTL_SET_REPARSE_POINT  CTL_CODE(FILE_DEVICE_FILE_SYSTEM, 41, METHOD_BUFFERED, FILE_ANY_ACCESS)
-#endif
 
 //
 // Undocumented FSCTL_SET_REPARSE_POINT structure definition

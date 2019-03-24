@@ -603,7 +603,7 @@ CXIcon& CXIcon::SetFont(LPCTSTR lpszFaceName,
 	if ((lpszFaceName == NULL) || (lpszFaceName[0] == _T('\0')))
 		m_font.GetLogFont(&lf);
 	else
-		_tcsncpy(lf.lfFaceName, lpszFaceName, sizeof(lf.lfFaceName)/sizeof(TCHAR)-1);
+		wcsncpy(lf.lfFaceName, lpszFaceName, sizeof(lf.lfFaceName)/sizeof(TCHAR)-1);
 
 	lf.lfHeight = GetFontHeight(nPointSize);
 

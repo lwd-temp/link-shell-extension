@@ -3,8 +3,6 @@
 #pragma once
 
 
-#define _WIN32_WINNT		0x601
-
 // Insert your headers here
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 
@@ -44,4 +42,6 @@
 
 #include <StrSafe.h>
 #include "shlobj.h"
+
+#define HUGE_PATH 8192
 
