@@ -20,6 +20,7 @@
 #endif
 
 extern CMultiLanguage gMlg;
+extern LSESettings gLSESettings;
 
 
 // CLSEConfigApp
@@ -61,15 +62,7 @@ BOOL CLSEConfigApp::InitInstance()
 
   InitCreateHardlink ();
 
-
-	// Standard initialization
-	// If you are not using these features and wish to reduce the size
-	// of your final executable, you should remove from the following
-	// the specific initialization routines you do not need
-	// Change the registry key under which our settings are stored
-	// TODO:: You should modify this string to be something appropriate
-	// such as the name of your company or organization
-	SetRegistryKey(_T("LSEConfig"));
+  SetRegistryKey(_T("LSEConfig"));
 
 	PropPageGeneral aPropPageGeneral;
 	PropPageIconHardlink  aPropPageIconHardlink;
@@ -78,7 +71,7 @@ BOOL CLSEConfigApp::InitInstance()
   PropPageCustomize     aPropPageCustomize;
   
   int LangCode;
-  GetValue(L"Language", &LangCode);
+  gLSESettings.GetValue(L"Language", &LangCode);
   gMlg.SetLangCode(LangCode);
   TreePropSheet::CTreePropSheetEx sheet( gMlg.Replace(L"#MLG#10100") );
 
@@ -86,7 +79,7 @@ BOOL CLSEConfigApp::InitInstance()
   // To initiate a CopySettings() if necessary
   //
   LSESettings  LSESettings;
-  LSESettings.ReadLSESettings(true);
+  LSESettings.Init();
 
 
   sheet.SetTreeViewMode( TRUE, TRUE, FALSE);

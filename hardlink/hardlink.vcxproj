@@ -209,6 +209,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\AsyncContext.cpp" />
+    <ClCompile Include="src\DbgHelpers.cpp" />
     <ClCompile Include="src\hardlinks.cpp" />
     <ClCompile Include="src\HardlinkUtils.cpp" />
     <ClCompile Include="src\LSESettings.cpp" />
@@ -227,17 +228,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AsyncContext.h" />
+    <ClInclude Include="include\DbgHelpers.h" />
     <ClInclude Include="include\HardlinkLib.h" />
     <ClInclude Include="include\hardlinks.h" />
     <ClInclude Include="include\HardlinkUtils.h" />
     <ClInclude Include="include\hardlink_types.h" />
+    <ClInclude Include="include\LSESettings.h" />
     <ClInclude Include="include\moduleversion.h" />
     <ClInclude Include="include\Multilang.h" />
     <ClInclude Include="include\ntsysteminfo.h" />
     <ClInclude Include="include\Progressbar.h" />
     <ClInclude Include="include\UACReuse.h" />
     <ClInclude Include="src\md5.h" />
-    <ClInclude Include="include\MmfObject.h" /> 
+    <ClInclude Include="include\MmfObject.h" />
     <ClInclude Include="src\Reparse.h" />
     <ClInclude Include="src\StdAfx.h" />
   </ItemGroup>

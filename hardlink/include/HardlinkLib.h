@@ -5,6 +5,8 @@
 // Provide all neccessesary files to compile hardlink.lib
 
 #include "hardlink_types.h"
+#include "DbgHelpers.h"
+
 #include <ntsysteminfo.h>
 
 #include "LSESettings.h"

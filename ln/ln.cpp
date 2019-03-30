@@ -1857,19 +1857,8 @@ wmain(
 		// error message to stderr
 		opterr = 0;
 
-    // This needed because we use a non-msvcrt heap, which places the chunks so close
-    // towards each other, that the crt-dbg would use its CRT secure fill pattern, and thus would
-    // destroy memory during wcscpy_s() with _FILL_STRING
-#if defined _DEBUG
-    _CrtSetDebugFillThreshold(0);
-
-    // TODO remove _CrtSetDebugFillThreshold
-
-#endif
     InitCreateHardlink ();
 
-    LSESettings s;
-    s.ReadLSESettings();
 
 #if 0
 

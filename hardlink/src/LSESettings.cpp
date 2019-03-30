@@ -5,6 +5,7 @@
 #include "stdafx.h"
 
 #include "hardlink_types.h"
+#include "DbgHelpers.h"
 
 #include "LSESettings.h"
 
@@ -16,7 +17,7 @@
 // Copy the settings from HKLM to HKCU
 //
 //--------------------------------------------------------------------
-int CopySettings(
+int LSESettings::CopySettings(
 )
 {
   DWORD RetVal = _CopySettings();
@@ -27,7 +28,7 @@ int CopySettings(
   return RetVal;
 }
 
-int _CopySettings(
+int LSESettings::_CopySettings(
   DWORD     a_RegistryView
 )
 {
@@ -138,8 +139,8 @@ int _CopySettings(
 
     // Create Keys under HKCU
     RetVal = RegCreateKeyEx(
-      HKEY_CURRENT_USER,
-      LSE_REGISTRY_LOCATION,
+      GetUserHive(),
+      m_LseRegistryLocation,
       0,
       NULL,
       REG_OPTION_NON_VOLATILE,
@@ -235,7 +236,7 @@ int _CopySettings(
 //
 // ChangeFlags
 //
-int ChangegFlags(
+int LSESettings::ChangegFlags(
   LSE_Flags aBit,
   bool*     aValue,
   bool      aOnOff
@@ -249,7 +250,7 @@ int ChangegFlags(
   return RetVal;
 }
 
-int _ChangegFlags(
+int LSESettings::_ChangegFlags(
   LSE_Flags aBit,
   bool*     aValue,
   bool      aOnOff,
@@ -262,8 +263,8 @@ int _ChangegFlags(
   DWORD aType = REG_DWORD;
 
   DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_CURRENT_USER,
-    LSE_REGISTRY_LOCATION,
+    GetUserHive(),
+    m_LseRegistryLocation,
     0,
     KEY_READ | KEY_WRITE | a_RegistryView,
     &RegKey
@@ -308,7 +309,7 @@ int _ChangegFlags(
   return RetVal;
 }
 
-int SetValue(
+int LSESettings::SetValue(
   wchar_t*  aValue,
   int       aData
 )
@@ -322,7 +323,7 @@ int SetValue(
   return RetVal;
 }
 
-int _SetValue(
+int LSESettings::_SetValue(
   wchar_t*  aValue,
   int       aData,
   DWORD     a_RegistryView
@@ -333,8 +334,8 @@ int _SetValue(
   DWORD aType = REG_DWORD;
 
   DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_CURRENT_USER,
-    LSE_REGISTRY_LOCATION,
+    GetUserHive(),
+    m_LseRegistryLocation,
     0,
     KEY_READ | KEY_WRITE | a_RegistryView,
     &RegKey
@@ -355,15 +356,15 @@ int _SetValue(
   return RetVal;
 }
 
-int GetValue(wchar_t* aValue, int* aData)
+int LSESettings::GetValue(wchar_t* aValue, int* aData)
 {
   HKEY RegKey;
   DWORD aSize = sizeof(DWORD);
   DWORD aType = REG_DWORD;
 
   DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_CURRENT_USER,
-    LSE_REGISTRY_LOCATION,
+    GetUserHive(),
+    m_LseRegistryLocation,
     0,
     KEY_READ,
     &RegKey
@@ -387,7 +388,7 @@ int GetValue(wchar_t* aValue, int* aData)
 //
 // ChangeValue
 //
-int ChangeValue(
+int LSESettings::ChangeValue(
   wchar_t*  aValue,
   wchar_t*  aData,
   int       aDataLen
@@ -402,7 +403,7 @@ int ChangeValue(
   return RetVal;
 }
 
-int _ChangeValue(
+int LSESettings::_ChangeValue(
   wchar_t*  aValue,
   wchar_t*  aData,
   int       aDataLen,
@@ -453,7 +454,7 @@ int _ChangeValue(
 //
 // DeleteValue
 //
-int DeleteValue(
+int LSESettings::DeleteValue(
   wchar_t* aValue
 )
 {
@@ -466,7 +467,7 @@ int DeleteValue(
   return RetVal;
 }
 
-int _DeleteValue(
+int LSESettings::_DeleteValue(
   wchar_t*  aValue,
   DWORD     a_RegistryView
 )
@@ -475,8 +476,8 @@ int _DeleteValue(
   DWORD aType = REG_SZ;
 
   DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_CURRENT_USER,
-    LSE_REGISTRY_LOCATION,
+    GetUserHive(),
+    m_LseRegistryLocation,
     0,
     KEY_READ | KEY_WRITE | a_RegistryView,
     &RegKey
@@ -493,9 +494,10 @@ int _DeleteValue(
   return RetVal;
 }
 
-int
-GetCurrentSid(LPWSTR* aSid)
+bool GetCurrentSid(LPWSTR* aSid)
 {
+  int RetVal = false;
+
   HANDLE hTok = NULL;
   if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hTok))
   {
@@ -513,17 +515,21 @@ GetCurrentSid(LPWSTR* aSid)
       PSID pSid = ((PTOKEN_USER)buf)->User.Sid;
 
       // check user name for SID
-      TCHAR user[20], domain[20];
       DWORD cbUser = 20, cbDomain = 20;
+      TCHAR user[20], domain[20];
       SID_NAME_USE nu;
-      LookupAccountSid(NULL, pSid, user, &cbUser, domain, &cbDomain, &nu);
-      ConvertSidToStringSid(pSid, aSid);
+      BOOL bLookup = LookupAccountSid(NULL, pSid, user, &cbUser, domain, &cbDomain, &nu);
+      if (bLookup)
+      {
+        ConvertSidToStringSid(pSid, aSid);
+        RetVal = true;
+      }
     }
     LocalFree(buf);
     CloseHandle(hTok);
   }
 
-  return 42;
+  return RetVal;
 }
 
 
@@ -531,17 +537,25 @@ void
 LSESettings::Init()
 {
   AssembleLseRegLocation();
-  ReadLSESettings();
-  m_Key = HKEY_USERS;
+  ReadLSESettings(true);
 }
 
 void
 LSESettings::AssembleLseRegLocation()
 {
   wchar_t*  currentSid;
-  GetCurrentSid(&currentSid);
+  bool bSidValid = GetCurrentSid(&currentSid);
 
-  swprintf_s(m_LseRegistryLocation, MAX_PATH, L"%s\\%s", currentSid, LSE_REGISTRY_LOCATION);
+  if (bSidValid)
+  {
+    swprintf_s(m_LseRegistryLocation, MAX_PATH, L"%s\\%s", currentSid, LSE_REGISTRY_LOCATION);
+    m_Key = HKEY_USERS;
+  }
+  else
+  {
+    wcscpy_s(m_LseRegistryLocation, MAX_PATH, LSE_REGISTRY_LOCATION);
+    m_Key = HKEY_CURRENT_USER;
+  }
   LocalFree(currentSid);
 }
 
@@ -560,9 +574,11 @@ LSESettings::ReadLSESettings(
   DWORD aType = REG_DWORD;
   int r = 0;
 
+  HTRACE(L"%S: %08x, %s", __FUNCTION__, m_Key, m_LseRegistryLocation);
+
   DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_CURRENT_USER,
-    LSE_REGISTRY_LOCATION,
+    GetUserHive(),
+    m_LseRegistryLocation,
     0,
     KEY_READ,
     &RegKey
@@ -577,16 +593,15 @@ LSESettings::ReadLSESettings(
     RetVal = CopySettings();
 
     RetVal = ::RegOpenKeyEx(
-      HKEY_CURRENT_USER,
-      LSE_REGISTRY_LOCATION,
+      GetUserHive(),
+      m_LseRegistryLocation,
       0,
       KEY_READ,
       &RegKey
     );
   }
 
-
-  // And read the language value
+    // And read the language value
   if (ERROR_SUCCESS == RetVal)
   {
     bool CopygFlags = false;
@@ -624,8 +639,8 @@ LSESettings::ReadLSESettings(
       {
         HKEY HKCURegKey;
         DWORD RetVal = ::RegOpenKeyEx(
-          HKEY_CURRENT_USER,
-          LSE_REGISTRY_LOCATION,
+          GetUserHive(),
+          m_LseRegistryLocation,
           0,
           KEY_READ | KEY_WRITE,
           &HKCURegKey

@@ -7,6 +7,7 @@
 
 extern int TheRebootExplorer;
 extern CMultiLanguage gMlg;
+extern LSESettings gLSESettings;
 
 // PropPageGeneral dialog
 
@@ -81,24 +82,24 @@ BOOL PropPageGeneral::OnInitDialog()
 
   gMlg.ReplaceWindowTexts(GetSafeHwnd());
 
-  ChangegFlags(eDisableSmartmove, &m_SmartMove, true);
+  gLSESettings.ChangegFlags(eDisableSmartmove, &m_SmartMove, true);
   CheckDlgButton(IDC_CHECK_SmartMove, !m_SmartMove);
 
-  ChangegFlags(eLogOutput, &m_Logging, true);
+  gLSESettings.ChangegFlags(eLogOutput, &m_Logging, true);
   CheckDlgButton(IDC_CHECK_Logging, m_Logging);
 
-  ChangegFlags(eEnableRemote, &m_RemoteCapabilities, true);
+  gLSESettings.ChangegFlags(eEnableRemote, &m_RemoteCapabilities, true);
   CheckDlgButton(IDC_CHECK_RemoteCapabilities, !m_RemoteCapabilities);
 
-  ChangegFlags(eBackupMode, &m_BackupMode, true);
+  gLSESettings.ChangegFlags(eBackupMode, &m_BackupMode, true);
 
   CheckDlgButton(IDC_CHECK_BackupMode, m_BackupMode);
 
 
   // Outer ReparsePoint Handling
-  ChangegFlags(eCropReparsePoints, &m_CropReparsePoints, true);
-  ChangegFlags(eUnrollReparsePoints, &m_UnrollReparsePoints, true);
-  ChangegFlags(eSpliceReparsePoints, &m_SpliceReparsePoints, true);
+  gLSESettings.ChangegFlags(eCropReparsePoints, &m_CropReparsePoints, true);
+  gLSESettings.ChangegFlags(eUnrollReparsePoints, &m_UnrollReparsePoints, true);
+  gLSESettings.ChangegFlags(eSpliceReparsePoints, &m_SpliceReparsePoints, true);
   CheckDlgButton(IDC_RADIO_OuterJunctionCrop, m_CropReparsePoints);
   CheckDlgButton(IDC_RADIO_OuterJunctionUnroll, m_UnrollReparsePoints);
   CheckDlgButton(IDC_RADIO_OuterJunctionSplice, m_SpliceReparsePoints);
@@ -111,7 +112,7 @@ BOOL PropPageGeneral::OnInitDialog()
   pButton = (CButton*)GetDlgItem(IDC_STATIC_Symlink_Caption);
   pButton->ShowWindow(SW_SHOW);
 
-  ChangegFlags(eForceAbsoluteSymbolicLinks, &m_SymlinkAbsRel, true);
+  gLSESettings.ChangegFlags(eForceAbsoluteSymbolicLinks, &m_SymlinkAbsRel, true);
   CheckDlgButton(IDC_RADIO_Relative_Symbolic_Links, !m_SymlinkAbsRel);
   CheckDlgButton(IDC_RADIO_Absolute_Symbolic_Links, m_SymlinkAbsRel);
 
@@ -123,7 +124,7 @@ BOOL PropPageGeneral::OnInitDialog()
 
 
   // Read out the current language setting
-  GetValue(L"Language", &m_PreviousLangCode);
+  gLSESettings.GetValue(L"Language", &m_PreviousLangCode);
   i = 0;
   do 
   {
@@ -202,21 +203,21 @@ void PropPageGeneral::OnCbnSelchangeComboLanguage()
 void PropPageGeneral::OnOK()
 {
   int nIndex = m_Language.GetCurSel();
-  SetValue(L"Language", TheLanguageMapping[nIndex].Code);
+  gLSESettings.SetValue(L"Language", TheLanguageMapping[nIndex].Code);
 
-  ChangegFlags(eDisableSmartmove, NULL, m_SmartMove);
-  ChangegFlags(eLogOutput, NULL, m_Logging);
-  ChangegFlags(eEnableRemote, NULL, m_RemoteCapabilities);
+  gLSESettings.ChangegFlags(eDisableSmartmove, NULL, m_SmartMove);
+  gLSESettings.ChangegFlags(eLogOutput, NULL, m_Logging);
+  gLSESettings.ChangegFlags(eEnableRemote, NULL, m_RemoteCapabilities);
 
-  ChangegFlags(eEnableSmartMirror, NULL, m_SmartMirror);
-  ChangegFlags(eDeloreanCopy, NULL, m_DeloreanCopy);
+  gLSESettings.ChangegFlags(eEnableSmartMirror, NULL, m_SmartMirror);
+  gLSESettings.ChangegFlags(eDeloreanCopy, NULL, m_DeloreanCopy);
 
-  ChangegFlags(eBackupMode, NULL, m_BackupMode);
-  ChangegFlags(eForceAbsoluteSymbolicLinks, NULL, m_SymlinkAbsRel);
+  gLSESettings.ChangegFlags(eBackupMode, NULL, m_BackupMode);
+  gLSESettings.ChangegFlags(eForceAbsoluteSymbolicLinks, NULL, m_SymlinkAbsRel);
 
-  ChangegFlags(eCropReparsePoints, NULL, m_CropReparsePoints);
-  ChangegFlags(eUnrollReparsePoints, NULL, m_UnrollReparsePoints);
-  ChangegFlags(eSpliceReparsePoints, NULL, m_SpliceReparsePoints);
+  gLSESettings.ChangegFlags(eCropReparsePoints, NULL, m_CropReparsePoints);
+  gLSESettings.ChangegFlags(eUnrollReparsePoints, NULL, m_UnrollReparsePoints);
+  gLSESettings.ChangegFlags(eSpliceReparsePoints, NULL, m_SpliceReparsePoints);
   
   return CPropertyPage::OnOK();
 }

@@ -81,11 +81,6 @@ CreateSymboliclink(
   __in  LPCWSTR   lpFakeSymlinkFileName = NULL
 );
 
-void
-HTRACE (
-  wchar_t* aFormat ...
-);
-
 typedef DWORD (__stdcall *ThrFuncType)(void*);
 
 

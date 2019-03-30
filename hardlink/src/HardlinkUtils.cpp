@@ -6,6 +6,8 @@
 
 #include "hardlink_types.h"
 #include "LSESettings.h"
+#include "DbgHelpers.h"
+
 
 #include "MmfObject.h"
 #include "AsyncContext.h"

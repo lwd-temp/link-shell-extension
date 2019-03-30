@@ -371,8 +371,6 @@ main(int argc,
   if (argc == 1)
     Usage();
   
-  _CrtSetDebugFillThreshold(0);
-
   bool Done = false;
   // Convert the wide options to ansi options
   char**a_argv = new char*[argc + 1];

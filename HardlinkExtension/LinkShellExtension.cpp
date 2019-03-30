@@ -34,18 +34,10 @@ DllMain( HINSTANCE hInstance, DWORD ul_reason_for_call, LPVOID lpReserved )
   switch( ul_reason_for_call )
   {
     case DLL_PROCESS_ATTACH:
-      // This needed because we use a non-msvcrt heap, which places the chunks so close
-      // towards each other, that the crt-dbg would use its CRT secure fill pattern, and thus would
-      // destroy memory during wcscpy_s() with _FILL_STRING
-#if defined _DEBUG
-      _CrtSetDebugFillThreshold(0);
-#endif
-
       HTRACE (L"LSE::DLL_PROCESS_ATTACH\n");
       g_hInstance = hInstance;
 
-      ZeroMemory((void*)&gLSESettings, sizeof(gLSESettings));
-      gLSESettings.ReadLSESettings();
+      gLSESettings.Init();
       LoadMlgTexts(gLSESettings.GetLanguageID());
 
       // PropertyheetPageHandler is loaded in a different process than the other
@@ -248,7 +240,7 @@ CreateInstance(
   if (pUnkOuter)
   	return CLASS_E_NOAGGREGATION;
 
-  gLSESettings.ReadLSESettings();
+  gLSESettings.Init();
 
   HardLinkExt* pShellExt = new HardLinkExt();
   HRESULT result = pShellExt->QueryInterface(riid, ppvObj);

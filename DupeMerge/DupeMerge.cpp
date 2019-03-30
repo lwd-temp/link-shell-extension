@@ -199,7 +199,6 @@ wmain(
   wchar_t* argv[]
 )
 {
-    _CrtSetDebugFillThreshold(0);
     bool  Traditional = false;
     {
       // Take the default locale

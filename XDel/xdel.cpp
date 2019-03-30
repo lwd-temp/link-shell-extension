@@ -34,9 +34,6 @@ int wmain (int argc, wchar_t* argv[])
   XDelStatistics aXDelStatistics;
   ZeroMemory(&aXDelStatistics, sizeof(aXDelStatistics));
 
-  _CrtSetDebugFillThreshold(0);
-
-
   // Take the default locale
   setlocale(LC_ALL,"");
 

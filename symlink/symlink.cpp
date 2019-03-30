@@ -857,12 +857,7 @@ extern "C"
 	wmain(int argc,
 				TCHAR* argv[])
 	{
-    // This needed because we use a non-msvcrt heap, which places the chunks so close
-    // towards each other, that the crt-dbg would use its CRT secure fill pattern, and thus would
-    // destroy memory during wcscpy_s() with _FILL_STRING
-    _CrtSetDebugFillThreshold(0);
-
-    gLSESettings.ReadLSESettings();
+    gLSESettings.Init();
 
     gLSEInstance = LoadLibraryEx( 
       L"HardlinkShellExt.dll\0",

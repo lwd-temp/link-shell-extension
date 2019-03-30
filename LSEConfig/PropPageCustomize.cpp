@@ -7,6 +7,8 @@
 
 extern int TheRebootExplorer;
 extern CMultiLanguage gMlg;
+extern LSESettings gLSESettings;
+
 
 // PropPageCustomize dialog
 
@@ -44,16 +46,16 @@ BOOL PropPageCustomize::OnInitDialog()
 
   gMlg.ReplaceWindowTexts(GetSafeHwnd());
 
-  ChangegFlags(eEnableSmartMirror, &m_SmartMirror, true);
+  gLSESettings.ChangegFlags(eEnableSmartMirror, &m_SmartMirror, true);
   CheckDlgButton(IDC_CHECK_SmartMirror, !m_SmartMirror);
 
-  ChangegFlags(eDeloreanCopy, &m_DeloreanCopy, true);
+  gLSESettings.ChangegFlags(eDeloreanCopy, &m_DeloreanCopy, true);
   CheckDlgButton(IDC_CHECK_DeloreanCopy, !m_DeloreanCopy);
 
-  ChangegFlags(eEnableExtended, &m_ExtendedMenue, true);
+  gLSESettings.ChangegFlags(eEnableExtended, &m_ExtendedMenue, true);
   CheckDlgButton(IDC_CHECK_ExtendedMenue, m_ExtendedMenue);
 
-  ChangegFlags(eBackupMode, &m_BackupMode, true);
+  gLSESettings.ChangegFlags(eBackupMode, &m_BackupMode, true);
   CheckDlgButton(IDC_CHECK_BackupMode, m_BackupMode);
 
   return TRUE;
@@ -87,10 +89,10 @@ void PropPageCustomize::OnBnClickedBackupMode()
 
 void PropPageCustomize::OnOK()
 {
-  ChangegFlags(eEnableSmartMirror, NULL, m_SmartMirror);
-  ChangegFlags(eDeloreanCopy, NULL, m_DeloreanCopy);
-  ChangegFlags(eEnableExtended, NULL, m_ExtendedMenue);
-  ChangegFlags(eBackupMode, NULL, m_BackupMode);
+  gLSESettings.ChangegFlags(eEnableSmartMirror, NULL, m_SmartMirror);
+  gLSESettings.ChangegFlags(eDeloreanCopy, NULL, m_DeloreanCopy);
+  gLSESettings.ChangegFlags(eEnableExtended, NULL, m_ExtendedMenue);
+  gLSESettings.ChangegFlags(eBackupMode, NULL, m_BackupMode);
   
   return CPropertyPage::OnOK();
 }
