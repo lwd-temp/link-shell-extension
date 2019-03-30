@@ -85,8 +85,8 @@ BOOL CLSEConfigApp::InitInstance()
   // 
   // To initiate a CopySettings() if necessary
   //
-  _LSESettings  LSESettings;
-  GetLSESettings(LSESettings, true);
+  LSESettings  LSESettings;
+  LSESettings.ReadLSESettings(true);
 
 
   sheet.SetTreeViewMode( TRUE, TRUE, FALSE);

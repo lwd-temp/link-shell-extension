@@ -123,7 +123,7 @@
       <AdditionalDependencies>hardlink.lib;shlwapi.lib;user32.lib;Oleaut32.lib;ole32.lib;comctl32.lib;uxtheme.lib;mpr.lib;gdi32.lib;ntdll.lib;tre.lib;netapi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>.\HardLink.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>LinkShellExtension.def</ModuleDefinitionFile>
       <DelayLoadDLLs>uxtheme.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -170,7 +170,7 @@
       <AdditionalDependencies>hardlink.lib;shlwapi.lib;user32.lib;Oleaut32.lib;ole32.lib;comctl32.lib;uxtheme.lib;mpr.lib;gdi32.lib;ntdll.lib;netapi32.lib;tre.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>.\HardLink.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>LinkShellExtension.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>4194304</StackReserveSize>
@@ -215,7 +215,7 @@
       <AdditionalDependencies>hardlink.lib;shlwapi.lib;user32.lib;Oleaut32.lib;ole32.lib;comctl32.lib;uxtheme.lib;mpr.lib;gdi32.lib;ntdll.lib;tre.lib;netapi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>.\HardLink.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>LinkShellExtension.def</ModuleDefinitionFile>
       <DelayLoadDLLs>uxtheme.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -262,7 +262,7 @@
       <AdditionalDependencies>hardlink.lib;shlwapi.lib;user32.lib;Oleaut32.lib;ole32.lib;comctl32.lib;uxtheme.lib;mpr.lib;gdi32.lib;ntdll.lib;tre.lib;netapi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>.\HardLink.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>LinkShellExtension.def</ModuleDefinitionFile>
       <DelayLoadDLLs>uxtheme.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -279,8 +279,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CopyHook.cpp" />
-    <ClCompile Include="HardLink.cpp" />
-    <ClCompile Include="HardLinkMenu.cpp" />
+    <ClCompile Include="LinkShellExtension.cpp" />
+    <ClCompile Include="LinkShellMenu.cpp" />
     <ClCompile Include="IconOverlay.cpp" />
     <ClCompile Include="PropertySheetPage.cpp" />
     <ClCompile Include="StdAfx.cpp">
@@ -314,7 +314,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CustomBuild>
-    <None Include="HardLink.def" />
+    <None Include="LinkShellExtension.def" />
     <None Include="install\CodeSign.bat" />
     <None Include="install\CreateInstall.bat" />
     <None Include="install\GetTime.nsh" />
@@ -340,8 +340,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CopyHook.h" />
-    <ClInclude Include="HardLink.h" />
-    <ClInclude Include="HardLinkMenu.h" />
+    <ClInclude Include="LinkShellExtension.h" />
+    <ClInclude Include="LinkShellMenu.h" />
     <ClInclude Include="IconOverlay.h" />
     <ClInclude Include="localisation.h" />
     <ClInclude Include="PropertySheetPage.h" />

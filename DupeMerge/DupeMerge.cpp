@@ -4,10 +4,6 @@
 
 #include <stdafx.h>
 
-
-#include "hardlink.h"
-#include "HardlinkUtils.h"
-
 using namespace std;
 
 const char						exec_name[] = "DupeMerge";

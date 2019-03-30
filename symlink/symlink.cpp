@@ -5,18 +5,15 @@
 
 #include "stdafx.h"
 
+// Cmmon version number
 #include "..\HardlinkExtension\resource.h"
-
-#include "AsyncContext.h"
-#include "hardlink.h"
-#include "HardlinkUtils.h"
 
 #include "ProgressBar.h"
 #include "UacReuse.h"
 
 #include "symlink.h"
 
-_LSESettings  gLSESettings;
+LSESettings  gLSESettings;
 HINSTANCE     gLSEInstance = NULL;
 
 int
@@ -302,7 +299,7 @@ SmartMove(FILE* ArgFile)
       int r = FileList.FindHardLink (MoveLocation, 0, &aStats, &PathNameStatusList, &Context);
       FileList.HeadLogging(LogFile);
       
-      if (!(gLSESettings.Flags & eForceAbsoluteSymbolicLinks))
+      if (!(gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks))
         FileList.SetFlags(FileInfoContainer::eRelativeSymboliclinks);
 
       while (!Context.Wait(250))
@@ -369,13 +366,13 @@ ErrorCreating(
 )
 {
 	// Assemble message string
-	wchar_t *pMsgTxt = GetFormattedMlgMessage(aLSEInstance, gLSESettings.LanguageID, aMessage, aDirectory);
+	wchar_t *pMsgTxt = GetFormattedMlgMessage(aLSEInstance, gLSESettings.GetLanguageID(), aMessage, aDirectory);
 
 	wchar_t	MsgReason[MAX_PATH];
-	LoadStringEx(aLSEInstance, aReason, MsgReason, MAX_PATH, gLSESettings.LanguageID);
+	LoadStringEx(aLSEInstance, aReason, MsgReason, MAX_PATH, gLSESettings.GetLanguageID());
 
 	wchar_t	MsgCaption[MAX_PATH];
-	LoadStringEx(aLSEInstance, aCaption, MsgCaption, MAX_PATH, gLSESettings.LanguageID);
+	LoadStringEx(aLSEInstance, aCaption, MsgCaption, MAX_PATH, gLSESettings.GetLanguageID());
 
 	// Concat Message + Reason
 	wchar_t msg[HUGE_PATH];
@@ -608,7 +605,7 @@ ReplaceJunction(
   int iResult = ERROR_SUCCESS;
   wchar_t  JunctionTmpName[HUGE_PATH];
 
-  if (gLSESettings.Flags & eBackupMode)
+  if (gLSESettings.GetFlags() & eBackupMode)
   {
     SYSTEMTIME  time;
     GetSystemTime(&time);
@@ -640,7 +637,7 @@ ReplaceJunction(
     iResult = CreateJunction(arg0, arg1);
 
     // In Backup Mode restore the permissions of the junction
-    if (gLSESettings.Flags & eBackupMode)
+    if (gLSESettings.GetFlags() & eBackupMode)
       if (ERROR_SUCCESS == iResult)
       {
         _PathNameStatusList  pns;
@@ -681,7 +678,7 @@ ReplaceSymbolicLink(
   int iResult = ERROR_SUCCESS;
   wchar_t  SymlinkTmpName[HUGE_PATH];
 
-  if (gLSESettings.Flags & eBackupMode)
+  if (gLSESettings.GetFlags() & eBackupMode)
   {
     // temporarilly move the old symlink to some different name, so that 
     // we can copy its attributes to the newly created symlink
@@ -744,7 +741,7 @@ ReplaceSymbolicLink(
   // Create the symbolic link
   iResult = CreateSymboliclink (SymLinkSource, SymLinkTarget, dwFlags);
 
-  if (gLSESettings.Flags & eBackupMode)
+  if (gLSESettings.GetFlags() & eBackupMode)
   {
     if (ERROR_SUCCESS == iResult)
     {
@@ -789,7 +786,7 @@ ReplaceMountPoint(
   int iResult = ERROR_SUCCESS;
   wchar_t  MountPointTmpName[HUGE_PATH];
 
-  if (gLSESettings.Flags & eBackupMode)
+  if (gLSESettings.GetFlags() & eBackupMode)
   {
     // temporarilly move the old symlink to some different name, so that 
     // we can copy its attributes to the newly created symlink
@@ -821,7 +818,7 @@ ReplaceMountPoint(
     iResult = CreateMountPoint (arg1, arg0);
   }
 
-  if (gLSESettings.Flags & eBackupMode)
+  if (gLSESettings.GetFlags() & eBackupMode)
   {
     if (ERROR_SUCCESS == iResult)
     {
@@ -865,7 +862,7 @@ extern "C"
     // destroy memory during wcscpy_s() with _FILL_STRING
     _CrtSetDebugFillThreshold(0);
 
-    GetLSESettings(gLSESettings);
+    gLSESettings.ReadLSESettings();
 
     gLSEInstance = LoadLibraryEx( 
       L"HardlinkShellExt.dll\0",
@@ -885,7 +882,7 @@ extern "C"
     fopen_s(&f, tmpfile, "w");
 #endif
 
-    if (gLSESettings.Flags & eBackupMode)
+    if (gLSESettings.GetFlags() & eBackupMode)
     {
       BOOL b = EnableTokenPrivilege(SE_BACKUP_NAME);
       BOOL r = EnableTokenPrivilege(SE_RESTORE_NAME);
@@ -894,10 +891,10 @@ extern "C"
       if ( (FALSE == b) || (FALSE == r) )
       {
 	      wchar_t	MsgReason[MAX_PATH];
-	      LoadStringEx(gLSEInstance, IDS_STRING_BackupPrivilegesNotHeld, MsgReason, MAX_PATH, gLSESettings.LanguageID);
+	      LoadStringEx(gLSEInstance, IDS_STRING_BackupPrivilegesNotHeld, MsgReason, MAX_PATH, gLSESettings.GetLanguageID());
 
 	      wchar_t	MsgCaption[MAX_PATH];
-	      LoadStringEx(gLSEInstance, IDS_STRING_BackupFailed, MsgCaption, MAX_PATH, gLSESettings.LanguageID);
+	      LoadStringEx(gLSEInstance, IDS_STRING_BackupFailed, MsgCaption, MAX_PATH, gLSESettings.GetLanguageID());
 
 	      int mr = MessageBox ( NULL, 
 		      MsgReason,

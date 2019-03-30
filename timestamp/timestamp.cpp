@@ -1,7 +1,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include <winioctl.h>
+
 
 #include "timestamp.h"
 

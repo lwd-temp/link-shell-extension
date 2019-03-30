@@ -2,9 +2,12 @@
 
 #include "hardlink_types.h"
 
+// TODO include Murks
+#include "LSESettings.h"
+
 #include "MmfObject.h"
 #include "AsyncContext.h"
-#include "hardlink.h"
+#include "hardlinks.h"
 #include "Progressbar.h"
 
 #include "UACReuse.h"

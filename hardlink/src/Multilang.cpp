@@ -1,14 +1,11 @@
 /*
-	Copyright (C) 1999 - 2009, Hermann Schinagl, Hermann.Schinagl@gmx.net
+	Copyright (C) 1999 - 2019, Hermann Schinagl, Hermann.Schinagl@gmx.net
 */
 
 #include "stdafx.h"
 
 #include "hardlink_types.h"
 
-#include "AsyncContext.h"
-#include "MmfObject.h"
-#include "hardlink.h"
 #include "Multilang.h"
 
 

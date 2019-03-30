@@ -5,16 +5,14 @@
 
 #include "stdafx.h"
 
-#include "Progressbar.h"
 #include "CopyHook.h"
-#include "HardlinkUtils.h"
 
 
 
 extern UINT      g_cRefThisDll;    // Reference count of this DLL.
 
 extern HINSTANCE g_hInstance;
-extern _LSESettings gLSESettings;
+extern LSESettings gLSESettings;
 
 
 ///////////////////////////////////////////////////////////////
@@ -175,9 +173,9 @@ CopyCallback ( HWND hwnd,
 
     if (( wFunc == FO_RENAME || wFunc == FO_MOVE))
     {
-      GetLSESettings(gLSESettings, false);
+      gLSESettings.ReadLSESettings(false);
 
-      if (!(gLSESettings.Flags & eDisableSmartmove))
+      if (!(gLSESettings.GetFlags() & eDisableSmartmove))
       {
         DWORD DestAttr = GetFileAttributes(pszDestFile);
         HTRACE(L"LSE::CopyCallback pszSrcFile '%s' %08x\n", pszSrcFile, GetFileAttributes(pszSrcFile));
@@ -223,7 +221,7 @@ CopyCallback ( HWND hwnd,
           // Check if we are in Backup Mode. If yes we also have to do the FindHardlink elevated, because
           // it might happen, that FindHardlink should run over directories, which the explorer does not
           // have access permissions.
-          if (gLSESettings.Flags & eBackupMode)
+          if (gLSESettings.GetFlags() & eBackupMode)
 #endif
           {
             // Stop bar
@@ -264,7 +262,7 @@ CopyCallback ( HWND hwnd,
             FILE* LogFile = FileList.StartLogging(gLSESettings, L"SmartMove");
             int r = FileList.FindHardLink (MoveLocation, RefCount, &aStats, &PathNameStatusList, &Context);
             
-            if (!(gLSESettings.Flags & eForceAbsoluteSymbolicLinks))
+            if (!(gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks))
               FileList.SetFlags(FileInfoContainer::eRelativeSymboliclinks);
 
             while (!Context.Wait(250))
@@ -374,7 +372,7 @@ CopyCallback ( HWND hwnd,
         
           DeletePathNameStatusList(PathNameStatusList);
         } // end of Progress bar
-      } // if (!(gLSESettings.Flags & eDisableSmartmove))
+      } // if (!(gLSESettings.GetFlags() & eDisableSmartmove))
     } // if (( wFunc == FO_RENAME || wFunc == FO_MOVE)) 
 	}
 

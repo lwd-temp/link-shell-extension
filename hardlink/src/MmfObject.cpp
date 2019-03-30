@@ -6,9 +6,7 @@
 
 #include "hardlink_types.h"
 
-#include "AsyncContext.h"
 #include "MmfObject.h"
-#include "hardlink.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

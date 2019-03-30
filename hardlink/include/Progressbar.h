@@ -4,6 +4,7 @@
 
 #pragma once
 
+
 class Progressbar
 {
 protected:

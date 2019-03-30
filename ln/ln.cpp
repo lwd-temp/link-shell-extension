@@ -6,10 +6,6 @@
 
 #include "stdafx.h"
 
-#include "AsyncContext.h"
-#include "hardlink.h"
-#include "HardlinkUtils.h"
-
 #include "ln.h"
 
 #pragma hdrstop
@@ -1866,9 +1862,14 @@ wmain(
     // destroy memory during wcscpy_s() with _FILL_STRING
 #if defined _DEBUG
     _CrtSetDebugFillThreshold(0);
+
+    // TODO remove _CrtSetDebugFillThreshold
+
 #endif
     InitCreateHardlink ();
 
+    LSESettings s;
+    s.ReadLSESettings();
 
 #if 0
 

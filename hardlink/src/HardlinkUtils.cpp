@@ -1,14 +1,15 @@
 ﻿/*
-	Copyright (C) 1999 - 2009, Hermann Schinagl, Hermann.Schinagl@gmx.net
+	Copyright (C) 1999 - 2019, Hermann Schinagl, Hermann.Schinagl@gmx.net
 */
 
 #include "stdafx.h"
 
 #include "hardlink_types.h"
+#include "LSESettings.h"
 
 #include "MmfObject.h"
 #include "AsyncContext.h"
-#include "hardlink.h"
+#include "hardlinks.h"
 
 #include "moduleversion.h"
 
@@ -4282,8 +4283,11 @@ WildCard2RegExp(
   stringreplace(aString, wstring(L"~"), wstring(L"\\~"));
 }
 
+// How to determine if developer mode is on
 // https://stackoverflow.com/questions/41231586/how-to-detect-if-developer-mode-is-active-on-windows-10?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 // 
+// and how to enable
+// https://www.howtogeek.com/292914/what-is-developer-mode-in-windows-10/
 bool 
 IsDeveloperModeEnabled() 
 {
@@ -4352,3 +4356,196 @@ ResolveUNCPath(
   return aResolvedUNCPath;
 
 }
+
+
+void
+MakeAnsiString(
+  const wchar_t*  unistring,
+  char* ansistring
+)
+{
+  int	s = 0;
+  if (unistring)
+  {
+    while (unistring[s])
+    {
+      ansistring[s] = (char)unistring[s];
+      s++;
+    }
+  }
+  ansistring[s] = '\0';
+}
+
+void
+stringreplace(wstring& aThis, wstring& src, wstring& dest)
+{
+  size_t slen = src.size();
+  size_t  dlen = dest.size();
+
+  size_t  pos = aThis.find(src, 0);
+  while (pos != -1)
+  {
+    aThis.replace(pos, slen, dest);
+    pos = aThis.find(src, pos + dlen);
+  }
+}
+
+// MapNtStatusToWinError
+DWORD
+MapNtStatusToWinError(
+  NTSTATUS        aNtStatus
+)
+{
+  switch (aNtStatus)
+  {
+  case STATUS_ACCESS_DENIED:
+    return ERROR_ACCESS_DENIED;
+
+  case STATUS_OBJECT_NAME_INVALID:
+    return ERROR_INVALID_NAME;
+  }
+  return aNtStatus;
+}
+//----------------------------------------------------------------------
+//
+// _ChangeTokenPrivilege
+//
+//----------------------------------------------------------------------
+BOOL
+_ChangeTokenPrivilege(
+  __in LPCWSTR             PrivilegeName,
+  PrivilegeModification_t  aMode
+)
+{
+  TOKEN_PRIVILEGES tp;
+  LUID luid;
+  HANDLE	hToken;
+  TOKEN_PRIVILEGES tpPrevious;
+  DWORD cbPrevious = sizeof(TOKEN_PRIVILEGES);
+
+  //
+  // Check if we are allowed to change privileges
+  //
+  if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
+    return FALSE;
+
+  if (!LookupPrivilegeValue(NULL, PrivilegeName, &luid))
+  {
+    CloseHandle(hToken);
+    return FALSE;
+  }
+
+  //
+  // first pass.  get current privilege setting
+  //
+  tp.PrivilegeCount = 1;
+  tp.Privileges[0].Luid = luid;
+  tp.Privileges[0].Attributes = 0;
+
+  AdjustTokenPrivileges(
+    hToken,
+    FALSE,
+    &tp,
+    sizeof(TOKEN_PRIVILEGES),
+    &tpPrevious,
+    &cbPrevious
+  );
+
+  if (GetLastError() != ERROR_SUCCESS)
+  {
+    CloseHandle(hToken);
+    return FALSE;
+  }
+
+  //
+  // second pass.  set privilege based on previous setting
+  //
+  tpPrevious.PrivilegeCount = 1;
+  tpPrevious.Privileges[0].Luid = luid;
+  switch (aMode)
+  {
+  case eSetPrivilege:
+    tpPrevious.Privileges[0].Attributes |= SE_PRIVILEGE_ENABLED;
+
+    AdjustTokenPrivileges(
+      hToken,
+      FALSE,
+      &tpPrevious,
+      cbPrevious,
+      NULL,
+      NULL
+    );
+    break;
+
+  case eClearPrivilege:
+    tpPrevious.Privileges[0].Attributes &= ~SE_PRIVILEGE_ENABLED;
+
+    AdjustTokenPrivileges(
+      hToken,
+      FALSE,
+      &tpPrevious,
+      cbPrevious,
+      NULL,
+      NULL
+    );
+    break;
+
+  case eProbePrivilege:
+    if (tpPrevious.Privileges[0].Attributes & SE_PRIVILEGE_ENABLED)
+      SetLastError(ERROR_SUCCESS);
+    else
+      SetLastError(ERROR_PRIVILEGE_NOT_HELD);
+    break;
+
+  }
+
+  DWORD r = GetLastError();
+  CloseHandle(hToken);
+  return r == ERROR_SUCCESS;
+}
+
+//----------------------------------------------------------------------
+//
+// DisableTokenPrivilege
+//
+// Disables a named privilege
+//
+//----------------------------------------------------------------------
+BOOL
+DisableTokenPrivilege(
+  __in LPCWSTR PrivilegeName
+)
+{
+  return _ChangeTokenPrivilege(PrivilegeName, eClearPrivilege);
+}
+
+//----------------------------------------------------------------------
+//
+// EnableTokenPrivilege
+//
+// Enables a named privilege.
+//
+//----------------------------------------------------------------------
+BOOL
+EnableTokenPrivilege(
+  __in LPCWSTR PrivilegeName
+)
+{
+  return _ChangeTokenPrivilege(PrivilegeName, eSetPrivilege);
+}
+
+//----------------------------------------------------------------------
+//
+// ProbeTokenPrivilege
+//
+// Probes if a named privilege is set
+//
+//----------------------------------------------------------------------
+BOOL
+ProbeTokenPrivilege(
+  __in LPCWSTR PrivilegeName
+)
+{
+  return _ChangeTokenPrivilege(PrivilegeName, eProbePrivilege);
+}
+

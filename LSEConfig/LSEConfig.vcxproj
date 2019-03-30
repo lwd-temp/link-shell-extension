@@ -225,7 +225,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX64</TargetMachine>
-      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <UACExecutionLevel>
+      </UACExecutionLevel>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
