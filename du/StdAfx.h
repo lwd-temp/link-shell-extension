@@ -27,12 +27,14 @@
 
 using namespace std;
 
-#include <..\..\shared\tre-0.8.0\lib\regex.h>
-
 #include "resource.h"
 
-#include "..\hardlink\include\hardlink_types.h"
-#include "..\hardlink\src\MmfObject.h"
-#include "AsyncContext.h"
+#include <ShObjIdl.h>
+
+// regular expression parser
+#include <..\..\shared\tre-0.8.0\lib\regex.h>
+
+// Include interfaces from hardlink.lib
+#include "HardlinkLib.h"
 
 #pragma comment(lib, "wsock32.lib")

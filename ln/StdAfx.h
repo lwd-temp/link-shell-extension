@@ -42,8 +42,6 @@
 
 using namespace std;
 
-#include <..\..\shared\tre-0.8.0\lib\regex.h>
-
 #include <conio.h>
 
 #include <iostream>
@@ -62,9 +60,15 @@ using namespace std;
 
 #include "resource.h"
 
-#include "..\hardlink\include\hardlink_types.h"
-#include "..\hardlink\src\MmfObject.h"
+// regular expression parser
+#include <..\..\shared\tre-0.8.0\lib\regex.h>
 
+// Ultragetopt
 #define ULTRAGETOPT_REPLACE_GETOPT
 #include "..\Shared\ultragetopt.h"
+
+// Include interfaces from hardlink.lib
+#include "HardlinkLib.h"
+
+// Component specific includes
 

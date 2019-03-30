@@ -4,7 +4,6 @@
 
 #include "stdafx.h"
 
-#include "multilang.h"
 #include "hardlink_types.h"
 #include "AsyncContext.h"
 

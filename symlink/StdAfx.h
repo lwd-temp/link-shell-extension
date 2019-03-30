@@ -33,13 +33,12 @@ using namespace std;
 
 #include <ShlObj.h>
 
+#include "resource.h"
+
+// regular expression parser
 #include "..\..\shared\tre-0.8.0\lib\regex.h" 
 
-#include "hardlink_types.h"
-#include "..\hardlink\src\mmfobject.h"
-
-#include "multilang.h"
-
-#include "resource.h"
+// Include interfaces from hardlink.lib
+#include "HardlinkLib.h"
 
 #pragma comment(lib, "wsock32.lib")

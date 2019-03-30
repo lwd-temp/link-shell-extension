@@ -1,7 +1,5 @@
 #include "stdafx.h"
 
-#include "hardlink.h"
-
 ULONG64 gSize, gCount, gDirectories;
 
 void Usage()

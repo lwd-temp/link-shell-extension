@@ -5,7 +5,9 @@
 #pragma once
 
 #include "..\..\Shared\version\version.h"
+
 #include <ShObjIdl.h>
+#include <sddl.h>
 
 
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
@@ -32,6 +34,8 @@
 #include <tchar.h>
 #include <assert.h>
 #include <lm.h>
+
+#include <ntsysteminfo.h>
 
 
 //disable warnings on 255 char debug symbols
@@ -67,6 +71,5 @@ using namespace std;
 #include "md5.h"
 
 #include "psapi.h"
-
 
 

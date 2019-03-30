@@ -6,14 +6,12 @@
 #include "stdafx.h"
 
 #include "PropertySheetPage.h"
-#include "Progressbar.h"
-#include "HardlinkMenu.h"
-#include "HardlinkUtils.h"
+#include "LinkShellMenu.h"
 
 
 extern UINT       g_cRefThisDll;    // Reference count of this DLL.
 extern HINSTANCE  g_hInstance;
-extern _LSESettings gLSESettings;
+extern LSESettings gLSESettings;
 
 extern UINT       g_LockCount;
 
@@ -218,7 +216,7 @@ Initialize(
 	
 	DWORD	FileSystemFlags;
   int DriveType;
-  if (IsFileSystemNtfs(m_File, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType))
+  if (IsFileSystemNtfs(m_File, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType))
 	{
 		struct _stat stat;
 		_wstat (m_File, &stat);
@@ -276,7 +274,7 @@ AddPages (
   psp.pszTemplate = MAKEINTRESOURCE(IDD_LINKSHLEXT_PROPPAGE);
   //    psp.pszIcon     = MAKEINTRESOURCE(IDI_LINKSHLEXT_ICON_TAB);
   wchar_t ProPageCaption[MAX_PATH];
-  LoadStringEx(g_hInstance, IDS_STRING_PropPageCaption, ProPageCaption, MAX_PATH, gLSESettings.LanguageID);
+  LoadStringEx(g_hInstance, IDS_STRING_PropPageCaption, ProPageCaption, MAX_PATH, gLSESettings.GetLanguageID());
   psp.pszTitle    = ProPageCaption;
   psp.pfnDlgProc  = PropPageDlgProc;
 
@@ -410,13 +408,13 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
     {
       // Show Junction
       //
-      LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.LanguageID);
+      LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
       SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
-      LoadStringEx(g_hInstance, IDS_STRING_Junction, Buffer, MAX_PATH, gLSESettings.LanguageID);
+      LoadStringEx(g_hInstance, IDS_STRING_Junction, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
       SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
-      LoadStringEx(g_hInstance, IDS_STRING_Target, Buffer, MAX_PATH, gLSESettings.LanguageID);
+      LoadStringEx(g_hInstance, IDS_STRING_Target, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
       SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
       SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, Dest);
@@ -424,7 +422,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
 
       // Show Explore Target Button
       HWND hStatic = GetDlgItem (hwnd, IDC_EXPLORE_TARGET);
-      LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, Buffer, MAX_PATH, gLSESettings.LanguageID);
+      LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
       SetDlgItemText( hwnd, IDC_EXPLORE_TARGET, Buffer);
       ShowWindow(hStatic, SW_SHOWNORMAL);
 
@@ -441,13 +439,13 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
       {
         // Show Mountpoint
         //
-        LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.LanguageID);
+        LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
         SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
-        LoadStringEx(g_hInstance, IDS_STRING_MountPoint, Buffer, MAX_PATH, gLSESettings.LanguageID);
+        LoadStringEx(g_hInstance, IDS_STRING_MountPoint, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
         SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
-        LoadStringEx(g_hInstance, IDS_STRING_MountPointTarget, Buffer, MAX_PATH, gLSESettings.LanguageID);
+        LoadStringEx(g_hInstance, IDS_STRING_MountPointTarget, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
         SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
         SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, Dest);
@@ -465,7 +463,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
 
         // Show Explore Target Button
         HWND hStatic = GetDlgItem (hwnd, IDC_EXPLORE_TARGET);
-        LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, Buffer, MAX_PATH, gLSESettings.LanguageID);
+        LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
         SetDlgItemText( hwnd, IDC_EXPLORE_TARGET, Buffer);
         ShowWindow(hStatic, SW_SHOWNORMAL);
 
@@ -481,13 +479,13 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
         {
           // Show a Symbolic Link Directory
           //
-          LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.LanguageID);
+          LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
           SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
-          LoadStringEx(g_hInstance, IDS_STRING_LinkTypeSymlink, Buffer, MAX_PATH, gLSESettings.LanguageID);
+          LoadStringEx(g_hInstance, IDS_STRING_LinkTypeSymlink, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
           SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
-          LoadStringEx(g_hInstance, IDS_STRING_Target, Buffer, MAX_PATH, gLSESettings.LanguageID);
+          LoadStringEx(g_hInstance, IDS_STRING_Target, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
           SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
           int p = 0;
@@ -513,7 +511,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
 
           // Show Explore Target Button
           HWND hStatic = GetDlgItem (hwnd, IDC_EXPLORE_TARGET);
-          LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, Buffer, MAX_PATH, gLSESettings.LanguageID);
+          LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
           SetDlgItemText( hwnd, IDC_EXPLORE_TARGET, Buffer);
           ShowWindow(hStatic, SW_SHOWNORMAL);
         }
@@ -531,13 +529,13 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
     {
       // Show Symbolic Link Files
       //
-      LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.LanguageID);
+      LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
       SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
-      LoadStringEx(g_hInstance, IDS_STRING_LinkTypeSymlink, Buffer, MAX_PATH, gLSESettings.LanguageID);
+      LoadStringEx(g_hInstance, IDS_STRING_LinkTypeSymlink, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
       SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
-      LoadStringEx(g_hInstance, IDS_STRING_Target, Buffer, MAX_PATH, gLSESettings.LanguageID);
+      LoadStringEx(g_hInstance, IDS_STRING_Target, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
       SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
       int p = 0;
@@ -559,10 +557,10 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
       {
         // Show Hardlink
         //
-        LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.LanguageID);
+        LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
         SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
-        LoadStringEx(g_hInstance, IDS_STRING_Hardlink, Buffer, MAX_PATH, gLSESettings.LanguageID);
+        LoadStringEx(g_hInstance, IDS_STRING_Hardlink, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
         SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
         wchar_t		RefCountStr[64];
@@ -571,7 +569,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
 #else
         wsprintf(RefCountStr, L"%d", RefCount);
 #endif
-        LoadStringEx(g_hInstance, IDS_STRING_PropPageRefCount, Buffer, MAX_PATH, gLSESettings.LanguageID);
+        LoadStringEx(g_hInstance, IDS_STRING_PropPageRefCount, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
         SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
         SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, RefCountStr);
@@ -617,7 +615,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
           // to know that the reference count is > 1
           HWND hStatic = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM);
           ShowWindow(hStatic, SW_SHOWNORMAL);
-          LoadStringEx(g_hInstance, IDS_STRING_PropPageHardlinkEnum, Buffer, MAX_PATH, gLSESettings.LanguageID);
+          LoadStringEx(g_hInstance, IDS_STRING_PropPageHardlinkEnum, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
           SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM, Buffer);
 
           HWND hEdit = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKS);
@@ -665,7 +663,7 @@ BOOL OnApply ( HWND hwnd, PSHNOTIFY* phdr )
 
     if (_wcsicmp(pReparseProperties->Target, Destination))
     {
-      GetLSESettings(gLSESettings, false);
+      gLSESettings.ReadLSESettings(false);
 
       switch (pReparseProperties->Type)
       {

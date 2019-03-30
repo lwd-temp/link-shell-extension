@@ -27,12 +27,6 @@
     <ClCompile Include="CopyHook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HardLink.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HardLinkMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="IconOverlay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -45,11 +39,14 @@
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LinkShellExtension.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkShellMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="HardLink.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="res\Hardlink.ico">
       <Filter>Resource Files</Filter>
     </None>
@@ -98,15 +95,12 @@
     <None Include="install\HardlinkShellExt_win32_502.nsi">
       <Filter>Install</Filter>
     </None>
+    <None Include="LinkShellExtension.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CopyHook.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HardLink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HardLinkMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IconOverlay.h">
@@ -125,6 +119,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkShellExtension.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkShellMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

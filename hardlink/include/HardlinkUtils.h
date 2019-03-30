@@ -479,3 +479,42 @@ ResolveUNCPath(
   wchar_t* aUNCPath,
   wchar_t* aResolvedUNCPath
 );
+
+void
+MakeAnsiString(
+  const wchar_t*  unistring,
+  char*           ansistring
+);
+
+void
+stringreplace(
+  wstring& aThis,
+  wstring& src,
+  wstring& dest
+);
+
+// MapNtStatusToWinError
+DWORD
+MapNtStatusToWinError(
+  NTSTATUS        aNtStatus
+);
+
+// Token privilege calls
+enum PrivilegeModification_t
+{
+  eClearPrivilege,
+  eSetPrivilege,
+  eProbePrivilege
+};
+
+// EnableTokenPrivilege
+BOOL
+EnableTokenPrivilege(
+  __in LPCWSTR	PrivilegeName
+);
+
+BOOL
+ProbeTokenPrivilege(
+  __in LPCWSTR PrivilegeName
+);
+

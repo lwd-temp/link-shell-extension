@@ -31,11 +31,6 @@
 
 using namespace std;
 
-#include <..\..\shared\tre-0.8.0\lib\regex.h>
-
-#define ULTRAGETOPT_REPLACE_GETOPT
-#include "..\Shared\ultragetopt.h"
-
 #include <conio.h>
 
 #include <iostream>
@@ -45,6 +40,7 @@ using namespace std;
 
 #include <fcntl.h>
 #include <io.h>
+#include <winioctl.h>
 
 #include <StrSafe.h>
 #include "shlobj.h"
@@ -52,9 +48,16 @@ using namespace std;
 #include <WinSock.h>
 #pragma comment(lib, "wsock32.lib")
 
-#include "hardlink_types.h"
-#include "AsyncContext.h"
-#include "MmfObject.h"
-#include "hardlink.h"
-#include "HardlinkUtils.h"
+#include <ShObjIdl.h>
+
+// regular expression parser
+#include <..\..\shared\tre-0.8.0\lib\regex.h>
+
+// Ultragetopt
+#define ULTRAGETOPT_REPLACE_GETOPT
+#include "..\Shared\ultragetopt.h"
+
+// Include interfaces from hardlink.lib
+#include "HardlinkLib.h"
+
 
