@@ -1,3 +1,8 @@
 [user]
 	email = hermann@schinagl.priv.at
 	name = Hermann Schinagl
+[mergetool "sourcetree"]
+	trustExitCode = true
+	cmd = '' -wait -merge -3 \"$LOCAL\" \"$BASE\" \"$REMOTE\" \"$MERGED\"
+[difftool "sourcetree"]
+	cmd = '' \"$LOCAL\" \"$REMOTE\"

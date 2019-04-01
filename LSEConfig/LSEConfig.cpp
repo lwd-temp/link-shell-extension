@@ -21,6 +21,7 @@
 
 extern CMultiLanguage gMlg;
 extern LSESettings gLSESettings;
+HINSTANCE     g_hInstance = NULL;
 
 
 // CLSEConfigApp
@@ -70,6 +71,8 @@ BOOL CLSEConfigApp::InitInstance()
   PropPageIconSymlink   aPropPageIconSymlink;
   PropPageCustomize     aPropPageCustomize;
   
+  gLSESettings.Init();
+
   int LangCode;
   gLSESettings.GetValue(L"Language", &LangCode);
   gMlg.SetLangCode(LangCode);
@@ -78,8 +81,6 @@ BOOL CLSEConfigApp::InitInstance()
   // 
   // To initiate a CopySettings() if necessary
   //
-  LSESettings  LSESettings;
-  LSESettings.Init();
 
 
   sheet.SetTreeViewMode( TRUE, TRUE, FALSE);

@@ -23,3 +23,23 @@ DisposeAsync(
   CopyStatistics&       Stats2
 );
 
+#define SYMLINKARGS L"symlink.args"
+
+FILE*
+OpenFileForExeHelper(
+  wchar_t* curdir,
+  wchar_t* sla_quoted
+);
+
+int
+ForkExeHelper(
+  wchar_t*	curdir,
+  wchar_t*	sla_quoted
+);
+
+void WriteUACHelperArgs(
+  FILE*           aArgsFile,
+  const wchar_t   aFunction,
+  const wchar_t*  aArgument1,
+  const wchar_t*  aArgument2
+);

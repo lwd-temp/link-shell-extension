@@ -11,8 +11,11 @@ GetCurrentSid(LPWSTR* aSid);
 class LSESettings
 {
 public:
-  LSESettings() { Init(); };
-  ~LSESettings() {};
+  LSESettings() :
+    m_Sid{ 0 },
+    m_LseRegistryLocation { 0 }
+  { };
+  ~LSESettings() { };
 
   // Copy the settings from HKLM to HKCU
   int CopySettings(
@@ -81,11 +84,13 @@ public:
   const int GetJunctionOverlayPrio()const { return m_JunctionOverlayPrio; };
   const int GetSymboliclinkOverlayPrio() const { return m_SymboliclinkOverlayPrio; };
   const HKEY GetUserHive() const { return m_Key; }
-  void Init();
+  void Init(wchar_t* aSid = nullptr);
+  void SetSid(wchar_t* aSid) { wcscpy_s(m_Sid, MAX_PATH, aSid); };
 
 
 private:
   wchar_t m_LseRegistryLocation[MAX_PATH];
+  wchar_t m_Sid[MAX_PATH];
   HKEY m_Key;
   void AssembleLseRegLocation();
 

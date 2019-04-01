@@ -234,7 +234,7 @@ CopyCallback ( HWND hwnd,
             wchar_t sla_quoted[HUGE_PATH];
             wchar_t curdir[HUGE_PATH];	
             FILE* SmartMoveArgs = OpenFileForExeHelper(curdir, sla_quoted);
-	          fwprintf(SmartMoveArgs, L"-r \"%s\" \"%s\"\n", L"not used", L"not used");
+            WriteUACHelperArgs(SmartMoveArgs, 'r', L"not used", L"not used");
 
             FileList.SetFlags(FileInfoContainer::eBackupMode);
 
@@ -314,7 +314,7 @@ CopyCallback ( HWND hwnd,
                 wchar_t sla_quoted[HUGE_PATH];
                 wchar_t curdir[HUGE_PATH];	
                 FILE* SmartMoveArgs = OpenFileForExeHelper(curdir, sla_quoted);
-		            fwprintf(SmartMoveArgs, L"-r \"%s\" \"%s\"\n", L"not used", L"not used");
+                WriteUACHelperArgs(SmartMoveArgs, 'r', L"not used", L"not used");
 
                 // persist FileList
                 FileList.Save(SmartMoveArgs);

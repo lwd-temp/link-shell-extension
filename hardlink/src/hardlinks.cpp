@@ -6048,6 +6048,7 @@ Load(
 {
   wchar_t Filename[HUGE_PATH];
 
+  // Read the files & directories
   int FileInfoSize = 0;
   fwscanf_s(aSourceFile, L"%x\n", &FileInfoSize);
   while (!feof(aSourceFile) && FileInfoSize-- > 0)
@@ -6168,10 +6169,9 @@ Save(
   // Save all filenames
   fwprintf(aDestFile, L"%zx\n", m_Filenames.size()); 
 
-  _Pathes::iterator	PathIter;
-  for (PathIter = m_Filenames.begin(); PathIter != m_Filenames.end(); ++PathIter)
+  for (auto PathIter : m_Filenames)
   {
-    FileInfo*	pFileInfo = *PathIter;
+    FileInfo*	pFileInfo = PathIter;
     
     // Save properties common to all type of items
     fwprintf(aDestFile, L"%s\"%x,%x,%x,%x,%x\n", 

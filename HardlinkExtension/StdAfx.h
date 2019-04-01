@@ -67,7 +67,6 @@ using namespace std;
 
 // Component specific includes
 #include "localisation.h"
-#include "Utils.h"
 
 
 // {0A479751-02BC-11d3-A855-0004AC2568AA}

@@ -12,8 +12,8 @@
 // #define SYMLINK_OUTPROC 0
 
 // define if we want to fork symlink.exe to perform all operations
-// #define SYMLINK_FORCE
-// #define SYMLINK_OUTPROC 1
+#define SYMLINK_FORCE
+#define SYMLINK_OUTPROC 1
 
 // #define FIND_HARDLINK_DEBUG // DEBUG_DEFINES
 
@@ -32,6 +32,7 @@
 
 // #define PRINT_DISPOSE_DURATION
 
+// If you want not to delete the symlinks.args in release builds. Debug keep them anyhow
 // #define DEBUG_DO_NOT_DELETE_SYMLINKS_ARGS
 
 // #define DEBUG_REGEXP_SEAN_MALONEY // DEBUG_DEFINES
@@ -83,6 +84,9 @@
 #define PATH_NAMESPACE_ROOT_SIZE (sizeof(PATH_NAMESPACE_ROOT) - 1) / sizeof(wchar_t)
 
 #define NULL_STRING L"nul"
+
+#define EXPLORER L"explorer.exe"
+
 
 #define HARDLINK_TRACELEVEL_BRIEF     0x00
 #define HARDLINK_TRACELEVEL_CHANGED   0x10

@@ -538,7 +538,7 @@ class FileInfo
 	    m_FileSize.ul64 = 0;
 	    m_Hash64_1 = 0;
 	    m_Hash64_2 = 0;
-	    m_pMmfObject = NULL; 
+	    m_pMmfObject = nullptr; 
     };
 
 
@@ -1696,7 +1696,6 @@ class FileInfoContainer
       wchar_t*      a_String,
       _RegExpList&  a_RegExpList
     );
-
 
 	protected:
     _Pathes	                  m_Filenames;

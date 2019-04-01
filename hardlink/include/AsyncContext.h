@@ -29,7 +29,7 @@ class AsyncContext
     Status_t          m_Status;
 
   public:
-   const Effort& GetProgress() { return m_Progress; };
+    const Effort& GetProgress() { return m_Progress; };
     void Reset() { m_Progress.Reset(); m_SnapShotValue.Reset(); };
     void CreateSnapShot() { m_SnapShotValue = m_Progress; };
     int Add2SnapShot(const __int64 & aPoints, const __int64 & aSize, const __int64 & aItems);

@@ -1767,7 +1767,7 @@ DropHardLink(
 		  if (m_pTargets[i].m_Flags & eFile)
       {
 			  // Write the command file, which is read by the elevated process
-			  fwprintf(HardlinkArgs, L"-h \"%s\" \"%s\"\n", m_pTargets[i].m_Path, dest);
+        WriteUACHelperArgs(HardlinkArgs, 'h', m_pTargets[i].m_Path, dest);
       }
     }
     fclose(HardlinkArgs);
@@ -1819,7 +1819,11 @@ DropSymbolicLink(
 	wchar_t curdir[HUGE_PATH];	
   FILE* SymlinkArgs = NULL;
   
+#if defined SYMLINK_FORCE
+  if (SYMLINK_OUTPROC)
+#else
   if (Elevation)
+#endif
     SymlinkArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
 	// Write the args
@@ -1862,12 +1866,16 @@ DropSymbolicLink(
         dwSymLinkAllowUnprivilegedCreation = SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
       }
       
+#if defined SYMLINK_FORCE
+      if (SYMLINK_OUTPROC)
+#else
       if (Elevation)
+#endif
       {
         if (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks)
-          fwprintf(SymlinkArgs, L"-F \"%s\" \"%s\"\n", dest, m_pTargets[i].m_Path);
+          WriteUACHelperArgs(SymlinkArgs, 'F', dest, m_pTargets[i].m_Path);
         else
-          fwprintf(SymlinkArgs, L"-f \"%s\" \"%s\"\n", dest, m_pTargets[i].m_Path);
+          WriteUACHelperArgs(SymlinkArgs, 'f', dest, m_pTargets[i].m_Path);
       }
       else
       {
@@ -1919,15 +1927,13 @@ DropSymbolicLink(
         else
         {
           if (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks)
-            fwprintf(SymlinkArgs, L"-D \"%s\" \"%s\"\n", dest, m_pTargets[i].m_Path);
-          else
-            fwprintf(SymlinkArgs, L"-d \"%s\" \"%s\"\n", dest, m_pTargets[i].m_Path);
+            WriteUACHelperArgs(SymlinkArgs, 'D', dest, m_pTargets[i].m_Path);
+           else
+            WriteUACHelperArgs(SymlinkArgs, 'd', dest, m_pTargets[i].m_Path);
         }
       }
     }
 	}
-  if (Elevation)
-	  fclose (SymlinkArgs);
 
   
 #if defined SYMLINK_FORCE
@@ -1936,6 +1942,8 @@ DropSymbolicLink(
   if (Elevation)
 #endif
   {
+    fclose(SymlinkArgs);
+
     // Create the Symbolic Links
     DWORD r = ForkExeHelper(curdir, sla_quoted);
     if (r)
@@ -1965,146 +1973,146 @@ DropJunction(
 	Target&		aTarget
 )
 {
-	WCHAR		dest[HUGE_PATH];
+  WCHAR		dest[HUGE_PATH];
 
-	PathAddBackslash(aTarget.m_Path);
+  PathAddBackslash(aTarget.m_Path);
 
-	// Only get the data from the clipboard if we do not already
-	// have data in m_pTargets
-	// The idea behind is to support Pick/Drop in parallel to the
-	// drag-drop handler, which does not put data onto the clipboard
-	// but does it only via m_pTargets
-	if (!m_nTargets)
-		ClipboardToSelection(false);
+  // Only get the data from the clipboard if we do not already
+  // have data in m_pTargets
+  // The idea behind is to support Pick/Drop in parallel to the
+  // drag-drop handler, which does not put data onto the clipboard
+  // but does it only via m_pTargets
+  if (!m_nTargets)
+    ClipboardToSelection(false);
 
-	// Under e.g c:\program Files (x86) it is not allowed to create
-	// junctions without UAC, so we have to fork in that case and
-	// have all variables prepared
-	bool CreateJunctionsViaHelperExe = false;
-	wchar_t sla_quoted[HUGE_PATH];
-	wchar_t* sla = &sla_quoted[1];
-	wchar_t curdir[HUGE_PATH];	
-	FILE *JunctionArgs = NULL;
+  // Under e.g c:\program Files (x86) it is not allowed to create
+  // junctions without UAC, so we have to fork in that case and
+  // have all variables prepared
+  bool CreateJunctionsViaHelperExe = false;
+  wchar_t sla_quoted[HUGE_PATH];
+  wchar_t* sla = &sla_quoted[1];
+  wchar_t curdir[HUGE_PATH];
+  FILE *JunctionArgs = NULL;
 
-	for (ULONG i = 0; i < m_nTargets; i++)
-	{
-		if (m_pTargets[i].m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
-		{
-			WCHAR	DestNoJunction[HUGE_PATH];
-			WCHAR	SourceNoJunction[HUGE_PATH];
+  for (ULONG i = 0; i < m_nTargets; i++)
+  {
+    if (m_pTargets[i].m_Flags & (eDir | eJunction | eVolume | eMountPoint | eSymbolicLink))
+    {
+      WCHAR	DestNoJunction[HUGE_PATH];
+      WCHAR	SourceNoJunction[HUGE_PATH];
 
-			wchar_t		dp[MAX_PATH];
-			wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
+      wchar_t		dp[MAX_PATH];
+      wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
 
-			CreateFileName(
+      CreateFileName(
         g_hInstance,
         gLSESettings.GetLanguageID(),
-				TopMenuEntries[eTopMenuJunction], 
-				TopMenuEntries[eTopMenuTo], 
-				aTarget.m_Path, 
-				pFilename, 
-				dest,
+        TopMenuEntries[eTopMenuJunction],
+        TopMenuEntries[eTopMenuTo],
+        aTarget.m_Path,
+        pFilename,
+        dest,
         IDS_STRING_eTopMenuOfOrderXP_1);
-	
-			ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction, HUGE_PATH);
-			PathAddBackslash(SourceNoJunction);
-			ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
-			if (StrStrI(DestNoJunction, SourceNoJunction))
-			{
-				HTRACE(L"LSE::DropJunction ERR: '%s' -> '%s', %ld\n", SourceNoJunction, DestNoJunction, m_pTargets[i].m_Flags);
-				ErrorCreating(dest, 
-					IDS_STRING_ErrExplorerCanNotCreateJunction, 
-					IDS_STRING_ErrCreatingJunction,
-					IDS_STRING_ErrDestSrcCircular
-				);
-			}
-			else
-			{
-				HTRACE(L"LSE::DropJunction: '%s' -> '%s', %ld\n", m_pTargets[i].m_Path, dest, m_pTargets[i].m_Flags);
-				DWORD r = CreateJunction(dest, m_pTargets[i].m_Path);
-				if (r)
-				{
-					// With Vista & W7, we are not allowed to create Junctions in folders like
-					// c:\Program Files (x86) wihtout UAC, so in this special case, the creation
-					// of junction has to be relayed to an elevated .exe as done with Symbolic links
-					if ((ERROR_ALREADY_EXISTS != r) && ElevationNeeded())
-					{
-						// Write the file for the args
-						if (!JunctionArgs)
-						{
-							// Get the current path of extension installation
-							sla_quoted[0] = '\"';
 
-							GetTempPath(HUGE_PATH, curdir);
-							wcscpy(sla, curdir);
-							wcscat(sla, SYMLINKARGS);
+      ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction, HUGE_PATH);
+      PathAddBackslash(SourceNoJunction);
+      ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
+      if (StrStrI(DestNoJunction, SourceNoJunction))
+      {
+        HTRACE(L"LSE::DropJunction ERR: '%s' -> '%s', %ld\n", SourceNoJunction, DestNoJunction, m_pTargets[i].m_Flags);
+        ErrorCreating(dest,
+          IDS_STRING_ErrExplorerCanNotCreateJunction,
+          IDS_STRING_ErrCreatingJunction,
+          IDS_STRING_ErrDestSrcCircular
+        );
+      }
+      else
+      {
+        HTRACE(L"LSE::DropJunction: '%s' -> '%s', %ld\n", m_pTargets[i].m_Path, dest, m_pTargets[i].m_Flags);
+        DWORD r = CreateJunction(dest, m_pTargets[i].m_Path);
+        if (r)
+        {
+          // With Vista & W7, we are not allowed to create Junctions in folders like
+          // c:\Program Files (x86) wihtout UAC, so in this special case, the creation
+          // of junction has to be relayed to an elevated .exe as done with Symbolic links
+          if ((ERROR_ALREADY_EXISTS != r) && ElevationNeeded())
+          {
+            // Write the file for the args
+            if (!JunctionArgs)
+            {
+              // Get the current path of extension installation
+              sla_quoted[0] = '\"';
 
-							JunctionArgs = _wfopen (sla, L"wb");
-						}
-						// Write the command file, which is read by the elevated process
-						fwprintf(JunctionArgs, L"-j \"%s\" \"%s\"\n", dest, m_pTargets[i].m_Path);
-						CreateJunctionsViaHelperExe = true;
-					}
-					else
+              GetTempPath(HUGE_PATH, curdir);
+              wcscpy(sla, curdir);
+              wcscat(sla, SYMLINKARGS);
+
+              JunctionArgs = _wfopen(sla, L"wb");
+            }
+            // Write the command file, which is read by the elevated process
+            WriteUACHelperArgs(JunctionArgs, 'j', dest, m_pTargets[i].m_Path);
+            CreateJunctionsViaHelperExe = true;
+          }
+          else
           {
             switch (r)
             {
-              case ERROR_ALREADY_EXISTS:
-                ErrorCreating(dest, 
-                  IDS_STRING_ErrExplorerAutoRenAlreadyExists, 
-                  IDS_STRING_ErrCreatingHardlink,
-                  IDS_STRING_ErrHardlinkFailed
-                  );
+            case ERROR_ALREADY_EXISTS:
+              ErrorCreating(dest,
+                IDS_STRING_ErrExplorerAutoRenAlreadyExists,
+                IDS_STRING_ErrCreatingHardlink,
+                IDS_STRING_ErrHardlinkFailed
+              );
               break;
 
-              default:
-                ErrorFromSystem(r);
+            default:
+              ErrorFromSystem(r);
               break;
             }
           }
-				}
-			}
-				
-		}
+        }
+      }
 
-		// If files were selected aside directories or junction
-		// create hardlinks for the files
-		if (m_pTargets[i].m_Flags & eFile)
-		{
-			int result = CreateHardlink(m_pTargets[i].m_Path, dest);
-			if (ERROR_SUCCESS != result)
-				ErrorFromSystem(result);
-		}
-	}
+    }
+
+    // If files were selected aside directories or junction
+    // create hardlinks for the files
+    if (m_pTargets[i].m_Flags & eFile)
+    {
+      int result = CreateHardlink(m_pTargets[i].m_Path, dest);
+      if (ERROR_SUCCESS != result)
+        ErrorFromSystem(result);
+    }
+  }
 
 #if defined SYMLINK_FORCE
   if (SYMLINK_OUTPROC)
 #else
   if (CreateJunctionsViaHelperExe)
 #endif
-	{
-		fclose(JunctionArgs);
-		DWORD r = ForkExeHelper(curdir, sla_quoted);
-		if (r)
+  {
+    fclose(JunctionArgs);
+    DWORD r = ForkExeHelper(curdir, sla_quoted);
+    if (r)
     {
       switch (r)
       {
-        case ERROR_ALREADY_EXISTS:
-          ErrorCreating(dest, 
-            IDS_STRING_ErrExplorerAutoRenAlreadyExists, 
-            IDS_STRING_ErrCreatingHardlink,
-            IDS_STRING_ErrHardlinkFailed
-            );
+      case ERROR_ALREADY_EXISTS:
+        ErrorCreating(dest,
+          IDS_STRING_ErrExplorerAutoRenAlreadyExists,
+          IDS_STRING_ErrCreatingHardlink,
+          IDS_STRING_ErrHardlinkFailed
+        );
         break;
 
-        default:
-          ErrorFromSystem(r);
+      default:
+        ErrorFromSystem(r);
         break;
       }
     }
-	}
+  }
 
-	return NOERROR;
+  return NOERROR;
 }
 
 HRESULT 
@@ -2184,7 +2192,7 @@ DeleteJunction(
 						JunctionArgs = _wfopen (sla, L"wb");
 					}
 					// Write the command file, which is read by the elevated process
-					fwprintf(JunctionArgs, L"-k \"%s\" \"empty\"\n", m_pTargets[i].m_Path);
+          WriteUACHelperArgs(JunctionArgs, 'k', L"empty", m_pTargets[i].m_Path);
 					CreateJunctionsViaHelperExe = true;
 				}
 				else
@@ -2277,7 +2285,7 @@ DropMountPoint(
         FILE *MountpointArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
 				// Write the command file, which is read by the elevated process
-				fwprintf(MountpointArgs, L"-m \"%s\" \"%s\"\n", m_pTargets[0].m_Path, dest);
+        WriteUACHelperArgs(MountpointArgs, 'm', m_pTargets[0].m_Path, dest);
 				fclose(MountpointArgs);
 
 				RetVal = ForkExeHelper(curdir, sla_quoted);
@@ -2326,35 +2334,35 @@ HardLinkExt::
 DeleteMountPoint(
 )
 {
-	wchar_t sla_quoted[HUGE_PATH];
-	wchar_t curdir[HUGE_PATH];	
-	bool RelayToSymlink = false;
-	FILE *Arguments = NULL;
+  wchar_t sla_quoted[HUGE_PATH];
+  wchar_t curdir[HUGE_PATH];
+  bool RelayToSymlink = false;
+  FILE *Arguments = NULL;
 
   Arguments = OpenFileForExeHelper(curdir, sla_quoted);
 
-	for (UINT i = 0; i < m_nTargets; i++)
-	{
-		DWORD RetVal;
-		if (m_pTargets[i].m_Flags & eMountPoint)  
-		{
-			// With Vista it is not allowed to unmount a drive
-			// without being Administrator
-			if (ElevationNeeded())
-			{
-				// Write the command file, which is read by the elevated process
-				fwprintf(Arguments, L"-n \"%s\" \"empty\"\n", m_pTargets[i].m_Path);
-				RelayToSymlink = true;
-			}
-			else
-			{
-				RetVal = ::DeleteMountPoint(m_pTargets[i].m_Path);
-				RemoveDirectory(m_pTargets[i].m_Path);
-				if (S_OK != RetVal)
-					ErrorFromSystem(RetVal);
-			}
-		}
-	} // for (UINT i = 0; i < m_nTargets; i++)
+  for (UINT i = 0; i < m_nTargets; i++)
+  {
+    DWORD RetVal;
+    if (m_pTargets[i].m_Flags & eMountPoint)
+    {
+      // With Vista it is not allowed to unmount a drive
+      // without being Administrator
+      if (ElevationNeeded())
+      {
+        // Write the command file, which is read by the elevated process
+        WriteUACHelperArgs(Arguments, 'n', L"empty", m_pTargets[i].m_Path);
+        RelayToSymlink = true;
+      }
+      else
+      {
+        RetVal = ::DeleteMountPoint(m_pTargets[i].m_Path);
+        RemoveDirectory(m_pTargets[i].m_Path);
+        if (S_OK != RetVal)
+          ErrorFromSystem(RetVal);
+      }
+    }
+  } // for (UINT i = 0; i < m_nTargets; i++)
 
   fclose(Arguments);
 
@@ -2365,10 +2373,10 @@ DeleteMountPoint(
 #endif
   {
     DWORD r = ForkExeHelper(curdir, sla_quoted);
-		if (r)
-			ErrorFromSystem(GetLastError());
-	}
-	return NOERROR;
+    if (r)
+      ErrorFromSystem(GetLastError());
+  }
+  return NOERROR;
 }
 
 HRESULT
@@ -2591,7 +2599,7 @@ SmartMirror(
       wchar_t curdir[HUGE_PATH];	
       FILE* SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
-      fwprintf(SmartCopyArgs, L"-w \"n\" \"n\"\n");
+      WriteUACHelperArgs(SmartCopyArgs, 'w', L"not used", L"not used");
 
       // persist MirrorList
       MirrorList.SetAnchorPath(MirrorPathList);
@@ -2696,8 +2704,8 @@ SmartMirror(
           wchar_t curdir[HUGE_PATH];	
           FILE* SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
-	        fwprintf(SmartCopyArgs, L"-w \"n\" \"n\"\n");
-
+          WriteUACHelperArgs(SmartCopyArgs, 'w', L"not used", L"not used");
+          
           // persist MirrorList
           MirrorList.Save(SmartCopyArgs);
           CleanList.Save(SmartCopyArgs);
@@ -2729,7 +2737,7 @@ SmartMirror(
           // If they are equal everything is fine
           //
           SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
-			    fwprintf(SmartCopyArgs, L"-s \"%s\" \"%s\"\n", L"not used", L"not used");
+          WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
           FileList2.Save(SmartCopyArgs);
           fclose(SmartCopyArgs);
   #endif
@@ -3008,12 +3016,12 @@ SmartXXX(
       switch (aMode)
       {
         case FileInfoContainer::eSmartCopy:
-		      fwprintf(SmartCopyArgs, L"-s \"n\" \"n\"\n");
-        break;
+          WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+          break;
       
         case FileInfoContainer::eSmartClone:
-		      fwprintf(SmartCopyArgs, L"-t \"n\" \"n\"\n");
-        break;
+          WriteUACHelperArgs(SmartCopyArgs, 't', L"not used", L"not used");
+          break;
       }
 
       // persist FileList
@@ -3108,12 +3116,12 @@ SmartXXX(
           switch (aMode)
           {
             case FileInfoContainer::eSmartCopy:
-			        fwprintf(SmartCopyArgs, L"-s \"n\" \"n\"\n");
-            break;
+              WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+              break;
           
             case FileInfoContainer::eSmartClone:
-			        fwprintf(SmartCopyArgs, L"-t \"n\" \"n\"\n");
-            break;
+              WriteUACHelperArgs(SmartCopyArgs, 't', L"not used", L"not used");
+              break;
           }
 
           // persist FileList
@@ -3145,7 +3153,7 @@ SmartXXX(
           // If they are equal everything is fine
           //
           SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
-			    fwprintf(SmartCopyArgs, L"-s \"%s\" \"%s\"\n", L"not used", L"not used");
+          WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
           FileList2.Save(SmartCopyArgs);
           fclose(SmartCopyArgs);
   #endif
@@ -3276,7 +3284,7 @@ ReplaceJunction(
       FILE* JunctionArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
 			// Write the command file, which is read by the elevated process
-			fwprintf(JunctionArgs, L"-l \"%s\" \"%s\"\n", aSource, aTarget);
+      WriteUACHelperArgs(JunctionArgs, 'l', aSource, aTarget);
 			fclose(JunctionArgs);
 
 			RetVal = ForkExeHelper(curdir, sla_quoted);
@@ -3381,17 +3389,17 @@ ReplaceSymbolicLink(
     {
 		  // Write the command file, which is read by the elevated process
       if (SYMLINK_FLAG_RELATIVE == SymbolicLinkRelation)
-        fwprintf(Arguments, L"-e \"%s\" \"%s\"\n", aSource, aTarget);
+        WriteUACHelperArgs(Arguments, 'e', aSource, aTarget);
       else
-        fwprintf(Arguments, L"-E \"%s\" \"%s\"\n", aSource, aTarget);
+        WriteUACHelperArgs(Arguments, 'E', aSource, aTarget);
     }
     else
     {
       PathRemoveBackslash(aSource);
       if (SYMLINK_FLAG_RELATIVE == SymbolicLinkRelation)
-        fwprintf(Arguments, L"-g \"%s\" \"%s\"\n", aSource, aTarget);
+        WriteUACHelperArgs(Arguments, 'g', aSource, aTarget);
       else
-        fwprintf(Arguments, L"-G \"%s\" \"%s\"\n", aSource, aTarget);
+        WriteUACHelperArgs(Arguments, 'G', aSource, aTarget);
     }
 
     fclose(Arguments);
@@ -3478,8 +3486,8 @@ ReplaceMountPoint(
     FILE* Arguments = OpenFileForExeHelper(curdir, sla_quoted);
 
 		// Write the command file, which is read by the elevated process
-		fwprintf(Arguments, L"-o \"%s\" \"%s\"\n", aSource, aTarget);
-		fclose(Arguments);
+    WriteUACHelperArgs(Arguments, 'o', aSource, aTarget);
+    fclose(Arguments);
 
 		RetVal = ForkExeHelper(curdir, sla_quoted);
 	}
@@ -3760,11 +3768,11 @@ DropDeloreanCopy(
 
       if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
         // Delorean Copy
-        fwprintf(SmartCopyArgs, L"-v \"n\" \"n\"\n");
+        WriteUACHelperArgs(SmartCopyArgs, 'v', L"not used", L"not used");
       else
         // SmartCopy
-        fwprintf(SmartCopyArgs, L"-s \"n\" \"n\"\n");
-      
+        WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+
       // persist CloneList
       CloneList.SetAnchorPath(Backup0PathList);
       CloneList.Save(SmartCopyArgs);
@@ -3916,11 +3924,11 @@ DropDeloreanCopy(
 
           if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
             // Delorean Copy
-            fwprintf(SmartCopyArgs, L"-v \"n\" \"n\"\n");
+            WriteUACHelperArgs(SmartCopyArgs, 'v', L"not used", L"not used");
           else
             // SmartCopy
-            fwprintf(SmartCopyArgs, L"-s \"n\" \"n\"\n");
-          
+            WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+
           // persist CloneList
           CloneList.Save(SmartCopyArgs);
   			  
@@ -3959,7 +3967,7 @@ DropDeloreanCopy(
           // If they are equal everything is fine
           //
           SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
-			    fwprintf(SmartCopyArgs, L"-s \"%s\" \"%s\"\n", L"not used", L"not used");
+          WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
           FileList2.Save(SmartCopyArgs);
           fclose(SmartCopyArgs);
   #endif

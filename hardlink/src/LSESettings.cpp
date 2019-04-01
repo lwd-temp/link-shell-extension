@@ -534,8 +534,11 @@ bool GetCurrentSid(LPWSTR* aSid)
 
 
 void
-LSESettings::Init()
+LSESettings::Init(wchar_t* aSid)
 {
+  if (aSid)
+    wcscpy_s(m_Sid, MAX_PATH, aSid);
+
   AssembleLseRegLocation();
   ReadLSESettings(true);
 }
@@ -543,12 +546,9 @@ LSESettings::Init()
 void
 LSESettings::AssembleLseRegLocation()
 {
-  wchar_t*  currentSid;
-  bool bSidValid = GetCurrentSid(&currentSid);
-
-  if (bSidValid)
+  if (m_Sid[0])
   {
-    swprintf_s(m_LseRegistryLocation, MAX_PATH, L"%s\\%s", currentSid, LSE_REGISTRY_LOCATION);
+    swprintf_s(m_LseRegistryLocation, MAX_PATH, L"%s\\%s", m_Sid, LSE_REGISTRY_LOCATION);
     m_Key = HKEY_USERS;
   }
   else
@@ -556,7 +556,6 @@ LSESettings::AssembleLseRegLocation()
     wcscpy_s(m_LseRegistryLocation, MAX_PATH, LSE_REGISTRY_LOCATION);
     m_Key = HKEY_CURRENT_USER;
   }
-  LocalFree(currentSid);
 }
 
 //--------------------------------------------------------------------
