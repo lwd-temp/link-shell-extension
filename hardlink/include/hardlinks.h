@@ -40,6 +40,7 @@ extern "C"
 }
 
 EXTERN OSVERSIONINFO            gVersionInfo;
+EXTERN LSESettings      gLSESettings;
 
 bool
 CheckFileSystemType(
@@ -368,36 +369,6 @@ bool CheckIfOnSameDrive(
 	const wchar_t* aPath1, 
 	const wchar_t* aPath2
 );
-
-
-class _ArgvPath
-{
-public:
-  wstring  Argv;
-  wstring  ArgvOrg;
-  wstring  ArgvDest;
-  int           DriveType;
-  int           FileAttribute;
-  int           Flags;
-
-  enum {
-    Created = 1,
-    Anchor = 2,
-  };
-
-  _ArgvPath() : DriveType(0), FileAttribute(0), Flags (0) {};
-};
-
-
-typedef vector<_ArgvPath>	_ArgvList;
-typedef vector<_ArgvPath>::iterator	_ArgvListIterator;
-
-typedef vector<wstring>	_StringList;
-typedef vector<wstring>::iterator	_StringListIterator;
-
-typedef pair<wstring, DWORD> _StringMapPair;
-typedef map<wstring, DWORD> _StringMap;
-
 
 
 
@@ -2694,25 +2665,6 @@ class FileInfoContainer
 		};
 
 };
-
-// SupportedFileSystems
-//
-class SupportedFileSystems
-{
-  public: 
-    SupportedFileSystems() {};
-    ~SupportedFileSystems() {};
-
-  bool IsSupportedFileSystem(const wchar_t*	aFileSystemName);
-  bool ReadFromRegistry();
-  void Add(const wchar_t*	aFileSystemName) { m_ThirdPartyFileSystems.push_back(aFileSystemName); };
-
-  private:
-    _StringList m_ThirdPartyFileSystems;
-};
-
-EXTERN SupportedFileSystems     gSupportedFileSystems;
-
 
 
 bool

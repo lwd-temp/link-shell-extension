@@ -13,7 +13,6 @@
 
 #include "symlink.h"
 
-LSESettings  gLSESettings;
 HINSTANCE     g_hInstance = NULL;
 
 int
@@ -1000,7 +999,7 @@ extern "C"
 
 		InitCreateHardlink();
     // TODO Move SupportedFileSystem also to LSESettings and rely on UserHive
-    gSupportedFileSystems.ReadFromRegistry();
+    gLSESettings.ReadFileSystems();
 
 
 		if (argc != 2)

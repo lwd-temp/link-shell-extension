@@ -1533,7 +1533,7 @@ IsFileSystemNtfs (
 
   *aDriveType = DriveType;
 
-  return gSupportedFileSystems.IsSupportedFileSystem(FileSystemName);
+  return gLSESettings.IsSupportedFileSystem(FileSystemName);
 }
 
 int 
@@ -12720,73 +12720,6 @@ DiskSerialCache::
   m_DiskSerialMap.clear();
 }
 
-// SupportedFileSystems
-//
-const wchar_t* BuiltInFileSystems[] = {L"Ntfs", L"ReFs", NULL};
-
-bool 
-SupportedFileSystems::
-IsSupportedFileSystem(
-  const wchar_t*	aFileSystemName
-)
-{
-  // Check for hardcoded filesystems
-  for(int i = 0; NULL != BuiltInFileSystems[i]; ++i)
-    if (!_wcsicmp(aFileSystemName, BuiltInFileSystems[i]))
-      return true;
-
-  // Check for filesystems from registry
-  for (_StringListIterator iter = m_ThirdPartyFileSystems.begin(); iter != m_ThirdPartyFileSystems.end(); ++iter)
-    if ( !_wcsicmp(iter->c_str(), aFileSystemName) )
-      return true;
-
-  return false;
-}
-
-bool 
-SupportedFileSystems::
-ReadFromRegistry() 
-{
-  HKEY HKLMRegKey;
-  DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_LOCAL_MACHINE,
-    LSE_REGISTRY_LOCATION,
-    0,
-    KEY_READ,
-    &HKLMRegKey
-    );
-
-  if (ERROR_SUCCESS == RetVal)
-  {
-    DWORD aType = REG_SZ;
-    DWORD aSize = MAX_PATH;
-    wchar_t SuppFs[MAX_PATH];
-    RetVal = RegQueryValueEx(
-      HKLMRegKey,
-      LSE_REGISTRY_SUPPORTED_FILESYSTEMS,
-      0,
-      &aType,
-      (LPBYTE)SuppFs,
-      &aSize
-    );
-
-    if (ERROR_SUCCESS == RetVal)
-    {
-	    // Parse Filesystems from the registry
-      TCHAR		seps[] = _T(";");
-      PTCHAR  NextToken;
-	    PTCHAR	token = wcstok_s(SuppFs, seps, &NextToken);
-      if (token)
-        m_ThirdPartyFileSystems.push_back(token);
-      while (PTCHAR ppp = wcstok_s(NULL, seps, &NextToken))
-        m_ThirdPartyFileSystems.push_back(ppp);
-    }
-
-    ::RegCloseKey(HKLMRegKey);
-  }
-  return true;
-}
-
 
 bool
 NtQueryProcessId(
@@ -14793,8 +14726,7 @@ DmDump(
 	_Pathes::iterator	aEnd
 )
 {
-	_Pathes::iterator	iter;
-	for (iter = aBegin; iter != aEnd; ++iter)
+	for (_Pathes::iterator	iter = aBegin; iter != aEnd; ++iter)
 	{
 		FileInfo*	pF = *iter;
 

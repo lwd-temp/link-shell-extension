@@ -17,10 +17,6 @@ HINSTANCE g_hInstance = NULL;
 
 UINT    g_cRefThisDll = 0;    // Reference count of this DLL.
 
-// gLSE_Flag contains various settings, which can be enabled
-LSESettings gLSESettings;
-
-
 UINT    g_LockCount = 0;    // Reference count of this DLL.
 
 PWCHAR  MenuEntries[eMenue__Free__ * 2];
@@ -38,6 +34,7 @@ DllMain( HINSTANCE hInstance, DWORD ul_reason_for_call, LPVOID lpReserved )
       g_hInstance = hInstance;
 
       gLSESettings.Init();
+      gLSESettings.ReadFileSystems();
       LoadMlgTexts(gLSESettings.GetLanguageID());
 
       // PropertyheetPageHandler is loaded in a different process than the other
@@ -45,7 +42,6 @@ DllMain( HINSTANCE hInstance, DWORD ul_reason_for_call, LPVOID lpReserved )
       InitCreateHardlink();
 
       // Read the 'known' Filesytems 
-      gSupportedFileSystems.ReadFromRegistry();
 
     break;
 
@@ -241,6 +237,7 @@ CreateInstance(
   	return CLASS_E_NOAGGREGATION;
 
   gLSESettings.Init();
+  gLSESettings.ReadFileSystems();
 
   HardLinkExt* pShellExt = new HardLinkExt();
   HRESULT result = pShellExt->QueryInterface(riid, ppvObj);

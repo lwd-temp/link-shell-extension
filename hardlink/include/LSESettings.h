@@ -87,18 +87,24 @@ public:
   void Init(wchar_t* aSid = nullptr);
   void SetSid(wchar_t* aSid) { wcscpy_s(m_Sid, MAX_PATH, aSid); };
 
+  bool IsSupportedFileSystem(const wchar_t*	aFileSystemName);
+  bool ReadFileSystems();
+  void Add(const wchar_t*	aFileSystemName) { m_ThirdPartyFileSystems.push_back(aFileSystemName); };
 
 private:
+  void AssembleLseRegLocation();
+
   wchar_t m_LseRegistryLocation[MAX_PATH];
   wchar_t m_Sid[MAX_PATH];
   HKEY m_Key;
-  void AssembleLseRegLocation();
 
   int   m_LanguageID;
   int   m_Flags;
   int   m_HardlinkOverlayPrio;
   int   m_JunctionOverlayPrio;
   int   m_SymboliclinkOverlayPrio;
+
+  _StringList m_ThirdPartyFileSystems;
 
   const wchar_t*
     GetRegistryLocation() const { return m_LseRegistryLocation; };

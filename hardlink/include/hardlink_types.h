@@ -238,6 +238,35 @@ enum Operations
 #define ERR_SMARTDELETE_FAILED          -19
 #define ERR_TARGET_DIR_DOES_NOT_EXIST 		-20 // Not yet in html docu
 
+class _ArgvPath
+{
+public:
+  wstring  Argv;
+  wstring  ArgvOrg;
+  wstring  ArgvDest;
+  int           DriveType;
+  int           FileAttribute;
+  int           Flags;
+
+  enum {
+    Created = 1,
+    Anchor = 2,
+  };
+
+  _ArgvPath() : DriveType(0), FileAttribute(0), Flags(0) {};
+};
+
+
+typedef vector<_ArgvPath>	_ArgvList;
+typedef vector<_ArgvPath>::iterator	_ArgvListIterator;
+
+typedef vector<wstring>	_StringList;
+typedef vector<wstring>::iterator	_StringListIterator;
+
+typedef pair<wstring, DWORD> _StringMapPair;
+typedef map<wstring, DWORD> _StringMap;
+
+
 
 // ------------------
 typedef union

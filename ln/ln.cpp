@@ -2957,7 +2957,7 @@ wmain(
             // --supportfs
             case cBaseJustLongOpts + 0x25:
             {
-              gSupportedFileSystems.Add(argv[optind - 1]);
+              gLSESettings.Add(argv[optind - 1]);
               Argv2[0] = 0x00;
             }
             break;

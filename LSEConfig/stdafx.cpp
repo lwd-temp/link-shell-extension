@@ -6,6 +6,5 @@
 #include "stdafx.h"
 
 CMultiLanguage gMlg;
-LSESettings gLSESettings;
 
 
