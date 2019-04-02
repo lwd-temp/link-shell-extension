@@ -11,7 +11,7 @@
 #include "ProgressBar.h"
 #include "UacReuse.h"
 
-#include "symlink.h"
+#include "LSEUacHelper.h"
 
 HINSTANCE     g_hInstance = NULL;
 

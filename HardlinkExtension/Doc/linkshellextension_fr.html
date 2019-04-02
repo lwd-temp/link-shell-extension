@@ -1057,11 +1057,11 @@
                     </p>
                     <p>
                         Quand on restaure des liens symboliques sous Windows7/8/10 et Windows Vista, LSE redirige l'opération
-                        de symlink.exe vers lui-même, car la création de liens symbolique
+                        de LSEUacHelper.exe vers lui-même, car la création de liens symbolique
                         nécessite une élévation de privilèges, et donc amène la fameuse boîte de dialogue <a href="#VistaAndUAC">UAC</a>.
                     </p>
                     <p>
-                        LSE ne redirige ce symlink.exe que <b>seulement</b> si un lien symbolique est dans/sous le répertoire sélectionné,
+                        LSE ne redirige ce LSEUacHelper.exe que <b>seulement</b> si un lien symbolique est dans/sous le répertoire sélectionné,
                         et ainsi vous économise des demandes de l'UAC si vous n'avez pas de liens symboliques à l'intérieur de votre
                         sélection
                     </p>
@@ -1453,7 +1453,7 @@
              alt="Barre de progrès pendant un Déplacement Intelligent">
           </p>
 
-          Avec Vista & Windows7/8/10 LSE appelle son acolyte <a href="#VistaAndUAC">UAC</a> symlink.exe s'il a à
+          Avec Vista & Windows7/8/10 LSE appelle son acolyte <a href="#VistaAndUAC">UAC</a> LSEUacHelper.exe s'il a à
           mettre à jour des liens symboliques, aussi ne vous étonnez pas si vous obtenez un dialogue UAC durant le déplacement de répertoires.
         </p>
 
@@ -1561,11 +1561,11 @@
         </p>
 
         <p>Quand vous créez des Clones sous Windows7/8/10 et Windows Vista, LSE appelle son
-           acolyte symlink.exe pour lui sous-traiter cette opération, si l'arborescence du répertoire
+           acolyte LSEUacHelper.exe pour lui sous-traiter cette opération, si l'arborescence du répertoire
            contient <a href="innerjunction">des liens symboliques</a>, car la création de liens symboliques 
            nécessite une élévation de privilège, ce qui conduit au 
            <a href="#VistaAndUAC">fameux dialogue UAC</a>. <br />
-           LSE appelle <b>seulement</b> son acolyte symlink.exe si un lien symbolique est dans/sous le répertoire
+           LSE appelle <b>seulement</b> son acolyte LSEUacHelper.exe si un lien symbolique est dans/sous le répertoire
            sélectionné, et ainsi vous sauve d'un dialogue UAC s'il n'y a pas de lien symbolique dans votre sélection.
 		</p>
 
@@ -1852,7 +1852,7 @@
             Le mode Sauvegarde permet à LSE de copier aussi des ACLs (Access Control List soit des Listes de Contrôle d'Accès), des Fichiers Cryptés depuis n'importe quel répertoire, y compris ceux
             non accessibles aux utilisateurs courants. 
             <ul>
-            <li>Sous Windows7/8/10, LSE lance toujours son processus d'aide symlink.exe, qui par conséquent active
+            <li>Sous Windows7/8/10, LSE lance toujours son processus d'aide LSEUacHelper.exe, qui par conséquent active
             <a href="#VistaAndUAC">la demande d'UAC</a> pour élévation de privilèges et vérification de mot de passe.
             </li>
             <li>Sous WindowsXP LSE ne va dans le mode de Sauvegarde que si l'utilisateur courant possède les
@@ -2247,7 +2247,7 @@
             et je ne peux toujours pas y croire, l'appel de l'API CreateSymbolicLink est un appel qui
             nécessite une élévation, et de ce fait affiche cette ennuyeuse boîte de dialogue chaque fois qu'un lien symbolique
             est créé.<br />
-            Donc si vous voyez la boîte ci-dessous, et que le programme qui demande l'élévation est symlink.exe,
+            Donc si vous voyez la boîte ci-dessous, et que le programme qui demande l'élévation est LSEUacHelper.exe,
             c'est la contribution de Link Shell Extensions à l'UAC et vous devez l'accepter pour pouvoir créer
             des Liens Symboliques. </font>
         </p>
@@ -3344,7 +3344,7 @@
                                 <li>Les liens symboliques relatifs sur des chemins UNC étaient recréés avec une mauvaise cible lors d'une copie intelligente.</li>
                                 <!-- 3.8.6.7 2016-02-02 -->
                                 <!-- L'installeur possède un Manifest SupportedOS et donc reconnait de lui-même Windows10 en tant que Windows10 -->
-                                <!-- Playing around with logon for network drives, since symlink.exe failed with Bad passwort.... -->
+                                <!-- Playing around with logon for network drives, since LSEUacHelper.exe failed with Bad passwort.... -->
                                 <!-- 3.8.6.703 2016-03-05 -->
                                 <li>La fragmentation du système de fichier NTFS a diminué et donc la copie devrait être plus rapide.</li>
                                 <li>Abandonner fonctionne quand on presse dessus lors de la copie de (gros) fichiers.</li>
@@ -3433,7 +3433,7 @@
                           Version 3.7.5.9
 
                           <ul>
-                              <li>With Delorean Copy when elevated via symlink.exe in rare situations files pointed to by symlinks could get deleted in the source. Ugly. Sorry!</li>
+                              <li>With Delorean Copy when elevated via LSEUacHelper.exe in rare situations files pointed to by symlinks could get deleted in the source. Ugly. Sorry!</li>
 
                               <li>A changed <a href="#faq02">file attribute</a> didn't cause the file to be treated as changed during all SmartXXX/Delorean functions.</li>
                               <li>Symbolic Link Clones always created absolute symlinks regardless of the LSE Settings</li>
@@ -3535,7 +3535,7 @@
                               <li>Can handle <a href="#substhandling">subst.exe created</a> driveletters.</li>
                               <li>Overlay Icons for <a href="#symboliclinksforwindowsxp">symbolic links under Window XP</a> are available now.</li>
                               <li>Fixed a few bugs related to WindowsXP and symbolic links handling.</li>
-                              <li>Elevation to symlink.exe now happens only if <a href="#VistaAndUAC">UAC</a> is on, or the elevation is really neccesary.</li>
+                              <li>Elevation to LSEUacHelper.exe now happens only if <a href="#VistaAndUAC">UAC</a> is on, or the elevation is really neccesary.</li>
                               <li>Fixed a problem with the creation of absolute symbolic links to directories.</li>
                               <li>The installer came up with Chinese as default installation language.</li>
 

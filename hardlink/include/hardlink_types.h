@@ -6,12 +6,12 @@
 
 #define USE_VECTOR
 
-// define if we don't want to fork symlink.exe to perform operations
+// define if we don't want to fork LSEUacHelper.exe to perform operations
 // but instead do it in hardlinkshellext.dll
 // #define SYMLINK_FORCE
 // #define SYMLINK_OUTPROC 0
 
-// define if we want to fork symlink.exe to perform all operations
+// define if we want to fork LSEUacHelper.exe to perform all operations
 #define SYMLINK_FORCE
 #define SYMLINK_OUTPROC 1
 

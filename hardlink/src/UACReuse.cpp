@@ -213,7 +213,7 @@ ForkExeHelper(
   GetModuleFileNameW(g_hInstance, symlinkexe, HUGE_PATH);
   PathRemoveFileSpec(symlinkexe);
 
-  wcscat(symlinkexe, L"\\symlink.exe");
+  wcscat(symlinkexe, L"\\LSEUacHelper.exe");
   wcscat(sla_quoted, L"\"");
 
   // Start the process
@@ -258,7 +258,7 @@ void WriteUACHelperArgs(
   fwprintf(aArgsFile, L"-%c \"%s\" \"%s\"\n", aFunction, aArgument1, aArgument2);
 
   // Save the SID under which we are running. 
-  // Since we raise UAC via symlink.exe, it runs as admin user, which has a different SID, 
+  // Since we raise UAC via LSEUacHelper.exe, it runs as admin user, which has a different SID, 
   // so we need the current SID in symlink, because there we need to read the settings from current user
   wchar_t*  currentSid;
   bool bSidValid = GetCurrentSid(&currentSid);

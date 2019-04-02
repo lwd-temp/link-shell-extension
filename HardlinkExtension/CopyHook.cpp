@@ -230,7 +230,7 @@ CopyCallback ( HWND hwnd,
             int ProgessbarVisible = pProgressbar->GetWindowPos(ProgressbarPosition);
             delete pProgressbar;
 
-            // Symbolic links found ==> we have to handover to symlink.exe
+            // Symbolic links found ==> we have to handover to LSEUacHelper.exe
             wchar_t sla_quoted[HUGE_PATH];
             wchar_t curdir[HUGE_PATH];	
             FILE* SmartMoveArgs = OpenFileForExeHelper(curdir, sla_quoted);
@@ -310,7 +310,7 @@ CopyCallback ( HWND hwnd,
                 int ProgessbarVisible = pProgressbar->GetWindowPos(ProgressbarPosition);
                 delete pProgressbar;
 
-                // Symbolic links found ==> we have to handover to symlink.exe
+                // Symbolic links found ==> we have to handover to LSEUacHelper.exe
                 wchar_t sla_quoted[HUGE_PATH];
                 wchar_t curdir[HUGE_PATH];	
                 FILE* SmartMoveArgs = OpenFileForExeHelper(curdir, sla_quoted);

@@ -3008,8 +3008,8 @@ _FindHardLink(
   for (_ArgvListIterator iter = aSrcPathList.begin(); iter != aSrcPathList.end(); ++iter)
   {
     // Only iterate over directories but not files. Files are in the list, because if 
-    // Findhardlink is spawned during Backup in symlink.exe the arguments are transferred
-    // to symlink.exe via _ArgvList.
+    // Findhardlink is spawned during Backup in LSEUacHelper.exe the arguments are transferred
+    // to LSEUacHelper.exe via _ArgvList.
     if (iter->FileAttribute == FILE_ATTRIBUTE_NORMAL)
       continue;
     

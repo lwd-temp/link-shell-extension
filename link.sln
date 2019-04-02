@@ -13,7 +13,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hardlink", "hardlink\hardli
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ln", "ln\ln.vcxproj", "{E9AFD6A4-D10F-4248-96E8-24FFD223E905}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "symlink", "symlink\symlink.vcxproj", "{76080A6F-D75F-4F36-B819-B10E65DC76D8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LSEUacHelper", "LSEUacHelper\LSEUacHelper.vcxproj", "{76080A6F-D75F-4F36-B819-B10E65DC76D8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xdel", "XDel\xdel.vcxproj", "{7B882EF3-00C2-4EDC-BD81-9526B93FAB36}"
 EndProject

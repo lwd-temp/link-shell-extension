@@ -1918,7 +1918,7 @@ DropSymbolicLink(
         if (!Elevation)
         {
           // Used for debugging purposes, when UAC is switched off thus making it possible to call CreateSymboliclink 
-          // directly from explorer, but not from symlink.exe
+          // directly from explorer, but not from LSEUacHelper.exe
           CreateSymboliclink(dest, 
             m_pTargets[i].m_Path, 
             (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation | SYMLINK_FLAG_DIRECTORY
@@ -2585,7 +2585,7 @@ SmartMirror(
       }
     } // for (ULONG i = 0; i < m_nTargets; i++)
 
-    // In BackupMode we also have to run the FindHardlink eleavted and thus in symlink.exe
+    // In BackupMode we also have to run the FindHardlink eleavted and thus in LSEUacHelper.exe
     if (gLSESettings.GetFlags() & eBackupMode)
     {
       // Stop bar
@@ -3903,11 +3903,11 @@ DropDeloreanCopy(
         )
   #endif
         {
-          // Delegate the operation to Symlink.exe
+          // Delegate the operation to LSEUacHelper.exe
           //
           MirrorList.StopLogging(LogFile);
           
-          // TODO Das Positionieren des Progressbars funktioniert nicht mehr im symlink.exe
+          // TODO Das Positionieren des Progressbars funktioniert nicht mehr im LSEUacHelper.exe
 
           // TODO Das Mirror & Delorean mit Backup Mode geht überhaupt nicht mehr. Es wird zwar das symlink.args geschrieben
           // aber danach tut sich nix mehr.
