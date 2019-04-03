@@ -7,6 +7,22 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.920 has been released.</title>
+      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <pubDate>Tue, 04 Apr 2019 20:00:15 +0100</pubDate>
+      <description>
+        LSE 3.920 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>Changes of non-admin users to e.g. symlink relativ/absolute had no effect. Fixed the misconception. What a mess</a></li>
+          <li>LSE is on gitlab.com. For now only private, but hope to change this soon.</a></li>
+        ]]>
+      </content:encoded>
+      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3920</guid>
+    </item>
+
+    <item>
       <title>ln.exe 2.874 has been released.</title>
       <link>http://schinagl.priv.at/nt/ln/ln.html#2874</link>
       <pubDate>Mon, 12 March 2019 11:00:50:15 +0100</pubDate>

@@ -5,8 +5,8 @@ REM Set the version info
 REM
 set MAJOR_VERSION=3
 set MINOR_VERSION=9
-set PATCH_VERSION=1
-set HOTFIX_VERSION=3
+set PATCH_VERSION=2
+set HOTFIX_VERSION=0
 
 @echo generating Version info
 REM Generate version info for c++
