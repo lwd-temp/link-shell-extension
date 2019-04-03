@@ -12,17 +12,19 @@
 // #define SYMLINK_OUTPROC 0
 
 // define if we want to fork LSEUacHelper.exe to perform all operations
-#define SYMLINK_FORCE
-#define SYMLINK_OUTPROC 1
+// #define SYMLINK_FORCE
+// #define SYMLINK_OUTPROC 1
 
 // #define FIND_HARDLINK_DEBUG // DEBUG_DEFINES
 
 // Used in ln.exe to do all operations in sequence. This eases debugging a lot
 // #define SEPERATED_CLONE_MIRROR // DEBUG_DEFINES
 
-#define _HTRACE_DEBUG // DEBUG_DEFINES
+// Enable the HTRACE Macro even in Release builds
+// #define _HTRACE_DEBUG
 
-#define _HTRACE_OUTPUT_DEBUG_STRING // DEBUG_DEFINES
+// HTRACE can output to either console or via OutputDebugString
+// #define _HTRACE_OUTPUT_DEBUG_STRING
 
 #define EXACT_PATH_INDEX
 

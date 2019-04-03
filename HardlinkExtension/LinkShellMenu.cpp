@@ -1915,21 +1915,25 @@ DropSymbolicLink(
           dwSymLinkAllowUnprivilegedCreation = SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
         }
         
-        if (!Elevation)
-        {
-          // Used for debugging purposes, when UAC is switched off thus making it possible to call CreateSymboliclink 
-          // directly from explorer, but not from LSEUacHelper.exe
-          CreateSymboliclink(dest, 
-            m_pTargets[i].m_Path, 
-            (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation | SYMLINK_FLAG_DIRECTORY
-          );
-        }
-        else
+#if defined SYMLINK_FORCE
+        if (SYMLINK_OUTPROC)
+#else
+        if (Elevation)
+#endif
         {
           if (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks)
             WriteUACHelperArgs(SymlinkArgs, 'D', dest, m_pTargets[i].m_Path);
-           else
+          else
             WriteUACHelperArgs(SymlinkArgs, 'd', dest, m_pTargets[i].m_Path);
+        }
+        else
+        {
+          // Used for debugging purposes, when UAC is switched off thus making it possible to call CreateSymboliclink 
+          // directly from explorer, but not from LSEUacHelper.exe
+          CreateSymboliclink(dest,
+            m_pTargets[i].m_Path,
+            (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation | SYMLINK_FLAG_DIRECTORY
+          );
         }
       }
     }
@@ -2029,33 +2033,37 @@ DropJunction(
       else
       {
         HTRACE(L"LSE::DropJunction: '%s' -> '%s', %ld\n", m_pTargets[i].m_Path, dest, m_pTargets[i].m_Flags);
-        DWORD r = CreateJunction(dest, m_pTargets[i].m_Path);
-        if (r)
+        DWORD ret;
+#if defined SYMLINK_FORCE
+        if (SYMLINK_OUTPROC)
+          ret = ERROR_ALREADY_EXISTS;
+        else
+          ret = CreateJunction(dest, m_pTargets[i].m_Path);
+#else
+        ret = CreateJunction(dest, m_pTargets[i].m_Path);
+#endif
+        if (ERROR_SUCCESS != ret)
         {
           // With Vista & W7, we are not allowed to create Junctions in folders like
           // c:\Program Files (x86) wihtout UAC, so in this special case, the creation
           // of junction has to be relayed to an elevated .exe as done with Symbolic links
-          if ((ERROR_ALREADY_EXISTS != r) && ElevationNeeded())
+#if defined SYMLINK_FORCE
+          if (SYMLINK_OUTPROC)
+#else
+          if ((ERROR_ALREADY_EXISTS != ret) && ElevationNeeded())
+#endif
           {
             // Write the file for the args
             if (!JunctionArgs)
-            {
-              // Get the current path of extension installation
-              sla_quoted[0] = '\"';
+              JunctionArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
-              GetTempPath(HUGE_PATH, curdir);
-              wcscpy(sla, curdir);
-              wcscat(sla, SYMLINKARGS);
-
-              JunctionArgs = _wfopen(sla, L"wb");
-            }
             // Write the command file, which is read by the elevated process
             WriteUACHelperArgs(JunctionArgs, 'j', dest, m_pTargets[i].m_Path);
             CreateJunctionsViaHelperExe = true;
           }
           else
           {
-            switch (r)
+            switch (ret)
             {
             case ERROR_ALREADY_EXISTS:
               ErrorCreating(dest,
@@ -2066,7 +2074,7 @@ DropJunction(
               break;
 
             default:
-              ErrorFromSystem(r);
+              ErrorFromSystem(ret);
               break;
             }
           }
@@ -2177,21 +2185,16 @@ DeleteJunction(
 				// With Vista & W7, we are not allowed to delete Directories in folders like
 				// c:\Program Files (x86) wihtout UAC, so in this special case, the deletion
 				// of junction has to be relayed to an elevated .exe as done with Symbolic links
-			  if (ElevationNeeded())
+#if defined SYMLINK_FORCE
+        if (SYMLINK_OUTPROC)
+#else
+        if (ElevationNeeded())
+#endif
 				{
 					if (!JunctionArgs)
-					{
-						// Get the current path of extension installation
-						sla_quoted[0] = '\"';
+            JunctionArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
-						GetTempPath(HUGE_PATH, curdir);
-						wcscpy(sla, curdir);
-						wcscat(sla, SYMLINKARGS);
-
-						// Write the file for the args
-						JunctionArgs = _wfopen (sla, L"wb");
-					}
-					// Write the command file, which is read by the elevated process
+          // Write the command file, which is read by the elevated process
           WriteUACHelperArgs(JunctionArgs, 'k', L"empty", m_pTargets[i].m_Path);
 					CreateJunctionsViaHelperExe = true;
 				}
@@ -2993,15 +2996,14 @@ SmartXXX(
       }
     } // for (ULONG i = 0; i < m_nTargets; i++)
 
-#if defined SYMLINK_FORCE
-    if (SYMLINK_OUTPROC)
-#else
     // Check if we are in Backup Mode. If yes we also have to do the FindHardlink elevated, because
     // it might happen, that FindHardlink should run over directories, which the explorer does not
     // have access permissions.
     if (gLSESettings.GetFlags() & eBackupMode)
-#endif
     {
+      
+      // TODO SmartCopy in Backup broken. It does nothing
+      
       // Stop bar
       RECT  ProgressbarPosition;
       ZeroMemory(&ProgressbarPosition, sizeof(RECT));
@@ -3044,7 +3046,6 @@ SmartXXX(
       // Enumerate all files in-proc in .dll
       AsyncContext    Context;
 
-
       int r = FileList.FindHardLink (
         TargetPathList,
         0,
@@ -3077,7 +3078,7 @@ SmartXXX(
         // be created. But do this only under > Windows Vista
 
 
-  #if defined SYMLINK_FORCE || defined DEBUG_DO_NOT_DELETE_SYMLINKS_ARGS
+  #if defined SYMLINK_FORCE
         if (SYMLINK_OUTPROC)
   #else
         int ContainsSymlinks = FileList.CheckSymbolicLinks();
@@ -3277,8 +3278,12 @@ ReplaceJunction(
 	if (FALSE == bRemoveDir)
 #endif
 	{
-	  if (ElevationNeeded() || (gLSESettings.GetFlags() & eBackupMode))
-		{
+#if defined SYMLINK_FORCE
+    if (SYMLINK_OUTPROC)
+#else
+    if (ElevationNeeded() || (gLSESettings.GetFlags() & eBackupMode))
+#endif
+    {
       wchar_t sla_quoted[HUGE_PATH];
       wchar_t curdir[HUGE_PATH];	
       FILE* JunctionArgs = OpenFileForExeHelper(curdir, sla_quoted);

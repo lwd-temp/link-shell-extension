@@ -1125,7 +1125,9 @@ extern "C"
 					}
 					break;
 
-					// Symbolic Link files relative replacement
+					
+          // TODO via Drag and drop kann man nicht Symbolic link replacement machen. Geht einfach nicht
+          // Symbolic Link files relative replacement
 					case 'g':
 					{
             RetVal = ReplaceSymbolicLink(arg0, arg1, SYMLINK_FLAG_RELATIVE | SYMLINK_FLAG_FILE);
@@ -1228,11 +1230,6 @@ extern "C"
 
           // Smart Clone
 					case 't':
-            SmartXXX(SymlinkArgs, FileInfoContainer::eSmartClone);
-					break;
-
-          // Smart Clone
-					case 'u':
             SmartXXX(SymlinkArgs, FileInfoContainer::eSmartClone);
 					break;
 
