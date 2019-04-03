@@ -5,19 +5,15 @@
 
 #include "stdafx.h"
 
+// Cmmon version number
 #include "..\HardlinkExtension\resource.h"
-
-#include "AsyncContext.h"
-#include "hardlink.h"
-#include "HardlinkUtils.h"
 
 #include "ProgressBar.h"
 #include "UacReuse.h"
 
-#include "symlink.h"
+#include "LSEUacHelper.h"
 
-_LSESettings  gLSESettings;
-HINSTANCE     gLSEInstance = NULL;
+HINSTANCE     g_hInstance = NULL;
 
 int
 Usage()
@@ -302,7 +298,7 @@ SmartMove(FILE* ArgFile)
       int r = FileList.FindHardLink (MoveLocation, 0, &aStats, &PathNameStatusList, &Context);
       FileList.HeadLogging(LogFile);
       
-      if (!(gLSESettings.Flags & eForceAbsoluteSymbolicLinks))
+      if (!(gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks))
         FileList.SetFlags(FileInfoContainer::eRelativeSymboliclinks);
 
       while (!Context.Wait(250))
@@ -369,13 +365,13 @@ ErrorCreating(
 )
 {
 	// Assemble message string
-	wchar_t *pMsgTxt = GetFormattedMlgMessage(aLSEInstance, gLSESettings.LanguageID, aMessage, aDirectory);
+	wchar_t *pMsgTxt = GetFormattedMlgMessage(aLSEInstance, gLSESettings.GetLanguageID(), aMessage, aDirectory);
 
 	wchar_t	MsgReason[MAX_PATH];
-	LoadStringEx(aLSEInstance, aReason, MsgReason, MAX_PATH, gLSESettings.LanguageID);
+	LoadStringEx(aLSEInstance, aReason, MsgReason, MAX_PATH, gLSESettings.GetLanguageID());
 
 	wchar_t	MsgCaption[MAX_PATH];
-	LoadStringEx(aLSEInstance, aCaption, MsgCaption, MAX_PATH, gLSESettings.LanguageID);
+	LoadStringEx(aLSEInstance, aCaption, MsgCaption, MAX_PATH, gLSESettings.GetLanguageID());
 
 	// Concat Message + Reason
 	wchar_t msg[HUGE_PATH];
@@ -581,7 +577,7 @@ DeloreanCopy(
           IDS_STRING_ErrExplorerCanNotCreateHardlink, 
           IDS_STRING_ErrCreatingHardlink,
           IDS_STRING_ErrHardlinkFailed,
-          gLSEInstance
+          g_hInstance
         );
         break;
       }
@@ -608,7 +604,7 @@ ReplaceJunction(
   int iResult = ERROR_SUCCESS;
   wchar_t  JunctionTmpName[HUGE_PATH];
 
-  if (gLSESettings.Flags & eBackupMode)
+  if (gLSESettings.GetFlags() & eBackupMode)
   {
     SYSTEMTIME  time;
     GetSystemTime(&time);
@@ -640,7 +636,7 @@ ReplaceJunction(
     iResult = CreateJunction(arg0, arg1);
 
     // In Backup Mode restore the permissions of the junction
-    if (gLSESettings.Flags & eBackupMode)
+    if (gLSESettings.GetFlags() & eBackupMode)
       if (ERROR_SUCCESS == iResult)
       {
         _PathNameStatusList  pns;
@@ -681,7 +677,7 @@ ReplaceSymbolicLink(
   int iResult = ERROR_SUCCESS;
   wchar_t  SymlinkTmpName[HUGE_PATH];
 
-  if (gLSESettings.Flags & eBackupMode)
+  if (gLSESettings.GetFlags() & eBackupMode)
   {
     // temporarilly move the old symlink to some different name, so that 
     // we can copy its attributes to the newly created symlink
@@ -744,7 +740,7 @@ ReplaceSymbolicLink(
   // Create the symbolic link
   iResult = CreateSymboliclink (SymLinkSource, SymLinkTarget, dwFlags);
 
-  if (gLSESettings.Flags & eBackupMode)
+  if (gLSESettings.GetFlags() & eBackupMode)
   {
     if (ERROR_SUCCESS == iResult)
     {
@@ -789,7 +785,7 @@ ReplaceMountPoint(
   int iResult = ERROR_SUCCESS;
   wchar_t  MountPointTmpName[HUGE_PATH];
 
-  if (gLSESettings.Flags & eBackupMode)
+  if (gLSESettings.GetFlags() & eBackupMode)
   {
     // temporarilly move the old symlink to some different name, so that 
     // we can copy its attributes to the newly created symlink
@@ -821,7 +817,7 @@ ReplaceMountPoint(
     iResult = CreateMountPoint (arg1, arg0);
   }
 
-  if (gLSESettings.Flags & eBackupMode)
+  if (gLSESettings.GetFlags() & eBackupMode)
   {
     if (ERROR_SUCCESS == iResult)
     {
@@ -852,6 +848,93 @@ ReplaceMountPoint(
   return iResult;
 }
 
+void
+RebootExplorer()
+{
+  {
+    int MsgRet;
+    _StringList Modules;
+    _StringMap  Processes;
+
+    // Search for processes which have our .dlls loaded
+    //
+    Modules.push_back(L"HardlinkShellExt.dll");
+
+    do
+    {
+      Processes.clear();
+
+      NtQueryProcessByModule(Modules, Processes);
+
+      _StringMap::iterator explorer = Processes.find(L"explorer.exe");
+      if (explorer != Processes.end())
+        Processes.erase(explorer);
+
+      if (Processes.size())
+      {
+        wchar_t processes[HUGE_PATH];
+        processes[0] = 0x00;
+        for (_StringMap::iterator iter = Processes.begin(); iter != Processes.end(); ++iter)
+        {
+          wcscat_s (processes, HUGE_PATH, L"   ");
+          wcscat_s (processes, HUGE_PATH, iter->first.c_str());
+          wcscat_s (processes, HUGE_PATH, L"\r\n");
+        }
+
+        wchar_t Message[HUGE_PATH];
+        wsprintf(Message, L"To apply your changes please close the following applications \r\n\r\n%s\r\n", processes);
+
+
+        MsgRet = MessageBox(NULL,
+          Message,
+          L"Caption",
+          MB_ABORTRETRYIGNORE | MB_ICONEXCLAMATION);
+      }
+    } while (MsgRet == IDRETRY && Processes.size());
+
+    if (IDABORT == MsgRet)
+      return;
+
+    // go on with IDIGNORE
+    MsgRet = MessageBox(NULL,
+      L"To apply your changes Explorer.exe must be restarted\r\n\r\nPress Yes to restart or No to quit",
+      L"Caption",
+      MB_YESNO | MB_ICONEXCLAMATION);
+
+    if (IDYES == MsgRet)
+    {
+      wchar_t		szProcessNameUni[32] = EXPLORER;
+
+      ULONG		dPIDSize = 0;
+      PULONG  dPID;
+      bool b = NtQueryProcessId(szProcessNameUni, &dPID, &dPIDSize);
+
+      if (b)
+      {
+        // Kill all proccesses with the given name
+        for (ULONG i = 0; i < dPIDSize; i++)
+        {
+          HANDLE pHandle = OpenProcess(PROCESS_TERMINATE, FALSE, dPID[i]);
+          if (INVALID_HANDLE_VALUE != pHandle)
+          {
+            BOOL b = TerminateProcess(pHandle, 42);
+            if (FALSE == b)
+              HTRACE(L"RebootExplorer TerminateProcess failed: %d, %08x", dPID[i], GetLastError());
+            CloseHandle(pHandle);
+          }
+          else
+          {
+            HTRACE(L"RebootExplorer OpenProcess failed: %d, %08x", dPID[i], GetLastError());
+          }
+        }
+
+        GlobalFree(dPID);
+      }
+    }
+
+  }
+}
+
 #  ifdef __cplusplus
 extern "C"
 {
@@ -860,14 +943,7 @@ extern "C"
 	wmain(int argc,
 				TCHAR* argv[])
 	{
-    // This needed because we use a non-msvcrt heap, which places the chunks so close
-    // towards each other, that the crt-dbg would use its CRT secure fill pattern, and thus would
-    // destroy memory during wcscpy_s() with _FILL_STRING
-    _CrtSetDebugFillThreshold(0);
-
-    GetLSESettings(gLSESettings);
-
-    gLSEInstance = LoadLibraryEx( 
+    g_hInstance = LoadLibraryEx( 
       L"HardlinkShellExt.dll\0",
       NULL, 
       DONT_RESOLVE_DLL_REFERENCES | LOAD_LIBRARY_AS_DATAFILE 
@@ -885,7 +961,7 @@ extern "C"
     fopen_s(&f, tmpfile, "w");
 #endif
 
-    if (gLSESettings.Flags & eBackupMode)
+    if (gLSESettings.GetFlags() & eBackupMode)
     {
       BOOL b = EnableTokenPrivilege(SE_BACKUP_NAME);
       BOOL r = EnableTokenPrivilege(SE_RESTORE_NAME);
@@ -894,10 +970,10 @@ extern "C"
       if ( (FALSE == b) || (FALSE == r) )
       {
 	      wchar_t	MsgReason[MAX_PATH];
-	      LoadStringEx(gLSEInstance, IDS_STRING_BackupPrivilegesNotHeld, MsgReason, MAX_PATH, gLSESettings.LanguageID);
+	      LoadStringEx(g_hInstance, IDS_STRING_BackupPrivilegesNotHeld, MsgReason, MAX_PATH, gLSESettings.GetLanguageID());
 
 	      wchar_t	MsgCaption[MAX_PATH];
-	      LoadStringEx(gLSEInstance, IDS_STRING_BackupFailed, MsgCaption, MAX_PATH, gLSESettings.LanguageID);
+	      LoadStringEx(g_hInstance, IDS_STRING_BackupFailed, MsgCaption, MAX_PATH, gLSESettings.GetLanguageID());
 
 	      int mr = MessageBox ( NULL, 
 		      MsgReason,
@@ -905,8 +981,8 @@ extern "C"
 		      MB_ICONERROR 
         );
 	      
-      if (gLSEInstance)
-        FreeLibrary(gLSEInstance);
+      if (g_hInstance)
+        FreeLibrary(g_hInstance);
 			return -1;
 
 #if defined(_DEBUG)
@@ -922,7 +998,8 @@ extern "C"
     }
 
 		InitCreateHardlink();
-    gSupportedFileSystems.ReadFromRegistry();
+    // TODO Move SupportedFileSystem also to LSESettings and rely on UserHive
+    gLSESettings.ReadFileSystems();
 
 
 		if (argc != 2)
@@ -932,8 +1009,8 @@ extern "C"
 			fwprintf(f, L"argv[0] == '%s'\n", argv[0]);
 			fclose(f);
 #endif
-      if (gLSEInstance)
-        FreeLibrary(gLSEInstance);
+      if (g_hInstance)
+        FreeLibrary(g_hInstance);
 			return -1;
 		}
 		FILE* SymlinkArgs;
@@ -943,7 +1020,8 @@ extern "C"
 			while (!feof(SymlinkArgs)) 
 			{
 				wchar_t line[HUGE_PATH];
-				wchar_t* t = fgetws(line, HUGE_PATH, SymlinkArgs);
+        wchar_t sid[MAX_PATH];
+        wchar_t* t = fgetws(line, HUGE_PATH, SymlinkArgs);
 				if (!t)
 					break;
 
@@ -957,6 +1035,13 @@ extern "C"
 				wchar_t* arg1 = &line[ii];
 				while ( line[++ii] != '\"');
 				line[ii] = 0x00;
+
+        // read the SID, We need it to read settings from the non UAC user
+        fwscanf_s(SymlinkArgs, L"%s", sid, _countof(sid));
+        gLSESettings.Init(sid);
+        // eat rest of line
+        fgetws(sid, HUGE_PATH, SymlinkArgs);
+        int bb = gLSESettings.GetFlags();
 
 				switch (line[1])
 				{
@@ -1040,7 +1125,9 @@ extern "C"
 					}
 					break;
 
-					// Symbolic Link files relative replacement
+					
+          // TODO via Drag and drop kann man nicht Symbolic link replacement machen. Geht einfach nicht
+          // Symbolic Link files relative replacement
 					case 'g':
 					{
             RetVal = ReplaceSymbolicLink(arg0, arg1, SYMLINK_FLAG_RELATIVE | SYMLINK_FLAG_FILE);
@@ -1146,11 +1233,6 @@ extern "C"
             SmartXXX(SymlinkArgs, FileInfoContainer::eSmartClone);
 					break;
 
-          // Smart Clone
-					case 'u':
-            SmartXXX(SymlinkArgs, FileInfoContainer::eSmartClone);
-					break;
-
           // DeloreanCopy
 					case 'v':
             DeloreanCopy(SymlinkArgs, FileInfoContainer::eSmartClone);
@@ -1175,6 +1257,11 @@ extern "C"
             
           break;
 
+          // Reboot explorer: Used from LSEConfig
+          case 'z':
+            RebootExplorer();
+          break;
+
         }
 			} 
 			fclose(SymlinkArgs);
@@ -1189,8 +1276,8 @@ extern "C"
 #if defined(_DEBUG)
 		fclose(f);
 #endif
-    if (gLSEInstance)
-      FreeLibrary(gLSEInstance);
+    if (g_hInstance)
+      FreeLibrary(g_hInstance);
 
     ExitProcess(RetVal);
 	}

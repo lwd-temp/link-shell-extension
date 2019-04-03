@@ -4,22 +4,18 @@
 
 #include "stdafx.h"
 
+
 #include "CopyHook.h"
 #include "IconOverlay.h"
 #include "PropertySheetPage.h"
-#include "HardLinkMenu.h"
+#include "LinkShellMenu.h"
 
-#include "HardLink.h"
-
+#include "LinkShellExtension.h"
 
 
 HINSTANCE g_hInstance = NULL;
 
 UINT    g_cRefThisDll = 0;    // Reference count of this DLL.
-
-// gLSE_Flag contains various settings, which can be enabled
-_LSESettings gLSESettings;
-
 
 UINT    g_LockCount = 0;    // Reference count of this DLL.
 
@@ -34,27 +30,18 @@ DllMain( HINSTANCE hInstance, DWORD ul_reason_for_call, LPVOID lpReserved )
   switch( ul_reason_for_call )
   {
     case DLL_PROCESS_ATTACH:
-      // This needed because we use a non-msvcrt heap, which places the chunks so close
-      // towards each other, that the crt-dbg would use its CRT secure fill pattern, and thus would
-      // destroy memory during wcscpy_s() with _FILL_STRING
-#if defined _DEBUG
-      _CrtSetDebugFillThreshold(0);
-#endif
-
       HTRACE (L"LSE::DLL_PROCESS_ATTACH\n");
       g_hInstance = hInstance;
 
-      ZeroMemory((void*)&gLSESettings, sizeof(gLSESettings));
-      GetLSESettings(gLSESettings);
-      LoadMlgTexts(gLSESettings.LanguageID);
+      gLSESettings.Init();
+      gLSESettings.ReadFileSystems();
+      LoadMlgTexts(gLSESettings.GetLanguageID());
 
-      // Initialize the call to CreateHardlink & CreateSymbolicLink. With Win10 this is needed
-      // here, because the PropertyheetPageHandler is loaded in a different process than the other
+      // PropertyheetPageHandler is loaded in a different process than the other
       // Shell extension, and thus also needs initialization.
       InitCreateHardlink();
 
       // Read the 'known' Filesytems 
-      gSupportedFileSystems.ReadFromRegistry();
 
     break;
 
@@ -249,15 +236,14 @@ CreateInstance(
   if (pUnkOuter)
   	return CLASS_E_NOAGGREGATION;
 
-  GetLSESettings(gLSESettings);
+  gLSESettings.Init();
+  gLSESettings.ReadFileSystems();
 
   HardLinkExt* pShellExt = new HardLinkExt();
   HRESULT result = pShellExt->QueryInterface(riid, ppvObj);
   if (NULL != *ppvObj)
-  {
-    GetLSESettings(gLSESettings);
     return result;
-  }
+
   delete pShellExt;
 
 	return E_OUTOFMEMORY;

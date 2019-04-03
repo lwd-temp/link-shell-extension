@@ -16,6 +16,9 @@
 #include <iostream>
 #include <sstream>
 
+#include <ShObjIdl.h>
+
+
 #include "resource.h"
 //disable warnings on 255 char debug symbols
 #pragma warning (disable : 4786)
@@ -32,15 +35,15 @@
 
 using namespace std;
 
+// Ultragetopt
 #define ULTRAGETOPT_REPLACE_GETOPT
 #include "..\Shared\ultragetopt.h"
 
-
+// regular expression parser
 #include <..\..\shared\tre-0.8.0\lib\regex.h>
 
-#include "..\hardlink\include\hardlink_types.h"
-#include "..\hardlink\include\AsyncContext.h"
-#include "..\hardlink\src\mmfobject.h"
+// Include interfaces from hardlink.lib
+#include "HardlinkLib.h"
 
 #pragma comment(lib, "wsock32.lib")
 

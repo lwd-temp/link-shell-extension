@@ -33,6 +33,7 @@
 #include <winnetwk.h>
 #pragma comment(lib, "wsock32.lib")
 
+
 #include <ShlObj.h>
 
 #include <stdio.h>
@@ -61,16 +62,11 @@ using namespace std;
 
 #include <..\..\shared\tre-0.8.0\lib\regex.h>
 
+// Include interfaces from hardlink.lib
+#include "HardlinkLib.h"
 
-
-#include "hardlink_types.h"
-#include "..\hardlink\src\mmfobject.h"
+// Component specific includes
 #include "localisation.h"
-#include "multilang.h"
-
-#include "AsyncContext.h"
-#include <HardLink.h>
-#include "Utils.h"
 
 
 // {0A479751-02BC-11d3-A855-0004AC2568AA}

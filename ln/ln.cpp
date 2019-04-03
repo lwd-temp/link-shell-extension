@@ -6,10 +6,6 @@
 
 #include "stdafx.h"
 
-#include "AsyncContext.h"
-#include "hardlink.h"
-#include "HardlinkUtils.h"
-
 #include "ln.h"
 
 #pragma hdrstop
@@ -1861,12 +1857,6 @@ wmain(
 		// error message to stderr
 		opterr = 0;
 
-    // This needed because we use a non-msvcrt heap, which places the chunks so close
-    // towards each other, that the crt-dbg would use its CRT secure fill pattern, and thus would
-    // destroy memory during wcscpy_s() with _FILL_STRING
-#if defined _DEBUG
-    _CrtSetDebugFillThreshold(0);
-#endif
     InitCreateHardlink ();
 
 
@@ -2967,7 +2957,7 @@ wmain(
             // --supportfs
             case cBaseJustLongOpts + 0x25:
             {
-              gSupportedFileSystems.Add(argv[optind - 1]);
+              gLSESettings.Add(argv[optind - 1]);
               Argv2[0] = 0x00;
             }
             break;

@@ -8,6 +8,7 @@
 
 extern int TheRebootExplorer;
 extern CMultiLanguage gMlg;
+extern LSESettings gLSESettings;
 
 
 // PropPageIconJunction dialog
@@ -41,13 +42,13 @@ BOOL PropPageIconJunction::OnInitDialog()
   gMlg.ReplaceWindowTexts(GetSafeHwnd());
 
   // Get the overall Overlay status from registry to checkbox
-  ChangegFlags(eJunctionOverlay, &m_Overlay, true);
+  gLSESettings.ChangegFlags(eJunctionOverlay, &m_Overlay, true);
   CheckDlgButton(IDC_CHECK_Junction_Overlay_Icon, !m_Overlay);
   EnableDisableOverlayControl(!m_Overlay);
 
   // Update the value for the overlay Prio
   int Prio = 0;
-  GetValue(LSE_REGISTRY_JUNCTION_OVERLAY_PRIO, &Prio);
+  gLSESettings.GetValue(LSE_REGISTRY_JUNCTION_OVERLAY_PRIO, &Prio);
   
   wchar_t buf[16];
   if(EOF != swprintf_s(buf, L"%d", Prio))
@@ -56,7 +57,7 @@ BOOL PropPageIconJunction::OnInitDialog()
   // See if a custom icon is specified and set dialog elements
   wchar_t OverlayPath[MAX_PATH];
   OverlayPath[0] = 0x00;
-  ChangeValue(LSE_REGISTRY_JUNCTION_ICON, OverlayPath, MAX_PATH);
+  gLSESettings.ChangeValue(LSE_REGISTRY_JUNCTION_ICON, OverlayPath, MAX_PATH);
   if (OverlayPath[0])
     m_OverlayPathCustom = true;
 
@@ -143,7 +144,7 @@ int PropPageIconJunction::FetchOverlayPrio()
   
   int Prio;
   if(EOF != swscanf_s(buf, L"%d", &Prio))
-    SetValue(LSE_REGISTRY_JUNCTION_OVERLAY_PRIO, Prio);
+    gLSESettings.SetValue(LSE_REGISTRY_JUNCTION_OVERLAY_PRIO, Prio);
 
   return 42;
 }
@@ -156,7 +157,7 @@ int PropPageIconJunction::FetchOverlayPath(bool aCommit)
   if (INVALID_FILE_ATTRIBUTES != GetFileAttributes(buf))
   {
     if (aCommit)
-      ChangeValue(LSE_REGISTRY_JUNCTION_ICON, buf, MAX_PATH);
+      gLSESettings.ChangeValue(LSE_REGISTRY_JUNCTION_ICON, buf, MAX_PATH);
     LoadIconPreview(buf);
   }
 
@@ -207,13 +208,13 @@ void PropPageIconJunction::OnBnClickedCheckOverlayPath()
 
 void PropPageIconJunction::OnOK()
 {
-  ChangegFlags(eJunctionOverlay, NULL, m_Overlay);
+  gLSESettings.ChangegFlags(eJunctionOverlay, NULL, m_Overlay);
 
   FetchOverlayPrio();
   if (m_OverlayPathCustom)
     FetchOverlayPath(true);
   else
-    DeleteValue(LSE_REGISTRY_JUNCTION_ICON);
+    gLSESettings.DeleteValue(LSE_REGISTRY_JUNCTION_ICON);
 }
 
 BOOL PropPageIconJunction::OnApply()

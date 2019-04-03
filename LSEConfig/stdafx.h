@@ -32,13 +32,11 @@ using namespace std;
 
 #include <..\..\shared\tre-0.8.0\lib\regex.h>
 
-#include "hardlink_types.h"
-#include "..\hardlink\src\mmfobject.h"
+// Include interfaces from hardlink.lib
+#include "HardlinkLib.h"
 
 #include "MultiLanguage.h"
 
-#include "AsyncContext.h"
-#include "hardlink.h"
 
 #pragma comment(lib, "wsock32.lib")
 

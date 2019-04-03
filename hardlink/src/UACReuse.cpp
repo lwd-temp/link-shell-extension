@@ -1,10 +1,14 @@
 #include "stdafx.h"
 
 #include "hardlink_types.h"
+#include "DbgHelpers.h"
+
+// TODO include Murks
+#include "LSESettings.h"
 
 #include "MmfObject.h"
 #include "AsyncContext.h"
-#include "hardlink.h"
+#include "hardlinks.h"
 #include "Progressbar.h"
 
 #include "UACReuse.h"
@@ -172,4 +176,95 @@ DisposeAsync(
   // Wait till releasing of resources has finished
   WaitForMultipleObjects(nHandles, WaitEvents, TRUE, INFINITE);
 }
+
+extern HINSTANCE g_hInstance;
+
+FILE*
+OpenFileForExeHelper(
+  wchar_t* curdir,
+  wchar_t* sla_quoted
+)
+{
+  // Get the current path of extension installation
+  wchar_t* sla = &sla_quoted[1];
+  sla_quoted[0] = '\"';
+
+  GetTempPath(HUGE_PATH, curdir);
+  wcscpy(sla, curdir);
+  wcscat(sla, SYMLINKARGS);
+
+  // Write the file for the args
+#if defined _DEBUG
+  DeleteFile(sla);
+#endif
+
+  return _wfopen(sla, L"wb");
+}
+
+
+int
+ForkExeHelper(
+  wchar_t*	curdir,
+  wchar_t*	sla_quoted
+)
+{
+  // TODO: Das Übergabefile sollte nicht nur einen Namen haben, weil auch mehere Instanzen der LSE laufen können
+  wchar_t symlinkexe[HUGE_PATH];
+  GetModuleFileNameW(g_hInstance, symlinkexe, HUGE_PATH);
+  PathRemoveFileSpec(symlinkexe);
+
+  wcscat(symlinkexe, L"\\LSEUacHelper.exe");
+  wcscat(sla_quoted, L"\"");
+
+  // Start the process
+  SHELLEXECUTEINFO se;
+  ZeroMemory(&se, sizeof(se));
+
+  se.cbSize = sizeof(SHELLEXECUTEINFO);
+  se.fMask = SEE_MASK_NOCLOSEPROCESS;
+  se.lpVerb = NULL;
+  se.lpFile = symlinkexe;
+  se.lpParameters = sla_quoted;
+  se.lpDirectory = curdir;
+  se.nShow = SW_HIDE;
+  ShellExecuteEx(&se);
+
+  // Wait for the process to finish
+  WaitForSingleObject(se.hProcess, INFINITE);
+  DWORD	ExitCode;
+  GetExitCodeProcess(se.hProcess, &ExitCode);
+  CloseHandle(se.hProcess);
+
+#if !defined(_DEBUG)
+  // Delete the tmp files afterwards
+
+#if !defined DEBUG_DO_NOT_DELETE_SYMLINKS_ARGS
+  sla_quoted[wcslen(sla_quoted) - 1] = 0x00;
+  DeleteFile(&sla_quoted[1]);
+#endif
+#endif
+  HTRACE(L"%s\n", &sla_quoted[1]);
+
+  return ExitCode;
+}
+
+void WriteUACHelperArgs(
+  FILE*           aArgsFile,
+  const wchar_t   aFunction,
+  const wchar_t*  aArgument1,
+  const wchar_t*  aArgument2
+)
+{
+  fwprintf(aArgsFile, L"-%c \"%s\" \"%s\"\n", aFunction, aArgument1, aArgument2);
+
+  // Save the SID under which we are running. 
+  // Since we raise UAC via LSEUacHelper.exe, it runs as admin user, which has a different SID, 
+  // so we need the current SID in symlink, because there we need to read the settings from current user
+  wchar_t*  currentSid;
+  bool bSidValid = GetCurrentSid(&currentSid);
+  fwprintf(aArgsFile, L"%s\n", currentSid);
+  LocalFree(currentSid);
+}
+
+
 

@@ -31,10 +31,10 @@ taskkill /F /IM explorer.exe
 REM %PSKILL% explorer.exe
 move "%INST%\%MODULENAME%" "%INST%\%MODULENAME%.%STAMP%"
 copy %HOME%\..\bin\%PLATT%\%CONFIG%\%MODULENAME% "%INST%"
-copy %HOME%\..\bin\%PLATT%\%CONFIG%\symlink.exe "%INST%"
+copy %HOME%\..\bin\%PLATT%\%CONFIG%\LSEUacHelper.exe "%INST%"
 
 copy %HOME%\..\bin\%PLATT%\%CONFIG%\%PROJECTNAME%.pdb "%INST%"
-copy %HOME%\..\bin\%PLATT%\%CONFIG%\symlink.pdb "%INST%"
+copy %HOME%\..\bin\%PLATT%\%CONFIG%\LSEUacHelper.pdb "%INST%"
 
 copy %HOME%\..\bin\%PLATT%\%CONFIG%\LSEConfig.exe "%INST%"
 copy %HOME%\..\bin\%PLATT%\%CONFIG%\LSEConfig.pdb "%INST%"
@@ -60,6 +60,4 @@ REM
 REM wait 10 seconds
 REM
 @ping 127.0.0.1 -n 10 -w 1000 > nul
-
-pause
 

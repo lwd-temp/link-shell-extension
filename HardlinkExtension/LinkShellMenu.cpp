@@ -5,18 +5,14 @@
 
 #include "stdafx.h"
 
-#include "Progressbar.h"
-#include "HardLinkMenu.h"
-#include "UACReuse.h"
-
-#include "HardlinkUtils.h"
+#include "LinkShellMenu.h"
 
 // TODO: Im BackupMode über Netzwerklaufwerke haben die FIles 0 Bytes bei Smartmirror. Wenn das in-proc LSE ausgeführt wird geht es
 // Das kommt daher, dass man die Rechte nicht hat um die SACL via SMB anzugreifen. Se_SECURITY_NAME reicht nicht. Ob das am Server
 // liegt oder am Client hab ich noch nicht rausgefunden
 
 extern HINSTANCE g_hInstance;
-extern _LSESettings gLSESettings;
+extern LSESettings gLSESettings;
 extern UINT    g_cRefThisDll;
 extern PWCHAR  MenuEntries[eMenue__Free__ * 2];
 extern PWCHAR  HelpTextW[eCommandType__Free__];
@@ -341,7 +337,7 @@ Initialize(
 
       DWORD	FileSystemFlags;
       int   DriveType;
-      bool b = IsFileSystemNtfs(m_DropTarget.m_Path, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType);
+      bool b = IsFileSystemNtfs(m_DropTarget.m_Path, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType);
       m_DropTarget.m_Flags = 0x00;
       DWORD dummy = 0;
       GetFileAttr(m_DropTarget, dummy, b);
@@ -372,7 +368,7 @@ Initialize(
 
       DWORD	FileSystemFlags;
       int   DriveType;
-      bool bIsNtfs = IsFileSystemNtfs(m_DropTarget.m_Path, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType);
+      bool bIsNtfs = IsFileSystemNtfs(m_DropTarget.m_Path, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType);
       DWORD dummy;
       GetFileAttr(m_DropTarget, dummy, bIsNtfs);
 
@@ -418,7 +414,7 @@ Initialize(
       {
         DWORD	FileSystemFlags;
         int   DriveType;
-        bool bIsNtfs = IsFileSystemNtfs(m_pTargets[0].m_Path, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType);
+        bool bIsNtfs = IsFileSystemNtfs(m_pTargets[0].m_Path, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType);
 
         // Check the properties of each selected file
         for (UINT i = 0; i < m_nTargets;i++)
@@ -755,11 +751,11 @@ CreateContextMenu(
         nEntries++;
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.Flags & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
           nEntries++;
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.Flags & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
           nEntries++;
 
         if (SrcDstOnSameDrive)
@@ -818,13 +814,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.Flags & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.Flags & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -858,13 +854,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.Flags & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.Flags & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -905,13 +901,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.Flags & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.Flags & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -944,13 +940,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.Flags & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.Flags & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -981,13 +977,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.Flags & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.Flags & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -1019,13 +1015,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.Flags & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.Flags & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -1062,13 +1058,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.Flags & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.Flags & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -1105,13 +1101,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.Flags & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.Flags & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -1155,13 +1151,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.Flags & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.Flags & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -1328,7 +1324,7 @@ QueryContextMenu(
 	// If the extended mode is on, then only show the menues if shift is pressed
 	// Do this only for the file (right) pane, but not for the explore(left) pane, 
 	// since explorer does not send us CMF_EXTENDEDVERBS in the left pane.
-	if (gLSESettings.Flags & eEnableExtended)
+	if (gLSESettings.GetFlags() & eEnableExtended)
 		if ( !(uFlags & CMF_EXTENDEDVERBS) && (uFlags & CMF_RIGHTPANE))
 			return MAKE_HRESULT ( SEVERITY_SUCCESS, FACILITY_NULL, 0 );
 #endif
@@ -1699,7 +1695,7 @@ DropHardLink(
 	{
 		CreateFileName(
       g_hInstance,
-      gLSESettings.LanguageID,
+      gLSESettings.GetLanguageID(),
 			TopMenuEntries[eTopMenuHardlink], 
 			TopMenuEntries[eTopMenuTo], 
 			aTarget.m_Path, 
@@ -1760,7 +1756,7 @@ DropHardLink(
 	  {
 		  CreateFileName(
         g_hInstance,
-        gLSESettings.LanguageID,
+        gLSESettings.GetLanguageID(),
 			  TopMenuEntries[eTopMenuHardlink], 
 			  TopMenuEntries[eTopMenuTo], 
 			  aTarget.m_Path, 
@@ -1771,7 +1767,7 @@ DropHardLink(
 		  if (m_pTargets[i].m_Flags & eFile)
       {
 			  // Write the command file, which is read by the elevated process
-			  fwprintf(HardlinkArgs, L"-h \"%s\" \"%s\"\n", m_pTargets[i].m_Path, dest);
+        WriteUACHelperArgs(HardlinkArgs, 'h', m_pTargets[i].m_Path, dest);
       }
     }
     fclose(HardlinkArgs);
@@ -1814,7 +1810,7 @@ DropSymbolicLink(
  	PathAddBackslash(aTarget.m_Path);
 
   // Retrieve the light settings
-  GetLSESettings(gLSESettings, false);
+  gLSESettings.ReadLSESettings(false);
 
 	if (!m_nTargets)
 		ClipboardToSelection(false);
@@ -1823,7 +1819,11 @@ DropSymbolicLink(
 	wchar_t curdir[HUGE_PATH];	
   FILE* SymlinkArgs = NULL;
   
+#if defined SYMLINK_FORCE
+  if (SYMLINK_OUTPROC)
+#else
   if (Elevation)
+#endif
     SymlinkArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
 	// Write the args
@@ -1834,7 +1834,7 @@ DropSymbolicLink(
 
 		CreateFileName(
       g_hInstance,
-      gLSESettings.LanguageID,
+      gLSESettings.GetLanguageID(),
 			TopMenuEntries[eTopMenuSymbolicLink], 
 			TopMenuEntries[eTopMenuTo], 
 			aTarget.m_Path, 
@@ -1866,19 +1866,23 @@ DropSymbolicLink(
         dwSymLinkAllowUnprivilegedCreation = SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
       }
       
+#if defined SYMLINK_FORCE
+      if (SYMLINK_OUTPROC)
+#else
       if (Elevation)
+#endif
       {
-        if (gLSESettings.Flags & eForceAbsoluteSymbolicLinks)
-          fwprintf(SymlinkArgs, L"-F \"%s\" \"%s\"\n", dest, m_pTargets[i].m_Path);
+        if (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks)
+          WriteUACHelperArgs(SymlinkArgs, 'F', dest, m_pTargets[i].m_Path);
         else
-          fwprintf(SymlinkArgs, L"-f \"%s\" \"%s\"\n", dest, m_pTargets[i].m_Path);
+          WriteUACHelperArgs(SymlinkArgs, 'f', dest, m_pTargets[i].m_Path);
       }
       else
       {
         // Used when UAC is switched off thus making it possible  to call CreateSymboliclink directly from explorer
         CreateSymboliclink(dest,
           m_pTargets[i].m_Path, 
-          (gLSESettings.Flags & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation
+          (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation
         );
       }
     }
@@ -1911,27 +1915,29 @@ DropSymbolicLink(
           dwSymLinkAllowUnprivilegedCreation = SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
         }
         
-        if (!Elevation)
+#if defined SYMLINK_FORCE
+        if (SYMLINK_OUTPROC)
+#else
+        if (Elevation)
+#endif
         {
-          // Used for debugging purposes, when UAC is switched off thus making it possible to call CreateSymboliclink 
-          // directly from explorer, but not from symlink.exe
-          CreateSymboliclink(dest, 
-            m_pTargets[i].m_Path, 
-            (gLSESettings.Flags & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation | SYMLINK_FLAG_DIRECTORY
-          );
+          if (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks)
+            WriteUACHelperArgs(SymlinkArgs, 'D', dest, m_pTargets[i].m_Path);
+          else
+            WriteUACHelperArgs(SymlinkArgs, 'd', dest, m_pTargets[i].m_Path);
         }
         else
         {
-          if (gLSESettings.Flags & eForceAbsoluteSymbolicLinks)
-            fwprintf(SymlinkArgs, L"-D \"%s\" \"%s\"\n", dest, m_pTargets[i].m_Path);
-          else
-            fwprintf(SymlinkArgs, L"-d \"%s\" \"%s\"\n", dest, m_pTargets[i].m_Path);
+          // Used for debugging purposes, when UAC is switched off thus making it possible to call CreateSymboliclink 
+          // directly from explorer, but not from LSEUacHelper.exe
+          CreateSymboliclink(dest,
+            m_pTargets[i].m_Path,
+            (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation | SYMLINK_FLAG_DIRECTORY
+          );
         }
       }
     }
 	}
-  if (Elevation)
-	  fclose (SymlinkArgs);
 
   
 #if defined SYMLINK_FORCE
@@ -1940,6 +1946,8 @@ DropSymbolicLink(
   if (Elevation)
 #endif
   {
+    fclose(SymlinkArgs);
+
     // Create the Symbolic Links
     DWORD r = ForkExeHelper(curdir, sla_quoted);
     if (r)
@@ -1969,146 +1977,150 @@ DropJunction(
 	Target&		aTarget
 )
 {
-	WCHAR		dest[HUGE_PATH];
+  WCHAR		dest[HUGE_PATH];
 
-	PathAddBackslash(aTarget.m_Path);
+  PathAddBackslash(aTarget.m_Path);
 
-	// Only get the data from the clipboard if we do not already
-	// have data in m_pTargets
-	// The idea behind is to support Pick/Drop in parallel to the
-	// drag-drop handler, which does not put data onto the clipboard
-	// but does it only via m_pTargets
-	if (!m_nTargets)
-		ClipboardToSelection(false);
+  // Only get the data from the clipboard if we do not already
+  // have data in m_pTargets
+  // The idea behind is to support Pick/Drop in parallel to the
+  // drag-drop handler, which does not put data onto the clipboard
+  // but does it only via m_pTargets
+  if (!m_nTargets)
+    ClipboardToSelection(false);
 
-	// Under e.g c:\program Files (x86) it is not allowed to create
-	// junctions without UAC, so we have to fork in that case and
-	// have all variables prepared
-	bool CreateJunctionsViaHelperExe = false;
-	wchar_t sla_quoted[HUGE_PATH];
-	wchar_t* sla = &sla_quoted[1];
-	wchar_t curdir[HUGE_PATH];	
-	FILE *JunctionArgs = NULL;
+  // Under e.g c:\program Files (x86) it is not allowed to create
+  // junctions without UAC, so we have to fork in that case and
+  // have all variables prepared
+  bool CreateJunctionsViaHelperExe = false;
+  wchar_t sla_quoted[HUGE_PATH];
+  wchar_t* sla = &sla_quoted[1];
+  wchar_t curdir[HUGE_PATH];
+  FILE *JunctionArgs = NULL;
 
-	for (ULONG i = 0; i < m_nTargets; i++)
-	{
-		if (m_pTargets[i].m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
-		{
-			WCHAR	DestNoJunction[HUGE_PATH];
-			WCHAR	SourceNoJunction[HUGE_PATH];
+  for (ULONG i = 0; i < m_nTargets; i++)
+  {
+    if (m_pTargets[i].m_Flags & (eDir | eJunction | eVolume | eMountPoint | eSymbolicLink))
+    {
+      WCHAR	DestNoJunction[HUGE_PATH];
+      WCHAR	SourceNoJunction[HUGE_PATH];
 
-			wchar_t		dp[MAX_PATH];
-			wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
+      wchar_t		dp[MAX_PATH];
+      wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
 
-			CreateFileName(
+      CreateFileName(
         g_hInstance,
-        gLSESettings.LanguageID,
-				TopMenuEntries[eTopMenuJunction], 
-				TopMenuEntries[eTopMenuTo], 
-				aTarget.m_Path, 
-				pFilename, 
-				dest,
+        gLSESettings.GetLanguageID(),
+        TopMenuEntries[eTopMenuJunction],
+        TopMenuEntries[eTopMenuTo],
+        aTarget.m_Path,
+        pFilename,
+        dest,
         IDS_STRING_eTopMenuOfOrderXP_1);
-	
-			ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction, HUGE_PATH);
-			PathAddBackslash(SourceNoJunction);
-			ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
-			if (StrStrI(DestNoJunction, SourceNoJunction))
-			{
-				HTRACE(L"LSE::DropJunction ERR: '%s' -> '%s', %ld\n", SourceNoJunction, DestNoJunction, m_pTargets[i].m_Flags);
-				ErrorCreating(dest, 
-					IDS_STRING_ErrExplorerCanNotCreateJunction, 
-					IDS_STRING_ErrCreatingJunction,
-					IDS_STRING_ErrDestSrcCircular
-				);
-			}
-			else
-			{
-				HTRACE(L"LSE::DropJunction: '%s' -> '%s', %ld\n", m_pTargets[i].m_Path, dest, m_pTargets[i].m_Flags);
-				DWORD r = CreateJunction(dest, m_pTargets[i].m_Path);
-				if (r)
-				{
-					// With Vista & W7, we are not allowed to create Junctions in folders like
-					// c:\Program Files (x86) wihtout UAC, so in this special case, the creation
-					// of junction has to be relayed to an elevated .exe as done with Symbolic links
-					if ((ERROR_ALREADY_EXISTS != r) && ElevationNeeded())
-					{
-						// Write the file for the args
-						if (!JunctionArgs)
-						{
-							// Get the current path of extension installation
-							sla_quoted[0] = '\"';
 
-							GetTempPath(HUGE_PATH, curdir);
-							wcscpy(sla, curdir);
-							wcscat(sla, SYMLINKARGS);
-
-							JunctionArgs = _wfopen (sla, L"wb");
-						}
-						// Write the command file, which is read by the elevated process
-						fwprintf(JunctionArgs, L"-j \"%s\" \"%s\"\n", dest, m_pTargets[i].m_Path);
-						CreateJunctionsViaHelperExe = true;
-					}
-					else
+      ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction, HUGE_PATH);
+      PathAddBackslash(SourceNoJunction);
+      ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
+      if (StrStrI(DestNoJunction, SourceNoJunction))
+      {
+        HTRACE(L"LSE::DropJunction ERR: '%s' -> '%s', %ld\n", SourceNoJunction, DestNoJunction, m_pTargets[i].m_Flags);
+        ErrorCreating(dest,
+          IDS_STRING_ErrExplorerCanNotCreateJunction,
+          IDS_STRING_ErrCreatingJunction,
+          IDS_STRING_ErrDestSrcCircular
+        );
+      }
+      else
+      {
+        HTRACE(L"LSE::DropJunction: '%s' -> '%s', %ld\n", m_pTargets[i].m_Path, dest, m_pTargets[i].m_Flags);
+        DWORD ret;
+#if defined SYMLINK_FORCE
+        if (SYMLINK_OUTPROC)
+          ret = ERROR_ALREADY_EXISTS;
+        else
+          ret = CreateJunction(dest, m_pTargets[i].m_Path);
+#else
+        ret = CreateJunction(dest, m_pTargets[i].m_Path);
+#endif
+        if (ERROR_SUCCESS != ret)
+        {
+          // With Vista & W7, we are not allowed to create Junctions in folders like
+          // c:\Program Files (x86) wihtout UAC, so in this special case, the creation
+          // of junction has to be relayed to an elevated .exe as done with Symbolic links
+#if defined SYMLINK_FORCE
+          if (SYMLINK_OUTPROC)
+#else
+          if ((ERROR_ALREADY_EXISTS != ret) && ElevationNeeded())
+#endif
           {
-            switch (r)
+            // Write the file for the args
+            if (!JunctionArgs)
+              JunctionArgs = OpenFileForExeHelper(curdir, sla_quoted);
+
+            // Write the command file, which is read by the elevated process
+            WriteUACHelperArgs(JunctionArgs, 'j', dest, m_pTargets[i].m_Path);
+            CreateJunctionsViaHelperExe = true;
+          }
+          else
+          {
+            switch (ret)
             {
-              case ERROR_ALREADY_EXISTS:
-                ErrorCreating(dest, 
-                  IDS_STRING_ErrExplorerAutoRenAlreadyExists, 
-                  IDS_STRING_ErrCreatingHardlink,
-                  IDS_STRING_ErrHardlinkFailed
-                  );
+            case ERROR_ALREADY_EXISTS:
+              ErrorCreating(dest,
+                IDS_STRING_ErrExplorerAutoRenAlreadyExists,
+                IDS_STRING_ErrCreatingHardlink,
+                IDS_STRING_ErrHardlinkFailed
+              );
               break;
 
-              default:
-                ErrorFromSystem(r);
+            default:
+              ErrorFromSystem(ret);
               break;
             }
           }
-				}
-			}
-				
-		}
+        }
+      }
 
-		// If files were selected aside directories or junction
-		// create hardlinks for the files
-		if (m_pTargets[i].m_Flags & eFile)
-		{
-			int result = CreateHardlink(m_pTargets[i].m_Path, dest);
-			if (ERROR_SUCCESS != result)
-				ErrorFromSystem(result);
-		}
-	}
+    }
+
+    // If files were selected aside directories or junction
+    // create hardlinks for the files
+    if (m_pTargets[i].m_Flags & eFile)
+    {
+      int result = CreateHardlink(m_pTargets[i].m_Path, dest);
+      if (ERROR_SUCCESS != result)
+        ErrorFromSystem(result);
+    }
+  }
 
 #if defined SYMLINK_FORCE
   if (SYMLINK_OUTPROC)
 #else
   if (CreateJunctionsViaHelperExe)
 #endif
-	{
-		fclose(JunctionArgs);
-		DWORD r = ForkExeHelper(curdir, sla_quoted);
-		if (r)
+  {
+    fclose(JunctionArgs);
+    DWORD r = ForkExeHelper(curdir, sla_quoted);
+    if (r)
     {
       switch (r)
       {
-        case ERROR_ALREADY_EXISTS:
-          ErrorCreating(dest, 
-            IDS_STRING_ErrExplorerAutoRenAlreadyExists, 
-            IDS_STRING_ErrCreatingHardlink,
-            IDS_STRING_ErrHardlinkFailed
-            );
+      case ERROR_ALREADY_EXISTS:
+        ErrorCreating(dest,
+          IDS_STRING_ErrExplorerAutoRenAlreadyExists,
+          IDS_STRING_ErrCreatingHardlink,
+          IDS_STRING_ErrHardlinkFailed
+        );
         break;
 
-        default:
-          ErrorFromSystem(r);
+      default:
+        ErrorFromSystem(r);
         break;
       }
     }
-	}
+  }
 
-	return NOERROR;
+  return NOERROR;
 }
 
 HRESULT 
@@ -2173,22 +2185,17 @@ DeleteJunction(
 				// With Vista & W7, we are not allowed to delete Directories in folders like
 				// c:\Program Files (x86) wihtout UAC, so in this special case, the deletion
 				// of junction has to be relayed to an elevated .exe as done with Symbolic links
-			  if (ElevationNeeded())
+#if defined SYMLINK_FORCE
+        if (SYMLINK_OUTPROC)
+#else
+        if (ElevationNeeded())
+#endif
 				{
 					if (!JunctionArgs)
-					{
-						// Get the current path of extension installation
-						sla_quoted[0] = '\"';
+            JunctionArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
-						GetTempPath(HUGE_PATH, curdir);
-						wcscpy(sla, curdir);
-						wcscat(sla, SYMLINKARGS);
-
-						// Write the file for the args
-						JunctionArgs = _wfopen (sla, L"wb");
-					}
-					// Write the command file, which is read by the elevated process
-					fwprintf(JunctionArgs, L"-k \"%s\" \"empty\"\n", m_pTargets[i].m_Path);
+          // Write the command file, which is read by the elevated process
+          WriteUACHelperArgs(JunctionArgs, 'k', L"empty", m_pTargets[i].m_Path);
 					CreateJunctionsViaHelperExe = true;
 				}
 				else
@@ -2242,7 +2249,7 @@ DropMountPoint(
 
 		CreateFileName(
       g_hInstance,
-      gLSESettings.LanguageID,
+      gLSESettings.GetLanguageID(),
 			TopMenuEntries[eTopMenuMountPoint], 
 			TopMenuEntries[eTopMenuOf], 
 			aTarget.m_Path, 
@@ -2281,7 +2288,7 @@ DropMountPoint(
         FILE *MountpointArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
 				// Write the command file, which is read by the elevated process
-				fwprintf(MountpointArgs, L"-m \"%s\" \"%s\"\n", m_pTargets[0].m_Path, dest);
+        WriteUACHelperArgs(MountpointArgs, 'm', m_pTargets[0].m_Path, dest);
 				fclose(MountpointArgs);
 
 				RetVal = ForkExeHelper(curdir, sla_quoted);
@@ -2330,35 +2337,35 @@ HardLinkExt::
 DeleteMountPoint(
 )
 {
-	wchar_t sla_quoted[HUGE_PATH];
-	wchar_t curdir[HUGE_PATH];	
-	bool RelayToSymlink = false;
-	FILE *Arguments = NULL;
+  wchar_t sla_quoted[HUGE_PATH];
+  wchar_t curdir[HUGE_PATH];
+  bool RelayToSymlink = false;
+  FILE *Arguments = NULL;
 
   Arguments = OpenFileForExeHelper(curdir, sla_quoted);
 
-	for (UINT i = 0; i < m_nTargets; i++)
-	{
-		DWORD RetVal;
-		if (m_pTargets[i].m_Flags & eMountPoint)  
-		{
-			// With Vista it is not allowed to unmount a drive
-			// without being Administrator
-			if (ElevationNeeded())
-			{
-				// Write the command file, which is read by the elevated process
-				fwprintf(Arguments, L"-n \"%s\" \"empty\"\n", m_pTargets[i].m_Path);
-				RelayToSymlink = true;
-			}
-			else
-			{
-				RetVal = ::DeleteMountPoint(m_pTargets[i].m_Path);
-				RemoveDirectory(m_pTargets[i].m_Path);
-				if (S_OK != RetVal)
-					ErrorFromSystem(RetVal);
-			}
-		}
-	} // for (UINT i = 0; i < m_nTargets; i++)
+  for (UINT i = 0; i < m_nTargets; i++)
+  {
+    DWORD RetVal;
+    if (m_pTargets[i].m_Flags & eMountPoint)
+    {
+      // With Vista it is not allowed to unmount a drive
+      // without being Administrator
+      if (ElevationNeeded())
+      {
+        // Write the command file, which is read by the elevated process
+        WriteUACHelperArgs(Arguments, 'n', L"empty", m_pTargets[i].m_Path);
+        RelayToSymlink = true;
+      }
+      else
+      {
+        RetVal = ::DeleteMountPoint(m_pTargets[i].m_Path);
+        RemoveDirectory(m_pTargets[i].m_Path);
+        if (S_OK != RetVal)
+          ErrorFromSystem(RetVal);
+      }
+    }
+  } // for (UINT i = 0; i < m_nTargets; i++)
 
   fclose(Arguments);
 
@@ -2369,10 +2376,10 @@ DeleteMountPoint(
 #endif
   {
     DWORD r = ForkExeHelper(curdir, sla_quoted);
-		if (r)
-			ErrorFromSystem(GetLastError());
-	}
-	return NOERROR;
+    if (r)
+      ErrorFromSystem(GetLastError());
+  }
+  return NOERROR;
 }
 
 HRESULT
@@ -2397,7 +2404,7 @@ SmartMirror(
   _PathNameStatusList CleanPathNameStatusList;
 
   // Retrieve the light settings
-  GetLSESettings(gLSESettings, false);
+  gLSESettings.ReadLSESettings(false);
 
   // ProgressBar
   { 
@@ -2414,16 +2421,16 @@ SmartMirror(
     CopyStatistics	CleanStatistics;
     GetLocalTime(&CleanStatistics.m_StartTime);
 
-    if (!(gLSESettings.Flags & eForceAbsoluteSymbolicLinks))
+    if (!(gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks))
       MirrorList.SetFlags(FileInfoContainer::eRelativeSymboliclinks);
 
-    if (gLSESettings.Flags & eUnrollReparsePoints)
+    if (gLSESettings.GetFlags() & eUnrollReparsePoints)
       MirrorList.SetUnrollDirList(NULL);
 
-    if (gLSESettings.Flags & eSpliceReparsePoints)
+    if (gLSESettings.GetFlags() & eSpliceReparsePoints)
       MirrorList.SetSpliceDirList(NULL);
       
-    if (gLSESettings.Flags & eBackupMode)
+    if (gLSESettings.GetFlags() & eBackupMode)
       MirrorList.SetFlags(FileInfoContainer::eBackupMode);
       
     FILE* LogFile = MirrorList.StartLogging(gLSESettings, L"SmartMirror");
@@ -2483,7 +2490,7 @@ SmartMirror(
           // For each source location decide which enumeration mode to go
           int DriveType = DRIVE_UNKNOWN;
           DWORD FileSystemFlags;
-          IsFileSystemNtfs(m_pTargets[i].m_Path, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType);
+          IsFileSystemNtfs(m_pTargets[i].m_Path, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType);
 
           if (!PathIsUNC(dest))
             MirrorPath.ArgvDest = PATH_PARSE_SWITCHOFF;
@@ -2499,7 +2506,7 @@ SmartMirror(
           // Record all path for enumeration
           DriveType = DRIVE_UNKNOWN;
           FileSystemFlags;
-          IsFileSystemNtfs(dest, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType);
+          IsFileSystemNtfs(dest, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType);
 
           if (!PathIsUNC(m_pTargets[i].m_Path))
             CleanPath.ArgvDest = PATH_PARSE_SWITCHOFF;
@@ -2571,18 +2578,18 @@ SmartMirror(
           // If we are in BackupMode we need the privs to add files, which we most propably have the permissions
           // But it will not work with out privs. But we can't get them in context of explorer. So we do a hack
           // and temporarily remove the BackupMode from the container
-          if (gLSESettings.Flags & eBackupMode)
+          if (gLSESettings.GetFlags() & eBackupMode)
             MirrorList.ClearFlags(FileInfoContainer::eBackupMode);
           MirrorList.AddFile(SrcPath, FILE_ATTRIBUTE_NORMAL, 0, &MirrorStatistics, NULL, NULL, REPARSE_POINT_UNDEFINED, false);
-          if (gLSESettings.Flags & eBackupMode)
+          if (gLSESettings.GetFlags() & eBackupMode)
             MirrorList.SetFlags(FileInfoContainer::eBackupMode);
 
         } // if (m_pTargets[i].m_Flags & eFile )
       }
     } // for (ULONG i = 0; i < m_nTargets; i++)
 
-    // In BackupMode we also have to run the FindHardlink eleavted and thus in symlink.exe
-    if (gLSESettings.Flags & eBackupMode)
+    // In BackupMode we also have to run the FindHardlink eleavted and thus in LSEUacHelper.exe
+    if (gLSESettings.GetFlags() & eBackupMode)
     {
       // Stop bar
       RECT  ProgressbarPosition;
@@ -2595,7 +2602,7 @@ SmartMirror(
       wchar_t curdir[HUGE_PATH];	
       FILE* SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
-      fwprintf(SmartCopyArgs, L"-w \"n\" \"n\"\n");
+      WriteUACHelperArgs(SmartCopyArgs, 'w', L"not used", L"not used");
 
       // persist MirrorList
       MirrorList.SetAnchorPath(MirrorPathList);
@@ -2614,7 +2621,7 @@ SmartMirror(
       // Fork Process
       DWORD r = ForkExeHelper(curdir, sla_quoted);
     }
-    else // if (gLSESettings.Flags & eBackupMode)
+    else // if (gLSESettings.GetFlags() & eBackupMode)
     {
       // Enumerate all files in the source
       AsyncContext    Context;
@@ -2700,8 +2707,8 @@ SmartMirror(
           wchar_t curdir[HUGE_PATH];	
           FILE* SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
-	        fwprintf(SmartCopyArgs, L"-w \"n\" \"n\"\n");
-
+          WriteUACHelperArgs(SmartCopyArgs, 'w', L"not used", L"not used");
+          
           // persist MirrorList
           MirrorList.Save(SmartCopyArgs);
           CleanList.Save(SmartCopyArgs);
@@ -2733,7 +2740,7 @@ SmartMirror(
           // If they are equal everything is fine
           //
           SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
-			    fwprintf(SmartCopyArgs, L"-s \"%s\" \"%s\"\n", L"not used", L"not used");
+          WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
           FileList2.Save(SmartCopyArgs);
           fclose(SmartCopyArgs);
   #endif
@@ -2816,7 +2823,7 @@ SmartXXX(
   _PathNameStatusList PathNameStatusList;
 
   // Retrieve the light settings
-  GetLSESettings(gLSESettings, false);
+  gLSESettings.ReadLSESettings(false);
 
   // ProgressBar
   { 
@@ -2834,16 +2841,16 @@ SmartXXX(
     if (aHardVsSymbolic)
       FileList.SetFlags(FileInfoContainer::eSymboliclinkClone);
     
-    if (!(gLSESettings.Flags & eForceAbsoluteSymbolicLinks))
+    if (!(gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks))
       FileList.SetFlags(FileInfoContainer::eRelativeSymboliclinks);
 
-    if (gLSESettings.Flags & eUnrollReparsePoints)
+    if (gLSESettings.GetFlags() & eUnrollReparsePoints)
       FileList.SetUnrollDirList(NULL);
 
-    if (gLSESettings.Flags & eSpliceReparsePoints)
+    if (gLSESettings.GetFlags() & eSpliceReparsePoints)
       FileList.SetSpliceDirList(NULL);
       
-    if (gLSESettings.Flags & eBackupMode)
+    if (gLSESettings.GetFlags() & eBackupMode)
       FileList.SetFlags(FileInfoContainer::eBackupMode);
       
     FILE* LogFile = FileList.StartLogging(gLSESettings, aMode == FileInfoContainer::eSmartCopy ? L"SmartCopy" : L"SmartClone");
@@ -2870,7 +2877,7 @@ SmartXXX(
 
       int rr = CreateFileName(
         g_hInstance,
-        gLSESettings.LanguageID,
+        gLSESettings.GetLanguageID(),
         TopMenuEntries[aIDS_AutoRename],
         TopMenuEntries[eTopMenuOf], 
         aTarget.m_Path, 
@@ -2902,7 +2909,7 @@ SmartXXX(
           // Record all path for enumeration
           int DriveType = DRIVE_UNKNOWN;
           DWORD FileSystemFlags;
-          IsFileSystemNtfs(m_pTargets[i].m_Path, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType);
+          IsFileSystemNtfs(m_pTargets[i].m_Path, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType);
 
           if (!PathIsUNC(dest))
             TargetPath.ArgvDest = PATH_PARSE_SWITCHOFF;
@@ -2980,24 +2987,23 @@ SmartXXX(
           // If we are in BackupMode we need the privs to add files, which we most propably have the permissions
           // But it will not work with out privs. But we can't get them in context of explorer. So we do a hack
           // and temporarily remove the BackupMode from the container
-          if (gLSESettings.Flags & eBackupMode)
+          if (gLSESettings.GetFlags() & eBackupMode)
             FileList.ClearFlags(FileInfoContainer::eBackupMode);
           FileList.AddFile(SrcPath, FILE_ATTRIBUTE_NORMAL, 0, &aStats, NULL, NULL, REPARSE_POINT_UNDEFINED, false);
-          if (gLSESettings.Flags & eBackupMode)
+          if (gLSESettings.GetFlags() & eBackupMode)
             FileList.SetFlags(FileInfoContainer::eBackupMode);
         } // if (m_pTargets[i].m_Flags & eFile )
       }
     } // for (ULONG i = 0; i < m_nTargets; i++)
 
-#if defined SYMLINK_FORCE
-    if (SYMLINK_OUTPROC)
-#else
     // Check if we are in Backup Mode. If yes we also have to do the FindHardlink elevated, because
     // it might happen, that FindHardlink should run over directories, which the explorer does not
     // have access permissions.
-    if (gLSESettings.Flags & eBackupMode)
-#endif
+    if (gLSESettings.GetFlags() & eBackupMode)
     {
+      
+      // TODO SmartCopy in Backup broken. It does nothing
+      
       // Stop bar
       RECT  ProgressbarPosition;
       ZeroMemory(&ProgressbarPosition, sizeof(RECT));
@@ -3012,12 +3018,12 @@ SmartXXX(
       switch (aMode)
       {
         case FileInfoContainer::eSmartCopy:
-		      fwprintf(SmartCopyArgs, L"-s \"n\" \"n\"\n");
-        break;
+          WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+          break;
       
         case FileInfoContainer::eSmartClone:
-		      fwprintf(SmartCopyArgs, L"-t \"n\" \"n\"\n");
-        break;
+          WriteUACHelperArgs(SmartCopyArgs, 't', L"not used", L"not used");
+          break;
       }
 
       // persist FileList
@@ -3035,11 +3041,10 @@ SmartXXX(
       // Fork Process
       DWORD r = ForkExeHelper(curdir, sla_quoted);
     }
-    else // if (gLSESettings.Flags & eBackupMode)
+    else // if (gLSESettings.GetFlags() & eBackupMode)
     {
       // Enumerate all files in-proc in .dll
       AsyncContext    Context;
-
 
       int r = FileList.FindHardLink (
         TargetPathList,
@@ -3073,7 +3078,7 @@ SmartXXX(
         // be created. But do this only under > Windows Vista
 
 
-  #if defined SYMLINK_FORCE || defined DEBUG_DO_NOT_DELETE_SYMLINKS_ARGS
+  #if defined SYMLINK_FORCE
         if (SYMLINK_OUTPROC)
   #else
         int ContainsSymlinks = FileList.CheckSymbolicLinks();
@@ -3112,12 +3117,12 @@ SmartXXX(
           switch (aMode)
           {
             case FileInfoContainer::eSmartCopy:
-			        fwprintf(SmartCopyArgs, L"-s \"n\" \"n\"\n");
-            break;
+              WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+              break;
           
             case FileInfoContainer::eSmartClone:
-			        fwprintf(SmartCopyArgs, L"-t \"n\" \"n\"\n");
-            break;
+              WriteUACHelperArgs(SmartCopyArgs, 't', L"not used", L"not used");
+              break;
           }
 
           // persist FileList
@@ -3149,7 +3154,7 @@ SmartXXX(
           // If they are equal everything is fine
           //
           SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
-			    fwprintf(SmartCopyArgs, L"-s \"%s\" \"%s\"\n", L"not used", L"not used");
+          WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
           FileList2.Save(SmartCopyArgs);
           fclose(SmartCopyArgs);
   #endif
@@ -3261,7 +3266,7 @@ ReplaceJunction(
 	
   // If we are not in BackupMode, then delete the directory, otherwise do this elevated
   // because we have to read existing attributes of aSource.
-  if (!(gLSESettings.Flags & eBackupMode))
+  if (!(gLSESettings.GetFlags() & eBackupMode))
     bRemoveDir = RemoveDirectory(aSource);
 
 #if defined SYMLINK_FORCE
@@ -3273,14 +3278,18 @@ ReplaceJunction(
 	if (FALSE == bRemoveDir)
 #endif
 	{
-	  if (ElevationNeeded() || (gLSESettings.Flags & eBackupMode))
-		{
+#if defined SYMLINK_FORCE
+    if (SYMLINK_OUTPROC)
+#else
+    if (ElevationNeeded() || (gLSESettings.GetFlags() & eBackupMode))
+#endif
+    {
       wchar_t sla_quoted[HUGE_PATH];
       wchar_t curdir[HUGE_PATH];	
       FILE* JunctionArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
 			// Write the command file, which is read by the elevated process
-			fwprintf(JunctionArgs, L"-l \"%s\" \"%s\"\n", aSource, aTarget);
+      WriteUACHelperArgs(JunctionArgs, 'l', aSource, aTarget);
 			fclose(JunctionArgs);
 
 			RetVal = ForkExeHelper(curdir, sla_quoted);
@@ -3348,13 +3357,13 @@ ReplaceSymbolicLink(
 )
 {
 	DWORD RetVal = ERROR_SUCCESS;
-  GetLSESettings(gLSESettings, false);
+  gLSESettings.ReadLSESettings(false);
 
   PathRemoveBackslash(aSource);
   DWORD Attribs = GetFileAttributes(aSource);
 
   // Determine the relation between source and destination. KeepAbsRel means: do not change
-  int SymbolicLinkRelation = gLSESettings.Flags & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE;
+  int SymbolicLinkRelation = gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE;
   if (aKeepAbsRel)
   {
     if (PathIsRelative(aTarget))
@@ -3373,7 +3382,7 @@ ReplaceSymbolicLink(
   // Check if we have to elevate
   if (
     (ElevationNeeded() && !(SymbolicLinkRelation & SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE)) || 
-    (gLSESettings.Flags & eBackupMode)
+    (gLSESettings.GetFlags() & eBackupMode)
   )
 #endif
 	{
@@ -3385,17 +3394,17 @@ ReplaceSymbolicLink(
     {
 		  // Write the command file, which is read by the elevated process
       if (SYMLINK_FLAG_RELATIVE == SymbolicLinkRelation)
-        fwprintf(Arguments, L"-e \"%s\" \"%s\"\n", aSource, aTarget);
+        WriteUACHelperArgs(Arguments, 'e', aSource, aTarget);
       else
-        fwprintf(Arguments, L"-E \"%s\" \"%s\"\n", aSource, aTarget);
+        WriteUACHelperArgs(Arguments, 'E', aSource, aTarget);
     }
     else
     {
       PathRemoveBackslash(aSource);
       if (SYMLINK_FLAG_RELATIVE == SymbolicLinkRelation)
-        fwprintf(Arguments, L"-g \"%s\" \"%s\"\n", aSource, aTarget);
+        WriteUACHelperArgs(Arguments, 'g', aSource, aTarget);
       else
-        fwprintf(Arguments, L"-G \"%s\" \"%s\"\n", aSource, aTarget);
+        WriteUACHelperArgs(Arguments, 'G', aSource, aTarget);
     }
 
     fclose(Arguments);
@@ -3474,7 +3483,7 @@ ReplaceMountPoint(
 #else
   // With Windows7 elevation is needed to unmount a drive. Furthermore when in 
   // Backup Mode we also have to elevate
-	if (ElevationNeeded() || (gLSESettings.Flags & eBackupMode))
+	if (ElevationNeeded() || (gLSESettings.GetFlags() & eBackupMode))
 #endif
 	{
     wchar_t sla_quoted[HUGE_PATH];
@@ -3482,8 +3491,8 @@ ReplaceMountPoint(
     FILE* Arguments = OpenFileForExeHelper(curdir, sla_quoted);
 
 		// Write the command file, which is read by the elevated process
-		fwprintf(Arguments, L"-o \"%s\" \"%s\"\n", aSource, aTarget);
-		fclose(Arguments);
+    WriteUACHelperArgs(Arguments, 'o', aSource, aTarget);
+    fclose(Arguments);
 
 		RetVal = ForkExeHelper(curdir, sla_quoted);
 	}
@@ -3549,7 +3558,7 @@ DropSmartMirror(
 )
 {
   // Retrieve the light settings
-  GetLSESettings(gLSESettings, false);
+  gLSESettings.ReadLSESettings(false);
 
 	return SmartMirror(
     aTarget, 
@@ -3580,7 +3589,7 @@ DropDeloreanCopy(
   _PathNameStatusList MirrorPathNameStatusList;
 
   // Retrieve the light settings
-  GetLSESettings(gLSESettings, false);
+  gLSESettings.ReadLSESettings(false);
 
   // ProgressBar
   { 
@@ -3607,7 +3616,7 @@ DropDeloreanCopy(
     else
       CloneList.SetFlags(FileInfoContainer::eLogQuiet);
 
-    if (gLSESettings.Flags & eBackupMode)
+    if (gLSESettings.GetFlags() & eBackupMode)
       CloneList.SetFlags(FileInfoContainer::eBackupMode);
       
     wchar_t Backup0[HUGE_PATH];
@@ -3672,7 +3681,7 @@ DropDeloreanCopy(
             // If junctions should be spliced, then already spliced
             // junctions from Backup0 should also be spliced in the clone
             // from Backup0 to Backup1
-            if (gLSESettings.Flags & eSpliceReparsePoints)
+            if (gLSESettings.GetFlags() & eSpliceReparsePoints)
               CloneList.SetSpliceDirList(NULL);
             
             // But junctions should not be unrolled from Backup0 to Backup1
@@ -3681,7 +3690,7 @@ DropDeloreanCopy(
 
             int DriveType = DRIVE_UNKNOWN;
             DWORD FileSystemFlags;
-            IsFileSystemNtfs(Backup0, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType);
+            IsFileSystemNtfs(Backup0, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType);
 
             Backup0Path.Argv = Backup0;
             Backup0Path.DriveType = DriveType;
@@ -3690,16 +3699,16 @@ DropDeloreanCopy(
           else // if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
           {
             // In case of copying set the unroll/splice flags, if necessary
-            if (gLSESettings.Flags & eUnrollReparsePoints)
+            if (gLSESettings.GetFlags() & eUnrollReparsePoints)
               CloneList.SetUnrollDirList(NULL);
 
-            if (gLSESettings.Flags & eSpliceReparsePoints)
+            if (gLSESettings.GetFlags() & eSpliceReparsePoints)
               CloneList.SetSpliceDirList(NULL);
               
             // Record all path for enumeration
             int DriveType = DRIVE_UNKNOWN;
             DWORD FileSystemFlags;
-            IsFileSystemNtfs(m_pTargets[i].m_Path, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType);
+            IsFileSystemNtfs(m_pTargets[i].m_Path, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType);
 
             if (!PathIsUNC(m_pTargets[i].m_Path))
               Backup0Path.Argv =  PATH_PARSE_SWITCHOFF;
@@ -3713,16 +3722,16 @@ DropDeloreanCopy(
           if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
           {
             // Mirror the clone: Source -> Backup
-            if (gLSESettings.Flags & eUnrollReparsePoints)
+            if (gLSESettings.GetFlags() & eUnrollReparsePoints)
               MirrorList.SetUnrollDirList(NULL);
 
-            if (gLSESettings.Flags & eSpliceReparsePoints)
+            if (gLSESettings.GetFlags() & eSpliceReparsePoints)
               MirrorList.SetSpliceDirList(NULL);
               
-            if (!(gLSESettings.Flags & eForceAbsoluteSymbolicLinks))
+            if (!(gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks))
               MirrorList.SetFlags(FileInfoContainer::eRelativeSymboliclinks);
 
-            if (gLSESettings.Flags & eBackupMode)
+            if (gLSESettings.GetFlags() & eBackupMode)
               MirrorList.SetFlags(FileInfoContainer::eBackupMode);
               
             MirrorPath.ArgvDest = Backup1;
@@ -3730,7 +3739,7 @@ DropDeloreanCopy(
             // Record all path for enumeration
             int DriveType = DRIVE_UNKNOWN;
             DWORD FileSystemFlags;
-            IsFileSystemNtfs(m_pTargets[i].m_Path, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType);
+            IsFileSystemNtfs(m_pTargets[i].m_Path, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType);
 
             if (!PathIsUNC(m_pTargets[i].m_Path))
               MirrorPath.Argv =  PATH_PARSE_SWITCHOFF;
@@ -3750,7 +3759,7 @@ DropDeloreanCopy(
     // Check if we are in Backup Mode. If yes we also have to do the FindHardlink elevated, because
     // it might happen, that FindHardlink should run over directories, which the explorer does not
     // have access permissions.
-    if (gLSESettings.Flags & eBackupMode)
+    if (gLSESettings.GetFlags() & eBackupMode)
     {
       // Stop bar
       RECT  ProgressbarPosition;
@@ -3764,11 +3773,11 @@ DropDeloreanCopy(
 
       if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
         // Delorean Copy
-        fwprintf(SmartCopyArgs, L"-v \"n\" \"n\"\n");
+        WriteUACHelperArgs(SmartCopyArgs, 'v', L"not used", L"not used");
       else
         // SmartCopy
-        fwprintf(SmartCopyArgs, L"-s \"n\" \"n\"\n");
-      
+        WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+
       // persist CloneList
       CloneList.SetAnchorPath(Backup0PathList);
       CloneList.Save(SmartCopyArgs);
@@ -3794,7 +3803,7 @@ DropDeloreanCopy(
       // Fork Process
       DWORD r = ForkExeHelper(curdir, sla_quoted);
     }
-    else // if (gLSESettings.Flags & eBackupMode)
+    else // if (gLSESettings.GetFlags() & eBackupMode)
     {
       AsyncContext    Context;
 
@@ -3872,7 +3881,7 @@ DropDeloreanCopy(
           CloneList.Prepare(FileInfoContainer::eSmartCopy, &aStats, &MaxProgress);
         }
 
-        if (!(gLSESettings.Flags & eForceAbsoluteSymbolicLinks))
+        if (!(gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks))
           CloneList.SetFlags(FileInfoContainer::eRelativeSymboliclinks);
 
         // If there is one symbolic link among the list, we have
@@ -3899,11 +3908,11 @@ DropDeloreanCopy(
         )
   #endif
         {
-          // Delegate the operation to Symlink.exe
+          // Delegate the operation to LSEUacHelper.exe
           //
           MirrorList.StopLogging(LogFile);
           
-          // TODO Das Positionieren des Progressbars funktioniert nicht mehr im symlink.exe
+          // TODO Das Positionieren des Progressbars funktioniert nicht mehr im LSEUacHelper.exe
 
           // TODO Das Mirror & Delorean mit Backup Mode geht überhaupt nicht mehr. Es wird zwar das symlink.args geschrieben
           // aber danach tut sich nix mehr.
@@ -3920,11 +3929,11 @@ DropDeloreanCopy(
 
           if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
             // Delorean Copy
-            fwprintf(SmartCopyArgs, L"-v \"n\" \"n\"\n");
+            WriteUACHelperArgs(SmartCopyArgs, 'v', L"not used", L"not used");
           else
             // SmartCopy
-            fwprintf(SmartCopyArgs, L"-s \"n\" \"n\"\n");
-          
+            WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+
           // persist CloneList
           CloneList.Save(SmartCopyArgs);
   			  
@@ -3963,7 +3972,7 @@ DropDeloreanCopy(
           // If they are equal everything is fine
           //
           SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
-			    fwprintf(SmartCopyArgs, L"-s \"%s\" \"%s\"\n", L"not used", L"not used");
+          WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
           FileList2.Save(SmartCopyArgs);
           fclose(SmartCopyArgs);
   #endif
@@ -4093,14 +4102,14 @@ ErrorCreating(
 )
 {
 	// Assemble message string
-	wchar_t *pMsgTxt = GetFormattedMlgMessage(g_hInstance, gLSESettings.LanguageID, aMessage, aDirectory);
+	wchar_t *pMsgTxt = GetFormattedMlgMessage(g_hInstance, gLSESettings.GetLanguageID(), aMessage, aDirectory);
 
 	wchar_t	MsgCaption[MAX_PATH];
-	LoadStringEx(g_hInstance, aCaption, MsgCaption, MAX_PATH, gLSESettings.LanguageID);
+	LoadStringEx(g_hInstance, aCaption, MsgCaption, MAX_PATH, gLSESettings.GetLanguageID());
 
 	wchar_t	MsgReason[MAX_PATH];
 	if (aReason)
-    LoadStringEx(g_hInstance, aReason, MsgReason, MAX_PATH, gLSESettings.LanguageID);
+    LoadStringEx(g_hInstance, aReason, MsgReason, MAX_PATH, gLSESettings.GetLanguageID());
   else
     MsgReason[0] = 0x00;
 
@@ -4181,7 +4190,7 @@ DrivePrefix(
 		);
 
     if (lpVolumeNameBuffer[0] == '\0')
-      LoadStringEx(g_hInstance, IDS_STRING_DrivePrefix, lpVolumeNameBuffer, MAX_PATH, gLSESettings.LanguageID);
+      LoadStringEx(g_hInstance, IDS_STRING_DrivePrefix, lpVolumeNameBuffer, MAX_PATH, gLSESettings.GetLanguageID());
 
 		wcscpy(aDrivePrefix, lpVolumeNameBuffer);
 		wcscat(aDrivePrefix, L" (_");

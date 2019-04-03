@@ -55,7 +55,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i><font face="arial" size="-2">Last Updated February 15 2019, Version 3.9.1.3</font></i>
+                    <i><font face="arial" size="-2">Last Updated April 4  2019, Version 3.9.2.0</font></i>
                 </div>
             </td>
         </tr>
@@ -1062,11 +1062,11 @@
                     </p>
                     <p>
                         When restoring Symbolic links under Windows7/8/10 and Windows Vista, LSE forks its helper
-                        symlink.exe to forwards this operation to it, because the creation of symbolic links
+                        LSEUacHelper.exe to forwards this operation to it, because the creation of symbolic links
                         needs elevation, and thus brings up the <a href="#VistaAndUAC">famous UAC</a> dialog.
                     </p>
                     <p>
-                        LSE <b>only</b> issues its helper symlink.exe if a symlink is among/below the selected
+                        LSE <b>only</b> issues its helper LSEUacHelper.exe if a symlink is among/below the selected
                         folders, so it saves you from one UAC prompt if you don't have symlinks among your
                         selection.
                     </p>
@@ -1515,7 +1515,7 @@
                              alt="Progress bar during Smart Move">
                     </p>
 
-                    With Vista & Windows7/8/10 LSE calls its <a href="#VistaAndUAC">UAC</a> helper symlink.exe if it has to
+                    With Vista & Windows7/8/10 LSE calls its <a href="#VistaAndUAC">UAC</a> helper LSEUacHelper.exe if it has to
                     update symbolic links, so don't be afraid if you get a UAC prompt during moving of folders.
                     </p>
 
@@ -1645,11 +1645,11 @@
 
                     <p>
                         When creating Clones under Windows7/8/10 and Windows Vista, LSE forks its
-                        helper symlink.exe to forwards this operation to it, if the folder tree
+                        helper LSEUacHelper.exe to forwards this operation to it, if the folder tree
                         contains <a href="innerjunction">symbolic links</a>, because the creation of
                         symbolic links needs elevation, and thus brings up the
                         <a href="#VistaAndUAC">famous UAC</a> dialog. <br />
-                        LSE <b>only</b> issues its helper symlink.exe if a symlink is among/below the selected
+                        LSE <b>only</b> issues its helper LSEUacHelper.exe if a symlink is among/below the selected
                         folders, so it saves you from one UAC prompt if you don't have symlinks among your selection.
                     </p>
 
@@ -1985,7 +1985,7 @@
                     without access for the current users.
                     <ul>
                         <li>
-                            With Windows7/8/10 LSE always forks its helper process symlink.exe, and thus raises the
+                            With Windows7/8/10 LSE always forks its helper process LSEUacHelper.exe, and thus raises the
                             <a href="#VistaAndUAC">UAC prompt</a> for elevation and password verification.
                         </li>
                         <li>
@@ -2498,7 +2498,7 @@
                     and I still can't believe this, the API call CreateSymbolicLink is a call, which
                     needs elevation, and thus causes this annoying dialog box come up every time a symbolic
                     link is created.<br />
-                    So if you see the below box, and the program asking for elevation is symlink.exe,
+                    So if you see the below box, and the program asking for elevation is LSEUacHelper.exe,
                     it is Link Shell Extensions contribution to UAC and you must acknowledge it to get
                     Symbolic Links created.
                 </font>
@@ -2563,6 +2563,14 @@
                 <p>
                     Linkshell Extension can deal with the above granting of privileges, and if the Symblic Link Privilege is available avoids the UAC prompt.
                 </p>
+                <br />
+                <p>
+                    <b>Developer mode in Windows10</b><br />
+                    Another way to come around the UAC prompt would be to
+                    <a href="https://www.howtogeek.com/292914/what-is-developer-mode-in-windows-10/">enable the developer mode</a>,
+                    which is available since Windows10/14972.
+                </p>
+
             </font>
             <br />
         </td>
@@ -3536,13 +3544,16 @@
 
                 <tr>
                     <td align="left" width="140" valign="top">
-                        <font face="arial" size="-1"><a name="3910">February 15, 2019</a></font>
+                        <font face="arial" size="-1"><a name="3910">April 4, 2019</a></font>
                     </td>
 
                     <td align="left">
                         <font face="arial" size="-1">
-                            Version 3.9.1.3
+                            Version 3.9.2.0
                             <ul>
+                                <!-- 3.9.2.0, 4.4.2019 -->
+                                <li>Changes of non-admin users to e.g. symlink relativ/absolute had no effect. Fixed the misconception. What a mess</a></li>
+                                <li>LSE is on gitlab.com. For now only private, but hope to change this soon.</a></li>
                                 <!-- 3.9.1.3, 15.02.2019 -->
                                 <li>SmartMirror in LSE had problem with nested reparse points</a></li>
                                 <li>The symbolic replacement mechansism was broken for the elevated use-case. Caused by 3.8.7.2</a></li>
@@ -3596,7 +3607,10 @@
                                 <!-- 3.8.7.0 -->
                                 <li>With Windows 10 LSE shows flat icons for symlinks, hardlinks and junctions. Thx to Yaroslav for the icons.</li>
                                 <li>The overlay icon for Junctions didn't show up at all with Windows 7.</li>
-                                <li>Symbolic Link creation is now possible unelevated for Windows 10/14972 when in developer mode.</li>
+                                <li>Symbolic Link creation is now possible unelevated for 
+                                    <a href=https://www.howtogeek.com/292914/what-is-developer-mode-in-windows-10/">
+                                    Windows 10/14972</a> when in developer mode.
+                                </li>
                                 <li>The property dialog for hardlinks, when used on substituted drives, showed wrong path for the siblings.</li>
                                 <!-- 3.8.7.2 -->
                                 <li><a href="#thirdpartyfilesystems">Third party filesystems</a> can be configured.</li>
@@ -3624,7 +3638,7 @@
                                 <li>Relative symbolic links on UNC path were recreated with wrong target during SmartCopy.</li>
                                 <!-- 3.8.6.7 2016-02-02 -->
                                 <!-- Installer has SupportedOS Manifest and thus recognizes itself under Windows10 as Windows10 -->
-                                <!-- Playing around with logon for network drives, since symlink.exe failed with Bad passwort.... -->
+                                <!-- Playing around with logon for network drives, since LSEUacHelper.exe failed with Bad passwort.... -->
                                 <!-- 3.8.6.703 2016-03-05 -->
                                 <li>NTFS filesystem fragmentation decreased and thus copying should be faster</li>
                                 <li>Cancel works when pressed during copying of (large) files.</li>
@@ -3713,7 +3727,7 @@
                             Version 3.7.5.9
 
                             <ul>
-                                <li>With Delorean Copy when elevated via symlink.exe in rare situations files pointed to by symlinks could get deleted in the source. Ugly. Sorry!</li>
+                                <li>With Delorean Copy when elevated via LSEUacHelper.exe in rare situations files pointed to by symlinks could get deleted in the source. Ugly. Sorry!</li>
 
                                 <li>A changed <a href="#faq02">file attribute</a> didn't cause the file to be treated as changed during all SmartXXX/Delorean functions.</li>
                                 <li>Symbolic Link Clones always created absolute symlinks regardless of the LSE Settings</li>
@@ -3815,7 +3829,7 @@
                                 <li>Can handle <a href="#substhandling">subst.exe created</a> driveletters.</li>
                                 <li>Overlay Icons for <a href="#symboliclinksforwindowsxp">symbolic links under Window XP</a> are available now.</li>
                                 <li>Fixed a few bugs related to WindowsXP and symbolic links handling.</li>
-                                <li>Elevation to symlink.exe now happens only if <a href="#VistaAndUAC">UAC</a> is on, or the elevation is really neccesary.</li>
+                                <li>Elevation to LSEUacHelper.exe now happens only if <a href="#VistaAndUAC">UAC</a> is on, or the elevation is really neccesary.</li>
                                 <li>Fixed a problem with the creation of absolute symbolic links to directories.</li>
                                 <li>The installer came up with Chinese as default installation language.</li>
 

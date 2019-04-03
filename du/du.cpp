@@ -1,7 +1,5 @@
 #include "stdafx.h"
 
-#include "hardlink.h"
-
 ULONG64 gSize, gCount, gDirectories;
 
 void Usage()
@@ -17,8 +15,6 @@ int du (
 {
 	WIN32_FIND_DATAW		wfind;
 	int	RetVal = ERROR_SUCCESS;
-
-  _CrtSetDebugFillThreshold(0);
 
   size_t sSrcLen = wcslen(aSrcPath);
 	wcscat_s (aSrcPath, aSrcPathLength, L"\\*.*");

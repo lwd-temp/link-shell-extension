@@ -41,18 +41,18 @@
     <ClCompile Include="src\UACReuse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\LSESettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DbgHelpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AsyncContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\hardlink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\hardlink_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\hardlinks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\HardlinkUtils.h">
@@ -61,7 +61,7 @@
     <ClInclude Include="src\md5.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\MmfObject.h">
+    <ClInclude Include="include\MmfObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\moduleversion.h">
@@ -83,6 +83,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UACReuse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HardlinkLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\hardlinks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LSESettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DbgHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

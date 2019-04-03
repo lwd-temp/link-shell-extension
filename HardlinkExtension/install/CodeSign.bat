@@ -8,8 +8,8 @@ call ..\Settings.bat
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\x64\Release\HardlinkShellExt.dll
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\win32\Release\HardlinkShellExt.dll
 
-%SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\x64\Release\symlink.exe
-%SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\win32\Release\symlink.exe
+%SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\x64\Release\LSEUacHelper.exe
+%SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\win32\Release\LSEUacHelper.exe
 
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\x64\Release\LSEConfig.exe
 %SIGNTOOL% sign /f %CERTIFICATE% /v /i "Hermann Schinagl" /d "Link Shellextension" /du "http://schinagl.priv.at" ..\..\Bin\win32\Release\LSEConfig.exe

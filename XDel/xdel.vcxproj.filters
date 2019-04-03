@@ -34,7 +34,9 @@
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Shared\ultragetopt.h" />
+    <ClInclude Include="..\Shared\ultragetopt.h" >
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Xdel.rc">

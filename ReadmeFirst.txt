@@ -4,7 +4,7 @@ This is the source archive of Link Shell Extension, which started in 1999, so 20
 maintained a long time without source control and contains some projects
 o) LinkShellExtension
      HardlinkShellExt.dll
-	 symlink.exe
+	 LSEUacHelper.exe
 	 LSEConfig.exe
 o) ln.exe
 o) Dupemerge.exe

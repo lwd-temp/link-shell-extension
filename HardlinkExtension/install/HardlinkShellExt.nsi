@@ -722,7 +722,7 @@ Section
 
     SetOutPath $INSTDIR\32
     File ..\..\bin\${PLATTFORM_ALTERNATIVE}\${CONFIGURATION}\HardlinkShellExt.dll
-    File ..\..\bin\${PLATTFORM_ALTERNATIVE}\${CONFIGURATION}\symlink.exe
+    File ..\..\bin\${PLATTFORM_ALTERNATIVE}\${CONFIGURATION}\LSEUacHelper.exe
   !endif
 
   ; go on with the normal part
@@ -731,9 +731,8 @@ Section
   File ..\..\bin\${PLATTFORM}\${CONFIGURATION}\HardlinkShellExt.dll
   File ..\..\bin\${PLATTFORM}\${CONFIGURATION}\LSEConfig.exe
 
-  ; We need an extra symlink.exe with Windows7 to perform the symlinks, but we also need it under XP 
-  ; with Backup Mode accquiring SE_DEBUG_PRIVILEGE
-    File ..\..\bin\${PLATTFORM}\${CONFIGURATION}\symlink.exe
+  ; We need an extra LSEUacHelper.exe with Windows7 to perform the symlinks
+    File ..\..\bin\${PLATTFORM}\${CONFIGURATION}\LSEUacHelper.exe
     File ..\res\Hardlink_Vista.ico
     File ..\res\JunctionIcon_Vista.ico
     File ..\res\SymbolicLink_Vista.ico

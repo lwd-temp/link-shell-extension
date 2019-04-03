@@ -1,7 +1,14 @@
+/*
+  Copyright (C) 1999 - 2019, Hermann Schinagl, Hermann.Schinagl@gmx.net
+*/
 
 #include "stdafx.h"
 
+#define EXTERN
+
 #include "hardlink_types.h"
+#include "LSESettings.h"
+#include "DbgHelpers.h"
 
 #include "MmfObject.h"
 
@@ -9,12 +16,12 @@
 #include "AsyncContext.h"
 
 #include "hardlinks.h"
-#include "hardlink.h"
 #include "HardlinkUtils.h"
 
 #include "Reparse.h"
 
 #include "moduleversion.h"
+
 
 extern "C" { int __locale_changed; }
 
@@ -22,228 +29,9 @@ _locale_t g_locale_t;
 
 
 
-#if defined _HTRACE_DEBUG
-void 
-HTRACE (wchar_t* aFormat ...)
-{
-  va_list args;
-  wchar_t msg[HUGE_PATH];
-
-  va_start(args, aFormat);
-  vswprintf(msg, aFormat, args);
-#if defined _HTRACE_OUTPUT_DEBUG_STRING
-  OutputDebugStringW(msg);
-#else
-  wprintf(msg);
-#endif
-  va_end(args);
-}
-#else
-void
-HTRACE (wchar_t* aFormat ...) 
-{
-}
-#endif
-
-
 #pragma hdrstop
 #pragma comment( lib, "advapi32.lib" )
 
-void
-MakeAnsiString(
-  const wchar_t*  unistring,
-  char* ansistring
-)
-{
-  int	s = 0;
-  if (unistring)
-  {
-    while (unistring[s])
-    {
-      ansistring[s] = (char)unistring[s];
-      s++;
-    }
-  }
-  ansistring[s] = '\0';
-}
-
-void
-stringreplace(wstring& aThis, wstring& src, wstring& dest)
-{
-	size_t slen = src.size();
-	size_t  dlen = dest.size();
-
-	size_t  pos = aThis.find(src, 0);
-	while (pos != -1)
-	{
-		aThis.replace(pos, slen, dest);
-		pos = aThis.find(src, pos + dlen);
-	}
-}
-
-
-//----------------------------------------------------------------------
-//
-// MapNtStatusToWinError
-//
-//----------------------------------------------------------------------
-DWORD 
-MapNtStatusToWinError(
-  NTSTATUS        aNtStatus
-)
-{
-  switch (aNtStatus)
-  {
-    case STATUS_ACCESS_DENIED:
-      return ERROR_ACCESS_DENIED;
-
-    case STATUS_OBJECT_NAME_INVALID:
-      return ERROR_INVALID_NAME;
-  }
-  return aNtStatus;
-}
-//----------------------------------------------------------------------
-//
-// _ChangeTokenPrivilege
-//
-//----------------------------------------------------------------------
-BOOL
-_ChangeTokenPrivilege(
-  __in LPCWSTR             PrivilegeName,
-  PrivilegeModification_t  aMode
-)
-{
-  TOKEN_PRIVILEGES tp;
-  LUID luid;
-  HANDLE	hToken;
-  TOKEN_PRIVILEGES tpPrevious;
-  DWORD cbPrevious = sizeof(TOKEN_PRIVILEGES);
-
-  //
-  // Check if we are allowed to change privileges
-  //
-  if(!OpenProcessToken( GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken )) 
-    return FALSE;
-
-  if(!LookupPrivilegeValue( NULL, PrivilegeName, &luid )) 
-  {
-    CloseHandle(hToken);
-    return FALSE;
-  }
-
-  //
-  // first pass.  get current privilege setting
-  //
-  tp.PrivilegeCount           = 1;
-  tp.Privileges[0].Luid       = luid;
-  tp.Privileges[0].Attributes = 0;
-
-  AdjustTokenPrivileges(
-    hToken,
-    FALSE,
-    &tp,
-    sizeof(TOKEN_PRIVILEGES),
-    &tpPrevious,
-    &cbPrevious
-    );
-
-  if (GetLastError() != ERROR_SUCCESS)
-  {
-    CloseHandle(hToken);
-    return FALSE;
-  }
-
-  //
-  // second pass.  set privilege based on previous setting
-  //
-  tpPrevious.PrivilegeCount       = 1;
-  tpPrevious.Privileges[0].Luid   = luid;
-  switch (aMode)
-  {
-    case eSetPrivilege:
-      tpPrevious.Privileges[0].Attributes |= SE_PRIVILEGE_ENABLED;
-
-      AdjustTokenPrivileges(
-        hToken,
-        FALSE,
-        &tpPrevious,
-        cbPrevious,
-        NULL,
-        NULL
-      );
-    break;
-
-    case eClearPrivilege:
-      tpPrevious.Privileges[0].Attributes &= ~SE_PRIVILEGE_ENABLED;
-
-      AdjustTokenPrivileges(
-        hToken,
-        FALSE,
-        &tpPrevious,
-        cbPrevious,
-        NULL,
-        NULL
-      );
-    break;
-
-    case eProbePrivilege:
-      if (tpPrevious.Privileges[0].Attributes & SE_PRIVILEGE_ENABLED)
-        SetLastError(ERROR_SUCCESS);
-      else
-        SetLastError(ERROR_PRIVILEGE_NOT_HELD);
-    break;
-
-  }
-
-  DWORD r = GetLastError();
-  CloseHandle(hToken);
-  return r == ERROR_SUCCESS;
-}
-
-//----------------------------------------------------------------------
-//
-// DisableTokenPrivilege
-//
-// Disables a named privilege
-//
-//----------------------------------------------------------------------
-BOOL
-DisableTokenPrivilege(
-  __in LPCWSTR PrivilegeName
-)
-{
-  return _ChangeTokenPrivilege(PrivilegeName, eClearPrivilege);
-}
-
-//----------------------------------------------------------------------
-//
-// EnableTokenPrivilege
-//
-// Enables a named privilege.
-//
-//----------------------------------------------------------------------
-BOOL
-EnableTokenPrivilege(
-  __in LPCWSTR PrivilegeName
-)
-{
-  return _ChangeTokenPrivilege(PrivilegeName, eSetPrivilege);
-}
-
-//----------------------------------------------------------------------
-//
-// ProbeTokenPrivilege
-//
-// Probes if a named privilege is set
-//
-//----------------------------------------------------------------------
-BOOL
-ProbeTokenPrivilege(
-  __in LPCWSTR PrivilegeName
-)
-{
-  return _ChangeTokenPrivilege(PrivilegeName, eProbePrivilege);
-}
 
 void
 InitCreateHardlink()
@@ -252,17 +40,9 @@ InitCreateHardlink()
   gVersionInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
   GetVersionEx(&gVersionInfo);
 
-#if defined DEBUG_DO_NOT_DELETE_SYMLINKS_ARGS
-  DbgOsPrint(L"InitCreateHardlink");
-#endif
-  // first, try the easy (NT5) way
   // One might not be able to get the privileges for CreateSymbolicLink with Windows10, especially
   // if you are not running ln.exe from an administrative command prompt.
   BOOL b = EnableTokenPrivilege(SE_CREATE_SYMBOLICLINK_PRIVILEGE);
-
-  // With W10 if not run from a commandprompt with Admin Rights, one can not enable SE_CREATE_SYMBOLICLINK_PRIVILEGE
-  // because the process does not hold this very privilege. So fail with Symlinks
-
 }
 
 int
@@ -1753,7 +1533,7 @@ IsFileSystemNtfs (
 
   *aDriveType = DriveType;
 
-  return gSupportedFileSystems.IsSupportedFileSystem(FileSystemName);
+  return gLSESettings.IsSupportedFileSystem(FileSystemName);
 }
 
 int 
@@ -2366,669 +2146,6 @@ ProbeSymbolicLink(
     return REPARSE_POINT_SYMBOLICLINK == r ? TRUE:FALSE;
 }
 
-//--------------------------------------------------------------------
-//
-// CopySettings
-//
-// Copy the settings from HKLM to HKCU
-//
-//--------------------------------------------------------------------
-int CopySettings(
-)
-{
-  DWORD RetVal = _CopySettings();
-#if defined _M_X64
-  if (ERROR_SUCCESS == RetVal)
-    RetVal = _CopySettings(KEY_WOW64_32KEY);
-#endif
-  return RetVal;
-}
-
-int _CopySettings(
-  DWORD     a_RegistryView
-)
-{
-  HKEY RegKey;
-  DWORD aLanguage = 0;
-  DWORD agFlags = 0;
-  DWORD HardlinkPrio = 0;
-  DWORD JunctionPrio = 0;
-  DWORD SymboliclinkPrio = 0;
-  DWORD aSize = sizeof(DWORD);
-  int r = 0;
-  DWORD aType;
-
-  DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_LOCAL_MACHINE,
-    LSE_REGISTRY_LOCATION,
-    0,
-    KEY_READ | a_RegistryView,
-    &RegKey
-    );
-
-  if (ERROR_SUCCESS == RetVal)
-  {
-    aType = REG_DWORD;
-    RegQueryValueEx(
-      RegKey,
-      LSE_REGISTRY_LANGUAGE,
-      0,
-      &aType,
-      (LPBYTE)&aLanguage,
-      &aSize
-      );
-
-    RegQueryValueEx(
-      RegKey,
-      LSE_REGISTRY_GFLAGS,
-      0,
-      &aType,
-      (LPBYTE)&agFlags,
-      &aSize
-      );
-
-    RegQueryValueEx(
-      RegKey,
-      LSE_REGISTRY_HARDLINK_OVERLAY_PRIO,
-      0,
-      &aType,
-      (LPBYTE)&HardlinkPrio,
-      &aSize
-      );
-
-    RegQueryValueEx(
-      RegKey,
-      LSE_REGISTRY_JUNCTION_OVERLAY_PRIO,
-      0,
-      &aType,
-      (LPBYTE)&JunctionPrio,
-      &aSize
-      );
-
-    RegQueryValueEx(
-      RegKey,
-      LSE_REGISTRY_SYMBOLICLINK_OVERLAY_PRIO,
-      0,
-      &aType,
-      (LPBYTE)&SymboliclinkPrio,
-      &aSize
-      );
-
-    aType = REG_SZ;
-    wchar_t JunctionIcon[MAX_PATH];
-    JunctionIcon[0] = 0x00;
-    DWORD JunctionLen;
-    RegQueryValueEx(
-      RegKey,
-      LSE_REGISTRY_JUNCTION_ICON,
-      0,
-      &aType,
-      (LPBYTE)JunctionIcon,
-      &JunctionLen
-      );
-
-    wchar_t HardlinkIcon[MAX_PATH];
-    HardlinkIcon[0] = 0x00;
-    DWORD HardlinkLen;
-    RegQueryValueEx(
-      RegKey,
-      LSE_REGISTRY_HARDLINK_ICON,
-      0,
-      &aType,
-      (LPBYTE)HardlinkIcon,
-      &HardlinkLen
-      );
-
-    wchar_t SymbolicLinkIcon[MAX_PATH];
-    SymbolicLinkIcon[0] = 0x00;
-    DWORD SymbolicLinkLen;
-    RegQueryValueEx(
-      RegKey,
-      LSE_REGISTRY_SYMBOLICLINK_ICON,
-      0,
-      &aType,
-      (LPBYTE)SymbolicLinkIcon,
-      &SymbolicLinkLen
-      );
-
-    ::RegCloseKey(RegKey);
-
-    // Create Keys under HKCU
-    RetVal = RegCreateKeyEx(
-      HKEY_CURRENT_USER, 
-      LSE_REGISTRY_LOCATION, 
-      0, 
-      NULL, 
-      REG_OPTION_NON_VOLATILE,
-      KEY_WRITE | a_RegistryView, 
-      NULL, 
-      &RegKey, 
-      &aSize
-      );
-
-    if (ERROR_SUCCESS == RetVal)
-    {
-      RetVal = RegSetValueEx(
-        RegKey,
-        LSE_REGISTRY_LANGUAGE, 
-        0,                     
-        REG_DWORD,             
-        (LPBYTE) &aLanguage,
-        (DWORD) sizeof(aLanguage) 
-        );
-
-      RetVal = RegSetValueEx(
-        RegKey,
-        LSE_REGISTRY_GFLAGS,
-        0,                     
-        REG_DWORD,             
-        (LPBYTE) &agFlags,
-        (DWORD) sizeof(agFlags) 
-        );
-
-      RetVal = RegSetValueEx(
-        RegKey,
-        LSE_REGISTRY_HARDLINK_OVERLAY_PRIO,
-        0,                     
-        REG_DWORD,             
-        (LPBYTE) &HardlinkPrio,
-        (DWORD) sizeof(HardlinkPrio) 
-        );
-
-      RetVal = RegSetValueEx(
-        RegKey,
-        LSE_REGISTRY_JUNCTION_OVERLAY_PRIO,
-        0,                     
-        REG_DWORD,             
-        (LPBYTE) &JunctionPrio,
-        (DWORD) sizeof(JunctionPrio) 
-        );
-
-      RetVal = RegSetValueEx(
-        RegKey,
-        LSE_REGISTRY_SYMBOLICLINK_OVERLAY_PRIO,
-        0,                     
-        REG_DWORD,             
-        (LPBYTE) &SymboliclinkPrio,
-        (DWORD) sizeof(SymboliclinkPrio) 
-        );
-
-      if (*JunctionIcon)
-        RetVal = RegSetValueEx(
-        RegKey,
-        LSE_REGISTRY_JUNCTION_ICON,
-        0,
-        REG_SZ,
-        (LPBYTE) JunctionIcon,
-        JunctionLen + 1
-        );
-
-      if (*HardlinkIcon)
-        RetVal = RegSetValueEx(
-        RegKey,
-        LSE_REGISTRY_HARDLINK_ICON,
-        0,                     
-        REG_SZ,             
-        (LPBYTE) HardlinkIcon,      
-        HardlinkLen + 1
-        );
-
-      if (*SymbolicLinkIcon)
-        RetVal = RegSetValueEx(
-        RegKey,
-        LSE_REGISTRY_SYMBOLICLINK_ICON,
-        0,
-        REG_SZ,
-        (LPBYTE) SymbolicLinkIcon,
-        SymbolicLinkLen + 1
-        );
-
-      ::RegCloseKey(RegKey);
-    }
-  }
-  return RetVal;
-}
-
-//--------------------------------------------------------------------
-//
-// GetLSESettings
-//
-//--------------------------------------------------------------------
-int 
-GetLSESettings(
-  _LSESettings& aLSESettings, 
-  bool          aReadAllSettings
-)
-{
-  HKEY RegKey;
-	DWORD aSize = sizeof(DWORD);
-	DWORD aType = REG_DWORD;
-	int r = 0;
-
-    DWORD RetVal = ::RegOpenKeyEx(
-            HKEY_CURRENT_USER,
-            LSE_REGISTRY_LOCATION,
-            0,
-            KEY_READ,
-            &RegKey
-    );
-
-	// Probe if settings are already there
-	if (ERROR_SUCCESS != RetVal)
-	{
-		::RegCloseKey(RegKey);
-
-		// No get it from the main source under HKLM
-		RetVal = CopySettings();
-
-		RetVal = ::RegOpenKeyEx(
-				HKEY_CURRENT_USER,
-				LSE_REGISTRY_LOCATION,
-				0,
-				KEY_READ,
-				&RegKey
-		);
-	}
-
-
-	// And read the language value
-	if (ERROR_SUCCESS == RetVal)
-	{
-    bool CopygFlags = false;
-    
-    // Check if the settings are up to date
-    DWORD HKCUInstalledVersion;
-    LONG lResult = RegQueryValueEx(
-				RegKey,
-        LSE_REGISTRY_INSTALLED_VERSION,
-				0,
-				&aType,
-				(LPBYTE)&HKCUInstalledVersion,
-				&aSize
-		);
-
-    if (lResult != ERROR_SUCCESS)
-      CopygFlags = true;
-
-    if (HKCUInstalledVersion != LSE_CURRENT_VERSION)
-      CopygFlags = true;
-
-    // This only happens when you for the first time run a new version
-    if (CopygFlags)
-    {
-      HKEY HKLMRegKey;
-      DWORD RetVal = ::RegOpenKeyEx(
-        HKEY_LOCAL_MACHINE,
-        LSE_REGISTRY_LOCATION,
-        0,
-        KEY_READ,
-        &HKLMRegKey
-        );
-
-      if (ERROR_SUCCESS == RetVal)
-      {
-        HKEY HKCURegKey;
-        DWORD RetVal = ::RegOpenKeyEx(
-          HKEY_CURRENT_USER,
-          LSE_REGISTRY_LOCATION,
-          0,
-          KEY_READ | KEY_WRITE,
-          &HKCURegKey
-          );
-
-        DWORD NewgFlags;
-        
-        aType = REG_DWORD;
-        RegQueryValueEx(
-          HKLMRegKey,
-          LSE_REGISTRY_GFLAGS,
-          0,
-          &aType,
-          (LPBYTE)&NewgFlags,
-          &aSize
-        );
-
-        DWORD r1 = RegSetValueEx(
-          HKCURegKey,
-          LSE_REGISTRY_GFLAGS, 
-          0,                     
-          REG_DWORD,             
-          (LPBYTE) &NewgFlags,
-          (DWORD) sizeof(NewgFlags) 
-        );
-
-        DWORD LSECurrentVersion = LSE_CURRENT_VERSION;
-        RetVal = RegSetValueEx(
-          HKCURegKey,
-          LSE_REGISTRY_INSTALLED_VERSION, 
-          0,                     
-          REG_DWORD,             
-          (LPBYTE) &LSECurrentVersion,
-          (DWORD) sizeof(LSECurrentVersion) 
-          );
-
-		    ::RegCloseKey(HKCURegKey);
-		    ::RegCloseKey(HKLMRegKey);
-      }
-    }
-
-
-    // Now go on and read the values
-		RegQueryValueEx(
-				RegKey,
-        LSE_REGISTRY_GFLAGS,
-				0,
-				&aType,
-				(LPBYTE)&aLSESettings.Flags,
-				&aSize
-		);
-
-    if (aReadAllSettings)
-    {
-      RegQueryValueEx(
-				  RegKey,
-				  LSE_REGISTRY_LANGUAGE,
-				  0,
-				  &aType,
-				  (LPBYTE)&aLSESettings.LanguageID,
-				  &aSize
-		  );
-
-		  RegQueryValueEx(
-				  RegKey,
-          LSE_REGISTRY_HARDLINK_OVERLAY_PRIO,
-				  0,
-				  &aType,
-          (LPBYTE)&aLSESettings.HardlinkOverlayPrio,
-				  &aSize
-		  );
-
-		  RegQueryValueEx(
-				  RegKey,
-          LSE_REGISTRY_JUNCTION_OVERLAY_PRIO,
-				  0,
-				  &aType,
-          (LPBYTE)&aLSESettings.JunctionOverlayPrio,
-				  &aSize
-		  );
-
-		  RegQueryValueEx(
-				  RegKey,
-          LSE_REGISTRY_SYMBOLICLINK_OVERLAY_PRIO,
-				  0,
-				  &aType,
-          (LPBYTE)&aLSESettings.SymboliclinkOverlayPrio,
-				  &aSize
-		  );
-    }
-
-		::RegCloseKey(RegKey);
-	}
-
-	return ERROR_SUCCESS;
-}
-
-
-//
-// ChangeFlags
-//
-int ChangegFlags(
-  LSE_Flags aBit, 
-  bool*     aValue, 
-  bool      aOnOff
-)
-{
-  DWORD RetVal = _ChangegFlags(aBit, aValue, aOnOff);
-#if defined _M_X64
-  if (ERROR_SUCCESS == RetVal)
-    RetVal = _ChangegFlags(aBit, aValue, aOnOff, KEY_WOW64_32KEY);
-#endif
-  return RetVal;
-}
-
-int _ChangegFlags(
-  LSE_Flags aBit, 
-  bool*     aValue, 
-  bool      aOnOff, 
-  DWORD     a_RegistryView
-)
-{
-  HKEY RegKey;
-  DWORD agFlags = 0;
-  DWORD aSize = sizeof(DWORD);
-  DWORD aType = REG_DWORD;
-
-  DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_CURRENT_USER, 
-    LSE_REGISTRY_LOCATION,
-    0,
-    KEY_READ | KEY_WRITE | a_RegistryView,
-    &RegKey
-    );
-
-  if (ERROR_SUCCESS == RetVal)
-  {
-    RegQueryValueEx(
-      RegKey,
-      LSE_REGISTRY_GFLAGS,
-      0,
-      &aType,
-      (LPBYTE)&agFlags,
-      &aSize
-      );
-
-    if (!aValue)
-    {
-      // Set a a value 
-      if (aOnOff)
-        agFlags |= aBit;
-      else
-        agFlags &= ~aBit;
-
-      RetVal = RegSetValueEx(
-        RegKey,
-        LSE_REGISTRY_GFLAGS,
-        0,                     
-        REG_DWORD,             
-        (LPBYTE) &agFlags,
-        (DWORD) sizeof(agFlags) 
-        );
-    }
-    else
-    {
-      // Get a a value 
-      *aValue = agFlags & aBit ? true : false;
-    }
-
-    ::RegCloseKey(RegKey);
-  }
-  return RetVal;
-}
-
-int SetValue(
-  wchar_t*  aValue, 
-  int       aData
-)
-{
-  DWORD RetVal = _SetValue(aValue, aData);
-#if defined _M_X64
-  if (ERROR_SUCCESS == RetVal)
-    RetVal = _SetValue(aValue, aData, KEY_WOW64_32KEY) != ERROR_SUCCESS; 
-#endif
-  
-  return RetVal;
-}
-
-int _SetValue(
-  wchar_t*  aValue, 
-  int       aData, 
-  DWORD     a_RegistryView
-)
-{
-  HKEY RegKey;
-  DWORD aSize = sizeof(DWORD);
-  DWORD aType = REG_DWORD;
-
-  DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_CURRENT_USER, 
-    LSE_REGISTRY_LOCATION,
-    0,
-    KEY_READ | KEY_WRITE | a_RegistryView,
-    &RegKey
-    );
-
-  if (ERROR_SUCCESS == RetVal)
-  {
-    RetVal = RegSetValueEx(
-      RegKey,
-      aValue,        
-      0,                     
-      REG_DWORD,             
-      (LPBYTE)&aData,
-      aSize
-      );
-    ::RegCloseKey(RegKey);
-  }
-  return RetVal;
-}
-
-int GetValue(wchar_t* aValue, int* aData)
-{
-  HKEY RegKey;
-  DWORD aSize = sizeof(DWORD);
-  DWORD aType = REG_DWORD;
-
-  DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_CURRENT_USER, 
-    LSE_REGISTRY_LOCATION,
-    0,
-    KEY_READ,
-    &RegKey
-    );
-
-  if (ERROR_SUCCESS == RetVal)
-  {
-    RetVal = RegQueryValueEx(
-      RegKey,
-      aValue,
-      0,
-      &aType,
-      (LPBYTE)aData,
-      &aSize
-      );
-    ::RegCloseKey(RegKey);
-  }
-  return RetVal;
-}
-
-//
-// ChangeValue
-//
-int ChangeValue(
-  wchar_t*  aValue, 
-  wchar_t*  aData, 
-  int       aDataLen
-)
-{
-  DWORD RetVal = _ChangeValue(aValue, aData, aDataLen);
-#if defined _M_X64
-  if (ERROR_SUCCESS == RetVal)
-    RetVal = _ChangeValue(aValue, aData, aDataLen, KEY_WOW64_32KEY) != ERROR_SUCCESS; 
-#endif
-
-  return RetVal;
-}
-
-int _ChangeValue(
-  wchar_t*  aValue, 
-  wchar_t*  aData, 
-  int       aDataLen,
-  DWORD     a_RegistryView
-)
-{
-  HKEY RegKey;
-  DWORD aType = REG_SZ;
-
-  DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_CURRENT_USER, 
-    LSE_REGISTRY_LOCATION,
-    0,
-    KEY_READ | KEY_WRITE,
-    &RegKey
-    );
-
-  if (ERROR_SUCCESS == RetVal)
-  {
-    if (!*aData)
-    {
-      RegQueryValueEx(
-        RegKey,
-        aValue,
-        0,
-        &aType,
-        (LPBYTE)aData,
-        (LPDWORD)&aDataLen
-        );
-    }
-    else
-    {
-      RetVal = RegSetValueEx(
-        RegKey,
-        aValue,        
-        0,                     
-        REG_SZ,             
-        (LPBYTE)aData,
-        aDataLen
-        );
-    }
-
-    ::RegCloseKey(RegKey);
-  }
-  return RetVal;
-}
-
-//
-// DeleteValue
-//
-int DeleteValue(
-  wchar_t* aValue
-)
-{
-  DWORD RetVal = _DeleteValue(aValue);
-#if defined _M_X64
-  if (ERROR_SUCCESS == RetVal)
-    RetVal = _DeleteValue(aValue, KEY_WOW64_32KEY) != ERROR_SUCCESS; 
-#endif
-
-  return RetVal;
-}
-
-int _DeleteValue(
-  wchar_t*  aValue,
-  DWORD     a_RegistryView
-)
-{
-  HKEY RegKey;
-  DWORD aType = REG_SZ;
-
-  DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_CURRENT_USER, 
-    LSE_REGISTRY_LOCATION,
-    0,
-    KEY_READ | KEY_WRITE | a_RegistryView,
-    &RegKey
-    );
-
-  if (ERROR_SUCCESS == RetVal)
-  {
-    RegDeleteValue(
-      RegKey,
-      aValue
-    );
-    ::RegCloseKey(RegKey);
-  }
-  return RetVal;
-}
 
 //--------------------------------------------------------------------
 //
@@ -3891,8 +3008,8 @@ _FindHardLink(
   for (_ArgvListIterator iter = aSrcPathList.begin(); iter != aSrcPathList.end(); ++iter)
   {
     // Only iterate over directories but not files. Files are in the list, because if 
-    // Findhardlink is spawned during Backup in symlink.exe the arguments are transferred
-    // to symlink.exe via _ArgvList.
+    // Findhardlink is spawned during Backup in LSEUacHelper.exe the arguments are transferred
+    // to LSEUacHelper.exe via _ArgvList.
     if (iter->FileAttribute == FILE_ATTRIBUTE_NORMAL)
       continue;
     
@@ -6931,6 +6048,7 @@ Load(
 {
   wchar_t Filename[HUGE_PATH];
 
+  // Read the files & directories
   int FileInfoSize = 0;
   fwscanf_s(aSourceFile, L"%x\n", &FileInfoSize);
   while (!feof(aSourceFile) && FileInfoSize-- > 0)
@@ -7051,10 +6169,9 @@ Save(
   // Save all filenames
   fwprintf(aDestFile, L"%zx\n", m_Filenames.size()); 
 
-  _Pathes::iterator	PathIter;
-  for (PathIter = m_Filenames.begin(); PathIter != m_Filenames.end(); ++PathIter)
+  for (auto PathIter : m_Filenames)
   {
-    FileInfo*	pFileInfo = *PathIter;
+    FileInfo*	pFileInfo = PathIter;
     
     // Save properties common to all type of items
     fwprintf(aDestFile, L"%s\"%x,%x,%x,%x,%x\n", 
@@ -12954,12 +12071,12 @@ DumpPathMap()
 FILE*
 FileInfoContainer::
 StartLogging(
-  _LSESettings&   r_LSESettings,
+  LSESettings&   r_LSESettings,
   wchar_t*        a_Tag
 )
 {
   FILE* LogFile = NULL;
-  if (r_LSESettings.Flags & eLogOutput)
+  if (r_LSESettings.GetFlags() & eLogOutput)
   {
     wchar_t LogFileName[MAX_PATH];
     GetTempPath(MAX_PATH, LogFileName);
@@ -12972,7 +12089,7 @@ StartLogging(
       SetFlags2(eLogFileOutput);
       SetOutputFile(LogFile);
       fwprintf(LogFile, L"%s\n", a_Tag);
-      fwprintf(LogFile, L"Flags: %08x\n", r_LSESettings.Flags);
+      fwprintf(LogFile, L"Flags: %08x\n", r_LSESettings.GetFlags());
     }
     else
       SetFlags(FileInfoContainer::eLogQuiet);
@@ -13601,73 +12718,6 @@ DiskSerialCache::
 
   m_DiskSerialInverseMap.clear();
   m_DiskSerialMap.clear();
-}
-
-// SupportedFileSystems
-//
-const wchar_t* BuiltInFileSystems[] = {L"Ntfs", L"ReFs", NULL};
-
-bool 
-SupportedFileSystems::
-IsSupportedFileSystem(
-  const wchar_t*	aFileSystemName
-)
-{
-  // Check for hardcoded filesystems
-  for(int i = 0; NULL != BuiltInFileSystems[i]; ++i)
-    if (!_wcsicmp(aFileSystemName, BuiltInFileSystems[i]))
-      return true;
-
-  // Check for filesystems from registry
-  for (_StringListIterator iter = m_ThirdPartyFileSystems.begin(); iter != m_ThirdPartyFileSystems.end(); ++iter)
-    if ( !_wcsicmp(iter->c_str(), aFileSystemName) )
-      return true;
-
-  return false;
-}
-
-bool 
-SupportedFileSystems::
-ReadFromRegistry() 
-{
-  HKEY HKLMRegKey;
-  DWORD RetVal = ::RegOpenKeyEx(
-    HKEY_LOCAL_MACHINE,
-    LSE_REGISTRY_LOCATION,
-    0,
-    KEY_READ,
-    &HKLMRegKey
-    );
-
-  if (ERROR_SUCCESS == RetVal)
-  {
-    DWORD aType = REG_SZ;
-    DWORD aSize = MAX_PATH;
-    wchar_t SuppFs[MAX_PATH];
-    RetVal = RegQueryValueEx(
-      HKLMRegKey,
-      LSE_REGISTRY_SUPPORTED_FILESYSTEMS,
-      0,
-      &aType,
-      (LPBYTE)SuppFs,
-      &aSize
-    );
-
-    if (ERROR_SUCCESS == RetVal)
-    {
-	    // Parse Filesystems from the registry
-      TCHAR		seps[] = _T(";");
-      PTCHAR  NextToken;
-	    PTCHAR	token = wcstok_s(SuppFs, seps, &NextToken);
-      if (token)
-        m_ThirdPartyFileSystems.push_back(token);
-      while (PTCHAR ppp = wcstok_s(NULL, seps, &NextToken))
-        m_ThirdPartyFileSystems.push_back(ppp);
-    }
-
-    ::RegCloseKey(HKLMRegKey);
-  }
-  return true;
 }
 
 
@@ -15676,8 +14726,7 @@ DmDump(
 	_Pathes::iterator	aEnd
 )
 {
-	_Pathes::iterator	iter;
-	for (iter = aBegin; iter != aEnd; ++iter)
+	for (_Pathes::iterator	iter = aBegin; iter != aEnd; ++iter)
 	{
 		FileInfo*	pF = *iter;
 

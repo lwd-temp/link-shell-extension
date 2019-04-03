@@ -3,163 +3,20 @@
  */
 
 #pragma once
-
 #if !defined EXTERN
 #define EXTERN extern
 #endif
 
-#define USE_VECTOR
+typedef vector<int>	_Of;
 
-// define if we don't want to fork symlink.exe to perform operations
-// but instead do it in hardlinkshellext.dll
-// #define SYMLINK_FORCE
-// #define SYMLINK_OUTPROC 0
+int
+FindFreeNumber(
+  _Of&		of
+);
 
-// define if we want to fork symlink.exe to perform all operations
-// #define SYMLINK_FORCE
-// #define SYMLINK_OUTPROC 1
-
-// #define FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-
-// Used in ln.exe to do all operations in sequence. This eases debugging a lot
-// #define SEPERATED_CLONE_MIRROR // DEBUG_DEFINES
-
-// #define _HTRACE_DEBUG // DEBUG_DEFINES
-
-// #define _HTRACE_OUTPUT_DEBUG_STRING // DEBUG_DEFINES
-
-#define EXACT_PATH_INDEX
-
-// #define LSE_DEBUG //DEBUG_DEFINES
-
-// #define DMDUMP
-
-// #define PRINT_DISPOSE_DURATION
-
-// #define DEBUG_DO_NOT_DELETE_SYMLINKS_ARGS
-
-// #define DEBUG_REGEXP_SEAN_MALONEY // DEBUG_DEFINES
-
-// #define DEBUG_ARCHIVE_COMPLIANT
-
-// Disable the Stopwatch functionality
-// #define DEBUG_STOPWATCH
-
-// Use STL regular Expression system. This is just an experiment, an dit turned out, that regex is 13t imes slower on average 
-// for a simple regex which has been transformed from a wildcard. Using one expression on 401000 items takes 1500 mSec with tre
-// The same with regex takes 20000 mSec. So for now we will not move to c++ 11 regex, because it is too slow. 
-// #define REGEXP_STL
-
-// Test a safe delete via DeleteSiblings(), so that Hardlink Attribute Teleportation does
-// not interfere the delorean process
-// #define DEBUG_DS
-
-#define NTQUERYDIRECTORY_BUFSIZE 100000
-
-#define FAT_SERIAL_NUMBER 0xffffffff
-
-#define STACKSIZE 45000000
-
-#define ERROR_END_OF_RECURSION					30000
-
-#define LSE_REGISTRY_LOCATION L"Software\\LinkShellExtension"
-#define REGPATH_FILE_NOT_FOUND_CACHE_LIFETIME L"System\\CurrentControlSet\\Services\\Lanmanworkstation\\Parameters"
-#define REGKEY_FILE_NOT_FOUND_CACHE_LIFETIME L"FileNotFoundCacheLifetime"
-
-#define PATH_PARSE_SWITCHOFF L"\\\\?\\" 
-#define PATH_PARSE_SWITCHOFF_SIZE (sizeof(PATH_PARSE_SWITCHOFF) - 1) / sizeof(wchar_t)
-
-// e.g \\?\Volume{97410ad7-54ec-11e3-97ab-005056c00008}\ 
-#define PATH_VOLUME_GUID L"Volume{" 
-#define PATH_VOLUME_GUID_SIZE (sizeof(PATH_VOLUME_GUID) - 1) / sizeof(wchar_t)
-
-#define PATH_LONG_VOLUME_GUID L"\\\\?\\Volume{" 
-#define PATH_LONG_VOLUME_GUID_SIZE (sizeof(PATH_LONG_VOLUME_GUID) - 1) / sizeof(wchar_t)
-#define VOLUME_GUID_LENGTH 49
-
-#define PATH_GLOBALROOT L"GLOBALROOT\\" 
-#define PATH_GLOBALROOT_SIZE (sizeof(PATH_GLOBALROOT) - 1) / sizeof(wchar_t)
-
-#define PATH_LONG_GLOBALROOT L"\\\\?\\GLOBALROOT\\" 
-#define PATH_LONG_GLOBALROOT_SIZE (sizeof(PATH_LONG_GLOBALROOT) - 1) / sizeof(wchar_t)
-
-#define PATH_NAMESPACE_ROOT L"\\??\\" 
-#define PATH_NAMESPACE_ROOT_SIZE (sizeof(PATH_NAMESPACE_ROOT) - 1) / sizeof(wchar_t)
-
-#define NULL_STRING L"nul"
-
-#define HARDLINK_TRACELEVEL_BRIEF     0x00
-#define HARDLINK_TRACELEVEL_CHANGED   0x10
-#define HARDLINK_TRACELEVEL_ALL       0x40
-
-const int cMaxHardlinkLimit = 1023;
-
-// defines for commandline wrappers
-//
-#define ERR_SUCCESS 		                  0
-#define ERR_SOURCE_DIR_DOES_NOT_EXIST 		-1
-#define ERR_ARG_IS_NOT_A_DIRECTORY				-2
-#define ERR_FILE_ALREADY_EXISTS 				-3
-#define ERR_FAILED_TO_CREATE_DIR				-4
-#define ERR_FILE_DOES_NOT_EXIST 				-5
-#define ERR_HARDLINKS_UNSUPPORTED 				-6
-#define ERR_CREATE_HARDLINK_FAILED				-7
-#define ERR_LESS_CMD_ARGUMENTS					-8
-#define ERR_FAILED_TO_ENUMERATE_FILES			-9
-#define ERR_TOO_MANY_LINKS					    -10  // Not yet in html docu
-#define ERR_NOT_ON_SAME_VOLUME					-11  // Not yet in html docu
-#define ERR_SMARTCOPY_FAILED					-12
-#define ERR_NO_HARDLINKGROUPS					-13  // Not yet in html docu
-#define ERR_SMARTCLONE_FAILED         -14
-#define ERR_SMARTMIRROR_FAILED					-15
-#define ERR_DELOREANCOPY_FAILED					-16
-#define ERR_ACCESS_DENIED					      -17 // Not yet in html docu
-#define ERR_OPERATION_NOT_SUPPORTED     -18 // Not yet in html docu and not yet used
-#define ERR_SMARTDELETE_FAILED          -19
-#define ERR_TARGET_DIR_DOES_NOT_EXIST 		-20 // Not yet in html docu
-
-
-//
-// There are different types of reparsepoints
-//
-#define REPARSE_POINT_UNDEFINED    -1
-#define REPARSE_POINT_FAIL          0
-#define REPARSE_POINT_JUNCTION      1
-#define REPARSE_POINT_MOUNTPOINT    2
-#define REPARSE_POINT_SYMBOLICLINK  3
-
-//
-// Define CopyFileEx3 option flags
-//
-#define COPY_FILE_COPY_SACL                   0x00000010
-#define COPY_FILE_COPY_DIRECTORY              0x00000020
-#define COPY_FILE_COPY_ACCESS_TIME            0x00000040
-#define COPY_FILE_COPY_WRITE_TIME             0x00000080
-#define COPY_FILE_COPY_CREATION_TIME          0x00000100
-#define COPY_FILE_COPY_SKIP_ADS               0x00000200
-#define COPY_FILE_COPY_SKIP_EA                0x00000400
-#define COPY_FILE_COPY_REPARSE_POINT          0x00000800
-
-
-//
-// Define the names of settings in registry
-//
-#define LSE_REGISTRY_LANGUAGE                   L"Language"
-#define LSE_REGISTRY_GFLAGS                     L"gFlags"
-#define LSE_REGISTRY_INSTALLED_VERSION          L"InstalledVersion"
-#define LSE_REGISTRY_HARDLINK_OVERLAY_PRIO      L"HardlinkOverlayPrio"
-#define LSE_REGISTRY_JUNCTION_OVERLAY_PRIO      L"JunctionOverlayPrio"
-#define LSE_REGISTRY_SYMBOLICLINK_OVERLAY_PRIO  L"SymboliclinkOverlayPrio"
-#define LSE_REGISTRY_HARDLINK_ICON              L"Hardlink Icon"
-#define LSE_REGISTRY_JUNCTION_ICON              L"Junction Icon"
-#define LSE_REGISTRY_SYMBOLICLINK_ICON          L"SymbolicLink Icon"
-#define LSE_REGISTRY_SUPPORTED_FILESYSTEMS      L"ThirdPartyFileSystems"
-
-#define SE_INCREASE_WORKINGSET_PRIVILEGE             TEXT("SeIncreaseWorkingSetPrivilege")
-#define SE_CREATE_SYMBOLICLINK_PRIVILEGE             TEXT("SeCreateSymbolicLinkPrivilege")
-
-#include <ntsysteminfo.h>
-
+void
+Test_FindFreeNumber(
+);
 
 // 
 // Provide a function pointers to various calls from kernel32.dll
@@ -183,79 +40,12 @@ extern "C"
 }
 
 EXTERN OSVERSIONINFO            gVersionInfo;
-
-#define SYMLINK_FLAG_FILE 	                    0x00
-#define SYMLINK_FLAG_DIRECTORY 	                0x01
-#define SYMLINK_FLAG_RELATIVE 	                0x02
-
-// With Windows10 > 14972 SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE came up as flag and was defined to be 0x02
-// Unfortunatley all my framework used 0x02 for 10 years to flag that a relative symlink should be created. Grmpf.
-// So we have to define our own _ALLOW_UNPRIVILEGED_CREATE value as 0x04, route it through the layers and the very
-// bottom translate it to the offical SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE, which is then 0x02
-#define SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE 	0x04
-
-// And due to still running with VS2005 we have to define that new values too. sic
-#define SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE 0x02
-
-#define FILE_ATTRIBUTE_DELAYED_REPARSE_POINT  0x00008000
-#define FILE_ATTRIBUTE_NESTED_REPARSE_POINT  0x00010000  
-#define FILE_ATTRIBUTE_DEAD_REPARSE_POINT  0x00020000  
-
-#define DRIVE_REMOTE_SHARED      10
-
-#define WINDOWS_VERSION_WIN10   0x0A
-
-
-enum LSE_Flags
-{
-	eEnableRemote = 1,
-	eEnableExtended = 2,
-  eDisableSmartmove = 4,
-  eForceAbsoluteSymbolicLinks = 8,
-  eSymboliclinkOverlay = 0x10,
-  eJunctionOverlay = 0x20,
-  eHardlinkOverlay = 0x40,
-  eEnableSmartMirror = 0x80,
-  eDeloreanCopy = 0x100,
-  eCropReparsePoints = 0x200,
-  eUnrollReparsePoints = 0x400,
-  eSpliceReparsePoints = 0x800,
-  eLogOutput = 0x1000,
-  eBackupMode = 0x2000,  
-};
-
-// 
-// Function prototypes
-//
-void
-MakeAnsiString(
-	const wchar_t*  unistring,
-	char*           ansistring
-);
-
-void
-stringreplace(
-  wstring& aThis, 
-  wstring& src, 
-  wstring& dest
-);
+EXTERN LSESettings      gLSESettings;
 
 bool
 CheckFileSystemType(
 	PTCHAR			aPath,
   int*        aDriveType
-);
-
-//----------------------------------------------------------------------
-//
-// EnableTokenPrivilege
-//
-// Enables a named privilege.
-//
-//----------------------------------------------------------------------
-BOOL
-EnableTokenPrivilege(
-  __in LPCWSTR	PrivilegeName
 );
 
 void
@@ -292,55 +82,7 @@ CreateSymboliclink(
   __in  LPCWSTR   lpFakeSymlinkFileName = NULL
 );
 
-void
-HTRACE (
-  wchar_t* aFormat ...
-);
-
-BOOL
-ProbeTokenPrivilege(
-  __in LPCWSTR PrivilegeName
-);
-
 typedef DWORD (__stdcall *ThrFuncType)(void*);
-
-enum Operations
-{
-  Nop = 0,
-  PlusF,
-  StarH,
-  PlusD,
-  PlusJ,
-  PlusS,
-  PlusH,
-  PlusR,
-  MinusJ,
-  MinusM,
-  MinusS,
-  MinusD,
-  MinusF,
-  EqualF,     // Used in Dupemerge when moving didn't work
-  EqualD,
-  EqualJ,
-  EqualS,
-  EqualH,
-  QuestionD,
-  QuestionJ,
-  QuestionM,
-  QuestionS,
-  QuestionF,
-  QuestionR,
-  DangleJ,
-  DangleM,
-  BackSlashF,
-  MemoryMapF,
-  CompressionF,
-  CompressionD,
-  PlusT,      // Alternative data streams could not be copied
-  PlusE,      // EA Record could not be processed
-  PlusP,       // Sparse Streams could not be processed
-  MergeF
-};
 
 
 BOOL RemoveDir (
@@ -614,117 +356,7 @@ ProbeSymbolicLink(
   __inout LPWSTR  aDestination
 );
 
-//--------------------------------------------------------------------
-//
-// CopySettings
-//
-// Copy the settings from HKLM to HKCU
-//
-//--------------------------------------------------------------------
-int CopySettings(
-);
 
-int _CopySettings(
-  DWORD     a_RegistryView = 0
-);
-
-//--------------------------------------------------------------------
-//
-// GetLSESettings
-//
-//--------------------------------------------------------------------
-typedef struct
-{
-  int   LanguageID;
-  int   Flags;
-  int   HardlinkOverlayPrio;
-  int   JunctionOverlayPrio;
-  int   SymboliclinkOverlayPrio;
-} _LSESettings;
-
-int 
-GetLSESettings(
-  _LSESettings& aLSESettings, 
-  bool          aReadAllSettings  = true
-);
-
-
-//--------------------------------------------------------------------
-//
-// ChangegFlags
-//
-// Change the value of certain bits in gFlags either on or off
-//
-//--------------------------------------------------------------------
-int ChangegFlags(
-  LSE_Flags aBit, 
-  bool*     aValue, 
-  bool      aOnOff
-);
-
-int _ChangegFlags(
-  LSE_Flags aBit, 
-  bool*     aValue, 
-  bool      aOnOff, 
-  DWORD     a_RegistryView = 0
-);
-
-
-//--------------------------------------------------------------------
-//
-// Set/GetValue
-//
-// Sets or gets the given value on a REG_DWORD key from LSE Settings
-//
-//--------------------------------------------------------------------
-int SetValue(
-  wchar_t*  aValue, 
-  int       aData
-);
-
-int _SetValue(
-  wchar_t*  aValue, 
-  int       aData, 
-  DWORD     a_RegistryView = 0
-);
-
-int GetValue(wchar_t* aValue, int* aData);
-
-//--------------------------------------------------------------------
-//
-// ChangeValue
-//
-// Sets or gets the given value on a REG_SZ key from LSE Settings
-//
-//--------------------------------------------------------------------
-int ChangeValue(
-  wchar_t*  aValue, 
-  wchar_t*  aData, 
-  int       aDataLen
-);
-
-int _ChangeValue(
-  wchar_t*  aValue, 
-  wchar_t*  aData, 
-  int       aDataLen,
-  DWORD     a_RegistryView = 0
-);
-
-//--------------------------------------------------------------------
-//
-// DeleteValue
-//
-// Deletes the given value from LSE Settings
-//
-//--------------------------------------------------------------------
-int DeleteValue(
-  wchar_t*  aValue
-);
-
-int _DeleteValue(
-  wchar_t*  aValue,
-  DWORD     a_RegistryView = 0
-);
 
 //--------------------------------------------------------------------
 //
@@ -737,36 +369,6 @@ bool CheckIfOnSameDrive(
 	const wchar_t* aPath1, 
 	const wchar_t* aPath2
 );
-
-
-class _ArgvPath
-{
-public:
-  wstring  Argv;
-  wstring  ArgvOrg;
-  wstring  ArgvDest;
-  int           DriveType;
-  int           FileAttribute;
-  int           Flags;
-
-  enum {
-    Created = 1,
-    Anchor = 2,
-  };
-
-  _ArgvPath() : DriveType(0), FileAttribute(0), Flags (0) {};
-};
-
-
-typedef vector<_ArgvPath>	_ArgvList;
-typedef vector<_ArgvPath>::iterator	_ArgvListIterator;
-
-typedef vector<wstring>	_StringList;
-typedef vector<wstring>::iterator	_StringListIterator;
-
-typedef pair<wstring, DWORD> _StringMapPair;
-typedef map<wstring, DWORD> _StringMap;
-
 
 
 
@@ -907,7 +509,7 @@ class FileInfo
 	    m_FileSize.ul64 = 0;
 	    m_Hash64_1 = 0;
 	    m_Hash64_2 = 0;
-	    m_pMmfObject = NULL; 
+	    m_pMmfObject = nullptr; 
     };
 
 
@@ -2066,7 +1668,6 @@ class FileInfoContainer
       _RegExpList&  a_RegExpList
     );
 
-
 	protected:
     _Pathes	                  m_Filenames;
     _Pathes	                  m_FilenamesSave;
@@ -2372,7 +1973,7 @@ class FileInfoContainer
 
     FILE*
     StartLogging(
-      _LSESettings&   r_LSESettings,
+      LSESettings&   r_LSESettings,
       wchar_t*        a_Tag
     );
 
@@ -3064,25 +2665,6 @@ class FileInfoContainer
 		};
 
 };
-
-// SupportedFileSystems
-//
-class SupportedFileSystems
-{
-  public: 
-    SupportedFileSystems() {};
-    ~SupportedFileSystems() {};
-
-  bool IsSupportedFileSystem(const wchar_t*	aFileSystemName);
-  bool ReadFromRegistry();
-  void Add(const wchar_t*	aFileSystemName) { m_ThirdPartyFileSystems.push_back(aFileSystemName); };
-
-  private:
-    _StringList m_ThirdPartyFileSystems;
-};
-
-EXTERN SupportedFileSystems     gSupportedFileSystems;
-
 
 
 bool

@@ -17,7 +17,7 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="symlink.cpp">
+    <ClCompile Include="LseUacHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -25,20 +25,20 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="symlink.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="LseUacHelper.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Manifest Include="symlink.exe.trust.manifest">
+    <Manifest Include="LSEUacHelper.exe.trust.manifest">
       <Filter>Resource Files</Filter>
     </Manifest>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="symlink.rc">
+    <ResourceCompile Include="LSEUacHelper.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

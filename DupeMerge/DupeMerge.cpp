@@ -4,10 +4,6 @@
 
 #include <stdafx.h>
 
-
-#include "hardlink.h"
-#include "HardlinkUtils.h"
-
 using namespace std;
 
 const char						exec_name[] = "DupeMerge";
@@ -203,7 +199,6 @@ wmain(
   wchar_t* argv[]
 )
 {
-    _CrtSetDebugFillThreshold(0);
     bool  Traditional = false;
     {
       // Take the default locale

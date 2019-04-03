@@ -689,94 +689,33 @@ void CTreePropSheetEx::RebootExplorer()
 {
   if (TheRebootExplorer)
   {
-    int MsgRet;
-    _StringList Modules;
-    _StringMap  Processes;
+    wchar_t sla_quoted[HUGE_PATH];
+    wchar_t curdir[HUGE_PATH];
 
-    // Search for processes which have our .dlls loaded
-    // 
-//    Modules.push_back(L"rockalldll.dll");
-    Modules.push_back(L"HardlinkShellExt.dll");
-    //  Modules.push_back(L"ntdll.dll");
+    FILE* RebootArgs = OpenFileForExeHelper(curdir, sla_quoted);
+    WriteUACHelperArgs(RebootArgs, 'z', L"not used", L"not used");
+    fclose(RebootArgs);
 
-    do 
-    {
-      Processes.clear();
+    DWORD r = ForkExeHelper(curdir, sla_quoted);
 
-      NtQueryProcessByModule(Modules, Processes);
+    // Restart Explorer
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+    ZeroMemory(&si, sizeof(STARTUPINFO));
+    ZeroMemory(&pi, sizeof(PROCESS_INFORMATION));
+    wchar_t SystemDir[MAX_PATH];
+    GetWindowsDirectory(SystemDir, MAX_PATH);
+    wcscat_s(SystemDir, MAX_PATH, L"\\");
+    wcscat_s(SystemDir, MAX_PATH, EXPLORER);
 
-      _StringMap::iterator explorer = Processes.find(L"explorer.exe");
-      if (explorer != Processes.end())
-        Processes.erase(explorer);
+    BOOL cp = CreateProcess(SystemDir, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
+    if (FALSE == cp)
+      HTRACE(L"LSEConfig: '%s' %08x", SystemDir, GetLastError());
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
 
-      if (Processes.size())
-      {
-        wchar_t processes[HUGE_PATH];
-        processes[0] = 0x00;
-        for (_StringMap::iterator iter = Processes.begin(); iter != Processes.end(); ++iter)
-        {
-          wcscat_s (processes, HUGE_PATH, L"   ");
-          wcscat_s (processes, HUGE_PATH, iter->first.c_str());
-          wcscat_s (processes, HUGE_PATH, L"\r\n");
-        }
-
-        wchar_t Message[HUGE_PATH];
-        wsprintf(Message, L"To apply your changes please close the following applications \r\n\r\n%s\r\n", processes);
-
-        MsgRet = AfxMessageBox(Message, MB_ABORTRETRYIGNORE | MB_ICONEXCLAMATION);
-      }
-    } while (MsgRet == IDRETRY && Processes.size());
-
-    if (IDABORT == MsgRet)
-      return;
-    
-    // go on with IDIGNORE
-
-    MsgRet = AfxMessageBox(
-      L"To apply your changes Explorer.exe must be restarted\r\n\r\nPress Yes to restart or No to quit",
-      MB_YESNO | MB_ICONEXCLAMATION);
-
-
-    if (IDYES == MsgRet)
-    {
-      #define EXPLORER L"explorer.exe"
-      wchar_t		szProcessNameUni[32] = EXPLORER;
-
-      ULONG		dPIDSize = 0;
-	    PULONG  dPID;
-	    bool b = NtQueryProcessId(szProcessNameUni, &dPID, &dPIDSize);
-
-      if (b)
-      {
-        for (ULONG i = 0; i < dPIDSize;i++)
-        {
-          HANDLE pHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, dPID[i]);
-          if (pHandle)
-          {
-            TerminateProcess(pHandle,42);
-            CloseHandle(pHandle);
-          }
-        }
-      
-        GlobalFree(dPID);
-
-        STARTUPINFO si;
-        PROCESS_INFORMATION pi;
-        ZeroMemory(&si, sizeof(STARTUPINFO));
-        ZeroMemory(&pi, sizeof(PROCESS_INFORMATION));
-        wchar_t SystemDir[MAX_PATH];
-        GetWindowsDirectory(SystemDir, MAX_PATH);
-        wcscat_s(SystemDir, MAX_PATH, L"\\");
-        wcscat_s(SystemDir, MAX_PATH, EXPLORER);
-
-        CreateProcess(SystemDir, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
-        CloseHandle(pi.hProcess);
-        CloseHandle(pi.hThread);
-      }
-    }
-
-    TheRebootExplorer = 0;
   }
+  TheRebootExplorer = 0;
 }
 
 

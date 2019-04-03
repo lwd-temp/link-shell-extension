@@ -1,4 +1,4 @@
-bei ln.exe & symlink.exe das Manifest 
+bei ln.exe & LSEUacHelper.exe das Manifest 
 
         <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
           <application>

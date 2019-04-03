@@ -6,7 +6,7 @@
 
 #include "IconOverlay.h"
 
-extern _LSESettings gLSESettings;
+extern LSESettings gLSESettings;
 
 
 ///////////////////////////////////////////////////////////////
@@ -90,7 +90,7 @@ STDMETHODIMP IconOverlayHardlink::QueryInterface(REFIID riid, LPVOID FAR *ppv)
 {
 	*ppv = NULL;
 
-  if (!(gLSESettings.Flags & eHardlinkOverlay))
+  if (!(gLSESettings.GetFlags() & eHardlinkOverlay))
     if (IsEqualIID(riid, IID_IShellIconOverlayIdentifier) || IsEqualIID(riid, IID_IUnknown))
     {
       *ppv = (IShellIconOverlayIdentifier*)this;
@@ -209,7 +209,7 @@ GetPriority(
 )
 {
   // highest priority
-  *pPriority = gLSESettings.HardlinkOverlayPrio;
+  *pPriority = gLSESettings.GetHardlinkOverlayPrio();
   return S_OK;
 }
 
@@ -223,7 +223,7 @@ IsMemberOf(
 	HRESULT RetVal = S_FALSE; 
 	DWORD	FileSystemFlags;
   int DriveType;
-	if (IsFileSystemNtfs(pwszPath, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType))
+	if (IsFileSystemNtfs(pwszPath, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType))
 	{
 		// Before we check for hardlinks, see if it is a Symbolic Link
 		// pointing to a hardlink. If this is true do not probe for
@@ -324,7 +324,7 @@ STDMETHODIMP IconOverlaySymbolicLink::QueryInterface(REFIID riid, LPVOID FAR *pp
 {
 	*ppv = NULL;
 
-  if (!(gLSESettings.Flags & eSymboliclinkOverlay))
+  if (!(gLSESettings.GetFlags() & eSymboliclinkOverlay))
     if (IsEqualIID(riid, IID_IShellIconOverlayIdentifier) || IsEqualIID(riid, IID_IUnknown))
     {
       *ppv = (IShellIconOverlayIdentifier*)this;
@@ -374,7 +374,7 @@ GetPriority(
 )
 {
   // highest priority
-  *pPriority = gLSESettings.SymboliclinkOverlayPrio;
+  *pPriority = gLSESettings.GetSymboliclinkOverlayPrio();
   return S_OK;
 }
 
@@ -390,7 +390,7 @@ IsMemberOf(
 	// Check the filesystemtype
 	DWORD	FileSystemFlags;
   int DriveType;
-	if (IsFileSystemNtfs(pwszPath, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType))
+	if (IsFileSystemNtfs(pwszPath, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType))
 	{
 		if (FileSystemFlags & FILE_SUPPORTS_REPARSE_POINTS)
 		{
@@ -483,7 +483,7 @@ STDMETHODIMP IconOverlayJunction::QueryInterface(REFIID riid, LPVOID FAR *ppv)
 {
 	*ppv = NULL;
 
-  if (!(gLSESettings.Flags & eJunctionOverlay))
+  if (!(gLSESettings.GetFlags() & eJunctionOverlay))
     if (IsEqualIID(riid, IID_IShellIconOverlayIdentifier) || IsEqualIID(riid, IID_IUnknown))
     {
       *ppv = (IShellIconOverlayIdentifier*)this;
@@ -532,7 +532,7 @@ GetPriority(
 )
 {
   // highest priority
-  *pPriority = gLSESettings.JunctionOverlayPrio;
+  *pPriority = gLSESettings.GetJunctionOverlayPrio();
   return S_OK;
 }
 
@@ -548,10 +548,10 @@ IsMemberOf(
 	// Check the filesystemtype
 	DWORD	FileSystemFlags;
   int DriveType;
-  bool IsNtfs = IsFileSystemNtfs(pwszPath, &FileSystemFlags, gLSESettings.Flags & eEnableRemote, &DriveType);
+  bool IsNtfs = IsFileSystemNtfs(pwszPath, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType);
 #if 0
   wchar_t msg[HUGE_PATH];
-  wsprintf(msg, L"##### Path:%s:%08x:%08x:%d:%08x", pwszPath, FileSystemFlags, DriveType, IsNtfs, gLSESettings.Flags);
+  wsprintf(msg, L"##### Path:%s:%08x:%08x:%d:%08x", pwszPath, FileSystemFlags, DriveType, IsNtfs, gLSESettings.GetFlags());
   OutputDebugStringW(msg);
 #endif
 	if (IsNtfs)
