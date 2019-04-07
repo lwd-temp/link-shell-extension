@@ -504,7 +504,7 @@ CreateContextMenu(
       nEntries++;
 		}
 
-		// The source is a directory 
+		// DropSource is a directory 
     if ( m_bTargetsFlag & eDir )
 		{
 			// Droptarget is a Directory?
@@ -553,7 +553,7 @@ CreateContextMenu(
         nEntries ++;
     }
 
-		// DropSource is a Volume?
+		// DropSource is a Volume
     if ( m_bTargetsFlag & eVolume )
     {
       if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint))
@@ -585,7 +585,7 @@ CreateContextMenu(
 
     } // if ( m_bTargetsFlag & eVolume )
 
-		// DropSource is a MountPoint?
+		// DropSource is a MountPoint
     if ( m_bTargetsFlag & eMountPoint )
     {
       if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint))
@@ -619,7 +619,8 @@ CreateContextMenu(
         // [0090] Replace Symbolic Link Files
         nEntries ++;
 
-      // DropSource is a Directory?
+    // Handling for symbolic links as target. Could be merged to the above.
+    // DropSource is a Directory
 		if (m_bTargetsFlag & eDir )
     {
 			// DropTarget is a Symbolic Link
@@ -653,7 +654,7 @@ CreateContextMenu(
       }
     } // if (m_bTargetsFlag & eDir )
 
-    // DropSource is a Volume?
+    // DropSource is a Volume
     if (m_bTargetsFlag & eVolume)
     {
       // DropTarget is Symbolic Link
@@ -680,7 +681,7 @@ CreateContextMenu(
         nEntries++;
     }
 
-    // DropSource is a Junction?
+    // DropSource is a Junction
     if (m_bTargetsFlag & eJunction)
     {
       if (m_DropTarget.m_Flags & eSymbolicLink)
@@ -706,6 +707,7 @@ CreateContextMenu(
         nEntries++;
     }
 
+    // DropSource is a Mountpoint
     if (m_bTargetsFlag & eMountPoint)
     {
       // DropTarget is Symbolic Link
@@ -731,7 +733,8 @@ CreateContextMenu(
         nEntries++;
     }
 
-		if (m_bTargetsFlag & eSymbolicLink)
+    // DropSource is a SymbolicLink
+    if (m_bTargetsFlag & eSymbolicLink)
     {
       if (m_DropTarget.m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
       {
@@ -770,6 +773,10 @@ CreateContextMenu(
         // [1220] Drop a Symbolic Link on a Volume can create Symbolic Link Clones
         // [1230] Drop a Symbolic Link on a Mountpoint can create Symbolic Link Clones
         nEntries++;
+
+        // [1450] Drop a Symbolic Link on a Directory can create Copy Symbolic Link
+        nEntries++;
+
       }
     }
 	} // if (m_DropTarget.m_Flags & eNTFS)
@@ -1213,6 +1220,17 @@ CreateContextMenu(
       }
     }
 
+    // Copy Symbolic Link
+    //
+    if (m_bTargetsFlag & eSymbolicLink)
+    {
+      if ((m_DropTarget.m_Flags & eDir) && m_nTargets == 1)
+      {
+        // [1450] Drop a Symbolic Link on a Directory can create Copy Symbolic Link
+        InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuCopySymbolicLink + MenuOffset, eDropCopySymbolicLink, aCommandIdx);
+      }
+    }
+
 
 		// Insert the submenu into the ctx menu provided by Explorer.
 		MENUITEMINFO mii = { sizeof(MENUITEMINFO) };
@@ -1499,7 +1517,11 @@ InvokeCommand	(
 					DropDeloreanCopy(m_DropTarget, lpcmi);
 				break;
 
-				default:
+        case eDropCopySymbolicLink:
+          HTRACE(L"eMenuCopySymbolicLink");
+        break;
+
+        default:
 				break;
 			}
 			FreeShellSelection();
