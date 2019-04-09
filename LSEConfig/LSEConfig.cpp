@@ -93,8 +93,12 @@ BOOL CLSEConfigApp::InitInstance()
   aPropPageGeneral.m_psp.dwFlags &= ~PSP_HASHELP;
   sheet.AddPage( &aPropPageIconHardlink );
   aPropPageIconHardlink .m_psp.dwFlags &= ~PSP_HASHELP;
-  sheet.AddPage( &aPropPageIconJunction );
-  aPropPageIconJunction.m_psp.dwFlags &= ~PSP_HASHELP;
+
+  if (!(gLSESettings.GetFlags() & eDisableJunction))
+  { 
+    sheet.AddPage(&aPropPageIconJunction);
+    aPropPageIconJunction.m_psp.dwFlags &= ~PSP_HASHELP;
+  }
 
   sheet.AddPage( &aPropPageIconSymlink );
   aPropPageIconSymlink.m_psp.dwFlags &= ~PSP_HASHELP;
