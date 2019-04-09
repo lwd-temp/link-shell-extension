@@ -62,6 +62,7 @@
 #define IDC_STATIC_Miscellaneous        1078
 #define IDC_STATIC_OuterReparse         1079
 #define IDC_STATIC_Backup_Caption       1080
+#define IDC_CHECK_Junction              1081
 #define IDS_CHECK_RemoteCapabilities    10000
 #define IDS_CHECK_SmartMove             10001
 #define IDS_RADIO_Absolute_Symbolic_Links 10002
@@ -94,6 +95,7 @@
 #define IDS_GROUPBOX_Miscellaneous      10084
 #define IDS_Customize                   10085
 #define IDS_STATIC_Backup_Caption       10086
+#define IDS_CHECK_Junction              10087
 #define IDS_LinkShellExtConfig          10100
 #define IDS_SELECT_SUBPAGE              10101
 #define IDS_ABOUTBOX                    10102

@@ -525,6 +525,7 @@ CreateSymboliclink(
     // it gets worse if the \\?\ path are longer than 256 chars. Then this method
     // can't be used
     //
+    // TODO
     // This is why we have *not* to run this with very long path. ;-((
     BOOL bHasCommonAncestor;
 #if 0 // DEBUG_DEFINES

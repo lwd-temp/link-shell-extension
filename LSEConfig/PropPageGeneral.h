@@ -33,8 +33,9 @@ protected:
   bool m_SmartMove;
   bool m_Logging;
   bool m_RemoteCapabilities;
-  bool m_SmartMirror;
-  bool m_DeloreanCopy;
+  bool m_DisableSmartMirror;
+  bool m_DisableDeloreanCopy;
+  bool m_DisableJunction;
   bool m_SymlinkAbsRel;
   bool m_BackupMode;
   bool m_CropReparsePoints;

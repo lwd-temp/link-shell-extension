@@ -165,9 +165,10 @@ private:
 		Target&		DestPath
 	);
 
-	HRESULT
-	DropSymbolicLink(
-		Target&		DestPath
+  HRESULT
+  DropSymbolicLink(
+    Target&		DestPath,
+    bool      aCopy = false
 	);
 
 	HRESULT
@@ -260,6 +261,8 @@ private:
     LPCMINVOKECOMMANDINFO   lpcmi
   );
 
+
+
 	void
 	ErrorCreating(
 		const wchar_t*	aDirectory,
@@ -293,3 +296,4 @@ ReplaceMountPoint(
   wchar_t*  aTarget,
   wchar_t*  aSource
 );
+

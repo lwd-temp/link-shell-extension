@@ -95,6 +95,9 @@
     <None Include="LinkShellExtension.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="..\BuildWorld.bat">
+      <Filter>Install</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CopyHook.h">

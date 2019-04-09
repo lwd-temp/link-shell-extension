@@ -24,8 +24,9 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 protected:
-  bool m_SmartMirror;
-  bool m_DeloreanCopy;
+  bool m_DisableSmartMirror;
+  bool m_DisableDeloreanCopy;
+  bool m_DisableJunction;
   bool m_ExtendedMenue;
   bool m_BackupMode;
 
@@ -35,6 +36,7 @@ public:
 public:
   afx_msg void OnBnClickedCheckSmartMirror();
   afx_msg void OnBnClickedCheckDeloreanCopy();
+  afx_msg void OnBnClickedCheckJunction();
   afx_msg void OnBnClickedExtendedMenue();
   afx_msg void OnBnClickedBackupMode();
 };

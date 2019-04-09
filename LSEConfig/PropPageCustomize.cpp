@@ -16,8 +16,9 @@ IMPLEMENT_DYNAMIC(PropPageCustomize, CPropertyPage)
 
 PropPageCustomize::PropPageCustomize()
 	: CPropertyPage(PropPageCustomize::IDD)
-  , m_SmartMirror(false)
-  , m_DeloreanCopy(false)
+  , m_DisableSmartMirror(false)
+  , m_DisableDeloreanCopy(false)
+  , m_DisableJunction(false)
   , m_ExtendedMenue(false)
   , m_BackupMode(false)
 {
@@ -35,6 +36,7 @@ void PropPageCustomize::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(PropPageCustomize, CPropertyPage)
   ON_BN_CLICKED(IDC_CHECK_SmartMirror, &PropPageCustomize::OnBnClickedCheckSmartMirror)
   ON_BN_CLICKED(IDC_CHECK_DeloreanCopy, &PropPageCustomize::OnBnClickedCheckDeloreanCopy)
+  ON_BN_CLICKED(IDC_CHECK_Junction, &PropPageCustomize::OnBnClickedCheckJunction)
   ON_BN_CLICKED(IDC_CHECK_ExtendedMenue, &PropPageCustomize::OnBnClickedExtendedMenue)
   ON_BN_CLICKED(IDC_CHECK_BackupMode, &PropPageCustomize::OnBnClickedBackupMode)
 END_MESSAGE_MAP()
@@ -46,11 +48,14 @@ BOOL PropPageCustomize::OnInitDialog()
 
   gMlg.ReplaceWindowTexts(GetSafeHwnd());
 
-  gLSESettings.ChangegFlags(eEnableSmartMirror, &m_SmartMirror, true);
-  CheckDlgButton(IDC_CHECK_SmartMirror, !m_SmartMirror);
+  gLSESettings.ChangegFlags(eDisableSmartMirror, &m_DisableSmartMirror, true);
+  CheckDlgButton(IDC_CHECK_SmartMirror, !m_DisableSmartMirror);
 
-  gLSESettings.ChangegFlags(eDeloreanCopy, &m_DeloreanCopy, true);
-  CheckDlgButton(IDC_CHECK_DeloreanCopy, !m_DeloreanCopy);
+  gLSESettings.ChangegFlags(eDisableDeloreanCopy, &m_DisableDeloreanCopy, true);
+  CheckDlgButton(IDC_CHECK_DeloreanCopy, !m_DisableDeloreanCopy);
+
+  gLSESettings.ChangegFlags(eDisableJunction, &m_DisableJunction, true);
+  CheckDlgButton(IDC_CHECK_Junction, !m_DisableJunction);
 
   gLSESettings.ChangegFlags(eEnableExtended, &m_ExtendedMenue, true);
   CheckDlgButton(IDC_CHECK_ExtendedMenue, m_ExtendedMenue);
@@ -65,13 +70,19 @@ BOOL PropPageCustomize::OnInitDialog()
 
 void PropPageCustomize::OnBnClickedCheckSmartMirror()
 {
-  m_SmartMirror = !m_SmartMirror;
+  m_DisableSmartMirror = !m_DisableSmartMirror;
   SetModified();
 }
 
 void PropPageCustomize::OnBnClickedCheckDeloreanCopy()
 {
-  m_DeloreanCopy = !m_DeloreanCopy;
+  m_DisableDeloreanCopy = !m_DisableDeloreanCopy;
+  SetModified();
+}
+
+void PropPageCustomize::OnBnClickedCheckJunction()
+{
+  m_DisableJunction = !m_DisableJunction;
   SetModified();
 }
 
@@ -89,8 +100,9 @@ void PropPageCustomize::OnBnClickedBackupMode()
 
 void PropPageCustomize::OnOK()
 {
-  gLSESettings.ChangegFlags(eEnableSmartMirror, NULL, m_SmartMirror);
-  gLSESettings.ChangegFlags(eDeloreanCopy, NULL, m_DeloreanCopy);
+  gLSESettings.ChangegFlags(eDisableSmartMirror, NULL, m_DisableSmartMirror);
+  gLSESettings.ChangegFlags(eDisableDeloreanCopy, NULL, m_DisableDeloreanCopy);
+  gLSESettings.ChangegFlags(eDisableJunction, NULL, m_DisableJunction);
   gLSESettings.ChangegFlags(eEnableExtended, NULL, m_ExtendedMenue);
   gLSESettings.ChangegFlags(eBackupMode, NULL, m_BackupMode);
   

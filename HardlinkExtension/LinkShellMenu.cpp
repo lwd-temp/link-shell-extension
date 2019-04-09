@@ -754,11 +754,11 @@ CreateContextMenu(
         nEntries++;
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eDisableSmartMirror))
           nEntries++;
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDisableDeloreanCopy))
           nEntries++;
 
         if (SrcDstOnSameDrive)
@@ -776,7 +776,6 @@ CreateContextMenu(
 
         // [1450] Drop a Symbolic Link on a Directory can create Copy Symbolic Link
         nEntries++;
-
       }
     }
 	} // if (m_DropTarget.m_Flags & eNTFS)
@@ -821,13 +820,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eDisableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDisableDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -861,13 +860,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eDisableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDisableDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -908,13 +907,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eDisableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDisableDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -947,13 +946,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eDisableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDisableDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -984,13 +983,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eDisableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDisableDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -1022,13 +1021,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eDisableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDisableDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -1065,13 +1064,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eDisableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDisableDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -1108,13 +1107,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eDisableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDisableDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -1158,13 +1157,13 @@ CreateContextMenu(
 			  InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartCopy + MenuOffset, eDropSmartCopy, aCommandIdx);
 
         // [0810] Smart Mirror can be done even on the same drive or not so we increment for Smart Mirror anywhere
-        if (!(gLSESettings.GetFlags() & eEnableSmartMirror))
+        if (!(gLSESettings.GetFlags() & eDisableSmartMirror))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuSmartMirror + MenuOffset, eDropSmartMirror, aCommandIdx);
         }
 
         // [0810] DeloreanCopy can be done even on the same drive or not so we increment for DeloreanCopy anywhere
-        if (!(gLSESettings.GetFlags() & eDeloreanCopy))
+        if (!(gLSESettings.GetFlags() & eDisableDeloreanCopy))
         {
 			    InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuDeloreanCopy + MenuOffset, eDropDeloreanCopy, aCommandIdx);
         }
@@ -1224,7 +1223,7 @@ CreateContextMenu(
     //
     if (m_bTargetsFlag & eSymbolicLink)
     {
-      if ((m_DropTarget.m_Flags & eDir) && m_nTargets == 1)
+      if (m_DropTarget.m_Flags & (eDir|eVolume))
       {
         // [1450] Drop a Symbolic Link on a Directory can create Copy Symbolic Link
         InsertCommand(hSubmenu, SubmenuIdx, idCmd, eMenuCopySymbolicLink + MenuOffset, eDropCopySymbolicLink, aCommandIdx);
@@ -1518,7 +1517,7 @@ InvokeCommand	(
 				break;
 
         case eDropCopySymbolicLink:
-          HTRACE(L"eMenuCopySymbolicLink");
+          DropSymbolicLink(m_DropTarget, true);
         break;
 
         default:
@@ -1822,13 +1821,13 @@ DropHardLink(
 HRESULT 
 HardLinkExt::
 DropSymbolicLink(
-	Target&		aTarget
+	Target&		aTarget,
+  bool      aCopy
 )
 {
   WCHAR		dest[HUGE_PATH];
 
   bool Elevation = ElevationNeeded();
-
  	PathAddBackslash(aTarget.m_Path);
 
   // Retrieve the light settings
@@ -1864,18 +1863,51 @@ DropSymbolicLink(
 			dest,
       IDS_STRING_eTopMenuOfOrderXP_1);
 
-    // If chains of symbolic links should be created, we have to
-    // check wether it is a directory or file, and set the bits 
-    // accordingly
+    // If chains of symbolic links should be created, we have to check wether it is a directory or file, 
+    // and set the bits accordingly
+    DWORD attr = INVALID_FILE_ATTRIBUTES;
     if (m_pTargets[i].m_Flags & eSymbolicLink)
     {
-      DWORD attr = GetFileAttributes(m_pTargets[i].m_Path);
+      attr = GetFileAttributes(m_pTargets[i].m_Path);
       if (attr & FILE_ATTRIBUTE_DIRECTORY)
         m_pTargets[i].m_Flags |= eDir;
       else
         m_pTargets[i].m_Flags |= eFile;
     }
 
+    int SymbolicLinkRelation = gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE;
+    wchar_t target[HUGE_PATH];
+    if (aCopy)
+    {
+      ProbeSymbolicLink(m_pTargets[i].m_Path, target);
+      if (PathIsRelative(target))
+      {
+        SymbolicLinkRelation = SYMLINK_FLAG_RELATIVE;
+
+        wchar_t OrgSymlink[HUGE_PATH];
+        LPWSTR pFileName = PathFindFileName(m_pTargets[i].m_Path);
+        if (pFileName)
+        {
+          *pFileName = 0x00;
+          wcscpy_s(OrgSymlink, HUGE_PATH, m_pTargets[i].m_Path);
+          wcscat_s(OrgSymlink, HUGE_PATH, target);
+
+          // Recalculate a relative target between dest and target
+          BOOL bRelPath = PathRelativePathTo(target, dest, FILE_ATTRIBUTE_NORMAL, OrgSymlink, attr & ~FILE_ATTRIBUTE_REPARSE_POINT);
+          if (FALSE == bRelPath)
+          {
+            SymbolicLinkRelation &= ~SYMLINK_FLAG_RELATIVE;
+            wcscpy_s(target, HUGE_PATH, OrgSymlink);
+          }
+
+        }
+
+      }
+      else
+        SymbolicLinkRelation = 0;
+    }
+    else
+      wcscpy_s(target, MAX_PATH, m_pTargets[i].m_Path);
 
 		// Check if two files should be linked together
     if (m_pTargets[i].m_Flags & eFile)
@@ -1894,17 +1926,17 @@ DropSymbolicLink(
       if (Elevation)
 #endif
       {
-        if (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks)
-          WriteUACHelperArgs(SymlinkArgs, 'F', dest, m_pTargets[i].m_Path);
+        if (SymbolicLinkRelation)
+          WriteUACHelperArgs(SymlinkArgs, 'F', dest, target);
         else
-          WriteUACHelperArgs(SymlinkArgs, 'f', dest, m_pTargets[i].m_Path);
+          WriteUACHelperArgs(SymlinkArgs, 'f', dest, target);
       }
       else
       {
         // Used when UAC is switched off thus making it possible  to call CreateSymboliclink directly from explorer
         CreateSymboliclink(dest,
-          m_pTargets[i].m_Path, 
-          (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation
+          target,
+          SymbolicLinkRelation | dwSymLinkAllowUnprivilegedCreation
         );
       }
     }
@@ -1915,7 +1947,7 @@ DropSymbolicLink(
 			WCHAR	DestNoSymlink[HUGE_PATH];
 			WCHAR	SourceNoSymlink[HUGE_PATH];
 
-			ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoSymlink, HUGE_PATH);
+			ReparseCanonicalize(target, SourceNoSymlink, HUGE_PATH);
 			PathAddBackslash(SourceNoSymlink);
 			ReparseCanonicalize(dest, DestNoSymlink, HUGE_PATH);
 			if (StrStrI(DestNoSymlink, SourceNoSymlink))
@@ -1943,18 +1975,18 @@ DropSymbolicLink(
         if (Elevation)
 #endif
         {
-          if (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks)
-            WriteUACHelperArgs(SymlinkArgs, 'D', dest, m_pTargets[i].m_Path);
+          if (SymbolicLinkRelation)
+            WriteUACHelperArgs(SymlinkArgs, 'D', dest, target);
           else
-            WriteUACHelperArgs(SymlinkArgs, 'd', dest, m_pTargets[i].m_Path);
+            WriteUACHelperArgs(SymlinkArgs, 'd', dest, target);
         }
         else
         {
           // Used for debugging purposes, when UAC is switched off thus making it possible to call CreateSymboliclink 
           // directly from explorer, but not from LSEUacHelper.exe
           CreateSymboliclink(dest,
-            m_pTargets[i].m_Path,
-            (gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE) | dwSymLinkAllowUnprivilegedCreation | SYMLINK_FLAG_DIRECTORY
+            target,
+            SymbolicLinkRelation | dwSymLinkAllowUnprivilegedCreation | SYMLINK_FLAG_DIRECTORY
           );
         }
       }
@@ -3490,6 +3522,7 @@ DropReplaceSymbolicLink(
 	}
   return NOERROR;
 }
+
 
 int 
 ReplaceMountPoint(

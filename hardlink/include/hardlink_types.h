@@ -107,13 +107,14 @@ enum LSE_Flags
   eSymboliclinkOverlay = 0x10,
   eJunctionOverlay = 0x20,
   eHardlinkOverlay = 0x40,
-  eEnableSmartMirror = 0x80,
-  eDeloreanCopy = 0x100,
+  eDisableSmartMirror = 0x80,
+  eDisableDeloreanCopy = 0x100,
   eCropReparsePoints = 0x200,
   eUnrollReparsePoints = 0x400,
   eSpliceReparsePoints = 0x800,
   eLogOutput = 0x1000,
   eBackupMode = 0x2000,
+  eDisableJunction = 0x4000
 };
 
 enum Operations
