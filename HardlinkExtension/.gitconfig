@@ -3,6 +3,6 @@
 	name = Hermann Schinagl
 [mergetool "sourcetree"]
 	trustExitCode = true
-	cmd = '' -wait -merge -3 \"$LOCAL\" \"$BASE\" \"$REMOTE\" \"$MERGED\"
+	cmd = 'C:/Program Files (x86)/Araxis/Araxis Merge v6.5/Merge.exe' \"$LOCAL\" \"$BASE\" \"$REMOTE\" \"$MERGED\"
 [difftool "sourcetree"]
-	cmd = '' \"$LOCAL\" \"$REMOTE\"
+	cmd = 'C:/Program Files (x86)/Araxis/Araxis Merge v6.5/Compare.exe' \"$LOCAL\" \"$REMOTE\"
