@@ -952,6 +952,14 @@ CreateContextMenu(
     }
   }
 
+  // DropSource is a Mountpoint
+  if (m_bTargetsFlag & eMountPoint)
+  {
+    // DropTarget is Directory or a Volume
+    if (m_DropTarget.m_Flags & (eDir | eVolume))
+      InsertCommand(a_hSubmenu, SubmenuIdx, a_idCmd, eMenuCopyMountpoint + a_MenuOffset, eDropCopyMountpoint, a_CommandIdx, a_nEntries);
+  }
+
 }
 
 void
@@ -1284,7 +1292,11 @@ InvokeCommand	(
 
         case eDropCopyJunction:
           DropJunction(m_DropTarget, true);
-          break;
+        break;
+
+        case eDropCopyMountpoint:
+          DropMountPoint(m_DropTarget, true);
+        break;
 
         default:
 				break;
@@ -1671,7 +1683,7 @@ DropSymbolicLink(
         SymbolicLinkRelation = 0;
     }
     else
-      wcscpy_s(target, MAX_PATH, m_pTargets[i].m_Path);
+      wcscpy_s(target, HUGE_PATH, m_pTargets[i].m_Path);
 
 		// Check if two files should be linked together
     if (m_pTargets[i].m_Flags & eFile)
@@ -1842,7 +1854,7 @@ DropJunction(
       if (aCopy)
         ProbeJunction(m_pTargets[i].m_Path, target);
       else
-        wcscpy_s(target, MAX_PATH, m_pTargets[i].m_Path);
+        wcscpy_s(target, HUGE_PATH, m_pTargets[i].m_Path);
 
       // Check if recursive junctions are about to be created
       ReparseCanonicalize(target, SourceNoJunction, HUGE_PATH);
@@ -2054,7 +2066,8 @@ DeleteJunction(
 HRESULT 
 HardLinkExt::
 DropMountPoint(
-	Target&		aTarget
+	Target&		aTarget,
+  bool      aCopy
 )
 {
 	WCHAR		dest[HUGE_PATH];
@@ -2064,7 +2077,8 @@ DropMountPoint(
 	if (!m_nTargets)
 		ClipboardToSelection(false);
 
-	if (m_pTargets[0].m_Flags & eVolume)
+	// Either Mountpoint creation or Mountpoint Copy are let in
+  if ( (m_pTargets[0].m_Flags & eVolume) || (m_pTargets[0].m_Flags & eMountPoint && aCopy) )
 	{
 		WCHAR	DestNoJunction[HUGE_PATH];
 		WCHAR	SourceNoJunction[HUGE_PATH];
@@ -2084,7 +2098,15 @@ DropMountPoint(
 			dest,
       IDS_STRING_eTopMenuOfOrderXP_1);
 
-		ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction, HUGE_PATH);
+
+    wchar_t target[HUGE_PATH], volumeName[HUGE_PATH];
+    if (aCopy)
+      ProbeMountPoint(m_pTargets[0].m_Path, target, HUGE_PATH, volumeName);
+    else
+      wcscpy_s(target, HUGE_PATH, m_pTargets[0].m_Path);
+
+    // Check if recursive volume mountpoints are about to be created
+    ReparseCanonicalize(target, SourceNoJunction, HUGE_PATH);
 		PathAddBackslash(SourceNoJunction);
 		ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
 		if (StrStrI(DestNoJunction, SourceNoJunction))
@@ -2100,7 +2122,7 @@ DropMountPoint(
   		CreateDirectory(dest, NULL);
 
 			int RetVal;
-			HTRACE(L"LSE::MountPoint: '%s' -> '%s', %ld\n", m_pTargets[0].m_Path, dest, m_pTargets[0].m_Flags);
+			HTRACE(L"LSE::MountPoint: '%s' -> '%s', %ld\n", target, dest, m_pTargets[0].m_Flags);
 
 #if defined UAC_FORCE
       if (UAC_OUTPROC)
@@ -2115,14 +2137,14 @@ DropMountPoint(
         FILE *MountpointArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
 				// Write the command file, which is read by the elevated process
-        WriteUACHelperArgs(MountpointArgs, 'm', m_pTargets[0].m_Path, dest);
+        WriteUACHelperArgs(MountpointArgs, 'm', target, dest);
 				fclose(MountpointArgs);
 
 				RetVal = ForkExeHelper(curdir, sla_quoted);
 			}
 			else
 			{
-				RetVal = CreateMountPoint(m_pTargets[0].m_Path, dest);
+				RetVal = CreateMountPoint(target, dest);
 			}
 
 			if (S_OK != RetVal)

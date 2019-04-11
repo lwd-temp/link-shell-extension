@@ -213,7 +213,8 @@ private:
 
 	HRESULT 
 	DropMountPoint(
-		Target&		aTarget
+		Target&		aTarget,
+    bool      aCopy = false
 	);
 
 	HRESULT 
