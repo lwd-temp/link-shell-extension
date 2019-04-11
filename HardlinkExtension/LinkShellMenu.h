@@ -144,17 +144,28 @@ private:
     UINT&         a_idCmd,
     int           a_MenuIdx,
     CommandType   a_CommandType,
-    UINT&         a_CommandIdx
+    UINT&         a_CommandIdx,
+    INT&          a_nEntries
   );
 
-	void
-	CreateContextMenu(
-		HMENU&				hMenu,
-		UINT&					indexMenu,
-		UINT&					idCmd,
-		UINT&					aCommandIdx,
-		UINT					MenuOffset
-	);
+  void
+  CreateContextMenu(
+    HMENU&				a_hSubmenu,
+    UINT&					a_idCmd,
+    UINT&					a_CommandIdx,
+    UINT					a_MenuOffset,
+    INT&          a_nEntries,
+    bool          a_SrcDstOnSameDrive
+  );
+
+  void
+  CreateContextMenu(
+    HMENU&				hMenu,
+    UINT&					indexMenu,
+    UINT&					idCmd,
+    UINT&					aCommandIdx,
+    UINT					MenuOffset
+  );
 
 	HRESULT
 	CancelPickLink(
@@ -165,14 +176,16 @@ private:
 		Target&		DestPath
 	);
 
-	HRESULT
-	DropSymbolicLink(
-		Target&		DestPath
+  HRESULT
+  DropSymbolicLink(
+    Target&		DestPath,
+    bool      aCopy = false
 	);
 
 	HRESULT
 	DropJunction(
-		Target&		DestPath
+		Target&		DestPath,
+    bool      aCopy = false
 	);
 
 	HRESULT
@@ -200,7 +213,8 @@ private:
 
 	HRESULT 
 	DropMountPoint(
-		Target&		aTarget
+		Target&		aTarget,
+    bool      aCopy = false
 	);
 
 	HRESULT 
@@ -260,6 +274,8 @@ private:
     LPCMINVOKECOMMANDINFO   lpcmi
   );
 
+
+
 	void
 	ErrorCreating(
 		const wchar_t*	aDirectory,
@@ -293,3 +309,4 @@ ReplaceMountPoint(
   wchar_t*  aTarget,
   wchar_t*  aSource
 );
+

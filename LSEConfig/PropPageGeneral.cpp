@@ -42,8 +42,9 @@ PropPageGeneral::PropPageGeneral()
   , m_RemoteCapabilities(false)
   , m_SymlinkAbsRel(false)
   , m_BackupMode(false)
-  , m_SmartMirror(false)
-  , m_DeloreanCopy(false)
+  , m_DisableSmartMirror(false)
+  , m_DisableDeloreanCopy(false)
+  , m_DisableJunction(false)
   , m_CropReparsePoints(false)
   , m_UnrollReparsePoints(false)
   , m_SpliceReparsePoints(false)
@@ -209,8 +210,9 @@ void PropPageGeneral::OnOK()
   gLSESettings.ChangegFlags(eLogOutput, NULL, m_Logging);
   gLSESettings.ChangegFlags(eEnableRemote, NULL, m_RemoteCapabilities);
 
-  gLSESettings.ChangegFlags(eEnableSmartMirror, NULL, m_SmartMirror);
-  gLSESettings.ChangegFlags(eDeloreanCopy, NULL, m_DeloreanCopy);
+  gLSESettings.ChangegFlags(eDisableSmartMirror, NULL, m_DisableSmartMirror);
+  gLSESettings.ChangegFlags(eDisableDeloreanCopy, NULL, m_DisableDeloreanCopy);
+  gLSESettings.ChangegFlags(eDisableJunction, NULL, m_DisableJunction);
 
   gLSESettings.ChangegFlags(eBackupMode, NULL, m_BackupMode);
   gLSESettings.ChangegFlags(eForceAbsoluteSymbolicLinks, NULL, m_SymlinkAbsRel);

@@ -327,7 +327,7 @@ Function COMServerRegistration
   WriteRegStr HKLM "$REG_PREFIX_SOFTWARE\LinkShellExtension" "SymbolicLink Icon" "$INSTDIR\SymbolicLink_Win10.ico"
 
   lbl_IconEnd:  
-  ;  0x0400 = 1024. Mirror on, Delorean on, Relative Links
+  ;  0x0400 = 1024. Junctions on, Mirror on, Delorean on, Relative Links
   ;
   WriteRegDWORD HKLM "$REG_PREFIX_Software\LinkShellExtension" "gFlags" 1024
 
@@ -825,6 +825,10 @@ Section
   File ..\Doc\multiplesource.png
   File ..\Doc\multiplesourceselect.png
   File ..\Doc\symlinkpriv.png
+
+  File ..\Doc\symlinkcopydrop.png
+  File ..\Doc\symlinkcopy.png
+
     
   File ..\Doc\smartmirrordrop.png
 

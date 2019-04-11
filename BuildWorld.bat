@@ -6,7 +6,7 @@ REM
 set MAJOR_VERSION=3
 set MINOR_VERSION=9
 set PATCH_VERSION=2
-set HOTFIX_VERSION=0
+set HOTFIX_VERSION=1
 
 @echo generating Version info
 REM Generate version info for c++
@@ -34,21 +34,22 @@ set VERSION_FILE=HardlinkExtension\install\LSE_version.nsh
 REM Rebuild
 REM
 if not exist Media mkdir Media
-@echo Rebuild lnk.sln and press enter afertwards
+@echo Rebuild link.sln and press enter afertwards
 pause
 
 REM Copy over certificate
 REM
 echo provide Certificate for signing
-xcopy ..\hardlinks.supl\KnowledgeBase\certificate\LinkShellextension.pfx shared\certificate\LinkShellextension.pfx
+xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\LinkShellextension.pfx shared\certificate\LinkShellextension.pfx
 
 
 REM Create installer
 REM
-@echo Generating Install media
+@echo Generating InstallMedia
 pushd HardlinkExtension\install
 call CodeSign.bat
 popd
+xcopy /y HardlinkExtension\Doc\linkshellextension.html HardlinkExtension\Doc\hardlinkshellext.html
 
 REM Pack ln.exe
 REM
@@ -61,5 +62,4 @@ REM
 pushd dupemerge
 call PackMedia.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
 popd
-
 

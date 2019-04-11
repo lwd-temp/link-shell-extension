@@ -191,7 +191,7 @@ OpenFileForExeHelper(
 
   GetTempPath(HUGE_PATH, curdir);
   wcscpy(sla, curdir);
-  wcscat(sla, SYMLINKARGS);
+  wcscat(sla, UACHELPERARGS);
 
   // Write the file for the args
 #if defined _DEBUG

@@ -23,7 +23,7 @@ DisposeAsync(
   CopyStatistics&       Stats2
 );
 
-#define SYMLINKARGS L"symlink.args"
+#define UACHELPERARGS L"uachelper.args"
 
 FILE*
 OpenFileForExeHelper(

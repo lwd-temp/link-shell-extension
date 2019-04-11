@@ -8,12 +8,12 @@
 
 // define if we don't want to fork LSEUacHelper.exe to perform operations
 // but instead do it in hardlinkshellext.dll
-// #define SYMLINK_FORCE
-// #define SYMLINK_OUTPROC 0
+// #define UAC_FORCE
+// #define UAC_OUTPROC 0
 
 // define if we want to fork LSEUacHelper.exe to perform all operations
-// #define SYMLINK_FORCE
-// #define SYMLINK_OUTPROC 1
+// #define UAC_FORCE
+// #define UAC_OUTPROC 1
 
 // #define FIND_HARDLINK_DEBUG // DEBUG_DEFINES
 
@@ -107,13 +107,14 @@ enum LSE_Flags
   eSymboliclinkOverlay = 0x10,
   eJunctionOverlay = 0x20,
   eHardlinkOverlay = 0x40,
-  eEnableSmartMirror = 0x80,
-  eDeloreanCopy = 0x100,
+  eDisableSmartMirror = 0x80,
+  eDisableDeloreanCopy = 0x100,
   eCropReparsePoints = 0x200,
   eUnrollReparsePoints = 0x400,
   eSpliceReparsePoints = 0x800,
   eLogOutput = 0x1000,
   eBackupMode = 0x2000,
+  eDisableJunction = 0x4000
 };
 
 enum Operations

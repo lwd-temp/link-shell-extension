@@ -317,6 +317,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CustomBuild>
+    <None Include="..\BuildWorld.bat" />
     <None Include="LinkShellExtension.def" />
     <None Include="install\CodeSign.bat" />
     <None Include="install\CreateInstall.bat" />

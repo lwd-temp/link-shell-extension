@@ -215,8 +215,8 @@ CopyCallback ( HWND hwnd,
           MovePath.ArgvDest += pszDestFile;
           MoveLocation.push_back(MovePath);
 
-#if defined SYMLINK_FORCE
-          if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+          if (UAC_OUTPROC)
 #else
           // Check if we are in Backup Mode. If yes we also have to do the FindHardlink elevated, because
           // it might happen, that FindHardlink should run over directories, which the explorer does not
@@ -282,8 +282,8 @@ CopyCallback ( HWND hwnd,
             if (progress >= 0)
             {
               // See if there are Symbolic Links
-#if defined SYMLINK_FORCE
-              if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+              if (UAC_OUTPROC)
 #else
               int ContainsSymlinks = FileList.CheckSymbolicLinks();
               if (ContainsSymlinks)
