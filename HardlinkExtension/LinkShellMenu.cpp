@@ -926,8 +926,11 @@ CreateContextMenu(
     }
   }
 
-  // Copy Symbolic Link
   //
+  // Copy Symbolic Links & Junctions
+  //
+
+  // DropSource is a Symbolic Link
   if (m_bTargetsFlag & eSymbolicLink)
   {
     if (m_DropTarget.m_Flags & (eDir | eVolume))
@@ -936,6 +939,19 @@ CreateContextMenu(
       InsertCommand(a_hSubmenu, SubmenuIdx, a_idCmd, eMenuCopySymbolicLink + a_MenuOffset, eDropCopySymbolicLink, a_CommandIdx, a_nEntries);
     }
   }
+
+  // DropSource is a Junction
+  if (m_bTargetsFlag & bJunction)
+  {
+    // Droptarget is a Directory or a Volume
+    if (m_DropTarget.m_Flags & (eDir | eVolume))
+    {
+      // [1460] Drop a junction on an already existing junction, create chains of junctions
+      if (!(gLSESettings.GetFlags() & eDisableJunction))
+        InsertCommand(a_hSubmenu, SubmenuIdx, a_idCmd, eMenuCopyJunction + a_MenuOffset, eDropCopyJunction, a_CommandIdx, a_nEntries);
+    }
+  }
+
 }
 
 void
@@ -1266,6 +1282,10 @@ InvokeCommand	(
           DropSymbolicLink(m_DropTarget, true);
         break;
 
+        case eDropCopyJunction:
+          DropJunction(m_DropTarget, true);
+          break;
+
         default:
 				break;
 			}
@@ -1586,8 +1606,8 @@ DropSymbolicLink(
 	wchar_t curdir[HUGE_PATH];	
   FILE* SymlinkArgs = NULL;
   
-#if defined SYMLINK_FORCE
-  if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+  if (UAC_OUTPROC)
 #else
   if (Elevation)
 #endif
@@ -1645,9 +1665,7 @@ DropSymbolicLink(
             SymbolicLinkRelation &= ~SYMLINK_FLAG_RELATIVE;
             wcscpy_s(target, HUGE_PATH, OrgSymlink);
           }
-
         }
-
       }
       else
         SymbolicLinkRelation = 0;
@@ -1666,8 +1684,8 @@ DropSymbolicLink(
         dwSymLinkAllowUnprivilegedCreation = SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
       }
       
-#if defined SYMLINK_FORCE
-      if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+      if (UAC_OUTPROC)
 #else
       if (Elevation)
 #endif
@@ -1693,7 +1711,8 @@ DropSymbolicLink(
 			WCHAR	DestNoSymlink[HUGE_PATH];
 			WCHAR	SourceNoSymlink[HUGE_PATH];
 
-			ReparseCanonicalize(target, SourceNoSymlink, HUGE_PATH);
+      // Check if recursive symbolic links are about to be created
+      ReparseCanonicalize(target, SourceNoSymlink, HUGE_PATH);
 			PathAddBackslash(SourceNoSymlink);
 			ReparseCanonicalize(dest, DestNoSymlink, HUGE_PATH);
 			if (StrStrI(DestNoSymlink, SourceNoSymlink))
@@ -1715,8 +1734,8 @@ DropSymbolicLink(
           dwSymLinkAllowUnprivilegedCreation = SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
         }
         
-#if defined SYMLINK_FORCE
-        if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+        if (UAC_OUTPROC)
 #else
         if (Elevation)
 #endif
@@ -1740,8 +1759,8 @@ DropSymbolicLink(
 	}
 
   
-#if defined SYMLINK_FORCE
-  if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+  if (UAC_OUTPROC)
 #else
   if (Elevation)
 #endif
@@ -1774,7 +1793,8 @@ DropSymbolicLink(
 HRESULT 
 HardLinkExt::
 DropJunction(
-	Target&		aTarget
+	Target&		aTarget,
+  bool      aCopy
 )
 {
   WCHAR		dest[HUGE_PATH];
@@ -1818,7 +1838,14 @@ DropJunction(
         dest,
         IDS_STRING_eTopMenuOfOrderXP_1);
 
-      ReparseCanonicalize(m_pTargets[i].m_Path, SourceNoJunction, HUGE_PATH);
+      wchar_t target[HUGE_PATH];
+      if (aCopy)
+        ProbeJunction(m_pTargets[i].m_Path, target);
+      else
+        wcscpy_s(target, MAX_PATH, m_pTargets[i].m_Path);
+
+      // Check if recursive junctions are about to be created
+      ReparseCanonicalize(target, SourceNoJunction, HUGE_PATH);
       PathAddBackslash(SourceNoJunction);
       ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
       if (StrStrI(DestNoJunction, SourceNoJunction))
@@ -1832,23 +1859,23 @@ DropJunction(
       }
       else
       {
-        HTRACE(L"LSE::DropJunction: '%s' -> '%s', %ld\n", m_pTargets[i].m_Path, dest, m_pTargets[i].m_Flags);
+        HTRACE(L"LSE::DropJunction: '%s' -> '%s', %ld\n", target, dest, m_pTargets[i].m_Flags);
         DWORD ret;
-#if defined SYMLINK_FORCE
-        if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+        if (UAC_OUTPROC)
           ret = ERROR_ALREADY_EXISTS;
         else
-          ret = CreateJunction(dest, m_pTargets[i].m_Path);
+          ret = CreateJunction(dest, target);
 #else
-        ret = CreateJunction(dest, m_pTargets[i].m_Path);
+        ret = CreateJunction(dest, target);
 #endif
         if (ERROR_SUCCESS != ret)
         {
           // With Vista & W7, we are not allowed to create Junctions in folders like
           // c:\Program Files (x86) wihtout UAC, so in this special case, the creation
           // of junction has to be relayed to an elevated .exe as done with Symbolic links
-#if defined SYMLINK_FORCE
-          if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+          if (UAC_OUTPROC)
 #else
           if ((ERROR_ALREADY_EXISTS != ret) && ElevationNeeded())
 #endif
@@ -1858,7 +1885,7 @@ DropJunction(
               JunctionArgs = OpenFileForExeHelper(curdir, sla_quoted);
 
             // Write the command file, which is read by the elevated process
-            WriteUACHelperArgs(JunctionArgs, 'j', dest, m_pTargets[i].m_Path);
+            WriteUACHelperArgs(JunctionArgs, 'j', dest, target);
             CreateJunctionsViaHelperExe = true;
           }
           else
@@ -1893,8 +1920,8 @@ DropJunction(
     }
   }
 
-#if defined SYMLINK_FORCE
-  if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+  if (UAC_OUTPROC)
 #else
   if (CreateJunctionsViaHelperExe)
 #endif
@@ -1985,8 +2012,8 @@ DeleteJunction(
 				// With Vista & W7, we are not allowed to delete Directories in folders like
 				// c:\Program Files (x86) wihtout UAC, so in this special case, the deletion
 				// of junction has to be relayed to an elevated .exe as done with Symbolic links
-#if defined SYMLINK_FORCE
-        if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+        if (UAC_OUTPROC)
 #else
         if (ElevationNeeded())
 #endif
@@ -2005,8 +2032,8 @@ DeleteJunction(
 			}
 		}
 	}
-#if defined SYMLINK_FORCE
-  if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+  if (UAC_OUTPROC)
 #else
   if (CreateJunctionsViaHelperExe)
 #endif
@@ -2075,8 +2102,8 @@ DropMountPoint(
 			int RetVal;
 			HTRACE(L"LSE::MountPoint: '%s' -> '%s', %ld\n", m_pTargets[0].m_Path, dest, m_pTargets[0].m_Flags);
 
-#if defined SYMLINK_FORCE
-      if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+      if (UAC_OUTPROC)
 #else
       // Check if we are on Vista. With Vista, thanks to UAC, 
 			// we have to fork an extra process to perform this operation
@@ -2169,8 +2196,8 @@ DeleteMountPoint(
 
   fclose(Arguments);
 
-#if defined SYMLINK_FORCE
-  if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+  if (UAC_OUTPROC)
 #else
   if (RelayToSymlink)
 #endif
@@ -2471,8 +2498,8 @@ SmartMirror(
         CleanList.Prepare(FileInfoContainer::eSmartClean, &CleanStatistics, &CleanEffort);
 
         // If during search either one file was a symbolic link, we have to elevate the rest
-#if defined SYMLINK_FORCE
-        if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+        if (UAC_OUTPROC)
 #else
         int ContainsSymlinks = MirrorList.CheckSymbolicLinks() | CleanList.CheckSymbolicLinks();
         if (ContainsSymlinks)
@@ -2878,8 +2905,8 @@ SmartXXX(
         // be created. But do this only under > Windows Vista
 
 
-  #if defined SYMLINK_FORCE
-        if (SYMLINK_OUTPROC)
+  #if defined UAC_FORCE
+        if (UAC_OUTPROC)
   #else
         int ContainsSymlinks = FileList.CheckSymbolicLinks();
         if (ContainsSymlinks)
@@ -3069,8 +3096,8 @@ ReplaceJunction(
   if (!(gLSESettings.GetFlags() & eBackupMode))
     bRemoveDir = RemoveDirectory(aSource);
 
-#if defined SYMLINK_FORCE
-  if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+  if (UAC_OUTPROC)
 #else
   // With Vista & W7, we are not allowed to operate on Junctions in folders like
 	// c:\Program Files (x86) without UAC, so in this very case the modification
@@ -3078,8 +3105,8 @@ ReplaceJunction(
 	if (FALSE == bRemoveDir)
 #endif
 	{
-#if defined SYMLINK_FORCE
-    if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+    if (UAC_OUTPROC)
 #else
     if (ElevationNeeded() || (gLSESettings.GetFlags() & eBackupMode))
 #endif
@@ -3176,8 +3203,8 @@ ReplaceSymbolicLink(
   if (SymLinkAllowUnprivilegedCreation(&gVersionInfo))
     SymbolicLinkRelation |= SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
     
-#if defined SYMLINK_FORCE
-  if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+  if (UAC_OUTPROC)
 #else
   // Check if we have to elevate
   if (
@@ -3279,8 +3306,8 @@ ReplaceMountPoint(
 	DWORD RetVal = ERROR_SUCCESS;
   BOOL bRemoveDir = FALSE;
 	
-#if defined SYMLINK_FORCE
-  if (SYMLINK_OUTPROC)
+#if defined UAC_FORCE
+  if (UAC_OUTPROC)
 #else
   // With Windows7 elevation is needed to unmount a drive. Furthermore when in 
   // Backup Mode we also have to elevate
@@ -3687,8 +3714,8 @@ DropDeloreanCopy(
 
         // If there is one symbolic link among the list, we have
         // to elevate the whole operation. 
-  #if defined SYMLINK_FORCE 
-        if (SYMLINK_OUTPROC)
+  #if defined UAC_FORCE 
+        if (UAC_OUTPROC)
   #else
         int ContainsSymlinks = MirrorList.CheckSymbolicLinks() | CloneList.CheckSymbolicLinks();
         if (ContainsSymlinks)

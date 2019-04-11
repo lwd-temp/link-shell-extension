@@ -184,7 +184,8 @@ private:
 
 	HRESULT
 	DropJunction(
-		Target&		DestPath
+		Target&		DestPath,
+    bool      aCopy = false
 	);
 
 	HRESULT

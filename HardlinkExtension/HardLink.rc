@@ -141,8 +141,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "ÉXÉ}Å[ÉgÉ~ÉâÅ[ÉäÉìÉO(&I)"
     IDS_STRING_eMenuDeloreanCopy1 "ê¢ë„ÉRÉsÅ[(&T)"
     IDS_STRING_eMenuCreateMountPoint1 "É{ÉäÉÖÅ[ÉÄÇÃÉ}ÉEÉìÉg(&V)"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -346,8 +346,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "÷«ƒ‹æµœÒ(&J)"
     IDS_STRING_eMenuDeloreanCopy1 "∂‡∞Ê±æ÷«ƒ‹∏±±æ(&B)"
     IDS_STRING_eMenuCreateMountPoint1 "¥≈≈ÃæÌπ“Ω”µ„(&V)"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -556,8 +556,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "Ω∫∏∂∆Æ &πÃ∑Ø"
     IDS_STRING_eMenuDeloreanCopy1 "&DeLorean ∫πªÁ"
     IDS_STRING_eMenuCreateMountPoint1 "&∫º∑˝ ∏∂øÓ∆Æ ¡ˆ¡°"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -780,8 +780,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "ChytrÈ z&rcadlo"
     IDS_STRING_eMenuDeloreanCopy1 "&DeLoreanovsk· kopie"
     IDS_STRING_eMenuCreateMountPoint1 "P¯Ìpojn˝ &bod svazku"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -1004,8 +1004,8 @@ BEGIN
     IDS_STRING_eMenuDeloreanCopy1 "Kopia deLo&reanska"
     IDS_STRING_eMenuCreateMountPoint1 
                             "UtwÛrz tutaj punkt montowania &woluminu"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -1227,8 +1227,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "&InteligentnÈ zrkadlenie"
     IDS_STRING_eMenuDeloreanCopy1 "&Deloreansk· kÛpia"
     IDS_STRING_eMenuCreateMountPoint1 "&Bod pripojenia zv‰zku"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -1450,8 +1450,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "”ÏÌÓÂ Smart ÁÂÍ‡ÎÓ"
     IDS_STRING_eMenuDeloreanCopy1 "DeLorean ÍÓÔË˛"
     IDS_STRING_eMenuCreateMountPoint1 "&“Ó˜ÍÛ ÏÓÌÚËÓ‚‡ÌËˇ"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -1681,8 +1681,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "un m&iroir intelligent"
     IDS_STRING_eMenuDeloreanCopy1 "une copie &DeLorean"
     IDS_STRING_eMenuCreateMountPoint1 "un &point de montage"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -1904,8 +1904,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "Smart M&irror"
     IDS_STRING_eMenuDeloreanCopy1 "&DeLorean Copy"
     IDS_STRING_eMenuCreateMountPoint1 "&Volume Mountpoint"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -2131,8 +2131,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "Smart s&pegling"
     IDS_STRING_eMenuDeloreanCopy1 "&DeLorean kopia"
     IDS_STRING_eMenuCreateMountPoint1 "Monteringspunkt fˆr &volym"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -2327,8 +2327,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "Smarte Spiegelkopie"
     IDS_STRING_eMenuDeloreanCopy "DeLorean Kopie"
     IDS_STRING_eMenuCreateMountPoint "&Bereitstellungspunkt"
-    IDS_STRING_eMenuCopySymbolicLink "Copy Symbolic Link"
-    IDS_STRING_eMenuFree01  "Free01"
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction  "Junction Copy"
     IDS_STRING_eMenuFree02  "Free02"
     IDS_STRING_eMenuDropeAs "Einf¸gen alsÖ"
     IDS_STRING_eMenuDropHardlink "Hardlink einf¸gen"
@@ -2360,7 +2360,7 @@ BEGIN
     IDS_STRING_eMenuDeloreanCopy1 "DeLorean Kopie"
     IDS_STRING_eMenuCreateMountPoint1 "Ver‰nderter &Bereitstellungspunkt"
     IDS_STRING_eMenuCopySymbolicLink1 "Kopie Symbolischer Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -2630,7 +2630,7 @@ BEGIN
     IDS_STRING_eMenuDeloreanCopy "&DeLorean Copy"
     IDS_STRING_eMenuCreateMountPoint "&Volume Mountpoint"
     IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-    IDS_STRING_eMenuFree01  "Free01"
+    IDS_STRING_eMenuCopyJunction  "Junction Copy"
     IDS_STRING_eMenuFree02  "Free02"
     IDS_STRING_eMenuDropeAs "Drop AsÖ"
     IDS_STRING_eMenuDropHardlink "&Drop Hardlink"
@@ -2662,7 +2662,7 @@ BEGIN
     IDS_STRING_eMenuDeloreanCopy1 "&DeLorean Copy"
     IDS_STRING_eMenuCreateMountPoint1 "&Volume Mountpoint"
     IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -2894,8 +2894,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "Sin&cronizzazione intelligente"
     IDS_STRING_eMenuDeloreanCopy1 "Copia &DeLorean"
     IDS_STRING_eMenuCreateMountPoint1 "&Punto di montaggio disco"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -3116,8 +3116,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "Espelho Inteligente"
     IDS_STRING_eMenuDeloreanCopy1 "CÛpia DeLorean"
     IDS_STRING_eMenuCreateMountPoint1 "&Ponto de Montajem"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -3400,8 +3400,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "Espejo Inteligente"
     IDS_STRING_eMenuDeloreanCopy1 "Copia &DeLorean"
     IDS_STRING_eMenuCreateMountPoint1 "&Punto de montaje"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -3632,8 +3632,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "∏ÓıÌÔÚ Í·&ÙÔÙÒÈÛÏ¸Ú"
     IDS_STRING_eMenuDeloreanCopy1 "¡ÌÙﬂ„Ò·ˆÔ &DeLorean"
     IDS_STRING_eMenuCreateMountPoint1 "”ÁÏÂﬂÔ ÏÔÌÙ·ÒﬂÛÏ·ÙÔÚ &Ù¸ÏÔı"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE
@@ -3856,8 +3856,8 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "Ak˝ll˝ &Yans˝"
     IDS_STRING_eMenuDeloreanCopy1 "&DeLorean Kopyas˝"
     IDS_STRING_eMenuCreateMountPoint1 "&Disk Bˆl¸m¸ Balama Noktas˝"
-    IDS_STRING_eMenuCopySymbolicLink1 "Copy Symbolic Link"
-    IDS_STRING_eMenuFree011 "IDS_STRING_eMenuFree011"
+    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
 END
 
 STRINGTABLE

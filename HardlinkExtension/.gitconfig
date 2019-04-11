@@ -5,4 +5,4 @@
 	trustExitCode = true
 	cmd = 'C:/Program Files (x86)/Araxis/Araxis Merge v6.5/Merge.exe' \"$LOCAL\" \"$BASE\" \"$REMOTE\" \"$MERGED\"
 [difftool "sourcetree"]
-	cmd = 'C:/Program Files (x86)/Araxis/Araxis Merge v6.5/Compare.exe' \"$LOCAL\" \"$REMOTE\"
+	cmd = '' \"$LOCAL\" \"$REMOTE\"

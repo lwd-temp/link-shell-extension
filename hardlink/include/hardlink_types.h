@@ -8,12 +8,12 @@
 
 // define if we don't want to fork LSEUacHelper.exe to perform operations
 // but instead do it in hardlinkshellext.dll
-// #define SYMLINK_FORCE
-// #define SYMLINK_OUTPROC 0
+// #define UAC_FORCE
+// #define UAC_OUTPROC 0
 
 // define if we want to fork LSEUacHelper.exe to perform all operations
-// #define SYMLINK_FORCE
-// #define SYMLINK_OUTPROC 1
+// #define UAC_FORCE
+// #define UAC_OUTPROC 1
 
 // #define FIND_HARDLINK_DEBUG // DEBUG_DEFINES
 

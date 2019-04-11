@@ -43,7 +43,7 @@ enum			MenuEntriesIdx
 	eMenuDeloreanCopy,
 	eMenuCreateMountPoint,
   eMenuCopySymbolicLink,
-  eMenuFree01,
+  eMenuCopyJunction,
   eMenuFree02,
 
   // The 'Drop' entries are needed if there is just one entry
@@ -85,7 +85,7 @@ enum			CommandType
 	eDropSmartMirror,
 	eDropDeloreanCopy,
   eDropCopySymbolicLink,
-  eDropCopyFree01,
+  eDropCopyJunction,
   eDropCopyFree02,
   eCommandType__Free__
 };
@@ -111,7 +111,7 @@ const PCHAR  VerbsA[eCommandType__Free__] = {
               "DropSmartMirror",
               "DropDeloreanCopy",
               "DropCopySymbolicLink"
-              "DropFree01"
+              "DropCopyJunction"
               "DropFree02"
 };
 
@@ -136,7 +136,7 @@ const PWCHAR  VerbsW[eCommandType__Free__] = {
               L"DropSmartMirror",
               L"DropDeloreanCopy",
               L"DropCopySymbolicLink"
-              L"DropFree01"
+              L"DropCopyJunction"
               L"DropFree02"
 };
 

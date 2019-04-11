@@ -64,7 +64,7 @@
 #define IDS_STRING_eMenuDeloreanCopy    210
 #define IDS_STRING_eMenuCreateMountPoint 211
 #define IDS_STRING_eMenuCopySymbolicLink 212
-#define IDS_STRING_eMenuFree01 213
+#define IDS_STRING_eMenuCopyJunction 213
 #define IDS_STRING_eMenuFree02 214
 
 #define IDS_STRING_eMenuDropeAs         215
@@ -91,7 +91,7 @@
 #define IDS_STRING_eMenuDeloreanCopy1   236
 #define IDS_STRING_eMenuCreateMountPoint1 237
 #define IDS_STRING_eMenuCopySymbolicLink1 238
-#define IDS_STRING_eMenuFree011 239
+#define IDS_STRING_eMenuCopyJunction1 239
 #define IDS_STRING_eMenuFree021 240
 
 #define IDS_STRING_eMenuDropeAs1        241
