@@ -1,4 +1,4 @@
-DEBUG_DEFINES müssen im Source in hardlink.h alle ok sein
+DEBUG_DEFINES müssen im Source in hardlink_types.h alle ok sein
 
 Versionsresource ln.exe über die Defines im ln\resource.h
 

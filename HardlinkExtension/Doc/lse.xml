@@ -7,6 +7,21 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.921 has been released.</title>
+      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <pubDate>Tue, 11 Apr 2019 20:00:15 +0100</pubDate>
+      <description>
+        LSE 3.921 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>Introduce <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#copyreparse">Copy Symbolic Link/Junction/Mountpoint</a></li>
+        ]]>
+      </content:encoded>
+      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3921</guid>
+    </item>
+
+    <item>
       <title>LSE 3.920 has been released.</title>
       <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 04 Apr 2019 20:00:15 +0100</pubDate>

@@ -825,6 +825,10 @@ Section
   File ..\Doc\multiplesource.png
   File ..\Doc\multiplesourceselect.png
   File ..\Doc\symlinkpriv.png
+
+  File ..\Doc\symlinkcopydrop.png
+  File ..\Doc\symlinkcopy.png
+
     
   File ..\Doc\smartmirrordrop.png
 

@@ -55,7 +55,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i><font face="arial" size="-2">Dernière mise à jour du 4 Avril 2019, Version 3.9.2.0</font></i>
+                    <i><font face="arial" size="-2">Dernière mise à jour du 11 Avril 2019, Version 3.9.2.1</font></i>
                 </div>
             </td>
         </tr>
@@ -83,20 +83,20 @@
             <td align="right" valign="top" width="130">
                 <b>
                     <font face="arial" color="#25049F" size="-1">
-			            <a name="quickstart">Démarrage</a>
+                        <a name="quickstart">Démarrage</a>
                     </font>
                 </b>
             </td>
 
             <td valign="bottom">
                 <font face="arial" size="-1">
-                        <a href="#contact">Téléchargement</a><br />
-                        <a href="#introduction">Documentation</a><br />
-                        <a href="#faq">Questions fréquemment posées (FAQ)</a><br />
-                        <a href="../ln/blog/blog.html">Blog</a><br />
-                        <a href="#history">Historique</a><br />
-                        <a href="#contact">Donations</a><br /><br />
-                        <a href="linkshellextension.html"><img src="english.png" />English</a><br /><br />
+                    <a href="#contact">Téléchargement</a><br />
+                    <a href="#introduction">Documentation</a><br />
+                    <a href="#faq">Questions fréquemment posées (FAQ)</a><br />
+                    <a href="../ln/blog/blog.html">Blog</a><br />
+                    <a href="#history">Historique</a><br />
+                    <a href="#contact">Donations</a><br /><br />
+                    <a href="linkshellextension.html"><img src="english.png" />English</a><br /><br />
 
             </td>
         </tr>
@@ -122,7 +122,7 @@
                         XP64, et Windows7/8/10 supporte une possibilité connue en tant que <b>liens physiques</b>
                         (que l'on nommera aussi ci-dessous <b>Hardlinks</b>). Les liens physiques donnent
                         la possibilité de conserver une seule copie d'un fichier bien qu'il apparaisse dans de
-                        nombreux répertoires (directories).&nbsp; 
+                        nombreux répertoires (directories).&nbsp;
 
                         Ils peuvent être créés par la commande POSIX
                         <b><i>ln</i></b>
@@ -130,7 +130,7 @@
                 </font> <font size="2" face="arial">
                     incluse <i>dans</i> le Windows
                     Resource Kit, la commande utilitaire <i>fsutil</i>
-                    incluse dans Windows XP ou mon utilitaire en ligne de commande 
+                    incluse dans Windows XP ou mon utilitaire en ligne de commande
                     <a href="http://schinagl.priv.at/nt/ln/ln.html">ln.exe</a>.&nbsp;
 
                     Aussi, en utilisant les fonctions standard
@@ -152,9 +152,9 @@
                         <font size="2" face="arial" color="#000000">,</font>
                         <a href="#volumemountpoint"><u><font size="2" face="arial" color="#0000ff">Montage de Volume</font></u></a>
                         <font size="2" face="arial" color="#000000">
-                        , et les
-                        <a href="#symboliclinks"><u><font size="2" face="arial" color="#0000ff">Liens Symboliques</font></u></a> de Windows7/8/10,
-                        (ci-dessous
+                            , et les
+                            <a href="#symboliclinks"><u><font size="2" face="arial" color="#0000ff">Liens Symboliques</font></u></a> de Windows7/8/10,
+                            (ci-dessous
                         </font>
                     </font> <font size="2" face="arial">
                         considérés globalement comme des
@@ -172,32 +172,34 @@
                     </font></font></font>
 
                     <font color="#000000" face="arial" size="2">
-                                LSE est
-                                pris en charge par toutes les versions de Windows qui supportent NTFS
-                                version 5.0 ou ultérieure, incluant Windows XP64
-                                et Windows7/8/10.&nbsp; Les Liens Physiques,
-                                Jonctions et&nbsp; Liens Symboliques ne sont PAS supportés par le système de fichiers FAT,
-                                de même que le clonage ou la copie intelligente n'est pas
-                                supportée par le système de fichiers FAT.&nbsp;
+                        LSE est
+                        pris en charge par toutes les versions de Windows qui supportent NTFS
+                        version 5.0 ou ultérieure, incluant Windows XP64
+                        et Windows7/8/10.&nbsp; Les Liens Physiques,
+                        Jonctions et&nbsp; Liens Symboliques ne sont PAS supportés par le système de fichiers FAT,
+                        de même que le clonage ou la copie intelligente n'est pas
+                        supportée par le système de fichiers FAT.&nbsp;
                 </p>
 
-			    Dans ce document, les termes <b><i>bouton d'action</i></b> et <b>
+                Dans ce document, les termes <b><i>bouton d'action</i></b> et <b>
                     <i>
                         menu d'action
-			           (pop-up) 
+                        (pop-up)
                     </i>
                 </b>sont utilisés pour se référer au bouton
-			    droit de la souris et le menu de contexte qui s'affiche
-			    quand on clique sur ce bouton (souvent désigné comme le
-			    menu contextuel). Sachant que des gens permutent l'usage des
-			    boutons de la souris, Microsoft les appelle aussi boutons de souris <i>primaire</i> et <i>secondaire<i>.
-                Nous préférons appeler les boutons de la souris comme bouton de
-			    <b>Sélection</b> et 
-			    bouton d'<b>Action</b>,
-			    et plutôt que d'utiliser des termes comme Menu contextuel, Menu du Shell,
-			    Menu droit de la Souris nous utiliserons le terme menu d'<b>Action</b>.</SPAN></FONT></FONT></FONT></P>
-			</font>
-                </font>
+                droit de la souris et le menu de contexte qui s'affiche
+                quand on clique sur ce bouton (souvent désigné comme le
+                menu contextuel). Sachant que des gens permutent l'usage des
+                boutons de la souris, Microsoft les appelle aussi boutons de souris <i>primaire</i> et <i>
+                    secondaire<i>
+                        .
+                        Nous préférons appeler les boutons de la souris comme bouton de
+                        <b>Sélection</b> et
+                        bouton d'<b>Action</b>,
+                        et plutôt que d'utiliser des termes comme Menu contextuel, Menu du Shell,
+                        Menu droit de la Souris nous utiliserons le terme menu d'<b>Action</b>.</SPAN></FONT></FONT></FONT></P>
+                        </font>
+                        </font>
             </td>
         </tr>
 
@@ -214,12 +216,12 @@
 
             <td valign="bottom">
                 <font face="arial" size="-1">
-              L'utilisateur courant doit avoir des privilèges d'administrateur pour pouvoir installer le logiciel.
+                    L'utilisateur courant doit avoir des privilèges d'administrateur pour pouvoir installer le logiciel.
                 </font>
 
                 <p>
                     <font face="arial" size="-1">
-                        LSE s'installe en exécutant le programme d'installation 
+                        LSE s'installe en exécutant le programme d'installation
                         <a href="#download">(HardLinkShellExt_$(platform).exe)</a>.
                         Suivez les instructions données par le programme, il n'y a pas
                         d'entrées obligatoires requises pendant l'installation, et on peut
@@ -251,12 +253,12 @@
 
             <td valign="bottom">
                 <font face="arial" size="-1">
-                    Quelques commutateurs peuvent être passés en ligne de commande lors de l'installation, ainsi on peut obtenir une installation silencieuse 
+                    Quelques commutateurs peuvent être passés en ligne de commande lors de l'installation, ainsi on peut obtenir une installation silencieuse
                     par l'intermédiaire d'un fichier .bat.<br /><br />
                     <b>Installation silencieuse</b><br />
                     /S ne fait apparaitre aucune requète pendant l'installation. Si on utilise le commutateur /S, explorer.exe sera redémarré après l'installation afin que Link Shell Extension
                     soit actif immédiatement. <br /><br />
-        
+
                     <b>Spécification de la langue</b><br />
                     /LANGUAGE indique la langue dans laquelle s'affiche LSE par exemple :<br /><br />
                 </font>
@@ -266,11 +268,11 @@
                 </font>
 
                 <font face="arial" size="-1">
-                    Actuellement les langues utilisables avec le paramètre /Language sont : 
+                    Actuellement les langues utilisables avec le paramètre /Language sont :
                     <i>English, Chinese, Czech, French, German, Greek, Italian, Japanese, Korean, Polish, Portuguese, Russian, Slovak, Spanish, Swedish et Turkish</i>.<p>
 
-                    <b>Spécification d'un répertoire</b><br />
-                    Quand on utilise une installation silencieuse, on peut entrer un répertoire d'installation par le paramètre /D par exemple :
+                        <b>Spécification d'un répertoire</b><br />
+                        Quand on utilise une installation silencieuse, on peut entrer un répertoire d'installation par le paramètre /D par exemple :
                     </p>
                     <p>
                 </font>
@@ -319,7 +321,7 @@
                     <font face="arial">
                         <font color="#25049F">
                             <font size="-1">
-	                            <a name="usinglinkshellextension">Utilisation de Link Shell Extension</a>
+                                <a name="usinglinkshellextension">Utilisation de Link Shell Extension</a>
                             </font>
                         </font>
                     </font>
@@ -337,20 +339,21 @@
                                             <font size="2">
                                                 <font face="arial">
                                                     Prendre comme
-                                                    cible du lien </b>(Pick Link Source)
-                                                </font>
-                                            </font>
-                                        </b> <font size="2">
-                                            <font face="arial">
-                                                fait que les fichiers sélectionnés sont "enregistrés" comme
-                                                source des liens physiques que vous voulez
-                                                créer.
-                                            </font>
-                                        </font>
+                                                    cible du lien
+                                        </b>(Pick Link Source)
+                                    </font>
+                                </font>
+                                </b> <font size="2">
+                                    <font face="arial">
+                                        fait que les fichiers sélectionnés sont "enregistrés" comme
+                                        source des liens physiques que vous voulez
+                                        créer.
                                     </font>
                                 </font>
                             </font>
                         </font>
+                    </font>
+                    </font>
                     </font>
                 </p>
 
@@ -367,9 +370,10 @@
                         <font size="-1">
                             Pour créer les
                             liens physiques, vous devez choisir un répertoire de destination, et en cliquant sur le
-                            bouton d'action de la souris dans le répertoire de destination, un menu 
+                            bouton d'action de la souris dans le répertoire de destination, un menu
                             pop-up apparaît proposant l'entrée - <b>Coller... un lien physique</b>
-                                (ou <b>Drop As...
+                            (ou <b>
+                                Drop As...
                                 HardLink
                             </b>
                         </font>
@@ -389,7 +393,7 @@
                         <b>Drop As... HardLink</b>) vous créerez le lien dans le répertoire de destination.
                 </p>
 
-                <b>Superposition d'icônes pour les Liens Physiques</b><br/>
+                <b>Superposition d'icônes pour les Liens Physiques</b><br />
                 Pour aider à distinguer les liens des fichiers normaux, une <b>icône de superposition</b> est implémentée
                 sur les liens et se caractérise par une flèche rouge superposée.<br /><br />
                 <img src="hardlinkicon.png" width="100" height="101" border="0" alt="Overlay Icon for Symbolic Links"><br /><br />
@@ -404,12 +408,16 @@
                                 Sous Windows 2000 et XP
                                 les Liens physiques peuvent aussi être créés via un clic sur le bouton d'action
                                 dans un "espace vierge" de la fenêtre droite de l'explorateur Windows
-                                et en choisissant dans le menu de contexte <b>Coller un lien physique</b> (ou <b>Drop
-                                HardLink</b>). Notez que cette fonctionnalité <b>n'est garantie de fonctionner
-                                que dans l'explorateur&nbsp; Windows</b> ;
+                                et en choisissant dans le menu de contexte <b>Coller un lien physique</b> (ou <b>
+                                    Drop
+                                    HardLink
+                                </b>). Notez que cette fonctionnalité <b>
+                                    n'est garantie de fonctionner
+                                    que dans l'explorateur&nbsp; Windows
+                                </b> ;
                                 un certain nombre de remplacements de l'Explorateur implémentent des
                                 actions de menus spécifiques sur une action dans l'espace vierge qui ne
-                                sont pas accessibles à un usage général pour des extensions 
+                                sont pas accessibles à un usage général pour des extensions
                                 comme LSE.
                             </font>
                         </font>
@@ -434,7 +442,7 @@
                     <font face="arial">
                         <font color="#25049F">
                             <font size="-1">
-	                            <a name="cancelcurrentpicklinkoperation">Annuler l'opération en cours de prendre comme cible du lien</a>
+                                <a name="cancelcurrentpicklinkoperation">Annuler l'opération en cours de prendre comme cible du lien</a>
                             </font>
                         </font>
                     </font>
@@ -444,9 +452,9 @@
             <td valign="bottom">
                 <font face="arial" size="-1">
                     Quand on clique sur le bouton d'action dans le répertoire de destination, en
-                    plus de l'option de Coller un lien physique, il est 
+                    plus de l'option de Coller un lien physique, il est
                     possible d'<b>Oublier la cible du lien </b>(ou<b> Cancel Link Creation</b>).
-                   <br />
+                    <br />
                 </font>
 
                 <p>
@@ -465,7 +473,7 @@
             <td align="right" valign="top">
                 <b>
                     <font face="arial" color="#25049F" size="-1">
-	                    <a name="popupsubmenue">Sous-menus Pop-up</a>
+                        <a name="popupsubmenue">Sous-menus Pop-up</a>
                     </font>
                 </b>
             </td>
@@ -504,7 +512,7 @@
             <td align="right" valign="top">
                 <b>
                     <font face="arial" color="#25049F" size="-1">
-	                    <a name="draganddropsupport">Support de Glisser-Déposer</a>
+                        <a name="draganddropsupport">Support de Glisser-Déposer</a>
                     </font>
                 </b>
             </td>
@@ -516,7 +524,7 @@
                         est prise en charge: après avoir sélectionné un ou plusieurs fichiers, vous pouvez les faire
                         glisser vers le répertoire de destination en maintenant enfoncé le
                         bouton d'action ; quand vous le relâchez le choix <b>Déposer ici...</b>
-                        vous est proposé dans le menu d'action du répertoire de destination 
+                        vous est proposé dans le menu d'action du répertoire de destination
                         pour y créer les liens physiques
                     </font>
                 </p>
@@ -539,7 +547,7 @@
             <td align="right" valign="top">
                 <b>
                     <font face="arial" color="#25049F" size="-1">
-	                    <a name="autorename">Renommage automatique</a>
+                        <a name="autorename">Renommage automatique</a>
                     </font>
                 </b>
             </td>
@@ -549,7 +557,7 @@
                     Les fichiers peuvent avoir un lien physique dans le même
                     répertoire que le répertoire source. Parce que les deux entrées dans un répertoire
                     ne peuvent pas avoir le même nom, LSE utilise
-                    '$filename - Hardlink.$ext' comme nom du nouveau 
+                    '$filename - Hardlink.$ext' comme nom du nouveau
                     lien.<p>
                         Sous Windows XP le comportement est différent et LSE
                         s'y comporte ainsi : 'HardLink of $filename'
@@ -569,7 +577,7 @@
                         '$filename - Hardlink': Il utilise des numéros pour différentier les
                         liens physiques multiples d'un fichier dans un même répertoire, par exemple
                         <i>$filename - Hardlink (2).$ext.</i><br /><br />
-                        Avec Windows XP ce comportement est différent et les noms sont générés 
+                        Avec Windows XP ce comportement est différent et les noms sont générés
                         ainsi <i>'Hardlink of $filename (2).</i>
                 <p>
 
@@ -602,15 +610,16 @@
             <td valign="bottom">
                 <p>
                     <a href="http://technet.microsoft.com/en-us/sysinternals/bb896768">
-                        <a href="#junction"><u><font size="2" face="Arial, sans-serif" color="#0000ff">Les Jonctions</font></u>
-                    </a>
-                    <font face="Arial, sans-serif" color="#000000" size="2">
-                        sont une caractéristique de NTFS
-                        version 5.0,&nbsp; qui permettent la création de liens 
-                        entre répertoires. Les Jonctions n'étaient pas 
-                        supportées par les Versions NTFS
-                        4.0
-                    </font>
+                        <a href="#junction">
+                            <u><font size="2" face="Arial, sans-serif" color="#0000ff">Les Jonctions</font></u>
+                        </a>
+                        <font face="Arial, sans-serif" color="#000000" size="2">
+                            sont une caractéristique de NTFS
+                            version 5.0,&nbsp; qui permettent la création de liens
+                            entre répertoires. Les Jonctions n'étaient pas
+                            supportées par les Versions NTFS
+                            4.0
+                        </font>
                 </p>
 
                 <p>
@@ -630,9 +639,9 @@
                         un répertoire, cliquez sur le bouton droit de la souris et choisissez <b>
                             Prendre comme cible du lien (Pick Link
                             Source)
-                        </b> dans le menu d'actions, aller dans le 
+                        </b> dans le menu d'actions, aller dans le
                         répertoire de destination, cliquez sur le bouton d'action, ouvrez le
-                        sous-menu <b>Coller ... (Drop As ...)</b> et sélectionnez 
+                        sous-menu <b>Coller ... (Drop As ...)</b> et sélectionnez
                         <b>Une jonction </b>
                     </font>
                 </p>
@@ -647,8 +656,8 @@
 
                 <p>
                     <font face="arial" size="-1">
-                        Les jonctions sont marquées 
-                        par un petit morceau de chaîne en-dessous de l'icône 
+                        Les jonctions sont marquées
+                        par un petit morceau de chaîne en-dessous de l'icône
                         du dossier
                     </font>
                 </p>
@@ -664,12 +673,12 @@
                 <p>
                     <font face="arial">
                         <font size="-1">
-                            Les jonctions peuvent également être 
+                            Les jonctions peuvent également être
                             créées par glisser-déposer lorsque les dossiers sélectionnés sont
                             glissés avec le bouton d'action enfoncé vers le répertoire de
                             destination ; quand vous relâchez le bouton droit de la souris, sélectionnez
-                            le sous-menu <b>Déposer ici ... (Drop Here ...)</b> puis 
-                           <b>Une jonction</b>
+                            le sous-menu <b>Déposer ici ... (Drop Here ...)</b> puis
+                            <b>Une jonction</b>
                         </font>
                     </font>
                 </p>
@@ -727,24 +736,24 @@
                         il peut en être de même sous Windows XP.
 
                 <p>
-                    <b>Superposition d'Icônes pour les Jonctions</b><br/>
+                    <b>Superposition d'Icônes pour les Jonctions</b><br />
                     Afin de distinguer les répertoires joints des répertoires normaux, une <b>icône de superposition</b> est implémentée
                     sur les jonctions et représente trois maillons de chaîne en dessous du répertoire.<br /><br />
                     <img src="junctioniconvista.png" width="128" height="56" border="0" alt="Overlay Icon for Junctions"><br /><br />
                     Les icônes superposées des jonctions peuvent aussi être <a href="#customoverlayicons">personnalisées.</a>
                 <p>
-		            Les jonctions peuvent <b>s'étendre aux lecteurs réseaux</b> du moins quand le lecteur réseau peut être affecté à une lettre.
-		            Malheureusement les Jonctions, qui ont pour cible un chemin UNC, peuvent bien être créées
-		            par LSE, mais même Vista semble contenir un bug, qui l'empêche de traiter
-		            correctement un chemin UNC par une jonction, même si LSE est correctement configuré 
-		            pour rediriger les jonctions UNC. Quand on double clique sur une jonction cible de type
-		            UNC dans l'explorateur, une erreur ERROR_INVALID_REPARSE_DATA(4392),
-		            s'affiche et vous informe que l'analyse est illégale, même si elle ne
-		            l'est pas.
+                    Les jonctions peuvent <b>s'étendre aux lecteurs réseaux</b> du moins quand le lecteur réseau peut être affecté à une lettre.
+                    Malheureusement les Jonctions, qui ont pour cible un chemin UNC, peuvent bien être créées
+                    par LSE, mais même Vista semble contenir un bug, qui l'empêche de traiter
+                    correctement un chemin UNC par une jonction, même si LSE est correctement configuré
+                    pour rediriger les jonctions UNC. Quand on double clique sur une jonction cible de type
+                    UNC dans l'explorateur, une erreur ERROR_INVALID_REPARSE_DATA(4392),
+                    s'affiche et vous informe que l'analyse est illégale, même si elle ne
+                    l'est pas.
                 <p>
 
-		            <b>@Microsoft</b>: Pourquoi n'avez-vous pas activé cette fonctionnalité pour les jonctions, même si la syntaxe
-		            pour les jonctions UNC est définie par : \??\UNC\server\share. Une aide serait appréciée.
+                    <b>@Microsoft</b>: Pourquoi n'avez-vous pas activé cette fonctionnalité pour les jonctions, même si la syntaxe
+                    pour les jonctions UNC est définie par : \??\UNC\server\share. Une aide serait appréciée.
                 <p><br />
 
                 <p>
@@ -767,7 +776,7 @@
             <td align="right" valign="top">
                 <b>
                     <font face="arial" color="#25049F" size="-1">
-	                    <a name="replacementjunction">Jonction de Remplacement<br />Lien Symbolique<br />Point de montage</a>
+                        <a name="replacementjunction">Jonction de Remplacement<br />Lien Symbolique<br />Point de montage</a>
                     </font>
                 </b>
             </td>
@@ -775,15 +784,15 @@
             <td valign="bottom">
                 <font face="arial" size="-1">
                     <p>
-                        Link Shell Extension peut changer la cible d'une jonction existante, 
+                        Link Shell Extension peut changer la cible d'une jonction existante,
                         d'un lien symbolique ou d'un point de montage via Sélection/Déposer ou Glisser et Déposer.
                     </p>
                     <p>
-		                Pour utiliser cette fonctionnalité, il suffit de sélectionner un répertoire existant
-		                en tant que Source du lien et de le déposer sur une Jonction/Lien symbolique/Point de montage déjà existant.
-		                En sélectionnant le 'Déposer ici ... Jonction de remplacement/Lien Symbolique/Point de montage'
-		                dans le manu d'action, la cible existant de type Jonction/Lien Symbolique/Point de montage
-		                est remplacée par la cible qui vient d'être sélectionnée.
+                        Pour utiliser cette fonctionnalité, il suffit de sélectionner un répertoire existant
+                        en tant que Source du lien et de le déposer sur une Jonction/Lien symbolique/Point de montage déjà existant.
+                        En sélectionnant le 'Déposer ici ... Jonction de remplacement/Lien Symbolique/Point de montage'
+                        dans le manu d'action, la cible existant de type Jonction/Lien Symbolique/Point de montage
+                        est remplacée par la cible qui vient d'être sélectionnée.
                     </p>
                 </font>
 
@@ -800,8 +809,61 @@
                         'Coller ... un lien symbolique de remplacement' comme alternative de réparation.
                     </p>
                     <p>
-                        Quand le <a href="#backupmode">mode sauvegarde</a> est sélectionné, les Listes de Contrôles d'Accès (ou "ACL"s) 
+                        Quand le <a href="#backupmode">mode sauvegarde</a> est sélectionné, les Listes de Contrôles d'Accès (ou "ACL"s)
                         des Jonctions/Liens Symboliques/Points de Montage sont préservées.
+                    </p>
+
+                </font>
+
+                <br /><br />
+            </td>
+        </tr>
+
+        <tr>
+            <td align="right" valign="top">
+                <b>
+                    <font face="arial" color="#25049F" size="-1">
+                        <a name="copyreparse">Copy Junction<br />Symbolic Link<br />Mountpoint</a>
+                    </font>
+                </b>
+            </td>
+
+            <td valign="bottom">
+                <font face="arial" size="-1">
+                    <p>
+                        Link Shell Extension can copy an existing Junction,
+                        Symbolic Link or MountPoint either via Pick/Drop or Drag and Drop.
+                    </p>
+
+                    <p>
+                        <font face="arial" size="-1">
+                            <img src="symlinkcopy.png" border="0" alt="copy a reparse point">
+                        </font>
+                    </p>
+                    <br />
+                    <br />
+
+
+                    <p>
+                        To use this feature simply select an existing Junction, Symbolic Link or MountPoint as
+                        Link Source and drop it over an already existing directory.
+                        By selecting the 'Drop as ... Junction/Symbolic Link/MountPoint Copy'  from the action menu, the
+                        Junction/Symbolic Link/MountPoint is copied to the target and the relation is adjusted
+                    </p>
+                </font>
+
+                <p>
+                    <font face="arial" size="-1">
+                        <img src="symlinkcopydrop.png" border="0" alt="Drop a junction for replacement">
+                    </font>
+                </p>
+
+                <font face="Arial, sans-serif" size="2">
+                    <p>
+                        The same can be achieved via Drag an Drop for Symbolic Link Directories, Junctions and Mount Points.
+                    </p>
+                    <p>
+                        When the <a href="#backupmode">backup mode</a> is selected the ACLs of the Junction/Symbolic Link/MountPoint are preserved.
                     </p>
 
                 </font>
@@ -830,7 +892,7 @@
                     </p>
                     <img src="smartcopyhowto.png" width="520" height="380" border="0" alt="Smart Copy How To">
                     <p>
-                        <a name="saturatedhardlinks" />En regardant de près l'image ci-dessus on peut 
+                        <a name="saturatedhardlinks" />En regardant de près l'image ci-dessus on peut
                         voir trois différents types de fichiers :
                     </p>
                     <table cellspacing="0" cellpadding="0" width="100%" border="0">
@@ -856,8 +918,8 @@
                                     qui ici vaut 2, correspond au nombre d'occurrences dans le répertoire 'Folder 1', qui ici
                                     aussi vaut 2.
                                     <p>
-                                      En général: Un lien physique est dit <i>Saturé</i> par rapport à un répertoire <i>F</i>,
-                                      si le nombre d'occurrences dans le répertoire <i>F</i> correspond au compteur de référence.
+                                        En général: Un lien physique est dit <i>Saturé</i> par rapport à un répertoire <i>F</i>,
+                                        si le nombre d'occurrences dans le répertoire <i>F</i> correspond au compteur de référence.
                                     </p>
                                     <p>
                                         Les liens physiques saturés peuvent être complètement copiés via la Copie Intelligente.
@@ -868,7 +930,7 @@
                         </tr>
                         <tr>
                             <td align="left" width="110" valign="top">
-                                 <font face="arial" size="-1"><b>Liens Physiques Non Saturés</b></font>
+                                <font face="arial" size="-1"><b>Liens Physiques Non Saturés</b></font>
                             </td>
                             <td align="left">
                                 <font face="arial" size="-1">
@@ -893,7 +955,7 @@
                     </table>
                     <p>
                         <a name="innerjunction" />Avec des jonctions ou des liens symboliques vers des répertoires, </a><a href="#outerjunctionhandling">
-                        le comportement par défaut
+                            le comportement par défaut
                         </a> durant une copie intelligente est le suivant :
                     </p>
                     <img src="junctionshowto.png" width="541" height="410" border="0" alt="Behaviour for inner junctions">
@@ -902,8 +964,8 @@
                     </p>
                     <table cellspacing="0" cellpadding="0" width="100%" border="0">
                         <tr>
-                           <td align="left" width="150" valign="top">
-                               <font face="arial" size="-1"><b>Répertoires Normaux</b></font>
+                            <td align="left" width="150" valign="top">
+                                <font face="arial" size="-1"><b>Répertoires Normaux</b></font>
                             </td>
                             <td align="left">
                                 <font face="arial" size="-1">
@@ -951,8 +1013,8 @@
                                     <i>Jonction/Lien Symbolique Externe</i>, car il pointe vers un répertoire
                                     qui est en parallèle et donc en dehors du répertoire père 'Folder 1'.
                                     <p>
-                                    Les <i>Jonctions/Liens Symboliques Externes</i> peuvent être traités de trois façons différentes. Voir SVP
-                                    la section sur le <a href="#outerjunctionhandling">Traitement des Jonctions/Liens Symboliques Externes.</a>
+                                        Les <i>Jonctions/Liens Symboliques Externes</i> peuvent être traités de trois façons différentes. Voir SVP
+                                        la section sur le <a href="#outerjunctionhandling">Traitement des Jonctions/Liens Symboliques Externes.</a>
                                     </p>
                                 </font>
                             </td>
@@ -964,7 +1026,7 @@
                     </p>
                     <img src="symboliclinkhowto.png" width="541" height="367" border="0" alt="Behaviour for inner symbolic links">
                     <p>
-                        En observant de près l'image ci-dessus on peut voir trois types différents de fichiers/liens 
+                        En observant de près l'image ci-dessus on peut voir trois types différents de fichiers/liens
                         symboliques :
                     </p>
                     <table cellspacing="0" cellpadding="0" width="100%" border="0">
@@ -975,56 +1037,60 @@
                             <td align="left">
                                 <font face="arial" size="-1">
                                     Le fichier A est un fichier normal. Il est copié comme n'importe quel autre outil
-                                    de copie le ferait</font></font></font><font face="arial" size="-1">.<br /></br>
+                                    de copie le ferait
                                 </font>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="110" valign="top">
-                                <font face="arial" size="-1">
-                                    <b>
-                                        Liens Symboliques<br />
-                                        Internes
-                                    </b>
-                                </font>
-                            </td>
-                            <td align="left">
-                                <font face="arial" size="-1">
-                                    Le lien symbolique 'Inner Symlink' a pour cible 'Inner
-                                    Symlink Target'. Dans la terminologie de LSE ce type de lien symbolique est nommé <i>
-                                        Lien
-                                        Symbolique Interne
-                                    </i>, car il pointe vers un fichier qui est dans le même répertoire père
-                                    'Folder 1'.
-                                    <p>
-                                        Les <i>Liens Symboliques Internes</i> sont restaurés correctement par une Copie Intelligente dans l'emplacement de destination.
-                                    </p>
-                                </font>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="110" valign="top">
-                                <font face="arial" size="-1">
-                                    <b>
-                                        Liens Symboliques<br />
-                                        Externe
-                                    </b>
-                                </font>
-                            </td>
-                            <td align="left">
-                                <font face="arial" size="-1">
-                                    Le lien symbolique 'Outer Symlink' a pour cible
-                                    'Outer Symlink Target'. Dans la terminologie de LSE ce type de lien symbolique est nommé
-                                    <i>Lien Symbolique Externe</i>, car il pointe vers un fichier qui est en parallèle
-                                    et donc en dehors du répertoire père 'Folder 1'.
-                                    <p>
-                                        Les <i>Liens Symboliques Externes</i> sont pris en charge par la Copie Intelligente via le traitement des<a href="#outerjunctionhandling">
-                                        Jonctions/Liens Symboliques Externes</a>.
-                                    </p>
-                                </font>
-                            </td>
-                        </tr>
-                    </table>
+                </font></font><font face="arial" size="-1">
+                    .<br /></br>
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" width="110" valign="top">
+                <font face="arial" size="-1">
+                    <b>
+                        Liens Symboliques<br />
+                        Internes
+                    </b>
+                </font>
+            </td>
+            <td align="left">
+                <font face="arial" size="-1">
+                    Le lien symbolique 'Inner Symlink' a pour cible 'Inner
+                    Symlink Target'. Dans la terminologie de LSE ce type de lien symbolique est nommé <i>
+                        Lien
+                        Symbolique Interne
+                    </i>, car il pointe vers un fichier qui est dans le même répertoire père
+                    'Folder 1'.
+                    <p>
+                        Les <i>Liens Symboliques Internes</i> sont restaurés correctement par une Copie Intelligente dans l'emplacement de destination.
+                    </p>
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" width="110" valign="top">
+                <font face="arial" size="-1">
+                    <b>
+                        Liens Symboliques<br />
+                        Externe
+                    </b>
+                </font>
+            </td>
+            <td align="left">
+                <font face="arial" size="-1">
+                    Le lien symbolique 'Outer Symlink' a pour cible
+                    'Outer Symlink Target'. Dans la terminologie de LSE ce type de lien symbolique est nommé
+                    <i>Lien Symbolique Externe</i>, car il pointe vers un fichier qui est en parallèle
+                    et donc en dehors du répertoire père 'Folder 1'.
+                    <p>
+                        Les <i>Liens Symboliques Externes</i> sont pris en charge par la Copie Intelligente via le traitement des<a href="#outerjunctionhandling">
+                            Jonctions/Liens Symboliques Externes
+                        </a>.
+                    </p>
+                </font>
+            </td>
+        </tr>
+    </table>
                     <p>
                         Les Copies Intelligentes sont créées de la même façon que les jonctions : sélectionnez un répertoire,
                         cliquez sur le bouton d'Action, choisissez <b>Prendre comme cible du lien</b> dans le menu d'action...
@@ -3542,13 +3608,15 @@
 
                 <tr>
                     <td align="left" width="140" valign="top">
-                        <font face="arial" size="-1"><a name="3910">4 Avril 2019</a></font>
+                        <font face="arial" size="-1"><a name="3910">11 Avril 2019</a></font>
                     </td>
 
                     <td align="left">
                         <font face="arial" size="-1">
-                            Version 3.9.2.0
+                            Version 3.9.2.1
                             <ul>
+                                <!-- 3.9.2.1, 11.4.2019 -->
+                                <li>Introduce <a href="#copyreparse">Copy Symbolic Link/Junction/Mountpoint</a></li>
                                 <!-- 3.9.2.0, 4.4.2019 -->
                                 <li>Changement pour les utilisateurs non-admin car les liens symboliques relatifs/absolus étaient sans effet. Correction d'une mauvaise conception. Quelle pagaille</a></li>
                                 <li>LSE est maintenant sur gitlab.com. Pour l'instant seulement en mode privé, mais j'espère changer cela bientôt.</a></li>
