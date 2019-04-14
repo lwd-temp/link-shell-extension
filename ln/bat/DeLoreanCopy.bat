@@ -18,8 +18,18 @@ REM Get date and time for timestamps on directories
 REM
 for /f "delims=" %%a in ('%LN% --datetime') do set DATETIMESTAMP=%%a
 
-set SourceDir=%~n1
+set SourceDir=%~n1%~x1
 set DestDir=%~2
+
+REM Take care of root source folder, e.g. c:\
+if "%SourceDir%"=="" (
+  set SourceDir=%~d1
+  set SourceDir=!SourceDir:~0,1!
+  set SourcePath=%~d1\\
+  set BACKUPOTIONS=--excludedir "System Volume Information"
+) else (
+  set SourcePath=%~1
+)
 
 REM
 REM Do the Delorean Copy
@@ -32,11 +42,11 @@ set BACKUPOTIONS=
 if exist "%SourceDir% - ????-??-?? ??-??-??" (
   for /f "delims=" %%a in ('dir /b /AD /O:N "%SourceDir% - ????-??-?? ??-??-??"') do set LastBackup=%%a
   popd
-  %LN% %BACKUPOTIONS% --delorean "%~1" "%DestDir%\!LastBackup!" "%BACKUPCREATED%"
+  %LN% %BACKUPOTIONS% --delorean "%SourcePath%" "%DestDir%\!LastBackup!" "%BACKUPCREATED%"
   set errlev=!errorlevel!
 ) else (
   popd
-  %LN% %BACKUPOTIONS% --copy "%~1" "%DestDir%\%SourceDir% - %DATETIMESTAMP%"
+  %LN% %BACKUPOTIONS% --copy "%SourcePath%" "%DestDir%\%SourceDir% - %DATETIMESTAMP%"
   set errlev=!errorlevel!
 )
 if %errlev% NEQ 0 goto errorexit
