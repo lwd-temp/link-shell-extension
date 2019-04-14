@@ -961,6 +961,7 @@ extern "C"
     fopen_s(&f, tmpfile, "w");
 #endif
 
+    gLSESettings.Init();
     if (gLSESettings.GetFlags() & eBackupMode)
     {
       BOOL b = EnableTokenPrivilege(SE_BACKUP_NAME);

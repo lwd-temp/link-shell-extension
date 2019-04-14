@@ -7,6 +7,21 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.922 has been released.</title>
+      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <pubDate>Tue, 14 Apr 2019 20:00:15 +0100</pubDate>
+      <description>
+        LSE 3.922 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>Backup mode was broken. Introduced with 3921</a></li>
+        ]]>
+      </content:encoded>
+      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3922</guid>
+    </item>
+
+    <item>
       <title>LSE 3.921 has been released.</title>
       <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 11 Apr 2019 20:00:15 +0100</pubDate>

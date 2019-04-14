@@ -329,7 +329,7 @@ Function COMServerRegistration
   lbl_IconEnd:  
   ;  0x0400 = 1024. Junctions on, Mirror on, Delorean on, Relative Links
   ;
-  WriteRegDWORD HKLM "$REG_PREFIX_Software\LinkShellExtension" "gFlags" 1024
+  WriteRegDWORD HKLM "$REG_PREFIX_Software\LinkShellExtension" "gFlags" 1024 = 0x400
 
   ;  Add third party filesystems
   ;
