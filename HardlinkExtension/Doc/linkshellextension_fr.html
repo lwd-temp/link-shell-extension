@@ -3537,17 +3537,31 @@
 
                         <li>
                             <b>
-                                <a name="faq13">Q</a>: Sous WindowsXP j'essaie de 'Suppr' un répertoire, qui est référencé via une jonction ou un point de montage. 
+                                    <a name="faq13">Q</a> : Sous WindowsXP, j'essaie de 'Suppr' (supprimer donc) un répertoire, qui est référencé via une jonction ou un point de montage. 
                                 J'obtiens un message 'Accès refusé'? Qu'est-ce qui ne va pas?
                             </b>
                             <br />
 
                             <p>
-                                A: <a href="https://support.microsoft.com/en-us/kb/319368">Explorer.exe a un problème</a> avec les Jonctions et les Points de Montage dans ce cas précis.
+                                    R : <a href="https://support.microsoft.com/en-us/kb/319368">Explorer.exe a un problème</a> avec les Jonctions et les Points de Montage dans ce cas précis.
                             </p>
                         </li>
 
-                        <!-- free FAQ14 -->
+                            <li>
+                                <b>
+                                    <a name="faq14">Q</a> : Les Jonctions incorrectes (sans cible existante) ont bien une icône d'affichée, mais quand on clique dessus depuis l'Explorateur Windows sous
+                                    Windows7 x64 SP1 et qu'on choisit "Propriétés", l'onglet "Lien" des propriétés du lien ne s'affiche pas.
+                                    Par conséquent, l'information où le lien incorrect tente de pointer n'est pas accessible et donc ne peut pas être corrigée manuellement.
+                                </b>
+                                <br />
+
+                                <p>
+                                    R : Malheureusement c'est un problème de l'explorateur, et LSE n'a aucune chance de l'intercepter.
+                                    Les Liens symboliques/jonctions corrompus peuvent être facilement réparés à l'aide le la fonctionalité de <a href="#replacementjunction">remplacement d'une jonction/lien symbolique</a>
+                                </p>
+                            </li>
+
+                            <!-- free FAQ15 -->
 
                     </ul>
                 </font>

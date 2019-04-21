@@ -430,7 +430,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
       HWND hEdit = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
       SendMessage (hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0); 
 
-      pReparseProperties->SetTarget(Buffer, REPARSE_POINT_JUNCTION);
+      pReparseProperties->SetTarget(Dest, REPARSE_POINT_JUNCTION);
     }
     else
     {
@@ -548,7 +548,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
       HWND hEdit = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
       SendMessage (hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0); 
 
-      pReparseProperties->SetTarget(Buffer, REPARSE_POINT_SYMBOLICLINK );
+      pReparseProperties->SetTarget(Dest, REPARSE_POINT_SYMBOLICLINK );
     }
     else
     {
@@ -661,6 +661,7 @@ BOOL OnApply ( HWND hwnd, PSHNOTIFY* phdr )
     wchar_t Destination[HUGE_PATH];
     GetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, Destination, HUGE_PATH);
 
+    // TODO: Check if a change is needed at all and then only do the changes, Why does this not work?
     if (_wcsicmp(pReparseProperties->Target, Destination))
     {
       gLSESettings.ReadLSESettings(false);
