@@ -231,26 +231,25 @@ CopyCallback ( HWND hwnd,
             delete pProgressbar;
 
             // Symbolic links found ==> we have to handover to LSEUacHelper.exe
-            wchar_t sla_quoted[HUGE_PATH];
-            wchar_t curdir[HUGE_PATH];	
-            FILE* SmartMoveArgs = OpenFileForExeHelper(curdir, sla_quoted);
-            WriteUACHelperArgs(SmartMoveArgs, 'r', L"not used", L"not used");
+            UACHelper uacHelper;
+            uacHelper.Open();
+            uacHelper.WriteArgs('r', L"not used", L"not used");
 
             FileList.SetFlags(FileInfoContainer::eBackupMode);
 
             // persist FileList
             FileList.SetAnchorPath(MoveLocation);
-            FileList.Save(SmartMoveArgs);
+            FileList.Save(uacHelper.File());
 
             // Save the position of the progress bar
             if (!ProgessbarVisible)
               ProgressbarPosition.left = -1;
               
-            fwprintf(SmartMoveArgs, L"%x,%x,%x,%x\n", ProgressbarPosition.left, ProgressbarPosition.top, ProgressbarPosition.right, ProgressbarPosition.bottom);
-            fclose(SmartMoveArgs);
+            uacHelper.SaveProgressbarPosition (ProgressbarPosition);
+            uacHelper.Close();
 
             // Fork Process
-            DWORD r = ForkExeHelper(curdir, sla_quoted);
+            DWORD r = uacHelper.Fork();
           }
           else
           {
@@ -311,24 +310,23 @@ CopyCallback ( HWND hwnd,
                 delete pProgressbar;
 
                 // Symbolic links found ==> we have to handover to LSEUacHelper.exe
-                wchar_t sla_quoted[HUGE_PATH];
-                wchar_t curdir[HUGE_PATH];	
-                FILE* SmartMoveArgs = OpenFileForExeHelper(curdir, sla_quoted);
-                WriteUACHelperArgs(SmartMoveArgs, 'r', L"not used", L"not used");
+                UACHelper uacHelper;
+                uacHelper.Open();
+                uacHelper.WriteArgs('r', L"not used", L"not used");
 
                 // persist FileList
-                FileList.Save(SmartMoveArgs);
+                FileList.Save(uacHelper.File());
 
                 // Save the position of the progress bar
                 if (!ProgessbarVisible)
                   ProgressbarPosition.left = -1;
                   
-                fwprintf(SmartMoveArgs, L"%x,%x,%x,%x\n", ProgressbarPosition.left, ProgressbarPosition.top, ProgressbarPosition.right, ProgressbarPosition.bottom);
-                fclose(SmartMoveArgs);
+                uacHelper.SaveProgressbarPosition(ProgressbarPosition);
+                uacHelper.Close();
                 FileList.StopLogging(LogFile);
 
                 // Fork Process
-                DWORD r = ForkExeHelper(curdir, sla_quoted);
+                DWORD r = uacHelper.Fork();
               }
               else
               {

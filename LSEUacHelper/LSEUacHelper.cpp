@@ -1016,7 +1016,6 @@ extern "C"
     }
 
 		InitCreateHardlink();
-    // TODO Move SupportedFileSystem also to LSESettings and rely on UserHive
     gLSESettings.ReadFileSystems();
 
 

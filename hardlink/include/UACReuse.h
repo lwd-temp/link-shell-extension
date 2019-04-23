@@ -25,21 +25,26 @@ DisposeAsync(
 
 #define UACHELPERARGS L"uachelper.args"
 
-FILE*
-OpenFileForExeHelper(
-  wchar_t* curdir,
-  wchar_t* sla_quoted
-);
+class UACHelper
+{
+public: 
+  UACHelper() : m_UacArgs{ nullptr }  {};
 
-int
-ForkExeHelper(
-  wchar_t*	curdir,
-  wchar_t*	sla_quoted
-);
+  void Open();
+  int Fork();
+  void WriteArgs(
+    const wchar_t   aFunction,
+    const wchar_t*  aArgument1,
+    const wchar_t*  aArgument2
+  );
+  int Close() { return fclose(m_UacArgs); };
+  FILE* File() { return m_UacArgs; };
+  void SaveProgressbarPosition(RECT& a_ProgressbarPosition);
 
-void WriteUACHelperArgs(
-  FILE*           aArgsFile,
-  const wchar_t   aFunction,
-  const wchar_t*  aArgument1,
-  const wchar_t*  aArgument2
-);
+
+protected:
+  FILE*   m_UacArgs;
+  wstring  m_CurrentDir;
+  wstring  m_SlaQuoted;
+
+};

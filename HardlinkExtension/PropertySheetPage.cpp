@@ -661,7 +661,6 @@ BOOL OnApply ( HWND hwnd, PSHNOTIFY* phdr )
     wchar_t Destination[HUGE_PATH];
     GetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, Destination, HUGE_PATH);
 
-    // TODO: Check if a change is needed at all and then only do the changes, Why does this not work?
     if (_wcsicmp(pReparseProperties->Target, Destination))
     {
       gLSESettings.ReadLSESettings(false);

@@ -265,10 +265,6 @@
     <ResourceCompile Include="timestamp.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\hardlink\hardlink.vcxproj">
-      <Project>{505c6720-9ea6-4292-bcd4-ec7f44478f76}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

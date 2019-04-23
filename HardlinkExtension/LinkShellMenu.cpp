@@ -25,20 +25,20 @@ HardLinkExt::
 FreeShellSelection (
 )
 {
-	if (NULL != m_pTargets) 
-	{
-		HTRACE (L"delete FreeShellSelection\n");
-		delete [] m_pTargets;
-		m_pTargets = 0;
-		m_nTargets = 0;
-		m_bTargetsFlag = 0;
-	}
-	else
-	{
-		HTRACE (L"none\n");
-	}
+  if (NULL != m_pTargets)
+  {
+    HTRACE(L"delete FreeShellSelection\n");
+    delete[] m_pTargets;
+    m_pTargets = 0;
+    m_nTargets = 0;
+    m_bTargetsFlag = 0;
+  }
+  else
+  {
+    HTRACE(L"none\n");
+  }
 
-	return S_OK;
+  return S_OK;
 }
 
 HRESULT
@@ -105,194 +105,195 @@ GetShellSelection (
 void
 HardLinkExt::
 GetFileAttr(
-	Target&			aTarget,
-	ULONG&			aTargetsFlag,
-	bool			  aIsNtfs
+  Target&     aTarget,
+  ULONG&      aTargetsFlag,
+  const bool  aIsNtfs
 )
 {
-	struct _stat stat;
+  struct _stat stat;
 
-	_wstat (aTarget.m_Path, &stat);
-	if (stat.st_mode & _S_IFDIR)
-	{
+  _wstat(aTarget.m_Path, &stat);
+  if (stat.st_mode & _S_IFDIR)
+  {
     // Deal with Directories, Mountpoints, symbolic Links and Junctions
 
     // Check if the selected dir is a reparse point, and which one
     int ReparseType = ProbeReparsePoint(aTarget.m_Path, NULL);
     switch (ReparseType)
     {
-      case REPARSE_POINT_JUNCTION:
-      {
-			  aTarget.m_Flags |= eJunction;
-			  aTargetsFlag |= eJunction;
-        break;
-      }
-
-      case REPARSE_POINT_MOUNTPOINT:
-      {
-			  aTarget.m_Flags |= eMountPoint;
-			  aTargetsFlag |= eMountPoint;
-        break;
-      }
-
-      case REPARSE_POINT_SYMBOLICLINK:
-      {
-			  aTarget.m_Flags |= eSymbolicLink;
-			  aTargetsFlag |= eSymbolicLink;
-        break;
-      }
+    case REPARSE_POINT_JUNCTION:
+    {
+      aTarget.m_Flags |= eJunction;
+      aTargetsFlag |= eJunction;
+      break;
     }
 
-		// Check if this is a root path, so that we can offer mount points
-		if ( PathIsRoot(aTarget.m_Path) )
-		{
+    case REPARSE_POINT_MOUNTPOINT:
+    {
+      aTarget.m_Flags |= eMountPoint;
+      aTargetsFlag |= eMountPoint;
+      break;
+    }
+
+    case REPARSE_POINT_SYMBOLICLINK:
+    {
+      aTarget.m_Flags |= eSymbolicLink;
+      aTargetsFlag |= eSymbolicLink;
+      break;
+    }
+    }
+
+    // Check if this is a root path, so that we can offer mount points
+    if (PathIsRoot(aTarget.m_Path))
+    {
       // It was a root dir so it is a Volume
       aTarget.m_Flags |= eVolume;
-			aTargetsFlag |= eVolume;
-		}
+      aTargetsFlag |= eVolume;
+    }
     else
     {
       if (!ReparseType)
       {
         // It is a just a plain directory
-		    aTarget.m_Flags |= eDir;
-		    aTargetsFlag |= eDir;
+        aTarget.m_Flags |= eDir;
+        aTargetsFlag |= eDir;
       }
     }
-	}
-	else
-	{
+  }
+  else
+  {
     // Deal with files
-    
+
     if (ProbeSymbolicLink(aTarget.m_Path, NULL))
-		{
-			aTarget.m_Flags |= eSymbolicLink;
-			aTargetsFlag |= eSymbolicLink;
-		}
+    {
+      aTarget.m_Flags |= eSymbolicLink;
+      aTargetsFlag |= eSymbolicLink;
+    }
     else
     {
-		  aTarget.m_Flags |= eFile;
-		  aTargetsFlag |= eFile;
+      aTarget.m_Flags |= eFile;
+      aTargetsFlag |= eFile;
     }
-	}
+  }
 
-	if (aIsNtfs)
-	{
-		aTarget.m_Flags |= eNTFS;
-		aTargetsFlag |= eNTFS;
-	}
+  if (aIsNtfs)
+  {
+    aTarget.m_Flags |= eNTFS;
+    aTargetsFlag |= eNTFS;
+  }
 }
 
 
 void EnumerateFolder()
 {
-   return;
+  return;
 
-   LPMALLOC pMalloc = NULL; // memory manager, for freeing up PIDLs
-   HRESULT hr = SHGetMalloc(&pMalloc);
+  LPMALLOC pMalloc = NULL; // memory manager, for freeing up PIDLs
+  HRESULT hr = SHGetMalloc(&pMalloc);
 
-   LPSHELLFOLDER psfDesktop = NULL; // namespace root for parsing the path
-   hr = SHGetDesktopFolder(&psfDesktop);
+  LPSHELLFOLDER psfDesktop = NULL; // namespace root for parsing the path
+  hr = SHGetDesktopFolder(&psfDesktop);
 
-   // parse path for absolute PIDL, and connect to target folder
-   LPITEMIDLIST pidl = NULL; // general purpose
-   // ::{1f4de370-d627-11d1-ba4f-00a0c91eedba} Network Computers
-   // ::{20d04fe0-3aea-1069-a2d8-08002b30309d} My Computer
-   // ::{208d2c60-3aea-1069-a2d7-08002b30309d} My Network Places
-   // ::{7007acc7-3202-11d1-aad2-00805fc1270e} Network Connections
+  // parse path for absolute PIDL, and connect to target folder
+  LPITEMIDLIST pidl = NULL; // general purpose
+  // ::{1f4de370-d627-11d1-ba4f-00a0c91eedba} Network Computers
+  // ::{20d04fe0-3aea-1069-a2d8-08002b30309d} My Computer
+  // ::{208d2c60-3aea-1069-a2d7-08002b30309d} My Network Places
+  // ::{7007acc7-3202-11d1-aad2-00805fc1270e} Network Connections
 //   hr = psfDesktop->ParseDisplayName(NULL, NULL, L"j:\\", NULL, &pidl, NULL);
-   hr = psfDesktop->ParseDisplayName(NULL, NULL, L"::{7007acc7-3202-11d1-aad2-00805fc1270e}", NULL, &pidl, NULL);
-   LPSHELLFOLDER psfFolder = NULL;
-   hr = psfDesktop->BindToObject(pidl, NULL, IID_IShellFolder, (void**)&psfFolder);
-   pMalloc->Free(pidl);
+  hr = psfDesktop->ParseDisplayName(NULL, NULL, L"::{7007acc7-3202-11d1-aad2-00805fc1270e}", NULL, &pidl, NULL);
+  LPSHELLFOLDER psfFolder = NULL;
+  hr = psfDesktop->BindToObject(pidl, NULL, IID_IShellFolder, (void**)&psfFolder);
+  pMalloc->Free(pidl);
 
-   LPENUMIDLIST penumIDL = NULL; // IEnumIDList interface for reading contents
-   hr = psfFolder->EnumObjects(NULL, SHCONTF_FOLDERS | SHCONTF_NONFOLDERS | SHCONTF_SHAREABLE, &penumIDL);
+  LPENUMIDLIST penumIDL = NULL; // IEnumIDList interface for reading contents
+  hr = psfFolder->EnumObjects(NULL, SHCONTF_FOLDERS | SHCONTF_NONFOLDERS | SHCONTF_SHAREABLE, &penumIDL);
 
-   while(1) {
-      // retrieve a copy of next local item ID list
-      hr = penumIDL->Next(1, &pidl, NULL);
-      if(hr == NOERROR) {
+  while (1) {
+    // retrieve a copy of next local item ID list
+    hr = penumIDL->Next(1, &pidl, NULL);
+    if (hr == NOERROR) {
 #if 1 // DEBUG_DEFINES
 
 #if 0 // DEBUG_DEFINES
-         WIN32_FIND_DATA ffd; // let's cheat a bit :)
-		 hr = SHGetDataFromIDList(psfFolder, pidl, SHGDFIL_FINDDATA, &ffd, sizeof(WIN32_FIND_DATA));
-		 if (S_OK == hr)
-		 {
-			HTRACE (L"Name = %s\n", ffd.cFileName);
-			// HTRACE ("Type = " << ( (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ? "dir\n" : "file\n" );
-			// HTRACE ("Size = " << ffd.nFileSizeLow << endl;
-		 }
+      WIN32_FIND_DATA ffd; // let's cheat a bit :)
+      hr = SHGetDataFromIDList(psfFolder, pidl, SHGDFIL_FINDDATA, &ffd, sizeof(WIN32_FIND_DATA));
+      if (S_OK == hr)
+      {
+        HTRACE(L"Name = %s\n", ffd.cFileName);
+        // HTRACE ("Type = " << ( (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ? "dir\n" : "file\n" );
+        // HTRACE ("Size = " << ffd.nFileSizeLow << endl;
+      }
 #else
-		struct : public NETRESOURCE
-		{
-			BYTE  bytes[8192];
-		} nr;
+      struct : public NETRESOURCE
+      {
+        BYTE  bytes[8192];
+      } nr;
 
-		hr = SHGetDataFromIDList(psfFolder, pidl, SHGDFIL_NETRESOURCE, &nr, sizeof(nr));
-		if (SUCCEEDED(hr))
-		{
-			HTRACE (L"Name = %s\n", nr.lpRemoteName);
-		}
+      hr = SHGetDataFromIDList(psfFolder, pidl, SHGDFIL_NETRESOURCE, &nr, sizeof(nr));
+      if (SUCCEEDED(hr))
+      {
+        HTRACE(L"Name = %s\n", nr.lpRemoteName);
+      }
 #endif
 
 #else
-		STRRET strDispName;
-		WCHAR szDisplayName[MAX_PATH];
+      STRRET strDispName;
+      WCHAR szDisplayName[MAX_PATH];
 
-         hr = psfFolder->GetDisplayNameOf(pidl, SHGDN_FORPARSING, &strDispName);
-         hr = StrRetToBuf(&strDispName, pidl, szDisplayName, 
-                          sizeof(szDisplayName));
-         HTRACE(L"Name = '%s'\n", szDisplayName);
+      hr = psfFolder->GetDisplayNameOf(pidl, SHGDN_FORPARSING, &strDispName);
+      hr = StrRetToBuf(&strDispName, pidl, szDisplayName,
+        sizeof(szDisplayName));
+      HTRACE(L"Name = '%s'\n", szDisplayName);
 
-//         DWORD dwAttributes = SFGAO_FOLDER;
-         DWORD dwAttributes = SFGAO_FILESYSTEM;
-		 
-         hr = psfFolder->GetAttributesOf(1, (LPCITEMIDLIST*)&pidl, &dwAttributes);
+      //         DWORD dwAttributes = SFGAO_FOLDER;
+      DWORD dwAttributes = SFGAO_FILESYSTEM;
 
-		struct : public NETRESOURCE
-		{
-			BYTE  bytes[8192];
-		} nr;
+      hr = psfFolder->GetAttributesOf(1, (LPCITEMIDLIST*)&pidl, &dwAttributes);
 
-		// Now extract info drive info
-		LPITEMIDLIST pDriveIdl = NULL; // general purpose
-		hr = psfDesktop->ParseDisplayName(NULL, NULL, szDisplayName, NULL, &pDriveIdl, NULL);
+      struct : public NETRESOURCE
+      {
+        BYTE  bytes[8192];
+      } nr;
 
-		LPSHELLFOLDER psfDriveFolder = NULL;
-		hr = psfDesktop->BindToObject(pDriveIdl, NULL, IID_IShellFolder, (void**)&psfDriveFolder);
-		pMalloc->Free(pDriveIdl);
+      // Now extract info drive info
+      LPITEMIDLIST pDriveIdl = NULL; // general purpose
+      hr = psfDesktop->ParseDisplayName(NULL, NULL, szDisplayName, NULL, &pDriveIdl, NULL);
 
-		LPENUMIDLIST penumDriveIDL = NULL; // IEnumIDList interface for reading contents
-		hr = psfDriveFolder->EnumObjects(NULL, SHCONTF_FOLDERS | SHCONTF_NONFOLDERS, &penumDriveIDL);
-		if (SUCCEEDED(hr))
-		{
-			hr = penumDriveIDL->Next(1, &pDriveIdl, NULL);
+      LPSHELLFOLDER psfDriveFolder = NULL;
+      hr = psfDesktop->BindToObject(pDriveIdl, NULL, IID_IShellFolder, (void**)&psfDriveFolder);
+      pMalloc->Free(pDriveIdl);
 
-			hr = SHGetDataFromIDList(psfDriveFolder, pDriveIdl, SHGDFIL_NETRESOURCE, &nr, sizeof(nr));
-			if (SUCCEEDED(hr))
-				HTRACE(L"NetWork resource '%s'\n", nr.lpRemoteName);
+      LPENUMIDLIST penumDriveIDL = NULL; // IEnumIDList interface for reading contents
+      hr = psfDriveFolder->EnumObjects(NULL, SHCONTF_FOLDERS | SHCONTF_NONFOLDERS, &penumDriveIDL);
+      if (SUCCEEDED(hr))
+      {
+        hr = penumDriveIDL->Next(1, &pDriveIdl, NULL);
 
-			psfDriveFolder->Release();
-			pMalloc->Free(pDriveIdl);
-		}
+        hr = SHGetDataFromIDList(psfDriveFolder, pDriveIdl, SHGDFIL_NETRESOURCE, &nr, sizeof(nr));
+        if (SUCCEEDED(hr))
+          HTRACE(L"NetWork resource '%s'\n", nr.lpRemoteName);
+
+        psfDriveFolder->Release();
+        pMalloc->Free(pDriveIdl);
+      }
 
 #endif 
 
-         pMalloc->Free(pidl);
-      }
-      // the expected "error" is S_FALSE, when the list is finished
-      else break;
-   }
+      pMalloc->Free(pidl);
+    }
+    // the expected "error" is S_FALSE, when the list is finished
+    else break;
+  }
 
-   // release all remaining interface pointers
-   penumIDL->Release();
-   psfFolder->Release();
-   psfDesktop->Release(); // no longer required
-   pMalloc->Release();
+  // release all remaining interface pointers
+  penumIDL->Release();
+  psfFolder->Release();
+  psfDesktop->Release(); // no longer required
+  pMalloc->Release();
 
 }
+
 // Called by the Shell when initializing an extension.
 // called each time before QueryContextmenu() is called
 STDMETHODIMP
@@ -991,8 +992,8 @@ CreateContextMenu(
   int nEntries = 0;
   CreateContextMenu(a_hMenu, a_idCmd, a_CommandIdx, a_MenuOffset, nEntries, SrcDstOnSameDrive);
 
-	if (nEntries > 1)
-	{
+  if (nEntries > 1)
+  {
     // This clause expects just to offer a submenue for many entries on the main drop down menue
     HMENU hSubmenu = CreatePopupMenu();
 
@@ -1001,81 +1002,81 @@ CreateContextMenu(
     CreateContextMenu(hSubmenu, a_idCmd, a_CommandIdx, a_MenuOffset, nEntries, SrcDstOnSameDrive);
 
 
-		// Insert the submenu into the ctx menu provided by Explorer.
-		MENUITEMINFO mii = { sizeof(MENUITEMINFO) };
+    // Insert the submenu into the ctx menu provided by Explorer.
+    MENUITEMINFO mii = { sizeof(MENUITEMINFO) };
 
-		mii.fMask = MIIM_SUBMENU | MIIM_STRING | MIIM_ID;
-		mii.wID = a_idCmd++;
-		mii.hSubMenu = hSubmenu;
-		mii.dwTypeData = MenuEntries[eMenuDropeAs + a_MenuOffset];
-		m_Command[a_CommandIdx++] = eDropAs;
+    mii.fMask = MIIM_SUBMENU | MIIM_STRING | MIIM_ID;
+    mii.wID = a_idCmd++;
+    mii.hSubMenu = hSubmenu;
+    mii.dwTypeData = MenuEntries[eMenuDropeAs + a_MenuOffset];
+    m_Command[a_CommandIdx++] = eDropAs;
 
-		InsertMenuItem ( a_hMenu, a_indexMenu, TRUE, &mii );		
-	}
-	else
-	{
-		// This clause expects just to offer *one* menue entry on the main drop down menue
+    InsertMenuItem(a_hMenu, a_indexMenu, TRUE, &mii);
+  }
+  else
+  {
+    // This clause expects just to offer *one* menue entry on the main drop down menue
     if (m_DropTarget.m_Flags & eNTFS)
     {
-      int TargetsFlag = m_bTargetsFlag & (eFile|eDir|eJunction|eVolume|eMountPoint|eSymbolicLink);
+      int TargetsFlag = m_bTargetsFlag & (eFile | eDir | eJunction | eVolume | eMountPoint | eSymbolicLink);
       switch (TargetsFlag)
       {
         case eFile:
         {
-			    if (m_DropTarget.m_Flags & eNTFS)
-			    {
-			      // Some could try to create a symbolic link on a different drive
-				    InsertCommand(a_hMenu, a_indexMenu, a_idCmd, eMenuDropSymbolicLink + a_MenuOffset, eDropSymbolicLink, a_CommandIdx, nEntries);
-			    }
-			    else
-			    {
-			      // All other options are hardlinks if we are on the same drive
-			      if (SrcDstOnSameDrive)
-			      {
-				      InsertCommand(a_hMenu, a_indexMenu, a_idCmd, eMenuDropHardlink + a_MenuOffset, eDropHardLink, a_CommandIdx, nEntries);
-			      }
-			    }
-		    }
+          if (m_DropTarget.m_Flags & eNTFS)
+          {
+            // Some could try to create a symbolic link on a different drive
+            InsertCommand(a_hMenu, a_indexMenu, a_idCmd, eMenuDropSymbolicLink + a_MenuOffset, eDropSymbolicLink, a_CommandIdx, nEntries);
+          }
+          else
+          {
+            // All other options are hardlinks if we are on the same drive
+            if (SrcDstOnSameDrive)
+            {
+              InsertCommand(a_hMenu, a_indexMenu, a_idCmd, eMenuDropHardlink + a_MenuOffset, eDropHardLink, a_CommandIdx, nEntries);
+            }
+          }
+        }
         break;
 
         case eDir:
-          HTRACE(L"### 1 Menue eDir");  
+          HTRACE(L"### 1 Menue eDir");
         break;
 
         case eJunction:
           // Was the destination a junction ...
-				  if (m_DropTarget.m_Flags & eJunction)  
-				  {
-					  // ... it was a junction, so lets re-link this junction to a new location
+          if (m_DropTarget.m_Flags & eJunction)
+          {
+            // ... it was a junction, so lets re-link this junction to a new location
             if (!(gLSESettings.GetFlags() & eDisableJunction))
               InsertCommand(a_hMenu, a_indexMenu, a_idCmd, eMenuDropReplaceJunction + a_MenuOffset, eDropReplaceJunction, a_CommandIdx, nEntries);
-				  }
+          }
           else
           {
-				    // A  directory was picked, so lets create a junction from a directory
+            // A  directory was picked, so lets create a junction from a directory
             if (!(gLSESettings.GetFlags() & eDisableJunction))
               InsertCommand(a_hMenu, a_indexMenu, a_idCmd, eMenuDropJunction + a_MenuOffset, eDropJunction, a_CommandIdx, nEntries);
           }
         break;
 
         case eVolume:
-          HTRACE(L"### 1 Menue eVolume");  
+          HTRACE(L"### 1 Menue eVolume");
         break;
 
         case eMountPoint:
-          HTRACE(L"### 1 Menue eMountPint");  
+          HTRACE(L"### 1 Menue eMountPint");
         break;
 
         case eSymbolicLink:
-				  // A Junction was picked, and with Vista a Symbolic Link can point to a Junction
-				  if (m_DropTarget.m_Flags & eNTFS)
-				  {
-					  InsertCommand(a_hMenu, a_indexMenu, a_idCmd, eMenuSymbolicLink + a_MenuOffset, eDropSymbolicLink, a_CommandIdx, nEntries);
-				  }
+          // A Junction was picked, and with Vista a Symbolic Link can point to a Junction
+          if (m_DropTarget.m_Flags & eNTFS)
+          {
+            InsertCommand(a_hMenu, a_indexMenu, a_idCmd, eMenuSymbolicLink + a_MenuOffset, eDropSymbolicLink, a_CommandIdx, nEntries);
+          }
         break;
 
         default:
-          HTRACE(L"### 1 Menue ILLEGAL");  
+          HTRACE(L"### 1 Menue ILLEGAL");
         break;
 
       } // switch (TargetsFlag)
@@ -1096,83 +1097,83 @@ QueryContextMenu(
 	UINT					uFlags
 )
 {
-	HTRACE (L"LSE::QueryContextMenu %08x, %08x, %08x, %08x, %08x\n", hMenu, indexMenu, idCmdFirst, idCmdLast, uFlags);
-  
-	UINT idCmd = idCmdFirst;
-	UINT aCommandIdx = 0;
+  HTRACE(L"LSE::QueryContextMenu %08x, %08x, %08x, %08x, %08x\n", hMenu, indexMenu, idCmdFirst, idCmdLast, uFlags);
 
-	if ( uFlags & CMF_DEFAULTONLY )
-		return MAKE_HRESULT ( SEVERITY_SUCCESS, FACILITY_NULL, 0 );
+  UINT idCmd = idCmdFirst;
+  UINT aCommandIdx = 0;
+
+  if (uFlags & CMF_DEFAULTONLY)
+    return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 
 #if 1  
-	const int CMF_RIGHTPANE = 0x00020000;
+  const int CMF_RIGHTPANE = 0x00020000;
 
-	// Code for review and tryout
-	// If the extended mode is on, then only show the menues if shift is pressed
-	// Do this only for the file (right) pane, but not for the explore(left) pane, 
-	// since explorer does not send us CMF_EXTENDEDVERBS in the left pane.
-	if (gLSESettings.GetFlags() & eEnableExtended)
-		if ( !(uFlags & CMF_EXTENDEDVERBS) && (uFlags & CMF_RIGHTPANE))
-			return MAKE_HRESULT ( SEVERITY_SUCCESS, FACILITY_NULL, 0 );
+  // Code for review and tryout
+  // If the extended mode is on, then only show the menues if shift is pressed
+  // Do this only for the file (right) pane, but not for the explore(left) pane, 
+  // since explorer does not send us CMF_EXTENDEDVERBS in the left pane.
+  if (gLSESettings.GetFlags() & eEnableExtended)
+    if (!(uFlags & CMF_EXTENDEDVERBS) && (uFlags & CMF_RIGHTPANE))
+      return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 #endif
-	
-  if (uFlags & CMF_EXTENDEDVERBS) 
+
+  if (uFlags & CMF_EXTENDEDVERBS)
     m_DropTarget.m_Flags |= eExtendedVerbs;
 
   // The pick menue should only show up for files if the source is either NTFS or we are on Windows7
   bool ShowMenue = true;
-  if ( m_bTargetsFlag & eFile )
-    if (!(m_bTargetsFlag & eNTFS) )
-        ShowMenue = false;
+  if (m_bTargetsFlag & eFile)
+    if (!(m_bTargetsFlag & eNTFS))
+      ShowMenue = false;
 
-	// Decide on whether we are in a ContextMenu Handler or a Drag-Drop-Handler
-	if (uFlags || m_ForceContext)
-	{
-		// ContextMenu Handler
-		BOOL valid = IsClipboardFormatAvailable(m_ClipFormat);
-		if (valid)
-		{
-			// Drop via Contextmenu
-			ClipboardToSelection(true);
+  // Decide on whether we are in a ContextMenu Handler or a Drag-Drop-Handler
+  if (uFlags || m_ForceContext)
+  {
+    // ContextMenu Handler
+    BOOL valid = IsClipboardFormatAvailable(m_ClipFormat);
+    if (valid)
+    {
+      // Drop via Contextmenu
+      ClipboardToSelection(true);
 
-			InsertMenu(hMenu, indexMenu++, MF_SEPARATOR|MF_BYPOSITION, 0, NULL);
+      InsertMenu(hMenu, indexMenu++, MF_SEPARATOR | MF_BYPOSITION, 0, NULL);
 
-			InsertMenu(hMenu, indexMenu++, MF_STRING|MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuCancelLinkCreation]); 
-			m_Command[aCommandIdx++] = eCancelPickLink;
-			
-			// Make sure we only drop onto valid items
-			if 	(m_DropTarget.m_Flags & (eDir | eJunction | eVolume | eMountPoint | eSymbolicLink))
-				CreateContextMenu(hMenu, indexMenu, idCmd, aCommandIdx, 0);
+      InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuCancelLinkCreation]);
+      m_Command[aCommandIdx++] = eCancelPickLink;
 
-			FreeShellSelection();
-		}
-		else
-		{
-			// Pick via Contextmenu
-			if (m_nTargets)
-			{
+      // Make sure we only drop onto valid items
+      if (m_DropTarget.m_Flags & (eDir | eJunction | eVolume | eMountPoint | eSymbolicLink))
+        CreateContextMenu(hMenu, indexMenu, idCmd, aCommandIdx, 0);
+
+      FreeShellSelection();
+    }
+    else
+    {
+      // Pick via Contextmenu
+      if (m_nTargets)
+      {
         if (ShowMenue)
         {
-          InsertMenu(hMenu, indexMenu++, MF_SEPARATOR|MF_BYPOSITION, 0, NULL);
-				  InsertMenu(hMenu, indexMenu++, MF_STRING|MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuPickLinkSource]);
-				  m_Command[aCommandIdx++] = ePickLinkSource;
+          InsertMenu(hMenu, indexMenu++, MF_SEPARATOR | MF_BYPOSITION, 0, NULL);
+          InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuPickLinkSource]);
+          m_Command[aCommandIdx++] = ePickLinkSource;
         }
 #if !defined REMOVE_DELETE_JUNCTION
-        if ( m_bTargetsFlag & eJunction )
-				{
-					InsertMenu(hMenu, indexMenu++, MF_STRING|MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuDeleteJunction]);
-					m_Command[aCommandIdx++] = eDeleteJunction;
-				}
+        if (m_bTargetsFlag & eJunction)
+        {
+          InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuDeleteJunction]);
+          m_Command[aCommandIdx++] = eDeleteJunction;
+        }
 #endif
-				if (m_bTargetsFlag & eMountPoint)
-				{
-					InsertMenu(hMenu, indexMenu++, MF_STRING|MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuDeleteMountPoint]);
-					m_Command[aCommandIdx++] = eDropDeleteMountPoint;
-				}
-				InsertMenu(hMenu, indexMenu++, MF_SEPARATOR|MF_BYPOSITION, 0, NULL);
-			}
-		}
-	}
+        if (m_bTargetsFlag & eMountPoint)
+        {
+          InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuDeleteMountPoint]);
+          m_Command[aCommandIdx++] = eDropDeleteMountPoint;
+        }
+        InsertMenu(hMenu, indexMenu++, MF_SEPARATOR | MF_BYPOSITION, 0, NULL);
+      }
+    }
+  }
   else
   {
     // This is for the drag and drop handler
@@ -1180,8 +1181,8 @@ QueryContextMenu(
       CreateContextMenu(hMenu, indexMenu, idCmd, aCommandIdx, eMenue__Free__);
   }
 
-	//Must return number of menu items we added.
-	return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, idCmd-idCmdFirst);
+  //Must return number of menu items we added.
+  return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, idCmd - idCmdFirst);
 }
 
 // Called by the Shell after the user has selected one of the
@@ -1192,99 +1193,93 @@ InvokeCommand	(
 	LPCMINVOKECOMMANDINFO lpcmi
 )
 {
-/*/	
-	if (lpcmi->cbSize == sizeof (CMINVOKECOMMANDINFOEX) )
-	{
-		HTRACE (L"CMINVOKECOMMANDINFOEX: %08x\n", lpcmi->fMask);
-	}
-	else
-	{
-		HTRACE (L"CMINVOKECOMMANDINFO: %08x\n", lpcmi->fMask);
-	}
-/*/	
-	
-	HRESULT hr = E_INVALIDARG;
+  /*/
+    if (lpcmi->cbSize == sizeof (CMINVOKECOMMANDINFOEX) )
+    {
+      HTRACE (L"CMINVOKECOMMANDINFOEX: %08x\n", lpcmi->fMask);
+    }
+    else
+    {
+      HTRACE (L"CMINVOKECOMMANDINFO: %08x\n", lpcmi->fMask);
+    }
+  /*/
 
-	if (lpcmi)
-	{
-    HTRACE (L"LSE::InvokeCommand lpcmi:%08x, HIWORD(lpcmi->lpVerb):%08x, LOWORD(lpcmi->lpVerb):%08x\n", lpcmi, HIWORD(lpcmi->lpVerb), LOWORD(lpcmi->lpVerb));
-		if (!HIWORD(lpcmi->lpVerb))
-		{
-			UINT idCmd = LOWORD(lpcmi->lpVerb);
+  HRESULT hr = E_INVALIDARG;
+
+  if (lpcmi)
+  {
+    HTRACE(L"LSE::InvokeCommand lpcmi:%08x, HIWORD(lpcmi->lpVerb):%08x, LOWORD(lpcmi->lpVerb):%08x\n", lpcmi, HIWORD(lpcmi->lpVerb), LOWORD(lpcmi->lpVerb));
+    if (!HIWORD(lpcmi->lpVerb))
+    {
+      UINT idCmd = LOWORD(lpcmi->lpVerb);
 
 
-			switch (m_Command[idCmd])
-			{
-				case eCancelPickLink:
-					CancelPickLink();
-#if defined _DEBUG
-					EnumerateFolder();
-#endif
-				break;
+      switch (m_Command[idCmd])
+      {
+        case eCancelPickLink:
+          CancelPickLink();
+        break;
 
-				case ePickLinkSource:
-					SelectionToClipboard();
-#if defined _DEBUG
-					EnumerateFolder();
-#endif
-				break;
+        case ePickLinkSource:
+          SelectionToClipboard();
+        break;
 
-				case eDropHardLink:
-					DropHardLink(m_DropTarget);
-				break;
+        case eDropHardLink:
+          DropHardLink(m_DropTarget);
+        break;
 
-				case eDropSymbolicLink:
-					DropSymbolicLink(m_DropTarget);
-				break;
+        case eDropSymbolicLink:
+          DropSymbolicLink(m_DropTarget);
+        break;
 
-				case eDropJunction:
-					DropJunction(m_DropTarget);
-				break;
+        case eDropJunction:
+          DropJunction(m_DropTarget);
+        break;
 
-				case eDropHardLinkClone:
-					DropHardLinkClone(m_DropTarget, lpcmi);
-				break;
+        case eDropHardLinkClone:
+          DropHardLinkClone(m_DropTarget, lpcmi);
+        break;
 
-				case eDropSymbolicLinkClone:
-					DropSymbolicLinkClone(m_DropTarget, lpcmi);
-				break;
+        case eDropSymbolicLinkClone:
+          DropSymbolicLinkClone(m_DropTarget, lpcmi);
+        break;
 
-#if !defined REMOVE_DELETE_JUNCTION
-				case eDeleteJunction:
-					DeleteJunction();
-				break;
-#endif
-				case eDropCreateMountPoint:
-					DropMountPoint(m_DropTarget);
-				break;
+  #if !defined REMOVE_DELETE_JUNCTION
+        case eDeleteJunction:
+          DeleteJunction();
+        break;
+  #endif
+        case eDropCreateMountPoint:
+          DropMountPoint(m_DropTarget);
+        break;
 
-				case eDropDeleteMountPoint:
-					DeleteMountPoint();
-				break;
+        case eDropDeleteMountPoint:
+          DeleteMountPoint();
+        break;
 
-				case eDropReplaceJunction:
-					DropReplaceJunction(m_DropTarget);
-				break;
+        case eDropReplaceJunction:
+          DropReplaceJunction(m_DropTarget);
+        break;
 
-				case eDropSmartCopy:
-					DropSmartCopy(m_DropTarget, lpcmi);
-				break;
+        case eDropSmartCopy:
+          DropSmartCopy(m_DropTarget, lpcmi);
+        break;
 
-				case eDropReplaceSymbolicLink:
-					DropReplaceSymbolicLink(m_DropTarget, lpcmi);
-				break;
+        case eDropReplaceSymbolicLink:
+          DropReplaceSymbolicLink(m_DropTarget, lpcmi);
+        break;
 
-				case eDropReplaceMountPoint:
-					DropReplaceMountPoint(m_DropTarget, lpcmi);
-				break;
+        case eDropReplaceMountPoint:
+          DropReplaceMountPoint(m_DropTarget, lpcmi);
+        break;
 
-				case eDropSmartMirror:
-					DropSmartMirror(m_DropTarget, lpcmi);
-				break;
+        case eDropSmartMirror:
+          DropSmartMirror(m_DropTarget, lpcmi);
+        break;
 
-				case eDropDeloreanCopy:
-					DropDeloreanCopy(m_DropTarget, lpcmi);
-				break;
+        case eDropDeloreanCopy:
+          DropDeloreanCopy(m_DropTarget, lpcmi);
+        break;
 
         case eDropCopySymbolicLink:
           DropSymbolicLink(m_DropTarget, true);
@@ -1299,13 +1294,13 @@ InvokeCommand	(
         break;
 
         default:
-				break;
-			}
-			FreeShellSelection();
-			return NOERROR;
-		}
-	}
-    return hr;
+          break;
+      }
+      FreeShellSelection();
+      return NOERROR;
+    }
+  }
+  return hr;
 }
 
 // Called by the Shell to retrieve the help text 
@@ -1320,90 +1315,92 @@ GetCommandString(
 	UINT					cchMax
 )
 {
-	HRESULT hr = E_INVALIDARG;
-	
-	if (idCmd < eCommandType__Free__)
-		switch (uFlags)
-		{
-			case GCS_HELPTEXTA:
-				lstrcpynA(pszName, HelpTextA[m_Command[idCmd]], cchMax);
-				hr = S_OK;
-			break;
+  HRESULT hr = E_INVALIDARG;
 
-			case GCS_HELPTEXTW:
-				lstrcpynW((LPWSTR)pszName, HelpTextW[m_Command[idCmd]], cchMax);
-				hr = S_OK;
-			break;
+  if (idCmd < eCommandType__Free__)
+  {
+    switch (uFlags)
+    {
+      case GCS_HELPTEXTA:
+        lstrcpynA(pszName, HelpTextA[m_Command[idCmd]], cchMax);
+        hr = S_OK;
+      break;
 
-			case GCS_VERBA:
-				lstrcpynA(pszName,VerbsA[m_Command[idCmd]], cchMax);
-				hr = S_OK;
-			break;
+      case GCS_HELPTEXTW:
+        lstrcpynW((LPWSTR)pszName, HelpTextW[m_Command[idCmd]], cchMax);
+        hr = S_OK;
+      break;
 
-			case GCS_VERBW:
-				lstrcpynW((LPWSTR)pszName,VerbsW[m_Command[idCmd]], cchMax);
-				hr = S_OK;
-			break;
-		}
-	return hr;
+      case GCS_VERBA:
+        lstrcpynA(pszName, VerbsA[m_Command[idCmd]], cchMax);
+        hr = S_OK;
+      break;
+
+      case GCS_VERBW:
+        lstrcpynW((LPWSTR)pszName, VerbsW[m_Command[idCmd]], cchMax);
+        hr = S_OK;
+      break;
+    }
+  }
+  return hr;
 }
 
-HRESULT 
+HRESULT
 HardLinkExt::
 SelectionToClipboard
 (
 )
 {
-	// Copy to clipboard in proprietary format
-	HGLOBAL clipbuffer = GlobalAlloc(
-		GMEM_ZEROINIT|GMEM_MOVEABLE|GMEM_DDESHARE , 
-		m_ClipboardSize + sizeof(ULONG) + sizeof(ULONG)
-	);
-	BYTE* pData = (BYTE*)GlobalLock(clipbuffer);
+  // Copy to clipboard in proprietary format
+  HGLOBAL clipbuffer = GlobalAlloc(
+    GMEM_ZEROINIT | GMEM_MOVEABLE | GMEM_DDESHARE,
+    m_ClipboardSize + sizeof(ULONG) + sizeof(ULONG)
+  );
+  BYTE* pData = (BYTE*)GlobalLock(clipbuffer);
 
-	// Put the overall flag on the clipboard
-	PULONG pCount = (PULONG)pData;
-	*pCount = m_bTargetsFlag;
-	pData += sizeof m_bTargetsFlag;
+  // Put the overall flag on the clipboard
+  PULONG pCount = (PULONG)pData;
+  *pCount = m_bTargetsFlag;
+  pData += sizeof m_bTargetsFlag;
 
-	// Put the number of entries on the clipboard
-	pCount = (PULONG)pData;
-	*pCount = m_nTargets;
-	pData += sizeof m_nTargets;
+  // Put the number of entries on the clipboard
+  pCount = (PULONG)pData;
+  *pCount = m_nTargets;
+  pData += sizeof m_nTargets;
 
-	size_t	len;
-	for (ULONG i = 0; i < m_nTargets; i++)
-	{
-		// Put the string on the clipboard
-		len = wcslen(m_pTargets[i].m_Path);
+  size_t	len;
+  for (ULONG i = 0; i < m_nTargets; i++)
+  {
+    // Put the string on the clipboard
+    len = wcslen(m_pTargets[i].m_Path);
 
-		// Multiply by two for the wide character support
-		len *= sizeof WCHAR;
+    // Multiply by two for the wide character support
+    len *= sizeof WCHAR;
 
-		// Copy data
-		memcpy (pData, m_pTargets[i].m_Path, len);
-		pData += len;
-		*pData++ = 0x00;
-		*pData++ = 0x00;
-		
-		// Put the flags on the clipboard
-		memcpy (pData, &m_pTargets[i].m_Flags, sizeof m_pTargets[i].m_Flags);
-		pData += sizeof m_pTargets[i].m_Flags;
-	}
+    // Copy data
+    memcpy(pData, m_pTargets[i].m_Path, len);
+    pData += len;
+    *pData++ = 0x00;
+    *pData++ = 0x00;
 
-	FreeShellSelection();
+    // Put the flags on the clipboard
+    memcpy(pData, &m_pTargets[i].m_Flags, sizeof m_pTargets[i].m_Flags);
+    pData += sizeof m_pTargets[i].m_Flags;
+  }
 
-	if (OpenClipboard(NULL))
-	{
-		EmptyClipboard();
-		SetClipboardData(RegisterClipboardFormat( CFSTR_HARDLINK ), clipbuffer);
-		GlobalUnlock(clipbuffer);
-	}
-	CloseClipboard();
-	
+  FreeShellSelection();
 
-	HTRACE (L"LSE::SelectionToClipboard success\n");
-	return NOERROR;
+  if (OpenClipboard(NULL))
+  {
+    EmptyClipboard();
+    SetClipboardData(RegisterClipboardFormat(CFSTR_HARDLINK), clipbuffer);
+    GlobalUnlock(clipbuffer);
+  }
+  CloseClipboard();
+
+
+  HTRACE(L"LSE::SelectionToClipboard success\n");
+  return NOERROR;
 }
 
 
@@ -1547,9 +1544,8 @@ DropHardLink(
   // directories are e.g SYSTEM_ROOT or PROGRAM_FILES
   if (ElevationNeeded)
   {
-    wchar_t sla_quoted[HUGE_PATH];
-    wchar_t curdir[HUGE_PATH];	
-    FILE* HardlinkArgs = OpenFileForExeHelper(curdir, sla_quoted);
+    UACHelper uacHelper;
+    uacHelper.Open();
 
     for (ULONG i = 0; i < m_nTargets; i++)
 	  {
@@ -1566,12 +1562,12 @@ DropHardLink(
 		  if (m_pTargets[i].m_Flags & eFile)
       {
 			  // Write the command file, which is read by the elevated process
-        WriteUACHelperArgs(HardlinkArgs, 'h', m_pTargets[i].m_Path, dest);
+        uacHelper.WriteArgs('h', m_pTargets[i].m_Path, dest);
       }
     }
-    fclose(HardlinkArgs);
+    uacHelper.Close();
     
-    DWORD r = ForkExeHelper(curdir, sla_quoted);
+    DWORD r = uacHelper.Fork();
     if (r)
     {
       switch (r)
@@ -1606,39 +1602,37 @@ DropSymbolicLink(
   WCHAR		dest[HUGE_PATH];
 
   bool Elevation = ElevationNeeded();
- 	PathAddBackslash(aTarget.m_Path);
+  PathAddBackslash(aTarget.m_Path);
 
   // Retrieve the light settings
   gLSESettings.ReadLSESettings(false);
 
-	if (!m_nTargets)
-		ClipboardToSelection(false);
+  if (!m_nTargets)
+    ClipboardToSelection(false);
 
-	wchar_t sla_quoted[HUGE_PATH];
-	wchar_t curdir[HUGE_PATH];	
-  FILE* SymlinkArgs = NULL;
-  
+  UACHelper uacHelper;
+
 #if defined UAC_FORCE
   if (UAC_OUTPROC)
 #else
   if (Elevation)
 #endif
-    SymlinkArgs = OpenFileForExeHelper(curdir, sla_quoted);
+    uacHelper.Open();
 
 	// Write the args
-	for (ULONG i = 0; i < m_nTargets; ++i)
-	{
-		wchar_t		dp[MAX_PATH];
-		wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
+  for (ULONG i = 0; i < m_nTargets; ++i)
+  {
+    wchar_t		dp[MAX_PATH];
+    wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
 
-		CreateFileName(
+    CreateFileName(
       g_hInstance,
       gLSESettings.GetLanguageID(),
-			TopMenuEntries[eTopMenuSymbolicLink], 
-			TopMenuEntries[eTopMenuTo], 
-			aTarget.m_Path, 
-			pFilename,
-			dest,
+      TopMenuEntries[eTopMenuSymbolicLink],
+      TopMenuEntries[eTopMenuTo],
+      aTarget.m_Path,
+      pFilename,
+      dest,
       IDS_STRING_eTopMenuOfOrderXP_1);
 
     // If chains of symbolic links should be created, we have to check wether it is a directory or file, 
@@ -1685,7 +1679,7 @@ DropSymbolicLink(
     else
       wcscpy_s(target, HUGE_PATH, m_pTargets[i].m_Path);
 
-		// Check if two files should be linked together
+    // Check if two files should be linked together
     if (m_pTargets[i].m_Flags & eFile)
     {
       // With Windows10/14972 a flag can be specified to allow unelevated symlink creation
@@ -1695,7 +1689,7 @@ DropSymbolicLink(
         Elevation = false;
         dwSymLinkAllowUnprivilegedCreation = SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
       }
-      
+
 #if defined UAC_FORCE
       if (UAC_OUTPROC)
 #else
@@ -1703,9 +1697,9 @@ DropSymbolicLink(
 #endif
       {
         if (SymbolicLinkRelation)
-          WriteUACHelperArgs(SymlinkArgs, 'F', dest, target);
+          uacHelper.WriteArgs('F', dest, target);
         else
-          WriteUACHelperArgs(SymlinkArgs, 'f', dest, target);
+          uacHelper.WriteArgs('f', dest, target);
       }
       else
       {
@@ -1717,25 +1711,25 @@ DropSymbolicLink(
       }
     }
 
-		// Check if two directories should be linked together
-    if (m_pTargets[i].m_Flags & (eDir|eJunction|eVolume|eMountPoint|eSymbolicLink))
+    // Check if two directories should be linked together
+    if (m_pTargets[i].m_Flags & (eDir | eJunction | eVolume | eMountPoint | eSymbolicLink))
     {
-			WCHAR	DestNoSymlink[HUGE_PATH];
-			WCHAR	SourceNoSymlink[HUGE_PATH];
+      WCHAR	DestNoSymlink[HUGE_PATH];
+      WCHAR	SourceNoSymlink[HUGE_PATH];
 
       // Check if recursive symbolic links are about to be created
       ReparseCanonicalize(target, SourceNoSymlink, HUGE_PATH);
-			PathAddBackslash(SourceNoSymlink);
-			ReparseCanonicalize(dest, DestNoSymlink, HUGE_PATH);
-			if (StrStrI(DestNoSymlink, SourceNoSymlink))
-			{
-				HTRACE(L"LSE::DropSymboliclink ERR: '%s' -> '%s', %ld\n", SourceNoSymlink, DestNoSymlink, m_pTargets[i].m_Flags);
-				ErrorCreating(dest, 
-					IDS_STRING_ErrExplorerCanNotCreateSymlink, 
-					IDS_STRING_ErrCreatingSymlink,
-					IDS_STRING_ErrDestSrcCircular
-				);
-			}
+      PathAddBackslash(SourceNoSymlink);
+      ReparseCanonicalize(dest, DestNoSymlink, HUGE_PATH);
+      if (StrStrI(DestNoSymlink, SourceNoSymlink))
+      {
+        HTRACE(L"LSE::DropSymboliclink ERR: '%s' -> '%s', %ld\n", SourceNoSymlink, DestNoSymlink, m_pTargets[i].m_Flags);
+        ErrorCreating(dest,
+          IDS_STRING_ErrExplorerCanNotCreateSymlink,
+          IDS_STRING_ErrCreatingSymlink,
+          IDS_STRING_ErrDestSrcCircular
+        );
+      }
       else
       {
         // With Windows10/14972 a flag can be specified to allow unelevated symlink creation
@@ -1745,7 +1739,7 @@ DropSymbolicLink(
           Elevation = false;
           dwSymLinkAllowUnprivilegedCreation = SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
         }
-        
+
 #if defined UAC_FORCE
         if (UAC_OUTPROC)
 #else
@@ -1753,9 +1747,9 @@ DropSymbolicLink(
 #endif
         {
           if (SymbolicLinkRelation)
-            WriteUACHelperArgs(SymlinkArgs, 'D', dest, target);
+            uacHelper.WriteArgs('D', dest, target);
           else
-            WriteUACHelperArgs(SymlinkArgs, 'd', dest, target);
+            uacHelper.WriteArgs('d', dest, target);
         }
         else
         {
@@ -1768,33 +1762,33 @@ DropSymbolicLink(
         }
       }
     }
-	}
+  }
 
-  
+
 #if defined UAC_FORCE
   if (UAC_OUTPROC)
 #else
   if (Elevation)
 #endif
   {
-    fclose(SymlinkArgs);
+    uacHelper.Close();
 
     // Create the Symbolic Links
-    DWORD r = ForkExeHelper(curdir, sla_quoted);
+    DWORD r = uacHelper.Fork();
     if (r)
     {
       switch (r)
       {
-        case ERROR_ALREADY_EXISTS:
-          ErrorCreating(dest, 
-            IDS_STRING_ErrExplorerAutoRenAlreadyExists, 
-            IDS_STRING_ErrCreatingSymlink,
-            IDS_STRING_ErrHardlinkFailed
-            );
+      case ERROR_ALREADY_EXISTS:
+        ErrorCreating(dest,
+          IDS_STRING_ErrExplorerAutoRenAlreadyExists,
+          IDS_STRING_ErrCreatingSymlink,
+          IDS_STRING_ErrHardlinkFailed
+        );
         break;
 
-        default:
-          ErrorFromSystem(r);
+      default:
+        ErrorFromSystem(r);
         break;
       }
     }
@@ -1825,10 +1819,7 @@ DropJunction(
   // junctions without UAC, so we have to fork in that case and
   // have all variables prepared
   bool CreateJunctionsViaHelperExe = false;
-  wchar_t sla_quoted[HUGE_PATH];
-  wchar_t* sla = &sla_quoted[1];
-  wchar_t curdir[HUGE_PATH];
-  FILE *JunctionArgs = NULL;
+  UACHelper uacHelper;
 
   for (ULONG i = 0; i < m_nTargets; i++)
   {
@@ -1893,11 +1884,11 @@ DropJunction(
 #endif
           {
             // Write the file for the args
-            if (!JunctionArgs)
-              JunctionArgs = OpenFileForExeHelper(curdir, sla_quoted);
+            if (!uacHelper.File())
+              uacHelper.Open();
 
             // Write the command file, which is read by the elevated process
-            WriteUACHelperArgs(JunctionArgs, 'j', dest, target);
+            uacHelper.WriteArgs('j', dest, target);
             CreateJunctionsViaHelperExe = true;
           }
           else
@@ -1938,8 +1929,8 @@ DropJunction(
   if (CreateJunctionsViaHelperExe)
 #endif
   {
-    fclose(JunctionArgs);
-    DWORD r = ForkExeHelper(curdir, sla_quoted);
+    uacHelper.Close();
+    DWORD r = uacHelper.Fork();
     if (r)
     {
       switch (r)
@@ -2006,58 +1997,54 @@ HardLinkExt::
 DeleteJunction(
 )
 {
-	bool CreateJunctionsViaHelperExe = false;
-	wchar_t sla_quoted[HUGE_PATH];
-	wchar_t* sla = &sla_quoted[1];
-	wchar_t curdir[HUGE_PATH];	
-	FILE *JunctionArgs = NULL;
+  bool CreateJunctionsViaHelperExe = false;
+  UACHelper uacHelper;
 
-	// Walk through the selection and delete the directories
-	// which are junctions
-	for (UINT i = 0; i < m_nTargets;i++)
-	{
-		if (m_pTargets[i].m_Flags & eJunction)  
-		{
-			BOOL b = RemoveDirectory(m_pTargets[i].m_Path);
-			if (!b)
-			{
-				// With Vista & W7, we are not allowed to delete Directories in folders like
-				// c:\Program Files (x86) wihtout UAC, so in this special case, the deletion
-				// of junction has to be relayed to an elevated .exe as done with Symbolic links
+  // Walk through the selection and delete the directories
+  // which are junctions
+  for (UINT i = 0; i < m_nTargets; i++)
+  {
+    if (m_pTargets[i].m_Flags & eJunction)
+    {
+      BOOL b = RemoveDirectory(m_pTargets[i].m_Path);
+      if (!b)
+      {
+        // With Vista & W7, we are not allowed to delete Directories in folders like
+        // c:\Program Files (x86) wihtout UAC, so in this special case, the deletion
+        // of junction has to be relayed to an elevated .exe as done with Symbolic links
 #if defined UAC_FORCE
         if (UAC_OUTPROC)
 #else
         if (ElevationNeeded())
 #endif
-				{
-					if (!JunctionArgs)
-            JunctionArgs = OpenFileForExeHelper(curdir, sla_quoted);
+        {
+          if (!uacHelper.File())
+            uacHelper.Open();
 
           // Write the command file, which is read by the elevated process
-          WriteUACHelperArgs(JunctionArgs, 'k', L"empty", m_pTargets[i].m_Path);
-					CreateJunctionsViaHelperExe = true;
-				}
-				else
-				{
-					ErrorFromSystem(GetLastError());
-				}
-			}
-		}
-	}
+          uacHelper.WriteArgs('k', L"empty", m_pTargets[i].m_Path);
+          CreateJunctionsViaHelperExe = true;
+        }
+        else
+        {
+          ErrorFromSystem(GetLastError());
+        }
+      }
+    }
+  }
 #if defined UAC_FORCE
   if (UAC_OUTPROC)
 #else
   if (CreateJunctionsViaHelperExe)
 #endif
-	{
-		fclose(JunctionArgs);
-		DWORD r = ForkExeHelper(curdir, sla_quoted);
-		if (r)
+  {
+    uacHelper.Close();
+    DWORD r = uacHelper.Fork();
+    if (r)
       ErrorFromSystem(r);
-	}
+  }
 
-
-	return NOERROR;
+  return NOERROR;
 }
 #endif
 
@@ -2070,32 +2057,32 @@ DropMountPoint(
   bool      aCopy
 )
 {
-	WCHAR		dest[HUGE_PATH];
+  WCHAR		dest[HUGE_PATH];
 
-	PathAddBackslash(aTarget.m_Path);
+  PathAddBackslash(aTarget.m_Path);
 
-	if (!m_nTargets)
-		ClipboardToSelection(false);
+  if (!m_nTargets)
+    ClipboardToSelection(false);
 
-	// Either Mountpoint creation or Mountpoint Copy are let in
-  if ( (m_pTargets[0].m_Flags & eVolume) || (m_pTargets[0].m_Flags & eMountPoint && aCopy) )
-	{
-		WCHAR	DestNoJunction[HUGE_PATH];
-		WCHAR	SourceNoJunction[HUGE_PATH];
+  // Either Mountpoint creation or Mountpoint Copy are let in
+  if ((m_pTargets[0].m_Flags & eVolume) || (m_pTargets[0].m_Flags & eMountPoint && aCopy))
+  {
+    WCHAR	DestNoJunction[HUGE_PATH];
+    WCHAR	SourceNoJunction[HUGE_PATH];
 
-		// Automagically create a directory with the volume name
-		// of the source drive. This only happens if you drag
-		wchar_t		dp[MAX_PATH];
-		wchar_t*	pFilename = DrivePrefix(m_pTargets[0].m_Path, dp);
+    // Automagically create a directory with the volume name
+    // of the source drive. This only happens if you drag
+    wchar_t		dp[MAX_PATH];
+    wchar_t*	pFilename = DrivePrefix(m_pTargets[0].m_Path, dp);
 
-		CreateFileName(
+    CreateFileName(
       g_hInstance,
       gLSESettings.GetLanguageID(),
-			TopMenuEntries[eTopMenuMountPoint], 
-			TopMenuEntries[eTopMenuOf], 
-			aTarget.m_Path, 
-			pFilename, 
-			dest,
+      TopMenuEntries[eTopMenuMountPoint],
+      TopMenuEntries[eTopMenuOf],
+      aTarget.m_Path,
+      pFilename,
+      dest,
       IDS_STRING_eTopMenuOfOrderXP_1);
 
 
@@ -2107,76 +2094,75 @@ DropMountPoint(
 
     // Check if recursive volume mountpoints are about to be created
     ReparseCanonicalize(target, SourceNoJunction, HUGE_PATH);
-		PathAddBackslash(SourceNoJunction);
-		ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
-		if (StrStrI(DestNoJunction, SourceNoJunction))
-		{
-			ErrorCreating(aTarget.m_Path, 
-				IDS_STRING_ErrExplorerCanNotCreateMountpoint, 
-				IDS_STRING_ErrCreatingMountpoint,
-				IDS_STRING_ErrDestSrcCircular
-			);
-		}
-		else
-		{
-  		CreateDirectory(dest, NULL);
+    PathAddBackslash(SourceNoJunction);
+    ReparseCanonicalize(dest, DestNoJunction, HUGE_PATH);
+    if (StrStrI(DestNoJunction, SourceNoJunction))
+    {
+      ErrorCreating(aTarget.m_Path,
+        IDS_STRING_ErrExplorerCanNotCreateMountpoint,
+        IDS_STRING_ErrCreatingMountpoint,
+        IDS_STRING_ErrDestSrcCircular
+      );
+    }
+    else
+    {
+      CreateDirectory(dest, NULL);
 
-			int RetVal;
-			HTRACE(L"LSE::MountPoint: '%s' -> '%s', %ld\n", target, dest, m_pTargets[0].m_Flags);
+      int RetVal;
+      HTRACE(L"LSE::MountPoint: '%s' -> '%s', %ld\n", target, dest, m_pTargets[0].m_Flags);
 
 #if defined UAC_FORCE
       if (UAC_OUTPROC)
 #else
       // Check if we are on Vista. With Vista, thanks to UAC, 
-			// we have to fork an extra process to perform this operation
-			if (ElevationNeeded())
+      // we have to fork an extra process to perform this operation
+      if (ElevationNeeded())
 #endif
-			{
-				wchar_t sla_quoted[HUGE_PATH];
-				wchar_t curdir[HUGE_PATH];	
-        FILE *MountpointArgs = OpenFileForExeHelper(curdir, sla_quoted);
+      {
+        UACHelper uacHelper;
+        uacHelper.Open();
 
-				// Write the command file, which is read by the elevated process
-        WriteUACHelperArgs(MountpointArgs, 'm', target, dest);
-				fclose(MountpointArgs);
+        // Write the command file, which is read by the elevated process
+        uacHelper.WriteArgs('m', target, dest);
+        uacHelper.Close();
 
-				RetVal = ForkExeHelper(curdir, sla_quoted);
-			}
-			else
-			{
-				RetVal = CreateMountPoint(target, dest);
-			}
+        uacHelper.Fork();
+      }
+      else
+      {
+        RetVal = CreateMountPoint(target, dest);
+      }
 
-			if (S_OK != RetVal)
-			{
+      if (S_OK != RetVal)
+      {
         switch (RetVal)
         {
           case ERROR_ALREADY_EXISTS:
-            ErrorCreating(dest, 
-              IDS_STRING_ErrExplorerAutoRenAlreadyExists, 
-              IDS_STRING_ErrCreatingHardlink,
-              IDS_STRING_ErrHardlinkFailed
-              );
+          ErrorCreating(dest,
+            IDS_STRING_ErrExplorerAutoRenAlreadyExists,
+            IDS_STRING_ErrCreatingHardlink,
+            IDS_STRING_ErrHardlinkFailed
+          );
           break;
 
           default:
-		        ErrorCreating(m_pTargets[0].m_Path, 
-			        IDS_STRING_ErrExplorerCanNotCreateMountpoint, 
-			        IDS_STRING_ErrCreatingMountpoint,
-			        0
-		        );
+          ErrorCreating(m_pTargets[0].m_Path,
+            IDS_STRING_ErrExplorerCanNotCreateMountpoint,
+            IDS_STRING_ErrCreatingMountpoint,
+            0
+          );
           break;
         }
         RemoveDirectory(dest);
-			}
-		}
-	}
-/*
-		// If files were selected aside directories or junction
-		// create hardlinks for the files
-		if (m_pTargets[i].m_Flags & eFile)
-			CreateHardlink(m_pTargets[i].m_Path, dest);
-*/	
+      }
+    }
+  }
+  /*
+      // If files were selected aside directories or junction
+      // create hardlinks for the files
+      if (m_pTargets[i].m_Flags & eFile)
+        CreateHardlink(m_pTargets[i].m_Path, dest);
+  */
 	return NOERROR;
 }
 
@@ -2186,12 +2172,10 @@ HardLinkExt::
 DeleteMountPoint(
 )
 {
-  wchar_t sla_quoted[HUGE_PATH];
-  wchar_t curdir[HUGE_PATH];
+  UACHelper uacHelper;
   bool RelayToSymlink = false;
-  FILE *Arguments = NULL;
 
-  Arguments = OpenFileForExeHelper(curdir, sla_quoted);
+  uacHelper.Open();
 
   for (UINT i = 0; i < m_nTargets; i++)
   {
@@ -2203,7 +2187,7 @@ DeleteMountPoint(
       if (ElevationNeeded())
       {
         // Write the command file, which is read by the elevated process
-        WriteUACHelperArgs(Arguments, 'n', L"empty", m_pTargets[i].m_Path);
+        uacHelper.WriteArgs('n', L"empty", m_pTargets[i].m_Path);
         RelayToSymlink = true;
       }
       else
@@ -2216,7 +2200,7 @@ DeleteMountPoint(
     }
   } // for (UINT i = 0; i < m_nTargets; i++)
 
-  fclose(Arguments);
+  uacHelper.Close();
 
 #if defined UAC_FORCE
   if (UAC_OUTPROC)
@@ -2224,7 +2208,7 @@ DeleteMountPoint(
   if (RelayToSymlink)
 #endif
   {
-    DWORD r = ForkExeHelper(curdir, sla_quoted);
+    DWORD r = uacHelper.Fork();
     if (r)
       ErrorFromSystem(GetLastError());
   }
@@ -2243,11 +2227,11 @@ SmartMirror(
   FileInfoContainer::CopyReparsePointFlags  aMode
 )
 {
-	WCHAR		dest[HUGE_PATH];
- 	PathAddBackslash(aTarget.m_Path);
+  WCHAR		dest[HUGE_PATH];
+  PathAddBackslash(aTarget.m_Path);
 
-	if (!m_nTargets)
-		ClipboardToSelection(false);
+  if (!m_nTargets)
+    ClipboardToSelection(false);
 
   _PathNameStatusList MirrorPathNameStatusList;
   _PathNameStatusList CleanPathNameStatusList;
@@ -2371,9 +2355,9 @@ SmartMirror(
       else
       {
         // If files were selected aside directories or junction
-	      // copy the files
-	      if (m_pTargets[i].m_Flags & eFile )
-	      {
+        // copy the files
+        if (m_pTargets[i].m_Flags & eFile)
+        {
           // Only once add the destination if files are selected alongside directories
           if ( 0 == FilesSourcePathlen )
           {
@@ -2447,28 +2431,28 @@ SmartMirror(
       delete pProgressbar;
 
       // Create File
-      wchar_t sla_quoted[HUGE_PATH];
-      wchar_t curdir[HUGE_PATH];	
-      FILE* SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
+      UACHelper uacHelper;
+      uacHelper.Open();
 
-      WriteUACHelperArgs(SmartCopyArgs, 'w', L"not used", L"not used");
+      uacHelper.WriteArgs('w', L"not used", L"not used");
 
       // persist MirrorList
       MirrorList.SetAnchorPath(MirrorPathList);
-      MirrorList.Save(SmartCopyArgs);
+      MirrorList.Save(uacHelper.File());
       CleanList.SetAnchorPath(CleanPathList);
-      CleanList.Save(SmartCopyArgs);
+      CleanList.Save(uacHelper.File());
 		  
       // Save the position of the progress bar
       if (!ProgessbarVisible)
         ProgressbarPosition.left = -1;
-        
-      fwprintf(SmartCopyArgs, L"%x,%x,%x,%x\n", 0, 0, 0, 0);
-      fclose(SmartCopyArgs);
+
+      RECT ProgbarPos;
+      uacHelper.SaveProgressbarPosition(ProgbarPos);
+      uacHelper.Close();
       MirrorList.StopLogging(LogFile);
 
       // Fork Process
-      DWORD r = ForkExeHelper(curdir, sla_quoted);
+      DWORD r = uacHelper.Fork();
     }
     else // if (gLSESettings.GetFlags() & eBackupMode)
     {
@@ -2544,7 +2528,7 @@ SmartMirror(
         {
 #pragma region ForkSmartCopy
           MirrorList.StopLogging(LogFile);
-          
+
           // Stop bar
           RECT  ProgressbarPosition;
           ZeroMemory(&ProgressbarPosition, sizeof(RECT));
@@ -2552,22 +2536,21 @@ SmartMirror(
           delete pProgressbar;
 
           // Create File
-          wchar_t sla_quoted[HUGE_PATH];
-          wchar_t curdir[HUGE_PATH];	
-          FILE* SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
+          UACHelper uacHelper;
+          uacHelper.Open();
 
-          WriteUACHelperArgs(SmartCopyArgs, 'w', L"not used", L"not used");
-          
+          uacHelper.WriteArgs('w', L"not used", L"not used");
+
           // persist MirrorList
-          MirrorList.Save(SmartCopyArgs);
-          CleanList.Save(SmartCopyArgs);
-  			  
+          MirrorList.Save(uacHelper.File());
+          CleanList.Save(uacHelper.File());
+
           // Save the position of the progress bar
           if (!ProgessbarVisible)
             ProgressbarPosition.left = -1;
-            
-          fwprintf(SmartCopyArgs, L"%x,%x,%x,%x\n", ProgressbarPosition.left, ProgressbarPosition.top, ProgressbarPosition.right, ProgressbarPosition.bottom);
-          fclose(SmartCopyArgs);
+
+          uacHelper.SaveProgressbarPosition(ProgressbarPosition);
+          uacHelper.Close();
           MirrorList.StopLogging(LogFile);
 #pragma endregion 
 
@@ -2579,8 +2562,8 @@ SmartMirror(
           //
           FILE* SmartCopyReadArgs = _wfopen (&sla_quoted[1], L"rb");
           FileInfoContainer FileList2(PATH_PARSE_SWITCHOFF_SIZE);
-				  wchar_t line[HUGE_PATH];
-				  wchar_t* t = fgetws(line, HUGE_PATH, SmartCopyReadArgs);
+          wchar_t line[HUGE_PATH];
+          wchar_t* t = fgetws(line, HUGE_PATH, SmartCopyReadArgs);
           FileList2.Load(SmartCopyReadArgs);
           fclose(SmartCopyReadArgs);
 
@@ -2588,15 +2571,15 @@ SmartMirror(
           // Then write the content again to a file, and compare the first and second file.
           // If they are equal everything is fine
           //
-          SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
-          WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
-          FileList2.Save(SmartCopyArgs);
-          fclose(SmartCopyArgs);
+          uacHelper.Open();
+          uacHelper.WriteArgs('s', L"not used", L"not used");
+          FileList2.Save(uacHelper.File());
+          uacHelper.Close()
   #endif
           // persist Pathnamestatuslist
 
           // Fork Process
-	        DWORD r = ForkExeHelper(curdir, sla_quoted);
+          DWORD r = uacHelper.Fork();
         }
         else
         {
@@ -2654,7 +2637,7 @@ SmartMirror(
 HRESULT
 HardLinkExt::
 SmartXXX(
-	Target&		              aTarget,
+  Target&                 aTarget,
   LPCMINVOKECOMMANDINFO   lpcmi,
   int                     aIDS_ProgressBarHeading,
   int                     aIDS_AutoRename,
@@ -2664,10 +2647,10 @@ SmartXXX(
   bool                    aHardVsSymbolic
 )
 {
- 	PathAddBackslash(aTarget.m_Path);
+  PathAddBackslash(aTarget.m_Path);
 
-	if (!m_nTargets)
-		ClipboardToSelection(false);
+  if (!m_nTargets)
+    ClipboardToSelection(false);
 
   _PathNameStatusList PathNameStatusList;
 
@@ -2715,14 +2698,14 @@ SmartXXX(
     _ArgvList TargetPathList;
     for (ULONG i = 0; i < m_nTargets; i++)
     {
-    	_ArgvPath TargetPath;
+      _ArgvPath TargetPath;
 
       // Create a filename in 'dest' according to the 
       // e.g 'Hardlink(n) of' syntax
-		  wchar_t		dp[MAX_PATH];
-		  wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
+      wchar_t		dp[MAX_PATH];
+      wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
 
-	    WCHAR		dest[HUGE_PATH];
+      WCHAR		dest[HUGE_PATH];
 
       int rr = CreateFileName(
         g_hInstance,
@@ -2776,9 +2759,9 @@ SmartXXX(
       else
       {
         // If files were selected aside directories or junction
-	      // copy the files
-	      if (m_pTargets[i].m_Flags & eFile )
-	      {
+        // copy the files
+        if (m_pTargets[i].m_Flags & eFile)
+        {
           // Only once add the destination if files are selected alongside directories
           if ( 0 == FilesSourcePathlen )
           {
@@ -2860,35 +2843,35 @@ SmartXXX(
       delete pProgressbar;
 
       // Create File
-      wchar_t sla_quoted[HUGE_PATH];
-      wchar_t curdir[HUGE_PATH];	
-      FILE* SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
+      UACHelper uacHelper;
+      uacHelper.Open();
 
       switch (aMode)
       {
         case FileInfoContainer::eSmartCopy:
-          WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+          uacHelper.WriteArgs('s', L"not used", L"not used");
           break;
       
         case FileInfoContainer::eSmartClone:
-          WriteUACHelperArgs(SmartCopyArgs, 't', L"not used", L"not used");
+          uacHelper.WriteArgs('t', L"not used", L"not used");
           break;
       }
 
       // persist FileList
       FileList.SetAnchorPath(TargetPathList);
-      FileList.Save(SmartCopyArgs);
+      FileList.Save(uacHelper.File());
 		  
       // Save the position of the progress bar
       if (!ProgessbarVisible)
         ProgressbarPosition.left = -1;
         
-      fwprintf(SmartCopyArgs, L"%x,%x,%x,%x\n", 0, 0, 0, 0);
-      fclose(SmartCopyArgs);
+      RECT progressbarPos;
+      uacHelper.SaveProgressbarPosition(progressbarPos);
+      uacHelper.Close();
       FileList.StopLogging(LogFile);
 
       // Fork Process
-      DWORD r = ForkExeHelper(curdir, sla_quoted);
+      DWORD r = uacHelper.Fork();
     }
     else // if (gLSESettings.GetFlags() & eBackupMode)
     {
@@ -2917,8 +2900,8 @@ SmartXXX(
       FileList.HeadLogging(LogFile);
 
       // Only continue if nobody pressed cancel
-	  if (Context.IsRunning())
-	  {
+      if (Context.IsRunning())
+      {
         Effort MaxProgress;
         FileList.Prepare(aMode, &aStats, &MaxProgress);
 
@@ -2959,30 +2942,29 @@ SmartXXX(
           delete pProgressbar;
 
           // Create File
-          wchar_t sla_quoted[HUGE_PATH];
-          wchar_t curdir[HUGE_PATH];	
-          FILE* SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
+          UACHelper uacHelper;
+          uacHelper.Open();
 
           switch (aMode)
           {
             case FileInfoContainer::eSmartCopy:
-              WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+              uacHelper.WriteArgs('s', L"not used", L"not used");
               break;
           
             case FileInfoContainer::eSmartClone:
-              WriteUACHelperArgs(SmartCopyArgs, 't', L"not used", L"not used");
+              uacHelper.WriteArgs('t', L"not used", L"not used");
               break;
           }
 
           // persist FileList
-          FileList.Save(SmartCopyArgs);
+          FileList.Save(uacHelper.File());
   			  
           // Save the position of the progress bar
           if (!ProgessbarVisible)
             ProgressbarPosition.left = -1;
             
-          fwprintf(SmartCopyArgs, L"%x,%x,%x,%x\n", ProgressbarPosition.left, ProgressbarPosition.top, ProgressbarPosition.right, ProgressbarPosition.bottom);
-          fclose(SmartCopyArgs);
+          uacHelper.SaveProgressbarPosition(ProgressbarPosition);
+          uacHelper.Close();
           FileList.StopLogging(LogFile);
 
   #if 0 // DEBUG_DEFINES
@@ -3002,15 +2984,14 @@ SmartXXX(
           // Then write the content again to a file, and compare the first and second file.
           // If they are equal everything is fine
           //
-          SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
-          WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+          SmartCopyArgs = Open(curdir, sla_quoted);
+          WriteArgs(SmartCopyArgs, 's', L"not used", L"not used");
           FileList2.Save(SmartCopyArgs);
           fclose(SmartCopyArgs);
   #endif
-          // persist Pathnamestatuslist
 
           // Fork Process
-	        DWORD r = ForkExeHelper(curdir, sla_quoted);
+	  DWORD r = uacHelper.Fork();
         }
         else
         {
@@ -3092,9 +3073,9 @@ DropSmartCopy(
   LPCMINVOKECOMMANDINFO   lpcmi
 )
 {
-	return SmartXXX(
-    aTarget, 
-    lpcmi, 
+  return SmartXXX(
+    aTarget,
+    lpcmi,
     IDS_STRING_ProgressCreatingSmartCopy,
     eTopMenuSmartCopy,
     IDS_STRING_ErrExplorerCanNotCreateSmartMirror,
@@ -3110,9 +3091,9 @@ ReplaceJunction(
   wchar_t*  aTarget
 )
 {
-	DWORD RetVal = ERROR_SUCCESS;
+  DWORD RetVal = ERROR_SUCCESS;
   BOOL bRemoveDir = FALSE;
-	
+
   // If we are not in BackupMode, then delete the directory, otherwise do this elevated
   // because we have to read existing attributes of aSource.
   if (!(gLSESettings.GetFlags() & eBackupMode))
@@ -3122,80 +3103,80 @@ ReplaceJunction(
   if (UAC_OUTPROC)
 #else
   // With Vista & W7, we are not allowed to operate on Junctions in folders like
-	// c:\Program Files (x86) without UAC, so in this very case the modification
-	// of Junctions has to be relayed to an elevated .exe as done with Symbolic links
-	if (FALSE == bRemoveDir)
+  // c:\Program Files (x86) without UAC, so in this very case the modification
+  // of Junctions has to be relayed to an elevated .exe as done with Symbolic links
+  if (FALSE == bRemoveDir)
 #endif
-	{
+  {
 #if defined UAC_FORCE
     if (UAC_OUTPROC)
 #else
     if (ElevationNeeded() || (gLSESettings.GetFlags() & eBackupMode))
 #endif
     {
-      wchar_t sla_quoted[HUGE_PATH];
-      wchar_t curdir[HUGE_PATH];	
-      FILE* JunctionArgs = OpenFileForExeHelper(curdir, sla_quoted);
+      UACHelper uacHelper;
+      uacHelper.Open();
 
-			// Write the command file, which is read by the elevated process
-      WriteUACHelperArgs(JunctionArgs, 'l', aSource, aTarget);
-			fclose(JunctionArgs);
+      // Write the command file, which is read by the elevated process
+      uacHelper.WriteArgs('l', aSource, aTarget);
+      uacHelper.Close();
 
-			RetVal = ForkExeHelper(curdir, sla_quoted);
-		}
-		else
-		{
-			// return the error code of RemoveDir()
-			RetVal = GetLastError();
-		}
-	}
-	else
-	{
-		RetVal = CreateJunction(aSource, aTarget);
-	}
+      RetVal = uacHelper.Fork();
+    }
+    else
+    {
+      // return the error code of RemoveDir()
+      RetVal = GetLastError();
+    }
+  }
+  else
+  {
+    RetVal = CreateJunction(aSource, aTarget);
+  }
 
   return RetVal;
 }
+
 HRESULT 
 HardLinkExt::
 DropReplaceJunction(
 	Target&		aTarget
 )
 {
-	PathAddBackslash(aTarget.m_Path);
+  PathAddBackslash(aTarget.m_Path);
 
-	if (!m_nTargets)
-		ClipboardToSelection(false);
+  if (!m_nTargets)
+    ClipboardToSelection(false);
 
-	DWORD RetVal = ERROR_SUCCESS;
-  if (m_pTargets[0].m_Flags & (eDir|eJunction|eVolume|eMountPoint))
-	{
-		WCHAR	SourceNoJunction[HUGE_PATH];
+  DWORD RetVal = ERROR_SUCCESS;
+  if (m_pTargets[0].m_Flags & (eDir | eJunction | eVolume | eMountPoint))
+  {
+    WCHAR	SourceNoJunction[HUGE_PATH];
 
-		ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction, HUGE_PATH);
-		PathAddBackslash(SourceNoJunction);
-		if (StrStrI(aTarget.m_Path, SourceNoJunction))
-		{
-			ErrorCreating(aTarget.m_Path, 
-				IDS_STRING_ErrExplorerCanNotCreateJunction, 
-				IDS_STRING_ErrCreatingJunction,
-				IDS_STRING_ErrDestSrcCircular
-			);
-		}
-		else
-		{
-	    HTRACE(L"LSE::DropReplaceJunction: '%s' -> '%s', %ld\n", aTarget.m_Path, m_pTargets[0].m_Path, m_pTargets[0].m_Flags);
+    ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction, HUGE_PATH);
+    PathAddBackslash(SourceNoJunction);
+    if (StrStrI(aTarget.m_Path, SourceNoJunction))
+    {
+      ErrorCreating(aTarget.m_Path,
+        IDS_STRING_ErrExplorerCanNotCreateJunction,
+        IDS_STRING_ErrCreatingJunction,
+        IDS_STRING_ErrDestSrcCircular
+      );
+    }
+    else
+    {
+      HTRACE(L"LSE::DropReplaceJunction: '%s' -> '%s', %ld\n", aTarget.m_Path, m_pTargets[0].m_Path, m_pTargets[0].m_Flags);
       RetVal = ReplaceJunction(aTarget.m_Path, m_pTargets[0].m_Path);
-	    if (S_OK != RetVal)
-				ErrorFromSystem(RetVal);
-		}
-			
-	}
-	// If files were selected aside directories or junction
-	// create hardlinks for the files
-	// if (m_pTargets[i].m_Flags & eFile)
-	// 	CreateHardlink(m_pTargets[i].m_Path, dest);
-	return NOERROR;
+      if (S_OK != RetVal)
+        ErrorFromSystem(RetVal);
+    }
+
+  }
+  // If files were selected aside directories or junction
+  // create hardlinks for the files
+  // if (m_pTargets[i].m_Flags & eFile)
+  // 	CreateHardlink(m_pTargets[i].m_Path, dest);
+  return NOERROR;
 }
 
 int
@@ -3234,32 +3215,31 @@ ReplaceSymbolicLink(
     (gLSESettings.GetFlags() & eBackupMode)
   )
 #endif
-	{
-    wchar_t sla_quoted[HUGE_PATH];
-    wchar_t curdir[HUGE_PATH];	
-    FILE* Arguments = OpenFileForExeHelper(curdir, sla_quoted);
+  {
+    UACHelper uacHelper;
+    uacHelper.Open();
 
     if (Attribs & FILE_ATTRIBUTE_DIRECTORY)
     {
-		  // Write the command file, which is read by the elevated process
+      // Write the command file, which is read by the elevated process
       if (SYMLINK_FLAG_RELATIVE == SymbolicLinkRelation)
-        WriteUACHelperArgs(Arguments, 'e', aSource, aTarget);
+        uacHelper.WriteArgs('e', aSource, aTarget);
       else
-        WriteUACHelperArgs(Arguments, 'E', aSource, aTarget);
+        uacHelper.WriteArgs('E', aSource, aTarget);
     }
     else
     {
       PathRemoveBackslash(aSource);
       if (SYMLINK_FLAG_RELATIVE == SymbolicLinkRelation)
-        WriteUACHelperArgs(Arguments, 'g', aSource, aTarget);
+        uacHelper.WriteArgs('g', aSource, aTarget);
       else
-        WriteUACHelperArgs(Arguments, 'G', aSource, aTarget);
+        uacHelper.WriteArgs('G', aSource, aTarget);
     }
 
-    fclose(Arguments);
+    uacHelper.Close();
 
-		RetVal = ForkExeHelper(curdir, sla_quoted);
-	}
+    RetVal = uacHelper.Fork();
+  }
   else
   {
     // Used when UAC is switched off thus making it possible to call CreateSymboliclink directly from explorer
@@ -3267,17 +3247,17 @@ ReplaceSymbolicLink(
     if (Attribs & FILE_ATTRIBUTE_DIRECTORY)
     {
       RemoveDirectory(aSource);
-      RetVal = CreateSymboliclink(aSource,  
-        aTarget, 
+      RetVal = CreateSymboliclink(aSource,
+        aTarget,
         SymbolicLinkRelation | SYMLINK_FLAG_DIRECTORY
       );
     }
     else
     {
       DeleteFile(aSource);
-      RetVal = CreateSymboliclink(aSource,  
+      RetVal = CreateSymboliclink(aSource,
         aTarget,
-        SymbolicLinkRelation 
+        SymbolicLinkRelation
       );
     }
   }
@@ -3292,68 +3272,67 @@ DropReplaceSymbolicLink(
   LPCMINVOKECOMMANDINFO   lpcmi
 )
 {
-	PathAddBackslash(aTarget.m_Path);
+  PathAddBackslash(aTarget.m_Path);
 
   if (!m_nTargets)
-		ClipboardToSelection(false);
+    ClipboardToSelection(false);
 
-	WCHAR	PurePath[HUGE_PATH];
+  WCHAR	PurePath[HUGE_PATH];
 
-	ReparseCanonicalize(m_pTargets[0].m_Path, PurePath, HUGE_PATH);
-	PathAddBackslash(PurePath);
-	if (StrStrI(aTarget.m_Path, PurePath))
-	{
-		ErrorCreating(aTarget.m_Path, 
-			IDS_STRING_ErrExplorerCanNotCreateMountpoint, 
-			IDS_STRING_ErrCreatingMountpoint,
-			IDS_STRING_ErrDestSrcCircular
-		);
-	}
-	else
-	{
+  ReparseCanonicalize(m_pTargets[0].m_Path, PurePath, HUGE_PATH);
+  PathAddBackslash(PurePath);
+  if (StrStrI(aTarget.m_Path, PurePath))
+  {
+    ErrorCreating(aTarget.m_Path,
+      IDS_STRING_ErrExplorerCanNotCreateMountpoint,
+      IDS_STRING_ErrCreatingMountpoint,
+      IDS_STRING_ErrDestSrcCircular
+    );
+  }
+  else
+  {
     DWORD RetVal = ReplaceSymbolicLink(aTarget.m_Path, m_pTargets[0].m_Path, false);
     if (S_OK != RetVal)
-			ErrorFromSystem(RetVal);
-	}
+      ErrorFromSystem(RetVal);
+  }
   return NOERROR;
 }
 
 
-int 
+int
 ReplaceMountPoint(
   wchar_t*  aTarget,
   wchar_t*  aSource
 )
 {
-	DWORD RetVal = ERROR_SUCCESS;
+  DWORD RetVal = ERROR_SUCCESS;
   BOOL bRemoveDir = FALSE;
-	
+
 #if defined UAC_FORCE
   if (UAC_OUTPROC)
 #else
   // With Windows7 elevation is needed to unmount a drive. Furthermore when in 
   // Backup Mode we also have to elevate
-	if (ElevationNeeded() || (gLSESettings.GetFlags() & eBackupMode))
+  if (ElevationNeeded() || (gLSESettings.GetFlags() & eBackupMode))
 #endif
-	{
-    wchar_t sla_quoted[HUGE_PATH];
-    wchar_t curdir[HUGE_PATH];	
-    FILE* Arguments = OpenFileForExeHelper(curdir, sla_quoted);
+  {
+    UACHelper uacHelper;
+    uacHelper.Open();
 
-		// Write the command file, which is read by the elevated process
-    WriteUACHelperArgs(Arguments, 'o', aSource, aTarget);
-    fclose(Arguments);
+    // Write the command file, which is read by the elevated process
+    uacHelper.WriteArgs('o', aSource, aTarget);
+    uacHelper.Close();
 
-		RetVal = ForkExeHelper(curdir, sla_quoted);
-	}
+    RetVal = uacHelper.Fork();
+  }
   else
   {
-		RetVal = ::DeleteMountPoint(aTarget);
+    RetVal = ::DeleteMountPoint(aTarget);
     RemoveDirectory(aTarget);
-		if (S_OK == RetVal)
+    if (S_OK == RetVal)
     {
       CreateDirectory(aTarget, NULL);
-		  RetVal = CreateMountPoint(aSource, aTarget);
+      RetVal = CreateMountPoint(aSource, aTarget);
     }
   }
 
@@ -3364,39 +3343,39 @@ ReplaceMountPoint(
 HRESULT
 HardLinkExt::
 DropReplaceMountPoint(
-	Target&		              aTarget,
+  Target&		              aTarget,
   LPCMINVOKECOMMANDINFO   lpcmi
 )
 {
-	PathAddBackslash(aTarget.m_Path);
+  PathAddBackslash(aTarget.m_Path);
 
-	if (!m_nTargets)
-		ClipboardToSelection(false);
+  if (!m_nTargets)
+    ClipboardToSelection(false);
 
-	if (m_pTargets[0].m_Flags & eVolume)
-	{
-		WCHAR	PurePath[HUGE_PATH];
+  if (m_pTargets[0].m_Flags & eVolume)
+  {
+    WCHAR	PurePath[HUGE_PATH];
 
-		ReparseCanonicalize(m_pTargets[0].m_Path, PurePath, HUGE_PATH);
-		PathAddBackslash(PurePath);
-		if (StrStrI(aTarget.m_Path, PurePath))
-		{
-			ErrorCreating(aTarget.m_Path, 
-				IDS_STRING_ErrExplorerCanNotCreateMountpoint, 
-				IDS_STRING_ErrCreatingMountpoint,
-				IDS_STRING_ErrDestSrcCircular
-			);
-		}
-		else
-		{
-	    HTRACE(L"LSE::DropReplaceMountPoint: '%s' -> '%s', %ld\n", aTarget.m_Path, m_pTargets[0].m_Path, m_pTargets[0].m_Flags);
-			
-			DWORD RetVal;
+    ReparseCanonicalize(m_pTargets[0].m_Path, PurePath, HUGE_PATH);
+    PathAddBackslash(PurePath);
+    if (StrStrI(aTarget.m_Path, PurePath))
+    {
+      ErrorCreating(aTarget.m_Path,
+        IDS_STRING_ErrExplorerCanNotCreateMountpoint,
+        IDS_STRING_ErrCreatingMountpoint,
+        IDS_STRING_ErrDestSrcCircular
+      );
+    }
+    else
+    {
+      HTRACE(L"LSE::DropReplaceMountPoint: '%s' -> '%s', %ld\n", aTarget.m_Path, m_pTargets[0].m_Path, m_pTargets[0].m_Flags);
+
+      DWORD RetVal;
       RetVal = ReplaceMountPoint(aTarget.m_Path, m_pTargets[0].m_Path);
-	    if (S_OK != RetVal)
-				ErrorFromSystem(RetVal);
-		}
-	}
+      if (S_OK != RetVal)
+        ErrorFromSystem(RetVal);
+    }
+  }
   return NOERROR;
 }
 
@@ -3481,21 +3460,21 @@ DropDeloreanCopy(
     // First search all the files, which are about to be copied
     for (ULONG i = 0; i < m_nTargets; i++)
     {
-    	_ArgvPath Backup0Path;
-    	_ArgvPath MirrorPath;
+      _ArgvPath Backup0Path;
+      _ArgvPath MirrorPath;
 
       // Create a filename in 'dest' according to the 
       // e.g 'Hardlink(n) of' syntax
-		  wchar_t		dp[MAX_PATH];
-		  wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
+      wchar_t		dp[MAX_PATH];
+      wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
 
       wcscpy_s(Backup0, HUGE_PATH, PATH_PARSE_SWITCHOFF);
       wcscpy_s(Backup1, HUGE_PATH, PATH_PARSE_SWITCHOFF);
       CreateTimeStampedFileName(
-        aTarget.m_Path, 
-        &Backup0[PATH_PARSE_SWITCHOFF_SIZE], 
-        &Backup1[PATH_PARSE_SWITCHOFF_SIZE], 
-        pFilename, 
+        aTarget.m_Path,
+        &Backup0[PATH_PARSE_SWITCHOFF_SIZE],
+        &Backup1[PATH_PARSE_SWITCHOFF_SIZE],
+        pFilename,
         &aStats.m_StartTime
       );
 
@@ -3617,41 +3596,41 @@ DropDeloreanCopy(
       int ProgessbarVisible = pProgressbar->GetWindowPos(ProgressbarPosition);
 
       // Create File
-      wchar_t sla_quoted[HUGE_PATH];
-      wchar_t curdir[HUGE_PATH];	
-      FILE* SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
+      UACHelper uacHelper;
+      uacHelper.Open();
 
       if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
         // Delorean Copy
-        WriteUACHelperArgs(SmartCopyArgs, 'v', L"not used", L"not used");
+        uacHelper.WriteArgs('v', L"not used", L"not used");
       else
         // SmartCopy
-        WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+        uacHelper.WriteArgs('s', L"not used", L"not used");
 
       // persist CloneList
       CloneList.SetAnchorPath(Backup0PathList);
-      CloneList.Save(SmartCopyArgs);
+      CloneList.Save(uacHelper.File());
 		  
       // Save the position of the progress bar
       if (!ProgessbarVisible)
         ProgressbarPosition.left = -1;
         
-      fwprintf(SmartCopyArgs, L"%x,%x,%x,%x\n", 0, 0, 0, 0);
+      RECT ProgressBarPosition;
+      uacHelper.SaveProgressbarPosition(ProgressBarPosition);
 
       // If we are going for the smartmirror, we have to save this
       if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
       {
         MirrorList.SetAnchorPath(MirrorPathList);
-        MirrorList.Save(SmartCopyArgs);
-        fwprintf(SmartCopyArgs, L"%s\n", Backup1);
+        MirrorList.Save(uacHelper.File());
+        fwprintf(uacHelper.File(), L"%s\n", Backup1);
       }
       delete pProgressbar;
 
       MirrorList.StopLogging(LogFile);
-      fclose(SmartCopyArgs);
+      uacHelper.Close();
 
       // Fork Process
-      DWORD r = ForkExeHelper(curdir, sla_quoted);
+      DWORD r = uacHelper.Fork();
     }
     else // if (gLSESettings.GetFlags() & eBackupMode)
     {
@@ -3764,7 +3743,7 @@ DropDeloreanCopy(
           
           // TODO Das Positionieren des Progressbars funktioniert nicht mehr im LSEUacHelper.exe
 
-          // TODO Das Mirror & Delorean mit Backup Mode geht überhaupt nicht mehr. Es wird zwar das symlink.args geschrieben
+          // TODO Das Mirror & Delorean mit Backup Mode geht überhaupt nicht mehr. Es wird zwar das uachelper.args geschrieben
           // aber danach tut sich nix mehr.
 
           // Stop bar
@@ -3773,35 +3752,34 @@ DropDeloreanCopy(
           int ProgessbarVisible = pProgressbar->GetWindowPos(ProgressbarPosition);
 
           // Create File
-          wchar_t sla_quoted[HUGE_PATH];
-          wchar_t curdir[HUGE_PATH];	
-          FILE* SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
+          UACHelper uacHelper;
+          uacHelper.Open();
 
           if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
             // Delorean Copy
-            WriteUACHelperArgs(SmartCopyArgs, 'v', L"not used", L"not used");
+            uacHelper.WriteArgs('v', L"not used", L"not used");
           else
             // SmartCopy
-            WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+            uacHelper.WriteArgs('s', L"not used", L"not used");
 
           // persist CloneList
-          CloneList.Save(SmartCopyArgs);
+          CloneList.Save(uacHelper.File());
   			  
           // Save the position of the progress bar
           if (!ProgessbarVisible)
             ProgressbarPosition.left = -1;
             
-          fwprintf(SmartCopyArgs, L"%x,%x,%x,%x\n", ProgressbarPosition.left, ProgressbarPosition.top, ProgressbarPosition.right, ProgressbarPosition.bottom);
+          uacHelper.SaveProgressbarPosition(ProgressbarPosition);
 
           // If we are going for the smartmirror, we have to save this
           if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
           {
-            MirrorList.Save(SmartCopyArgs);
-            fwprintf(SmartCopyArgs, L"%s\n", Backup1);
+            MirrorList.Save(uacHelper.File());
+            fwprintf(uacHelper.File(), L"%s\n", Backup1);
           }
           delete pProgressbar;
 
-          fclose(SmartCopyArgs);
+          uacHelper.Close();
           MirrorList.StopLogging(LogFile);
 
   #if 0 // DEBUG_DEFINES
@@ -3821,8 +3799,8 @@ DropDeloreanCopy(
           // Then write the content again to a file, and compare the first and second file.
           // If they are equal everything is fine
           //
-          SmartCopyArgs = OpenFileForExeHelper(curdir, sla_quoted);
-          WriteUACHelperArgs(SmartCopyArgs, 's', L"not used", L"not used");
+          SmartCopyArgs = Open(curdir, sla_quoted);
+          WriteArgs(SmartCopyArgs, 's', L"not used", L"not used");
           FileList2.Save(SmartCopyArgs);
           fclose(SmartCopyArgs);
   #endif
@@ -3831,7 +3809,7 @@ DropDeloreanCopy(
           if (MirrorContext.IsRunning())
           {
             // Fork Process
-            DWORD r = ForkExeHelper(curdir, sla_quoted);
+            DWORD r = uacHelper.Fork();
           }
         }
         else // if DO ELEVATE
@@ -3951,28 +3929,28 @@ ErrorCreating(
 	int			aReason
 )
 {
-	// Assemble message string
-	wchar_t *pMsgTxt = GetFormattedMlgMessage(g_hInstance, gLSESettings.GetLanguageID(), aMessage, aDirectory);
+  // Assemble message string
+  wchar_t *pMsgTxt = GetFormattedMlgMessage(g_hInstance, gLSESettings.GetLanguageID(), aMessage, aDirectory);
 
-	wchar_t	MsgCaption[MAX_PATH];
-	LoadStringEx(g_hInstance, aCaption, MsgCaption, MAX_PATH, gLSESettings.GetLanguageID());
+  wchar_t	MsgCaption[MAX_PATH];
+  LoadStringEx(g_hInstance, aCaption, MsgCaption, MAX_PATH, gLSESettings.GetLanguageID());
 
-	wchar_t	MsgReason[MAX_PATH];
-	if (aReason)
+  wchar_t	MsgReason[MAX_PATH];
+  if (aReason)
     LoadStringEx(g_hInstance, aReason, MsgReason, MAX_PATH, gLSESettings.GetLanguageID());
   else
     MsgReason[0] = 0x00;
 
-	// Concat Message + Reason
-	wchar_t msg[HUGE_PATH];
-	wcscpy_s(msg, HUGE_PATH, pMsgTxt);
-	wcscat_s(msg, HUGE_PATH, MsgReason);
+  // Concat Message + Reason
+  wchar_t msg[HUGE_PATH];
+  wcscpy_s(msg, HUGE_PATH, pMsgTxt);
+  wcscat_s(msg, HUGE_PATH, MsgReason);
 
-	int mr = MessageBox ( NULL, 
-		msg,
-		MsgCaption,
-		MB_ICONERROR );
-	LocalFree(pMsgTxt);
+  int mr = MessageBox(NULL,
+    msg,
+    MsgCaption,
+    MB_ICONERROR);
+  LocalFree(pMsgTxt);
 }
 
 void
@@ -3980,79 +3958,79 @@ ErrorFromSystem(
 	DWORD	aErrorCode
 )
 {
-	if (aErrorCode > ERROR_SUCCESS )
-	{
-  	wchar_t	FullMsg[MAX_PATH];
+  if (aErrorCode > ERROR_SUCCESS)
+  {
+    wchar_t	FullMsg[MAX_PATH];
 
     // Try to use the built in error system to generate a readable message
     LPTSTR SysErrMsg;
-		DWORD rFM = ::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, 
-			NULL, aErrorCode, 0, (LPTSTR)&SysErrMsg, 0, NULL
-		);
-		if (rFM == 0)
-		{
-			// it failed, because e.g the error code was not supported
+    DWORD rFM = ::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+      NULL, aErrorCode, 0, (LPTSTR)&SysErrMsg, 0, NULL
+    );
+    if (rFM == 0)
+    {
+      // it failed, because e.g the error code was not supported
       wsprintf(FullMsg, L"Link Shell Extension: Operation failed with System Error Code %d", aErrorCode);
-			int mr = MessageBox ( NULL, 
-				FullMsg,
-				L"Link Shell Extension",
-				MB_ICONERROR );
-		}
-		else
-		{
-			// FormatMessage worked and produced a proper string
+      int mr = MessageBox(NULL,
+        FullMsg,
+        L"Link Shell Extension",
+        MB_ICONERROR);
+    }
+    else
+    {
+      // FormatMessage worked and produced a proper string
       wsprintf(FullMsg, L"Link Shell Extension: (%d) %s", aErrorCode, SysErrMsg);
-			int mr = MessageBox ( NULL, 
-				FullMsg,
-				L"Link Shell Extension",
-				MB_ICONERROR );
-		}
-	}
+      int mr = MessageBox(NULL,
+        FullMsg,
+        L"Link Shell Extension",
+        MB_ICONERROR);
+    }
+  }
 }
 
 
 wchar_t*
 HardLinkExt::
 DrivePrefix(
-	wchar_t*	aSource,
+	const wchar_t*	aSource,
 	wchar_t*	aDrivePrefix
 )
 {
-	wchar_t*	pFilename;
+  wchar_t*	pFilename;
 
-	if (PathIsRoot(aSource) && !PathIsUNC(aSource)) // PathIsNetworkPath()
-	{
+  if (PathIsRoot(aSource) && !PathIsUNC(aSource)) // PathIsNetworkPath()
+  {
     wchar_t	lpVolumeNameBuffer[MAX_PATH] = { 0x00 };
-		DWORD lpVolumeSerialNumber;
-		DWORD lpMaximumComponentLength;
-		DWORD lpFileSystemFlags;
-		wchar_t	lpFileSystemNameBuffer[MAX_PATH];
+    DWORD lpVolumeSerialNumber;
+    DWORD lpMaximumComponentLength;
+    DWORD lpFileSystemFlags;
+    wchar_t	lpFileSystemNameBuffer[MAX_PATH];
 
-		GetVolumeInformation(
-			aSource,
-			lpVolumeNameBuffer,
-			MAX_PATH,
-			&lpVolumeSerialNumber,
-			&lpMaximumComponentLength,
-			&lpFileSystemFlags,
-			lpFileSystemNameBuffer,
-			MAX_PATH
-		);
+    GetVolumeInformation(
+      aSource,
+      lpVolumeNameBuffer,
+      MAX_PATH,
+      &lpVolumeSerialNumber,
+      &lpMaximumComponentLength,
+      &lpFileSystemFlags,
+      lpFileSystemNameBuffer,
+      MAX_PATH
+    );
 
     if (lpVolumeNameBuffer[0] == '\0')
       LoadStringEx(g_hInstance, IDS_STRING_DrivePrefix, lpVolumeNameBuffer, MAX_PATH, gLSESettings.GetLanguageID());
 
-		wcscpy(aDrivePrefix, lpVolumeNameBuffer);
-		wcscat(aDrivePrefix, L" (_");
-		size_t l = wcslen(aDrivePrefix);
-		aDrivePrefix[l - 1] = aSource[0];
-		wcscat(aDrivePrefix, L")");
+    wcscpy(aDrivePrefix, lpVolumeNameBuffer);
+    wcscat(aDrivePrefix, L" (_");
+    size_t l = wcslen(aDrivePrefix);
+    aDrivePrefix[l - 1] = aSource[0];
+    wcscat(aDrivePrefix, L")");
 
-		pFilename = aDrivePrefix;
-	}
-	else
-		pFilename = PathFindFileName(aSource);
+    pFilename = aDrivePrefix;
+  }
+  else
+    pFilename = PathFindFileName(aSource);
 
-	return pFilename;
+  return pFilename;
 }
 

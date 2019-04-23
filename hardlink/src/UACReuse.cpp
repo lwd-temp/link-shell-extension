@@ -179,42 +179,39 @@ DisposeAsync(
 
 extern HINSTANCE g_hInstance;
 
-FILE*
-OpenFileForExeHelper(
-  wchar_t* curdir,
-  wchar_t* sla_quoted
+void 
+UACHelper::Open(
 )
 {
   // Get the current path of extension installation
-  wchar_t* sla = &sla_quoted[1];
-  sla_quoted[0] = '\"';
+  m_SlaQuoted = '\"';
 
-  GetTempPath(HUGE_PATH, curdir);
-  wcscpy(sla, curdir);
-  wcscat(sla, UACHELPERARGS);
+  wchar_t currentDir[MAX_PATH];
+  GetTempPath(MAX_PATH, currentDir);
+  m_CurrentDir = currentDir;
+
+  m_SlaQuoted += m_CurrentDir + UACHELPERARGS;
 
   // Write the file for the args
 #if defined _DEBUG
-  DeleteFile(sla);
+  DeleteFile(&m_SlaQuoted.c_str()[1]);
 #endif
 
-  return _wfopen(sla, L"wb");
+  _wfopen_s(&m_UacArgs, &m_SlaQuoted.c_str()[1], L"wb");
 }
 
 
 int
-ForkExeHelper(
-  wchar_t*	curdir,
-  wchar_t*	sla_quoted
+UACHelper::Fork(
 )
 {
-  // TODO: Das Übergabefile sollte nicht nur einen Namen haben, weil auch mehere Instanzen der LSE laufen können
-  wchar_t symlinkexe[HUGE_PATH];
-  GetModuleFileNameW(g_hInstance, symlinkexe, HUGE_PATH);
-  PathRemoveFileSpec(symlinkexe);
+  // TODO: Das Übergabefile sollte nicht nur einen Namen haben, weil auch mehrere Instanzen der LSE laufen können
+  wchar_t uachelper[MAX_PATH];
+  GetModuleFileNameW(g_hInstance, uachelper, MAX_PATH);
+  PathRemoveFileSpec(uachelper);
 
-  wcscat(symlinkexe, L"\\LSEUacHelper.exe");
-  wcscat(sla_quoted, L"\"");
+  wcscat_s(uachelper, MAX_PATH, L"\\LSEUacHelper.exe");
+  m_SlaQuoted += L"\"";
 
   // Start the process
   SHELLEXECUTEINFO se;
@@ -223,9 +220,9 @@ ForkExeHelper(
   se.cbSize = sizeof(SHELLEXECUTEINFO);
   se.fMask = SEE_MASK_NOCLOSEPROCESS;
   se.lpVerb = NULL;
-  se.lpFile = symlinkexe;
-  se.lpParameters = sla_quoted;
-  se.lpDirectory = curdir;
+  se.lpFile = uachelper;
+  se.lpParameters = m_SlaQuoted.c_str();
+  se.lpDirectory = m_CurrentDir.c_str();
   se.nShow = SW_HIDE;
   ShellExecuteEx(&se);
 
@@ -239,31 +236,37 @@ ForkExeHelper(
   // Delete the tmp files afterwards
 
 #if !defined DEBUG_DO_NOT_DELETE_SYMLINKS_ARGS
-  sla_quoted[wcslen(sla_quoted) - 1] = 0x00;
-  DeleteFile(&sla_quoted[1]);
+  m_SlaQuoted.erase(m_SlaQuoted.size() - 1);
+  DeleteFile(&m_SlaQuoted.c_str()[1]);
 #endif
 #endif
-  HTRACE(L"%s\n", &sla_quoted[1]);
+  HTRACE(L"%s\n", &m_SlaQuoted.c_str()[1]);
 
   return ExitCode;
 }
 
-void WriteUACHelperArgs(
-  FILE*           aArgsFile,
+void UACHelper::WriteArgs(
   const wchar_t   aFunction,
   const wchar_t*  aArgument1,
   const wchar_t*  aArgument2
 )
 {
-  fwprintf(aArgsFile, L"-%c \"%s\" \"%s\"\n", aFunction, aArgument1, aArgument2);
+  fwprintf(m_UacArgs, L"-%c \"%s\" \"%s\"\n", aFunction, aArgument1, aArgument2);
 
   // Save the SID under which we are running. 
   // Since we raise UAC via LSEUacHelper.exe, it runs as admin user, which has a different SID, 
   // so we need the current SID in symlink, because there we need to read the settings from current user
   wchar_t*  currentSid;
   bool bSidValid = GetCurrentSid(&currentSid);
-  fwprintf(aArgsFile, L"%s\n", currentSid);
+  fwprintf(m_UacArgs, L"%s\n", currentSid);
   LocalFree(currentSid);
+}
+
+void UACHelper::SaveProgressbarPosition(
+  RECT& a_ProgressbarPosition
+)
+{
+  fwprintf(m_UacArgs, L"%x,%x,%x,%x\n", a_ProgressbarPosition.left, a_ProgressbarPosition.top, a_ProgressbarPosition.right, a_ProgressbarPosition.bottom);
 }
 
 

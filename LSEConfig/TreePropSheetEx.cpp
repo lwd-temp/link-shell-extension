@@ -689,14 +689,13 @@ void CTreePropSheetEx::RebootExplorer()
 {
   if (TheRebootExplorer)
   {
-    wchar_t sla_quoted[HUGE_PATH];
-    wchar_t curdir[HUGE_PATH];
+    UACHelper uacHelper;
 
-    FILE* RebootArgs = OpenFileForExeHelper(curdir, sla_quoted);
-    WriteUACHelperArgs(RebootArgs, 'z', L"not used", L"not used");
-    fclose(RebootArgs);
+    uacHelper.Open();
+    uacHelper.WriteArgs('z', L"not used", L"not used");
+    uacHelper.Close();
 
-    DWORD r = ForkExeHelper(curdir, sla_quoted);
+    DWORD r = uacHelper.Fork();
 
     // Restart Explorer
     STARTUPINFO si;
