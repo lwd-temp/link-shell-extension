@@ -2446,8 +2446,7 @@ SmartMirror(
       if (!ProgessbarVisible)
         ProgressbarPosition.left = -1;
 
-      RECT ProgbarPos;
-      uacHelper.SaveProgressbarPosition(ProgbarPos);
+      uacHelper.SaveProgressbarPosition(ProgressbarPosition);
       uacHelper.Close();
       MirrorList.StopLogging(LogFile);
 
@@ -2834,8 +2833,6 @@ SmartXXX(
     if (gLSESettings.GetFlags() & eBackupMode)
     {
       
-      // TODO SmartCopy in Backup broken. It does nothing
-      
       // Stop bar
       RECT  ProgressbarPosition;
       ZeroMemory(&ProgressbarPosition, sizeof(RECT));
@@ -2865,8 +2862,7 @@ SmartXXX(
       if (!ProgessbarVisible)
         ProgressbarPosition.left = -1;
         
-      RECT progressbarPos;
-      uacHelper.SaveProgressbarPosition(progressbarPos);
+      uacHelper.SaveProgressbarPosition(ProgressbarPosition);
       uacHelper.Close();
       FileList.StopLogging(LogFile);
 
@@ -3614,8 +3610,7 @@ DropDeloreanCopy(
       if (!ProgessbarVisible)
         ProgressbarPosition.left = -1;
         
-      RECT ProgressBarPosition;
-      uacHelper.SaveProgressbarPosition(ProgressBarPosition);
+      uacHelper.SaveProgressbarPosition(ProgressbarPosition);
 
       // If we are going for the smartmirror, we have to save this
       if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
