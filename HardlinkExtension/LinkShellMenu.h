@@ -14,18 +14,6 @@ struct Target
 	ULONG		m_Flags;
 };
 
-FILE*
-OpenFileForExeHelper(
-  wchar_t* curdir, 
-  wchar_t* sla_quoted
-);
-
-int 
-ForkExeHelper(
-	wchar_t*	curdir,
-	wchar_t*	sla_quoted
-);
-
 void
 ErrorFromSystem(
 	DWORD	aErrorCode
@@ -134,8 +122,8 @@ private:
 	GetFileAttr(
 		Target&			aTarget,
 		ULONG&			aTargetsFlag,
-		bool			aIsNtfs
-	);
+    const bool  aIsNtfs
+  );
 
   void
   InsertCommand(
@@ -286,7 +274,7 @@ private:
 
 	wchar_t*
 	DrivePrefix(
-		wchar_t*	aPath,
+		const wchar_t*	aPath,
 		wchar_t*	aDrivePrefix
 	);
 };

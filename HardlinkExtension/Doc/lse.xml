@@ -7,6 +7,22 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.923 has been released.</title>
+      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <pubDate>Tue, 26 Apr 2019 20:00:15 +0100</pubDate>
+      <description>
+        LSE 3.923 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>Properties Dialog could cause a crash on changing junction targets</li>
+          <li>Autorename had a flaw when having more than 9 files with same name in a directory</li>
+        ]]>
+      </content:encoded>
+      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3923</guid>
+    </item>
+
+    <item>
       <title>LSE 3.922 has been released.</title>
       <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 14 Apr 2019 20:00:15 +0100</pubDate>

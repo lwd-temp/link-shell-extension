@@ -238,14 +238,6 @@
     <ResourceCompile Include="du.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\hardlink\hardlink.vcxproj">
-      <Project>{505c6720-9ea6-4292-bcd4-ec7f44478f76}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\Shared\tre-0.8.0\win32\tre.vcxproj">
-      <Project>{e3ca001d-6a3f-4a1e-8b5f-10899f7cad8d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

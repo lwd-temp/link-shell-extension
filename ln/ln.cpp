@@ -3704,25 +3704,6 @@ wmain(
     //
     if (AdsDev)
     {
-      _PathNameStatusList  pns;
-      BOOL bCancel = FALSE;
-      SECURITY_DESCRIPTOR SecDesc;
-      PSECURITY_DESCRIPTOR pSecDesc = &SecDesc;
-      int SecDescSize = sizeof(SECURITY_DESCRIPTOR);
-
-      int iResult = CopyFileEx3(
-        Argv1,
-        Argv2,
-        NULL, 
-        NULL,
-        &bCancel,
-        COPY_FILE_COPY_DIRECTORY | COPY_FILE_COPY_SACL | COPY_FILE_COPY_REPARSE_POINT | COPY_FILE_COPY_ACCESS_TIME | COPY_FILE_COPY_WRITE_TIME | COPY_FILE_COPY_CREATION_TIME,
-        &pSecDesc,
-        &SecDescSize,
-        0,
-        &pns
-      );
-
       Exit(1);
     }
 

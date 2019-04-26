@@ -598,9 +598,9 @@ ReplaceJunction(
   wchar_t*  arg1
 )
 {
-  SECURITY_DESCRIPTOR SecDesc;
-  PSECURITY_DESCRIPTOR pSecDesc = &SecDesc;
-  int SecDescSize = sizeof(SECURITY_DESCRIPTOR);
+  PSECURITY_DESCRIPTOR pSecDesc = nullptr;
+  int SecDescSize = 0;
+
   int iResult = ERROR_SUCCESS;
   wchar_t  JunctionTmpName[HUGE_PATH];
 
@@ -623,6 +623,9 @@ ReplaceJunction(
 
     if (FALSE == MoveFile(arg0, JunctionTmpName))
       iResult = GetLastError();
+
+    SecDescSize = sizeof(SECURITY_DESCRIPTOR);
+    pSecDesc = (PSECURITY_DESCRIPTOR)malloc(SecDescSize);
   }
   else
   {
@@ -637,6 +640,7 @@ ReplaceJunction(
 
     // In Backup Mode restore the permissions of the junction
     if (gLSESettings.GetFlags() & eBackupMode)
+    {
       if (ERROR_SUCCESS == iResult)
       {
         _PathNameStatusList  pns;
@@ -659,6 +663,9 @@ ReplaceJunction(
       {
         MoveFile(JunctionTmpName, arg0);
       }
+      if (pSecDesc)
+        free(pSecDesc);
+    }
   }
 
   return iResult;
@@ -671,9 +678,9 @@ ReplaceSymbolicLink(
   DWORD     dwFlags
 )
 {
-  SECURITY_DESCRIPTOR SecDesc;
-  PSECURITY_DESCRIPTOR pSecDesc = &SecDesc;
-  int SecDescSize = sizeof(SECURITY_DESCRIPTOR);
+  PSECURITY_DESCRIPTOR pSecDesc = nullptr;
+  int SecDescSize = 0;
+
   int iResult = ERROR_SUCCESS;
   wchar_t  SymlinkTmpName[HUGE_PATH];
 
@@ -696,6 +703,9 @@ ReplaceSymbolicLink(
 
     if (FALSE == MoveFile(arg0, SymlinkTmpName))
       iResult = GetLastError();
+
+    SecDescSize = sizeof(SECURITY_DESCRIPTOR);
+    pSecDesc = (PSECURITY_DESCRIPTOR)malloc(SecDescSize);
   }
   else
   {
@@ -768,6 +778,8 @@ ReplaceSymbolicLink(
       // Rolback
       MoveFile(SymlinkTmpName, arg0);
     }
+    if (pSecDesc)
+      free(pSecDesc);
   }
 
   return iResult;
@@ -779,9 +791,9 @@ ReplaceMountPoint(
   wchar_t*  arg0
 )
 {
-  SECURITY_DESCRIPTOR SecDesc;
-  PSECURITY_DESCRIPTOR pSecDesc = &SecDesc;
-  int SecDescSize = sizeof(SECURITY_DESCRIPTOR);
+  PSECURITY_DESCRIPTOR pSecDesc = nullptr;
+  int SecDescSize = 0;
+
   int iResult = ERROR_SUCCESS;
   wchar_t  MountPointTmpName[HUGE_PATH];
 
@@ -804,6 +816,9 @@ ReplaceMountPoint(
 
     if (FALSE == MoveFile(arg0, MountPointTmpName))
       iResult = GetLastError();
+
+    SecDescSize = sizeof(SECURITY_DESCRIPTOR);
+    pSecDesc = (PSECURITY_DESCRIPTOR)malloc(SecDescSize);
   }
   else
   {
@@ -844,6 +859,8 @@ ReplaceMountPoint(
       // Rolback
       MoveFile(MountPointTmpName, arg0);
     }
+    if (pSecDesc)
+      free(pSecDesc);
   }
   return iResult;
 }
@@ -999,7 +1016,6 @@ extern "C"
     }
 
 		InitCreateHardlink();
-    // TODO Move SupportedFileSystem also to LSESettings and rely on UserHive
     gLSESettings.ReadFileSystems();
 
 
