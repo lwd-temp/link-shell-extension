@@ -1795,7 +1795,8 @@ CreateFileName(
   {
     _Of		of;
 
-    do {
+    do 
+    {
       PWCHAR closepos = NULL;
       PWCHAR openpos = wcsstr(&wfind.cFileName[SearchOffset], L" (");
       if (openpos)
@@ -1812,7 +1813,9 @@ CreateFileName(
         // in a directory. This would push the number 2 two times on the _Of list, and later crash the sort
         size_t idx;
         size_t len = wcslen(openpos);
-        for ( idx = 0; (idx < len) && (openpos[idx] < '9') && (openpos[idx] > '0'); ++idx);
+        for (idx = 0; idx < len; ++idx)
+          if (openpos[idx] < '0' || openpos[idx] > '9')
+            break;
         if (len == idx)
         {
           int num = _wtoi(openpos);
@@ -7952,7 +7955,7 @@ CopyReparsePoints_Junction_SmartCopy(
   // to create dead junctions during smart copy
   if (INVALID_FILE_ATTRIBUTES != GetFileAttributes(a_pJunctionDestTarget))
   {
-    // CreateJunction implicetdly is long path safe so we use [PATH_PARSE_SWITCHOFF_SIZE]
+    // CreateJunction implicitly is long path safe so we use [PATH_PARSE_SWITCHOFF_SIZE]
     result = CreateJunction(a_pDestpath, &a_pJunctionDestTarget[PATH_PARSE_SWITCHOFF_SIZE]);
   }
   else
@@ -8151,7 +8154,7 @@ CopyReparsePoints(
           if (ERROR_SUCCESS == iResult)
           {
             // This is for WindowsXP only, because PathCanonicalize behaves differently on Windows7 and XP
-            // Windows7 cuts out a \\? prefixed path but XP generates does not which would result here in \\?\\?\ 
+            // Windows7 cuts out a \\? prefixed path, but XP does not which would result here in \\?\\?\ 
             int CanonPos = 0;
             if (IsVeryLongPath(ReparseSrcTargetFullPath))
               CanonPos = PATH_PARSE_SWITCHOFF_SIZE;
@@ -8245,6 +8248,8 @@ CopyReparsePoints(
 
           if (MultiSourcePath)
           {
+            // Inner Reparsepoints
+
             WCHAR	ReparseDestTarget[HUGE_PATH];
             wcscpy_s(ReparseDestTarget, HUGE_PATH, DestPath);
             wchar_t* pReparseSrcTarget = &ReparseSrcTarget[SourcePathLen];
@@ -8354,13 +8359,13 @@ CopyReparsePoints(
                     
                     // WindowsXP can not create dangling junctions. One would get 0x1128 as error code
                     // for illegal reparse data. So only for XP, we have to create the directory where the
-                    // junction points to, create the junction, and later on remove the whole tree
+                    // junction points to, create the junction and later on remove the whole tree
                     if (gVersionInfo.dwMajorVersion < 6)
                       rResult = CreateDirectoryHierarchy(ReparseDestTarget, wcslen(ReparseDestTarget));
 
                     if (ERROR_SUCCESS == rResult)
-                    // CreateJunction implictly is long path safe so we use [PATH_PARSE_SWITCHOFF_SIZE]
-                    result = CreateJunction(pF->m_FileName, &ReparseDestTarget[PATH_PARSE_SWITCHOFF_SIZE]);
+                      // CreateJunction implictly is long path safe so we use [PATH_PARSE_SWITCHOFF_SIZE]
+                      result = CreateJunction(pF->m_FileName, &ReparseDestTarget[PATH_PARSE_SWITCHOFF_SIZE]);
                   }
                   break;
 
@@ -8767,10 +8772,10 @@ CopyReparsePoints(
               int result = ERROR_SUCCESS;
               size_t SecurityResult = ERROR_SUCCESS;
 
-              // The coding below the case statements for REPARSE_POINT_MOUNTPOINT, REPARSE_POINT_JUNCTION and
+              // The coding below contains the case statements for REPARSE_POINT_MOUNTPOINT, REPARSE_POINT_JUNCTION and
               // REPARSE_POINT_SYMBOLICLINK is almost the same, but differs in some small details.
               // I didn't want to create one coding which has obfuscated if's in it, so I decided to 
-              // copy and paste and adapt for each type. It is more maintenance, but it is easier to 
+              // copy and paste and adapt for each type. It is more for maintenance and it is easier to 
               // understand and if neccessary can be changed for one type without creating sideeffect
               // for the other types. So this is intentional.
               switch (ReparsePointType)
