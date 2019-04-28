@@ -1016,6 +1016,7 @@ CreateContextMenu(
   else
   {
     // This clause expects just to offer *one* menue entry on the main drop down menue
+    nEntries = -1;
     if (m_DropTarget.m_Flags & eNTFS)
     {
       int TargetsFlag = m_bTargetsFlag & (eFile | eDir | eJunction | eVolume | eMountPoint | eSymbolicLink);
