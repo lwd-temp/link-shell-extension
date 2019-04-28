@@ -1,1 +1,1 @@
-!define LSE_VERSION "3.9.2.3"
+!define LSE_VERSION "3.9.2.4"

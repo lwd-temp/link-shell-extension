@@ -7,6 +7,21 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.924 has been released.</title>
+      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <pubDate>Tue, 28 Apr 2019 20:00:15 +0100</pubDate>
+      <description>
+        LSE 3.924 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>Cross Drive Drops didn't work. Introduced with 3921</li>
+        ]]>
+      </content:encoded>
+      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3924</guid>
+    </item>
+
+    <item>
       <title>LSE 3.923 has been released.</title>
       <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 26 Apr 2019 20:00:15 +0100</pubDate>
