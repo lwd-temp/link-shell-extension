@@ -504,6 +504,7 @@ BEGIN
     IDS_GROUPBOX_Miscellaneous "Разное"
     IDS_Customize           "Настроить"
     IDS_STATIC_Backup_Caption " Резервирование"
+    IDS_CHECK_Junction      "Узел"
 END
 
 #endif    // Russian (Russia) resources
@@ -524,58 +525,58 @@ LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
 
 STRINGTABLE
 BEGIN
-IDS_LinkShellExtConfig  "Link Shell Extension Configuration"
-IDS_SELECT_SUBPAGE      "Select a sub-page"
-IDS_ABOUTBOX            "&About"
+IDS_LinkShellExtConfig  "Налаштування Link Shell Extension"
+IDS_SELECT_SUBPAGE      "Оберіть сторінку"
+IDS_ABOUTBOX            "&Про..."
 END
 
 STRINGTABLE
 BEGIN
-IDS_CHECK_RemoteCapabilities "Remote Capabilities"
-IDS_CHECK_SmartMove     "Smart Move"
-IDS_RADIO_Absolute_Symbolic_Links "Absolute"
-IDS_RADIO_Relative_Symbolic_Links "Relative"
-IDS_STATIC_Symlink_Caption "Symbolic Link Creation"
-IDS_STATIC_Localisation "Localisation"
-IDS_STATIC_SelectLanguage "Select your language:"
-IDS_STATIC_Miscellaneous "Miscellaneous"
-IDS_RADIO_OuterJunctionCrop "Crop"
-IDS_RADIO_OuterJunctionUnroll "Unroll"
-IDS_RADIO_OuterJunctionSplice "Splice"
-IDS_STATIC_OuterReparse "Outer Junction/Symbolic Link"
-IDS_CHECK_Logging       "Logging"
-IDS_General             "General"
+IDS_CHECK_RemoteCapabilities "Віддалені можливості"
+IDS_CHECK_SmartMove     "Розумне перенесення"
+IDS_RADIO_Absolute_Symbolic_Links "Абсолютне"
+IDS_RADIO_Relative_Symbolic_Links "Відносне"
+IDS_STATIC_Symlink_Caption "Створювати символьне посилання"
+IDS_STATIC_Localisation "Локалізація"
+IDS_STATIC_SelectLanguage "Оберіть вашу мову:"
+IDS_STATIC_Miscellaneous "Різне"
+IDS_RADIO_OuterJunctionCrop "Ігнорувати/Crop"
+IDS_RADIO_OuterJunctionUnroll "Як файли/Unroll"
+IDS_RADIO_OuterJunctionSplice "Як посилання/Splice"
+IDS_STATIC_OuterReparse "Зовнішні з'єднання / символьні посилання"
+IDS_CHECK_Logging       "Вести журнал"
+IDS_General             "Загальні"
 END
 
 STRINGTABLE
 BEGIN
-IDS_CHECK_Hardlink_Overlay_Icon "Overlay icon for Hardlinks"
-IDS_STATIC_Hardlink_Overlay_Priority02 "Priority for overlay icon:"
-IDS_STATIC_Hardlink_Overlay_Priority03 "Icon"
-IDS_STATIC_Hardlink_Overlay_Priority01 "Priority"
-IDS_CHECK_Hardlink_Overlay_Path "Custom icon"
-IDS_BUTTON_Hardlink_Overlay_Path "Browse…"
-IDS_Icon_Hardlink       "Icon::Hardlink"
-IDS_CHECK_Junction_Overlay_Icon "Overlay icon for Junctions"
-IDS_Icon_Junction       "Icon::Junction"
+IDS_CHECK_Hardlink_Overlay_Icon "Значок накладання жорских посилань"
+IDS_STATIC_Hardlink_Overlay_Priority02 "Приоритет значка накладання:"
+IDS_STATIC_Hardlink_Overlay_Priority03 "Значок"
+IDS_STATIC_Hardlink_Overlay_Priority01 "Приоритет"
+IDS_CHECK_Hardlink_Overlay_Path "Довільний значок"
+IDS_BUTTON_Hardlink_Overlay_Path "Обрати…"
+IDS_Icon_Hardlink       "Значок::Жорстке посилання"
+IDS_CHECK_Junction_Overlay_Icon "Значок накладання з'єднань"
+IDS_Icon_Junction       "Значок::З'єднання"
 END
 
 STRINGTABLE
 BEGIN
-IDS_CHECK_Symboliclink_Overlay_Icon "Overlay icon for Symbolic Links"
-IDS_Icon_Symboliclink   "Icon::Symbolic Link"
+IDS_CHECK_Symboliclink_Overlay_Icon "Значок накладання символьних посилань"
+IDS_Icon_Symboliclink   "Значок::Символьне посилання"
 END
 
 STRINGTABLE
 BEGIN
-IDS_CHECK_DeloreanCopy  "DeloreanCopy"
-IDS_CHECK_SmartMirror   "Smart Mirror"
-IDS_CHECK_ExtendedMenue "Extended Menue"
-IDS_CHECK_BackupMode    "Backup"
-IDS_GROUPBOX_Miscellaneous "Miscellaneous"
-IDS_Customize           "Customize"
-IDS_STATIC_Backup_Caption "Copy Mode"
-IDS_CHECK_Junction      "Junction"
+IDS_CHECK_DeloreanCopy  "Копія Delorean"
+IDS_CHECK_SmartMirror   "Розумне відзеркалення"
+IDS_CHECK_ExtendedMenue "Розширене меню"
+IDS_CHECK_BackupMode    "Резервування"
+IDS_GROUPBOX_Miscellaneous "Різне"
+IDS_Customize           "Налаштування"
+IDS_STATIC_Backup_Caption "Режим копіювання"
+IDS_CHECK_Junction      "З'єднання"
 END
 
 
