@@ -3134,9 +3134,9 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "Espelho Inteligente"
     IDS_STRING_eMenuDeloreanCopy "Cópia DeLorean"
     IDS_STRING_eMenuCreateMountPoint "Ponto de &Montajem"
-    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-    IDS_STRING_eMenuCopyJunction "Junction Copy"
-    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuCopySymbolicLink "Cópia de Vínculo Simbólico"
+    IDS_STRING_eMenuCopyJunction "Cópia de Junção"
+    IDS_STRING_eMenuCopyMountpoint "Cópia de Ponto de Montagem de Volume"
     IDS_STRING_eMenuDropeAs "So&ltar como…"
     IDS_STRING_eMenuDropHardlink "Soltar &Hardlink"
     IDS_STRING_eMenuDropHardLinkClone "Soltar &Clone de Hardlink"
@@ -3185,6 +3185,8 @@ BEGIN
                             "Criar Ponto de Montagem de Substituição aqui"
     IDS_STRING_eMenuDropSmartMirror1 "Criar Espelho Inteligente aqui"
     IDS_STRING_eMenuDropDeloreanCopy1 "Criar Cópia DeLorean aqui"
+    IDS_STRING_eMenuRelocateSymbolicLink "Realocação de Vínculo Simbólico"
+    IDS_STRING_eMenuRelocateJunction "Realocação de Junção"
 END
 
 STRINGTABLE
