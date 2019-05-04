@@ -511,6 +511,80 @@ END
 
 
 /////////////////////////////////////////////////////////////////////////////
+// Ukrainian (Ukraine) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_UKR)
+LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+IDS_LinkShellExtConfig  "Link Shell Extension Configuration"
+IDS_SELECT_SUBPAGE      "Select a sub-page"
+IDS_ABOUTBOX            "&About"
+END
+
+STRINGTABLE
+BEGIN
+IDS_CHECK_RemoteCapabilities "Remote Capabilities"
+IDS_CHECK_SmartMove     "Smart Move"
+IDS_RADIO_Absolute_Symbolic_Links "Absolute"
+IDS_RADIO_Relative_Symbolic_Links "Relative"
+IDS_STATIC_Symlink_Caption "Symbolic Link Creation"
+IDS_STATIC_Localisation "Localisation"
+IDS_STATIC_SelectLanguage "Select your language:"
+IDS_STATIC_Miscellaneous "Miscellaneous"
+IDS_RADIO_OuterJunctionCrop "Crop"
+IDS_RADIO_OuterJunctionUnroll "Unroll"
+IDS_RADIO_OuterJunctionSplice "Splice"
+IDS_STATIC_OuterReparse "Outer Junction/Symbolic Link"
+IDS_CHECK_Logging       "Logging"
+IDS_General             "General"
+END
+
+STRINGTABLE
+BEGIN
+IDS_CHECK_Hardlink_Overlay_Icon "Overlay icon for Hardlinks"
+IDS_STATIC_Hardlink_Overlay_Priority02 "Priority for overlay icon:"
+IDS_STATIC_Hardlink_Overlay_Priority03 "Icon"
+IDS_STATIC_Hardlink_Overlay_Priority01 "Priority"
+IDS_CHECK_Hardlink_Overlay_Path "Custom icon"
+IDS_BUTTON_Hardlink_Overlay_Path "Browse…"
+IDS_Icon_Hardlink       "Icon::Hardlink"
+IDS_CHECK_Junction_Overlay_Icon "Overlay icon for Junctions"
+IDS_Icon_Junction       "Icon::Junction"
+END
+
+STRINGTABLE
+BEGIN
+IDS_CHECK_Symboliclink_Overlay_Icon "Overlay icon for Symbolic Links"
+IDS_Icon_Symboliclink   "Icon::Symbolic Link"
+END
+
+STRINGTABLE
+BEGIN
+IDS_CHECK_DeloreanCopy  "DeloreanCopy"
+IDS_CHECK_SmartMirror   "Smart Mirror"
+IDS_CHECK_ExtendedMenue "Extended Menue"
+IDS_CHECK_BackupMode    "Backup"
+IDS_GROUPBOX_Miscellaneous "Miscellaneous"
+IDS_Customize           "Customize"
+IDS_STATIC_Backup_Caption "Copy Mode"
+IDS_CHECK_Junction      "Junction"
+END
+
+
+
+#endif    // Ukrainian (Ukraine) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
 // French resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
@@ -649,7 +723,7 @@ BEGIN
     IDS_GROUPBOX_Miscellaneous "Miscellaneous"
     IDS_Customize           "Customize"
     IDS_CHECK_Junction      "Junction"
- END
+END
 
 #endif    // Dutch resources
 /////////////////////////////////////////////////////////////////////////////
@@ -834,7 +908,38 @@ END
 // Version
 //
 
-#include "..\Shared\version\version.rc2"
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,9,2,4
+ PRODUCTVERSION 3,9,2,4
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Hermann Schinagl"
+            VALUE "FileDescription", "Link Shell Extension"
+            VALUE "FileVersion", "3.9.2.4"
+            VALUE "InternalName", "Link Shell Extension"
+            VALUE "LegalCopyright", "Copyright ? 1999-2019 Hermann Schinagl"
+            VALUE "OriginalFilename", "Hardlinkshellext.dll"
+            VALUE "ProductName", "Link Shell Extension"
+            VALUE "ProductVersion", "3.9.2.4"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
 
 
 #ifdef APSTUDIO_INVOKED
@@ -1464,6 +1569,23 @@ BEGIN
 END
 
 #endif    // Turkish (Turkey) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Hebrew (Israel) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+LANGUAGE LANG_HEBREW, SUBLANG_DEFAULT
+#pragma code_page(1255)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+
+#endif    // Hebrew (Israel) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
