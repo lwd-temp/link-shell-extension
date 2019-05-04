@@ -114,10 +114,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "ƒXƒ}[ƒgƒ~ƒ‰[ƒŠƒ“ƒO(&I)"
     IDS_STRING_eMenuDeloreanCopy "¢‘ãƒRƒs[(&T)"
     IDS_STRING_eMenuCreateMountPoint "ƒ{ƒŠƒ…[ƒ€‚Ìƒ}ƒEƒ“ƒg(&V)"
-  IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-  IDS_STRING_eMenuCopyJunction  "Junction Copy"
-  IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-  IDS_STRING_eMenuDropeAs "ƒŠƒ“ƒN‚ğì¬c"
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "ƒŠƒ“ƒN‚ğì¬c"
     IDS_STRING_eMenuDropHardlink "ƒn[ƒhƒŠƒ“ƒN‚Ìì¬(&D)"
     IDS_STRING_eMenuDropHardLinkClone "ƒn[ƒhƒŠƒ“ƒN‚ÌˆêŠ‡ì¬(&D)"
     IDS_STRING_eMenuDropJunction "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“‚Ìì¬(&D)"
@@ -322,10 +322,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "ÖÇÄÜ¾µÏñ(&J)"
     IDS_STRING_eMenuDeloreanCopy "¶à°æ±¾ÖÇÄÜ¸±±¾(&B)"
     IDS_STRING_eMenuCreateMountPoint "´ÅÅÌ¾í¹Ò½Óµã(&V)"
-  IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-  IDS_STRING_eMenuCopyJunction  "Junction Copy"
-  IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-  IDS_STRING_eMenuDropeAs "´´½¨Îª..."
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "´´½¨Îª..."
     IDS_STRING_eMenuDropHardlink "´´½¨Ó²Á¬½Ó(&D)"
     IDS_STRING_eMenuDropHardLinkClone "´´½¨Ó²Á¬½Ó¸±±¾(&D)"
     IDS_STRING_eMenuDropJunction "´´½¨Ä¿Â¼Á¬½Óµã(&D)"
@@ -352,13 +352,13 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "ÖÇÄÜ¾µÏñ(&J)"
     IDS_STRING_eMenuDeloreanCopy1 "¶à°æ±¾ÖÇÄÜ¸±±¾(&B)"
     IDS_STRING_eMenuCreateMountPoint1 "´ÅÅÌ¾í¹Ò½Óµã(&V)"
-    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
-    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
+    IDS_STRING_eMenuCopySymbolicLink1 "¸´ÖÆ·ûºÅÁ¬½Ó"
+    IDS_STRING_eMenuCopyJunction1 "¸´ÖÆÄ¿Â¼Á¬½Óµã"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_STRING_eMenuCopyMountpoint1 "Volume Mountpoint Copy"
+    IDS_STRING_eMenuCopyMountpoint1 "¸´ÖÆ´ÅÅÌ¾í¹Ò½Óµã"
     IDS_STRING_eMenuDropeAs1 "´´½¨Á¬½Óµã..."
     IDS_STRING_eMenuDropHardlink1 "´´½¨Ó²Á¬½Ó(&C)"
     IDS_STRING_eMenuDropHardLinkClone1 "´´½¨Ó²Á¬½Ó¸±±¾(&C)"
@@ -370,6 +370,8 @@ BEGIN
     IDS_STRING_eMenuDropReplaceMountPoint1 "Ìæ»»´ÅÅÌ¾í¹Ò½Óµã(&C)"
     IDS_STRING_eMenuDropSmartMirror1 "´´½¨ÖÇÄÜ¾µÏñ(&J)"
     IDS_STRING_eMenuDropDeloreanCopy1 "´´½¨¶à°æ±¾ÖÇÄÜ¸±±¾(&B)"
+    IDS_STRING_eMenuRelocateSymbolicLink "ÖØ¶¨Î»·ûºÅÁ¬½Ó"
+    IDS_STRING_eMenuRelocateJunction "ÖØ¶¨Î»Ä¿Â¼Á¬½Óµã"
 END
 
 STRINGTABLE
@@ -535,10 +537,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "½º¸¶Æ® &¹Ì·¯"
     IDS_STRING_eMenuDeloreanCopy "&DeLorean º¹»ç"
     IDS_STRING_eMenuCreateMountPoint "&º¼·ı ¸¶¿îÆ® ÁöÁ¡"
-  IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-  IDS_STRING_eMenuCopyJunction  "Junction Copy"
-  IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-  IDS_STRING_eMenuDropeAs "´ÙÀ½À¸·Î ¸¸µé±â..."
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "´ÙÀ½À¸·Î ¸¸µé±â..."
     IDS_STRING_eMenuDropHardlink "&ÇÏµå¸µÅ© ¸¸µé±â"
     IDS_STRING_eMenuDropHardLinkClone "&ÇÏµå¸µÅ© Å¬·Ğ ¸¸µé±â"
     IDS_STRING_eMenuDropJunction "&Á¤¼Ç ¸¸µé±â"
@@ -762,10 +764,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "Chytré z&rcadlo"
     IDS_STRING_eMenuDeloreanCopy "&DeLoreanovská kopie"
     IDS_STRING_eMenuCreateMountPoint "&Pøípojnı bod svazku"
-  IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-  IDS_STRING_eMenuCopyJunction  "Junction Copy"
-  IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-  IDS_STRING_eMenuDropeAs "Vloit jako…"
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "Vloit jako…"
     IDS_STRING_eMenuDropHardlink "&Vloit pevnı odkaz"
     IDS_STRING_eMenuDropHardLinkClone "&Vloit klon pevného odkazu"
     IDS_STRING_eMenuDropJunction "&Vloit rozcestí"
@@ -987,10 +989,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "Poprawny dupli&at"
     IDS_STRING_eMenuDeloreanCopy "Kopia deLo&reanska"
     IDS_STRING_eMenuCreateMountPoint "Utwórz punkt montowania &woluminu"
-  IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-  IDS_STRING_eMenuCopyJunction  "Junction Copy"
-  IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-  IDS_STRING_eMenuDropeAs "Utwórz ³¹cze…"
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "Utwórz ³¹cze…"
     IDS_STRING_eMenuDropHardlink "Utwórz dowi¹zanie &twarde"
     IDS_STRING_eMenuDropHardLinkClone "Utwórz &klony dowi¹zañ twardych"
     IDS_STRING_eMenuDropJunction "Utwórz &powi¹zanie"
@@ -1019,13 +1021,13 @@ BEGIN
     IDS_STRING_eMenuDeloreanCopy1 "Kopia deLo&reanska"
     IDS_STRING_eMenuCreateMountPoint1 
                             "Utwórz tutaj punkt montowania &woluminu"
-    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
-    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
+    IDS_STRING_eMenuCopySymbolicLink1 "Kopia dowi1zania symbolicznego"
+    IDS_STRING_eMenuCopyJunction1 """Kopia 31cza"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_STRING_eMenuCopyMountpoint1 "Volume Mountpoint Copy"
+    IDS_STRING_eMenuCopyMountpoint1 "Kopia punktu montowania"
     IDS_STRING_eMenuDropeAs1 "Utwórz tutaj ³¹cze…"
     IDS_STRING_eMenuDropHardlink1 "Utwórz tutaj dowi¹zanie tw&arde"
     IDS_STRING_eMenuDropHardLinkClone1 "Utwórz tutaj klo&ny dowi¹zañ twardych"
@@ -1038,6 +1040,8 @@ BEGIN
     IDS_STRING_eMenuDropReplaceMountPoint1 "Zamiana p&unktu montowania tutaj"
     IDS_STRING_eMenuDropSmartMirror1 "Poprawny duplik&at tutaj"
     IDS_STRING_eMenuDropDeloreanCopy1 "Kopia deLo&reanska tutaj"
+    IDS_STRING_eMenuRelocateSymbolicLink "Relokacja dowi1zania symbolicznego"
+    IDS_STRING253           "Relokacja powi1zania"
 END
 
 STRINGTABLE
@@ -1215,10 +1219,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "&Inteligentné zrkadlenie"
     IDS_STRING_eMenuDeloreanCopy "&DeLoreanská kópia"
     IDS_STRING_eMenuCreateMountPoint "Bod pripojenia &zväzku"
-  IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-  IDS_STRING_eMenuCopyJunction  "Junction Copy"
-  IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-  IDS_STRING_eMenuDropeAs "Prilepi ako…"
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "Prilepi ako…"
     IDS_STRING_eMenuDropHardlink "&Prilepi pevnı odkaz"
     IDS_STRING_eMenuDropHardLinkClone "&Prilepi klonovanie s pevnımi odkazmi"
     IDS_STRING_eMenuDropJunction "&Prilepi prepojenie"
@@ -1245,13 +1249,13 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "&Inteligentné zrkadlenie"
     IDS_STRING_eMenuDeloreanCopy1 "&Deloreanská kópia"
     IDS_STRING_eMenuCreateMountPoint1 "&Bod pripojenia zväzku"
-    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
-    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
+    IDS_STRING_eMenuCopySymbolicLink1 "Kopírova? Symbolickı Odkaz"
+    IDS_STRING_eMenuCopyJunction1 "Kopírova? Prepojenie"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_STRING_eMenuCopyMountpoint1 "Volume Mountpoint Copy"
+    IDS_STRING_eMenuCopyMountpoint1 "Kopírova? Bod Pripojenia Jednotky"
     IDS_STRING_eMenuDropeAs1 "Prilepi…"
     IDS_STRING_eMenuDropHardlink1 "&Vytvori pevnı odkaz"
     IDS_STRING_eMenuDropHardLinkClone1 
@@ -1264,6 +1268,9 @@ BEGIN
     IDS_STRING_eMenuDropReplaceMountPoint1 "&Nahradi bod pripojenia"
     IDS_STRING_eMenuDropSmartMirror1 "Vytvori &inteligentné zrkadlenie"
     IDS_STRING_eMenuDropDeloreanCopy1 "Vytvori &DeLoreanskú kópiu"
+    IDS_STRING_eMenuRelocateSymbolicLink 
+                            "Presunú? a Nahradi? Symbolickım Odkazom"
+    IDS_STRING_eMenuRelocateJunction "Presunú? a Nahradi? Prepojením"
 END
 
 STRINGTABLE
@@ -1440,10 +1447,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "Óìíîå Smart çåğêàëî"
     IDS_STRING_eMenuDeloreanCopy "DeLorean êîïèş"
     IDS_STRING_eMenuCreateMountPoint "Òî÷êó ìîíòèğîâàíèÿ &òîìà"
-  IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-  IDS_STRING_eMenuCopyJunction  "Junction Copy"
-  IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-  IDS_STRING_eMenuDropeAs "Ïîìåñòèòü êàê…"
+    IDS_STRING_eMenuCopySymbolicLink "Êîïèğîâàòü ñèìâîëè÷åñêóş ññûëêó"
+    IDS_STRING_eMenuCopyJunction "Êîïèğîâàòü Junction ñâÿçü"
+    IDS_STRING_eMenuCopyMountpoint "Êîïèğîâàòü òî÷êó ìîíòèğîâàíèÿ"
+    IDS_STRING_eMenuDropeAs "Ïîìåñòèòü êàê…"
     IDS_STRING_eMenuDropHardlink "&Ïîìåñòèòü æåñòêóş ññûëêó"
     IDS_STRING_eMenuDropHardLinkClone "&Ïîìåñòèòü êëîí æåñòêîé ññûëêè"
     IDS_STRING_eMenuDropJunction "&Ïîìåñòèòü Junction ñâÿçü"
@@ -1490,6 +1497,8 @@ BEGIN
     IDS_STRING_eMenuDropReplaceMountPoint1 "Çàìåíèòü çäåñü òî÷êó ìîíòèğîâàíèÿ"
     IDS_STRING_eMenuDropSmartMirror1 "Ñîçäàòü çäåñü óìíîå Smart çåğêàëî"
     IDS_STRING_eMenuDropDeloreanCopy1 "Ñîçäàòü çäåñü DeLorean êîïèş"
+    IDS_STRING_eMenuRelocateSymbolicLink "Ïåğåìåñòèòü ñèìâîëè÷åñêóş ññûëêó"
+    IDS_STRING_eMenuRelocateJunction "Ïåğåìåñòèòü Junction ñâÿçü"
 END
 
 STRINGTABLE
@@ -1672,10 +1681,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "un m&iroir intelligent"
     IDS_STRING_eMenuDeloreanCopy "une copie &DeLorean"
     IDS_STRING_eMenuCreateMountPoint "&un point de montage"
-      IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-      IDS_STRING_eMenuCopyJunction  "Junction Copy"
-      IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-      IDS_STRING_eMenuDropeAs "C&oller…"
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "C&oller…"
     IDS_STRING_eMenuDropHardlink "Coller le lien p&hysique"
     IDS_STRING_eMenuDropHardLinkClone "Coller le clone p&hysique"
     IDS_STRING_eMenuDropJunction "&Coller la jonction"
@@ -1899,10 +1908,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "Smart M&irror"
     IDS_STRING_eMenuDeloreanCopy "&DeLorean Copy"
     IDS_STRING_eMenuCreateMountPoint "&Volume Mountpoint"
-  IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-  IDS_STRING_eMenuCopyJunction  "Junction Copy"
-  IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-  IDS_STRING_eMenuDropeAs "Drop As…"
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "Drop As…"
     IDS_STRING_eMenuDropHardlink "&Drop Hardlink"
     IDS_STRING_eMenuDropHardLinkClone "&Drop Hardlink Clone"
     IDS_STRING_eMenuDropJunction "&Drop Junction"
@@ -2131,10 +2140,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "Smart s&pegling"
     IDS_STRING_eMenuDeloreanCopy "&DeLorean kopia"
     IDS_STRING_eMenuCreateMountPoint "Monteringspunkt för &volym"
-  IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-  IDS_STRING_eMenuCopyJunction  "Junction Copy"
-  IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-  IDS_STRING_eMenuDropeAs "Släpp som…"
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "Släpp som…"
     IDS_STRING_eMenuDropHardlink "&Skapa hårdlänk"
     IDS_STRING_eMenuDropHardLinkClone "&Skapa klon av hårdlänk"
     IDS_STRING_eMenuDropJunction "&Skapa knutpunkt"
@@ -2161,13 +2170,13 @@ BEGIN
     IDS_STRING_eMenuSmartMirror1 "Smart s&pegling"
     IDS_STRING_eMenuDeloreanCopy1 "&DeLorean kopia"
     IDS_STRING_eMenuCreateMountPoint1 "Monteringspunkt för &volym"
-    IDS_STRING_eMenuCopySymbolicLink1 "Symbolic Link Copy"
-    IDS_STRING_eMenuCopyJunction1 "Junction Copy"
+    IDS_STRING_eMenuCopySymbolicLink1 "Kopiera symbolisk länk"
+    IDS_STRING_eMenuCopyJunction1 "Kopiera knutpunkt"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_STRING_eMenuCopyMountpoint1 "Volume Mountpoint Copy"
+    IDS_STRING_eMenuCopyMountpoint1 "Kopiera volymmonteringspunkt"
     IDS_STRING_eMenuDropeAs1 "Släpp här…"
     IDS_STRING_eMenuDropHardlink1 "&Skapa hårdlänk här"
     IDS_STRING_eMenuDropHardLinkClone1 "&Skapa klon av hårdlänk här"
@@ -2179,6 +2188,8 @@ BEGIN
     IDS_STRING_eMenuDropReplaceMountPoint1 "&Ersätt monteringspunkt"
     IDS_STRING_eMenuDropSmartMirror1 "Skapa en Smart s&pegling här"
     IDS_STRING_eMenuDropDeloreanCopy1 "Skapa en &DeLorean kopia här"
+    IDS_STRING_eMenuRelocateSymbolicLink "Flytta symbolisk länk"
+    IDS_STRING_eMenuRelocateJunction "Flytta knutpunkt"
 END
 
 STRINGTABLE
@@ -2358,8 +2369,8 @@ BEGIN
     IDS_STRING_eMenuDeloreanCopy "DeLorean Kopie"
     IDS_STRING_eMenuCreateMountPoint "&Bereitstellungspunkt"
     IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-    IDS_STRING_eMenuCopyJunction  "Junction Copy"
-    IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
     IDS_STRING_eMenuDropeAs "Einfügen als…"
     IDS_STRING_eMenuDropHardlink "Hardlink einfügen"
     IDS_STRING_eMenuDropHardLinkClone "Hier als Hardlink Klon einfügen"
@@ -2525,7 +2536,39 @@ END
 // Version
 //
 
-#include "..\Shared\version\version.rc2"
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,9,2,4
+ PRODUCTVERSION 3,9,2,4
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Hermann Schinagl"
+            VALUE "FileDescription", "Link Shell Extension"
+            VALUE "FileVersion", "3.9.2.4"
+            VALUE "InternalName", "Link Shell Extension"
+            VALUE "LegalCopyright", "Copyright ? 1999-2019 Hermann Schinagl"
+            VALUE "OriginalFilename", "Hardlinkshellext.dll"
+            VALUE "ProductName", "Link Shell Extension"
+            VALUE "ProductVersion", "3.9.2.4"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2628,8 +2671,8 @@ BEGIN
     IDS_STRING_eMenuDeloreanCopy "&DeLorean Copy"
     IDS_STRING_eMenuCreateMountPoint "&Volume Mountpoint"
     IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-    IDS_STRING_eMenuCopyJunction  "Junction Copy"
-    IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
     IDS_STRING_eMenuDropeAs "Drop As…"
     IDS_STRING_eMenuDropHardlink "&Drop Hardlink"
     IDS_STRING_eMenuDropHardLinkClone "&Drop Hardlink Clone"
@@ -2863,10 +2906,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "Sincroni&zzazione intelligente"
     IDS_STRING_eMenuDeloreanCopy "Copia &DeLorean"
     IDS_STRING_eMenuCreateMountPoint "&Punto di montaggio disco"
-      IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-      IDS_STRING_eMenuCopyJunction  "Junction Copy"
-      IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-      IDS_STRING_eMenuDropeAs "Crea come…"
+    IDS_STRING_eMenuCopySymbolicLink "Copia Link Simbolici"
+    IDS_STRING_eMenuCopyJunction "Copia Giunzioni (Junction)"
+    IDS_STRING_eMenuCopyMountpoint "Copia Mountpoint"
+    IDS_STRING_eMenuDropeAs "Crea come…"
     IDS_STRING_eMenuDropHardlink "&Crea collegamento reale"
     IDS_STRING_eMenuDropHardLinkClone "&Crea clone collegamento reale"
     IDS_STRING_eMenuDropJunction "&Crea giunzione"
@@ -2915,6 +2958,8 @@ BEGIN
                             "&Crea punto di montaggio sostitutivo qui"
     IDS_STRING_eMenuDropSmartMirror1 "Crea s&incronizzazione intelligente qui"
     IDS_STRING_eMenuDropDeloreanCopy1 "Crea copia &DeLorean qui"
+    IDS_STRING_eMenuRelocateSymbolicLink "Rilocazione Link Simbolici"
+    IDS_STRING_eMenuRelocateJunction "Rilocazione Giuzioni (Junction)"
 END
 
 STRINGTABLE
@@ -3089,10 +3134,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "Espelho Inteligente"
     IDS_STRING_eMenuDeloreanCopy "Cópia DeLorean"
     IDS_STRING_eMenuCreateMountPoint "Ponto de &Montajem"
-  IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-  IDS_STRING_eMenuCopyJunction  "Junction Copy"
-  IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-  IDS_STRING_eMenuDropeAs "So&ltar como…"
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "So&ltar como…"
     IDS_STRING_eMenuDropHardlink "Soltar &Hardlink"
     IDS_STRING_eMenuDropHardLinkClone "Soltar &Clone de Hardlink"
     IDS_STRING_eMenuDropJunction "Soltar &Junção"
@@ -3377,10 +3422,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "Espejo Inteligente"
     IDS_STRING_eMenuDeloreanCopy "Copia &DeLorean"
     IDS_STRING_eMenuCreateMountPoint "&Punto de montaje"
-  IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-  IDS_STRING_eMenuCopyJunction  "Junction Copy"
-  IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-  IDS_STRING_eMenuDropeAs "Soltar &como…"
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "Soltar &como…"
     IDS_STRING_eMenuDropHardlink "Soltar Vínculo &Fuerte"
     IDS_STRING_eMenuDropHardLinkClone "&Soltar Clon de Vínculo Fuerte aquí"
     IDS_STRING_eMenuDropJunction "&Soltar Unión"
@@ -3609,10 +3654,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "¸îõğíï êá&ôïğôñéóìü"
     IDS_STRING_eMenuDeloreanCopy "Áíôßãñáöï &DeLorean"
     IDS_STRING_eMenuCreateMountPoint "Óçìåßï ìïíôáñßóìáôïò &ôüìïõ"
-      IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-      IDS_STRING_eMenuCopyJunction  "Junction Copy"
-      IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-      IDS_STRING_eMenuDropeAs "Áğüèåóç åäş ùò…"
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "Áğüèåóç åäş ùò…"
     IDS_STRING_eMenuDropHardlink "Áğü&èåóç äåóìïı õëéêïı"
     IDS_STRING_eMenuDropHardLinkClone "Áğü&èåóç êëşíïõ äåóìïı õëéêïı"
     IDS_STRING_eMenuDropJunction "Áğü&èåóç óçìåßïõ óıíäåóçò"
@@ -3837,10 +3882,10 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "Akıllı &Yansı"
     IDS_STRING_eMenuDeloreanCopy "&DeLorean Kopyası"
     IDS_STRING_eMenuCreateMountPoint "Disk &Bölümü Bağlama Noktası"
-  IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-  IDS_STRING_eMenuCopyJunction  "Junction Copy"
-  IDS_STRING_eMenuCopyMountpoint  "Volume Mountpoint Copy"
-  IDS_STRING_eMenuDropeAs "Oluşturulacak bağlantı türü:"
+    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
+    IDS_STRING_eMenuCopyJunction "Junction Copy"
+    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuDropeAs "Oluşturulacak bağlantı türü:"
     IDS_STRING_eMenuDropHardlink "&Hardlink Olarak Yapıştır"
     IDS_STRING_eMenuDropHardLinkClone "&Hardlink Klonu Olarak Yapıştır"
     IDS_STRING_eMenuDropJunction "&Junction Olarak Yapıştır"
