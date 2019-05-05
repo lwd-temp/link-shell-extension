@@ -628,7 +628,7 @@ Function .onInit
 	WriteRegDWORD HKEY_CURRENT_USER "Software\LinkShellExtension" "Language" 1051
 
 	StrCmp $LANGUAGE ${LANG_UKRAINIAN} 0 +2
-	WriteRegDWORD HKEY_CURRENT_USER "Software\LinkShellExtension" "Language" 1055
+	WriteRegDWORD HKEY_CURRENT_USER "Software\LinkShellExtension" "Language" 1058
 
 	StrCmp $LANGUAGE "cancel" 0 +2
 		Abort
