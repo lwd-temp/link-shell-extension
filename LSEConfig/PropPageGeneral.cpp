@@ -13,7 +13,7 @@ extern LSESettings gLSESettings;
 
 // http://www.science.co.il/language/locale-codes.asp
 //
-LanguageMapping TheLanguageMapping[17] = { 
+LanguageMapping TheLanguageMapping[18] = { 
   { L"English", 1033 },
   { L"Chinese", 2052 },
   { L"Czech", 1029 },
@@ -30,6 +30,7 @@ LanguageMapping TheLanguageMapping[17] = {
   { L"Spanish", 3082 },
   { L"Swedish", 1053 },
   { L"Turkish", 1055 },
+  { L"Ukrainian", 1058 },
   { NULL, 0}
 };
 
