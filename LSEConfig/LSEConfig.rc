@@ -504,9 +504,84 @@ BEGIN
     IDS_GROUPBOX_Miscellaneous "Разное"
     IDS_Customize           "Настроить"
     IDS_STATIC_Backup_Caption " Резервирование"
+    IDS_CHECK_Junction      "Узел"
 END
 
 #endif    // Russian (Russia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Ukrainian (Ukraine) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_UKR)
+LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+IDS_LinkShellExtConfig  "Налаштування Link Shell Extension"
+IDS_SELECT_SUBPAGE      "Оберіть сторінку"
+IDS_ABOUTBOX            "&Про..."
+END
+
+STRINGTABLE
+BEGIN
+IDS_CHECK_RemoteCapabilities "Віддалені можливості"
+IDS_CHECK_SmartMove     "Розумне перенесення"
+IDS_RADIO_Absolute_Symbolic_Links "Абсолютне"
+IDS_RADIO_Relative_Symbolic_Links "Відносне"
+IDS_STATIC_Symlink_Caption "Створювати символьне посилання"
+IDS_STATIC_Localisation "Локалізація"
+IDS_STATIC_SelectLanguage "Оберіть вашу мову:"
+IDS_STATIC_Miscellaneous "Різне"
+IDS_RADIO_OuterJunctionCrop "Ігнорувати/Crop"
+IDS_RADIO_OuterJunctionUnroll "Як файли/Unroll"
+IDS_RADIO_OuterJunctionSplice "Як посилання/Splice"
+IDS_STATIC_OuterReparse "Зовнішні з'єднання / символьні посилання"
+IDS_CHECK_Logging       "Вести журнал"
+IDS_General             "Загальні"
+END
+
+STRINGTABLE
+BEGIN
+IDS_CHECK_Hardlink_Overlay_Icon "Значок накладання жорских посилань"
+IDS_STATIC_Hardlink_Overlay_Priority02 "Приоритет значка накладання:"
+IDS_STATIC_Hardlink_Overlay_Priority03 "Значок"
+IDS_STATIC_Hardlink_Overlay_Priority01 "Приоритет"
+IDS_CHECK_Hardlink_Overlay_Path "Довільний значок"
+IDS_BUTTON_Hardlink_Overlay_Path "Обрати…"
+IDS_Icon_Hardlink       "Значок::Жорстке посилання"
+IDS_CHECK_Junction_Overlay_Icon "Значок накладання з'єднань"
+IDS_Icon_Junction       "Значок::З'єднання"
+END
+
+STRINGTABLE
+BEGIN
+IDS_CHECK_Symboliclink_Overlay_Icon "Значок накладання символьних посилань"
+IDS_Icon_Symboliclink   "Значок::Символьне посилання"
+END
+
+STRINGTABLE
+BEGIN
+IDS_CHECK_DeloreanCopy  "Копія Delorean"
+IDS_CHECK_SmartMirror   "Розумне відзеркалення"
+IDS_CHECK_ExtendedMenue "Розширене меню"
+IDS_CHECK_BackupMode    "Резервування"
+IDS_GROUPBOX_Miscellaneous "Різне"
+IDS_Customize           "Налаштування"
+IDS_STATIC_Backup_Caption "Режим копіювання"
+IDS_CHECK_Junction      "З'єднання"
+END
+
+
+
+#endif    // Ukrainian (Ukraine) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -649,7 +724,7 @@ BEGIN
     IDS_GROUPBOX_Miscellaneous "Miscellaneous"
     IDS_Customize           "Customize"
     IDS_CHECK_Junction      "Junction"
- END
+END
 
 #endif    // Dutch resources
 /////////////////////////////////////////////////////////////////////////////
@@ -834,7 +909,38 @@ END
 // Version
 //
 
-#include "..\Shared\version\version.rc2"
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,9,2,4
+ PRODUCTVERSION 3,9,2,4
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Hermann Schinagl"
+            VALUE "FileDescription", "Link Shell Extension"
+            VALUE "FileVersion", "3.9.2.4"
+            VALUE "InternalName", "Link Shell Extension"
+            VALUE "LegalCopyright", "Copyright ? 1999-2019 Hermann Schinagl"
+            VALUE "OriginalFilename", "Hardlinkshellext.dll"
+            VALUE "ProductName", "Link Shell Extension"
+            VALUE "ProductVersion", "3.9.2.4"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
 
 
 #ifdef APSTUDIO_INVOKED
@@ -1464,6 +1570,23 @@ BEGIN
 END
 
 #endif    // Turkish (Turkey) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Hebrew (Israel) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+LANGUAGE LANG_HEBREW, SUBLANG_DEFAULT
+#pragma code_page(1255)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+
+#endif    // Hebrew (Israel) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
