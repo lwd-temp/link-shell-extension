@@ -1567,6 +1567,238 @@ END
 
 
 /////////////////////////////////////////////////////////////////////////////
+// Ukrainian (Ukraine) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_UKR)
+LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+IDS_STRING_DrivePrefix  "Диск"
+IDS_STRING_LanguageID   "0x0422"
+IDS_STRING_PropPageLinkType "Тип посилання:"
+IDS_STRING_PropPageRefCount "Лічильник посилань:"
+IDS_STRING_ProgressCreatingSmartMirror "Створення розумного дзеркала…"
+IDS_STRING_PropPageCaption "Властивості посилання"
+END
+
+STRINGTABLE
+BEGIN
+IDS_STRING_Hardlink     "Жорстке посилання"
+IDS_STRING_Junction     "З'єднання"
+IDS_STRING_LinkTypeSymlink "Символьне посилання"
+IDS_STRING_ErrDestSrcCircular
+" : Каталог призначення є підкаталогом джерела"
+IDS_STRING_ProgressCreatingSmartCopy "Створення розумної копії…"
+IDS_STRING_MountPoint   "Точка монтування"
+IDS_STRING_ProgressCloning "Клонування…"
+IDS_STRING_ProgressCreatingDeLoreanCopy "Створення копії DeLorean…"
+IDS_STRING_ErrDirectoryNotEmpty
+" : Каталог призначення не є порожнім"
+IDS_STRING_SymbolicLinkClone "Клонування символьного посилання"
+IDS_STRING_HardlinkClone "Клонування жорсткого посилання"
+IDS_STRING_ErrHardlinkFailed
+": \nДосягнута максимальна кількість жорстких посилань для одного файлу (1023)."
+IDS_STRING_ErrExplorerCanNotCreateMountpoint
+"Провідник не може створити точку монтування %1!s!"
+IDS_STRING_ErrExplorerCanNotCreateHardlink
+"Провідник не може створити жорстке посилання %1!s!"
+IDS_STRING_ErrExplorerCanNotCreateJunction
+"Провідник не може створити з'єднання %1!s!"
+IDS_STRING_ErrExplorerCanNotCreateSymlink
+"Провідник не може створити символьне посилання %1!s!"
+END
+
+STRINGTABLE
+BEGIN
+IDS_STRING_ErrExplorerCanNotCreateHardlinkClone
+"Провідник не може клонувати жорстке посилання %1!s!"
+IDS_STRING_ErrExplorerCanNotCreateSymlinkClone
+"Провідник не може клонувати символьне посилання %1!s!"
+IDS_STRING_ErrCreatingMountpoint "Помилка створення точки монтування"
+IDS_STRING_ErrCreatingHardlink "Помилка створення жорсткого посилання"
+IDS_STRING_ErrCreatingJunction "Помилка створення з'єднання"
+IDS_STRING_ErrCreatingSymlink "Помилка створення символьного посилання"
+IDS_STRING_ErrCreatingHardlinkClone "Помилка клонування жорсткого посилання"
+IDS_STRING_ErrCreatingSymlinkClone "Помилка клонування символьного посилання"
+IDS_STRING_Target       "Ціль:"
+IDS_STRING_MountPointTarget "Ціль точки монтування:"
+IDS_STRING_PropPageHardlinkEnum "Перелік жорстких посилань :"
+IDS_STRING_PropPageEnumSiblings "Перерахувати родинні посилання"
+IDS_STRING_ProgressEnumerating "Перерахунок родинних жорстких посилань…"
+IDS_STRING_ProgressCanceling "Відміна…"
+IDS_STRING_ExploreTarget "Перейти до цілі"
+IDS_STRING_ProgressSmartMove "Виконується розумне переміщення…"
+END
+
+STRINGTABLE
+BEGIN
+IDS_STRING_ErrExplorerCanNotCreateSmartCopy
+"Провідник не може створити розумну копію %1!s!"
+IDS_STRING_ErrExplorerCanNotCreateSmartMirror
+"Провідник не може створити розумне дзеркало %1!s!"
+IDS_STRING_ErrExplorerCanNotCreateDeloreanCopy
+"Провідник не може створити копію Delorean %1!s!"
+IDS_STRING_ErrCreatingSmartCopy "Помилка створення розумної копії"
+IDS_STRING_ErrCreatingSmartMirror "Помилка створення розумного дзеркала"
+IDS_STRING_ErrCreatingDeloreanCopy "Помилка створення копії Delorean"
+IDS_STRING_BackupPrivilegesNotHeld
+"Недостатньо прав для виконання резервування"
+IDS_STRING_BackupFailed "Відмова у резервуванні"
+IDS_STRING_ErrExplorerAutoRenAlreadyExists
+"Відмова автоматичного перейменування: %1!s! Зв'яжіться із службою підтримки"
+END
+
+STRINGTABLE
+BEGIN
+IDS_STRING_eMenuHardlink "&Жорстке посилання"
+IDS_STRING_eMenuSymbolicLink "&Символьне посилання"
+IDS_STRING_eMenuJunction "&З'єднання"
+IDS_STRING_eMenuHardLinkClone "&Клонування жорсткого посилання"
+IDS_STRING_eMenuSymbolicLinkClone "К&лонування символьного посилання"
+IDS_STRING_eMenuReplaceJunction "З&амінення з'єднання"
+IDS_STRING_eMenuSmartCopy "&Розумне копіювання"
+IDS_STRING_eMenuReplaceSymbolicLink "Замінення си&мвольного посилання"
+END
+
+STRINGTABLE
+BEGIN
+IDS_STRING_eMenuReplaceMountPoint "Замінення &точки монтування"
+IDS_STRING_eMenuSmartMirror "Розумне &дзеркало"
+IDS_STRING_eMenuDeloreanCopy "Копія &DeLorean"
+IDS_STRING_eMenuCreateMountPoint "&Точка молнтування тому"
+IDS_STRING_eMenuCopySymbolicLink "Копіювання символьного посилання"
+IDS_STRING_eMenuCopyJunction "Копіювання з'єднання"
+IDS_STRING_eMenuCopyMountpoint "Копіювання точки монтування тому"
+IDS_STRING_eMenuDropeAs "Помістити як…"
+IDS_STRING_eMenuDropHardlink "&Помістити жорстке посилання"
+IDS_STRING_eMenuDropHardLinkClone "&Помістити клона жорсткого посилання"
+IDS_STRING_eMenuDropJunction "&Помістити з'єднання"
+IDS_STRING_eMenuDropReplaceJunction "&Помістити замінене з'єднання"
+IDS_STRING_eMenuDropSmartCopy "&Помістити розумну копію"
+IDS_STRING_eMenuDropSymbolicLink "&Помістити символьне посилання"
+IDS_STRING_eMenuDropReplaceSymbolicLink
+"&Створити заміну символьного посилання тут"
+IDS_STRING_eMenuDropReplaceMountPoint
+"&Створии заміну точки монтування тут"
+END
+
+STRINGTABLE
+BEGIN
+IDS_STRING_eMenuDropSmartMirror "Створити &розумне дзеркало тут"
+IDS_STRING_eMenuDropDeloreanCopy "Створити копію &DeLorean тут"
+IDS_STRING_eMenuHardlink1 "&Жорстке посилання"
+IDS_STRING_eMenuSymbolicLink1 "&Символьне посилання"
+IDS_STRING_eMenuJunction1 "&З'єднання"
+IDS_STRING_eMenuHardLinkClone1 "&Клонувати жостке посилання"
+IDS_STRING_eMenuSymbolicLinkClone1 "К&лонувати символьне посилання"
+IDS_STRING_eMenuReplaceJunction1 "З&амінити з'єднання"
+IDS_STRING_eMenuSmartCopy1 "Створити р&озумну копію"
+IDS_STRING_eMenuReplaceSymbolicLink1 "Замінити си&мвольне посилання"
+IDS_STRING_eMenuReplaceMountPoint1 "Замінити то&чку монтування"
+IDS_STRING_eMenuSmartMirror1 "Створити Розумне &дзеркало"
+IDS_STRING_eMenuDeloreanCopy1 "Копіювати De&Lorean"
+IDS_STRING_eMenuCreateMountPoint1 "Монтувати &том"
+IDS_STRING_eMenuCopySymbolicLink1 "Копіювати символ&ьне посилання"
+IDS_STRING_eMenuCopyJunction1 "Копіювати з'&єднання"
+END
+
+STRINGTABLE
+BEGIN
+IDS_STRING_eMenuCopyMountpoint1 "Копіювати точку монтування"
+IDS_STRING_eMenuDropeAs1 "Поміситити тут…"
+IDS_STRING_eMenuDropHardlink1 "&Створити жорстке посилання тут"
+IDS_STRING_eMenuDropHardLinkClone1 "&Створити клона жорсткого посилання тут"
+IDS_STRING_eMenuDropJunction1 "&Створити з'єднання тут"
+IDS_STRING_eMenuDropReplaceJunction1 "&Створити заміну з'єднання тут"
+IDS_STRING_eMenuDropSmartCopy1 "&Створити розумну копію тут"
+IDS_STRING_eMenuDropSymbolicLink1 "&Створити символьне посилання тут"
+IDS_STRING_eMenuDropReplaceSymbolicLink1
+"&Створити заміну символьного посилання тут"
+IDS_STRING_eMenuDropReplaceMountPoint1
+"&Створити заміну точки монтування тут"
+IDS_STRING_eMenuDropSmartMirror1 "Створити розумне &дзеркало тут"
+IDS_STRING_eMenuDropDeloreanCopy1 "Створити копію &DeLorean тут"
+END
+
+STRINGTABLE
+BEGIN
+IDS_STRING_HelpText01   "Вкажіть файл або каталог."
+IDS_STRING_HelpText02   "Помістити обране як жорстке посилання."
+IDS_STRING_HelpText03   "Помістити обране як символьне посилання."
+IDS_STRING_HelpText04   "Створити з'єднання до обраного каталогу."
+END
+
+STRINGTABLE
+BEGIN
+IDS_STRING_HelpText05   "Рекурсивно клонувати структуру обраного каталогу, та створити жорсткі посилання файлів, що в ньому містяться."
+IDS_STRING_HelpText06   "Рекурсивно клонувати структуру обраного каталогу, та створити символьні посилання файлів, що в ньому містяться."
+IDS_STRING_HelpText07   "Видалити обране з'єднання."
+IDS_STRING_HelpText08   "Помістити тут як…"
+IDS_STRING_HelpText09   "Відмінити поточну операцію додавання посилання."
+IDS_STRING_HelpText10   "Монтувати том за вказаним шляхом."
+IDS_STRING_HelpText11   "Відмонтувати том із вказаного шляху."
+IDS_STRING_HelpText12   "Замінити надані цілі з'єднання із вказаними розташуваннями."
+IDS_STRING_HelpText13   "Копіювати структуру каталога до іншого шляху із збереженням структури внутрішніх жорстких/символьних посилань та з'єднань."
+IDS_STRING_HelpText14   "Замінити надану ціль символьного посилання вказаним розташуванням."
+IDS_STRING_HelpText15   "Замінити надану ціль точки монтування вказаним розташуванням."
+IDS_STRING_HelpText16   "Віддзеркалити структуру каталога із збереженням структури внутрішніх жорстких/символьних посилань та з'єднань."
+IDS_STRING_HelpText17   "Створити одну ітерацію копії DeLorean."
+END
+
+STRINGTABLE
+BEGIN
+IDS_STRING_eTopMenuPickLinkSource "Вказати &Джерело посилання"
+IDS_STRING_eTopMenuDeleteJunction "Видалити &з'єднання"
+IDS_STRING_eTopMenuCancelLinkCreation "Відмінити &створення посилання"
+IDS_STRING_eTopMenuHardlink "Жорстке посилання"
+IDS_STRING_eTopMenuJunction "З'єднання"
+IDS_STRING_eTopMenuSymbolicLink "Символьне посилання"
+IDS_STRING_eTopMenuTo   " з "
+IDS_STRING_eTopMenuOf   " з "
+IDS_STRING_eTopMenuReference "Референція"
+IDS_STRING_eTopMenuHardlinkClone "Клон жорсткого посилання"
+IDS_STRING_eTopMenuSymbolicLinkClone "Клон символьного посилання"
+IDS_STRING_eTopMenuReferenceHelpText
+"Лічильник референцій: жорстко зв'язаних файлів / первинних з'єднань"
+IDS_STRING_eTopMenuDeleteMountPoint "Розмонтувати том"
+IDS_STRING_eTopMenuMountPoint "Точка монтування"
+IDS_STRING_eTopMenuSmartCopy "Розумна копія"
+IDS_STRING_eTopMenuOfOrderXP_1 "%1!s!%2!s!%3!s!%4!s!"
+END
+
+STRINGTABLE
+BEGIN
+IDS_STRING_eTopMenuOfOrderXP_2 "%1!s!%2!s! (*)%3!s!%4!s!"
+IDS_STRING_eTopMenuOfOrderXP_3 "%1!s!%2!s! (%3!d!)%4!s!%5!s!"
+IDS_STRING_eTopMenuOfOrderW7_1 "%1!s!%2!s! - %3!s!.%4!s!"
+IDS_STRING_eTopMenuOfOrderW7_2 "%1!s!%2!s! - %3!s! (*).%4!s!"
+IDS_STRING_eTopMenuOfOrderW7_3 "%1!s!%2!s! - %3!s! (%4!d!).%5!s!"
+IDS_STRING_eTopMenuOfOrderW7_4 "%1!s!%2!s!.%3!s! - %4!s!"
+IDS_STRING_eTopMenuOfOrderW7_5 "%1!s!%2!s! - %3!s!"
+IDS_STRING_eTopMenuOfOrderW7_6 "%1!s!%2!s!.%4!s! - %3!s! (*)"
+IDS_STRING_eTopMenuOfOrderW7_7 "%1!s!%2!s! - %3!s! (*)"
+IDS_STRING_eTopMenuOfOrderW7_8 "%1!s!%2!s!.%5!s! - %3!s! (%4!d!)"
+IDS_STRING_eTopMenuOfOrderW7_9 "%1!s!%2!s! - %3!s! (%4!d!)"
+END
+
+
+
+#endif    // Ukrainian (Ukraine) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
 // French resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)

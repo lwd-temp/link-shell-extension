@@ -17,6 +17,7 @@
 !define LANG_SPANISH "3082"
 !define LANG_SWEDISH "1053"
 !define LANG_TURKISH "1055"
+!define LANG_UKRAINIAN "1058"
 
 !include "LSE_version.nsh"
 
@@ -566,6 +567,8 @@ Function .onInit
 	Push Swedish
 	Push ${LANG_TURKISH}
 	Push Turkish
+	Push ${LANG_UKRAINIAN}
+	Push Ukrainian
 	
 
 	Push A ; A means auto count languages
@@ -623,6 +626,9 @@ Function .onInit
 
 	StrCmp $LANGUAGE ${LANG_SLOVAK} 0 +2
 	WriteRegDWORD HKEY_CURRENT_USER "Software\LinkShellExtension" "Language" 1051
+
+	StrCmp $LANGUAGE ${LANG_UKRAINIAN} 0 +2
+	WriteRegDWORD HKEY_CURRENT_USER "Software\LinkShellExtension" "Language" 1058
 
 	StrCmp $LANGUAGE "cancel" 0 +2
 		Abort
