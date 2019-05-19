@@ -114,9 +114,9 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "スマートミラーリング(&I)"
     IDS_STRING_eMenuDeloreanCopy "世代コピー(&T)"
     IDS_STRING_eMenuCreateMountPoint "ボリュームのマウント(&V)"
-    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-    IDS_STRING_eMenuCopyJunction "Junction Copy"
-    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuCopySymbolicLink "シンボリックリンクを維持してコピー"
+    IDS_STRING_eMenuCopyJunction "ジャンクションを維持してコピー"
+    IDS_STRING_eMenuCopyMountpoint "ボリュームのマウントポイントを維持してコピー"
     IDS_STRING_eMenuDropeAs "リンクを作成…"
     IDS_STRING_eMenuDropHardlink "ハードリンクの作成(&D)"
     IDS_STRING_eMenuDropHardLinkClone "ハードリンクの一括作成(&D)"
@@ -162,6 +162,8 @@ BEGIN
     IDS_STRING_eMenuDropReplaceMountPoint1 "ここにマウントポイントの置換を適用(&C)"
     IDS_STRING_eMenuDropSmartMirror1 "スマートミラーリングの実行(&I)"
     IDS_STRING_eMenuDropDeloreanCopy1 "ここに世代コピーを作成(&T)"
+    IDS_STRING_eMenuRelocateSymbolicLink "シンボリックリンクで置き換えて移動"
+    IDS_STRING_eMenuRelocateJunction "ジャンクションで置き換えて移動"
 END
 
 STRINGTABLE
