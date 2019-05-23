@@ -4079,9 +4079,9 @@ BEGIN
     IDS_STRING_eMenuSmartMirror "Akýllý &Yansý"
     IDS_STRING_eMenuDeloreanCopy "&DeLorean Kopyasý"
     IDS_STRING_eMenuCreateMountPoint "Disk &Bölümü Baðlama Noktasý"
-    IDS_STRING_eMenuCopySymbolicLink "Symbolic Link Copy"
-    IDS_STRING_eMenuCopyJunction "Junction Copy"
-    IDS_STRING_eMenuCopyMountpoint "Volume Mountpoint Copy"
+    IDS_STRING_eMenuCopySymbolicLink "Sembolik Link Kopyasý"
+    IDS_STRING_eMenuCopyJunction "Junction Kopyasý"
+    IDS_STRING_eMenuCopyMountpoint "Disk Bölümü Baðlama noktasý Kopyasý"
     IDS_STRING_eMenuDropeAs "Oluþturulacak baðlantý türü:"
     IDS_STRING_eMenuDropHardlink "&Hardlink Olarak Yapýþtýr"
     IDS_STRING_eMenuDropHardLinkClone "&Hardlink Klonu Olarak Yapýþtýr"
@@ -4098,7 +4098,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eMenuDropSmartMirror "Burada Akýllý &Yansý Oluþtur"
-    IDS_STRING_eMenuDropDeloreanCopy "Burada &DeLorean Koyasý oluþtur"
+    IDS_STRING_eMenuDropDeloreanCopy "Burada &DeLorean Kopyasý oluþtur"
     IDS_STRING_eMenuHardlink1 "&Hardlink"
     IDS_STRING_eMenuSymbolicLink1 "&Sembolik Link"
     IDS_STRING_eMenuJunction1 "&Junction"
@@ -4131,6 +4131,8 @@ BEGIN
                             "&Burada Yedek Disk Bölümü Baðlama Noktasý Oluþtur"
     IDS_STRING_eMenuDropSmartMirror1 "Burada Akýllý &Yansý Oluþtur"
     IDS_STRING_eMenuDropDeloreanCopy1 "Burada &DeLorean Kopyasý oluþtur"
+    IDS_STRING_eMenuRelocateSymbolicLink "Sembolik Link Yerdeðiþtirme"
+    IDS_STRING_eMenuRelocateJunction "Junction Yerdeðiþtirme"
 END
 
 STRINGTABLE
