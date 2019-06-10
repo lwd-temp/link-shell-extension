@@ -871,7 +871,7 @@ RebootExplorer()
   {
     int MsgRet;
     _StringList Modules;
-    _StringMap  Processes;
+    _StringSet  Processes;
 
     // Search for processes which have our .dlls loaded
     //
@@ -879,11 +879,9 @@ RebootExplorer()
 
     do
     {
-      Processes.clear();
-
       NtQueryProcessByModule(Modules, Processes);
 
-      _StringMap::iterator explorer = Processes.find(L"explorer.exe");
+      auto explorer = Processes.find(L"explorer.exe");
       if (explorer != Processes.end())
         Processes.erase(explorer);
 
@@ -891,10 +889,10 @@ RebootExplorer()
       {
         wchar_t processes[HUGE_PATH];
         processes[0] = 0x00;
-        for (_StringMap::iterator iter = Processes.begin(); iter != Processes.end(); ++iter)
+        for (const auto& iter : Processes)
         {
           wcscat_s (processes, HUGE_PATH, L"   ");
-          wcscat_s (processes, HUGE_PATH, iter->first.c_str());
+          wcscat_s (processes, HUGE_PATH, iter.c_str());
           wcscat_s (processes, HUGE_PATH, L"\r\n");
         }
 
@@ -1030,15 +1028,15 @@ extern "C"
         FreeLibrary(g_hInstance);
 			return -1;
 		}
-		FILE* SymlinkArgs;
-    _wfopen_s (&SymlinkArgs, argv[1], L"rb");
-		if (SymlinkArgs)
+		FILE* LseUacHelperArgs;
+    _wfopen_s (&LseUacHelperArgs, argv[1], L"rb");
+		if (LseUacHelperArgs)
 		{
-			while (!feof(SymlinkArgs)) 
+			while (!feof(LseUacHelperArgs)) 
 			{
 				wchar_t line[HUGE_PATH];
         wchar_t sid[MAX_PATH];
-        wchar_t* t = fgetws(line, HUGE_PATH, SymlinkArgs);
+        wchar_t* t = fgetws(line, HUGE_PATH, LseUacHelperArgs);
 				if (!t)
 					break;
 
@@ -1054,10 +1052,10 @@ extern "C"
 				line[ii] = 0x00;
 
         // read the SID, We need it to read settings from the non UAC user
-        fwscanf_s(SymlinkArgs, L"%s", sid, _countof(sid));
+        fwscanf_s(LseUacHelperArgs, L"%s", sid, _countof(sid));
         gLSESettings.Init(sid);
         // eat rest of line
-        fgetws(sid, HUGE_PATH, SymlinkArgs);
+        fgetws(sid, HUGE_PATH, LseUacHelperArgs);
         int bb = gLSESettings.GetFlags();
 
 				switch (line[1])
@@ -1237,27 +1235,27 @@ extern "C"
 
           // Smart Move
 					case 'r': 
-            SmartMove(SymlinkArgs);
+            SmartMove(LseUacHelperArgs);
 					break;
 
           // Smart Copy
 					case 's':
-            SmartXXX(SymlinkArgs, FileInfoContainer::eSmartCopy);
+            SmartXXX(LseUacHelperArgs, FileInfoContainer::eSmartCopy);
 					break;
 
           // Smart Clone
 					case 't':
-            SmartXXX(SymlinkArgs, FileInfoContainer::eSmartClone);
+            SmartXXX(LseUacHelperArgs, FileInfoContainer::eSmartClone);
 					break;
 
           // DeloreanCopy
 					case 'v':
-            DeloreanCopy(SymlinkArgs, FileInfoContainer::eSmartClone);
+            DeloreanCopy(LseUacHelperArgs, FileInfoContainer::eSmartClone);
 					break;
 
           // SmartMirror
 					case 'w':
-            SmartMirror(SymlinkArgs);
+            SmartMirror(LseUacHelperArgs);
           break;
 
           // Hardlink elevation in system directories
@@ -1281,7 +1279,7 @@ extern "C"
 
         }
 			} 
-			fclose(SymlinkArgs);
+			fclose(LseUacHelperArgs);
 		}
 		else
 		{

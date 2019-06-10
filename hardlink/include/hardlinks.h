@@ -2677,7 +2677,7 @@ NtQueryProcessId(
 bool
 NtQueryProcessByModule(
   _StringList&  aModuleNames,
-  _StringMap&  aProcessNames
+  _StringSet&  aProcessNames
 );
 
 typedef BOOL (WINAPI *K32EnumProcessModulesEx_t)(

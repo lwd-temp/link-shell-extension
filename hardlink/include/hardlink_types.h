@@ -266,8 +266,7 @@ typedef vector<_ArgvPath>::iterator	_ArgvListIterator;
 typedef vector<wstring>	_StringList;
 typedef vector<wstring>::iterator	_StringListIterator;
 
-typedef pair<wstring, DWORD> _StringMapPair;
-typedef map<wstring, DWORD> _StringMap;
+typedef set<wstring> _StringSet;
 
 
 
