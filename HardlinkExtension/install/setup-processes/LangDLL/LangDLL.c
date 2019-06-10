@@ -43,7 +43,7 @@ BOOL CALLBACK DialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
       
       char InstalledLanguage[64];
       int InstalledLanguagePos = -1;
-      sprintf(InstalledLanguage, "%d", GetSystemDefaultUILanguage());
+      wsprintf(InstalledLanguage, "%d", GetSystemDefaultUILanguage());
 //      strcpy(InstalledLanguage, "2031");
 
       for (i = langs_num - 1; i >= 0; i--) 
