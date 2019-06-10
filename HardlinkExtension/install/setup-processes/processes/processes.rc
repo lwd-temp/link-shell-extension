@@ -89,13 +89,13 @@ END
 // EXE
 //
 
-IDR_VCREDISTPROBE_WIN32 EXE                     "VCRedistProbe_win32.exe"
+IDR_VCREDISTPROBE_WIN32 EXE                     "..\\bin\\Win32\\Release\\VCRedistProbe_win32.exe"
 
-IDR_VCREDISTPROBE_X64   EXE                     "VCRedistProbe_x64.exe"
+IDR_VCREDISTPROBE_X64   EXE                     "..\\bin\\x64\\Release\\VCRedistProbe_x64.exe"
 
-IDR_PROCESSENUMMODULES_WIN32 EXE                     "ProcessEnumModules_win32.exe"
+IDR_PROCESSENUMMODULES_WIN32 EXE                     "..\\bin\\Win32\\Release\\ProcessEnumModules_win32.exe"
 
-IDR_PROCESSENUMMODULES_X64 EXE                     "ProcessEnumModules_x64.exe"
+IDR_PROCESSENUMMODULES_X64 EXE                     "..\\bin\\x64\\Release\\ProcessEnumModules_x64.exe"
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////

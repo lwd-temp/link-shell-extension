@@ -126,7 +126,7 @@ NtQueryProcessId(
 bool
 NtQueryProcessByModule(
   _StringList&  aModuleNames,
-  _StringMap &  aProcessNames
+  _StringSet &  aProcessNames
 )
 {
 	int			found = false;
@@ -200,7 +200,7 @@ NtQueryProcessByModule(
                 if (wcseistr(szModName, (*ii).c_str() ) )
                 {
                   if (aProcessNames.find(pProcess->ImageName.Buffer) == aProcessNames.end())
-                    std::pair< _StringMap::iterator, bool > pr = aProcessNames.insert(_StringMapPair(pProcess->ImageName.Buffer, 42));
+                    aProcessNames.insert(pProcess->ImageName.Buffer);
                   // printf("\t%S\t%S \n", pProcess->pszProcessName, szModName);
                 }
                   // printf("\t%S\t%S\t%S \n", pProcess->pszProcessName, szModName, (*ii).c_str());

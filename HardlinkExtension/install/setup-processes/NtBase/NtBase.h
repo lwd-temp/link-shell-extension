@@ -7,13 +7,13 @@
 #pragma warning (disable : 4231)
 
 #include <vector>
-#include <map>
+#include <set>
 #include <string>
 
 using namespace std;
 
 typedef pair<wstring, DWORD> _StringMapPair;
-typedef map<wstring, DWORD> _StringMap;
+typedef set<wstring> _StringSet;
 typedef vector<wstring> _StringList;
 typedef vector<DWORD> _LongList;
 
@@ -36,7 +36,7 @@ NtQueryProcessId(
 bool
 NtQueryProcessByModule(
   _StringList&  aModuleNames,
-  _StringMap&  aProcessNames
+  _StringSet&  aProcessNames
 );
 
 typedef BOOL (WINAPI *K32EnumProcessModulesEx_t)(

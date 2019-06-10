@@ -47,10 +47,4 @@
   <ItemGroup>
     <Text Include="processes.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="VCRedistProbe_win32.exe" />
-    <None Include="VCRedistProbe_x64.exe" />
-    <None Include="ProcessEnumModules_win32.exe" />
-    <None Include="ProcessEnumModules_x64.exe" />
-  </ItemGroup>
 </Project>

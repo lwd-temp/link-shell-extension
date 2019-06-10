@@ -28,16 +28,15 @@ going the full way to an InstallationSet
 
 How to build
 ----------
-Build ProcessEnumModules and VCredistProbe first. Copy the output to 
-processes\ProcessEnumModules_x64.exe
-processes\ProcessEnumModules_win32.exe
-processes\VCredistProbe_x64.exe
-processes\VCredistProbe_win32.exe
+1) Rebuild SetupHelpers.sln in win32 and x64 
+2) Rebuild Processes.sln in win32
 
-Compile processes.dll and copy processes.dll to NSIS/plugins
+Copy bin\Win32\Release\processes.dll to NSIS/plugins
 
 History
 ------
+2019-06-08 
+Simplify build process by splitting into two solutions
 2018-12-30 
 Updated to VS2017, removed Itanium support
 lang.dll still with Vs2005 compiled

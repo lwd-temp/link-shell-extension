@@ -8,7 +8,7 @@
 int _tmain(int argc, _TCHAR* argv[])
 {
   _StringList Modules;
-  _StringMap  Processes;
+  _StringSet  Processes;
 
   Modules.push_back(L"HardlinkShellExt.dll");
   NtQueryProcessByModule(Modules, Processes);
@@ -20,8 +20,8 @@ int _tmain(int argc, _TCHAR* argv[])
   FILE* processes = _wfopen (TempPath, L"wb");
   if (processes)
   {
-    for (_StringMap::iterator iter = Processes.begin(); iter != Processes.end(); ++iter)
-      fwprintf (processes, L"%s\n", iter->first.c_str());
+    for (const auto& iter : Processes)
+      fwprintf (processes, L"%s\n", iter.c_str());
 
     fclose(processes);
   }

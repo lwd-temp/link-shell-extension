@@ -94,14 +94,14 @@ bool	KillProc( char *szProcess )
 		(szProcessNameLen + 1) * 2	// output buffer size
 	);
 
-	bool b = NtQueryProcessId(szProcessNameUni, &dPID, &dPIDSize);
+  bool found = false;
+  bool b = NtQueryProcessId(szProcessNameUni, &dPID, &dPIDSize);
 	if (b)
 	{
 		HANDLE		hProcess;
 		//
 		// walk trough and compare see if the process is running
 		//
-		bool found = false;
 		for (int k = 0; k < dPIDSize; k++)
 		{
 			if( NULL != ( hProcess = OpenProcess( PROCESS_ALL_ACCESS, FALSE, dPID[ k ] ) ) )
@@ -126,8 +126,8 @@ bool	KillProc( char *szProcess )
 				CloseHandle( hProcess );
 			}
 		}
-		return found;
 	}
+  return found;
 }
 
 
