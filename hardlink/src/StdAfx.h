@@ -68,6 +68,9 @@ using namespace std;
 
 #include <..\..\shared\tre-0.8.0\lib\regex.h>
 
+#include <..\..\shared\version\RegSchemaVersion.h>
+
+
 #include "md5.h"
 
 #include "psapi.h"

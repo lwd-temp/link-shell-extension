@@ -6,7 +6,7 @@ REM
 set MAJOR_VERSION=3
 set MINOR_VERSION=9
 set PATCH_VERSION=2
-set HOTFIX_VERSION=4
+set HOTFIX_VERSION=5
 
 @echo generating Version info
 REM Generate version info for c++
@@ -16,7 +16,16 @@ set VERSION_FILE=Shared\version\version.h
 (echo #define MINOR_VERSION %MINOR_VERSION%)>>%VERSION_FILE%
 (echo #define PATCH_VERSION %PATCH_VERSION%)>>%VERSION_FILE%
 (echo #define HOTFIX_VERSION %HOTFIX_VERSION%)>>%VERSION_FILE%
-(echo #define LSE_CURRENT_VERSION %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%)>>%VERSION_FILE%
+
+REM LSE contains a schema in the registry. If from version to version this schema is heavily
+REM changed, then we need to increment the schema version number.
+REM For normal code changes it is not neccessary to increase this scheme, but keep it
+REM Changing the schema means, that the default values for various settings are copied over
+REM which is cumbersome for the users. So the goal is not th change this schema
+REM
+REM Uncomment the below line if the schema should be changed
+set VERSION_REG_SCHEMA=Shared\version\RegSchemaVersion.h
+REM (echo #define LSE_CURRENT_VERSION %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%)>>%VERSION_REG_SCHEMA%
 
 REM Generate version info for install media stamp
 REM
@@ -49,7 +58,7 @@ REM
 pushd HardlinkExtension\install
 call CodeSign.bat
 popd
-xcopy /y HardlinkExtension\Doc\linkshellextension.html HardlinkExtension\Doc\hardlinkshellext.html
+echo F|xcopy /y HardlinkExtension\Doc\linkshellextension.html HardlinkExtension\Doc\hardlinkshellext.html
 
 REM Pack ln.exe
 REM

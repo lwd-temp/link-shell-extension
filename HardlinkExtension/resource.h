@@ -2,10 +2,6 @@
 // Microsoft Visual C++ generated include file.
 // Used by HardLink.rc
 //
-#define PATCH_VERSION                   2
-#define MAJOR_VERSION                   3
-#define HOTFIX_VERSION                  4
-#define MINOR_VERSION                   9
 #define IDI_ICON1                       131
 #define IDI_LINKSHLEXT_ICON_TAB         136
 #define IDS_STRING_DrivePrefix          138
@@ -164,7 +160,6 @@
 #define IDD_LINKSHLEXT_PROPPAGE         1008
 #define IDC_EXPLORE_TARGET              1011
 #define IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE 1017
-#define LSE_CURRENT_VERSION             3924
 
 // Next default values for new objects
 // 
