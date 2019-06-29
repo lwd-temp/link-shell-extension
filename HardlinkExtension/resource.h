@@ -64,9 +64,8 @@
 #define IDS_STRING_eMenuDeloreanCopy    210
 #define IDS_STRING_eMenuCreateMountPoint 211
 #define IDS_STRING_eMenuCopySymbolicLink 212
-#define IDS_STRING_eMenuCopyJunction 213
-#define IDS_STRING_eMenuCopyMountpoint 214
-
+#define IDS_STRING_eMenuCopyJunction    213
+#define IDS_STRING_eMenuCopyMountpoint  214
 #define IDS_STRING_eMenuDropeAs         215
 #define IDS_STRING_eMenuDropHardlink    216
 #define IDS_STRING_eMenuDropHardLinkClone 217
@@ -91,9 +90,8 @@
 #define IDS_STRING_eMenuDeloreanCopy1   236
 #define IDS_STRING_eMenuCreateMountPoint1 237
 #define IDS_STRING_eMenuCopySymbolicLink1 238
-#define IDS_STRING_eMenuCopyJunction1 239
+#define IDS_STRING_eMenuCopyJunction1   239
 #define IDS_STRING_eMenuCopyMountpoint1 240
-
 #define IDS_STRING_eMenuDropeAs1        241
 #define IDS_STRING_eMenuDropHardlink1   242
 #define IDS_STRING_eMenuDropHardLinkClone1 243
@@ -105,6 +103,9 @@
 #define IDS_STRING_eMenuDropReplaceMountPoint1 249
 #define IDS_STRING_eMenuDropSmartMirror1 250
 #define IDS_STRING_eMenuDropDeloreanCopy1 251
+#define IDS_STRING_eMenuRelocateSymbolicLink 252
+#define IDS_STRING_eMenuRelocateJunction 253
+#define IDS_STRING253                   253
 #define IDS_STRING_HelpText01           300
 #define IDS_STRING_HelpText02           301
 #define IDS_STRING_HelpText03           302

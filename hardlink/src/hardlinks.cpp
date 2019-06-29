@@ -12910,7 +12910,7 @@ wchar_t * __cdecl wcsesc_s (
 bool
 NtQueryProcessByModule(
   _StringList&  aModuleNames,
-  _StringMap &  aProcessNames
+  _StringSet &  aProcessNames
 )
 {
 	int			found = false;
@@ -12964,14 +12964,14 @@ NtQueryProcessByModule(
             wchar_t szModName[MAX_PATH];
             if ( GetModuleFileNameExW(hProcess, hMods[i], szModName, sizeof(szModName)))
             {
-              for (_StringList::iterator ii = aModuleNames.begin(); ii != aModuleNames.end(); ++ii)
+              for (const auto& ii : aModuleNames)
               {
-                if (wcseistr(szModName, (*ii).c_str() ) )
+//                if (wcseistr(szModName, (*ii).c_str()))
+                  if (wcseistr(szModName, ii.c_str() ) )
                 {
                   if (aProcessNames.find(pProcess->ImageName.Buffer) == aProcessNames.end())
                   {
-                    // pair< _StringMap::iterator, bool > pr = ...
-                    aProcessNames.insert(_StringMapPair(pProcess->ImageName.Buffer, 42));
+                    aProcessNames.insert(pProcess->ImageName.Buffer);
                     // printf("\t%S\t%S \n", pProcess->pszProcessName, szModName);
                   }
                 }

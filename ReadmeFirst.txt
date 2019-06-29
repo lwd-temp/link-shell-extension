@@ -38,9 +38,12 @@ Install Media
 -------------
 Install Media are created by BuildWorld.bat. To specify the version number edit BuildWorld.bat first.
 
+Please also take note of the comment in buildworld.bat about changing the registry schema. Normally 
+nothing is needed here.
+
 There is an NSIS Setup for Hardlink Shell Ext with a custom .dll to handle all the nifty parts like killing
-processes, which hold hardlinkshellext.dll. See HardlinkExtension\install\setup-processes. This is an extra solution
-and ends up in processes.dll. HardlinkExtension\install\setup-processes\TheBigPicture.txt gives an overview.
+processes, which hold hardlinkshellext.dll. See HardlinkExtension\install\setup-processes. There are two extra solutions
+to compile this helper. Please see HardlinkExtension\install\setup-processes\TheBigPicture.txt.
 
 All output can be found in the Media/ directory
 
@@ -57,7 +60,9 @@ DupeMerge/Doc holds a .html file and lots of pictures to outline things
 Distribution
 ------------
 If you want to create a new distro
-o) Edit BuildWorld.bat for the version
+o) Edit BuildWorld.bat for the version and rarley for the registry schema
+o) Follow the instructions under HardlinkExtension\install\setup-processes\TheBigPicture.txt if you need to recompile processes.dll
+   You have to do this once, when you start from a clean git-clone. If you have the .dll you can skip this step
 o) Run BuildWorld.bat. As part of it recompile everyhing <you are told>
 o) Run LnAlltest.bat and compare LnTest_Current.txt with LnTest_Good.txt
 o) Continue in BuildWorld.bat to create the Media/

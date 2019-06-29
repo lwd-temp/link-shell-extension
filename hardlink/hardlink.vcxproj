@@ -227,6 +227,7 @@
     <ClCompile Include="src\UACReuse.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Shared\version\RegSchemaVersion.h" />
     <ClInclude Include="include\AsyncContext.h" />
     <ClInclude Include="include\DbgHelpers.h" />
     <ClInclude Include="include\HardlinkLib.h" />

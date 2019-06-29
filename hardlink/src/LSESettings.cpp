@@ -619,7 +619,7 @@ LSESettings::ReadLSESettings(
     if (lResult != ERROR_SUCCESS)
       CopygFlags = true;
 
-    if (HKCUInstalledVersion != LSE_CURRENT_VERSION)
+    if (HKCUInstalledVersion != LSE_REG_SCHEMA_VERSION)
       CopygFlags = true;
 
     // This only happens when you for the first time run a new version
@@ -666,7 +666,7 @@ LSESettings::ReadLSESettings(
           (DWORD) sizeof(NewgFlags)
         );
 
-        DWORD LSECurrentVersion = LSE_CURRENT_VERSION;
+        DWORD LSECurrentVersion = LSE_REG_SCHEMA_VERSION;
         RetVal = RegSetValueEx(
           HKCURegKey,
           LSE_REGISTRY_INSTALLED_VERSION,

@@ -97,5 +97,8 @@
     <ClInclude Include="include\DbgHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Shared\version\RegSchemaVersion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
