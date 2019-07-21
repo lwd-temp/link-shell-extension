@@ -1698,9 +1698,9 @@ DropSymbolicLink(
 #endif
       {
         if (SymbolicLinkRelation)
-          uacHelper.WriteArgs('F', dest, target);
-        else
           uacHelper.WriteArgs('f', dest, target);
+        else
+          uacHelper.WriteArgs('F', dest, target);
       }
       else
       {
@@ -1748,9 +1748,9 @@ DropSymbolicLink(
 #endif
         {
           if (SymbolicLinkRelation)
-            uacHelper.WriteArgs('D', dest, target);
-          else
             uacHelper.WriteArgs('d', dest, target);
+          else
+            uacHelper.WriteArgs('D', dest, target);
         }
         else
         {
