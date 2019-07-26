@@ -20,8 +20,8 @@ set VERSION_FILE=Shared\version\version.h
 REM LSE contains a schema in the registry. If from version to version this schema is heavily
 REM changed, then we need to increment the schema version number.
 REM For normal code changes it is not neccessary to increase this scheme, but keep it
-REM Changing the schema means, that the default values for various settings are copied over
-REM which is cumbersome for the users. So the goal is not th change this schema
+REM Changing the schema means, that the default values for various settings are copied over during initial start of LSE
+REM which is cumbersome for the users. So the goal is not to change this schema
 REM
 REM Uncomment the below line if the schema should be changed
 set VERSION_REG_SCHEMA=Shared\version\RegSchemaVersion.h

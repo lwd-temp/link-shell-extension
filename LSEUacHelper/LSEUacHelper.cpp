@@ -869,7 +869,7 @@ void
 RebootExplorer()
 {
   {
-    int MsgRet;
+    int MsgRet = 0;
     _StringList Modules;
     _StringSet  Processes;
 
