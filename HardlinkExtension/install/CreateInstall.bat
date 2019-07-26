@@ -1,3 +1,4 @@
+@echo off
 REM
 REM This setup can be compiled with NSIS201
 REM Install NSIS201 to the location of your
@@ -16,12 +17,26 @@ REM
 REM Compile install script
 REM
 
+REM Check if artefacts for setup generation are available
+REM
+set PROCESSES_DLL=setup-processes\bin\win32\release\Processes.dll
+set LANG_DLL=setup-processes\bin\win32\release\LangDll.dll
+
+if not exist %PROCESSES_DLL% (
+	echo Please recompile Processes.dll. See setup-processes\TheBigPicture.txt
+	goto :EOF
+)
+
+if not exist %LANG_DLL% (
+	echo Please recompile Lang.dll. See setup-processes\TheBigPicture.txt
+	goto :EOF
+)
 
 REM VS2017 - Win32 Version, Plattform 0x601
 REM
 :win32
-copy /y setup-processes\bin\win32\release\Processes.dll "%NSISDIR%\Plugins\Processes.dll"
-copy /y setup-processes\bin\win32\release\LangDll.dll "%NSISDIR%\Plugins\LangDll.dll"
+copy /y %PROCESSES_DLL% "%NSISDIR%\Plugins\Processes.dll"
+copy /y %LANG_DLL% "%NSISDIR%\Plugins\LangDll.dll"
 
 copy Stubs.org\lzma* "%NSISDIR%\Stubs"
 %STAMPVER% -vstampver.inf "%NSISDIR%\Stubs\lzma"
@@ -32,8 +47,8 @@ REM
 REM VS2017 - X64 Version
 REM
 :x64
-copy /y setup-processes\bin\win32\release\Processes.dll "%NSISDIR%\Plugins\Processes.dll"
-copy /y setup-processes\bin\win32\release\LangDll.dll "%NSISDIR%\Plugins\LangDll.dll"
+copy /y %PROCESSES_DLL% "%NSISDIR%\Plugins\Processes.dll"
+copy /y %LANG_DLL% "%NSISDIR%\Plugins\LangDll.dll"
 
 copy Stubs.64\lzma* "%NSISDIR%\Stubs"
 %STAMPVER% -vstampver.inf "%NSISDIR%\Stubs\lzma"
@@ -48,6 +63,6 @@ REM
 REM wait 5 seconds
 REM
 REM @ping 127.0.0.1 -n 10 -w 1000 > nul
-
+echo on
 
 

@@ -7,6 +7,22 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.925 has been released.</title>
+      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <pubDate>Tue, 26 Jul 2019 10:00:15 +0100</pubDate>
+      <description>
+        LSE 3.925 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>UAChelper mixed up relative and absolute link creation. Introduced with 3920</li>
+          <li>Added Ukranian localization, Finish localisation for missing texts</li>
+        ]]>
+      </content:encoded>
+      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3925</guid>
+    </item>
+
+    <item>
       <title>LSE 3.924 has been released.</title>
       <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 28 Apr 2019 20:00:15 +0100</pubDate>
