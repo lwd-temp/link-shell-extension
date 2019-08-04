@@ -5,6 +5,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "processes", "processes\processes.vcxproj", "{3438467F-A719-46DC-93E5-137A8B691727}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProcessesTest", "ProcessesTest\ProcessesTest.vcxproj", "{A02E5CB2-1020-4DFD-BD53-B6B0E94A5C4A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3438467F-A719-46DC-93E5-137A8B691727} = {3438467F-A719-46DC-93E5-137A8B691727}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FA2DCAB1-C936-4AA7-A279-90AA38DB2090}"
 	ProjectSection(SolutionItems) = preProject
