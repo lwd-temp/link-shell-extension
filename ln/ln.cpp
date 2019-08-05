@@ -2057,6 +2057,14 @@ wmain(
     gStdOutHandle = (intptr_t)GetStdHandle(STD_OUTPUT_HANDLE);
     int StdOutDesc = _open_osfhandle(gStdOutHandle, _O_TEXT);
     gStdOutFile = _fdopen(StdOutDesc, "w");
+    
+    // Change the buffer size so that outputing results does not cause stalls during printout
+    // which is difficult, because the safest way would be to go with _IONBF, but this slows
+    // down operation. If we go for buffering with _IOFBF/_IOLBF a big file might take so long 
+    // to copy, that even the buffer runs out and again the output print stalls
+    // Even if unfortunatley _IOFBF is the same as _IOLBF we take _IOLBF, because we really 
+    // want line buffering
+    int rr = setvbuf(gStdOutFile, NULL, _IOLBF, 1'000'000);
 
     // Take the default locale
     setlocale(LC_ALL,"");
