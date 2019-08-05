@@ -295,6 +295,8 @@ Function COMServerRegistration
 
 
 
+  WriteRegStr HKCR "$REG_PREFIX_Folder\shellex\ColumnHandlers\{0A479751-02BC-11d3-A855-0004AC2568AA}" "" "HardLink Reference Count"
+
   WriteRegStr HKCR "$REG_PREFIX_Directory\shellex\CopyHookHandlers\HardLinkMenu" "" "{0A479751-02BC-11d3-A855-0004AC2568BB}"
   
   WriteRegStr HKCR "$REG_PREFIX_*\shellex\PropertySheetHandlers\HardLinkMenu" "" "{0A479751-02BC-11d3-A855-0004AC2568CC}"
@@ -388,6 +390,7 @@ Function un.COMServerCleanup
 
   lbl_Common01_deinst:
 
+  DeleteRegKey HKCR "$REG_PREFIX_Folder\shellex\ColumnHandlers\{0A479751-02BC-11d3-A855-0004AC2568AA}"
   DeleteRegKey HKCR "$REG_PREFIX_Directory\shellex\CopyHookHandlers\HardLinkMenu"
   DeleteRegKey HKLM "$REG_PREFIX_Software\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\IconOverlayJunction"
   DeleteRegKey HKLM "$REG_PREFIX_Software\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\IconOverlayHardLink"

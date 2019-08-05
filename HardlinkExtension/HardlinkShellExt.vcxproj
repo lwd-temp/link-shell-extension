@@ -282,6 +282,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ColumnProvider.cpp" />
     <ClCompile Include="CopyHook.cpp" />
     <ClCompile Include="LinkShellExtension.cpp" />
     <ClCompile Include="LinkShellMenu.cpp" />
@@ -343,6 +344,7 @@
     <None Include="res\PROGRESS.BIN" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ColumnProvider.h" />
     <ClInclude Include="CopyHook.h" />
     <ClInclude Include="LinkShellExtension.h" />
     <ClInclude Include="LinkShellMenu.h" />

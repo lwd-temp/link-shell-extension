@@ -23,12 +23,18 @@ set PROCESSES_DLL=setup-processes\bin\win32\release\Processes.dll
 set LANG_DLL=setup-processes\bin\win32\release\LangDll.dll
 
 if not exist %PROCESSES_DLL% (
+	echo #####
 	echo Please recompile Processes.dll. See setup-processes\TheBigPicture.txt
+	echo #####
+	pause
 	goto :EOF
 )
 
 if not exist %LANG_DLL% (
+	echo #####
 	echo Please recompile Lang.dll. See setup-processes\TheBigPicture.txt
+	echo #####
+	pause
 	goto :EOF
 )
 
