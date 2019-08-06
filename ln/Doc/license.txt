@@ -31,7 +31,7 @@ If you are interested in licensing Ln.exe code for
 redistribution or for inclusion with or as part of a software product,
 please contact hermann@schinagl.priv.at
 
-Ln.exe Copyright (C) 2004 - 2014 by Hermann Schinagl
+Ln.exe Copyright (C) 2004 - 2019 by Hermann Schinagl
 Ln.exe comes with ABSOLUTELY NO WARRANTY
 
 http://schinagl.priv.at/nt/ln/ln.html
