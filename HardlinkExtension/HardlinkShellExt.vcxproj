@@ -326,7 +326,6 @@
     <None Include="install\GetWindowsVersion.nsh" />
     <None Include="install\HardlinkShellExt.nsi" />
     <None Include="install\HardlinkShellExt_win32.nsi" />
-    <None Include="install\HardlinkShellExt_win32_502.nsi" />
     <None Include="install\HardlinkShellExt_x64.nsi" />
     <None Include="install\ReleaseChecklist.txt" />
     <CustomBuild Include="install\stampver.inf">

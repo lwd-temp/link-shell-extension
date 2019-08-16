@@ -92,9 +92,6 @@
     <None Include="install\WriteEnvStr.nsh">
       <Filter>Install</Filter>
     </None>
-    <None Include="install\HardlinkShellExt_win32_502.nsi">
-      <Filter>Install</Filter>
-    </None>
     <None Include="LinkShellExtension.def">
       <Filter>Source Files</Filter>
     </None>
