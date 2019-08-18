@@ -921,7 +921,7 @@ RebootExplorer()
       wchar_t		szProcessNameUni[32] = EXPLORER;
 
       ULONG		dPIDSize = 0;
-      PULONG  dPID;
+      PUINT_PTR  dPID;
       bool b = NtQueryProcessId(szProcessNameUni, &dPID, &dPIDSize);
 
       if (b)

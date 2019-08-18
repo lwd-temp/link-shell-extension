@@ -146,11 +146,11 @@ NtQueryProcessByModule(
 
 		status = NtQuerySystemInformation(SystemProcessListInformation, pBuffer, BufferSize, &ulSize);
 
-		if (status == 0xC0000004 /*STATUS_INFO_LENGTH_MISMATCH*/) {
+		if (status == STATUS_INFO_LENGTH_MISMATCH) {
 			free(pBuffer);
 		}
 
-	} while (status == 0xC0000004 /*STATUS_INFO_LENGTH_MISMATCH*/);
+	} while (status == STATUS_INFO_LENGTH_MISMATCH);
 
 
   // Use K32EnumProcessModulesEx from kernel32.lib

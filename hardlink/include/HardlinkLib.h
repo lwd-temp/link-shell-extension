@@ -16,6 +16,8 @@
 #include "Progressbar.h"
 #include "hardlinks.h"
 #include "HardlinkUtils.h"
+#include "NtBase.h"
+
 
 #include "UACReuse.h"
 
