@@ -12,19 +12,12 @@
 
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 
-#define _CRT_SECURE_NO_DEPRECATE
-
 #if defined( UNICODE )	 && ! defined( _UNICODE )
 #define _UNICODE
 #endif
 
 #if defined( _UNICODE ) && ! defined( UNICODE )
 #define UNICODE
-#endif
-
-// Disable checked iterators in release builds
-#ifndef _DEBUG
-// #  define _SECURE_SCL 0
 #endif
 
 #include <windows.h>
@@ -59,8 +52,6 @@
 #include <string.h>
 #include <stdio.h>
 
-
-
 #include <ShlObj.h>
 #include <shlwapi.h>
 #include <shlguid.h>
@@ -73,6 +64,6 @@ using namespace std;
 
 #include "md5.h"
 
-#include "psapi.h"
+#include <psapi.h>
 
 

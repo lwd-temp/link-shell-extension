@@ -9,7 +9,14 @@
 
 #include <windows.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <conio.h>
+#include <string>
+#include <vector>
+#include <set>
+#include <atomic>
 
+#include <ntsysteminfo.h>
+
+#include <psapi.h>
+
+
+using namespace std;

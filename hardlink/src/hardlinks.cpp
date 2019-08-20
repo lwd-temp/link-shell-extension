@@ -20,6 +20,8 @@
 
 #include "Reparse.h"
 
+#include "NtBase.h"
+
 #include "moduleversion.h"
 
 

@@ -2667,15 +2667,6 @@ class FileInfoContainer
 };
 
 
-typedef BOOL (WINAPI *K32EnumProcessModulesEx_t)(
-  IN    HANDLE hProcess,
-  OUT   HMODULE *lphModule,
-  IN    DWORD cb,
-  OUT   LPDWORD lpcbNeeded,
-  IN    DWORD dwFilterFlag
-);
-
-
 wchar_t* GetRelativeFilename(
   wchar_t *relativeFilename, 
   wchar_t *currentDirectory, 

@@ -16,14 +16,9 @@
 #include "moduleversion.h"
 
 #include "HardlinkUtils.h"
+#include "NtBase.h"
 
 extern FILE* gStdOutFile;
-
-extern "C" { int __locale_changed; }
-_locale_t g_locale_t;
-
-
-
 
 WaitQueue::
 WaitQueue(int a_Max) : 
@@ -4556,124 +4551,4 @@ ProbeTokenPrivilege(
 {
   return _ChangeTokenPrivilege(PrivilegeName, eProbePrivilege);
 }
-
-/***
-*wchar_t *wcseistr(string1, string2) - search for string2 in string1
-*       (wide strings)
-*
-*Purpose:
-*       finds the first occurrence of string2 in string1 (wide strings)
-*       derived from wcsstr()
-*
-*Entry:
-*       wchar_t *string1 - string to search in
-*       wchar_t *string2 - string to search for
-*
-*Exit:
-*       returns a pointer to the first occurrence of string2 in
-*       string1, or NULL if string2 does not occur in string1
-*
-*Uses:
-*
-*Exceptions:
-*
-*******************************************************************************/
-#define __ascii_towlower(c)     ( (((c) >= L'A') && ((c) <= L'Z')) ? ((c) - L'A' + L'a') : (c) )
-
-wchar_t * __cdecl wcseistr(
-  const wchar_t * wcs1,
-  const wchar_t * wcs2
-)
-{
-  if (__locale_changed == 0)
-  {
-    wchar_t *cp = (wchar_t *)wcs1;
-    wchar_t *s1, *s2;
-
-    if (!*wcs2)
-      return (wchar_t *)wcs1;
-
-    while (*cp)
-    {
-      s1 = cp;
-      s2 = (wchar_t *)wcs2;
-
-      while (*s1 && *s2 && !(__ascii_towlower(*s1) - __ascii_towlower(*s2)))
-        s1++, s2++;
-
-      if (!*s2)
-        return(s1);
-
-      cp++;
-    }
-  }
-  else
-  {
-    wchar_t *cp = (wchar_t *)wcs1;
-    wchar_t *s1, *s2;
-
-    if (!*wcs2)
-      return (wchar_t *)wcs1;
-
-    while (*cp)
-    {
-      s1 = cp;
-      s2 = (wchar_t *)wcs2;
-
-      while (*s1 && *s2 && !(_towlower_l((unsigned short)(*s1), g_locale_t) - _towlower_l((unsigned short)(*s2), g_locale_t)))
-        s1++, s2++;
-
-      if (!*s2)
-        return(s1);
-
-      cp++;
-    }
-  }
-
-  return(NULL);
-}
-
-/***
-*wchar_t *wcsesc_s(string1, string2, size, esc) - escapes character esc
-*       (wide strings)
-*
-*Purpose:
-*       find the charater esc and doubles it
-*
-*Entry:
-*       wchar_t *string1 - string to search in
-*       wchar_t *string2 - string to copy to
-*       wchar_t  esc     - character to escape
-*
-*Exit:
-*       The address of "dst"
-*
-*Exceptions:
-*
-*******************************************************************************/
-wchar_t * __cdecl wcsesc_s(
-  wchar_t * dst,
-  const wchar_t * src,
-  size_t _SIZE,
-  const wchar_t search
-)
-{
-  wchar_t * cp = dst;
-  size_t size = 0;
-
-  while ((size < _SIZE) && (*cp = *src))
-  {
-    if (*src == search)
-    {
-      *(++cp) = search;
-      size++;
-    }
-    src++;
-    cp++;
-    size++;
-  }
-
-  return (dst);
-}
-
 
