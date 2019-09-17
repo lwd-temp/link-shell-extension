@@ -121,26 +121,26 @@ GetFileAttr(
     int ReparseType = ProbeReparsePoint(aTarget.m_Path, NULL);
     switch (ReparseType)
     {
-    case REPARSE_POINT_JUNCTION:
-    {
-      aTarget.m_Flags |= eJunction;
-      aTargetsFlag |= eJunction;
-      break;
-    }
+      case REPARSE_POINT_JUNCTION:
+      {
+        aTarget.m_Flags |= eJunction;
+        aTargetsFlag |= eJunction;
+        break;
+      }
 
-    case REPARSE_POINT_MOUNTPOINT:
-    {
-      aTarget.m_Flags |= eMountPoint;
-      aTargetsFlag |= eMountPoint;
-      break;
-    }
+      case REPARSE_POINT_MOUNTPOINT:
+      {
+        aTarget.m_Flags |= eMountPoint;
+        aTargetsFlag |= eMountPoint;
+        break;
+      }
 
-    case REPARSE_POINT_SYMBOLICLINK:
-    {
-      aTarget.m_Flags |= eSymbolicLink;
-      aTargetsFlag |= eSymbolicLink;
-      break;
-    }
+      case REPARSE_POINT_SYMBOLICLINK:
+      {
+        aTarget.m_Flags |= eSymbolicLink;
+        aTargetsFlag |= eSymbolicLink;
+        break;
+      }
     }
 
     // Check if this is a root path, so that we can offer mount points
@@ -152,7 +152,7 @@ GetFileAttr(
     }
     else
     {
-      if (!ReparseType)
+      if (REPARSE_POINT_FAIL == ReparseType)
       {
         // It is a just a plain directory
         aTarget.m_Flags |= eDir;
@@ -162,8 +162,7 @@ GetFileAttr(
   }
   else
   {
-    // Deal with files
-
+    // Deal with files, dangling Symbolic links or dangling Junctions
     if (ProbeSymbolicLink(aTarget.m_Path, NULL))
     {
       aTarget.m_Flags |= eSymbolicLink;
@@ -171,8 +170,19 @@ GetFileAttr(
     }
     else
     {
-      aTarget.m_Flags |= eFile;
-      aTargetsFlag |= eFile;
+      // It could be a dangling Junction
+      if (ProbeJunction(aTarget.m_Path, NULL))
+      {
+        aTarget.m_Flags |= eJunction;
+        aTargetsFlag |= eJunction;
+      }
+      else 
+      {
+        // No it is a file
+        aTarget.m_Flags |= eFile;
+        aTargetsFlag |= eFile;
+      }
+      
     }
   }
 
