@@ -2,33 +2,104 @@
 
 <html>
 <head>
-  <a href="https://plus.google.com/110217026822582868489" rel="publisher">Google+</a>
   <link rel="alternate" type="application/rss+xml" title="Link Shell Extension RSS feed" href="http://schinagl.priv.at/nt/hardlinkshellext/lse.xml"/>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
   <style type="text/css">
-   body,td,th {
-	font-family: Arial, 'Segoe UI', Verdana, Geneva, sans-serif;
-	color: #000;
-	background-color: #FFF;
-}
-  .bodytext {
-	font-family: Arial, 'Segoe UI', Helvetica, sans-serif;
-	font-size: .9em;
-}
- 
-  .hanger {
-	font-weight: bold;
-	color: #25049F;
-	font-size: .9em;
-}
-  .ascode {
-	font-family: "Courier New", Courier;
-	font-weight: bold;
-	padding-left: 1em;
-	font-size: 1em;
-}
+
+
+      @media only screen and (device-width : 375px) and (device-height : 812px) and (-webkit-device-pixel-ratio : 3) {
+          body, td, th {
+              font-family: Arial, 'Segoe UI', Verdana, Geneva, sans-serif;
+              color: #000;
+              background-color: #fff;
+              vertical-align:top;
+          }
+
+          .bodytext {
+              font-family: Arial, 'Segoe UI', Helvetica, sans-serif;
+              vertical-align:top;
+          }
+
+          .hanger {
+              font-weight: bold;
+              color: #25049F;
+              width: 130px;
+              text-align: right;
+              vertical-align:top;
+          }
+
+          .hanger2 {
+              width: 110px;
+              text-align: left;
+              vertical-align: top;
+          }
+
+          .history {
+              width: 140px;
+              text-align: left;
+              vertical-align: top;
+          }
+
+          .ascode {
+              font-family: "Courier New", Courier;
+              font-weight: bold;
+              padding-left: 1.5em;
+          }
+
+          img {
+              border:hidden
+          }
+      }
+
+      @media (min-width: 1281px) {
+          body, td, th {
+              font-family: Arial, 'Segoe UI', Verdana, Geneva, sans-serif;
+              color: #000;
+              background-color: #fff;
+              vertical-align: top;
+          }
+
+          .bodytext {
+              font-family: Arial, 'Segoe UI', Helvetica, sans-serif;
+              vertical-align: top;
+          }
+
+          .hanger {
+              font-weight: bold;
+              color: #25049F;
+              width: 130px;
+              text-align: right;
+              vertical-align: top;
+          }
+
+          .hanger2 {
+              width: 110px;
+              text-align: left;
+              vertical-align: top;
+          }
+
+          .history {
+              width: 140px;
+              text-align: left;
+              vertical-align: top;
+          }
+
+          .ascode {
+              font-family: "Courier New", Courier;
+              font-weight: bold;
+              padding-left: 1.5em;
+          }
+
+          img {
+              border: hidden
+          }
+      }
+
+
+
   </style>
+
 <script type="text/javascript">
 /* <![CDATA[ */
     (function() {
@@ -47,40 +118,36 @@
 <body bgcolor="#FFFFFF">
     &nbsp;
 
-    <table cellspacing="10" cellpadding="0" width=97% border="0">
+    <table cellspacing="10" cellpadding="0" border="0">
         <tr>
-            <td colspan="2"><img src="linkshellext.png" alt="Link Shell Extension" height="50" width="519"></td>
+            <td colspan="2"><img src="linkshellext.png" alt="Link Shell Extension"></td>
         </tr>
 
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i><font face="arial" size="-2">Last Updated September 17  2019, Version 3.9.2.6</font></i>
+                    <i>Last Updated July 26  2019, Version 3.9.2.5</i>
                 </div>
             </td>
         </tr>
 
         <tr>
-            <td colspan="2" bgcolor="#F2F2F2"><img src="../../images/spacer.gif" width="1" height="5"></td>
-        </tr>
-
-        <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="datenschutzerklärung"><b>Privacy Statement</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
-                    The privacy statement can be found <a href="http://schinagl.priv.at/about/dsgvo.html">here</a>
+            <td class="bodytext">
+                    The hallos statement can be found <a href="http://schinagl.priv.at/about/dsgvo.html">here</a>
             </td>
         </tr>
 
 
         <tr>
-            <td align="right" valign="top" width="130" class="hanger">
+            <td class="hanger">
                 <a name="quickstart"><b>Quick Start</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <a href="#contact">Download</a><br />
                 <a href="#introduction">Documentation</a><br />
                 <a href="#faq">Frequently asked questions (FAQ)</a><br />
@@ -92,11 +159,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" width="130" class="hanger">
+            <td class="hanger">
                 <a name="introduction"><b>Introduction</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                     The NTFS file system implemented in NT4, Windows 2000, Windows XP, Windows XP64, and Windows7/8/10 supports a facility known as <b>hard links</b>
                     (referred to herein as <b>Hardlinks</b>). Hardlinks provide the ability to keep a single copy of a file yet have it
                     appear in multiple folders (directories).&nbsp;
@@ -146,11 +213,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="installation"><b>Installation</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                     The current user must have administrator privileges in order to install the software.
 
                 <p>
@@ -175,11 +242,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="silentinstall"><b>Installation Arguments</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 Some command line switches can be passed during install, so that a silent install via .bat file
                 can be acchieved.<br /><br />
 
@@ -236,16 +303,16 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="usinglinkshellextension"><b>Using Link Shell Extension</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <b>Pick Link Source</b> causes the selected files to be "stored" as the
                 source for the Hardlinks that you want to create.
                 <br />
                 <br />
-                <img src="picklinksource.png" border="0" alt="Pick Link Source">
+                <img src="picklinksource.png" alt="Pick Link Source">
                 <br />
                 <br />
 
@@ -254,7 +321,7 @@
                 <b> Drop HardLink</b>
                 <br />
                 <br />
-                <img src="drophardlinkfolder.png" border="0" alt="Drop Hardlink">
+                <img src="drophardlinkfolder.png" alt="Drop Hardlink">
 
                 <br />
                 <br />
@@ -265,7 +332,7 @@
                 <b>Overlay Icons for Hardlinks</b><br />
                 To help distinguish hardlinks folders from normal files, an <b>overlay icon</b> is implemented
                 on hardlinks that shows a red arrow icon under the folder.<br /><br />
-                <img src="hardlinkicon.png" border="0" alt="Overlay Icon for Symbolic Links">
+                <img src="hardlinkicon.png" alt="Overlay Icon for Symbolic Links">
 
                 <br /><br />
                 Overlay icons for Hardlinks can also be <a href="#customoverlayicons">customized.</a>
@@ -278,35 +345,35 @@
                 many Explorer replacements implement an application specific white space action menu that is not readily
                 accessible from general purpose shell extensions such as LSE.
 
-                <img src="drophardlinkbackground.png" border="0" alt="Drop Hardlinks in Background">
+                <img src="drophardlinkbackground.png" alt="Drop Hardlinks in Background">
                 <br />
                 <br />
             </td>
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="cancelcurrentpicklinkoperation"><b>Cancel current Pick Link operation</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 When doing an Action button click in the destination folder background, in addition to the Drop HardLink option there is the
                 possibility to <b>Cancel Link Creation</b> entry.
                 <br />
                 <br />
 
-                <img src="cancelpickbackground.png" border="0" alt="Cancel the current pick operation">
+                <img src="cancelpickbackground.png" alt="Cancel the current pick operation">
                 <br />
                 <br />
             </td>
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="popupsubmenue"><b>Popup Submenue</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 Since LSE supports <a href="#junctions">Junction</a>,
                 <a href="#hardlinkclones">Clones</a> and with Windows7/8/10 <a href="#symboliclinks">Symbolic Links</a>,
                 when one or more folders are selected as the Source Links they can be dropped in several forms.
@@ -316,7 +383,7 @@
                 <br />
                 <br />
 
-                <img src="submenue.png" border="0" alt="Popup Submenue">
+                <img src="submenue.png" alt="Popup Submenue">
             </td>
         </tr>
 
@@ -325,18 +392,18 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="draganddropsupport"><b>Drag and Drop Support</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 Creating Hardlinks via drag and drop is supported, after selecting one or more files you can
                 drag them to the destination folder with the Action button held down; when it is released choose <b>HardLink Here</b>
                 from the action menu to create the Hardlinks of the selected files in the destination folder.
                 <br />
                 <br />
 
-                <img src="draghardlink.png" border="0" alt="Drag Hardlinks">
+                <img src="draghardlink.png" alt="Drag Hardlinks">
                 <br />
                 <br />
             </td>
@@ -347,11 +414,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="autorename"><b>Auto Rename</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 Files can&nbsp;
                 be hard linked to the same folder as the source folder. Because two directory entries cannot have the same name, LSE uses
                 '$filename - Hardlink.$ext' as the name of the the new link.
@@ -362,7 +429,7 @@
                 <br />
                 <br />
 
-                <img src="autorename.png" border="0" alt="Automatic rename">
+                <img src="autorename.png" alt="Automatic rename">
                 <br />
                 <br />
 
@@ -380,25 +447,25 @@
                 <br />
                 <br />
 
-                <img src="autorenamemultpiple.png" border="0" alt="autorenamemultpiple.png">
+                <img src="autorenamemultpiple.png" alt="autorenamemultpiple.png">
 
                 <br /><br />
             </td>
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="junctionsupport"><b>Junction Support</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <a href="http://technet.microsoft.com/en-us/sysinternals/bb896768">Junctions</a>
                 are a feature of NTFS version 5.0,&nbsp; they provide for the creation of
                 linkages among directories, Junction were not supported in NTFS Version 4.0
                 <br />
                 <br />
 
-                <img src="deloreanpick.png" border="0" alt="Pick a directory as source for Junction">
+                <img src="deloreanpick.png" alt="Pick a directory as source for Junction">
                 <br />
                 <br />
 
@@ -409,14 +476,14 @@
                 <br />
                 <br />
 
-                <img src="junctiondrop.png" border="0" alt="Drop as Junction">
+                <img src="junctiondrop.png" alt="Drop as Junction">
                 <br />
                 <br />
                 Junctions are marked with a small piece of chain below the folder icon.
                 <br />
                 <br />
 
-                <img src="junctionoverlay.png" border="0" alt="Drop as Junction">
+                <img src="junctionoverlay.png" alt="Drop as Junction">
                 <br />
                 <br />
 
@@ -427,7 +494,7 @@
                 <br />
                 <br />
 
-                <img src="junctiondrag.png" border="0" alt="Create a junction by dragging">
+                <img src="junctiondrag.png" alt="Create a junction by dragging">
                 <br />
                 <br />
 
@@ -451,7 +518,7 @@
                 <br />
                 <br />
 
-                <img src="junctionorigin.png" border="0" alt="Reference gives the origin of the Junction">
+                <img src="junctionorigin.png" alt="Reference gives the origin of the Junction">
                 <br />
                 <br />
 
@@ -468,7 +535,7 @@
                 <br />
                 <br />
                 
-                <img src="junctioniconvista.png" border="0" alt="Overlay Icon for Junctions"><br /><br />
+                <img src="junctioniconvista.png" alt="Overlay Icon for Junctions"><br /><br />
                 Overlay icons for junctions can also be <a href="#customoverlayicons">customized.</a>
                 <br />
                 <br />
@@ -502,11 +569,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="replacementjunction"><b>Replacement Junction<br />Symbolic Link<br />Mountpoint</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 Link Shell Extension can change the target of an existing Junction,
                 Symbolic Link or MountPoint either via Pick/Drop or Drag and Drop.
                 <br />
@@ -520,7 +587,7 @@
                 <br />
                 <br />
 
-                <img src="junctionreplacementdrop.png" border="0" alt="Drop a junction for replacement">
+                <img src="junctionreplacementdrop.png" alt="Drop a junction for replacement">
                 <br />
                 <br />
 
@@ -537,17 +604,17 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="copyreparse"><b>Copy Junction<br />Symbolic Link<br />Mountpoint</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 Link Shell Extension can copy an existing Junction,
                 Symbolic Link or MountPoint either via Pick/Drop or Drag and Drop.
                 <br />
                 <br />
 
-                <img src="symlinkcopy.png" border="0" alt="copy a reparse point">
+                <img src="symlinkcopy.png" alt="copy a reparse point">
                 <br />
                 <br />
 
@@ -558,7 +625,7 @@
                 <br />
                 <br />
 
-                <img src="symlinkcopydrop.png" border="0" alt="Drop a junction for replacement">
+                <img src="symlinkcopydrop.png" alt="Drop a junction for replacement">
                 <br />
                 <br />
 
@@ -572,11 +639,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="smartcopy"><b>Smart Copy</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 Smart Copy creates a copy of the directory
                 structure from the source location to the destination, but it preserves the inner
                 hardlink structure and inner junction/symbolic link relations of the source, and
@@ -589,7 +656,7 @@
                 <br />
                 <br />
 
-                <img src="smartcopyhowto.png" border="0" alt="Smart Copy How To">
+                <img src="smartcopyhowto.png" alt="Smart Copy How To">
                 <br />
                 <br />
 
@@ -598,22 +665,22 @@
                 <br />
                 <br />
 
-                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="bodytext">
+                <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2" >
                             <b>Normal Files</b>
                         </td>
-                        <td align="left">
+                        <td>
                             The file B is a normal file. It gets copied as any other copy tool would do.
                             <br />
                             <br />
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Saturated Hardlinks</b>
                         </td>
-                        <td align="left">
+                        <td>
                             The files E and F are hardlinked together. In LSE
                             terms they are called <i>Saturated Hardlinks</i>, because the reference count,
                             which is here 2, matches the number of occurrences below 'Folder 1', which is here 2.
@@ -631,10 +698,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Unsaturated Hardlinks</b>
                         </td>
-                        <td align="left">
+                        <td>
                             The File A, C, D are hardlinked together. In LSE terms they are called <i>Unsaturated Hardlinks</i>, because the reference count,
                             which is here 3, does not match the number of occurrences below 'Folder 1', which is here 2. Only C and D are below Folder 1.
                             <br />
@@ -661,29 +728,29 @@
                 <br />
                 <br />
 
-                <img src="junctionshowto.png" border="0" alt="Behaviour for inner junctions">
+                <img src="junctionshowto.png" alt="Behaviour for inner junctions">
                 <br />
                 <br />
 
                 By closely looking at the above picture one can find three different types of folders/junctions:
                 <br />
                 <br />
-                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="bodytext">
+                <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Normal Folders</b>
                         </td>
-                        <td align="left">
+                        <td>
                             The folder 'Folder 3' is a normal folder. It gets copied with its content as any other copy tool would do.<br />
                             <br />
                             <br />
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Inner Junctions<br />Symlinks</b>
                         </td>
-                        <td align="left">
+                        <td>
                             The folder 'Inner Junction/Symlink' is targeted at 'Inner
                             Junction/Symlink Target'. In LSE terms this kind of folder is called <i>Inner Junction/Symlink</i>, because its target points to a folder, which is below
                             the common anchor 'Folder 1'.
@@ -697,10 +764,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Outer Junctions<br />Symlinks</b>
                         </td>
-                        <td align="left">
+                        <td>
                             The folder 'Outer Junction/Symlink' is targeted at the
                             folder 'Outer Junction/Symlink Target'. In LSE terms this kind of folder
                             is called <i>Outer Junction/Symlink</i>, because its target points to a folder,
@@ -720,18 +787,18 @@
                 <br />
                 <br />
 
-                <img src="symboliclinkhowto.png" border="0" alt="Behaviour for inner symbolic links">
+                <img src="symboliclinkhowto.png" alt="Behaviour for inner symbolic links">
                 <br />
                 <br />
 
                 By closely looking at the above picture one can find three different types of files/symbolic
                 links:
-                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="bodytext">
+                <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Normal Files</b>
                         </td>
-                        <td align="left">
+                        <td>
                             The file A is a normal file. It gets copied as any other
                             copy tool would do.
                             <br />
@@ -739,10 +806,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Inner Symbolic<br />Links</b>
                         </td>
-                        <td align="left">
+                        <td>
                             The symbolic link 'Inner Symlink' is targeted at 'Inner
                             Symlink Target'. In LSE terms this kind of symbolic link is called <i>Inner Symlink</i>, because its target points to a file, which is
                             below the common anchor 'Folder 1'. <i>Inner Symlink</i> are restored properly via Smart Copy at the destination location.
@@ -753,10 +820,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Outer Symbolic<br />Links</b>
                         </td>
-                        <td align="left">
+                        <td>
                             The symlink 'Outer Symlink' is targeted at the folder
                             'Outer Symlink Target'. In LSE terms this kind of symbolic link is called
                             <i>Outer Symlink</i>, because its target points to a file, which is in parallel
@@ -775,14 +842,14 @@
                 Action button, choose <b>Pick Link Source</b> from the action menu...
                 <br />
                 <br />
-                <img src="deloreanpick.png" border="0" alt="Pick Source for Smart Copy">
+                <img src="deloreanpick.png" alt="Pick Source for Smart Copy">
                 <br />
                 <br />
                 ...navigate to the destination folder, press the action button, open the <b>Drop As ...</b> submenu and select <b>Smart Copy</b>:
                 <br />
                 <br />
 
-                <img src="smartcopydrop.png" border="0" alt="Drop Smart Copy">
+                <img src="smartcopydrop.png" alt="Drop Smart Copy">
                 <br />
                 <br />
 
@@ -840,7 +907,7 @@
             </td>
         </tr>
         <tr>
-            <td align="left" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="outerjunctionhandling">
                     <b>
                         Crop/Unroll/Splice<br />
@@ -849,18 +916,18 @@
                     </b>
                 </a>
             </td>
-            <td align="left">
+            <td>
                 During <a href="#smartcopy">SmartCopy</a>, <a href="#smartmirror">Smart Mirror</a>, <a href="#deloreancopy">Delorean Copy</a> and <a href="#hardlinkclones">Clone</a> 
                 so called <a href="#innerjunction">Outer Junctions/Symlink directories</a>
                 may need processing. There are 3 different ways to deal with those Outer Junctions/Symlink directories:
                 <br />
                 <br />
-                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="bodytext">
+                <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Crop</b>
                         </td>
-                        <td align="left">
+                        <td>
                             <i>Crop</i> breaks links to Outer Junctions/Symlink directories in the destination.
                             <br />
                             <br />
@@ -868,7 +935,7 @@
                             <i>Crop</i> also applies to Outer Symlink Files.
                             <br />
                             <br />
-                            <img src="outerjunctionscrop.png" border="0" alt="Cropping outer Junctions">
+                            <img src="outerjunctionscrop.png" alt="Cropping outer Junctions">
                             <br />
                             <br />
                             In the above example <i>Folder1</i> is copied to <i>Destination/Folder1</i>, but<i>Outer Junction/Symlink</i> is not available in the destination,
@@ -889,10 +956,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Unroll</b>
                         </td>
-                        <td align="left">
+                        <td>
                             <i>Unroll</i> follows Outer Junctions/Symlink Directories
                             and rebuilds the content of Outer Junctions/Symlink Directories inside the hierarchy
                             at the destination location.
@@ -904,7 +971,7 @@
                             <br />
                             <br />
 
-                            <img src="outerjunctionsunroll.png" border="0" alt="Unroll Outer Junctions">
+                            <img src="outerjunctionsunroll.png" alt="Unroll Outer Junctions">
                             <br />
                             <br />
 
@@ -934,7 +1001,7 @@
                             <br />
                             <br />
 
-                            <img src="outerjunctionsunrollinner.png" border ="0" alt="Unroll Inner Outer Junctions" />
+                            <img src="outerjunctionsunrollinner.png" alt="Unroll Inner Outer Junctions" />
                             <br />
                             <br />
                             In the above example <i>Folder1</i> is copied to <i>Destination/Folder1</i>, and
@@ -948,7 +1015,7 @@
                             <br />
                             <br />
 
-                            <img src="outerjunctionsunrollinnernested.png" border="0" alt="Unroll Inner Outer Junctions" />
+                            <img src="outerjunctionsunrollinnernested.png" alt="Unroll Inner Outer Junctions" />
                             <br />
                             <br />
 
@@ -966,7 +1033,7 @@
                             <br />
                             <br />
 
-                            <img src="outerjunctionsunrollinnersymlink.png" border="0" alt="Unroll Inner Outer Junctions">
+                            <img src="outerjunctionsunrollinnersymlink.png" alt="Unroll Inner Outer Junctions">
                             <br />
                             <br />
 
@@ -992,7 +1059,7 @@
                             <br />
                             <br />
 
-                            <img src="nestedreparsepoints.png" border="0" alt="Nested Reparse Points">
+                            <img src="nestedreparsepoints.png" alt="Nested Reparse Points">
                             <br />
                             <br />
 
@@ -1007,7 +1074,7 @@
                             <br />
                             <br />
 
-                            <img src="outerjunctionsunrollcircularity.png" border="0" alt="Unroll Junctions Circularities">
+                            <img src="outerjunctionsunrollcircularity.png" alt="Unroll Junctions Circularities">
                             <br />
                             <br />
                             In the above example <i>Folder1</i> is copied via the --unroll option to <i>Destination/Folder1</i>.
@@ -1023,7 +1090,7 @@
                             <br />
                             <br />
 
-                            <img src="outerjunctionsunrolldiskid.png" width="541" height="410" border="0" alt="Unroll Junctions Unique DiskID">
+                            <img src="outerjunctionsunrolldiskid.png" alt="Unroll Junctions Unique DiskID">
                             <br />
                             <br />
                             Hardlink siblings are found by matching the per NTFS volume uniqe file-id, but if
@@ -1043,7 +1110,7 @@
                             <br />
                             <br />
 
-                            <img src="outerjunctionsunrollmultitraverse.png" border="0" alt="Unroll Junctions Unique DiskID">
+                            <img src="outerjunctionsunrollmultitraverse.png" alt="Unroll Junctions Unique DiskID">
                             <br />
                             <br />
 
@@ -1089,15 +1156,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b><a name="splice">Splice</a></b>
                         </td>
-                        <td align="left">
+                        <td>
                             <i>Splice</i> reconnects Outer Junctions/Symlink directories in the destination to their original targets.
                             <br />
                             <br />
 
-                            <img src="outerjunctionssplice.png" border="0" alt="Splice outer Junctions">
+                            <img src="outerjunctionssplice.png" alt="Splice outer Junctions">
                             <br />
                             <br />
                             In the above example <i>Folder1</i> is copied to <i>Destination/Folder1</i>, and
@@ -1133,17 +1200,17 @@
         </tr>
 
         <tr>
-            <td align="left" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="multiplesource"><b>Multiple Source</b></a>
             </td>
 
-            <td align="left">
+            <td>
                 Multpiple Source Locations can be specified for SmartCopy, Clone, and
                 Delorean Copy. If there are junctions/symlinks between these source locations, they are handled as
                 inner junctions/symbolic links, because all source locations are dealt like a common root.
                 <br />
                 <br />
-                <img src="multiplesource.png" border="0" alt="Multiple Sources">
+                <img src="multiplesource.png" alt="Multiple Sources">
                 <p>
                     In the above example <i>Location1</i> and <i>Location2</i> are copied to <i>Destination</i>.
                     <i>Location2/Junction20</i> is treated as inner junctions to <i>Location1/Folder10</i> in the source,
@@ -1158,7 +1225,7 @@
                     With LinkShell Extension this works as follows:
 
                 <p>
-                    <img src="multiplesourceselect.png" border="0" alt="Multiple source are selected">
+                    <img src="multiplesourceselect.png" alt="Multiple source are selected">
                 </p>
 
                 <p>
@@ -1179,11 +1246,11 @@
 
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="smartmove"><b>Smart Move</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 Smart Move enables folders with junctions and symbolic links beneath to be renamed, and the
                 junctions and symbolic links' targets are updated below that folder. Without Smart Move
                 renaming of such folders would end in dead junctions and symbolic links.
@@ -1191,8 +1258,7 @@
                 <p>
                     With junctions or symbolic link directories it behaves as follows:
                 <p>
-                    <img src="smartmovehowto.png" border="0"
-                            alt="Smart Move behaviour for junctions and symbolic links">
+                    <img src="smartmovehowto.png" alt="Smart Move behaviour for junctions and symbolic links">
                 </p>
 
 
@@ -1202,23 +1268,23 @@
                 </p>
 
 
-                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="bodytext">
+                <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Normal Folders</b>
                         </td>
 
-                        <td align="left">
+                        <td>
                             The folder 'Folder 3' is a normal folder. It gets moved with its content straight forward.<p>
                         </td>
                     </tr>
 
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Inner Junctions<br />Symlinks</b>
                         </td>
 
-                        <td align="left">
+                        <td>
                             The folder 'Inner Junction/Symlink' is targeted at 'Inner Junction/Symlink Target'.
                             In LSE terms this kind of folder is called <i>Inner Junction/Symlink</i>, because its target
                             points to a folder, which is below the common anchor 'Folder 1'.<p>
@@ -1229,11 +1295,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Outer Junctions<br />Symlinks</b>
                         </td>
 
-                        <td align="left">
+                        <td>
                             The folder 'Outer Junction/Symlink' is targeted at the folder 'Outer Junction/Symlink Target'.
                             In LSE terms this kind of folder is called <i>Outer Junction/Symlink</i>, because its target
                             points to a folder, which is in parallel and thus outside the anchor 'Folder 1'.
@@ -1285,16 +1351,16 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="hardlinkclones"><b>Clone</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 Clones are copies of a folder tree from a source location recreated at the destination location, however the
                 files within the new folder tree are Hardlinks or Symbolic Links to the respective files in the source folder tree.
 
                 <p>
-                    <img src="hardlinkcloneshowto.png" border="0" alt="Hardlink Clones how to" />
+                    <img src="hardlinkcloneshowto.png" alt="Hardlink Clones how to" />
                 </p>
                 <br /><br />
 
@@ -1302,7 +1368,7 @@
                 links at the destination location very similar as Smart Copy does.
 
                 <p>
-                    <img src="hardlinkclonessmart.png" order="0" alt="Hardlink Clones the smart way" />
+                    <img src="hardlinkclonessmart.png" alt="Hardlink Clones the smart way" />
                 </p>
                 <br /><br />
                 Outer Junctions/Symbolic links are recreated with respect to the specified
@@ -1311,7 +1377,7 @@
                     With Windows Vista and Windows7/8/10 this cloning process is also available with Symbolic Links instead of Hardlinks.
 
                 <p>
-                    <img src="symlinkssmart.png" border="0" alt="Symbolic Link Clones the smart way" />
+                    <img src="symlinkssmart.png" alt="Symbolic Link Clones the smart way" />
                 </p><br /><br />
 
                 <p>
@@ -1321,7 +1387,7 @@
 
 
                 <p>
-                    <img src="deloreanpick.png" border="0" alt="Pick Source for Hardlink Clone" />
+                    <img src="deloreanpick.png" alt="Pick Source for Hardlink Clone" />
                 </p>
 
                 <p>
@@ -1329,7 +1395,7 @@
                 </p>
 
                 <p>
-                    <img src="hardlinkclonefolderdrop.png" border="0" alt="Drop a Hardlink Clone" />
+                    <img src="hardlinkclonefolderdrop.png" alt="Drop a Hardlink Clone" />
                 </p>
 
                 <p>
@@ -1337,7 +1403,7 @@
                 </p>
 
                 <p>
-                    <img src="symboliclinkclonefolderdrop.png" border="0" alt="Drop a Symbolic Link Clone" />
+                    <img src="symboliclinkclonefolderdrop.png" alt="Drop a Symbolic Link Clone" />
                 </p>
 
                 <p>
@@ -1348,7 +1414,7 @@
                 </p>
 
                 <p>
-                    <img src="hardlinkclonedrag.png" border="0" alt="Drop Hardlink Clone.png" />
+                    <img src="hardlinkclonedrag.png" alt="Drop Hardlink Clone.png" />
                 </p><br /><br />
 
                 <p>
@@ -1395,10 +1461,10 @@
         </tr>
 
         <tr>
-            <td align="left" width="120" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="smartmirror"><b>Smart Mirror</b></a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 Smart Mirror is very similar to <a href="#smartcopy">Smart Copy</a>
                 and not only copies but <i>synchronises</i> the folder <i>Source</i> to <i>Destination</i>:
                 <ul>
@@ -1444,10 +1510,10 @@
 
 
         <tr>
-            <td align="left" width="120" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="deloreancopy"><b>DeLorean Copy</b></a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 DeLorean Copy is a way of creating incremental backups by using a combination of hardlink clone and Smart Copy.
                 <p>
                     The following picture gives an overview what DeLorean Copy is about
@@ -1457,14 +1523,14 @@
                 <p>
                     In general a DeLorean Copy has 3 principals: Source(t), InitialBackup and Backup(n).
                 </p>
-                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="bodytext">
+                <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Phase 1: Intial SmartCopy</b>
                             <br />
                             <br />
                         </td>
-                        <td align="left" valign="top">
+                        <td>
                             The folder <i>Source(t)</i> is initially copied to <i>InitialBackup</i>. This is shown by the blue arrow.
                             <br />
                             <br />
@@ -1472,12 +1538,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Changes<br />happen</b>
                             <br />
                             <br />
                         </td>
-                        <td align="left" valign="top">
+                        <td>
                             During this phase the files under source change, and
                             <i>Source(t)</i> becomes <i>Source(t+1).</i>
                             <br />
@@ -1486,12 +1552,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Phase 2: Hardlink Clone<br /></b>
                             <br />
                             <br />
                         </td>
-                        <td align="left" valign="top">
+                        <td>
                             The folder <i>InitialBackup</i> is Hardlink Cloned to
                             <i>Backup1,</i> which ties <i>InitialBackup</i> and <i>Backup1</i>. This is shown
                             by the red arrow.<br />
@@ -1500,12 +1566,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>
                                 Phase 3: Mirror<br />
                             </b>
                         </td>
-                        <td align="left" valign="top">
+                        <td>
                             Mirror the folder <i>Source</i> to <i>Backup1</i>. This
                             is shown by the green arrow:
                             <ul>
@@ -1529,14 +1595,14 @@
                 <br />
                 This can be repeated on and on. The second round would be using <i>Source</i>, <i> Backup1 </i> and <i>Backup2</i> for DeLorean Copy: <br /><br />
 
-                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="bodytext">
+                <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Changes<br />happen</b>
                             <br />
                             <br />
                         </td>
-                        <td align="left" valign="top">
+                        <td>
                             During this phase the files under source change, and
                             <i>Source(t+1)</i> becomes <i>Source(t+2).</i>
                             <br />
@@ -1544,11 +1610,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Phase 2: Hardlink Clone<br /></b>
                             <br />
                         </td>
-                        <td align="left" valign="top">
+                        <td>
                             The folder <i>Backup1</i> is Hardlink Cloned to <i>Backup2,</i>
                             which ties <i>Backup1</i> and <i>Backup2</i>. This is shown by the red arrow.<br />
                             <br />
@@ -1556,11 +1622,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="110" valign="top">
+                        <td class="hanger2">
                             <b>Phase 3: Mirror<br /></b>
                             <br />
                         </td>
-                        <td align="left" valign="top">
+                        <td>
                             Mirror the folder <i>Source(t+2)</i> to <i>Backup2</i>.
                             This is shown by the green arrow:
                             <ul>
@@ -1587,7 +1653,7 @@
                     ...navigate to the destination folder, press the action button, open the <b>Drop As...</b>
                     submenu and select <b>DeLorean Copy</b>:
                 </p>
-                <img src="deloreandrop.png" border="0" alt="Pick a directory for DeLorean Copy" />
+                <img src="deloreandrop.png" alt="Pick a directory for DeLorean Copy" />
 
                 <br /><p>
                     If a DeLorean Copy was dropped the first time onto a directory, the operations, which are described under
@@ -1602,7 +1668,7 @@
 
                     A directory holding many copies may look like this.<br />
                 <p>
-                    <img src="deloreantimestamps.png" border="0" alt="Directory with many DeLorean Copies" />
+                    <img src="deloreantimestamps.png" alt="Directory with many DeLorean Copies" />
 
                 <p>
                     <br />
@@ -1611,7 +1677,7 @@
                     DeLorean Copy this means that it will display an error message if this limit is exceeded, because
                     exceeding this limit means loss of data among the most recent backup sets:<br /><br />
 
-                    <img src="delorean1024exceed.png" border="0" alt="Delorean Exceed 1023 Hardlink Limit" />
+                    <img src="delorean1024exceed.png" alt="Delorean Exceed 1023 Hardlink Limit" />
 
                 <p>
                     <br />
@@ -1645,11 +1711,11 @@
 
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="backupmode"><b>Backup Mode</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     Backup mode enables LSE to also copy ACLs and Encrypted Files from all directories, even the ones
                     without access for the current users.
@@ -1693,7 +1759,7 @@
                     <br />
                     <b>By gpedit.msc</b>
                 <p>
-                    <img src="symlinkpriv.png" border="0" alt="Changing Privileges for Backup operations" />
+                    <img src="symlinkpriv.png" alt="Changing Privileges for Backup operations" />
                 </p>
                 <br />
                 and navigating to <br />
@@ -1715,11 +1781,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="volumemountpoint"><b>Volume Mount<br /> Point Support</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     Volume Mountpoints are a feature of NTFS version 5.0, which provides functionality to
                     map complete local volumes onto arbitrary disk locations. Volume Mountpoints
@@ -1727,7 +1793,7 @@
                 </p>
 
                 <p>
-                    <img src="mountpointpick.png" border="0" alt="Pick volume as source for a Volume Mountpoint" />
+                    <img src="mountpointpick.png" alt="Pick volume as source for a Volume Mountpoint" />
                 </p><br />
 
                 <p>
@@ -1737,7 +1803,7 @@
                 </p>
 
                 <p>
-                    <img src="mountpointdrop.png" border="0" alt="Drop as Mount Point" />
+                    <img src="mountpointdrop.png" alt="Drop as Mount Point" />
                 </p><br />
 
                 <p>
@@ -1746,7 +1812,7 @@
                 </p>
 
                 <p>
-                    <img src="mountpointdrag.png" border="0" alt="Drag a Volume onto a Mount Point" />
+                    <img src="mountpointdrag.png" alt="Drag a Volume onto a Mount Point" />
                 </p><br />
 
 
@@ -1755,7 +1821,7 @@
                 </p>
 
                 <p>
-                    <img src="mountpointdelete.png" border="0" alt="Delete a Volume Mountpoint" />
+                    <img src="mountpointdelete.png" alt="Delete a Volume Mountpoint" />
                 </p><br />
 
 
@@ -1782,11 +1848,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="referencecount"><b>Reference Count</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 As described in the <a href="#backgrounders">backgrounders section</a> within the &#8220;default&#8221; data stream of all data objects
                 NTFS maintains a reference count how many NTFS directory entries refer to object. In most scenarios each entry will
                 refer a different folder, although it is possible to have multiple links to the same data object in the one folder,
@@ -1799,7 +1865,7 @@
                 </p>
 
                 <p>
-                    <img src="columnsel.png" border="0" alt="Select Columns">
+                    <img src="columnsel.png" alt="Select Columns">
                 </p>
 
                 <p>
@@ -1808,7 +1874,7 @@
                 </p>
 
                 <p>
-                    <img src="refcount.png" border="0" alt="Reference Count for Hardlinks" />
+                    <img src="refcount.png" alt="Reference Count for Hardlinks" />
                 </p>
                 <br />
 
@@ -1826,11 +1892,11 @@
 
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="linkproperties"><b>Link Properties</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     Link Shell Extension also supports so called Explorer Property Sheets, which means that if a file or directory property in explorer is opened, Link
                     Shell Extension adds its own tab to show the properties of a hardlink, junction, volume mountpoint or symbolic link.                
@@ -1841,7 +1907,7 @@
                 otherwise this tab is not available.
 
                 <p>
-                    <img src="linkproperties.png" border="0" alt="Property Sheet for Links" />
+                    <img src="linkproperties.png" alt="Property Sheet for Links" />
                 </p>
 
                 <p>
@@ -1864,11 +1930,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="symboliclinkandvista"><b>SymbolicLink with<br />Vista and Windows7/8/10</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 With Windows Vista and Windows7/8/10 NTFS introduces a
                 new type of link, the <i>Symbolic Link.</i> LSE supports the creation of symbolic links
                 under Windows Vista and Windows7/8/10.
@@ -1881,7 +1947,7 @@
                 </p>
 
                 <p>
-                    <img src="deloreanpick.png" border="0" alt="Pick Link Source" />
+                    <img src="deloreanpick.png" alt="Pick Link Source" />
                 </p>
                 <br />
 
@@ -1891,7 +1957,7 @@
                 </p>
 
                 <p>
-                    <img src="symboliclinkfolderdrop.png" border="0" alt="Drop a Symbolic Link Folder" />
+                    <img src="symboliclinkfolderdrop.png" alt="Drop a Symbolic Link Folder" />
                 </p>
                 <br />
 
@@ -1935,7 +2001,7 @@
                 on symbolic links that shows a light green arrow icon under the folder.
                 <br /><br />
 
-                <img src="symboliclinkiconvista.png" border="0" alt="Overlay Icon for Hardlinks" />
+                <img src="symboliclinkiconvista.png" alt="Overlay Icon for Hardlinks" />
                 <br /><br />
                 Overlay icons for Symbolic Links can also be <a href="#customoverlayicons">customized.</a>
                 <p>
@@ -1961,11 +2027,11 @@
 
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="enumerationofhardlinks"><b>Enumeration of Hardlinks</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     With Vista and Windows7/8/10 it is possible to enumerate
                     all hardlink siblings to a file in constant time. Simply select a hardlinked file and select
@@ -1973,7 +2039,7 @@
                 <p>
 
                 <p>
-                    <img src="enumeratehardlinks.png" border="0" alt="Enumerate Hardlinks" />
+                    <img src="enumeratehardlinks.png" alt="Enumerate Hardlinks" />
                 </p><br />
 
                 Unfortunately this feature is currently only available with Vista
@@ -1986,7 +2052,7 @@
                 <p>
 
 
-                <img src="enumeratehardlinksxp.png" border="0" alt="Enumerate Hardlinks under XP" />
+                <img src="enumeratehardlinksxp.png" alt="Enumerate Hardlinks under XP" />
                 <br />
 
                 <p>
@@ -2009,10 +2075,10 @@
 
 
         <tr>
-            <td align="right" valign="top" class="hanger">
-                    <a name="VistaAndUAC"><b>UAC</b></a>
+            <td class="hanger">
+               <a name="VistaAndUAC"><b>UAC</b></a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     One of the major Windows7/8/10 changes was the so called <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnlong/html/AccProtVista.asp">User Account Control (UAC)</a>. 
                     Due to UAC some API calls need elevation to administrative level, and this elevation must be acknowledged via the below shown dialog box. Unfortunately,
@@ -2023,7 +2089,7 @@
                     Symbolic Links created.
                 </p>
                 <p>
-                    <img src="uacunsigned.png" border="0" alt="vistauac" />
+                    <img src="uacunsigned.png" alt="vistauac" />
                 </p>
                 <br />
 
@@ -2046,10 +2112,10 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                     <a name="changesymboliclinkprivilege"><b>Change Symbolic Link Privilege</b></a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     One way to come around the UAC prompt for the creation of Symbolic Links is to globally allow users to create Symbolic
                     Links by changing the policy.
@@ -2059,7 +2125,7 @@
                     Start gpedit.msc from the command line and grant/revoke specific users the permissions: Under
                     "Computer Configuration" ->"Windows settings" -> "Security Settings" -> "Local Policies" -> "User Rights Assignments" -> "Create Symbolic Links".
                 </p>
-                    <img src="symlinkpriv.png" border="0" alt="Changing Privileges for Symblic Link Creation" />
+                    <img src="symlinkpriv.png" alt="Changing Privileges for Symblic Link Creation" />
 
                 <p>
                     <b>Without gpedit.msc</b><br />
@@ -2081,11 +2147,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" width="130" class="hanger">
+            <td class="hanger">
                 <a name="remotecapabilities"><b>Remote Capabilities</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 It is little known, but the SMB networking protocol supports  operations to
                 create remote Hardlinks, Junctions and Symbolic Links within SMB mapped
                 network NTFS drives.
@@ -2103,7 +2169,7 @@
                     A Hardlink has been created, which can be easily verified
                     <br />
                     <br />
-                    <img src="remotecapabilities.png" border="0" alt="remotecapabilities" />
+                    <img src="remotecapabilities.png" alt="remotecapabilities" />
                 </p>
                 <br />
 
@@ -2163,11 +2229,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" width="130" class="hanger">
+            <td class="hanger">
                 <a name="removeablemedia"><b>Removeable Media</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 LSE supports removable media, which have been formatted with NTFS, to create all kind of features it does for fixed drives too. The only limitation
                 is that it intentionally won't work on removable media if they are mounted to drive A: or B:. The reason is that A: or B: are commonly used for floppy drives.
                 <p>
@@ -2183,10 +2249,10 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" width="130" class="hanger">
+            <td class="hanger">
                 <a name="verylongpath"><b>Very long Path</b></a>
             </td>
-            <td valign="bottom">
+            <td>
                 The Win32 API supports pathnames up to 256 characters, thus limiting all applications to that length for pathnames.
                 <p>
                     On the other hand NTFS supports pathnames with up to 32767 characters, so one might
@@ -2199,10 +2265,10 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="substhandling"><b>Subst Handling</b></a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     With the subst.exe command one can create driveletters, which point to certain path on a NTFS volume. This means that two
                     different driveletters in the end might resolve to locations on the same NTFS volume. <br />
@@ -2214,10 +2280,10 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="symboliclinksforwindowsxp"><b>Symbolic links for Windows XP</b></a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     Technically it seems that NTFS5 even shipped with WindowsXP has always supported symbolic links, but the functionality was
                     not available for user mode applications, and even not for the upper layers of ntfs.sys
@@ -2267,10 +2333,10 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="refssupport"><b>ReFs Support</b></a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     With Windows Server 2012 Microsoft introduced the
                     <a href="http://blogs.msdn.com/b/b8/archive/2012/01/16/building-the-next-generation-file-system-for-windows-refs.aspx">ReFS</a>
@@ -2295,10 +2361,10 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="thirdpartyfilesystems"><b>Third Party<br />FileSystems</b></a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     There are a lot of filesystems out by third party vendors nowadays, which support hardlinks, symlinks...
                     In order to provide the LSE functionality on that drives, the supported filesystems can be configured:<br />
@@ -2333,11 +2399,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" width="130" class="hanger">
+            <td class="hanger">
                 <a name="configuration"><b>Configuration</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 Link Shell Extension can be tweaked/configured to fit the different personal taste
                 in some aspects. To ease this, Link Shell Extension has a companion called LSEConfig,
                 which changes Link Shell Extension behaviour via a User Interface. Once started, LSEConfig will throw
@@ -2345,7 +2411,7 @@
                 settings are changed in the Windows registry.
                 <p>
                 <p>
-                    <img src="lseconfiggeneral.png" border="0" alt="lseconfiggeneral" />
+                    <img src="lseconfiggeneral.png" alt="lseconfiggeneral" />
                 </p><br />
 
                 <a name="localisation">
@@ -2410,11 +2476,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" width="130" class="hanger">
+            <td class="hanger">
                 <a name="customoverlayicons"><b>Custom Overlay Icons</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 Link Shell Extension has built in overlay icons for junctions, hardlinks and symbolic links.
                 Since icons are subject to individual taste, the icon used by Link Shell Extension can
                 be specified. <p>
@@ -2422,7 +2488,7 @@
                     when Apply or Ok is pressed.
 
                 <p>
-                    <img src="lseconfighardlink.png" border="0" alt="lseconfiggeneral" />
+                    <img src="lseconfighardlink.png" alt="lseconfiggeneral" />
                 </p><br />
 
                 <a name="disablingoverlayicons">
@@ -2485,11 +2551,11 @@
 
 
         <tr>
-            <td align="right" valign="top" width="130" class="hanger">
+            <td class="hanger">
                 <a name="backgrounders"><b>Backgrounders</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <a name="hardlinks"><b>Hardlinks</b></a> are a feature common to many Unix based systems, but are not directly available with
                 NT4/W2K/WXP. It is a feature, which must be supported by the file system of the operating system.
 
@@ -2546,11 +2612,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="limitations"><b>Limitations</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <ul>
                     <li>Supported platforms are NT4/W2K/WXP/W2K3/W2K3R2/W2K8/W2K8R2/W2K12/W2K12R2/WXP64/Vista/Vista/Windows7/8/10 in 32bit, 64bit or Itanium.</li>
 
@@ -2587,11 +2653,11 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="faq"><b>Frequently Asked Questions</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <ul>
                     <li>
                         <b>
@@ -2870,7 +2936,20 @@
                         </p>
                     </li>
 
-                    <!-- free FAQ15 -->
+                    <li>
+                        <b>
+                            <a name="faq15">Q</a>: When I right click a symbolic link and go to properties, and click on Link properties, if the path contained inside is invalid,
+                            will give you the message "The name '(invalid path goes here)' specified in the Target box is not valid. Make sure the path and file name are correc.
+                        </b>
+                        <br />
+
+                        <p>
+                            A: Unfortunatley this is an explorer problem, and LSE has no chance to intercept.
+                            Broken symlinks/juncitons can be easily repaired by <a href="#replacementjunction">the replacement junction/symbolic link</a> feature
+                        </p>
+                    </li>
+
+                    <!-- free FAQ16 -->
 
                 </ul>
             </td>
@@ -2881,19 +2960,19 @@
         </tr>
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="history"><b>History</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
-                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="bodytext">
+            <td class="bodytext">
+                <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <font color="#A2A09B">in progress</font>
                         </td>
 
-                        <td align="left">
+                        <td>
                             <font color="#A2A09B">
                                 Version 4.0.0.0
 
@@ -2907,16 +2986,13 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
-                            <a name="3910">September 17, 2019</a>
+                        <td class="history">
+                            <a name="3910">July 26, 2019</a>
                         </td>
 
-                        <td align="left">
-                            Version 3.9.2.6
+                        <td>
+                            Version 3.9.2.5
                             <ul>
-                                <!-- 3.9.2.6, 17.9.2019 -->
-                                <li>Replacement Junction/Symbolic Link didn't work on dangling Junction/Symbolic Link.</li>
-                                <li>!!! The docu is shown larger on mobile devices.</li>
                                 <!-- 3.9.2.5, 26.7.2019 -->
                                 <li>UAChelper mixed up relative and absolute link creation. Introduced with 3920</li>
                                 <!-- 3.9.2.5, 10.5.2019 -->
@@ -2944,11 +3020,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3900">December 28, 2018</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.9.0.2
                             <ul>
                                 <!-- 3.9.0.2, 28.12.2018 -->
@@ -2968,11 +3044,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3869">December 2, 2018</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.8.7.2
                             <ul>
                                 <!-- 3.8.6.9 -->
@@ -2994,11 +3070,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3867">April 19, 2016</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.8.6.8
                             <ul>
                                 <!-- 3.8.6.7 -->
@@ -3024,11 +3100,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3860">January 10, 2016</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.8.6.6
                             <ul>
                                 <!-- 3.8.6.0 -->
@@ -3054,11 +3130,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3850">June 3, 2014</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.8.5.1
 
                             <ul>
@@ -3082,11 +3158,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3752">December 29, 2013</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.7.5.9
 
                             <ul>
@@ -3100,11 +3176,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3751">August 23, 2013</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.7.5.1
 
                             <ul>
@@ -3114,11 +3190,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3740">August 4th, 2013</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.7.5.0
 
                             <ul>
@@ -3166,11 +3242,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3700">June 24th, 2012</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.7.2.0
 
                             <ul>
@@ -3206,11 +3282,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3650">March 9th 2012</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.6.5.3
 
                             <ul>
@@ -3225,11 +3301,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3600">April 17th 2011</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.6.0.4
 
                             <ul>
@@ -3244,11 +3320,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3500">November 21st 2010</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.5.0.1
 
                             <ul>
@@ -3259,11 +3335,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3400">October 3rd 2010</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.4.0.2
 
                             <ul>
@@ -3287,11 +3363,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3300">July 19th 2010</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.3.5.8
 
                             <ul>
@@ -3312,11 +3388,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             <a name="3220">February 21st 2010</a>
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.2.2.4
 
                             <ul>
@@ -3337,11 +3413,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             September 28th 2009
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.1.6.0
                             <ul>
                                 <li>
@@ -3378,11 +3454,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             October 4th 2008
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 3.0.0.1
                             <ul>
                                 <li>
@@ -3400,11 +3476,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             June 21st 2008
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.9.5.3
                             <ul>
                                 <li>Hardlinks can be <a href="#enumerationofhardlinks">enumerated </a>under Vista & Windows7.</li>
@@ -3416,11 +3492,11 @@
 
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             May 1st 2008
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.9.0.3
 
                             <ul>
@@ -3467,11 +3543,11 @@
 
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             January 20th 2008
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.8.0.6
 
                             <ul>
@@ -3490,11 +3566,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             October 16th 2007
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.7.1.0
 
                             <ul>
@@ -3507,11 +3583,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             March 25th 2007
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.7.0.1
                             <ul>
                                 <li>
@@ -3534,11 +3610,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             January 12th 2007
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.6.0
 
                             <ul>
@@ -3560,11 +3636,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             December 27th 2006
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.5.1 released
                             <ul>
                                 <li>
@@ -3577,11 +3653,11 @@
 
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             December 6th 2006
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.4.0
                             released
 
@@ -3594,11 +3670,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             November 26th 2006
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.3.0 released
 
                             <ul>
@@ -3616,11 +3692,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             June 16th 2006
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.2.2 released
 
                             <ul>
@@ -3633,11 +3709,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             May 29th 2006
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.2.1 released
 
                             <ul>
@@ -3658,11 +3734,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             March 14th 2006
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.1 released
 
                             <ul>
@@ -3676,11 +3752,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             February 27th 2006
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 2.0 released
 
                             <ul>
@@ -3738,11 +3814,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="140" valign="top">
+                        <td class="history">
                             November 26th 2005
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 1.7 released
 
                             <ul>
@@ -3763,7 +3839,7 @@
                             January 23rd 2002
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 1.6 released
 
                             <ul>
@@ -3787,7 +3863,7 @@
                             October 27th 2001
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 1.5 released
 
                             <ul>
@@ -3815,11 +3891,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" valign="top">
+                        <td>
                             March 23rd 2001
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 1.201 released
 
                             <ul>
@@ -3829,11 +3905,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" valign="top">
+                        <td>
                             March 23rd 2001
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 1.20 released
 
                             <ul>
@@ -3843,11 +3919,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" valign="top">
+                        <td>
                             March 20th 2001
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 1.10 released
 
                             <ul>
@@ -3861,11 +3937,11 @@
                     </tr>
 
                     <tr>
-                        <td align="left" valign="top">
+                        <td>
                             May 8th 1999
                         </td>
 
-                        <td align="left">
+                        <td>
                             Version 1.00 released
                         </td>
                     </tr>
@@ -3878,11 +3954,11 @@
     </tr>
 
     <tr>
-        <td align="right" valign="top" class="hanger">
+        <td class="hanger">
             <a name="status"><b>Status</b></a>
         </td>
 
-        <td valign="bottom" class="bodytext">
+        <td class="bodytext">
             The 3.8.6.x version is a stable version for the <a href="#limitations">supported plattforms.</a>
             <br /><br />
         </td>
@@ -3893,11 +3969,11 @@
     </tr>
 
     <tr>
-        <td align="right" valign="top" class="hanger">
-                    <a name="acknowledgements">Acknowledgements</a>
+        <td class="hanger">
+           <a name="acknowledgements">Acknowledgements</a>
         </td>
 
-        <td valign="bottom" class="bodytext">
+        <td class="bodytext">
             I wish to thank those who have contributed significantly to the development of Link Shell Extension. Those include:
 
             <p>
@@ -3938,11 +4014,11 @@
     </tr>
 
     <tr>
-        <td align="right" valign="top" class="hanger">
+        <td class="hanger">
             <a name="openissues"><b>Open Issues</b></a>
         </td>
 
-        <td valign="bottom" class="bodytext">
+        <td class="bodytext">
             <ul>
                 <li>
                     With Vista & Windows7 the column handler in explorer, providing the
@@ -3962,7 +4038,7 @@
             <b>License</b>
         </td>
 
-        <td valign="bottom" class="bodytext">
+        <td class="bodytext">
             <ul>
                 <li>This program is provided as is. See <a href="license.txt"> license.txt</a> from this distribution for legal issues.<br /></li>
                 <li>Link Shellextension uses <a href="http://laurikari.net/tre">tre</a> as the regular expression machine. See the <a href="license_tre.txt">tre license</a>.</li>
@@ -3975,11 +4051,11 @@
     </tr>
 
     <tr>
-        <td align="right" valign="top" class="hanger">
+        <td class="hanger">
             <a name="contact"><b>Contact / Donations</b></a>
         </td>
 
-        <td valign="bottom" class="bodytext">
+        <td class="bodytext">
             Bug reports, or feature requests send to
             <a href="mailto:Hermann.Schinagl@gmx.net">Hermann Schinagl.</a>.<br />
             <p>
@@ -3999,7 +4075,7 @@
                     <input type="hidden" name="lc" value="US">
                     <input type="hidden" name="bn" value="PP-DonationsBF">
                     <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                    <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    <img alt="" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
                 </form>
                 <br /><br />
 
@@ -4009,7 +4085,7 @@
                 <a class="FlattrButton" style="display:none;" href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html"></a>
                 <noscript>
                     <a href="http://flattr.com/thing/180519/Link-Shell-Extension" target="_blank">
-                        <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" />
+                        <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" />
                     </a>
                 </noscript>
 
@@ -4018,7 +4094,7 @@
                 or by sending me a gift certificate from<br /><br />
 
                 <a href="http://www.amazon.de/gp/gc/ref=sv_w_0/302-2139848-0001645">
-                    <img src="amazon.de.png" border="0" alt="amazon.de" />
+                    <img src="amazon.de.png" alt="amazon.de" />
                 </a>.
             <p>
 
@@ -4042,7 +4118,7 @@
             </a>, where you can find announcements for new releases,
             and you can discuss feature requests<br /><br />
             <a href="http://www.facebook.com/pages/Link-Shellextension/235959255982">
-                <image src="facebook.png" width="160" height="42" border="0" alt="facebook">
+                <image src="facebook.png" width="160" height="42" alt="facebook">
             </a>.
 
             <br /><br />
@@ -4051,7 +4127,7 @@
             </a>.
             <br /><br />
             <a href="http://schinagl.priv.at/nt/hardlinkshellext/lse.xml">
-                <image src="rss.png" width="80" height="80" border="0" alt="rss feed">
+                <image src="rss.png" width="80" height="80" alt="rss feed">
             </a>.
 
             <br /><br />
@@ -4059,22 +4135,18 @@
     </tr>
 
     <tr>
-        <td colspan="2" bgcolor="#F2F2F2"><img src="../../images/spacer.gif" width="1" height="5"></td>
-    </tr>
-
-    <tr>
-        <td align="right" valign="top" class="hanger">
+        <td class="hanger">
             <a name="download"><b>Download</b></a>
         </td>
 
         <td align="center" class="bodytext">
-            <table cellspacing="0" cellpadding="0" width="100%" border="0" class="bodytext">
+            <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
 
                 <tr>
                     <td align="left" width="150" valign="top">
                         <b>All Windows 64<br /></b>
                     </td>
-                    <td align="left">
+                    <td>
                         This version contains the 64bit version of Link Shell Extension, but also
                         contains a 32bit version, which is installed in parallel to the 64bit version, to satisfy third party
                         filemanagers/explorers like total commander:<br />
@@ -4106,7 +4178,7 @@
                     <td align="left" width="150" valign="top">
                         <b>All Windows 32<br /></b>
                     </td>
-                    <td align="left">
+                    <td>
                         Simply download and install
                         <br />
                         <a href="http://schinagl.priv.at/nt/hardlinkshellext/HardLinkShellExt_win32.exe">
@@ -4146,17 +4218,17 @@
     </tr>
 
     <tr>
-        <td align="right" valign="top" class="hanger">
+        <td class="hanger">
             <a name="legacy"><b>Legacy<br />Download</b></a>
         </td>
         <td align="center" class="bodytext">
-            <table cellspacing="0" cellpadding="0" width="100%" border="0" class="bodytext">
+            <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
 
                 <tr>
                     <td align="left" width="150" valign="top">
                         <b>All Windows Itanium<br /></b>
                     </td>
-                    <td align="left">
+                    <td>
                         The Itanium version is not supported anymore, but the last VS2005 based version 3.8.7.2 is kept for legacy. <br />
                         Please make sure that the necessary runtime .dlls are
                         installed on your system. This prerequisites package can be downloaded from Microsoft:<br />
@@ -4262,11 +4334,6 @@
         </td>
     </tr>
 
-    <tr>
-        <td colspan="2" bgcolor="#F2F2F2">
-            <img src="../../images/spacer.gif" width="1" height="5">
-        </td>
-    </tr>
     </table>
 </body>
 </html>
