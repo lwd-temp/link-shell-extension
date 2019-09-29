@@ -1715,10 +1715,21 @@ DropSymbolicLink(
       else
       {
         // Used when UAC is switched off thus making it possible  to call CreateSymboliclink directly from explorer
-        CreateSymboliclink(dest,
+        int SymlinkCreated = CreateSymboliclink(dest,
           target,
           SymbolicLinkRelation | dwSymLinkAllowUnprivilegedCreation
         );
+
+        if (ERROR_ACCESS_DENIED == SymlinkCreated)
+        {
+          // There is a weird situation. Symbolic Link Creation in developer mode works, but not for Program Files and other protected folders
+          // So if we fail to create above, we anyhow have to enable the elevation process. sic
+          Elevation = true;
+          if (SymbolicLinkRelation)
+            uacHelper.WriteArgs('f', dest, target);
+          else
+            uacHelper.WriteArgs('F', dest, target);
+        }
       }
     }
 
