@@ -183,28 +183,44 @@ void
 UACHelper::Open(
 )
 {
-  // Get the current path of extension installation
-  m_SlaQuoted = '\"';
+  if (!m_UacArgs)
+  {
+    // Get the current path of extension installation
+    m_SlaQuoted = '\"';
 
-  wchar_t currentDir[MAX_PATH];
-  GetTempPath(MAX_PATH, currentDir);
-  m_CurrentDir = currentDir;
+    wchar_t currentDir[MAX_PATH];
+    GetTempPath(MAX_PATH, currentDir);
+    m_CurrentDir = currentDir;
 
-  m_SlaQuoted += m_CurrentDir + UACHELPERARGS;
+    m_SlaQuoted += m_CurrentDir + UACHELPERARGS;
 
-  // Write the file for the args
+    // Write the file for the args
 #if defined _DEBUG
-  DeleteFile(&m_SlaQuoted.c_str()[1]);
+    DeleteFile(&m_SlaQuoted.c_str()[1]);
 #endif
 
-  _wfopen_s(&m_UacArgs, &m_SlaQuoted.c_str()[1], L"wb");
+    _wfopen_s(&m_UacArgs, &m_SlaQuoted.c_str()[1], L"wb");
+  }
 }
 
+int 
+UACHelper::Close()
+{ 
+    int retVal = -1;
+    if (m_UacArgs)
+    {
+      retVal = fclose(m_UacArgs);
+      m_UacArgs = nullptr; 
+    }
+    return retVal;
+};
 
 int
 UACHelper::Fork(
 )
 {
+  Close();
+  
   // TODO: Das Übergabefile sollte nicht nur einen Namen haben, weil auch mehrere Instanzen der LSE laufen können
   wchar_t uachelper[MAX_PATH];
   GetModuleFileNameW(g_hInstance, uachelper, MAX_PATH);
@@ -251,6 +267,7 @@ void UACHelper::WriteArgs(
   const wchar_t*  aArgument2
 )
 {
+  Open();
   fwprintf(m_UacArgs, L"-%c \"%s\" \"%s\"\n", aFunction, aArgument1, aArgument2);
 
   // Save the SID under which we are running. 

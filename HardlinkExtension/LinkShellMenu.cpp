@@ -1556,7 +1556,6 @@ DropHardLink(
   if (ElevationNeeded)
   {
     UACHelper uacHelper;
-    uacHelper.Open();
 
     for (ULONG i = 0; i < m_nTargets; i++)
 	  {
@@ -1576,7 +1575,6 @@ DropHardLink(
         uacHelper.WriteArgs('h', m_pTargets[i].m_Path, dest);
       }
     }
-    uacHelper.Close();
     
     DWORD r = uacHelper.Fork();
     if (r)
@@ -1622,13 +1620,6 @@ DropSymbolicLink(
     ClipboardToSelection(false);
 
   UACHelper uacHelper;
-
-#if defined UAC_FORCE
-  if (UAC_OUTPROC)
-#else
-  if (Elevation)
-#endif
-    uacHelper.Open();
 
 	// Write the args
   for (ULONG i = 0; i < m_nTargets; ++i)
@@ -1793,8 +1784,6 @@ DropSymbolicLink(
   if (Elevation)
 #endif
   {
-    uacHelper.Close();
-
     // Create the Symbolic Links
     DWORD r = uacHelper.Fork();
     if (r)
@@ -1905,10 +1894,6 @@ DropJunction(
           if ((ERROR_ALREADY_EXISTS != ret) && ElevationNeeded())
 #endif
           {
-            // Write the file for the args
-            if (!uacHelper.File())
-              uacHelper.Open();
-
             // Write the command file, which is read by the elevated process
             uacHelper.WriteArgs('j', dest, target);
             CreateJunctionsViaHelperExe = true;
@@ -1951,7 +1936,6 @@ DropJunction(
   if (CreateJunctionsViaHelperExe)
 #endif
   {
-    uacHelper.Close();
     DWORD r = uacHelper.Fork();
     if (r)
     {
@@ -2040,9 +2024,6 @@ DeleteJunction(
         if (ElevationNeeded())
 #endif
         {
-          if (!uacHelper.File())
-            uacHelper.Open();
-
           // Write the command file, which is read by the elevated process
           uacHelper.WriteArgs('k', L"empty", m_pTargets[i].m_Path);
           CreateJunctionsViaHelperExe = true;
@@ -2060,7 +2041,6 @@ DeleteJunction(
   if (CreateJunctionsViaHelperExe)
 #endif
   {
-    uacHelper.Close();
     DWORD r = uacHelper.Fork();
     if (r)
       ErrorFromSystem(r);
@@ -2142,11 +2122,9 @@ DropMountPoint(
 #endif
       {
         UACHelper uacHelper;
-        uacHelper.Open();
 
         // Write the command file, which is read by the elevated process
         uacHelper.WriteArgs('m', target, dest);
-        uacHelper.Close();
 
         uacHelper.Fork();
       }
@@ -2197,8 +2175,6 @@ DeleteMountPoint(
   UACHelper uacHelper;
   bool RelayToSymlink = false;
 
-  uacHelper.Open();
-
   for (UINT i = 0; i < m_nTargets; i++)
   {
     DWORD RetVal;
@@ -2221,8 +2197,6 @@ DeleteMountPoint(
       }
     }
   } // for (UINT i = 0; i < m_nTargets; i++)
-
-  uacHelper.Close();
 
 #if defined UAC_FORCE
   if (UAC_OUTPROC)
@@ -2454,7 +2428,6 @@ SmartMirror(
 
       // Create File
       UACHelper uacHelper;
-      uacHelper.Open();
 
       uacHelper.WriteArgs('w', L"not used", L"not used");
 
@@ -2469,7 +2442,6 @@ SmartMirror(
         ProgressbarPosition.left = -1;
 
       uacHelper.SaveProgressbarPosition(ProgressbarPosition);
-      uacHelper.Close();
       MirrorList.StopLogging(LogFile);
 
       // Fork Process
@@ -2558,7 +2530,6 @@ SmartMirror(
 
           // Create File
           UACHelper uacHelper;
-          uacHelper.Open();
 
           uacHelper.WriteArgs('w', L"not used", L"not used");
 
@@ -2571,7 +2542,6 @@ SmartMirror(
             ProgressbarPosition.left = -1;
 
           uacHelper.SaveProgressbarPosition(ProgressbarPosition);
-          uacHelper.Close();
           MirrorList.StopLogging(LogFile);
 #pragma endregion 
 
@@ -2592,10 +2562,8 @@ SmartMirror(
           // Then write the content again to a file, and compare the first and second file.
           // If they are equal everything is fine
           //
-          uacHelper.Open();
           uacHelper.WriteArgs('s', L"not used", L"not used");
           FileList2.Save(uacHelper.File());
-          uacHelper.Close()
   #endif
           // persist Pathnamestatuslist
 
@@ -2863,7 +2831,6 @@ SmartXXX(
 
       // Create File
       UACHelper uacHelper;
-      uacHelper.Open();
 
       switch (aMode)
       {
@@ -2885,7 +2852,6 @@ SmartXXX(
         ProgressbarPosition.left = -1;
         
       uacHelper.SaveProgressbarPosition(ProgressbarPosition);
-      uacHelper.Close();
       FileList.StopLogging(LogFile);
 
       // Fork Process
@@ -2961,7 +2927,6 @@ SmartXXX(
 
           // Create File
           UACHelper uacHelper;
-          uacHelper.Open();
 
           switch (aMode)
           {
@@ -2982,7 +2947,6 @@ SmartXXX(
             ProgressbarPosition.left = -1;
             
           uacHelper.SaveProgressbarPosition(ProgressbarPosition);
-          uacHelper.Close();
           FileList.StopLogging(LogFile);
 
   #if 0 // DEBUG_DEFINES
@@ -3133,11 +3097,9 @@ ReplaceJunction(
 #endif
     {
       UACHelper uacHelper;
-      uacHelper.Open();
 
       // Write the command file, which is read by the elevated process
       uacHelper.WriteArgs('l', aSource, aTarget);
-      uacHelper.Close();
 
       RetVal = uacHelper.Fork();
     }
@@ -3235,7 +3197,6 @@ ReplaceSymbolicLink(
 #endif
   {
     UACHelper uacHelper;
-    uacHelper.Open();
 
     if (Attribs & FILE_ATTRIBUTE_DIRECTORY)
     {
@@ -3253,8 +3214,6 @@ ReplaceSymbolicLink(
       else
         uacHelper.WriteArgs('G', aSource, aTarget);
     }
-
-    uacHelper.Close();
 
     RetVal = uacHelper.Fork();
   }
@@ -3335,11 +3294,9 @@ ReplaceMountPoint(
 #endif
   {
     UACHelper uacHelper;
-    uacHelper.Open();
 
     // Write the command file, which is read by the elevated process
     uacHelper.WriteArgs('o', aSource, aTarget);
-    uacHelper.Close();
 
     RetVal = uacHelper.Fork();
   }
@@ -3615,7 +3572,6 @@ DropDeloreanCopy(
 
       // Create File
       UACHelper uacHelper;
-      uacHelper.Open();
 
       if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
         // Delorean Copy
@@ -3644,7 +3600,6 @@ DropDeloreanCopy(
       delete pProgressbar;
 
       MirrorList.StopLogging(LogFile);
-      uacHelper.Close();
 
       // Fork Process
       DWORD r = uacHelper.Fork();
@@ -3770,7 +3725,6 @@ DropDeloreanCopy(
 
           // Create File
           UACHelper uacHelper;
-          uacHelper.Open();
 
           if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
             // Delorean Copy
@@ -3796,7 +3750,6 @@ DropDeloreanCopy(
           }
           delete pProgressbar;
 
-          uacHelper.Close();
           MirrorList.StopLogging(LogFile);
 
   #if 0 // DEBUG_DEFINES

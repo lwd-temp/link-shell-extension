@@ -29,22 +29,23 @@ class UACHelper
 {
 public: 
   UACHelper() : m_UacArgs{ nullptr }  {};
+  ~UACHelper() { Close(); };
 
-  void Open();
   int Fork();
   void WriteArgs(
     const wchar_t   aFunction,
     const wchar_t*  aArgument1,
     const wchar_t*  aArgument2
   );
-  int Close() { return fclose(m_UacArgs); };
   FILE* File() { return m_UacArgs; };
   void SaveProgressbarPosition(RECT& a_ProgressbarPosition);
 
 
 protected:
+  void Open();
+  int Close();
+
   FILE*   m_UacArgs;
   wstring  m_CurrentDir;
   wstring  m_SlaQuoted;
-
 };

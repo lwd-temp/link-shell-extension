@@ -232,7 +232,6 @@ CopyCallback ( HWND hwnd,
 
             // Symbolic links found ==> we have to handover to LSEUacHelper.exe
             UACHelper uacHelper;
-            uacHelper.Open();
             uacHelper.WriteArgs('r', L"not used", L"not used");
 
             FileList.SetFlags(FileInfoContainer::eBackupMode);
@@ -246,7 +245,6 @@ CopyCallback ( HWND hwnd,
               ProgressbarPosition.left = -1;
               
             uacHelper.SaveProgressbarPosition (ProgressbarPosition);
-            uacHelper.Close();
 
             // Fork Process
             DWORD r = uacHelper.Fork();
@@ -311,7 +309,6 @@ CopyCallback ( HWND hwnd,
 
                 // Symbolic links found ==> we have to handover to LSEUacHelper.exe
                 UACHelper uacHelper;
-                uacHelper.Open();
                 uacHelper.WriteArgs('r', L"not used", L"not used");
 
                 // persist FileList
@@ -322,7 +319,6 @@ CopyCallback ( HWND hwnd,
                   ProgressbarPosition.left = -1;
                   
                 uacHelper.SaveProgressbarPosition(ProgressbarPosition);
-                uacHelper.Close();
                 FileList.StopLogging(LogFile);
 
                 // Fork Process
