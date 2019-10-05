@@ -511,8 +511,13 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
           pReparseProperties->SetTarget(Dest, REPARSE_POINT_SYMBOLICLINK);
 
           if (S_OK == r)
-            PathCanonicalize(Dest, SymlinkTarget);
-          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Dest);
+          {
+            WCHAR AbsoluteDest[HUGE_PATH];
+            PathCanonicalize(AbsoluteDest, SymlinkTarget);
+            SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, AbsoluteDest);
+          }
+          else
+            SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Dest);
 
           // Enable Edit
           HWND hEdit = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
@@ -685,15 +690,27 @@ BOOL OnApply ( HWND hwnd, PSHNOTIFY* phdr )
       {
         case REPARSE_POINT_JUNCTION:
           ReplaceJunction(pReparseProperties->Source, Destination);
+          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
         break;
 
         case REPARSE_POINT_SYMBOLICLINK:
+        {
           ReplaceSymbolicLink(pReparseProperties->Source, Destination, true);
+          
+          // The absolute destination shall be stored so that Explore Target can take the value
+          WCHAR SymlinkTarget[HUGE_PATH];
+          int r = ResolveSymboliclink(pReparseProperties->Source, Destination, SymlinkTarget);
+
+          if (S_OK == r)
+            PathCanonicalize(Destination, SymlinkTarget);
+          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
+        }
         break;
 
         case REPARSE_POINT_MOUNTPOINT:
           ReplaceMountPoint(pReparseProperties->Source, Destination);
-        break;
+          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
+          break;
       }
     }
   }
