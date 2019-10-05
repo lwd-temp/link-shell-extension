@@ -603,6 +603,8 @@ ReplaceJunction(
 
   int iResult = ERROR_SUCCESS;
   wchar_t  JunctionTmpName[HUGE_PATH];
+  
+  DWORD JunctionAttributes = GetFileAttributes(arg0);
 
   if (gLSESettings.GetFlags() & eBackupMode)
   {
@@ -666,6 +668,9 @@ ReplaceJunction(
       if (pSecDesc)
         free(pSecDesc);
     }
+
+    // Restore the original Junction attributes
+    SetFileAttributes(arg0, JunctionAttributes);
   }
 
   return iResult;
@@ -683,6 +688,8 @@ ReplaceSymbolicLink(
 
   int iResult = ERROR_SUCCESS;
   wchar_t  SymlinkTmpName[HUGE_PATH];
+
+  DWORD SymLinkAttribute = GetFileAttributes(arg0);
 
   if (gLSESettings.GetFlags() & eBackupMode)
   {
@@ -782,6 +789,8 @@ ReplaceSymbolicLink(
       free(pSecDesc);
   }
 
+  SetFileAttributes(arg0, SymLinkAttribute);
+
   return iResult;
 }
 
@@ -796,6 +805,7 @@ ReplaceMountPoint(
 
   int iResult = ERROR_SUCCESS;
   wchar_t  MountPointTmpName[HUGE_PATH];
+  DWORD MountpointAttribute = GetFileAttributes(arg0);
 
   if (gLSESettings.GetFlags() & eBackupMode)
   {
@@ -862,6 +872,8 @@ ReplaceMountPoint(
     if (pSecDesc)
       free(pSecDesc);
   }
+  SetFileAttributes(arg0, MountpointAttribute);
+
   return iResult;
 }
 

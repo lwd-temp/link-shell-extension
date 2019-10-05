@@ -3075,11 +3075,18 @@ ReplaceJunction(
 {
   DWORD RetVal = ERROR_SUCCESS;
   BOOL bRemoveDir = FALSE;
+  DWORD JunctionAttributes = INVALID_FILE_ATTRIBUTES;
 
   // If we are not in BackupMode, then delete the directory, otherwise do this elevated
   // because we have to read existing attributes of aSource.
   if (!(gLSESettings.GetFlags() & eBackupMode))
+  {
+    JunctionAttributes = GetFileAttributes(aSource);
     bRemoveDir = RemoveDirectory(aSource);
+
+    // return the error code of RemoveDir()
+    RetVal = GetLastError();
+  }
 
 #if defined UAC_FORCE
   if (UAC_OUTPROC)
@@ -3096,22 +3103,17 @@ ReplaceJunction(
     if (ElevationNeeded() || (gLSESettings.GetFlags() & eBackupMode))
 #endif
     {
-      UACHelper uacHelper;
-
       // Write the command file, which is read by the elevated process
+      UACHelper uacHelper;
       uacHelper.WriteArgs('l', aSource, aTarget);
-
       RetVal = uacHelper.Fork();
-    }
-    else
-    {
-      // return the error code of RemoveDir()
-      RetVal = GetLastError();
     }
   }
   else
   {
     RetVal = CreateJunction(aSource, aTarget);
+    if (INVALID_FILE_ATTRIBUTES != JunctionAttributes)
+      SetFileAttributes(aSource, JunctionAttributes);
   }
 
   return RetVal;
@@ -3237,6 +3239,7 @@ ReplaceSymbolicLink(
         SymbolicLinkRelation
       );
     }
+    SetFileAttributes(aSource, Attribs);
   }
 
   return RetVal;
@@ -3285,6 +3288,8 @@ ReplaceMountPoint(
   DWORD RetVal = ERROR_SUCCESS;
   BOOL bRemoveDir = FALSE;
 
+  DWORD MountPointAttributes = GetFileAttributes(aTarget);
+
 #if defined UAC_FORCE
   if (UAC_OUTPROC)
 #else
@@ -3308,6 +3313,7 @@ ReplaceMountPoint(
     {
       CreateDirectory(aTarget, NULL);
       RetVal = CreateMountPoint(aSource, aTarget);
+      SetFileAttributes(aTarget, MountPointAttributes);
     }
   }
 
