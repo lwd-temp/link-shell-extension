@@ -632,6 +632,7 @@ ReplaceJunction(
   else
   {
     // No Backup Mode, just remove the old junction
+    SetFileAttributes(arg0, JunctionAttributes & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
     if (RemoveDirectory(arg0))
       iResult = GetLastError();
   }
@@ -658,11 +659,13 @@ ReplaceJunction(
           0,
           &pns
         );
+        SetFileAttributes(JunctionTmpName, JunctionAttributes & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
         if (RemoveDirectory(JunctionTmpName))
           iResult = GetLastError();
       }
       else
       {
+        // Rollback
         MoveFile(JunctionTmpName, arg0);
       }
       if (pSecDesc)
@@ -717,6 +720,7 @@ ReplaceSymbolicLink(
   else
   {
     // But in normal mode just delete the original symlink
+    SetFileAttributes(arg0, SymLinkAttribute & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
     if (dwFlags & SYMLINK_FLAG_DIRECTORY)
       RemoveDirectory(arg0);
     else
@@ -805,7 +809,7 @@ ReplaceMountPoint(
 
   int iResult = ERROR_SUCCESS;
   wchar_t  MountPointTmpName[HUGE_PATH];
-  DWORD MountpointAttribute = GetFileAttributes(arg0);
+  DWORD MountpointAttributes = GetFileAttributes(arg0);
 
   if (gLSESettings.GetFlags() & eBackupMode)
   {
@@ -832,7 +836,8 @@ ReplaceMountPoint(
   }
   else
   {
-	  iResult = DeleteMountPoint (arg0);
+    SetFileAttributes(arg0, MountpointAttributes & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
+    iResult = DeleteMountPoint (arg0);
     RemoveDirectory(arg0);
   }
 
@@ -872,7 +877,7 @@ ReplaceMountPoint(
     if (pSecDesc)
       free(pSecDesc);
   }
-  SetFileAttributes(arg0, MountpointAttribute);
+  SetFileAttributes(arg0, MountpointAttributes);
 
   return iResult;
 }

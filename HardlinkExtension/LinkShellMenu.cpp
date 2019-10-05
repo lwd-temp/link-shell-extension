@@ -3082,6 +3082,7 @@ ReplaceJunction(
   if (!(gLSESettings.GetFlags() & eBackupMode))
   {
     JunctionAttributes = GetFileAttributes(aSource);
+    SetFileAttributes(aSource, JunctionAttributes & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
     bRemoveDir = RemoveDirectory(aSource);
 
     // return the error code of RemoveDir()
@@ -3223,6 +3224,7 @@ ReplaceSymbolicLink(
   {
     // Used when UAC is switched off thus making it possible to call CreateSymboliclink directly from explorer
     // 
+    SetFileAttributes(aSource, Attribs & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
     if (Attribs & FILE_ATTRIBUTE_DIRECTORY)
     {
       RemoveDirectory(aSource);
@@ -3308,6 +3310,7 @@ ReplaceMountPoint(
   else
   {
     RetVal = ::DeleteMountPoint(aTarget);
+    SetFileAttributes(aSource, MountPointAttributes & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
     RemoveDirectory(aTarget);
     if (S_OK == RetVal)
     {
