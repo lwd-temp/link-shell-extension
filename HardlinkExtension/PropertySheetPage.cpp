@@ -689,8 +689,15 @@ BOOL OnApply ( HWND hwnd, PSHNOTIFY* phdr )
       switch (pReparseProperties->Type)
       {
         case REPARSE_POINT_JUNCTION:
-          ReplaceJunction(pReparseProperties->Source, Destination);
-          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
+        {
+
+          int rValue = ReplaceJunction(pReparseProperties->Source, Destination);
+          if (ERROR_SUCCESS == rValue)
+          {
+            SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
+            pReparseProperties->SetTarget(Destination, REPARSE_POINT_JUNCTION);
+          }
+        }
         break;
 
         case REPARSE_POINT_SYMBOLICLINK:
@@ -704,13 +711,20 @@ BOOL OnApply ( HWND hwnd, PSHNOTIFY* phdr )
           if (S_OK == r)
             PathCanonicalize(Destination, SymlinkTarget);
           SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
+          pReparseProperties->SetTarget(Destination, REPARSE_POINT_SYMBOLICLINK);
         }
         break;
 
         case REPARSE_POINT_MOUNTPOINT:
-          ReplaceMountPoint(pReparseProperties->Source, Destination);
-          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
-          break;
+        {
+          int rValue = ReplaceMountPoint(pReparseProperties->Source, Destination);
+          if (ERROR_SUCCESS == rValue)
+          {
+            SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
+            pReparseProperties->SetTarget(Destination, REPARSE_POINT_MOUNTPOINT);
+          }
+        }
+        break;
       }
     }
   }
