@@ -1,4 +1,4 @@
 #define MAJOR_VERSION 3
 #define MINOR_VERSION 9
 #define PATCH_VERSION 2
-#define HOTFIX_VERSION 5
+#define HOTFIX_VERSION 6
