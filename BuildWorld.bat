@@ -50,6 +50,8 @@ REM Copy over certificate
 REM
 echo provide Certificate for signing
 xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\LinkShellextension.pfx shared\certificate\LinkShellextension.pfx
+xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\LinkShellextension.pfx shared\certificate\schinagl.priv.at.pfx
+xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\LinkShellextension.pfx shared\certificate\schinagl.priv.at.txt
 
 
 REM Create installer
