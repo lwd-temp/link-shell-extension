@@ -6,19 +6,11 @@
 
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
 
-#define _CRT_SECURE_NO_DEPRECATE
-
 #define ISOLATION_AWARE_ENABLED 1
 #define SIDEBYSIDE_COMMONCONTROLS 1
 
-// Disable checked iterators in release builds
-#ifndef _DEBUG
-// #  define _SECURE_SCL 0
-#endif
-
 // Used to enable an extra menue entry to delete junctions from LSE
 // #define REMOVE_DELETE_JUNCTION
-
 
 
 #include <windows.h>

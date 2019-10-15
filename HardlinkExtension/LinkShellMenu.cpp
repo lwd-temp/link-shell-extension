@@ -121,26 +121,26 @@ GetFileAttr(
     int ReparseType = ProbeReparsePoint(aTarget.m_Path, NULL);
     switch (ReparseType)
     {
-    case REPARSE_POINT_JUNCTION:
-    {
-      aTarget.m_Flags |= eJunction;
-      aTargetsFlag |= eJunction;
-      break;
-    }
+      case REPARSE_POINT_JUNCTION:
+      {
+        aTarget.m_Flags |= eJunction;
+        aTargetsFlag |= eJunction;
+        break;
+      }
 
-    case REPARSE_POINT_MOUNTPOINT:
-    {
-      aTarget.m_Flags |= eMountPoint;
-      aTargetsFlag |= eMountPoint;
-      break;
-    }
+      case REPARSE_POINT_MOUNTPOINT:
+      {
+        aTarget.m_Flags |= eMountPoint;
+        aTargetsFlag |= eMountPoint;
+        break;
+      }
 
-    case REPARSE_POINT_SYMBOLICLINK:
-    {
-      aTarget.m_Flags |= eSymbolicLink;
-      aTargetsFlag |= eSymbolicLink;
-      break;
-    }
+      case REPARSE_POINT_SYMBOLICLINK:
+      {
+        aTarget.m_Flags |= eSymbolicLink;
+        aTargetsFlag |= eSymbolicLink;
+        break;
+      }
     }
 
     // Check if this is a root path, so that we can offer mount points
@@ -152,7 +152,7 @@ GetFileAttr(
     }
     else
     {
-      if (!ReparseType)
+      if (REPARSE_POINT_FAIL == ReparseType)
       {
         // It is a just a plain directory
         aTarget.m_Flags |= eDir;
@@ -162,8 +162,7 @@ GetFileAttr(
   }
   else
   {
-    // Deal with files
-
+    // Deal with files, dangling Symbolic links or dangling Junctions
     if (ProbeSymbolicLink(aTarget.m_Path, NULL))
     {
       aTarget.m_Flags |= eSymbolicLink;
@@ -171,8 +170,19 @@ GetFileAttr(
     }
     else
     {
-      aTarget.m_Flags |= eFile;
-      aTargetsFlag |= eFile;
+      // It could be a dangling Junction
+      if (ProbeJunction(aTarget.m_Path, NULL))
+      {
+        aTarget.m_Flags |= eJunction;
+        aTargetsFlag |= eJunction;
+      }
+      else 
+      {
+        // No it is a file
+        aTarget.m_Flags |= eFile;
+        aTargetsFlag |= eFile;
+      }
+      
     }
   }
 
@@ -1546,7 +1556,6 @@ DropHardLink(
   if (ElevationNeeded)
   {
     UACHelper uacHelper;
-    uacHelper.Open();
 
     for (ULONG i = 0; i < m_nTargets; i++)
 	  {
@@ -1566,7 +1575,6 @@ DropHardLink(
         uacHelper.WriteArgs('h', m_pTargets[i].m_Path, dest);
       }
     }
-    uacHelper.Close();
     
     DWORD r = uacHelper.Fork();
     if (r)
@@ -1612,13 +1620,6 @@ DropSymbolicLink(
     ClipboardToSelection(false);
 
   UACHelper uacHelper;
-
-#if defined UAC_FORCE
-  if (UAC_OUTPROC)
-#else
-  if (Elevation)
-#endif
-    uacHelper.Open();
 
 	// Write the args
   for (ULONG i = 0; i < m_nTargets; ++i)
@@ -1705,10 +1706,21 @@ DropSymbolicLink(
       else
       {
         // Used when UAC is switched off thus making it possible  to call CreateSymboliclink directly from explorer
-        CreateSymboliclink(dest,
+        int SymlinkCreated = CreateSymboliclink(dest,
           target,
           SymbolicLinkRelation | dwSymLinkAllowUnprivilegedCreation
         );
+
+        if (ERROR_ACCESS_DENIED == SymlinkCreated)
+        {
+          // There is a weird situation. Symbolic Link Creation in developer mode works, but not for Program Files and other protected folders
+          // So if we fail to create above, we anyhow have to enable the elevation process. sic
+          Elevation = true;
+          if (SymbolicLinkRelation)
+            uacHelper.WriteArgs('f', dest, target);
+          else
+            uacHelper.WriteArgs('F', dest, target);
+        }
       }
     }
 
@@ -1772,8 +1784,6 @@ DropSymbolicLink(
   if (Elevation)
 #endif
   {
-    uacHelper.Close();
-
     // Create the Symbolic Links
     DWORD r = uacHelper.Fork();
     if (r)
@@ -1884,10 +1894,6 @@ DropJunction(
           if ((ERROR_ALREADY_EXISTS != ret) && ElevationNeeded())
 #endif
           {
-            // Write the file for the args
-            if (!uacHelper.File())
-              uacHelper.Open();
-
             // Write the command file, which is read by the elevated process
             uacHelper.WriteArgs('j', dest, target);
             CreateJunctionsViaHelperExe = true;
@@ -1930,7 +1936,6 @@ DropJunction(
   if (CreateJunctionsViaHelperExe)
 #endif
   {
-    uacHelper.Close();
     DWORD r = uacHelper.Fork();
     if (r)
     {
@@ -2019,9 +2024,6 @@ DeleteJunction(
         if (ElevationNeeded())
 #endif
         {
-          if (!uacHelper.File())
-            uacHelper.Open();
-
           // Write the command file, which is read by the elevated process
           uacHelper.WriteArgs('k', L"empty", m_pTargets[i].m_Path);
           CreateJunctionsViaHelperExe = true;
@@ -2039,7 +2041,6 @@ DeleteJunction(
   if (CreateJunctionsViaHelperExe)
 #endif
   {
-    uacHelper.Close();
     DWORD r = uacHelper.Fork();
     if (r)
       ErrorFromSystem(r);
@@ -2121,11 +2122,9 @@ DropMountPoint(
 #endif
       {
         UACHelper uacHelper;
-        uacHelper.Open();
 
         // Write the command file, which is read by the elevated process
         uacHelper.WriteArgs('m', target, dest);
-        uacHelper.Close();
 
         uacHelper.Fork();
       }
@@ -2176,8 +2175,6 @@ DeleteMountPoint(
   UACHelper uacHelper;
   bool RelayToSymlink = false;
 
-  uacHelper.Open();
-
   for (UINT i = 0; i < m_nTargets; i++)
   {
     DWORD RetVal;
@@ -2200,8 +2197,6 @@ DeleteMountPoint(
       }
     }
   } // for (UINT i = 0; i < m_nTargets; i++)
-
-  uacHelper.Close();
 
 #if defined UAC_FORCE
   if (UAC_OUTPROC)
@@ -2433,7 +2428,6 @@ SmartMirror(
 
       // Create File
       UACHelper uacHelper;
-      uacHelper.Open();
 
       uacHelper.WriteArgs('w', L"not used", L"not used");
 
@@ -2448,7 +2442,6 @@ SmartMirror(
         ProgressbarPosition.left = -1;
 
       uacHelper.SaveProgressbarPosition(ProgressbarPosition);
-      uacHelper.Close();
       MirrorList.StopLogging(LogFile);
 
       // Fork Process
@@ -2537,7 +2530,6 @@ SmartMirror(
 
           // Create File
           UACHelper uacHelper;
-          uacHelper.Open();
 
           uacHelper.WriteArgs('w', L"not used", L"not used");
 
@@ -2550,7 +2542,6 @@ SmartMirror(
             ProgressbarPosition.left = -1;
 
           uacHelper.SaveProgressbarPosition(ProgressbarPosition);
-          uacHelper.Close();
           MirrorList.StopLogging(LogFile);
 #pragma endregion 
 
@@ -2571,10 +2562,8 @@ SmartMirror(
           // Then write the content again to a file, and compare the first and second file.
           // If they are equal everything is fine
           //
-          uacHelper.Open();
           uacHelper.WriteArgs('s', L"not used", L"not used");
           FileList2.Save(uacHelper.File());
-          uacHelper.Close()
   #endif
           // persist Pathnamestatuslist
 
@@ -2842,7 +2831,6 @@ SmartXXX(
 
       // Create File
       UACHelper uacHelper;
-      uacHelper.Open();
 
       switch (aMode)
       {
@@ -2864,7 +2852,6 @@ SmartXXX(
         ProgressbarPosition.left = -1;
         
       uacHelper.SaveProgressbarPosition(ProgressbarPosition);
-      uacHelper.Close();
       FileList.StopLogging(LogFile);
 
       // Fork Process
@@ -2940,7 +2927,6 @@ SmartXXX(
 
           // Create File
           UACHelper uacHelper;
-          uacHelper.Open();
 
           switch (aMode)
           {
@@ -2961,7 +2947,6 @@ SmartXXX(
             ProgressbarPosition.left = -1;
             
           uacHelper.SaveProgressbarPosition(ProgressbarPosition);
-          uacHelper.Close();
           FileList.StopLogging(LogFile);
 
   #if 0 // DEBUG_DEFINES
@@ -3090,11 +3075,19 @@ ReplaceJunction(
 {
   DWORD RetVal = ERROR_SUCCESS;
   BOOL bRemoveDir = FALSE;
+  DWORD JunctionAttributes = INVALID_FILE_ATTRIBUTES;
 
   // If we are not in BackupMode, then delete the directory, otherwise do this elevated
   // because we have to read existing attributes of aSource.
   if (!(gLSESettings.GetFlags() & eBackupMode))
+  {
+    JunctionAttributes = GetFileAttributes(aSource);
+    SetFileAttributes(aSource, JunctionAttributes & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
     bRemoveDir = RemoveDirectory(aSource);
+
+    // return the error code of RemoveDir()
+    RetVal = GetLastError();
+  }
 
 #if defined UAC_FORCE
   if (UAC_OUTPROC)
@@ -3111,24 +3104,17 @@ ReplaceJunction(
     if (ElevationNeeded() || (gLSESettings.GetFlags() & eBackupMode))
 #endif
     {
-      UACHelper uacHelper;
-      uacHelper.Open();
-
       // Write the command file, which is read by the elevated process
+      UACHelper uacHelper;
       uacHelper.WriteArgs('l', aSource, aTarget);
-      uacHelper.Close();
-
       RetVal = uacHelper.Fork();
-    }
-    else
-    {
-      // return the error code of RemoveDir()
-      RetVal = GetLastError();
     }
   }
   else
   {
     RetVal = CreateJunction(aSource, aTarget);
+    if (INVALID_FILE_ATTRIBUTES != JunctionAttributes)
+      SetFileAttributes(aSource, JunctionAttributes);
   }
 
   return RetVal;
@@ -3214,7 +3200,6 @@ ReplaceSymbolicLink(
 #endif
   {
     UACHelper uacHelper;
-    uacHelper.Open();
 
     if (Attribs & FILE_ATTRIBUTE_DIRECTORY)
     {
@@ -3233,14 +3218,13 @@ ReplaceSymbolicLink(
         uacHelper.WriteArgs('G', aSource, aTarget);
     }
 
-    uacHelper.Close();
-
     RetVal = uacHelper.Fork();
   }
   else
   {
     // Used when UAC is switched off thus making it possible to call CreateSymboliclink directly from explorer
     // 
+    SetFileAttributes(aSource, Attribs & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
     if (Attribs & FILE_ATTRIBUTE_DIRECTORY)
     {
       RemoveDirectory(aSource);
@@ -3257,6 +3241,7 @@ ReplaceSymbolicLink(
         SymbolicLinkRelation
       );
     }
+    SetFileAttributes(aSource, Attribs);
   }
 
   return RetVal;
@@ -3305,6 +3290,8 @@ ReplaceMountPoint(
   DWORD RetVal = ERROR_SUCCESS;
   BOOL bRemoveDir = FALSE;
 
+  DWORD MountPointAttributes = GetFileAttributes(aTarget);
+
 #if defined UAC_FORCE
   if (UAC_OUTPROC)
 #else
@@ -3314,22 +3301,22 @@ ReplaceMountPoint(
 #endif
   {
     UACHelper uacHelper;
-    uacHelper.Open();
 
     // Write the command file, which is read by the elevated process
     uacHelper.WriteArgs('o', aSource, aTarget);
-    uacHelper.Close();
 
     RetVal = uacHelper.Fork();
   }
   else
   {
     RetVal = ::DeleteMountPoint(aTarget);
+    SetFileAttributes(aSource, MountPointAttributes & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
     RemoveDirectory(aTarget);
     if (S_OK == RetVal)
     {
       CreateDirectory(aTarget, NULL);
       RetVal = CreateMountPoint(aSource, aTarget);
+      SetFileAttributes(aTarget, MountPointAttributes);
     }
   }
 
@@ -3594,7 +3581,6 @@ DropDeloreanCopy(
 
       // Create File
       UACHelper uacHelper;
-      uacHelper.Open();
 
       if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
         // Delorean Copy
@@ -3623,7 +3609,6 @@ DropDeloreanCopy(
       delete pProgressbar;
 
       MirrorList.StopLogging(LogFile);
-      uacHelper.Close();
 
       // Fork Process
       DWORD r = uacHelper.Fork();
@@ -3749,7 +3734,6 @@ DropDeloreanCopy(
 
           // Create File
           UACHelper uacHelper;
-          uacHelper.Open();
 
           if (Backup0[PATH_PARSE_SWITCHOFF_SIZE])
             // Delorean Copy
@@ -3775,7 +3759,6 @@ DropDeloreanCopy(
           }
           delete pProgressbar;
 
-          uacHelper.Close();
           MirrorList.StopLogging(LogFile);
 
   #if 0 // DEBUG_DEFINES

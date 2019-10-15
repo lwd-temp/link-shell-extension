@@ -317,6 +317,95 @@ void PrintElapsed(ProgressPrediction& aProgressPrediction)
     duration.wSecond);
 }
 
+int
+TrueSize(
+  _ArgvList&                                aSourceDirList,
+  _StringList*                              aIncludeFileList,
+  _StringList*                              aIncludeDirList,
+  _StringList*                              aExcludeFileList,
+  _StringList*                              aExcludeDirList,
+  bool                                      aSkipFiles,
+  bool                                      aTraditional
+)
+{
+  if (INVALID_FILE_ATTRIBUTES != aSourceDirList[0].FileAttribute)
+  {
+    _PathNameStatusList pathNameStatusList;
+    CopyStatistics	stats;
+
+    FileInfoContainer	FileList;
+    FileList.SetOutputFile(gStdOutFile);
+    GetLocalTime(&stats.m_StartTime);
+
+    if (aTraditional)
+      FileList.SetFlags(FileInfoContainer::eTraditional);
+
+    FileList.SetIncludeList(aIncludeFileList);
+    FileList.SetIncludeDirList(aIncludeDirList);
+    FileList.SetExcludeList(aExcludeFileList);
+    FileList.SetExcludeDirList(aExcludeDirList);
+
+    if (aTraditional)
+      FileList.SetFlags(FileInfoContainer::eTraditional);
+
+    if (aSkipFiles)
+      FileList.SetFlags(FileInfoContainer::eSkipFiles);
+
+    // Enumerate affected files
+    int r = FileList.FindHardLink(aSourceDirList, 0, &stats, &pathNameStatusList, NULL);
+
+    // Calculate the true Size
+    FileList.TrueSize(&stats, &pathNameStatusList, NULL);
+
+    GetLocalTime(&stats.m_EndTime);
+    PrintTrueSizeCopyStats(gStdOutFile, stats, FileInfoContainer::eSmartCopy, gAutomatedTest, gJson);
+
+#if defined PRINT_DISPOSE_DURATION
+    // Free Memory - no need to go async as in mirror
+    SYSTEMTIME DisposeStartTime, DisposeEndTime;
+    GetSystemTime(&DisposeStartTime);
+#endif
+
+    DeletePathNameStatusList(pathNameStatusList);
+    FileList.Dispose(NULL, &stats);
+
+#if defined PRINT_DISPOSE_DURATION
+    GetSystemTime(&DisposeEndTime);
+
+    // Time calculations for DisposeDuration
+    FILETIME64 DisposeStart, DisposeEnd;
+    SystemTimeToFileTime(&DisposeStartTime, &DisposeStart.FileTime);
+    SystemTimeToFileTime(&DisposeEndTime, &DisposeEnd.FileTime);
+
+    FILETIME64 DisposeDuration;
+    DisposeDuration.ul64DateTime = DisposeEnd.ul64DateTime - DisposeStart.ul64DateTime;
+
+    SYSTEMTIME stDisposeDuration;
+    FileTimeToSystemTime(&DisposeDuration.FileTime, &stDisposeDuration);
+
+    const int DisposeDurationStrLength = 64;
+    char DisposeDurationStr[DisposeDurationStrLength];
+    sprintf(DisposeDurationStr, DisposeDurationStrLength, "%02d:%02d:%02d.%03d",
+      stDisposeDuration.wHour,
+      stDisposeDuration.wMinute,
+      stDisposeDuration.wSecond,
+      stDisposeDuration.wMilliseconds
+    );
+
+    fprintf(gStdOutFile, "%s", DisposeDurationStr);
+#endif
+
+#if defined DEBUG_STOPWATCH
+    PrintInternalCounters(gStdOutFile, stats);
+#endif
+    return ERR_SUCCESS;
+  }
+  else
+  {
+    fwprintf(gStdOutFile, L"ERROR: '%s' not found\n", aSourceDirList[0].ArgvOrg.c_str());
+    return ERR_SOURCE_DIR_DOES_NOT_EXIST;
+  }
+}
 
 int
 LnSmartXXX(
@@ -1827,10 +1916,10 @@ wmain(
     bool  AlwaysUnroll = false;
     bool  AlwaysFollow = false;
     bool  SmartMirror = false;
-    bool  SkipFiles = false;
+    bool  bSkipFiles = false;
     bool  Traditional = false;
     bool  SmartRename = false;
-    bool  TrueSize = false;
+    bool  bTrueSize = false;
     bool  DeloreanDelete = false;
     bool  AdsDev = false;
     bool  KeepSymlinkRelation = false;
@@ -1859,6 +1948,16 @@ wmain(
 
     InitCreateHardlink ();
 
+#if 0
+    wchar_t		szProcessNameUni[1024];
+    PUINT_PTR dPID;
+    ULONG		dPIDSize = 0;
+
+    wcscpy_s(szProcessNameUni, 1024, _T("winfile.exe"));
+    bool b = NtQueryProcessId(szProcessNameUni, &dPID, &dPIDSize);
+
+    printf("42\n");
+#endif
 
 #if 0
 
@@ -2047,7 +2146,7 @@ wmain(
     bool admin = IsProtectedFolder(L"c:\\tmp");
 //    bool admin = IsProtectedFolder(L"c:\\windows");
     printf ("Proteced Folder %d\n", admin);
-    exit(1);
+    exit(ERR_ERROR);
 #endif
 
 #if 0
@@ -2057,6 +2156,14 @@ wmain(
     gStdOutHandle = (intptr_t)GetStdHandle(STD_OUTPUT_HANDLE);
     int StdOutDesc = _open_osfhandle(gStdOutHandle, _O_TEXT);
     gStdOutFile = _fdopen(StdOutDesc, "w");
+    
+    // Change the buffer size so that outputing results does not cause stalls during printout
+    // which is difficult, because the safest way would be to go with _IONBF, but this slows
+    // down operation. If we go for buffering with _IOFBF/_IOLBF a big file might take so long 
+    // to copy, that even the buffer runs out and again the output print stalls
+    // Even if unfortunatley _IOFBF is the same as _IOLBF we take _IOLBF, because we really 
+    // want line buffering
+    int rr = setvbuf(gStdOutFile, NULL, _IOLBF, 1'000'000);
 
     // Take the default locale
     setlocale(LC_ALL,"");
@@ -2540,7 +2647,7 @@ wmain(
             // --skipfiles
             // 
             case cBaseJustLongOpts + 0x02:
-              SkipFiles = true;
+              bSkipFiles = true;
             break;
 
             // --traditional
@@ -2631,7 +2738,7 @@ wmain(
             {
 					    wcscpy_s(Argv1, HUGE_PATH, argv[optind - 1]);
 					    Argv2[0] = 0x00;
-              TrueSize = true;
+              bTrueSize = true;
             }
             break;
 
@@ -3069,7 +3176,7 @@ wmain(
     }
 
 		// All the listed option prepare Argv1 and Argv2 itself above, or are just switches
-		if ( !(recursive ^ enumerate ^ SmartCopy ^ list ^ junction ^ noitcnuj ^ SmartMove ^ DeepPathCreate ^ DeepPathDelete ^ delorean ^ SmartMirror ^ SmartRename ^ TrueSize ^ AdsDev ^ ProbeFs ^ HardlinkMirror ^ DeloreanMerge ^ DeloreanDelete) )
+		if ( !(recursive ^ enumerate ^ SmartCopy ^ list ^ junction ^ noitcnuj ^ SmartMove ^ DeepPathCreate ^ DeepPathDelete ^ delorean ^ SmartMirror ^ SmartRename ^ bTrueSize ^ AdsDev ^ ProbeFs ^ HardlinkMirror ^ DeloreanMerge ^ DeloreanDelete) )
 		{
 			// Apply this only if no options 'ln source dest' is applied
 			if (argc - optind == 2)
@@ -3250,7 +3357,7 @@ wmain(
         &ExcludeDirList, 
         AlwaysUnroll ? NULL : &UnrollDirList, 
         AlwaysSplice ? NULL : &SpliceDirList,
-        SkipFiles,
+        bSkipFiles,
         Traditional,
         Backup,
         KeepSymlinkRelation,
@@ -3278,7 +3385,7 @@ wmain(
         &ExcludeDirList,
         AlwaysUnroll ? NULL : &UnrollDirList, 
         AlwaysSplice ? NULL : &SpliceDirList,
-        SkipFiles,
+        bSkipFiles,
         Traditional,
         Backup,
         KeepSymlinkRelation,
@@ -3312,7 +3419,7 @@ wmain(
         &ExcludeDirList,
         AlwaysUnroll ? NULL : &UnrollDirList, 
         AlwaysSplice ? NULL : &SpliceDirList,
-        SkipFiles,
+        bSkipFiles,
         Traditional,
         Backup,
         KeepSymlinkRelation,
@@ -3591,90 +3698,31 @@ wmain(
     }
 
     //
-    // TrueSize option --truesize
+    // --truesize
     //
-    if (TrueSize)
+    if (bTrueSize)
     {
-      if (INVALID_FILE_ATTRIBUTES != Argv1Path.FileAttribute)
-      {
-        _PathNameStatusList PathNameStatusList;
-        CopyStatistics	aStats;
+      int returnCode = TrueSize(
+        SourceDirList,
+        &IncludeFileList,
+        &IncludeDirList,
+        &ExcludeFileList,
+        &ExcludeDirList,
+        bSkipFiles,
+        false // Traditional
+      );
 
-        FileInfoContainer	FileList;
-        FileList.SetOutputFile(gStdOutFile);
-        GetLocalTime(&aStats.m_StartTime);
-
-        if (Traditional)
-          FileList.SetFlags(FileInfoContainer::eTraditional);
-
-        FileList.SetIncludeList(&IncludeFileList);
-        FileList.SetIncludeDirList(&IncludeDirList);
-        FileList.SetExcludeList(&ExcludeFileList);
-        FileList.SetExcludeDirList(&ExcludeDirList);
-
-        int r = FileList.FindHardLink (SourceDirList, 0, &aStats, &PathNameStatusList, NULL);
-
-        FileList.TrueSize(&aStats, &PathNameStatusList, NULL);
-
-        GetLocalTime(&aStats.m_EndTime);
-
-        PrintTrueSizeCopyStats(gStdOutFile, aStats, FileInfoContainer::eSmartCopy, gAutomatedTest, gJson);
-
-#if defined PRINT_DISPOSE_DURATION
-        // Free Memory - no need to go async as in mirror
-        SYSTEMTIME DisposeStartTime, DisposeEndTime;
-        GetSystemTime(&DisposeStartTime);
-#endif
-
-        DeletePathNameStatusList(PathNameStatusList);
-        FileList.Dispose(NULL, &aStats);
-
-#if defined PRINT_DISPOSE_DURATION
-        GetSystemTime(&DisposeEndTime);
-
-        // Time calculations for DisposeDuration
-        FILETIME64 DisposeStart, DisposeEnd;
-        SystemTimeToFileTime(&DisposeStartTime, &DisposeStart.FileTime);
-        SystemTimeToFileTime(&DisposeEndTime, &DisposeEnd.FileTime);
-
-        FILETIME64 DisposeDuration;
-        DisposeDuration.ul64DateTime = DisposeEnd.ul64DateTime - DisposeStart.ul64DateTime;
-
-        SYSTEMTIME stDisposeDuration;
-        FileTimeToSystemTime(&DisposeDuration.FileTime, &stDisposeDuration);
-        
-        const int DisposeDurationStrLength = 64;
-        char DisposeDurationStr[DisposeDurationStrLength];
-        sprintf (DisposeDurationStr, DisposeDurationStrLength, "%02d:%02d:%02d.%03d",
-          stDisposeDuration.wHour,
-          stDisposeDuration.wMinute,
-          stDisposeDuration.wSecond,
-          stDisposeDuration.wMilliseconds
-        );
-
-        fprintf(gStdOutFile, "%s", DisposeDurationStr);
-#endif
-
-#if defined DEBUG_STOPWATCH
-        PrintInternalCounters(gStdOutFile, aStats);
-#endif
-        Exit(1);
-      }
-      else
-      {
-        fwprintf (gStdOutFile, L"ERROR: '%s' not found\n", Argv1Path.ArgvOrg.c_str());
-        Exit (ERR_SOURCE_DIR_DOES_NOT_EXIST);
-      }
+      Exit(returnCode);
     }
 
     //
-    // Delete option --delete
+    // --delete
     //
     if (DeloreanDelete)
     {
       if (INVALID_FILE_ATTRIBUTES != Argv1Path.FileAttribute)
       {
-        int	dg = LnSmartXXX(
+        int	returnCode = LnSmartXXX(
           SourceDirList, 
           Argv2Path, 
           Absolute, 
@@ -3686,7 +3734,7 @@ wmain(
           &ExcludeDirList, 
           AlwaysFollow ? NULL : &FollowDirList, 
           NULL,
-          false,      // Skipfiles
+          false,      // bSkipfiles
           Traditional,
           Backup,
           KeepSymlinkRelation,
@@ -3694,7 +3742,7 @@ wmain(
           HardlinkLimitValue
         );
 
-        Exit (dg);
+        Exit (returnCode);
       }
     }
 
@@ -3704,7 +3752,7 @@ wmain(
     //
     if (AdsDev)
     {
-      Exit(1);
+      Exit(ERR_ERROR);
     }
 
 
@@ -3786,7 +3834,7 @@ wmain(
             &ExcludeDirList,
             AlwaysUnroll ? NULL : &UnrollDirList, 
             AlwaysSplice ? NULL : &SpliceDirList,
-            SkipFiles,
+            bSkipFiles,
             Traditional,
             Backup,
             KeepSymlinkRelation,

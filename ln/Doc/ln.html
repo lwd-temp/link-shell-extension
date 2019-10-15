@@ -4877,206 +4877,220 @@
         &nbsp;
       </td>
       <td valign="bottom" class="bodytext">
-        <table cellspacing="0" cellpadding="0" width="100%" border="0">
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              0
-            </td>
-            <td align="left" class="bodytext">
-              Success. Everything is fine.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br />
-            </td>
-          </tr>
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -1
-            </td>
-            <td align="left" class="bodytext">
-              The source directory given via command line parameters does not exist.<br />
-                This happens in recursive mode if the first command line argument is not there
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br />
-            </td>
-          </tr>
+          <table cellspacing="0" cellpadding="0" width="100%" border="0">
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      0
+                  </td>
+                  <td align="left" class="bodytext">
+                      Success. Everything is fine.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -1
+                  </td>
+                  <td align="left" class="bodytext">
+                      The source directory given via command line parameters does not exist.<br />
+                      This happens in recursive mode if the first command line argument is not there
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
 
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -2
-            </td>
-            <td align="left" class="bodytext">
-              The first command line argument in recursive mode specifies a directory, and it is not a directory, 
-              but some other kind of file.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br />
-            </td>
-          </tr>
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -2
+                  </td>
+                  <td align="left" class="bodytext">
+                      The first command line argument in recursive mode specifies a directory, and it is not a directory,
+                      but some other kind of file.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
 
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -3
-            </td>
-            <td align="left" class="bodytext">
-              The second command line argument specifies a file, or in recursive mode a directory, which already exists.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br />
-            </td>
-          </tr>
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -3
+                  </td>
+                  <td align="left" class="bodytext">
+                      The second command line argument specifies a file, or in recursive mode a directory, which already exists.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
 
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -4
-            </td>
-            <td align="left" class="bodytext">
-              The destination directory could not be created in recursive mode.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br />
-            </td>
-          </tr>
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -4
+                  </td>
+                  <td align="left" class="bodytext">
+                      The destination directory could not be created in recursive mode.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
 
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -5
-            </td>
-            <td align="left" class="bodytext">
-              The source file aka first command line parameter does not exist in normal mode.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br />
-            </td>
-          </tr>
-          
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -6
-            </td>
-            <td align="left" class="bodytext">
-              The filesystem is not NTFS and does not support the creation of hardlinks.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br />
-            </td>
-          </tr>
-          
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -7
-            </td>
-            <td align="left" class="bodytext">
-              For some unknown reason the creation of a hardlink failed.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br />
-            </td>
-          </tr>
-          
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -8
-            </td>
-            <td align="left" class="bodytext">
-              Less arguments were given via command line.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br/>
-            </td>
-          </tr>
-          
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -9
-            </td>
-            <td align="left" class="bodytext">
-              Ln was not able to enumerate the files in a directory. This might happen in recursive or in hardlink 
-              enumeration mode if the file permissions for a directory are insufficient.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br />
-            </td>
-          </tr>
-          
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -12
-            </td>
-            <td align="left" class="bodytext">
-              Ln.exe was not able to create a SmartCopy.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br/>
-            </td>
-          </tr>
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -5
+                  </td>
+                  <td align="left" class="bodytext">
+                      The source file aka first command line parameter does not exist in normal mode.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
 
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -14
-            </td>
-            <td align="left" class="bodytext">
-              Ln.exe was not able to create a clone.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br />
-            </td>
-          </tr>
-          
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -15
-            </td>
-            <td align="left" class="bodytext">
-              Ln.exe failed in --mirror.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br/>
-            </td>
-          </tr>
-          
-          <tr>
-            <td align="left" width="40" valign="top" class="bodytext">
-              -16
-            </td>
-            <td align="left" class="bodytext">
-              Ln.exe failed in --delorean.
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <br/>
-            </td>
-          </tr>
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -6
+                  </td>
+                  <td align="left" class="bodytext">
+                      The filesystem is not NTFS and does not support the creation of hardlinks.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
 
-        </table>
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -7
+                  </td>
+                  <td align="left" class="bodytext">
+                      For some unknown reason the creation of a hardlink failed.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
+
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -8
+                  </td>
+                  <td align="left" class="bodytext">
+                      Less arguments were given via command line.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
+
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -9
+                  </td>
+                  <td align="left" class="bodytext">
+                      Ln was not able to enumerate the files in a directory. This might happen in recursive or in hardlink
+                      enumeration mode if the file permissions for a directory are insufficient.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
+
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -12
+                  </td>
+                  <td align="left" class="bodytext">
+                      Ln.exe was not able to create a SmartCopy.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
+
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -13
+                  </td>
+                  <td align="left" class="bodytext">
+                      No hardlink groups have been found.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
+
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -14
+                  </td>
+                  <td align="left" class="bodytext">
+                      Ln.exe was not able to create a clone.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
+
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -15
+                  </td>
+                  <td align="left" class="bodytext">
+                      Ln.exe failed in --mirror.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
+
+              <tr>
+                  <td align="left" width="40" valign="top" class="bodytext">
+                      -16
+                  </td>
+                  <td align="left" class="bodytext">
+                      Ln.exe failed in --delorean.
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <br />
+                  </td>
+              </tr>
+
+          </table>
       </td>
     </tr>
     
@@ -5947,7 +5961,7 @@
      		 <p><br /><br />
            or by donating bitcoins:<br /><br />
            <img src="bitcoinlogo.png" alt="bitcoinlogo"/><br />
-           <b>19irqhz5cMDkp2hf9YWqDY26PgYguJQdc7</b>
+             <b>bc1quahckcfxvsr3ylt5lsaf9fd8v7kwzumw757zst</b>
            <img alt="bitcoinlseqr" src="bitcoinlseqr.png" />
          </p>
          <br />

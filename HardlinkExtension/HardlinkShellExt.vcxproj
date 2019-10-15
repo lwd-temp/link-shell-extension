@@ -282,6 +282,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ColumnProvider.cpp" />
     <ClCompile Include="CopyHook.cpp" />
     <ClCompile Include="LinkShellExtension.cpp" />
     <ClCompile Include="LinkShellMenu.cpp" />
@@ -325,7 +326,6 @@
     <None Include="install\GetWindowsVersion.nsh" />
     <None Include="install\HardlinkShellExt.nsi" />
     <None Include="install\HardlinkShellExt_win32.nsi" />
-    <None Include="install\HardlinkShellExt_win32_502.nsi" />
     <None Include="install\HardlinkShellExt_x64.nsi" />
     <None Include="install\ReleaseChecklist.txt" />
     <CustomBuild Include="install\stampver.inf">
@@ -343,6 +343,7 @@
     <None Include="res\PROGRESS.BIN" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ColumnProvider.h" />
     <ClInclude Include="CopyHook.h" />
     <ClInclude Include="LinkShellExtension.h" />
     <ClInclude Include="LinkShellMenu.h" />

@@ -2667,41 +2667,6 @@ class FileInfoContainer
 };
 
 
-bool
-NtQueryProcessId(
-	PWCHAR		aProcessName,
-	PULONG*		lpProcessIdBuff,
-	PULONG		dwProcessIdBuff
-);
-
-bool
-NtQueryProcessByModule(
-  _StringList&  aModuleNames,
-  _StringSet&  aProcessNames
-);
-
-typedef BOOL (WINAPI *K32EnumProcessModulesEx_t)(
-  IN    HANDLE hProcess,
-  OUT   HMODULE *lphModule,
-  IN    DWORD cb,
-  OUT   LPDWORD lpcbNeeded,
-  IN    DWORD dwFilterFlag
-);
-
-
-wchar_t * __cdecl wcseistr (
-        const wchar_t * wcs1,
-        const wchar_t * wcs2
-        );
-
-wchar_t * __cdecl wcsesc_s (
-        wchar_t * dst,
-        const wchar_t * src,
-        size_t _SIZE,
-        const wchar_t search
-);
-
-
 wchar_t* GetRelativeFilename(
   wchar_t *relativeFilename, 
   wchar_t *currentDirectory, 

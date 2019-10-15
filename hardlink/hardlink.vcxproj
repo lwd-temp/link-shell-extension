@@ -217,6 +217,7 @@
     <ClCompile Include="src\MmfObject.cpp" />
     <ClCompile Include="src\moduleversion.cpp" />
     <ClCompile Include="src\Multilang.cpp" />
+    <ClCompile Include="src\NtBase.cpp" />
     <ClCompile Include="src\Progressbar.cpp" />
     <ClCompile Include="src\StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -237,6 +238,7 @@
     <ClInclude Include="include\LSESettings.h" />
     <ClInclude Include="include\moduleversion.h" />
     <ClInclude Include="include\Multilang.h" />
+    <ClInclude Include="include\NtBase.h" />
     <ClInclude Include="include\ntsysteminfo.h" />
     <ClInclude Include="include\Progressbar.h" />
     <ClInclude Include="include\UACReuse.h" />

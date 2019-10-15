@@ -691,10 +691,7 @@ void CTreePropSheetEx::RebootExplorer()
   {
     UACHelper uacHelper;
 
-    uacHelper.Open();
     uacHelper.WriteArgs('z', L"not used", L"not used");
-    uacHelper.Close();
-
     DWORD r = uacHelper.Fork();
 
     // Restart Explorer

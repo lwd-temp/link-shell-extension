@@ -603,6 +603,8 @@ ReplaceJunction(
 
   int iResult = ERROR_SUCCESS;
   wchar_t  JunctionTmpName[HUGE_PATH];
+  
+  DWORD JunctionAttributes = GetFileAttributes(arg0);
 
   if (gLSESettings.GetFlags() & eBackupMode)
   {
@@ -630,6 +632,7 @@ ReplaceJunction(
   else
   {
     // No Backup Mode, just remove the old junction
+    SetFileAttributes(arg0, JunctionAttributes & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
     if (RemoveDirectory(arg0))
       iResult = GetLastError();
   }
@@ -656,16 +659,21 @@ ReplaceJunction(
           0,
           &pns
         );
+        SetFileAttributes(JunctionTmpName, JunctionAttributes & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
         if (RemoveDirectory(JunctionTmpName))
           iResult = GetLastError();
       }
       else
       {
+        // Rollback
         MoveFile(JunctionTmpName, arg0);
       }
       if (pSecDesc)
         free(pSecDesc);
     }
+
+    // Restore the original Junction attributes
+    SetFileAttributes(arg0, JunctionAttributes);
   }
 
   return iResult;
@@ -683,6 +691,8 @@ ReplaceSymbolicLink(
 
   int iResult = ERROR_SUCCESS;
   wchar_t  SymlinkTmpName[HUGE_PATH];
+
+  DWORD SymLinkAttribute = GetFileAttributes(arg0);
 
   if (gLSESettings.GetFlags() & eBackupMode)
   {
@@ -710,6 +720,7 @@ ReplaceSymbolicLink(
   else
   {
     // But in normal mode just delete the original symlink
+    SetFileAttributes(arg0, SymLinkAttribute & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
     if (dwFlags & SYMLINK_FLAG_DIRECTORY)
       RemoveDirectory(arg0);
     else
@@ -782,6 +793,8 @@ ReplaceSymbolicLink(
       free(pSecDesc);
   }
 
+  SetFileAttributes(arg0, SymLinkAttribute);
+
   return iResult;
 }
 
@@ -796,6 +809,7 @@ ReplaceMountPoint(
 
   int iResult = ERROR_SUCCESS;
   wchar_t  MountPointTmpName[HUGE_PATH];
+  DWORD MountpointAttributes = GetFileAttributes(arg0);
 
   if (gLSESettings.GetFlags() & eBackupMode)
   {
@@ -822,7 +836,8 @@ ReplaceMountPoint(
   }
   else
   {
-	  iResult = DeleteMountPoint (arg0);
+    SetFileAttributes(arg0, MountpointAttributes & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
+    iResult = DeleteMountPoint (arg0);
     RemoveDirectory(arg0);
   }
 
@@ -862,6 +877,8 @@ ReplaceMountPoint(
     if (pSecDesc)
       free(pSecDesc);
   }
+  SetFileAttributes(arg0, MountpointAttributes);
+
   return iResult;
 }
 
@@ -921,7 +938,7 @@ RebootExplorer()
       wchar_t		szProcessNameUni[32] = EXPLORER;
 
       ULONG		dPIDSize = 0;
-      PULONG  dPID;
+      PUINT_PTR  dPID;
       bool b = NtQueryProcessId(szProcessNameUni, &dPID, &dPIDSize);
 
       if (b)

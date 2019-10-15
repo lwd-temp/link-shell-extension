@@ -219,6 +219,7 @@ enum Operations
 
  // defines for commandline wrappers
  //
+#define ERR_ERROR 		                  1
 #define ERR_SUCCESS 		                  0
 #define ERR_SOURCE_DIR_DOES_NOT_EXIST 		-1
 #define ERR_ARG_IS_NOT_A_DIRECTORY				-2
@@ -232,7 +233,7 @@ enum Operations
 #define ERR_TOO_MANY_LINKS					    -10  // Not yet in html docu
 #define ERR_NOT_ON_SAME_VOLUME					-11  // Not yet in html docu
 #define ERR_SMARTCOPY_FAILED					-12
-#define ERR_NO_HARDLINKGROUPS					-13  // Not yet in html docu
+#define ERR_NO_HARDLINKGROUPS					-13
 #define ERR_SMARTCLONE_FAILED         -14
 #define ERR_SMARTMIRROR_FAILED					-15
 #define ERR_DELOREANCOPY_FAILED					-16

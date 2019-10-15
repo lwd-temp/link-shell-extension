@@ -2,7 +2,10 @@
 //
 
 #include "stdafx.h"
-#include "..\NtBase\NtBase.h"
+
+#include "hardlink_types.h"
+
+#include "NtBase.h"
 
 
 int _tmain(int argc, _TCHAR* argv[])

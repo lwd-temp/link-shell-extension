@@ -6,6 +6,7 @@
 
 
 #include "CopyHook.h"
+#include "ColumnProvider.h"
 #include "IconOverlay.h"
 #include "PropertySheetPage.h"
 #include "LinkShellMenu.h"
@@ -239,8 +240,15 @@ CreateInstance(
   gLSESettings.Init();
   gLSESettings.ReadFileSystems();
 
+	ColumnProvider* pColProvider = new ColumnProvider();
+  HRESULT result = pColProvider->QueryInterface(riid, ppvObj);
+  if (NULL != *ppvObj)
+    return result;
+
+  delete pColProvider;
+
   HardLinkExt* pShellExt = new HardLinkExt();
-  HRESULT result = pShellExt->QueryInterface(riid, ppvObj);
+  result = pShellExt->QueryInterface(riid, ppvObj);
   if (NULL != *ppvObj)
     return result;
 

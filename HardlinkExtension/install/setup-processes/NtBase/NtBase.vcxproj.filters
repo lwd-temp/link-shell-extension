@@ -7,19 +7,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NtBase.cpp">
+    <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="..\..\..\..\hardlink\src\NtBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NtBase.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\hardlink\include\NtBase.h" />
   </ItemGroup>
 </Project>

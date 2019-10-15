@@ -169,88 +169,92 @@ Initialize(
 	HKEY					hKeyID
 )
 {
-	HTRACE(L"LSE: PropertySheetPage::Initialize called");
+  HTRACE(L"LSE: PropertySheetPage::Initialize called");
 
-	
-	HDROP     hdrop;
-	FORMATETC etc = { CF_HDROP, NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
-	STGMEDIUM stg;
+  HDROP     hdrop;
+  FORMATETC etc = { CF_HDROP, NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+  STGMEDIUM stg;
 
-	// http://msdn2.microsoft.com/en-us/library/ms997646.aspx
-	INITCOMMONCONTROLSEX iccex = { sizeof(INITCOMMONCONTROLSEX), ICC_STANDARD_CLASSES };
+  // http://msdn2.microsoft.com/en-us/library/ms997646.aspx
+  INITCOMMONCONTROLSEX iccex = { sizeof(INITCOMMONCONTROLSEX), ICC_STANDARD_CLASSES };
 
-    // Init the common controls.
-    InitCommonControlsEx ( &iccex );
+  // Init the common controls.
+  InitCommonControlsEx(&iccex);
 
-    // Read the list of folders from the data object.  They're stored in HDROP
-    // form, so just get the HDROP handle and then use the drag 'n' drop APIs
-    // on it.
-    if ( FAILED( pDataObj->GetData ( &etc, &stg ) ))
-        return E_INVALIDARG;
+  // Read the list of folders from the data object.  They're stored in HDROP
+  // form, so just get the HDROP handle and then use the drag 'n' drop APIs
+  // on it.
+  if (FAILED(pDataObj->GetData(&etc, &stg)))
+    return E_INVALIDARG;
 
-    // Get an HDROP handle.
-    hdrop = (HDROP) GlobalLock ( stg.hGlobal );
+  // Get an HDROP handle.
+  hdrop = (HDROP)GlobalLock(stg.hGlobal);
 
-    if ( NULL == hdrop )
-    {
-        ReleaseStgMedium ( &stg );
-        return E_INVALIDARG;
-    }
+  if (NULL == hdrop)
+  {
+    ReleaseStgMedium(&stg);
+    return E_INVALIDARG;
+  }
 
-    // Determine how many files are involved in this operation.
-    UINT uNumFiles = DragQueryFile ( hdrop, 0xFFFFFFFF, NULL, 0 );
+  // Determine how many files are involved in this operation.
+  UINT uNumFiles = DragQueryFile(hdrop, 0xFFFFFFFF, NULL, 0);
 
-    if (uNumFiles > 0)
-    {
-      // Get the filename.
-      DragQueryFile ( hdrop, 0, m_File, MAX_PATH );
-    }
+  if (uNumFiles > 0)
+  {
+    // Get the filename.
+    DragQueryFile(hdrop, 0, m_File, MAX_PATH);
+  }
 
-    // Release resources.
-    GlobalUnlock ( stg.hGlobal );
-    ReleaseStgMedium ( &stg );
+  // Release resources.
+  GlobalUnlock(stg.hGlobal);
+  ReleaseStgMedium(&stg);
 
-	
-	// Check if we show the Propertypage
-	HRESULT rVal = S_OK;
-	
-	DWORD	FileSystemFlags;
+
+  // Check if we show the Propertypage
+  HRESULT rVal = S_OK;
+
+  DWORD	FileSystemFlags;
   int DriveType;
   if (IsFileSystemNtfs(m_File, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType))
-	{
-		struct _stat stat;
-		_wstat (m_File, &stat);
-		if (stat.st_mode & _S_IFDIR)
-		{
-			// Check if the selected dir is a junction, so that we
-			// we can provide junction delete menue
-			if (!ProbeJunction(m_File, NULL))
-			{
-				if (!ProbeMountPoint(m_File, NULL, 0, NULL))
-				{
-					// Check if we are under Vista
-					if (!ProbeSymbolicLink(m_File, NULL))
-						rVal = E_INVALIDARG;
-				}
-			}
-		}
-		else
-		{
-			if (!ProbeSymbolicLink(m_File, NULL))
-			{
-				int RefCount = ProbeHardlink(m_File);
-				if (RefCount < 2) 
-					rVal = E_INVALIDARG;
-			}
-		}
-	}
-	else
- 	{
-		rVal = E_INVALIDARG;
-	}
+  {
+    struct _stat stat;
+    _wstat(m_File, &stat);
+    if (stat.st_mode & _S_IFDIR)
+    {
+      // Check if the selected dir is a junction, so that we
+      // we can provide junction delete menue
+      if (!ProbeJunction(m_File, NULL))
+      {
+        if (!ProbeMountPoint(m_File, NULL, 0, NULL))
+        {
+          // Check if we are under Vista
+          if (!ProbeSymbolicLink(m_File, NULL))
+            rVal = E_INVALIDARG;
+        }
+      }
+    }
+    else
+    {
+      if (!ProbeSymbolicLink(m_File, NULL))
+      {
+        // It could be a dangling Junction
+        if (!ProbeJunction(m_File, NULL))
+        {
+          int RefCount = ProbeHardlink(m_File);
+          if (RefCount < 2)
+            rVal = E_INVALIDARG;
+        }
+      }
+    }
+  }
+  else
+  {
+    rVal = E_INVALIDARG;
+  }
 
-    return rVal;
+  return rVal;
 }
+
 STDMETHODIMP 
 PropertySheetPage::
 AddPages (
@@ -376,10 +380,39 @@ void OnExploreTarget ( HWND hwnd, LPARAM lParam )
   ShellExecute (NULL, L"explore", szTarget, NULL, szTarget, SW_SHOWDEFAULT);
 }
 
+void ShowJunction(HWND aHwnd, wchar_t* aBuffer, wchar_t* aDest, ReparseProperties* apReparseProperties)
+{
+  // Show Junction
+  //
+  LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, aBuffer, MAX_PATH, gLSESettings.GetLanguageID());
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, aBuffer);
+
+  LoadStringEx(g_hInstance, IDS_STRING_Junction, aBuffer, MAX_PATH, gLSESettings.GetLanguageID());
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, aBuffer);
+
+  LoadStringEx(g_hInstance, IDS_STRING_Target, aBuffer, MAX_PATH, gLSESettings.GetLanguageID());
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, aBuffer);
+
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, aDest);
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, aDest);
+
+  // Show Explore Target Button
+  HWND hStatic = GetDlgItem(aHwnd, IDC_EXPLORE_TARGET);
+  LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, aBuffer, MAX_PATH, gLSESettings.GetLanguageID());
+  SetDlgItemText(aHwnd, IDC_EXPLORE_TARGET, aBuffer);
+  ShowWindow(hStatic, SW_SHOWNORMAL);
+
+  // Enable Edit
+  HWND hEdit = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
+  SendMessage(hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0);
+
+  apReparseProperties->SetTarget(aDest, REPARSE_POINT_JUNCTION);
+}
+
 BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
-{        
-  PROPSHEETPAGE*  ppsp = (PROPSHEETPAGE*) lParam;
-  ReparseProperties*		pReparseProperties = (ReparseProperties*) ppsp->lParam;
+{
+  PROPSHEETPAGE*  ppsp = (PROPSHEETPAGE*)lParam;
+  ReparseProperties*		pReparseProperties = (ReparseProperties*)ppsp->lParam;
 
 
   if (g_Themed)
@@ -388,15 +421,15 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
     EnableTheming(true);
   }
 
-  HTRACE (L"LSE: PropertySheetPage::OnInitDialog '%s'", pReparseProperties->Source);
+  HTRACE(L"LSE: PropertySheetPage::OnInitDialog '%s'", pReparseProperties->Source);
 
-  SetWindowLongPtr ( hwnd, GWLP_USERDATA, (LONG_PTR)pReparseProperties );
+  SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pReparseProperties);
 
   // Display the full path in the top static control.
-  SetDlgItemText ( hwnd, IDC_PROPPAGE_LINKSHLEXT_FILENAME, pReparseProperties->Source );
+  SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_FILENAME, pReparseProperties->Source);
 
   struct _stat stat;
-  _wstat (pReparseProperties->Source, &stat);
+  _wstat(pReparseProperties->Source, &stat);
 
   wchar_t Buffer[MAX_PATH];
   if (stat.st_mode & _S_IFDIR)
@@ -406,31 +439,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
     WCHAR Dest[HUGE_PATH];
     if (ProbeJunction(pReparseProperties->Source, Dest))
     {
-      // Show Junction
-      //
-      LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-      SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
-
-      LoadStringEx(g_hInstance, IDS_STRING_Junction, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-      SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
-
-      LoadStringEx(g_hInstance, IDS_STRING_Target, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-      SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
-
-      SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, Dest);
-      SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Dest);
-
-      // Show Explore Target Button
-      HWND hStatic = GetDlgItem (hwnd, IDC_EXPLORE_TARGET);
-      LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-      SetDlgItemText( hwnd, IDC_EXPLORE_TARGET, Buffer);
-      ShowWindow(hStatic, SW_SHOWNORMAL);
-
-      // Enable Edit
-      HWND hEdit = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
-      SendMessage (hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0); 
-
-      pReparseProperties->SetTarget(Dest, REPARSE_POINT_JUNCTION);
+      ShowJunction(hwnd, Buffer, Dest, pReparseProperties);
     }
     else
     {
@@ -440,36 +449,36 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
         // Show Mountpoint
         //
         LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
+        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
         LoadStringEx(g_hInstance, IDS_STRING_MountPoint, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
+        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
         LoadStringEx(g_hInstance, IDS_STRING_MountPointTarget, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
+        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
-        SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, Dest);
-        SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Dest);
+        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, Dest);
+        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Dest);
 
         // Display the Volumename 
-        HWND hEdit = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKS);
-        SendMessage (hEdit, EM_LIMITTEXT, (WPARAM)0, (LPARAM)0); 
+        HWND hEdit = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKS);
+        SendMessage(hEdit, EM_LIMITTEXT, (WPARAM)0, (LPARAM)0);
         ShowWindow(hEdit, SW_SHOWNORMAL);
 
         wcscat(VolumeName, L"\r\n");
-        int ndx = GetWindowTextLength (hEdit);
-        SendMessage (hEdit, EM_SETSEL, (WPARAM)ndx, (LPARAM)ndx); 
-        SendMessage (hEdit, EM_REPLACESEL, 0, (LPARAM) VolumeName);
+        int ndx = GetWindowTextLength(hEdit);
+        SendMessage(hEdit, EM_SETSEL, (WPARAM)ndx, (LPARAM)ndx);
+        SendMessage(hEdit, EM_REPLACESEL, 0, (LPARAM)VolumeName);
 
         // Show Explore Target Button
-        HWND hStatic = GetDlgItem (hwnd, IDC_EXPLORE_TARGET);
+        HWND hStatic = GetDlgItem(hwnd, IDC_EXPLORE_TARGET);
         LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText( hwnd, IDC_EXPLORE_TARGET, Buffer);
+        SetDlgItemText(hwnd, IDC_EXPLORE_TARGET, Buffer);
         ShowWindow(hStatic, SW_SHOWNORMAL);
 
         // Enable Edit
-        hEdit = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
-        SendMessage (hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0); 
+        hEdit = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
+        SendMessage(hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0);
 
         pReparseProperties->SetTarget(Dest, REPARSE_POINT_MOUNTPOINT);
       }
@@ -480,39 +489,44 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
           // Show a Symbolic Link Directory
           //
           LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-          SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
+          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
           LoadStringEx(g_hInstance, IDS_STRING_LinkTypeSymlink, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-          SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
+          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
           LoadStringEx(g_hInstance, IDS_STRING_Target, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-          SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
+          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
           int p = 0;
           if (IsVeryLongPath(Dest))
             p = PATH_PARSE_SWITCHOFF_SIZE;
 
-          SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, &Dest[p]);
+          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, &Dest[p]);
 
           // Since we can only resolve the symbolic link here, because pReparseProperties->Source
           // is a parameter of this function, the full path to the symbolic link has to be stored 
           // in the pReparseProperties struct
           WCHAR SymlinkTarget[HUGE_PATH];
           int r = ResolveSymboliclink(pReparseProperties->Source, Dest, SymlinkTarget);
-          pReparseProperties->SetTarget(Dest, REPARSE_POINT_SYMBOLICLINK );
+          pReparseProperties->SetTarget(Dest, REPARSE_POINT_SYMBOLICLINK);
 
           if (S_OK == r)
-            PathCanonicalize (Dest, SymlinkTarget);
-          SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Dest);
+          {
+            WCHAR AbsoluteDest[HUGE_PATH];
+            PathCanonicalize(AbsoluteDest, SymlinkTarget);
+            SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, AbsoluteDest);
+          }
+          else
+            SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Dest);
 
           // Enable Edit
-          HWND hEdit = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
-          SendMessage (hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0); 
+          HWND hEdit = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
+          SendMessage(hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0);
 
           // Show Explore Target Button
-          HWND hStatic = GetDlgItem (hwnd, IDC_EXPLORE_TARGET);
+          HWND hStatic = GetDlgItem(hwnd, IDC_EXPLORE_TARGET);
           LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-          SetDlgItemText( hwnd, IDC_EXPLORE_TARGET, Buffer);
+          SetDlgItemText(hwnd, IDC_EXPLORE_TARGET, Buffer);
           ShowWindow(hStatic, SW_SHOWNORMAL);
         }
       }
@@ -530,25 +544,25 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
       // Show Symbolic Link Files
       //
       LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-      SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
+      SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
       LoadStringEx(g_hInstance, IDS_STRING_LinkTypeSymlink, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-      SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
+      SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
       LoadStringEx(g_hInstance, IDS_STRING_Target, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-      SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
+      SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
       int p = 0;
       if (IsVeryLongPath(Dest))
         p = PATH_PARSE_SWITCHOFF_SIZE;
 
-      SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, &Dest[p]);
+      SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, &Dest[p]);
 
       // Enable Edit
-      HWND hEdit = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
-      SendMessage (hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0); 
+      HWND hEdit = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
+      SendMessage(hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0);
 
-      pReparseProperties->SetTarget(Dest, REPARSE_POINT_SYMBOLICLINK );
+      pReparseProperties->SetTarget(Dest, REPARSE_POINT_SYMBOLICLINK);
     }
     else
     {
@@ -558,10 +572,10 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
         // Show Hardlink
         //
         LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
+        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
         LoadStringEx(g_hInstance, IDS_STRING_Hardlink, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
+        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
         wchar_t		RefCountStr[64];
 #if defined DEBUG_RICHARD_SCHAEFER
@@ -570,22 +584,22 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
         wsprintf(RefCountStr, L"%d", RefCount);
 #endif
         LoadStringEx(g_hInstance, IDS_STRING_PropPageRefCount, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
+        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
-        SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, RefCountStr);
+        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, RefCountStr);
 
         // Enumerate Hardlinks under Windows7
         wchar_t	LinkName[HUGE_PATH + 2];
-        DWORD LinkNameLength = HUGE_PATH; 
+        DWORD LinkNameLength = HUGE_PATH;
 
         // resolve a possible subst chain
         int LinkNameIdx = 0;
         if (!PathIsUNC(pReparseProperties->Source))
         {
-	        wchar_t FullName[HUGE_PATH];
+          wchar_t FullName[HUGE_PATH];
           wcscpy_s(FullName, HUGE_PATH, PATH_PARSE_SWITCHOFF);
 
-	        GetFullPathName(pReparseProperties->Source, HUGE_PATH, &FullName[PATH_PARSE_SWITCHOFF_SIZE], NULL); 
+          GetFullPathName(pReparseProperties->Source, HUGE_PATH, &FullName[PATH_PARSE_SWITCHOFF_SIZE], NULL);
 
           if (IsVeryLongPath(FullName))
             LinkNameIdx = PATH_PARSE_SWITCHOFF_SIZE;
@@ -598,7 +612,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
             QueryDosDevice(LinkName, FullName, HUGE_PATH);
           }
           // a subst on a subst can be recognized by \??\ as prefix to e.g. \??\f:\tmp
-          while(FullName[1] == '?');
+          while (FullName[1] == '?');
         }
 
         // enumerate the siblings
@@ -613,23 +627,23 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
           // So we have to show the sibblins dialog only after we made sure
           // that we got the first sibling, since it seems it is not enough
           // to know that the reference count is > 1
-          HWND hStatic = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM);
+          HWND hStatic = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM);
           ShowWindow(hStatic, SW_SHOWNORMAL);
           LoadStringEx(g_hInstance, IDS_STRING_PropPageHardlinkEnum, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-          SetDlgItemText( hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM, Buffer);
+          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM, Buffer);
 
-          HWND hEdit = GetDlgItem (hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKS);
-          SendMessage (hEdit, EM_LIMITTEXT, (WPARAM)0, (LPARAM)0); 
+          HWND hEdit = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKS);
+          SendMessage(hEdit, EM_LIMITTEXT, (WPARAM)0, (LPARAM)0);
           ShowWindow(hEdit, SW_SHOWNORMAL);
 
           do
           {
             wcscat(LinkName, L"\r\n");
-            int ndx = GetWindowTextLength (hEdit);
-            SendMessage (hEdit, EM_SETSEL, (WPARAM)ndx, (LPARAM)ndx); 
-            SendMessage (hEdit, EM_REPLACESEL, 0, (LPARAM) LinkName);
+            int ndx = GetWindowTextLength(hEdit);
+            SendMessage(hEdit, EM_SETSEL, (WPARAM)ndx, (LPARAM)ndx);
+            SendMessage(hEdit, EM_REPLACESEL, 0, (LPARAM)LinkName);
 
-            LinkNameLength = HUGE_PATH; 
+            LinkNameLength = HUGE_PATH;
           } while (FindNextFileNameW(h, &LinkNameLength, &LinkName[2]));
           FindClose(h);
         }
@@ -638,11 +652,18 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
 #if defined DEBUG_RICHARD_SCHAEFER
           wchar_t	FullMsg[HUGE_PATH];
           wsprintf(FullMsg, L"LSE: FindFirstFileName failed: %08x,'%s'", GetLastError(), pReparseProperties->Source);
-		      int mr = MessageBox ( NULL, 
-			      FullMsg,
+          int mr = MessageBox(NULL,
+            FullMsg,
             L"LSE: PropertyPage",
-			      MB_ICONERROR );
+            MB_ICONERROR);
 #endif
+        }
+      }
+      else
+      {
+        if (ProbeJunction(pReparseProperties->Source, Dest))
+        {
+          ShowJunction(hwnd, Buffer, Dest, pReparseProperties);
         }
       }
     }
@@ -668,15 +689,41 @@ BOOL OnApply ( HWND hwnd, PSHNOTIFY* phdr )
       switch (pReparseProperties->Type)
       {
         case REPARSE_POINT_JUNCTION:
-          ReplaceJunction(pReparseProperties->Source, Destination);
+        {
+
+          int rValue = ReplaceJunction(pReparseProperties->Source, Destination);
+          if (ERROR_SUCCESS == rValue)
+          {
+            SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
+            pReparseProperties->SetTarget(Destination, REPARSE_POINT_JUNCTION);
+          }
+        }
         break;
 
         case REPARSE_POINT_SYMBOLICLINK:
+        {
           ReplaceSymbolicLink(pReparseProperties->Source, Destination, true);
+          
+          // The absolute destination shall be stored so that Explore Target can take the value
+          WCHAR SymlinkTarget[HUGE_PATH];
+          int r = ResolveSymboliclink(pReparseProperties->Source, Destination, SymlinkTarget);
+
+          if (S_OK == r)
+            PathCanonicalize(Destination, SymlinkTarget);
+          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
+          pReparseProperties->SetTarget(Destination, REPARSE_POINT_SYMBOLICLINK);
+        }
         break;
 
         case REPARSE_POINT_MOUNTPOINT:
-          ReplaceMountPoint(pReparseProperties->Source, Destination);
+        {
+          int rValue = ReplaceMountPoint(pReparseProperties->Source, Destination);
+          if (ERROR_SUCCESS == rValue)
+          {
+            SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
+            pReparseProperties->SetTarget(Destination, REPARSE_POINT_MOUNTPOINT);
+          }
+        }
         break;
       }
     }

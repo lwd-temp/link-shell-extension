@@ -517,4 +517,3 @@ BOOL
 ProbeTokenPrivilege(
   __in LPCWSTR PrivilegeName
 );
-

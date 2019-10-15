@@ -42,6 +42,9 @@
     <ClCompile Include="LinkShellMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ColumnProvider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Hardlink.ico">
@@ -89,9 +92,6 @@
     <None Include="install\WriteEnvStr.nsh">
       <Filter>Install</Filter>
     </None>
-    <None Include="install\HardlinkShellExt_win32_502.nsi">
-      <Filter>Install</Filter>
-    </None>
     <None Include="LinkShellExtension.def">
       <Filter>Source Files</Filter>
     </None>
@@ -122,6 +122,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LinkShellMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColumnProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,7 +6,7 @@ REM
 set MAJOR_VERSION=3
 set MINOR_VERSION=9
 set PATCH_VERSION=2
-set HOTFIX_VERSION=5
+set HOTFIX_VERSION=6
 
 @echo generating Version info
 REM Generate version info for c++
@@ -50,6 +50,8 @@ REM Copy over certificate
 REM
 echo provide Certificate for signing
 xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\LinkShellextension.pfx shared\certificate\LinkShellextension.pfx
+xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.pfx shared\certificate\schinagl.priv.at.pfx
+xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.txt shared\certificate\schinagl.priv.at.txt
 
 
 REM Create installer

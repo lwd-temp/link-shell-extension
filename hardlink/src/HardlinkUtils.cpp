@@ -16,6 +16,7 @@
 #include "moduleversion.h"
 
 #include "HardlinkUtils.h"
+#include "NtBase.h"
 
 extern FILE* gStdOutFile;
 

@@ -10,6 +10,8 @@
  * 
  */
 
+#pragma once
+
 #define NT_SUCCESS(Status) ((NTSTATUS)(Status) >= 0)
 
 #define STATUS_SUCCESS                   ((NTSTATUS)0x00000000L)
@@ -46,7 +48,7 @@
 typedef LONG	NTSTATUS;
 
 typedef enum _SYSTEMINFOCLASS {
-	SystemProcessInformation = 0x0005
+	SystemProcessListInformation = 0x0005
 } SYSTEMINFOCLASS;
 
 typedef LONG KPRIORITY; 
@@ -76,8 +78,8 @@ typedef struct _SYSTEM_PROCESS_INFORMATION {
   LARGE_INTEGER KernelTime;
   UNICODE_STRING ImageName;
   KPRIORITY BasePriority;
-  HANDLE UniqueProcessId;
-  HANDLE InheritedFromUniqueProcessId;
+  UINT_PTR UniqueProcessId;
+  UINT_PTR InheritedFromUniqueProcessId;
   ULONG HandleCount;
   ULONG SessionId;
   ULONG_PTR UniqueProcessKey;
