@@ -1,3 +1,4 @@
+@echo off
 
 set BJKHOME=%~dp0
 set VERSION=_%1

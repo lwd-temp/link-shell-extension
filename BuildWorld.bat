@@ -48,19 +48,22 @@ pause
 
 REM Copy over certificate
 REM
-echo provide Certificate for signing
-xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\LinkShellextension.pfx shared\certificate\LinkShellextension.pfx
-xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.pfx shared\certificate\schinagl.priv.at.pfx
-xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.txt shared\certificate\schinagl.priv.at.txt
+echo.
+echo Provide Certificate for signing
+echo.
+@echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\LinkShellextension.pfx shared\certificate\LinkShellextension.pfx > nul
+@echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.pfx shared\certificate\schinagl.priv.at.pfx > nul
+@echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.txt shared\certificate\schinagl.priv.at.txt > nul
 
 
 REM Create installer
 REM
+echo.
 @echo Generating InstallMedia
 pushd HardlinkExtension\install
 call CodeSign.bat
 popd
-echo F|xcopy /y HardlinkExtension\Doc\linkshellextension.html HardlinkExtension\Doc\hardlinkshellext.html
+@echo F|@xcopy /y HardlinkExtension\Doc\linkshellextension.html HardlinkExtension\Doc\hardlinkshellext.html > nul
 
 REM Pack ln.exe
 REM
