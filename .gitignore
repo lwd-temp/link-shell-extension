@@ -22,6 +22,9 @@
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 
+#symbol server
+.symserv
+
 # Visual Studio 2017 auto generated files
 Generated\ Files/
 

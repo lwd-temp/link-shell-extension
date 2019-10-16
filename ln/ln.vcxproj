@@ -317,6 +317,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <None Include="LnAllTest.bat" />
+    <None Include="PackMedia.bat" />
     <None Include="t_AbsoluteRelativ.bat" />
     <None Include="t_AdsCopy01.bat" />
     <None Include="t_AdsCopy02.bat" />

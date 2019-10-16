@@ -98,6 +98,9 @@
     <None Include="..\BuildWorld.bat">
       <Filter>Install</Filter>
     </None>
+    <None Include="install\SourceIndex.bat">
+      <Filter>Install</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CopyHook.h">

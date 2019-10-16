@@ -298,6 +298,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <None Include="DupeMergeAllTest.bat" />
+    <None Include="PackMedia.bat" />
     <None Include="todo.txt" />
     <None Include="t_DupeMergeTest.bat" />
     <None Include="t_Settings.bat" />
