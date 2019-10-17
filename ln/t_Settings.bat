@@ -1,6 +1,6 @@
 @echo off
 
-call ..\HardlinkExtension\settings.bat
+call ..\bat\settings.bat
 set CONFIG=Release
 REM set CONFIG=DEBUG
 

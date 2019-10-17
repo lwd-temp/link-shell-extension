@@ -1113,6 +1113,10 @@ QueryContextMenu(
   UINT idCmd = idCmdFirst;
   UINT aCommandIdx = 0;
 
+//  int* p = NULL;
+//  *p = 22;
+
+
   if (uFlags & CMF_DEFAULTONLY)
     return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 

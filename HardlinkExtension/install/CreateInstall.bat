@@ -6,7 +6,7 @@ REM
 
 %~d0
 cd %~dp0
-call ..\Settings.bat
+call ..\..\bat\Settings.bat
 
 set NSIS="%NSISDIR%\makensis.exe"
 set COPYCMD=Y
@@ -44,7 +44,7 @@ copy Stubs.org\lzma* "%NSISDIR%\Stubs" > nul
 %STAMPVER% -vstampver.inf "%NSISDIR%\Stubs\lzma_solid" | %GREP% -i error
 %NSIS% HardLinkShellExt_win32.nsi > HardLinkShellExt_win32.nsi.log
 if %ERRORLEVEL% == 0 goto x64
-	echo ### Error compiling HardLinkShellExt_win32.nsi
+	echo ### Error: compiling HardLinkShellExt_win32.nsi
 	exit /b 3
 
 REM
@@ -60,7 +60,7 @@ copy Stubs.64\lzma* "%NSISDIR%\Stubs" > nul
 %STAMPVER% -vstampver.inf "%NSISDIR%\Stubs\lzma_solid" | %GREP% -i error
 %NSIS% HardLinkShellExt_x64.nsi > HardLinkShellExt_x64.nsi.log
 if %ERRORLEVEL% == 0 goto ausmausraus
-	echo ### Error compiling HardLinkShellExt_x64.nsi
+	echo ### Error: compiling HardLinkShellExt_x64.nsi
 	exit /b 4
 
 copy Stubs.org\lzma* "%NSISDIR%\Stubs" > nul

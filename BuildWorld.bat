@@ -46,6 +46,15 @@ if not exist Media mkdir Media
 @echo Rebuild link.sln and press enter afertwards
 pause
 
+echo.
+echo ######## Link Shell Extension ######## 
+echo.
+
+REM Index the pdb files and upload to symbolserver
+REM
+call bat\SourceIndex.bat
+call bat\SymServUpload.bat
+
 REM Copy over certificate
 REM
 echo.
@@ -54,7 +63,6 @@ echo.
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\LinkShellextension.pfx shared\certificate\LinkShellextension.pfx > nul
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.pfx shared\certificate\schinagl.priv.at.pfx > nul
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.txt shared\certificate\schinagl.priv.at.txt > nul
-
 
 REM Create installer
 REM
@@ -67,13 +75,21 @@ popd
 
 REM Pack ln.exe
 REM
+echo.
+echo ######## ln.exe  ######## 
+echo.
 pushd ln
 call PackMedia.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
 popd
 
 REM dupemerge.exe
 REM
+echo.
+echo ######## Dupemerge.exe ######## 
+echo.
 pushd dupemerge
 call PackMedia.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
 popd
 
+REM Delete pwd for code signing certificate
+@del %PWD_LOC%
