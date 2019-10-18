@@ -6,7 +6,7 @@ REM
 set MAJOR_VERSION=3
 set MINOR_VERSION=9
 set PATCH_VERSION=2
-set HOTFIX_VERSION=6
+set HOTFIX_VERSION=601
 
 @echo generating Version info
 REM Generate version info for c++
@@ -43,17 +43,20 @@ set VERSION_FILE=HardlinkExtension\install\LSE_version.nsh
 REM Rebuild
 REM
 if not exist Media mkdir Media
+@echo.
 @echo Rebuild link.sln and press enter afertwards
+@echo.
 pause
 
-echo.
-echo ######## Link Shell Extension ######## 
-echo.
+@echo.
+@echo Please commit to GIT now
+@echo.
+pause
 
 REM Index the pdb files and upload to symbolserver
 REM
 call bat\SourceIndex.bat
-call bat\SymServUpload.bat
+call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
 
 REM Copy over certificate
 REM
@@ -66,6 +69,8 @@ echo.
 
 REM Create installer
 REM
+echo.
+echo ######## Link Shell Extension ######## 
 echo.
 @echo Generating InstallMedia
 pushd HardlinkExtension\install
