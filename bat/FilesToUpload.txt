@@ -10,9 +10,9 @@
 ..\Bin\win32\Release\LSEConfig.pdb
 ..\Bin\x64\Release\LSEConfig.exe
 ..\Bin\x64\Release\LSEConfig.pdb
-..\Bin\win32\Release\HardlinkShellExt.exe
+..\Bin\win32\Release\HardlinkShellExt.dll
 ..\Bin\win32\Release\HardlinkShellExt.pdb
-..\Bin\x64\Release\HardlinkShellExt.exe
+..\Bin\x64\Release\HardlinkShellExt.dll
 ..\Bin\x64\Release\HardlinkShellExt.pdb
 ..\Bin\win32\Release\LSEUacHelper.exe
 ..\Bin\win32\Release\LSEUacHelper.pdb
