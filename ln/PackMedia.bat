@@ -5,10 +5,10 @@ call ..\bat\CertificateSettings.bat
 
 set BJKHOME=%~dp0
 set VERSION=_%1
-set zip=%BJKHOME%\..\tools\zip.exe -q
+set zip=%BJKHOME%..\tools\zip.exe -q
 
 set HARDLINKHOME=..
-set MEDIA=%BJKHOME%\..\Media
+set MEDIA=%BJKHOME%..\Media
 
 REM x86
 REM
@@ -110,7 +110,7 @@ exit /b
 :ZipBinary
 pushd %2
 @set FILE_TO_SIGN="ln.exe"
-%SIGNTOOL% sign /p %PASSWORT% /v /fd sha256 /td sha256 /f  %CERTIFICATE% /tr %TIME_SERVER% %FILE_TO_SIGN%
+%SIGNTOOL% sign /p "%CERTIFICATE_PASSWORD%" /v /fd sha256 /td sha256 /f  %CERTIFICATE% /tr %TIME_SERVER% %FILE_TO_SIGN%
 if %ERRORLEVEL% == 0 goto ZipIt
 	echo ### Error Signing of ln.exe failed
 	exit /b 2

@@ -1,13 +1,3 @@
-REM Settings for certification
-REM @set CERTIFICATE=%~dp0\..\Shared\certificate\LinkShellextension.pfx
-@set CERTIFICATE=%~dp0\..\Shared\certificate\schinagl.priv.at.pfx
-@set PWD_LOC=%~dp0\..\Shared\certificate\schinagl.priv.at.txt
-@set TIME_SERVER="http://timestamp.entrust.net/TSS/RFC3161sha2TS"
-@set SIGNTOOL=%~dp0\..\tools\signtool.exe
-
-
-
-
 REM goto Win10_arachnida
 REM goto Win10_sleipnir
 REM goto atgrzwn501360

@@ -63,7 +63,6 @@ REM
 echo.
 echo Provide Certificate for signing
 echo.
-@echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\LinkShellextension.pfx shared\certificate\LinkShellextension.pfx > nul
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.pfx shared\certificate\schinagl.priv.at.pfx > nul
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.txt shared\certificate\schinagl.priv.at.txt > nul
 
@@ -95,6 +94,3 @@ echo.
 pushd dupemerge
 call PackMedia.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
 popd
-
-REM Delete pwd for code signing certificate
-@del %PWD_LOC%

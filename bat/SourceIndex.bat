@@ -5,6 +5,7 @@
 
 @set GIT_SRC_INDEX=%~dp0..\tools\git_source_index.exe
 @set PDBSTR=%~dp0..\tools\pdbstr.exe
+@set GREP=%~dp0..\tools\grep.exe
 @set GIT_SOURCE_SERVER=SOURCE_SERVER
 @set LOGFILE=Git_IndexLog.txt
 @set FILESTOUPLOAD=%~dp0FilesToUpload.txt

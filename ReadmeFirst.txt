@@ -49,7 +49,9 @@ All output can be found in the Media/ directory
 
 There is HardlinkShellExt/install/ReleaseCheckList.txt to think of all things to be done.
 
-The nsis-installer is signed with a self signed certificate.
+The nsis-installer is signed with a self signed certificate from LinkShellExtension.pfx, which is also provided
+If the orginator Hermann Schinagl code signs the project, there is a verified full blown code signing certificate to sign it. 
+This certificate is not freely avaiable
    
 Documentation
 -------------
