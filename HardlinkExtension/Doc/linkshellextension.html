@@ -340,6 +340,8 @@
                 popup menu. It should be noted this feature is <b>only guaranteed to work in Windows Explorer</b>;
                 many Explorer replacements implement an application specific white space action menu that is not readily
                 accessible from general purpose shell extensions such as LSE.
+                <br />
+                <br />
 
                 <img src="drophardlinkbackground.png" alt="Drop Hardlinks in Background">
                 <br />
@@ -1317,12 +1319,13 @@
                     do anything special. Simply drag a folder in explorer to its destination location, or e.g. press F2
                     in Explorer to rename a directory and LSE will intercept this operation under the hood, takes care of
                     junctions or symbolic links, and will update them.
-                <p>
+                </p>
 
+                <p>
                     Intercepting move and rename operation means, that LSE takes over control before rename/move, and recursivley
                     searches the selected folder for junctions or symbolic links. But searching large amounts of files and
                     folders takes time, so LSE will show a progress bar when searching takes longer than 250msec.
-                <p>
+                </p>
                 <p>
                     <img src="smartmoveprogress.png" alt="Progress bar during Smart Move">
                 </p>
