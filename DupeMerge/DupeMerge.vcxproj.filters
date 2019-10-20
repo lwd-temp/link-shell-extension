@@ -15,6 +15,9 @@
     <Filter Include="Test">
       <UniqueIdentifier>{46055c6b-aca7-446f-8c1b-3930f45125d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Intall">
+      <UniqueIdentifier>{ba569b9f-d2a8-4e24-b111-9ae040e13269}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DupeMerge.cpp">
@@ -52,6 +55,9 @@
       <Filter>Test</Filter>
     </None>
     <None Include="todo.txt" />
+    <None Include="PackMedia.bat">
+      <Filter>Intall</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="DupeMerge.exe.trust.manifest">

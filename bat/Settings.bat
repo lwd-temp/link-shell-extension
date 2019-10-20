@@ -27,7 +27,7 @@ set OS=Win7
 set NSISDIR=C:\Program Files (x86)\NSIS
 set LH=atgrzwn501360
 set USERNAME=hermann
-set VS2005TOOLS_PATH=c:\vs2005\Common7\Tools\Bin
+set MT="C:\Program Files (x86)\Windows Kits\8.1\bin\x86\mt.exe"
 set TRUECRYPT="C:\Program Files\TrueCrypt\TrueCrypt.exe"  /force 
 goto eof
 
@@ -43,7 +43,7 @@ set OS=Win7
 set NSISDIR=C:\Program Files (x86)\NSIS
 set LH=atgrzwn501360
 set USERNAME=hermann
-set VS2005TOOLS_PATH=c:\vs2005\Common7\Tools\Bin
+set MT=c:\vs2005\Common7\Tools\Bin
 set TRUECRYPT="C:\Program Files\TrueCrypt\TrueCrypt.exe"  /force 
 goto eof
 
@@ -59,7 +59,7 @@ set OS=Win7
 set NSISDIR=c:\Program Files\NSIS
 set LH=quadtatz
 set USERNAME=schinagl
-set VS2005TOOLS_PATH=C:\vs2005\Common7\Tools\Bin
+set MT=C:\vs2005\Common7\Tools\Bin
 set TRUECRYPT="C:\Program Files\TrueCrypt\TrueCrypt.exe" /force 
 goto eof
 
@@ -77,7 +77,7 @@ REM set OS=Xp
 set NSISDIR=c:\Program Files\NSIS
 set LH=sleipnir
 set USERNAME=schinagl
-set VS2005TOOLS_PATH=C:\vs2005\Common7\Tools\Bin
+set MT=C:\vs2005\Common7\Tools\Bin
 set TRUECRYPT="C:\Program Files\TrueCrypt\TrueCrypt.exe" /force 
 goto eof
 
@@ -94,7 +94,7 @@ REM set OS=Xp
 set NSISDIR=c:\Program Files\NSIS
 set LH=arachnida
 set USERNAME=schinagl
-set VS2005TOOLS_PATH=C:\vs2005\Common7\Tools\Bin
+set MT=C:\vs2005\Common7\Tools\Bin
 set TRUECRYPT="C:\Program Files\TrueCrypt\TrueCrypt.exe" /force 
 goto eof
 
@@ -111,7 +111,7 @@ set OS=Win7
 set NSISDIR=C:\Program Files\NSIS
 set LH=quadtatzw10
 set USERNAME=schinagl
-set VS2005TOOLS_PATH=c:\vs2005\Common7\Tools\Bin
+set MT=c:\vs2005\Common7\Tools\Bin
 set TRUECRYPT="C:\Program Files\TrueCrypt\TrueCrypt.exe"  /force 
 goto eof
 
@@ -127,7 +127,7 @@ set NSISDIR=C:\Program Files\NSIS
 set LH=nbuild16
 set OS=Xp
 set USERNAME=Administrator
-set VS2005TOOLS_PATH=C:\vs2005\Common7\Tools\Bin
+set MT=C:\vs2005\Common7\Tools\Bin
 set TRUECRYPT="C:\Program Files\TrueCrypt\TrueCrypt.exe" /force 
 goto eof
 
@@ -143,7 +143,7 @@ set OS=Win7
 set NSISDIR=c:\Program Files\NSIS
 set LH=atgrzwd511850
 set USERNAME=schinagl
-set VS2005TOOLS_PATH=c:\vs2005\Common7\Tools\Bin
+set MT=c:\vs2005\Common7\Tools\Bin
 goto eof
 
 
@@ -160,7 +160,7 @@ set OS=Win7
 set NSISDIR=c:\Program Files\NSIS
 set LH=NONONONONO
 set USERNAME=NONONONONO
-set VS2005TOOLS_PATH=c:\vs2005\Common7\Tools\Bin
+set MT=c:\vs2005\Common7\Tools\Bin
 goto eof
 
 :VmWareW2K12
@@ -175,7 +175,7 @@ set OS=Win7
 set NSISDIR=c:\Program Files\NSIS
 set LH=ws2012
 set USERNAME=administrator
-set VS2005TOOLS_PATH=c:\vs2005\Common7\Tools\Bin
+set MT=c:\vs2005\Common7\Tools\Bin
 goto eof
 
 :VmWareNt4
@@ -189,7 +189,7 @@ set PLATT=Win32
 set NSISDIR=c:\Program Files\NSIS
 set LH=NONONONONO
 set USERNAME=NONONONONO
-set VS2005TOOLS_PATH=c:\vs2005\Common7\Tools\Bin
+set MT=c:\vs2005\Common7\Tools\Bin
 goto eof
 
 :eof

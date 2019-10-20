@@ -98,6 +98,15 @@
     <None Include="..\BuildWorld.bat">
       <Filter>Install</Filter>
     </None>
+    <None Include="..\bat\SourceIndex.bat">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="..\bat\CertificateSettings.bat">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="..\bat\SymServUpload.bat">
+      <Filter>Install</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CopyHook.h">
@@ -154,5 +163,10 @@
     <CustomBuild Include="Doc\lse.xml">
       <Filter>Docu</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\bat\FilesToUpload.txt">
+      <Filter>Install</Filter>
+    </Text>
   </ItemGroup>
 </Project>

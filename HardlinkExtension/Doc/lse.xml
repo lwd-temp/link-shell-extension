@@ -7,6 +7,26 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.926 has been released.</title>
+      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <pubDate>Tue, 15 Oct 2019 10:00:15 +0100</pubDate>
+      <description>
+        LSE 3.926 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>Signed with a code sign certificate</li>
+          <li>During Replace Junction/Symbolic Link/Mountpoint the original attributes got lost</li>
+          <li>The Link Properties Tab showed relative symbolic link dirs as absolute</li>
+          <li>The Link Properties Tab did not show up on dangling Junctions</li>
+          <li>Creation of file symbolic links didn't work in protected folders like 'Program Files' with <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#changesymboliclinkprivilege">Developer Mode</a> on.</li>
+          <li>Replacement Junction/Symbolic Link didn't work on dangling Junction/Symbolic Link.</li>
+        ]]>
+      </content:encoded>
+      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3926</guid>
+    </item>
+
+    <item>
       <title>LSE 3.925 has been released.</title>
       <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 26 Jul 2019 10:00:15 +0100</pubDate>

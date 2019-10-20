@@ -21,6 +21,9 @@
     <Filter Include="Bat">
       <UniqueIdentifier>{739e1141-da4a-41d2-befc-5f955eb02fdf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Install">
+      <UniqueIdentifier>{1cdd2c60-6fdb-48ee-a552-12070610bbe7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ln.cpp">
@@ -61,7 +64,7 @@
     <None Include="LnAllTest.bat">
       <Filter>Test</Filter>
     </None>
-    <None Include="..\HardlinkExtension\Settings.bat">
+    <None Include="..\bat\Settings.bat">
       <Filter>Test</Filter>
     </None>
     <None Include="t_AbsoluteRelativ.bat">
@@ -237,6 +240,9 @@
     </None>
     <None Include="t_Delete01.bat">
       <Filter>Test</Filter>
+    </None>
+    <None Include="PackMedia.bat">
+      <Filter>Install</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
