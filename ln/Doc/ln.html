@@ -9,27 +9,29 @@
         body, td, th {
             font-family: Arial, 'Segoe UI', Verdana, Geneva, sans-serif;
             color: #000;
-            background-color: #FFF;
+            background-color: #fff;
+            vertical-align: top;
         }
 
         .bodytext {
             font-family: Arial, 'Segoe UI', Helvetica, sans-serif;
-            font-size: .8em;
+            vertical-align: top;
         }
 
         .hanger {
             font-weight: bold;
             color: #25049F;
-            font-size: .9em;
+            width: 130px;
+            text-align: right;
             vertical-align: top;
         }
 
         .ascode {
             font-family: "Courier New", Courier;
             font-weight: bold;
-            padding-left: 1em;
-            font-size: 1.0em;
+            padding-left: 1.5em;
         }
+
 
         .outputtable {
             font-family: "Courier New", Courier;
@@ -38,7 +40,9 @@
         }
 
         .hanger2 {
-            font-size: .8em;
+            font-size: .9em;
+            font-weight: bold;
+            text-align: left;
             vertical-align: top;
         }
     </style>
@@ -57,16 +61,16 @@
     </script>
 </head>
 <body bgcolor="#FFFFFF">
-    <table cellspacing="10" cellpadding="0" width="97%" border="0">
+    <table cellspacing="10" cellpadding="0" border="0">
         <tr>
             <td colspan="2">
-                <img src="ln.png" alt="ln - command line hardlinks" height="50" width="759" />
+                <img src="ln.png" alt="ln - command line hardlinks" />
             </td>
         </tr>
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i><font face="arial" size="-2">Last Updated April 26, 2019 Version 2.9.2.3</font></i>
+                    <i><font face="arial">Last Updated April 26, 2019 Version 2.9.2.3</font></i>
                 </div>
             </td>
         </tr>
@@ -78,25 +82,23 @@
 
 
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <b>
-                    <font face="arial" color="#25049F"><a name="datenschutzerklaerung">Datenschutzerkl&auml;rung</a></font>
+                    <font color="#25049F"><a name="datenschutzerklaerung">Datenschutzerkl&auml;rung</a></font>
                 </b>
             </td>
 
             <td valign="bottom">
-                <font face="arial">
                     The privacy statement can be found <a href="http://schinagl.priv.at/about/dsgvo.html">here</a>
-                </font>
             </td>
         </tr>
 
         <tr>
-            <td width="130" align="right" valign="top" class="hanger">
+            <td width="130" class="hanger">
                 <a name="quickstart"><b>Quick Start</b></a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <a href="#contact">Download</a><br />
                 <a href="#introduction">Documentation</a><br />
                 <a href="#faq">Frequently asked questions (FAQ)</a><br />
@@ -107,10 +109,10 @@
 
         <!-- Introduction -->
         <tr>
-            <td align="right" valign="top" width="130" class="hanger">
+            <td class="hanger">
                 <a name="introduction">Introduction</a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 The NTFS filesystem supports a lot of features like Hardlinks, Junctions
                 Symbolic Links and Mount Points, which are sparsley supported by standard tools.
                 This tool is kind of a NTFS Swiss Army Knife and can do lots of things, like create <a href="#smartcopy">SmartCopies</a>, which
@@ -122,10 +124,10 @@
 
         <!-- Installation -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 Installation
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 copy ln.exe to some directory referenced by your PATH environment variable. %systemroot% is a good place.
             </td>
         </tr>
@@ -137,10 +139,10 @@
 
         <!-- How to read -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 How to read
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 ln.exe is able to perform many powerfull things and thus has lots of command line options.<br />
                 The documentation on options in the section below are sorted in alphabetical order.
             </td>
@@ -153,10 +155,10 @@
 
         <!-- Using ln -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 Using ln
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 ln.exe is a typical command line utility like those found within the resource kit.
                 Its' highlights are as follows:
             </td>
@@ -171,7 +173,7 @@
 
                     <!-- Normal Linking -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="normallinking"><b>Normal linking</b></a>
                         </td>
                         <td align="left" class="bodytext">
@@ -196,7 +198,7 @@
 
                     <!-- Absolute -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="absolutesymboliclinks">
                                 <b>--absolute</b><br />Absolute<br />
                                 Symbolic Links
@@ -250,10 +252,10 @@
 
                     <!-- anchor -->
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td width="120" class="hanger2">
                             <a name="anchor"><b>--anchor</b><br />Supply Anchor Paths</a>
                         </td>
-                        <td valign="bottom" class="bodytext">
+                        <td class="bodytext">
                             <p>
                                 This option can be used together with other options like <a href="#smartcopy">--copy</a> and it supplies a
                                 virtual path or an anchor to the  e.g copy process, so that junctions and absolute symbolic links can be
@@ -352,10 +354,10 @@
 
                     <!-- Backup -->
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="backup"><b>--backup</b><br />Backup Mode<br /></a>
                         </td>
-                        <td valign="bottom" class="bodytext">
+                        <td class="bodytext">
                             <p>
                                 Using the <i>Backup Mode</i> ACLs aka <i>Access Control Lists</i>, which contain
                                 the security for Files, Folders, Junctions or SymbolicLinks, and <i>Encrypted Files</i>
@@ -394,10 +396,10 @@
 
                     <!-- Copy -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="smartcopy"><b>--copy</b><br />Smart Copy</a>
                         </td>
-                        <td valign="bottom" class="bodytext">
+                        <td class="bodytext">
                             <p>
                                 Smart Copy basically creates a copy of the directory structure from the source location to
                                 the destination, but it preserves the inner hardlink structure and inner junction/symbolic
@@ -415,7 +417,7 @@
                             </p>
                             <table cellspacing="0" cellpadding="0" border="0">
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Normal Files</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -427,7 +429,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Saturated Hardlinks</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -448,7 +450,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Unsaturated Hardlinks</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -483,7 +485,7 @@
 
                             <table cellspacing="0" cellpadding="0" border="0">
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Normal Folders</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -495,7 +497,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Inner Junctions<br />Symlinks</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -513,7 +515,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Outer Junctions<br />Symlinks</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -541,7 +543,7 @@
                             </p>
                             <table cellspacing="0" cellpadding="0" border="0">
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Normal Files</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -552,7 +554,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Inner Symbolic<br />Links</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -568,7 +570,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Outer Symbolic<br />Links</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -643,7 +645,7 @@
 
                     <!-- Crop -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="outerjunctionhandling">
                                 <b>--crop</b><br />Crop/Unroll/Splice<br />
                                 Outer Junctions/<br />Symbolic Links
@@ -662,7 +664,7 @@
 
                                 <!-- Crop -->
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Crop</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -699,7 +701,7 @@
 
                                 <!-- Unroll -->
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <a name="unroll"><b>Unroll</b></a>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -932,7 +934,7 @@
 
                                 <!-- Splice -->
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <a name="splice"><b>Splice</b></a>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -1036,10 +1038,10 @@
                     <!-- deeppathdelete -->
                     <tr>
                         <!-- Deleting files -->
-                        <td align="right" valign="top" width="130" class="hanger">
+                        <td class="hanger">
                             <a name="deloreandelete" />
                         </td>
-                        <td valign="bottom" class="bodytext">
+                        <td class="bodytext">
                             In general deleting files seems so simple, but when taking a closer look at the delorean copy use case, things get interesting:
                             <br />
                             <br />
@@ -1106,10 +1108,10 @@
 
                     <!-- DeLorean -->
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="deloreancopy"><b>--delorean</b><br />DeLorean Copy</a>
                         </td>
-                        <td valign="bottom" class="bodytext">
+                        <td class="bodytext">
                             <p>
                                 DeLorean Copy is a way of creating incremental backups by using a combination of Hardlink Clone
                                 and <a href="#smartmirror">SmartMirror</a>.
@@ -1125,7 +1127,7 @@
 
                             <table cellspacing="0" cellpadding="0" border="0">
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Phase 1: Initial SmartCopy</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -1137,7 +1139,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Changes<br />happen</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -1149,7 +1151,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Phase 2: Hardlink Clone<br /></b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -1162,7 +1164,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Phase 3: Mirror<br /></b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -1209,7 +1211,7 @@
 
                             <table cellspacing="0" cellpadding="0" border="0">
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Changes<br />happen</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -1221,7 +1223,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Phase 2: Hardlink Clone<br /></b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -1234,7 +1236,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Phase 3: Mirror<br /></b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -1308,165 +1310,165 @@
 
                             <table cellspacing="0" cellpadding="0">
                                 <tr>
-                                    <td align="left" width="30" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <b>Operation</b>
                                     </td>
-                                    <td align="left" width="380" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <b>Description</b>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         =
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Item is already present in the target. Used during Smart Mirror
                                     </td>
                                 </tr>
 
                                 <!-- One day we could give a message when just the compression status changes. The engine could do this
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         %
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Item is already present in the target, but with different compression state. Used during Smart Mirror
                                     </td>
                                 </tr>
                                 -->
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         +
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Copy/Create an item. Used during Smart Copy
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         *
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Hardlink a file
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         .
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Item is already present in the target and is used as the source of a newly created hardlink.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         -
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Remove an item from the target that is not present in the source. Used during Smart Mirror
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         ?
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Enumerate an item.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         ~
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Item has been excluded by command line arguments.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         #
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Item has been cropped due to being an outer junction/symlink.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         &
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Junction or Symbolic Link has been re-created but turned out to be dangling in the destination.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         \
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Opening a file.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         /
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Map file into address space.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <a name="markermerge">&deg</a>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Hardlinks have been <a href="#merge">merged</a>.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <a name="markermergeexceeded">&deg~</a>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Hardlinks were not <a href="#merge">merged</a>, because the hardlink reference count of 1023 was exceeded.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <a name="markermergeexists">&deg=</a>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Hardlinks were not <a href="#merge">merged</a>, because the were already hardlinked.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         !
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         An error happened. The value in brackets is the <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms681382%28v=vs.85%29.aspx">system error code</a>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         '
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Informal message.
                                     </td>
                                 </tr>
@@ -1478,90 +1480,90 @@
 
                             <table cellspacing="0" cellpadding="0" border="0">
                                 <tr>
-                                    <td align="left" width="65" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <b>Item</b>
                                     </td>
-                                    <td align="left" width="380" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <b>Description</b>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         f
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         A File is processed.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         h
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         A Hardlink is processed.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         s
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         A Symbolic link file or Symbolic Link Directory.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         j
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         A Junction is processed.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         m
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         A Mountpoint is processed.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         d
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         A Directory is processed.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         t
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         An Alternative Stream is processed.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         e
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         An E/A Record is processed.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         p
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         A Sparse file is processed.
                                     </td>
                                 </tr>
@@ -1571,18 +1573,18 @@
 
                             <table cellspacing="0" cellpadding="0" border="0">
                                 <tr>
-                                    <td align="left" width="270" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <b>Sample</b>
                                     </td>
-                                    <td align="left" width="380" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <b>Description</b>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">+f c:\data\myfile.txt</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             A normal file is copied.
                                         </p>
@@ -1592,10 +1594,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">*h c:\data\hardlnk.txt</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             c:\data\hardlnk.txt is hardlinked to c:\data\myfile.txt.
                                         </p>
@@ -1605,10 +1607,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">+s d:\dest\symlink.txt</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             A Symbolic link has been created.
                                         </p>
@@ -1618,10 +1620,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">+j d:\dest\junc01</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             A Junction has been created.
                                         </p>
@@ -1631,10 +1633,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">+d d:\dest\mydir</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             A Directory has been created.
                                         </p>
@@ -1644,10 +1646,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">-f d:\dest\delfile</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The file d:\dest\delfile has been removed during e.g. Smart Mirror.
                                         </p>
@@ -1657,10 +1659,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">-j d:\dest\junc02</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The Junction d:\dest\junc02 has been removed.
                                         </p>
@@ -1670,10 +1672,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">+m d:\dest\mountpoint</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The mountpoint d:\dest\mountpoint has been created during e.g. Smart Copy.
                                         </p>
@@ -1683,10 +1685,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">=d d:\dest\mydir</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The directory d:\dest\mydir is the same as in the source.
                                         </p>
@@ -1696,10 +1698,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">=s d:\dest\symlink</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The symlink d:\dest\symlink is the same as in the source.
                                         </p>
@@ -1709,10 +1711,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">.h d:\dest\file.txt</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             means that the name of this file is only printed,
                                             because some hardlinks have been newly tied to it. The file itself is already
@@ -1725,10 +1727,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">*h d:\dest\new_hlink</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             If the line above is prefixed with . it means that
                                             d:\dest\new_hlink is tied to e.g. the already existing file d:\dest\file.txt.
@@ -1739,10 +1741,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">~d d:\source\mydir</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The directory d:\source\mydir has been excluded intentionally by e.g. --exclude.
                                         </p>
@@ -1752,10 +1754,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">~f d:\source\aFile</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The file d:\source\aFile has been excluded intentionally by
                                             e.g. --exclude. Items are also listed with ~ if the --unroll option is not used and outer
@@ -1767,10 +1769,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">#d d:\source\outerreparse</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The junction/symlink d:\source\outerreparse has been excluded
                                             because it was an <a href="#innerjunction">outer junction/symlink</a>.
@@ -1781,11 +1783,11 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
 
                                         <span class="ascode"><a name="danglingjunction">&d d:\dir\danglingreparse</a></span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The Junction or Symbolic Link d:\dir\danglingreparse has been restored,
                                             but it turned out that it is dangling in the destination.
@@ -1796,10 +1798,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">!-d (0x00000002) d:\source\aFile</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The ! operator indicates that there was an error.
                                             It is followed by the operation, the item which was processed and an Win32 error code.
@@ -1810,10 +1812,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">!?d (0x00000005) d:\src\deny</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The ? operator means the current operation was unable to enumerate all available files.
                                             It is always prefixed with ! to signal that during enumeration of items something went wrong.
@@ -1824,10 +1826,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">!?j (0x00000423) d:\src\deny</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             Circularities are detected during Smart Copy/Smart Mirror/Delorean Copy and are flagged as
                                             an error with the code 0x0423, which means ERROR_CIRCULAR_DEPENDENCY.
@@ -1838,10 +1840,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">!?s (0x00000780) d:\src\deny</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The error ERROR_CANT_ACCESS_FILE aka 0x0780 is thrown only under Windows
                                             XP if a symbolic link is among the files to operate on, because Windows XP can not process Symbolic
@@ -1853,10 +1855,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode"><a name="xpdanglingjunctions">!&j (0x000000a1) d:\src\dangling_junction</a></span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The error ERROR_BAD_PATHNAME aka 0x00a1 is thrown only under Windows XP if a dangling junction can not be restored.
                                         </p>
@@ -1866,10 +1868,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode"><a name="error03e7">!+f (0x000003e7) d:\v\v.tc</a></span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The ERROR_SWAPERROR means, that errors occurred during reading of a file. e.g.
                                             caused by unplugging the network cable.
@@ -1880,10 +1882,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode"><a name="error0585">!*h (0x00000585) d:\</a></span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The error INVALID_INDEX aka 0x0585 means that the NTFS implementation of this drive is broken. It returns
                                             the same file-index for files with different file size.<br />
@@ -1897,10 +1899,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode"><a name="eafailed">!+e (0x000000005) d:\test\A</a></span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The error ERROR_ACCESS_DENIED with !+e means EA Records could not be copied.
                                             This happens if a filesystem does not support EA Records, as it is with some NAS implementations.
@@ -1911,10 +1913,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode"><a name="adsfailed">!+t (0x00000007b) d:\test\A:ADS1</a></span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The error ERROR_INVALID_NAME aka 0x007b with !+t means an Alternative Data Stream of a file could not be copied.
                                             This happens if a filesystem does not support Alternative Data Streams, as it is with some NAS implementations.
@@ -1925,10 +1927,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode"><a name="symlink_fail_01">!+s (0x00000013d) t:\f3\f3_j0</a></span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             The error ERROR_MR_MID_NOT_FOUND aka 0x007b with !+s means that the driver for symbolic links under Windows XP
                                             was not able to resolve a symbolic link on a mapped network drive.
@@ -1949,11 +1951,11 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <a name="invalidreparse"></a>
                                         <span class="ascode">!+r (0x00001129) d:\src\invalid_reparse</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             Windows supports a dozen of Reparse Points. Well known is the use of reparse points for symbolic links,
                                             junctions and mountpoints, but there are
@@ -1969,11 +1971,11 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <a name="errortoomanylinks"></a>
                                         <span class="ascode">!+h (0x00000476) d:\src\toomanylinks</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             NTFS puts a 1023 limit on the number of hardlinks for one item. If ln runs into the problem, that the 1024th hardlink on
                                             an item should be created, it throws the ERROR_TOO_MANY_LINKS message aka 0x00000476.
@@ -1985,11 +1987,11 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <a name="markermergefailed"></a>
                                         <span class="ascode">!&degf (0x0000xxxx) d:\src\file2merge</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <p>
                                             If a file can not be accessed during merge of .e.g two delorean sets this message along with the error code is thrown.
                                             <a href="#1023safe">See also</a>
@@ -2000,10 +2002,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">'Entering on the fly dupemerge</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         ln.exe was forced into on the fly dupemerge mode.
                                         <br />
                                         <br />
@@ -2011,10 +2013,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode">'Sleeping %d sec: Destination is a remote drive</span>
                                     </td>
-                                    <td align="left" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <a name="smb2redirectorcache"></a>
                                         There is an issue with <a href="https://technet.microsoft.com/en-us/library/ff686200%28WS.10%29.aspx">SMB2 Redirector Caches</a>,
                                         where ln.exe needs to wait during Delorean Copy for about 5 seconds until it can continue.
@@ -2344,10 +2346,10 @@
 
                     <!-- Dupemerge -->
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="dupemerge"><b>--dupemerge</b><br />On the fly Dupemerge</a>
                         </td>
-                        <td valign="bottom" class="bodytext">
+                        <td class="bodytext">
                             <p>
                                 <a href="#smartcopy">Smart Copy</a>, <a href="#smartmirror">Smart Mirror</a> and
                                 <a href="#smartclone">SmartClone</a> rely on finding the hardlink relations by enumerating the unique file-index
@@ -2411,7 +2413,7 @@
 
                     <!-- Enum -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="enumhardlinks"><b>--enum</b><br />Enum hardlinks</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -2446,7 +2448,7 @@
 
                     <!-- Exclude-->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="excludewildcardsfiles"><b>--exclude</b><br />Exclude files via wildcards</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -2502,7 +2504,7 @@
 
                     <!-- excludedir -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="excludewildcardsdirectories"><b>--excludedir</b><br />Exclude directories via wildcards</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -2557,7 +2559,7 @@
 
                     <!-- excluderegexp -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="excluderegexpsfiles"><b>--excluderegexp</b><br />Exclude files via regular expressions</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -2604,7 +2606,7 @@
 
                     <!-- excluderegexpdir -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="excluderegexpsfordirectories"><b>--excluderegexpdir</b><br />Exclude directories via regular expressions</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -2650,7 +2652,7 @@
 
                     <!-- follow -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="follow"><b>--follow</b><br />follow based on wildcards</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -2694,7 +2696,7 @@
 
                     <!-- followregexp -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="followregexp"><b>--followregexp</b><br />follow based on<br />regular expressions<br /></a>
                         </td>
                         <td align="left" class="bodytext">
@@ -2743,7 +2745,7 @@
 
                     <!-- include -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="includewildcardsfiles"><b>--include</b><br />Include files via wildcards</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -2796,7 +2798,7 @@
 
                     <!-- includedir -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="includewildcardsdirectories"><b>--includedir</b><br />Include directories via wildcards<br /></a>
                         </td>
                         <td align="left" class="bodytext">
@@ -2851,7 +2853,7 @@
 
                     <!-- includeregexp -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="includeregexpsfiles"><b>--includeregexp</b><br />Include files<br />via regular expressions<br /></a>
                         </td>
                         <td align="left" class="bodytext">
@@ -2896,7 +2898,7 @@
 
                     <!-- includeregexpdir -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="includeregexpsfordirectories"><b>--includeregexpdir</b><br />Include directories<br />via regular expressions<br /></a>
                         </td>
                         <td align="left" class="bodytext">
@@ -2941,7 +2943,7 @@
 
                     <!-- json -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="json"><b>--json</b><br />Print output<br />in JSON<br /></a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3043,7 +3045,7 @@
 
                     <!-- junction -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="junctions"><b>--junction</b><br />Create Junctions</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3133,7 +3135,7 @@
 
                     <!-- keepsymlinkrelation -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="keepsymlinkrelation"><b>--keepsymlink<br />relation</b><br />Save absolute/<br />relative status</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3160,7 +3162,7 @@
 
                     <!-- list -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="listsiblings"><b>--list</b><br />List Hardlink<br />siblings</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3192,10 +3194,10 @@
 
                     <!-- merge -->
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="merge"><b>--merge</b><br />Merge</a>
                         </td>
-                        <td valign="bottom" class="bodytext">
+                        <td class="bodytext">
                             The merge function is needed if two trees shall be merged via hardlinks into one tree. Think of the following scenario:
 
                             <ul>
@@ -3240,10 +3242,10 @@
 
                     <!-- mirror -->
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="smartmirror"><b>--mirror</b><br />Smart Mirror</a>
                         </td>
-                        <td valign="bottom" class="bodytext">
+                        <td class="bodytext">
                             Smart Mirror is very similar to <a href="#smartcopy">Smart Copy</a> and not only copies but
                             <i>synchronises</i> the folder <i>Source</i> to <i>Destination</i>:
                             <ul>
@@ -3293,10 +3295,10 @@
 
                     <!-- Symbolic Clone Mirror -->
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="clonemirror"><b>--mirror<br />--symbolic</b><br />Symbolic Clone<br /> Mirror</a>
                         </td>
-                        <td valign="bottom" class="bodytext">
+                        <td class="bodytext">
                             The Clone Mirror function is a combination of <a href="#smartmirror">Smart Mirror</a> and
                             <a href="#smartclone">SmartClone</a>. Basically it creates a Symbolic Link Clone from Source to Destination directory,
                             but also <i>synchronises</i> the folder <i>Source</i> to <i>Destination</i>:
@@ -3331,10 +3333,10 @@
 
                     <!-- Hardlink Clone Mirror -->
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="hardlinkclonemirror"><b>--mirror<br />--recursive</b><br />Hardlink Clone<br /> Mirror</a>
                         </td>
-                        <td valign="bottom" class="bodytext">
+                        <td class="bodytext">
                             The Hardlink Clone Mirror function is a combination of <a href="#smartmirror">Smart Mirror</a> and
                             <a href="#smartclone">SmartClone</a>. Basically it creates a Hardlink Clone from Source to Destination directory,
                             but also <i>synchronises</i> the folder <i>Source</i> to <i>Destination</i>:
@@ -3369,10 +3371,10 @@
 
                     <!-- move -->
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="smartmove"><b>--move</b><br />Smart Move</a>
                         </td>
-                        <td valign="bottom" class="bodytext">
+                        <td class="bodytext">
                             <p>
                                 Smart Move enables folders with junctions and symbolic links beneath to be renamed, and the junctions
                                 and symbolic links' targets are updated below that folder. Without Smart Move renaming of such folders
@@ -3387,7 +3389,7 @@
                             </p>
                             <table cellspacing="0" cellpadding="0" border="0">
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Normal Folders</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -3398,7 +3400,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Inner Junctions<br />Symlinks</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -3415,7 +3417,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="110" valign="top" class="hanger2">
+                                    <td class="hanger2">
                                         <b>Outer Junctions<br />Symlinks</b>
                                     </td>
                                     <td align="left" class="bodytext">
@@ -3461,7 +3463,7 @@
 
                     <!-- noads-->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="noads"><b>--noads</b><br />Skip ADS</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3488,7 +3490,7 @@
 
                     <!-- noea-->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="noea"><b>--noea</b><br />Skip EA Records</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3515,7 +3517,7 @@
 
                     <!-- output-->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="output"><b>--output</b><br />Redirect<br />Output</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3540,7 +3542,7 @@
 
                     <!-- probefs-->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="probefs"><b>--probefs</b><br /></a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3570,7 +3572,7 @@
 
                     <!-- progress-->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="progress"><b>--progress</b><br /></a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3612,7 +3614,7 @@
 
                     <!-- quiet-->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="quiet"></a><a name="loglevel"><b>--quiet</b><br />specify<br />log level</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3632,37 +3634,37 @@
                             <br />
                             <table cellspacing="0" cellpadding="0" border="0">
                                 <tr>
-                                    <td align="left" width="20" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode"><b>0</b></span>
                                     </td>
-                                    <td align="left" width="380" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Completely suppress output. This is the if same as no argument would have been passed to --quiet.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="20" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode"><b>1</b></span>
                                     </td>
-                                    <td align="left" width="380" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Only show severe errors.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="20" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode"><b>2</b></span>
                                     </td>
-                                    <td align="left" width="380" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Show the changes, e.g if a file is copied additionally during delorean copy. Furthermore show severe errors.
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left" width="20" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         <span class="ascode"><b>3</b></span>
                                     </td>
-                                    <td align="left" width="380" valign="top" class="bodytext">
+                                    <td class="bodytext">
                                         Show all output available. This is same as --quiet has been ommitted.
                                     </td>
                                 </tr>
@@ -3685,7 +3687,7 @@
 
                     <!-- recursive-->
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="smartclone"></a><a name="recursivesupport"><b>--recursive</b><br />Smart Clone</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3762,7 +3764,7 @@
 
                     <!-- skipfiles-->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="skipfiles"><b>--skipfiles</b><br /></a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3785,10 +3787,10 @@
 
                     <!-- smartrename -->
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="smartrename"><b>--smartrename</b><br />Smart Rename</a>
                         </td>
-                        <td valign="bottom" class="bodytext">
+                        <td class="bodytext">
                             <p>
                                 Smart Rename is very similar to <a href="#smartmove">Smart Move</a>, but
                                 only renames junctions/symbolic links references below a given folder.
@@ -3822,7 +3824,7 @@
 
                     <!-- Multiple Source -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="multiplesource"><b>--source</b><br />Multiple Source</a>
                         </td>
 
@@ -3894,7 +3896,7 @@
 
                     <!-- supportfs -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="supportfs"><b>--supportfs</b><br /></a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3923,7 +3925,7 @@
 
                     <!-- symbolic -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="symboliclinks"><b>--symbolic<br /></b>Symbolic Links</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -3988,7 +3990,7 @@
 
                     <!-- timetolerance-->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="timetolerance"><b>--timetolerance</b><br /></a>
                         </td>
                         <td align="left" class="bodytext">
@@ -4015,7 +4017,7 @@
 
                     <!-- traditional-->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="traditional"><b>--traditional</b><br />Traditional<br />mode</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -4043,7 +4045,7 @@
 
                     <!-- truesize-->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="truesize"><b>--truesize</b><br />Size<br />calculation</a>
                         </td>
                         <td align="left" class="bodytext">
@@ -4175,7 +4177,7 @@
 
                     <!-- 1023safe -->
                     <tr>
-                        <td align="left" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <a name="1023safe"><b>--1023safe</b><br />Hardlink Limit Safe</a>
                         </td>
 
@@ -4233,7 +4235,7 @@
 
         <!-- Unc Name Support-->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="uncnamesupport"><b>UNC Name<br /> support</b></a>
             </td>
             <td align="left" class="bodytext">
@@ -4293,7 +4295,7 @@
 
         <!-- Quotes-->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="quotesaroundpath"><b>Quotes<br />around path</b> </a>
             </td>
             <td align="left" class="bodytext">
@@ -4324,10 +4326,10 @@
 
         <!-- Subst Handling -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="substhandling">Subst Handling</a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     With the subst.exe command one can create driveletters, which point to a certain path on a NTFS volume. This means that two
                     different driveletters in the end might resolve to locations on the same NTFS volume.
@@ -4342,10 +4344,10 @@
 
         <!-- Snapshot Service -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="snapshotservice">Snapshot Service</a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     Shadow Copy (Volume Snapshot Service or Volume Shadow Copy Service or VSS), is a technology included
                     in Microsoft Windows that allows taking manual or automatic backup copies or snapshots of data, even if
@@ -4605,10 +4607,10 @@
 
         <!-- Deep Path Support -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="deeppathsupport">Deep Path Support</a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     ln.exe can handle <i>Deep Paths</i> which are longer than 256 characters. This is usefully especially in
                     the --copy, -delorean, --move, --mirror, --recursive mode. Deep Path Support is tested
@@ -4620,10 +4622,10 @@
 
         <!-- Support for Volume{GUID} Path -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="volumeguidsupport">Support for<br />Volume{GUID} Path<br />and GLOBALROOT</a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     All --copy, -delorean, --move, --mirror, --recursive commands can handle \\?\Volume{GUID} or
                     \\?GLOBALROOT\Device\HarddiskVolume as path for operations:
@@ -4655,10 +4657,10 @@
 
         <!-- Symbolic links for Windows XP -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="symboliclinksforwindowsxp">Symbolic links for Windows XP</a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     Technically it seems that NTFS5 even as shipped with WindowsXP has always supported symbolic links, but the functionality was
                     not available for user mode applications, and even not for the upper layers of ntfs.sys
@@ -4699,10 +4701,10 @@
 
         <!-- Useful .bat files -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="batfiles">Useful .bat files</a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     ln.exe can be used also from .bat files to accomplish various tasks:
                 </p>
@@ -4740,10 +4742,10 @@
 
         <!-- Return Values -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="returnvalues">Return Values</a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     As a typical command line utility ln.exe exits with return values, so that it can be conveniently used from .bat files:
                 </p>
@@ -4754,10 +4756,10 @@
             <td align="right" valign="top">
                 &nbsp;
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <table cellspacing="0" cellpadding="0" border="0">
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             0
                         </td>
                         <td align="left" class="bodytext">
@@ -4770,7 +4772,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -1
                         </td>
                         <td align="left" class="bodytext">
@@ -4785,7 +4787,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -2
                         </td>
                         <td align="left" class="bodytext">
@@ -4800,7 +4802,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -3
                         </td>
                         <td align="left" class="bodytext">
@@ -4814,7 +4816,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -4
                         </td>
                         <td align="left" class="bodytext">
@@ -4828,7 +4830,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -5
                         </td>
                         <td align="left" class="bodytext">
@@ -4842,7 +4844,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -6
                         </td>
                         <td align="left" class="bodytext">
@@ -4856,7 +4858,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -7
                         </td>
                         <td align="left" class="bodytext">
@@ -4870,7 +4872,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -8
                         </td>
                         <td align="left" class="bodytext">
@@ -4884,7 +4886,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -9
                         </td>
                         <td align="left" class="bodytext">
@@ -4899,7 +4901,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -12
                         </td>
                         <td align="left" class="bodytext">
@@ -4913,7 +4915,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -13
                         </td>
                         <td align="left" class="bodytext">
@@ -4927,7 +4929,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -14
                         </td>
                         <td align="left" class="bodytext">
@@ -4941,7 +4943,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -15
                         </td>
                         <td align="left" class="bodytext">
@@ -4955,7 +4957,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="40" valign="top" class="bodytext">
+                        <td class="bodytext">
                             -16
                         </td>
                         <td align="left" class="bodytext">
@@ -4974,10 +4976,10 @@
 
         <!-- Backgrounders -->
         <tr>
-            <td align="right" valign="top" width="130" class="hanger">
+            <td class="hanger">
                 <a name="backgrounders">Backgrounders</a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     Hardlinks are a feature which are common to every
                     Unix system, but are not directly available with NT4/W2K/WXP. It is a feature, which
@@ -5014,10 +5016,10 @@
 
         <!-- Limitations -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="limitations">Limitations</a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     Ln.exe can only be used under the supported platforms<br />
                     HardLinks can only be created on NTFS volumes, under the supported platforms.<br />
@@ -5035,11 +5037,11 @@
 
         <!-- Frequently Asked Questions -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="faq">Frequently Asked Questions</a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <ul>
                     <li>
                         <b>
@@ -5143,14 +5145,14 @@
 
         <!-- History -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="history">History</a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <table cellspacing="0" cellpadding="0" border="0">
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             March 12, 2019
                         </td>
                         <td align="left" class="bodytext">
@@ -5173,7 +5175,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             April 26, 2019
                         </td>
                         <td align="left" class="bodytext">
@@ -5212,7 +5214,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             May 21, 2018
                         </td>
                         <td align="left" class="bodytext">
@@ -5231,7 +5233,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             May 15, 2016
                         </td>
                         <td align="left" class="bodytext">
@@ -5249,7 +5251,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             March 14, 2016
                         </td>
                         <td align="left" class="bodytext">
@@ -5276,7 +5278,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             May 17, 2015
                         </td>
                         <td align="left" class="bodytext">
@@ -5313,7 +5315,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             November 10, 2014
                         </td>
                         <td align="left" class="bodytext">
@@ -5334,7 +5336,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             June 28, 2014
                         </td>
                         <td align="left" class="bodytext">
@@ -5378,7 +5380,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             February 11, 2014
                         </td>
                         <td align="left" class="bodytext">
@@ -5396,7 +5398,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             December 29, 2013
                         </td>
                         <td align="left" class="bodytext">
@@ -5428,7 +5430,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             August 30, 2013
                         </td>
                         <td align="left" class="bodytext">
@@ -5443,7 +5445,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             May 9th, 2013
                         </td>
                         <td align="left" class="bodytext">
@@ -5484,7 +5486,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             June 24th, 2012
                         </td>
                         <td align="left" class="bodytext">
@@ -5497,7 +5499,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             April 11th, 2012
                         </td>
                         <td align="left" class="bodytext">
@@ -5526,7 +5528,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             May 15th 2011
                         </td>
                         <td align="left" class="bodytext">
@@ -5541,7 +5543,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             April 17th 2011
                         </td>
                         <td align="left" class="bodytext">
@@ -5557,7 +5559,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             December 20th 2010
                         </td>
                         <td align="left" class="bodytext">
@@ -5576,7 +5578,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             October 3rd 2010
                         </td>
                         <td align="left" class="bodytext">
@@ -5596,7 +5598,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             May 22nd 2010
                         </td>
                         <td align="left" class="bodytext">
@@ -5612,7 +5614,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             March 9th 2009
                         </td>
                         <td align="left" class="bodytext">
@@ -5625,7 +5627,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             September 12th 2008
                         </td>
                         <td align="left" class="bodytext">
@@ -5638,7 +5640,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             February 17th 2006
                         </td>
                         <td align="left" class="bodytext">
@@ -5649,7 +5651,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             February 18th 2005
                         </td>
                         <td align="left" class="bodytext">
@@ -5659,7 +5661,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             February 7th 2005
                         </td>
                         <td align="left" class="bodytext">
@@ -5671,7 +5673,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             November 26th 2004
                         </td>
                         <td align="left" class="bodytext">
@@ -5681,7 +5683,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="120" valign="top" class="hanger2">
+                        <td class="hanger2">
                             November 18th 2004
                         </td>
                         <td align="left" class="bodytext">
@@ -5691,7 +5693,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="150" valign="top" class="hanger2">
+                        <td class="hanger2">
                             June 24th 2004
                         </td>
                         <td align="left" class="bodytext">
@@ -5705,10 +5707,10 @@
 
         <!-- Status -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 Status
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     The 2.9.1.x version is a stable version.
                 </p>
@@ -5722,11 +5724,11 @@
 
         <!-- Acknowledgements -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="acknowledgements">Acknowledgements</a>
             </td>
 
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 I wish to thank those who have contributed significantly to the development of ln.exe. Those include:
                 <p>
                     Endre Both for being a great tester with endless patience and for excellent constructive feedback on features during development.
@@ -5738,10 +5740,10 @@
 
         <!-- Open Issues -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 Open Issues
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     <br />
                 </p>
@@ -5751,10 +5753,10 @@
 
         <!-- Links -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 Links
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <ul>
                     <li>
                         Jos Branders has a tool called <a href="http://www.rekenwonder.com/linkmagic.htm">
@@ -5779,10 +5781,10 @@
 
         <!-- License -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 License
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <ul>
                     <li>This program is provided as is. See <a href="license.txt"> license.txt</a> from this distribution for legal issues.<br /></li>
                     <li>ln.exe uses <a href="http://laurikari.net/tre">tre</a> as the regular expression machine. See the <a href="license_tre.txt">tre license</a>.</li>
@@ -5798,10 +5800,10 @@
 
         <!-- Contact / Donations -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="contact">Contact / Donations</a>
             </td>
-            <td valign="bottom" class="bodytext">
+            <td class="bodytext">
                 <p>
                     Bug reports, or feature requests send to <a href="mailto:Hermann.Schinagl@gmx.net">
                         Hermann Schinagl.
@@ -5863,13 +5865,13 @@
 
         <!-- Download -->
         <tr>
-            <td align="right" valign="top" class="hanger">
+            <td class="hanger">
                 <a name="download">Download</a>
             </td>
             <td align="center" class="bodytext">
                 <table cellspacing="0" cellpadding="0" border="0">
                     <tr>
-                        <td align="left" width="150" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <b>
                                 All Windows 32bit<br />
                             </b>
@@ -5891,7 +5893,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="150" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <b>
                                 All Windows 64bit<br />
                             </b>
@@ -5975,7 +5977,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="150" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <b>
                                 All Windows Itanium<br />
                             </b>
@@ -6007,7 +6009,7 @@
 
 
                     <tr>
-                        <td align="left" width="150" valign="top" class="hanger2">
+                        <td class="hanger2">
                             <b>Symbolic Link Driver<br /> for Windows XP</b>
                         </td>
                         <td align="left" class="bodytext">
