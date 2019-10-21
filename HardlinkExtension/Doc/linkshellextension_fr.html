@@ -123,25 +123,25 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i>Last Updated October 15  2019, Version 3.9.2.6</i>
+                    <i>Dernière mise à jour du 15 Octobre 2019, Version 3.9.2.6</i>
                 </div>
             </td>
         </tr>
 
         <tr>
             <td class="hanger">
-                <a name="datenschutzerklärung"><b>Privacy Statement</b></a>
+                <a name="datenschutzerklärung"><b>Déclaration de protection des données</b></a>
             </td>
 
             <td class="bodytext">
-                The hallos statement can be found <a href="http://schinagl.priv.at/about/dsgvo.html">here</a>
+                La déclaration de confidentialité se trouve à l'adresse suivante <a href="http://schinagl.priv.at/about/dsgvo.html">ici</a>
             </td>
         </tr>
 
 
         <tr>
             <td class="hanger">
-                <a name="quickstart"><b>Quick Start</b></a>
+                <a name="quickstart"><b>Accès Rapide</b></a>
             </td>
 
             <td class="bodytext">
@@ -157,28 +157,22 @@
 
         <tr>
             <td class="hanger">
-                <a name="introduction">Introduction</a>
+                <a name="introduction"><b>Introduction</b></a>
             </td>
 
             <td class="bodytext">
-                Le système de fichiers NTFS implémenté dans NT4, Windows 2000, Windows XP, Windows
-                XP64, et Windows7/8/10 supporte une possibilité connue en tant que <b>liens physiques</b>
-                (que l'on nommera aussi ci-dessous <b>Hardlinks</b>). Les liens physiques donnent
-                la possibilité de conserver une seule copie d'un fichier bien qu'il apparaisse dans de
-                nombreux répertoires (directories).&nbsp;
+                Le système de fichiers NTFS implémenté dans NT4, Windows 2000, Windows XP, Windows XP64, et Windows7/8/10 supporte une possibilité connue en tant que <b>liens physiques</b>
+                (que l'on nommera aussi ci-dessous <b>Hardlinks</b>). Les liens physiques donnent la possibilité de conserver une seule copie d'un fichier bien qu'il 
+                apparaisse dans de nombreux répertoires (directories).&nbsp;
 
-                Ils peuvent être créés par la commande POSIX
-                incluse <i>dans</i> le Windows Resource Kit, la commande utilitaire <i>fsutil</i>
-                incluse dans Windows XP ou mon utilitaire en ligne de commande
+                Ils peuvent être créés par la commande POSIX <b><i>ln</i></b> incluse <i>dans</i> le Windows 
+                Resource Kit, la commande utilitaire <i>fsutil</i> incluse dans Windows XP ou mon utilitaire en ligne de commande
                 <a href="http://schinagl.priv.at/nt/ln/ln.html">ln.exe</a>.&nbsp;
 
                 Aussi, en utilisant les fonctions standard de Windows les liens physiques ne peuvent être créés
                 qu'en ligne de commande, ce qui peut devenir pénible, en particulier quand on veut avoir des liens physiques vers de nombreux fichiers
                 où lorsqu'on ne fait qu'un usage occasionnel des liens physiques.
-                <br />
-
-                Le support des Jonctions dans l'offre logicielle standard de Microsoft
-                est encore plus limité que celui offert aux liens physiques.
+                Le support des Jonctions dans l'offre logicielle standard de Microsoft est encore plus limité que celui offert aux liens physiques.
 
                 <p>
                     Link Shell Extension (LSE) permet la création de
@@ -187,18 +181,14 @@
                     et les<a href="#symboliclinks">Liens Symboliques</a> de Windows7/8/10,
                     considérés globalement comme des <a href="#hardlinkclones">processus de clonage</a> de répertoire qui utilise
                     des Liens physiques ou les Liens Symboliques et un processus de copie préservant les Jonctions, Liens Symboliques, et Liens Physiques.
-                    LSE, comme son nom l'indique est implémenté en tant qu'extension du Shell et est accessible
-                    depuis l'Explorateur Windows, ou des gestionnaires de fichiers/répertoires du même
-                    genre.<br />
-                    L'extension permet à l'utilisateur de  sélectionner un ou plusieurs fichiers ou répertoires, puis avec
-                    la souris, d'achever la création des liens souhaités -
-                    Liens Physiques, Jonctions ou Liens Symboliques, ou encore dans le cas de
-                    répertoires, de créer des clones consistants en des Liens Physiques ou Symboliques.
+                    LSE, comme son nom l'indique est implémenté en tant qu'extension du Shell et est accessible depuis l'Explorateur Windows, ou des gestionnaires de fichiers/répertoires du même genre.
                     <br />
-                    LSE est pris en charge par toutes les versions de Windows qui supportent NTFS
-                    version 5.0 ou ultérieure, incluant Windows XP64 et Windows7/8/10.
-                    <br />
-                    Les Liens Physiques, Jonctions et Liens Symboliques ne sont PAS supportés par le système de fichiers FAT,
+
+                    L'extension permet à l'utilisateur de  sélectionner un ou plusieurs fichiers ou répertoires, puis avec la souris, d'achever la création des liens souhaités -
+                    Liens Physiques, Jonctions ou Liens Symboliques, ou encore dans le cas de répertoires, de créer des clones consistants en des Liens Physiques ou Symboliques.
+
+                    LSE est pris en charge par toutes les versions de Windows qui supportent NTFS version 5.0 ou ultérieure, incluant Windows XP64 
+                    et Windows7/8/10. Les Liens Physiques, Jonctions et Liens Symboliques ne sont PAS supportés par le système de fichiers FAT,
                     de même que le clonage ou la copie intelligente n'est pas supportée par le système de fichiers FAT.
                 </p>
 
@@ -209,11 +199,9 @@
                     </i>
                 </b>sont utilisés pour se référer au bouton droit de la souris et le menu de contexte qui s'affiche
                 quand on clique sur ce bouton (souvent désigné comme le menu contextuel). Sachant que des gens permutent l'usage des
-                boutons de la souris, Microsoft les appelle aussi boutons de souris <i>primaire</i> et <i>secondaire</i>.
-                Nous préférons appeler les boutons de la souris comme bouton de <b>Sélection</b> et
-                bouton d'<b>Action</b> button;
-                et plutôt que d'utiliser des termes comme Menu contextuel, Menu du Shell,
-                Menu droit de la Souris nous utiliserons le terme menu d'<b>Action</b>.
+                boutons de la souris, Microsoft les appelle aussi boutons de souris <i>primaire</i> et <i>secondaire</i>. Nous préférons appeler les boutons de la souris comme bouton de 
+                <b>Sélection</b> et bouton d'<b>Action</b> button;
+                et plutôt que d'utiliser des termes comme Menu contextuel, Menu du Shell, Menu droit de la Souris nous utiliserons le terme menu d'<b>Action</b>.
             </td>
         </tr>
 
@@ -316,7 +304,7 @@
             </td>
 
             <td class="bodytext">
-                Prendre comme cible du lien (Pick Link Source)  fait que les fichiers sélectionnés sont "enregistrés" comme
+                <b>Prendre comme cible du lien</b> (Pick Link Source) fait que les fichiers sélectionnés sont "enregistrés" comme
                 source des liens physiques que vous voulez créer.
                 <br />
                 <br />
@@ -324,10 +312,8 @@
                 <br />
                 <br />
 
-                Pour créer les
-                liens physiques, vous devez choisir un répertoire de destination, et en cliquant sur le
-                bouton d'action de la souris dans le répertoire de destination, un menu
-                pop-up apparaît proposant l'entrée - <b>Coller un lien physique</b>
+                Pour créer les liens physiques, vous devez choisir un répertoire de destination, et en cliquant sur le
+                bouton d'action de la souris dans le répertoire de destination, un menupop-up apparaît proposant l'entrée - <b>Coller un lien physique</b>
                 (ou <b> Drop HardLink</b>
                 <br />
                 <br />
@@ -335,32 +321,25 @@
 
                 <br />
                 <br />
-                En choisissant <b>Coller un lien physique</b> (ou
-                <b>Drop HardLink</b>) vous créerez le lien dans le répertoire de destination.
+                En choisissant <b>Coller un lien physique</b> (ou <b>Drop HardLink</b>) vous créerez le lien dans le répertoire de destination.
                 <br />
                 <br />
 
                 <b>Superposition d'icônes pour les Liens Physiques</b><br />
                 Pour aider à distinguer les liens des fichiers normaux, une <b>icône de superposition</b> est implémentée
                 sur les liens et se caractérise par une flèche rouge superposée.<br /><br />
-                <img src="hardlinkicon.png" width="100" height="101" border="0" alt="Overlay Icon for Symbolic Links"><br /><br />
+                <img src="hardlinkicon.png" alt="Overlay Icon for Symbolic Links">
 
                 <br /><br />
                 Les icônes de superposition des liens peuvent être <a href="#customoverlayicons">personnalisées.</a>
                 <br />
                 <br />
 
-                Sous Windows 2000 et XP
-                les Liens physiques peuvent aussi être créés via un clic sur le bouton d'action
-                dans un "espace vierge" de la fenêtre droite de l'explorateur Windows
-                et en choisissant dans le menu de contexte
-                <b>Coller un lien physique</b> (ou <b>Drop HardLink</b>
-                n'est garantie de fonctionner que dans l'explorateur&nbsp; Windows ;
-                un certain nombre de remplacements de l'Explorateur implémentent des
-                actions de menus spécifiques sur une action dans l'espace vierge qui ne
-                sont pas accessibles à un usage général pour des extensions
-                comme LSE.
-                <br />
+                Sous Windows 2000 et XPles Liens physiques peuvent aussi être créés via un clic sur le bouton d'action
+                dans un "espace vierge" de la fenêtre droite de l'explorateur Windows et en choisissant dans le menu de contexte <b>Coller un lien physique</b> (ou <b>Drop HardLink</b>)
+                A noter que cette façon de faire <b>n'est garantie de fonctionner que dans l'explorateur Windows</b> ;
+                un certain nombre de remplacements de l'Explorateur implémentent des actions de menus spécifiques via une action spécifique dans l'espace vierge mais qui ne
+                sont pas accessibles à un usage général pour des extensions comme LSE.
                 <br />
 
                 <img src="drophardlinkbackground.png" alt="Drop Hardlinks in Background">
@@ -371,12 +350,11 @@
 
         <tr>
             <td class="hanger">
-                <a name="cancelcurrentpicklinkoperation"><b>Annuler l'opération en cours de prendre comme cible du lien</b></a>
+                <a name="cancelcurrentpicklinkoperation"><b>Annuler l'opération en cours de "Prendre comme cible du lien"</b></a>
             </td>
 
             <td class="bodytext">
-                Quand on clique sur le bouton d'action dans le répertoire de destination, en
-                plus de l'option de Coller un lien physique, il est
+                Quand on clique sur le bouton d'action dans le répertoire de destination, enplus de l'option de Coller un lien physique, il est
                 possible d'<b>Oublier la cible du lien </b>(ou<b> Cancel Link Creation</b>).
                 <br />
                 <br />
@@ -393,14 +371,12 @@
             </td>
 
             <td class="bodytext">
-                Since LSE supports <a href="#junctions">Jonctions</a>,
-                <a href="#hardlinkclones">Clones</a> et avec Windows7/8/10 les <a href="#symboliclinks">Liens Symboliques</a>,
+                Comme LSE supporte les <a href="#junctions">Jonctions</a>,
+                <a href="#hardlinkclones">Clones</a> et sous Windows7/8/10 les <a href="#symboliclinks">Liens Symboliques</a>,
                 si un ou plusieurs fichiers/répertoires sont sélectionnés comme liens source ils peuvent être créés comme liens sous plusieurs formes.
                 <br />
                 <br />
-                Pour éviter de surcharger les menus contextuels,
-                un sous-menu contenant les différents types de liens applicables aux répertoires
-                est alors proposé (un lien symbolique, une jonction, une copie intelligente, un miroir intelligent, une copie DeLorean, un clone physique, un clone symbolique).
+                Pour éviter de surcharger les menus contextuels, un sous-menu contenant les différents types de liens applicables aux répertoires est alors proposé. 
                 <br />
                 <br />
 
@@ -418,13 +394,9 @@
             </td>
 
             <td class="bodytext">
-                La création de liens physiques par des glisser-déposer
-                est prise en charge: après avoir sélectionné un ou plusieurs fichiers, vous pouvez les faire
-                glisser vers le répertoire de destination en maintenant enfoncé le
-                bouton d'action ; quand vous le relâchez choisissez <b>Déposer ici</b>
-                dans le menu d'action pour y créer les liens physiques
-                des fichiers sélectionnés dans le répertoire de
-                destination.
+                La création de liens physiques par des glisser-déposer est prise en charge: après avoir sélectionné un ou plusieurs fichiers, vous pouvez les faire
+                glisser vers le répertoire de destination en maintenant enfoncé le bouton d'action ; quand vous le relâchez choisissez <b>Déposer ici</b>
+                dans le menu d'action pour y créer les liens physiquesdes fichiers sélectionnés dans le répertoire de destination.
                 <br />
                 <br />
 
@@ -444,16 +416,13 @@
             </td>
 
             <td class="bodytext">
-                Les fichiers peuvent avoir un lien physique dans le même
-                répertoire que le répertoire source. Parce que les deux entrées dans un répertoire
-                ne peuvent pas avoir le même nom, LSE utilise
-                '$filename - Hardlink.$ext' comme nom du nouveau
-                lien.
+                Les fichiers peuvent 
+                avoir un lien physique dans le même répertoire que le répertoire source. Parce que les deux entrées dans un répertoire ne peuvent pas avoir le même nom, LSE utilise
+                '$filename - Lien physique.$ext' comme nom du nouveau lien.
                 <br />
                 <br />
 
-                Sous Windows XP le comportement est différent et LSE
-                s'y comporte ainsi : 'HardLink of $filename'
+                Sous Windows XP le comportement est différent et LSE s'y comporte ainsi : 'Lien physique de $filename'
                 <br />
                 <br />
 
@@ -461,19 +430,18 @@
                 <br />
                 <br />
 
-                LSE utilise
-                la même syntaxe qu'explorer quand il rencontre de multiples
-                '$filename - Hardlink': Il utilise des numéros pour différentier les
-                liens physiques multiples d'un fichier dans un même répertoire, par exemple
-                <i>$filename - Hardlink (2).$ext.</i>
+                LSE utilise la même syntaxe qu'explorer quand il rencontre de multiples
+                '$filename - Lien physique': Il utilise des numéros pour différentier les liens physiques multiples d'un fichier dans un même répertoire, par exemple
+                <i>$filename - Lien physique (2).$ext.</i>
                 <br /><br />
-                Avec Windows XP ce comportement est différent et les noms sont générés
+                Avec Windows XP ce comportement est un peu différent et les noms sont générés ainsi : <i>'Lien physique de $filename (2).</i> 
                 <br />
                 <br />
 
                 Le mécanisme d' Auto Renommage est également utilisé quand des Jonctions, Clones physiques,
                 Liens Symboliques, Clones Symboliques, Points de montages ou des Copies intelligentes sont créés
-                dans un même répertoire.<br />                <br />
+                dans un même répertoire.<br />
+                <br />
                 <br />
 
                 <img src="autorenamemultpiple.png" alt="autorenamemultpiple.png">
@@ -489,11 +457,8 @@
 
             <td class="bodytext">
                 <a href="http://technet.microsoft.com/en-us/sysinternals/bb896768">Les Jonctions</a>
-                sont une caractéristique de NTFS
-                version 5.0,&nbsp; qui permettent la création de liens
-                entre répertoires. Les Jonctions n'étaient pas
-                supportées par les Versions NTFS
-                4.0
+                sont une caractéristique de NTFS version 5.0,&nbsp; qui permettent la création de liens
+                entre répertoires. Les Jonctions n'étaient pas supportées par les Versions NTFS 4.0
                 <br />
                 <br />
 
@@ -501,25 +466,17 @@
                 <br />
                 <br />
 
-                Les jonctions
-                sont créées de la même manière que les Liens physiques, sauf que
-                la Source du Lien est un répertoire plutôt qu'un fichier. Sélectionnez
-                un répertoire, cliquez sur le bouton droit de la souris et choisissez <b>
-                    Prendre comme cible du lien (Pick Link
-                    Source)
-                </b> dans le menu d'actions, aller dans le
-                répertoire de destination, cliquez sur le bouton d'action, ouvrez le
-                sous-menu <b>Coller ... (Drop As ...)</b> et sélectionnez
-                <b>Une jonction </b>
+                Les jonctions sont créées de la même manière que les Liens physiques, sauf que
+                la Source du Lien est un répertoire plutôt qu'un fichier. Sélectionnez un répertoire, cliquez sur le bouton droit de la souris et choisissez 
+               <b>Prendre comme cible du lien (Pick Link Source)</b> dans le menu d'actions, aller dans le répertoire de destination, cliquez sur le bouton d'action, ouvrez le
+                sous-menu <b>Coller ... (Drop As ...)</b> et sélectionnez <b>Une jonction </b>
                 <br />
                 <br />
 
                 <img src="junctiondrop.png" alt="Drop as Junction">
                 <br />
                 <br />
-                Les jonctions sont marquées
-                par un petit morceau de chaîne en-dessous de l'icône
-                du dossier
+                Les jonctions sont marquées par un petit morceau de chaîne en-dessous de l'icône du dossier
                 <br />
                 <br />
 
@@ -528,36 +485,29 @@
                 <br />
 
 
-                Les jonctions peuvent également être
-                créées par glisser-déposer lorsque les dossiers sélectionnés sont
-                glissés avec le bouton d'action enfoncé vers le répertoire de
-                destination ; quand vous relâchez le bouton droit de la souris, sélectionnez
-                le sous-menu <b>Déposer ici ... (Drop Here ...)</b> puis
-                <b>Une jonction</b>
+                Les jonctions peuvent également être créées par glisser-déposer lorsque les dossiers sélectionnés sont
+                glissés avec le bouton d'action enfoncé vers le répertoire de destination ; quand vous relâchez le bouton droit de la souris, sélectionnez
+                le sous-menu <b>Déposer ici ... (Drop Here ...)</b> puis <b>Une jonction</b>.
                 <br />
                 <br />
 
                 <img src="junctiondrag.png" alt="Create a junction by dragging">
                 <br />
                 <br />
-                Les jonctions peuvent être
-                supprimées comme d'habitude en utilisant la commande Supprimer de l'Explorateur,
-                si Link Shell Extension est installé, car
-                Link Shell Extension implémente un gestionnaire dénommé CopyHook, qui
-                intercepte les commandes Supprimer de l'Explorateur, et ainsi corrige
+
+
+                Les jonctions peuvent être supprimées comme d'habitude en utilisant la commande Supprimer de l'Explorateur, si Link Shell Extension est installé, car
+                Link Shell Extension implémente un gestionnaire dénommé CopyHook, qui intercepte les commandes Supprimer de l'Explorateur, et ainsi corrige
                 les problèmes que rencontre l'Explorateur avec les jonctions.
                 <br />
 
-                Link Shell Extension change la commande Supprimer de
-                l'Explorateur sur les Jonctions en "Dissocier la Jonction", et non pas
+                Link Shell Extension change la commande Supprimer de l'Explorateur sur les Jonctions en "Dissocier la Jonction", et non pas
                 la suppression du contenu interne de la jonction, ce qui semble plus logique.
                 <br /><br />
 
                 <b><a name="junctionwindows7">Windows7/8/10</a>:</b>
-                Dans Windows Vista & Windows7/8/10 l'explorateur connait en natif les Jonctions,
-                aussi il n'y a plus besoin d'intercepter ni de gestionnaire comme  CopyHook. L'Explorateur
-                fonctionne correctement avec les jonctions. C'est aussi la raison pour laquelle le sous-menu
-                <i>Supprimer la jonction</i> n'apparaît pas sous Vista ni Windows7/8/10.
+                Dans Windows Vista & Windows7/8/10 l'explorateur connait en natif les Jonctions, aussi il n'y a plus besoin d'intercepter ni de gestionnaire comme  CopyHook. L'Explorateur
+                fonctionne correctement avec les jonctions. C'est aussi la raison pour laquelle le sous-menu <i>Supprimer la jonction</i> n'apparaît pas sous Vista ni Windows7/8/10.
                 <br /><br />
 
                 Pour afficher l'origine d'une jonction, la <a href="#referencecount">colonne Référence</a> d'une jonction affiche
@@ -569,12 +519,9 @@
                 <br />
                 <br />
 
-                Les jonctions sont
-                une fonctionnalité puissante, mais qui peut aussi être une <b>fonctionnalité dangereuse</b> sans
-                les précautions de l'extension Link Shell Extension pour les versions de Windows avant Windows Vista.
-                En natif, l'explorateur livré avant Windows Vista devient instable si vous utilisez une suppression
-                ou un renommage standard dans les dossiers de jonction. L'explorateur
-                de Windows se termine toujours brutalement et en fonction des paramètres du système,
+                Les jonctions sont une fonctionnalité puissante, mais qui peut aussi être une <b>fonctionnalité dangereuse</b> sans
+                les précautions de l'extension Link Shell Extension pour les versions de Windows avant Windows Vista. En natif, l'explorateur livré avant Windows Vista devient instable si vous utilisez une suppression
+                ou un renommage standard dans les dossiers de jonction. L'explorateur de Windows se termine toujours brutalement et en fonction des paramètres du système,
                 il peut en être de même sous Windows XP.
                 <br />
                 <br />
@@ -647,8 +594,7 @@
                 <br />
                 <br />
 
-                Quand le <a href="#backupmode">mode sauvegarde</a> est sélectionné, les Listes de Contrôles d'Accès (ou "ACL"s)
-                des Jonctions/Liens Symboliques/Points de Montage sont préservées.
+                Quand le <a href="#backupmode">mode sauvegarde</a> est sélectionné, les Listes de Contrôles d'Accès (ou "ACL"s) des Jonctions/Liens Symboliques/Points de Montage sont préservées.
                 <br />
                 <br />
             </td>
@@ -683,6 +629,7 @@
                 <p>
                     On peut obtenir la même chose via un Glisser et Déposer sur des Liens symboliques entre répertoires, Jonctions et Points de Montage.
                 </p>
+
                 <p>
                     Quand le <a href="#backupmode">mode de sauvegarde</a> est sélectionné les Listes de Contrôles d'Accès (ou "ACL"s) des Jonctions/Liens Symboliques/Points de Montage sont préservés.
                 </p>
@@ -700,6 +647,8 @@
                 des liens physiques et les relations internes de type jonctions/liens symboliques avec les sources, et
                 recrée cette structure de liens physiques internes et les jonctions/liens symboliques en relation avec les
                 emplacements de destination originaux :
+                <br />
+                <br />
 
                 <p>
                     Avec des liens physiques, cela se comporte comme suit
@@ -720,8 +669,7 @@
                             <b>Fichiers normaux</b>
                         </td>
                         <td>
-                            Le fichier B est un fichier normal. Il est copié comme n'importe quel autre outil de
-                            copie le ferait.
+                            Le fichier B est un fichier normal. Il est copié comme n'importe quel autre outil de copie le ferait.
                             <br />
                             <br />
                         </td>
@@ -733,8 +681,7 @@
                         <td>
                             Les fichiers E et F sont liés entre eux. Dans la terminologie de LSE
                             on les nomme <i>Liens Physiques Saturés</i>, car le compteur de liens,
-                            qui ici vaut 2, correspond au nombre d'occurrences dans le répertoire 'Folder 1', qui ici
-                            aussi vaut 2.
+                            qui ici vaut 2, correspond au nombre d'occurrences dans le répertoire 'Folder 1', qui ici aussi vaut 2.
                             <br />
                             <br />
 
@@ -742,6 +689,7 @@
                                 En général: Un lien physique est dit <i>Saturé</i> par rapport à un répertoire <i>F</i>,
                                 si le nombre d'occurrences dans le répertoire <i>F</i> correspond au compteur de référence.
                             </p>
+
                             <p>
                                 Les liens physiques saturés peuvent être complètement copiés via la Copie Intelligente.
                             </p>
@@ -752,10 +700,8 @@
                             <b>Unsaturated Hardlinks</b>
                         </td>
                         <td>
-                            Les fichiers A, C, D sont liés entre eux. Dans la terminologie de LSE
-                            on les nomme <i>Liens Physiques Non Saturés</i>, car le compteur de liens,
-                            qui ici vaut 3, ne correspond pas au nombre d'occurrences dans le répertoire 'Folder 1', qui
-                            ici vaut 2. Seuls C et D sont dans Folder 1.
+                            Les fichiers A, C, D sont liés entre eux. Dans la terminologie de LSE on les nomme <i>Liens Physiques Non Saturés</i>, car le compteur de liens,
+                            qui ici vaut 3, ne correspond pas au nombre d'occurrences dans le répertoire 'Folder 1', qui ici vaut 2. Seuls C et D sont dans Folder 1.
                             <br />
                             <br />
 
@@ -776,11 +722,9 @@
                 </table>
                 <br />
                 <br />
-                <p>
-                    <a name="innerjunction" />Avec des jonctions ou des liens symboliques vers des répertoires, <a href="#outerjunctionhandling">
-                        le comportement par défaut
-                    </a> durant une copie intelligente est le suivant :
-                </p>
+                <a name="innerjunction" />Avec des jonctions ou des liens symboliques vers des répertoires, <a href="#outerjunctionhandling"> le comportement par défaut </a> durant une copie intelligente est le suivant :
+                <br />
+                <br />
 
                 <img src="junctionshowto.png" alt="Behaviour for inner junctions">
                 <br />
@@ -795,8 +739,7 @@
                             <b>Répertoires Normaux</b>
                         </td>
                         <td>
-                            Le répertoire 'Folder 3' est un répertoire normal. Il est copié
-                            avec son contenu comme le ferait tout autre outil de copie.
+                            Le répertoire 'Folder 3' est un répertoire normal. Il est copié avec son contenu comme le ferait tout autre outil de copie.<br />
                             <br />
                             <br />
                         </td>
@@ -807,10 +750,11 @@
                         </td>
                         <td>
                             Le répertoire 'Inner Junction/Symlink' est lié au répertoire cible 'Inner
-                            Junction/Symlink Target'. Dans la terminologie de LSE ce type de répertoire est nommé <i>
-                                Inner Junction/Symlink
-                            </i>, car il pointe vers un répertoire qui est dans le même
+                            Junction/Symlink Target'. Dans la terminologie de LSE ce type de répertoire est nommé <i>Inner Junction/Symlink</i>, car il pointe vers un répertoire qui est dans le même
                             sous répertoire père 'Folder 1'.
+                            <br />
+                            <br />
+
                             <p>
                                 Les<i> Jonctions/Liens Symboliques Internes</i> sont restaurés correctement par une Copie Intelligente dans l'emplacement de
                                 destination.
@@ -826,6 +770,9 @@
                             cible 'Outer Junction/Symlink Target'. Dans la terminologie de LSE ce type de répertoire est nommé
                             <i>Jonction/Lien Symbolique Externe</i>, car il pointe vers un répertoire
                             qui est en parallèle et donc en dehors du répertoire père 'Folder 1'.
+                            <br />
+                            <br />
+
                             <p>
                                 Les <i>Jonctions/Liens Symboliques Externes</i> peuvent être traités de trois façons différentes. Voir SVP
                                 la section sur le <a href="#outerjunctionhandling">Traitement des Jonctions/Liens Symboliques Externes.</a>
@@ -833,19 +780,17 @@
                         </td>
                     </tr>
                 </table>
-                <p>
-                    Windows 7/8/10 et Windows Vista supportent les Liens Symboliques qui se comportent comme suit durant
-                    une Copie Intelligente :
-                </p>
+                Windows 7/8/10 et Windows Vista supportent les Liens Symboliques qui se comportent comme suit durant
+                une Copie Intelligente :
+                <br />
+                <br />
 
                 <img src="symboliclinkhowto.png" alt="Behaviour for inner symbolic links">
                 <br />
                 <br />
 
-                <p>
-                    En observant de près l'image ci-dessus on peut voir trois types différents de fichiers/liens
-                    symboliques :
-                </p>
+                En observant de près l'image ci-dessus on peut voir trois types différents de fichiers/liens
+                symboliques :
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
                     <tr>
                         <td class="hanger2">
@@ -860,41 +805,31 @@
                     </tr>
                     <tr>
                         <td class="hanger2">
-                            <b>
-                                Liens Symboliques<br />
-                                Internes
-                            </b>
+                            <b>Liens Symboliques<br /> Internes</b>
                         </td>
                         <td>
                             Le lien symbolique 'Inner Symlink' a pour cible 'Inner
-                            Symlink Target'. Dans la terminologie de LSE ce type de lien symbolique est nommé <i>
-                                Lien
-                                Symbolique Interne
-                            </i>, car il pointe vers un fichier qui est dans le même répertoire père
-                            'Folder 1'.
-                            <p>
-                                Les <i>Liens Symboliques Internes</i> sont restaurés correctement par une Copie Intelligente dans l'emplacement de destination.
-                            </p>
+                            Symlink Target'. Dans la terminologie de LSE ce type de lien symbolique est nommé <i>Lien Symbolique Interne</i>, car il pointe vers un fichier qui est 
+                            dans le même répertoire père 'Folder 1'. Les <i>Liens Symboliques Internes</i> sont restaurés correctement par une Copie Intelligente dans l'emplacement de destination.
+                            <br />
+                            <br />
                             <br />
                             <br />
                         </td>
                     </tr>
                     <tr>
                         <td class="hanger2">
-                            <b>
-                                Liens Symboliques<br />
-                                Externe
-                            </b>
+                            <b>Liens Symboliques<br /> Externes</b>
                         </td>
                         <td>
                             Le lien symbolique 'Outer Symlink' a pour cible
                             'Outer Symlink Target'. Dans la terminologie de LSE ce type de lien symbolique est nommé
                             <i>Lien Symbolique Externe</i>, car il pointe vers un fichier qui est en parallèle
                             et donc en dehors du répertoire père 'Folder 1'.
+                            <br />
+                            <br />
                             <p>
-                                Les <i>Liens Symboliques Externes</i> sont pris en charge par la Copie Intelligente via le traitement des<a href="#outerjunctionhandling">
-                                    Jonctions/Liens Symboliques Externes
-                                </a>.
+                                Les <i>Liens Symboliques Externes</i> sont pris en charge par la Copie Intelligente via le traitement des<a href="#outerjunctionhandling">Jonctions/Liens Symboliques Externes</a>.
                             </p>
                         </td>
                     </tr>
@@ -908,10 +843,7 @@
                 <br />
                 <br />
                 <p>
-                    ...naviguer jusqu'au répertoire de destination, appuyez sur le bouton d'action, ouvrez le sous-menu <b>
-                        Déposer comme
-                        ...
-                    </b> et sélectionnez <b>Copie intelligente </b>:
+                    ...naviguer jusqu'au répertoire de destination, appuyez sur le bouton d'action, ouvrez le sous-menu <b>Déposer comme...</b> et sélectionnez <b>Copie intelligente </b>:
                 </p>
 
                 <img src="smartcopydrop.png" alt="Drop Smart Copy">
@@ -925,41 +857,46 @@
                     des répertoires/jonctions/liens symboliques sont également restaurés dans les emplacements de
                     destination respectifs.
                 </p>
+
                 <p>
                     En raison de la création de liens physiques internes/jonctions/liens symboliques, cette fonctionnalité
                     n'est disponible que sur des volumes NTFS.
                 </p>
+
                 <p>
                     Si une Copie Intelligente dure plus de 250msec une barre de progression affiche l'état de l'opération
                     de copie
                 </p>
+
                 <p>
                     La Copie Intelligente traite aussi tous les flux (ou streams) alternatifs de fichiers NTFS
                 </p>
+
                 <p>
                     Si des éléments sont déjà présents dans la destination, la Copie Intelligente ne fait la recopie que si
                     les Fichiers/Liens Symboliques/Jonctions/Points de Montage sont plus récents que ceux qui existent déjà.
                 </p>
+
                 <p>
                     Quand on restaure des liens symboliques sous Windows7/8/10 et Windows Vista, LSE redirige l'opération
                     de LSEUacHelper.exe vers lui-même, car la création de liens symbolique
                     nécessite une élévation de privilèges, et donc amène la fameuse boîte de dialogue <a href="#VistaAndUAC">UAC</a>.
                 </p>
+
                 <p>
                     LSE ne redirige ce LSEUacHelper.exe que <b>seulement</b> si un lien symbolique est dans/sous le répertoire sélectionné,
                     et ainsi vous économise des demandes de l'UAC si vous n'avez pas de liens symboliques à l'intérieur de votre
                     sélection
                 </p>
+
                 <p>
                     La Copie Intelligente crée par défaut des liens symboliques <a href="#relativevsabsolutesymboliclinks">relatifs</a>
                     lors de l'opération de copie.
                 </p>
+
                 <p>
-                    <b>
-                        Ligne de commande<br /><br />
-                    </b>La fonctionnalité de Copie Intelligente est également disponible en ligne de commande depuis l'utilitaire <a href="http://schinagl.priv.at/nt/ln/ln.html">
-                        ln.exe
-                    </a> via le commutateur de ligne de commande --copy.
+                    <b>Ligne de commande<br /><br /></b>La fonctionnalité de Copie Intelligente est également disponible en ligne de commande depuis l'utilitaire 
+                    <a href="http://schinagl.priv.at/nt/ln/ln.html">ln.exe</a> via le commutateur de ligne de commande --copy.
                 </p>
 
                 <br />
@@ -977,13 +914,9 @@
                 </a>
             </td>
             <td>
-                Lors d'une <a href="#smartcopy">Copie Intelligente</a>, un <a href="#smartmirror">
-                    Miroir Intelligent
-                </a>, une <a href="#deloreancopy">Copie Delorean</a> et un <a href="#hardlinkclones">
-                    Clone
-                </a> ce qu'on appelle <a href="#innerjunction">Répertoires Jonctions/Liens symboliques sortants</a>
-                nécessite un traitement particulier. Il y a trois façons de faire avec ces répertoires Jonctions/Liens symboliques sortants
-                :
+                Lors d'une <a href="#smartcopy">Copie Intelligente</a>, un <a href="#smartmirror">Miroir Intelligent</a>, une <a href="#deloreancopy">Copie Delorean</a> et un <a href="#hardlinkclones">Clone</a> 
+                ce qu'on appelle <a href="#innerjunction">Répertoires Jonctions/Liens symboliques sortants</a>
+                nécessite un traitement particulier. Il y a trois façons de faire avec ces répertoires Jonctions/Liens symboliques sortants :
                 <br />
                 <br />
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
@@ -992,8 +925,7 @@
                             <b>Supprimer</b>
                         </td>
                         <td>
-                            <i>Supprimer</i> coupe les liens sortants vers les répertoires Jonctions/Liens symboliques
-                            dans la destination
+                            <i>Supprimer</i> coupe les liens sortants vers les répertoires Jonctions/Liens symboliques dans la destination
                             <br />
                             <br />
 
@@ -1004,18 +936,16 @@
                             <br />
                             <br />
                             <p>
-                                Dans l'exemple ci-dessus <i>Folder1</i> est copié vers <i>Destination/Folder1</i>, mais
-                                <i>la Jonction/Lien symbolique</i> n'est pas disponible dans la destination, car <i>
-                                    Folder1/Outer
-                                    Junction/Symlink
-                                </i> pointe vers la cible <i>Folder0/Outer Junction/Symlink Target</i>,
+                                Dans l'exemple ci-dessus <i>Folder1</i> est copié vers <i>Destination/Folder1</i>, mais <i>la Jonction/Lien symbolique</i> n'est pas disponible dans la destination, 
+                                car <i>Folder1/Outer Junction/Symlink</i> pointe vers la cible <i>Folder0/Outer Junction/Symlink Target</i>,
                                 qui n'est pas situé en dessous de <i>Folder1</i>.
-                            </p>
                             <p>
-                                L'objectif derrière cette découpe des répertoires sortants Jonctions/Liens symboliques est d'obtenir une copie
-                                pure lors d'une Copie Intelligente, un Miroir Intelligent, une copie Delorean and et un Clonage sans connexions
-                                vers la source.
                             </p>
+                            L'objectif derrière cette découpe des répertoires sortants Jonctions/Liens symboliques est d'obtenir une copie
+                            pure lors d'une Copie Intelligente, un Miroir Intelligent, une copie Delorean and et un Clonage sans connexions
+                            vers la source.
+                            </p>
+
                             <p>
                                 <b>Activation de la suppression pour les Jonctions/Liens symboliques sortants</b><br />
                                 <i>Supprimer</i> peut être sélectionné via <a href="#configuration">l'outil de configuration.</a>
@@ -1027,10 +957,12 @@
                             <b>Exprimer</b>
                         </td>
                         <td>
-                            <i>Unroll</i> follows Outer Junctions/Symlink Directories
                             <i>Exprimer</i> suit les répertoires Jonctions/Liens symboliques sortants
                             et reconstruit le contenu de ces répertoires Jonctions/Liens symboliques sortants à l'intérieur de la hiérarchie
                             de la destination.
+                            <br />
+                            <br />
+
                             <p>
                                 <i>Exprimer</i> s'applique également aux Liens Symboliques vers des Fichiers, ce qui signifie, que cet "Exprimer" va
                                 faire en sorte que la cible de ce lien sortant soit copiée vers la destination.
@@ -1041,30 +973,31 @@
                             <br />
 
                             <p>
-                                Dans l'exemple ci-dessus <i>Folder1</i> est copié vers <i>Destination/Folder1</i>, et
-                                <i>Outer Junction/Symlink</i> et tous les fichiers/répertoires en dessous de la cible <i>
-                                    Outer Junction/Symlink
-                                </i> sont copiés vers le répertoire <i> Outer Junction/Symlink</i>
-                                de la destination.
+                                Dans l'exemple ci-dessus <i>Folder1</i> est copié vers <i>Destination/Folder1</i>, et <i>Outer Junction/Symlink</i> et tous les fichiers/répertoires en dessous de la cible 
+                                <i>Outer Junction/Symlink</i> sont copiés vers le répertoire <i> Outer Junction/Symlink</i> de la destination.
                             </p>
+
                             <p>
                                 L'objectif derrière cet "Exprimer" les répertoires sortants Jonctions/Liens Symboliques est de faire en sorte
-                                que tout ce qui est connecté dans la source soit reconstruit en copie indépendante dans la destination.
-                                Cela ressemble au truc du 'cheveu de l'éléphant': Tirez sur un cheveu d'un éléphant,
+                                que tout ce qui est connecté dans la source soit reconstruit en copie indépendante dans la destination. Cela ressemble au truc du 'cheveu de l'éléphant': Tirez sur un cheveu d'un éléphant,
                                 et vous obtenez tout l'éléphant.
                             </p>
+
                             <p>
                                 <i>Exprimer</i> est le comportement par défaut pour la Copie Intelligente, Miroir Intelligent, Copie Delorean
                                 et Clonage.
                             </p>
-                            <br /><br />
-                            <b>Remarques avancées sur "Exprimer"</b>
+
+                            <p>
+                                <b>Remarques avancées sur "Exprimer"</b>
+                            </p>
                             <p>
                                 La figure ci-dessus n'était que le cas le plus simple, car <i>Exprimer</i> peut faire bien plus
                                 quand il rencontre des situations complexes. Prenons le cas de jonctions/liens symboliques sortants,
                                 qui contiennent eux-mêmes des jonctions/liens symboliques sortants, qui sont internes à la
                                 première jonction/lien symbolique sortante :
                             </p>
+
                             <img src="outerjunctionsunrollinner.png" alt="Unroll Inner Outer Junctions" />
                             <br />
                             <br />
@@ -1074,12 +1007,15 @@
                                 est une jonction interne de la cible <i>Outer Junction/Symlink</i>, et la relation jonction/lien symbolique
                                 est restaurée dans la destination.
                             </p>
-                            <br /><br />
+
                             <p>
                                 Ce type de <b>bouclage</b> peut être encore plus complexe :
                             </p>
-                            <img src="outerjunctionsunrollinnernested.png" width="541" height="410" border="0"
-                                 alt="Unroll Inner Outer Junctions">
+
+                            <img src="outerjunctionsunrollinnernested.png" alt="Unroll Inner Outer Junctions" />
+                            <br />
+                            <br />
+
                             <p>
                                 Dans l'exemple ci-dessus <i>Folder1</i> est copié vers <i>Destination/Folder1</i>, et
                                 <i>Outer Junction/Symlink</i> est exprimé comme désiré, mais alors ça se complique
@@ -1088,8 +1024,7 @@
                                 vous serez creusé la tête sur l'exemple ci-dessus, vous comprendrez. Ce n'est pas simple, je sais,
                                 mais c'est nécessaire pour Exprimer correctement.
                             </p>
-                            <br />
-                            <br />
+
                             <p>
                                 Et la complexité s'accroit si <b>des liens symboliques sur fichiers</b> sont à l'intérieur de l'expression des
                                 jonctions/liens symboliques sortants :
@@ -1101,20 +1036,16 @@
 
                             <p>
                                 Dans l'exemple ci-dessus <i>Folder1</i> est copié vers <i>Destination/Folder1</i>, et
-                                <i>Outer Junction/Symlink</i> est exprimé comme désiré, mais il contient <i>
-                                    Inner
-                                    Outer Symlink
-                                </i> qui pointe vers <i>Inner Outer Symlink Target</i> et c'est
+                                <i>Outer Junction/Symlink</i> est exprimé comme désiré, mais il contient <i>Inner Outer Symlink</i> qui pointe vers <i>Inner Outer Symlink Target</i> et c'est
                                 une jonction/lien symbolique interne de la cible <i>Outer Junction/Symlink Target</i>
                             </p>
+
                             <p>
                                 Mais il vaut le coup de signaler que le Lien Symbolique <i>Outer Symlink</i>, en définitive
-                                devrait être un lien symbolique sortant, mais comme son répertoire-parent cible <i>
-                                    Outer Junction/Symlink
-                                    Target
-                                </i> est exprimé, <i>Outer Symlink</i> devient un lien symbolique interne de
+                                devrait être un lien symbolique sortant, mais comme son répertoire-parent cible <i>Outer Junction/Symlink Target</i> est exprimé, <i>Outer Symlink</i> devient un lien symbolique interne de
                                 <i>Folder1</i>.
                             </p>
+
                             <p>
                                 <i>File1 Symlink</i> est aussi un lien symbolique sortant, mais son répertoire-parent cible
                                 <i>Folder2</i> n'a pas autant de chance pour être exprimé, aussi dans la destination <i>File1 Symlink</i>
@@ -1145,6 +1076,7 @@
                             <img src="outerjunctionsunrollcircularity.png" alt="Unroll Junctions Circularities">
                             <br />
                             <br />
+
                             <p>
                                 Dans l'exemple ci-dessus <i>Folder1</i> est copié via l'option --unroll vers <i>Destination/Folder1</i>.
                                 Les opérations de Copie Intelligente/Miroir Intelligent et Copie Delorean peuvent traiter les circularités
@@ -1152,11 +1084,11 @@
                                 affectés.
                             </p>
 
-                            <p>
-                                Les Jonctions/Liens Symboliques peuvent également pointer vers des disques FAT ou d'autres disques NTFS exigeant
-                                en prérequis un unique Disk-IDs sur tous les disques, qui sont chaînés ensemble via des Jonctions/Liens
-                                Symboliques :
-                            </p>
+                            Les Jonctions/Liens Symboliques peuvent également pointer vers des disques FAT ou d'autres disques NTFS exigeant
+                            en prérequis un unique Disk-IDs sur tous les disques, qui sont chaînés ensemble via des Jonctions/Liens
+                            Symboliques :
+                            <br />
+                            <br />
 
                             <img src="outerjunctionsunrolldiskid.png" alt="Unroll Junctions Unique DiskID">
                             <br />
@@ -1167,11 +1099,12 @@
                                 trouvé sur deux volumes NTFS différents. Pour pallier à ceci toutes les opérations utilisent le disk-id
                                 et le file-id pour marque le ciblage des liens physiques.
                             </p>
+
                             <p>
                                 D'autre part il n'est pas permis d'avoir un disk-id de 0xffff-ffff, car les algorithmes
                                 utilisent cela comme indicateur interne sur un disque FAT.
                             </p>
-                            <br /><br />
+
                             <p>
                                 L'option Unroll permet également de pointer de multiples jonctions sur une même localisation de cible,
                                 ce qui fait que les algorithmes traversent plusieurs fois les mêmes éléments :
@@ -1202,7 +1135,6 @@
                             L'exemple de l'image ci-dessus montre une telle situation
                             <ul>
                                 <li>
-                                <li>
                                     X:\Src\Foo\Junction/Symlink est une jonction sur une Machine Réseau, qui pointe vers X:\Src\Foo\Folder.
                                     C'est une Jonction valide.
                                 </li>
@@ -1228,8 +1160,7 @@
                             <b><a name="splice">Préserver</a></b>
                         </td>
                         <td>
-                            <i>Préserver</i> reconnecte les répertoires Jonctions/Liens symboliques sortants
-                            de la destination vers leurs cibles originales.
+                            <i>Préserver</i> reconnecte les répertoires Jonctions/Liens symboliques sortants de la destination vers leurs cibles originales.
                             <br />
                             <br />
 
@@ -1241,14 +1172,15 @@
                                 <i>Outer Junction/Symlink</i> est disponible dans la destination en tant que jonction, qui
                                 pointe vers l'emplacement original de la cible <i>Outer Junction/Symlink Target</i>.
                             </p>
+
                             <p>
                                 L'objectif derrière ce maintien des répertoires Jonctions/Liens Symboliques vers leurs emplacements
                                 originaux est d'obtenir une copie lors d'une Copie Intelligente, mais de réutiliser les sources des répertoires
                                 Jonctions/Liens symboliques sortants.
                             </p>
 
-                            <a name="mountpointcopy"></a>
                             <p>
+                                <a name="mountpointcopy"></a>
                                 La fonctionnalité <i>Préserver</i> est aussi utile lorsque des points de montage doivent être copiés Les points de montage sont similaires
                                 aux Jonctions, mais pointent vers des chemins qui commencent toujours par \\?\VolumeGuid{}.
                             </p>
@@ -1344,8 +1276,7 @@
                         </td>
 
                         <td>
-                            Le répertoire 'Folder 3' est un répertoire normal.
-                            Il sera délacé avec son contenu directement.<p>
+                            Le répertoire 'Folder 3' est un répertoire normal. Il sera déplacé avec son contenu directement.<p>
                         </td>
                     </tr>
 
@@ -1375,10 +1306,8 @@
                             pointe vers un répertoire qui si situe sur une branche parallèle et donc en dehors de la racine 'Folder 1'.
                             <p>
                                 Les <i>Jonctions / Liens Symboliques Externes</i> ne sont pas affectés par le Déplacement Intelligent et restent donc connectés à leurs cibles respectives.
-                                Notez SVP que ce n'est pas la même chose dans une Copie Intelligente, qui a <a href="#outerjunctionhandling">
-                                    3 façons
-                                    différentes
-                                </a> de se comporter avec les Jonctions/Liens Symboliques Externes.
+                                Notez SVP que ce n'est pas la même chose dans une Copie Intelligente, qui a <a href="#outerjunctionhandling"> 3 façons différentes </a>
+                                de se comporter avec les Jonctions/Liens Symboliques Externes.
                             </p>
                         </td>
                     </tr>
@@ -1389,13 +1318,12 @@
                     de particulier à faire. Déplacez simplement un répertoire à la souris dans l'explorateur vers sa destination finale, ou par exemple pressez F2
                     dans l'Explorateur pour renommer un répertoire et LSE interceptera cette opération sous le capot, prendra soin des
                     jonctions ou liens symboliques, et les mettra à jour.
-                </p>
-
                 <p>
+
                     Intercepter une opération de déplacement ou de renommage signifie que LSE prend le contrôle avant le renommage/déplacement, et de façon récursive
                     recherche dans le répertoire sélectionné les jonctions ou liens symboliques. Toutefois, la recherche dans un grand nombre de fichiers et
                     répertoires prend du temps, aussi LSE affichera une barre de progression dès que la recherche prend plus de 250msec.
-                </p>
+                <p>
                 <p>
                     <img src="smartmoveprogress.png" alt="Barre de progrès pendant un Déplacement Intelligent">
                 </p>
@@ -1406,9 +1334,7 @@
                 <br />
 
                 <p>
-                    Le Déplacement Intelligent crée des liens symboliques
-                    <a href="#relativevsabsolutesymboliclinks">relatifs</a>
-                    durant une opération de Déplacement Intelligent.
+                    Le Déplacement Intelligent crée des liens symboliques <a href="#relativevsabsolutesymboliclinks">relatifs</a> durant une opération de Déplacement Intelligent.
                 </p>
 
                 <b>Activer/Désactiver le Déplacement Intelligent</b><br />
@@ -1417,8 +1343,7 @@
                 <p>
                 <p>
                     <b>Ligne de Commande<br /></b>
-                    La fonctionnalité de Déplacement Intelligent est également accessible en ligne de commande par
-                    <a href="http://schinagl.priv.at/nt/ln/ln.html">ln.exe</a>
+                    La fonctionnalité de Déplacement Intelligent est également accessible en ligne de commande par <a href="http://schinagl.priv.at/nt/ln/ln.html">ln.exe</a>
                     via le commutateur de ligne de commande --move.
                 </p>
                 <br /><br />
@@ -1440,8 +1365,7 @@
                 </p>
                 <br /><br />
 
-                Une arborescence de répertoire peut contenir des Jonctions ou des
-                Liens Symboliques. Le processus de clonage recrée les <a href="#innerjunction">jonctions/liens symboliques internes</a>
+                Une arborescence de répertoire peut contenir des Jonctions ou des Liens Symboliques. Le processus de clonage recrée les <a href="#innerjunction">jonctions/liens symboliques internes</a>
                 dans la localisation de destination de façon similaire à ce que la Copie Intelligente réalise.
 
                 <p>
@@ -1452,6 +1376,7 @@
                 <a href="#outerjunctionhandling">Gestion des Jonctions/Liens Symboliques Externes</a> par exemple.<p>
 
                     Avec Windows Vista et Windows7/8/10 ce processus de clonage est également disponible avec des Liens Symboliques en plus des Liens Physiques.
+
                 <p>
                     <img src="symlinkssmart.png" alt="Symbolic Link Clones the smart way" />
                 </p><br /><br />
@@ -1467,8 +1392,7 @@
                 </p>
 
                 <p>
-                    ...naviguer vers le répertoire de destination, pressez le bouton d'action, ouvrez le
-                    sous-menu <b>Coller ...</b> et sélectionnez <b>un clone physique</b>:
+                    ...naviguer vers le répertoire de destination, pressez le bouton d'action, ouvrez le sous-menu <b>Coller ...</b> et sélectionnez <b>un clone physique</b>:
                 </p>
 
                 <p>
@@ -1476,8 +1400,7 @@
                 </p>
 
                 <p>
-                    ... ou alors avec Windows Vista ou Windows7/8/10 choisissez
-                    un clone symbolique pour créer des clones de la structure arborescente existante.
+                    ... ou alors avec Windows Vista ou Windows7/8/10 choisissez un clone symbolique pour créer des clones de la structure arborescente existante.
                 </p>
 
                 <p>
@@ -1530,8 +1453,7 @@
                 <p>
                     <b>Ligne de Commande<br /></b>
                     La fonctionnalité de Clonage via des Liens Physiques ou des Liens Symboliques est également accessible par
-                    l'outil en ligne de commande
-                    <a href="http://schinagl.priv.at/nt/ln/ln.html">ln.exe</a>
+                    l'outil en ligne de commande <a href="http://schinagl.priv.at/nt/ln/ln.html">ln.exe</a>
                     via le commutateur de ligne de commande --recursive.
                 </p>
 
@@ -1593,8 +1515,7 @@
                 <a name="deloreancopy"><b>Copie DeLorean</b></a>
             </td>
             <td class="bodytext">
-                Une Copie DeLorean est une façon de créer des sauvegardes incrémentales
-                en utilisant une combinaison de Clones Physiques et de Copies Intelligentes.
+                Une Copie DeLorean est une façon de créer des sauvegardes incrémentales en utilisant une combinaison de Clones Physiques et de Copies Intelligentes.
                 <p>
                     La figure suivante donne un aperçu de ce qu'est une Copie DeLorean
                 <p>
@@ -1611,19 +1532,15 @@
                             <br />
                         </td>
                         <td>
-                            Le répertoire <i>Source(t)</i> est copié initialement vers <i>
-                                InitialBackup
-                            </i>. C'est ce qui est montré par la flèche bleue
+                            Le répertoire <i>Source(t)</i> est copié initialement vers <i>InitialBackup</i>. C'est ce qui est montré par la flèche bleue
+                            <br />
                             <br />
                             <p>
                         </td>
                     </tr>
                     <tr>
                         <td class="hanger2">
-                            <b>
-                                Des changements<br />
-                                se produisent
-                            </b>
+                            <b>Des changements<br /> se produisent</b>
                             <br />
                             <br />
                         </td>
@@ -1682,10 +1599,7 @@
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
                     <tr>
                         <td class="hanger2">
-                            <b>
-                                Des changements<br />
-                                se produisent
-                            </b>
+                            <b>Des changements<br /> se produisent</b>
                             <br />
                             <br />
                         </td>
@@ -1789,9 +1703,7 @@
                 <p>
                 <p>
                     <b>Ligne de Commande<br /></b>
-                    La fonctionnalité de Copie DeLorean est également disponible via <a href="http://schinagl.priv.at/nt/ln/ln.html#deloreancopy">
-                        ln.exe
-                    </a>
+                    La fonctionnalité de Copie DeLorean est également disponible via <a href="http://schinagl.priv.at/nt/ln/ln.html#deloreancopy">ln.exe</a>
                 </p>
                 <br /><br />
             </td>
@@ -1886,16 +1798,9 @@
                 </p><br />
 
                 <p>
-                    Les points de montage de volume
-                    sont créés de la même façon que des liens physiques, à l'exception que
-                    la Source du Lien est un volume plutôt qu'un fichier. Sélectionnez un
-                    volume local, cliquez sur le bouton droit de la souris, choisissez <b>
-                        Prendre comme
-                        Source du lien
-                    </b> dans le menu d'action, naviguez vers le répertoire
-                    de destination, cliquez sur le bouton d'action, ouvrez le sous-menu
-                    <b>Coller ...</b> et sélectionnez
-                    <b>Un point de montage</b>:
+                    Les points de montage de volume sont créés de la même façon que des liens physiques, à l'exception que la Source du Lien est un volume plutôt qu'un fichier. Sélectionnez un
+                    volume local, cliquez sur le bouton droit de la souris, choisissez <b>Prendre comme Source du lien</b> dans le menu d'action, naviguez vers le répertoire
+                    de destination, cliquez sur le bouton d'action, ouvrez le sous-menu <b>Coller ...</b> et sélectionnez <b>Un point de montage</b>:
                 </p>
 
                 <p>
@@ -1903,12 +1808,8 @@
                 </p><br />
 
                 <p>
-                    Les points de montages peuvent aussi être
-                    créés par Glisser-Déposer lorsque le volume local sélectionné est
-                    glissé avec le bouton d'action enfoncé vers un répertoire de destination ;
-                    quand vous relâchez le bouton droit de la souris, sélectionnez le sous-menu
-                    <b>Coller ...</b> puis
-                    <b>Un point de montage.</b>
+                    Les points de montages peuvent aussi être créés par Glisser-Déposer lorsque le volume local sélectionné est glissé avec le bouton d'action enfoncé vers un répertoire de 
+                    destination ; quand vous relâchez le bouton droit de la souris, sélectionnez le sous-menu <b>Coller ...</b> puis <b>Un point de montage.</b>
                 </p>
 
                 <p>
@@ -1917,9 +1818,7 @@
 
 
                 <p>
-                    Les points de montage peuvent être
-                    supprimés en utilisant la commande "Démonter le volume" depuis l'Explorateur comme
-                    d'habitude.
+                    Les points de montage peuvent être supprimés en utilisant la commande "Démonter le volume" depuis l'Explorateur comme d'habitude.
                 </p>
 
                 <p>
@@ -1955,22 +1854,15 @@
             </td>
 
             <td class="bodytext">
-                Comme décrit dans les
-                <a href="#backgrounders">fiches d'informations</a> à l'intérieur
-                du flux de données par &#8220;défaut&#8221; de tous les objets de données
-                NTFS maintient un compteur référençant combien de fois une entrée de répertoire NTFS
-                se réfère à un objet. Dans la plupart des cas chaque entrée se
-                réfèrera à un répertoire différent, bien qu'il soit possible d'avoir
-                des liens multiple vers un même objet de données dans un répertoire,
+                Comme décrit dans les <a href="#backgrounders">fiches d'informations</a> à l'intérieur du flux de données par &#8220;défaut&#8221; de tous les objets de données
+                NTFS maintient un compteur référençant combien de fois une entrée de répertoire NTFS se réfère à un objet. Dans la plupart des cas chaque entrée se
+                réfèrera à un répertoire différent, bien qu'il soit possible d'avoir des liens multiple vers un même objet de données dans un répertoire,
                 à condition qu'ils aient un nom unique.
                 <br />
                 <br />
 
                 <p>
-                    Pour afficher le compteur de
-                    référence, on peut activer une colonne du panneau droit de l'Explorateur en cliquant
-                    sur la colonne de Titre de la vue en mode
-                    "Détails".
+                    Pour afficher le compteur de référence, on peut activer une colonne du panneau droit de l'Explorateur en cliquant sur la colonne de Titre de la vue en mode "Détails".
                 </p>
 
                 <p>
@@ -1978,10 +1870,8 @@
                 </p>
 
                 <p>
-                    Après avoir activé la colonne de
-                    référence le compteur est affiché pour chaque
-                    fichier. Cette fonction n'est accessible que sous Windows 2000 et
-                    XP, et n'est pas supportée sous Windows NT4.
+                    Après avoir activé la colonne de référence le compteur est affiché pour chaque
+                    fichier. Cette fonction n'est accessible que sous Windows 2000 et XP, et n'est pas supportée sous Windows NT4.
                 </p>
 
                 <p>
@@ -2004,16 +1894,13 @@
 
         <tr>
             <td class="hanger">
-                <a name="linkproperties"><b>Link Properties</b></a>
+                <a name="linkproperties"><b>Propriétés des Liens</b></a>
             </td>
 
             <td class="bodytext">
                 <p>
-                    Link Shell Extension supporte également
-                    l'affichage des Propriétés de l'Explorateur, ce qui signifie que si un
-                    les propriétés d'un fichier ou d'un répertoire sont ouvertes dans l'Explorateur, Link
-                    Shell Extension y ajoute son propre onglet pour y afficher les propriétés d'un
-                    lien physique, d'une jonction, d'un point de montage de volume ou d'un lien symbolique.
+                    Link Shell Extension supporte également l'affichage des Propriétés de l'Explorateur, ce qui signifie que si les propriétés d'un fichier ou d'un répertoire sont ouvertes dans l'Explorateur, Link
+                    Shell Extension y ajoute son propre onglet pour y afficher les propriétés d'un lien physique, d'une jonction, d'un point de montage de volume ou d'un lien symbolique.
                 </p>
 
                 Cet onglet additionnel n'est affiché dans les propriétés d'un fichier ou d'un répertoire, que si le
@@ -2030,7 +1917,7 @@
                     bouton 'Explorer la cible', qui ouvre l'Explorateur dans le répertoire spécifié.
                 </p>
                 <p>
-                    <b>Edit</b><br />
+                    <b>Edition</b><br />
                     Pour les Jonctions, les liens Symboliques ou les points de montage le champ cible est éditable, et après avoir soit appuyé sur le bouton appliquer
                     soit quitté le dialogue des Propriétés du lien par ok, les changements sont appliqués à la Jonction, au Lien Symbolique ou au point de montage.
                 </p>
@@ -2045,23 +1932,19 @@
 
         <tr>
             <td class="hanger">
-                <a name="symboliclinkandvista"><b>SymbolicLink with<br />Vista and Windows7/8/10</b></a>
+                <a name="symboliclinkandvista"><b>Liens Symboliques sous<br />Vista et Windows7/8/10</b></a>
             </td>
 
             <td class="bodytext">
                 Sous Windows Vista et Windows 7/8 NTFS a introduit un
-                nouveau type de lien, le <i>Lien Symbolique.</i> LSE supporte la création des liens symbolique
+                nouveau type de lien, le <i>Lien Symbolique.</i> LSE supporte la création des liens symboliques
                 sous Windows Vista et Windows 7/8.
                 <br />
                 <br />
 
                 <p>
-                    Créer un <b>
-                        Lien
-                        Symbolique
-                    </b>est dans le principe la même chose que la création d'un autre type
-                    de lien. Cliquez avec le bouton d'action sur le(s) fichier(s) sélectionné(s) puis sélectionnez
-                    Prendre comme source du lien depuis le menu d'action.
+                    Créer un <b>Lien Symbolique</b> est dans le principe la même chose que la création d'un autre type de lien. Cliquez avec le bouton d'action
+                    sur le(s) fichier(s) sélectionné(s) puis sélectionnez Prendre comme source du lien depuis le menu d'action.
                 </p>
 
                 <p>
@@ -2070,11 +1953,8 @@
                 <br />
 
                 <p>
-                    Sous Vista/W7 quand vous cliquez
-                    sur le bouton d'action dans le répertoire de destination, le menu contient un
-                    sous-menu <b>Coller ...</b>, et pour créer un Lien Symbolique
-                    sélectionnez dans le sous-menu "un Lien Symbolique". A l'inverse des liens physiques,
-                    les Liens Symboliques peuvent s'étendre au travers des volumes.
+                    Sous Vista/W7 quand vous cliquez sur le bouton d'action dans le répertoire de destination, le menu contient un sous-menu <b>Coller ...</b>, et pour créer un Lien Symbolique
+                    sélectionnez dans le sous-menu "un Lien Symbolique". A l'inverse des liens physiques, les Liens Symboliques peuvent s'étendre au travers des volumes.
                 </p>
 
                 <p>
@@ -2083,18 +1963,12 @@
                 <br />
 
                 <p>
-                    S'il y a à la fois des fichiers et des
-                    répertoires de sélectionnés en tant que Source des liens et qu'on les copie en tant que
-                    <b>Clone Symbolique</b> alors les fichiers sélectionnés sont recopiés
-                    comme des liens  Symboliques à côté  des répertoires <i>
-                        Clones
-                        Symboliques
-                    </i>.
+                    S'il y a à la fois des fichiers et des répertoires de sélectionnés en tant que Source des liens et qu'on les copie en tant que <b>Clone Symbolique</b> alors les fichiers sélectionnés sont recopiés
+                    comme des liens  Symboliques à côté  des répertoires <i>Clones Symboliques</i>.
                 </p>
 
                 <p>
-                    Des Liens Symboliques peuvent aussi être créés
-                    entre répertoires.
+                    Des Liens Symboliques peuvent aussi être créés entre répertoires.
                 </p>
 
                 <br />
@@ -2107,7 +1981,7 @@
                         <li>un chemin complet depuis la racine d'un disque comme par ex. e:\data\cpp\myfile.txt</li>
                         <li>ou peut être spécifiée de façon relative comme par exemple ..\..\data\cpp\myfile.txt</li>
                     </ul>
-                    Par défaut LSE essaye de créer des noms de cible <b>relative</b> pour les liens symboliques du moins
+                    Par défaut LSE essaye de créer des noms de cible <b>en relatif</b> pour les liens symboliques du moins
                     quand c'est possible, comme quand le fichier et sa cible appartiennent à un même disque logique.
                     Avoir des liens symboliques relatifs sur des cibles est bien plus facile en particulier si la cible des liens
                     est dans le même répertoire.
@@ -2152,6 +2026,7 @@
             </td>
         </tr>
 
+
         <tr>
             <td class="hanger">
                 <a name="enumerationofhardlinks"><b>Énumération de liens physiques</b></a>
@@ -2168,7 +2043,7 @@
                     <img src="enumeratehardlinks.png" alt="Enumerate Hardlinks" />
                 </p><br />
 
-                Malheureusement cette fonctionnalité n'est actuellement disponible que sous Vista et Windows 7/8
+                Malheureusement cette fonctionnalité n'est actuellement disponible que depuis Vista
                 car les appels aux API Win32 pour énumérer les liens physiques ne sont pas disponibles sous XP ou W2K.
                 <p>
                     Sous XP la lecture et le traitement du file ID unique de tous les noms de fichiers sur un disque
@@ -2206,15 +2081,12 @@
             </td>
             <td class="bodytext">
                 <p>
-                    L'un des changements majeurs de Windows7/8/10 est ce qu'on appelle le <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnlong/html/AccProtVista.asp">
-                        User Account Control (UAC)
-                    </a>. En raison de l'UAC certains appels d'API nécessitent une élévation de privilèges au niveau administrateur,
-                    et cette élévation doit être acceptée via la boîte de dialogue montrée ci-dessous. Malheureusement,
-                    et je ne peux toujours pas y croire, l'appel de l'API CreateSymbolicLink est un appel qui
-                    nécessite une élévation, et de ce fait affiche cette ennuyeuse boîte de dialogue chaque fois qu'un lien symbolique
+                    L'un des changements majeurs de Windows7/8/10 est ce qu'on appelle le <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnlong/html/AccProtVista.asp">User Account Control (UAC)</a>. 
+                    En raison de l'UAC certains appels d'API nécessitent une élévation de privilèges au niveau administrateur, et cette élévation doit être acceptée via la boîte de dialogue montrée ci-dessous. Malheureusement,
+                    et je ne peux toujours pas y croire, l'appel de l'API CreateSymbolicLink est un appel qui nécessite une élévation, et de ce fait affiche cette ennuyeuse boîte de dialogue chaque fois qu'un lien symbolique
                     est créé.<br />
-                    Donc si vous voyez la boîte ci-dessous, et que le programme qui demande l'élévation est LSEUacHelper.exe,
-                    c'est la contribution de Link Shell Extensions à l'UAC et vous devez l'accepter pour pouvoir créer
+
+                    Donc si vous voyez la boîte ci-dessous, et que le programme qui demande l'élévation est LSEUacHelper.exe, c'est la contribution de Link Shell Extensions à l'UAC et vous devez l'accepter pour pouvoir créer
                     des Liens Symboliques.
                 </p>
                 <p>
@@ -2223,22 +2095,17 @@
                 <br />
 
                 <p>
-                    L'UAC sera la raison pour laquelle de nombreuses applications
-                    soit ne fonctionneront plus, soit seront inutilisables sous Windows7/8/10. Elles sont inutilisables, parce que
-                    des appels d'API privilégiés et des appels d'API non privilégiés sont mélangés dans le code, et il faut
-                    en premier séparer dans un .exe à part, ce qui nécessite une élévation,
+                    L'UAC sera la raison pour laquelle de nombreuses applications soit ne fonctionneront plus, soit seront inutilisables sous Windows7/8/10. Elles sont inutilisables, parce que
+                    des appels d'API privilégiés et des appels d'API non privilégiés sont mélangés dans le code, et il faut en premier séparer dans un .exe à part, ce qui nécessite une élévation,
                     et dans un autre .exe le reste du codage.
                     <br />
                     <br />
-                    De nombreuses applications vont tout simplement échouer, car des appels somme CreateProcess(), qui sont très
-                    communs, ne fonctionnent pas, si le processus avec lequel on les démarre nécessite une élévation. Bien
-                    l'histoire continue et continue, et Link Shell Extension est une toute petite application, mais
-                    comprendre tout cela a été très long, notamment parce que la documentation
+                    De nombreuses applications vont tout simplement échouer, car des appels somme CreateProcess(), qui sont très communs, ne fonctionnent pas, si le processus avec lequel on les démarre nécessite une élévation. Bien
+                    l'histoire continue et continue, et Link Shell Extension est une toute petite application, mais comprendre tout cela a été très long, notamment parce que la documentation
                     fut assez difficile à obtenir.
                     <br />
                     <br />
-                    Je suppose que la protection principale fournie par l'UAC est que de nombreuses petites applications anciennes
-                    sont impossibles à réécrire pour Windows7/8/10 et qu'elles ne peuvent tout simplement pas être utilisées efficacement avec Windows7/8/10.
+                    Je suppose que la protection principale fournie par l'UAC est que de nombreuses petites applications anciennes sont impossibles à réécrire pour Windows7/8/10 et qu'elles ne peuvent tout simplement pas être utilisées efficacement avec Windows7/8/10.
                 </p>
                 <br />
                 <br />
@@ -2247,7 +2114,7 @@
 
         <tr>
             <td class="hanger">
-                <a name="changesymboliclinkprivilege"><b>Change Symbolic Link Privilege</b></a>
+                <a name="changesymboliclinkprivilege"><b>Privilèges pour Changer les Liens Symboliques</b></a>
             </td>
             <td class="bodytext">
                 <p>
@@ -2267,7 +2134,7 @@
                 </p>
 
                 <p>
-                    L'extension Linkshell peut traiter de l'octroi des privilèges ci-dessus, et si le privilège de lien symbolique est disponible, évite ainsi l'invite UAC.
+                    L'extension Linkshell peut traiter de l'octroi des privilèges ci-dessus, et si le privilège de lien symbolique est disponible, on évite ainsi l'invite UAC.
                 </p>
                 <br />
                 <p>
@@ -2368,10 +2235,8 @@
             </td>
 
             <td class="bodytext">
-                LSE supporte les médias amovibles qui ont été formatés par NTFS, pour créer
-                toutes les fonctions qu'il réalise aussi sur les disques fixes. La seule limitation
-                est que ça ne fonctionnera pas sur des disques amovibles s'ils sont montés
-                en tant que disque A: ou B:. La raison en est que A: ou B: sont communément utilisés pour des disquettes.
+                LSE supporte les médias amovibles qui ont été formatés par NTFS, pour créer toutes les fonctions qu'il réalise aussi sur les disques fixes. La seule limitation
+                est que ça ne fonctionnera pas sur des disques amovibles s'ils sont montés en tant que disque A: ou B:. La raison en est que A: ou B: sont communément utilisés pour des disquettes.
                 <p>
                     Avec des médias amovibles formatés en NTFS on quelques chances que LSE rapporte
                     des problèmes de type 'Access denied', lors de la création de liens physiques ou de jonctions. Ceci est lié à la façon
@@ -2389,8 +2254,7 @@
                 <a name="verylongpath"><b>Chemins très longs</b></a>
             </td>
             <td>
-                l'API Win32 supporte des noms de chemins contenant jusqu'à 256 caractères,
-                ce qui impose cette contrainte de longueur de nom à toutes les applications.
+                l'API Win32 supporte des noms de chemins contenant jusqu'à 256 caractères, ce qui impose cette contrainte de longueur de nom à toutes les applications.
                 <p>
                     D'un autre côté NTFS supporte des noms de chemins contenant jusqu'à 32767 caractères, aussi est-on
                     vite confronté à ces longueurs de noms de chemins plus longs que 256 caractères. Pour faire face
@@ -2428,9 +2292,8 @@
                 <p>
                     <b>MAIS :</b> Il existe des drivers disponibles chez Masatoshi Kimura pour WindowsXP, et qui activent les liens symboliques
                     sous XP. Ces drivers peuvent être téléchargés depuis sa page d'accueil pour les versions <a href="http://emk.name/symlink-1.06-x64.zip">64 bit</a> et
-                    <a href="http://emk.name/symlink-1.06-x86.cab">32 bit</a>. Les <a href="http://emk.name/symlink-1.06-src.zip">
-                        sources
-                    </a> y sont également disponibles.
+                    <a href="http://emk.name/symlink-1.06-x86.cab">32 bit</a>. 
+                    Les <a href="http://emk.name/symlink-1.06-src.zip"> sources</a> y sont également disponibles.
                 </p>
 
                 <p>
@@ -2624,6 +2487,7 @@
                 spécifiée. <p>
                     Le changement d'une des caractéristiques relatives aux icônes de superposition demandera un
                     redémarrage de l'explorateur quand on appuiera sur le bouton Appliquer ou OK.
+
                 <p>
                     <img src="lseconfighardlink.png" alt="lseconfiggeneral" />
                 </p><br />
@@ -2689,86 +2553,58 @@
 
         <tr>
             <td class="hanger">
-                <a name="backgrounders"><b>Backgrounders</b></a>
+                <a name="backgrounders"><b>Mises au point</b></a>
             </td>
 
             <td class="bodytext">
-                <a name="hardlinks"><b>Les liens physiques</b></a> sont une caractéristique commune
-                à la plupart des systèmes basés sur Unix, mais ne sont pas directement disponibles
-                avec NT4/W2K/WXP. C'est une caractéristique qui doit être supportée par
-                le système de fichier du système d'exploitation.
+                <a name="hardlinks"><b>Les liens physiques</b></a> sont une caractéristique commune à la plupart des systèmes basés sur Unix, mais ne sont pas directement disponibles
+                avec NT4/W2K/WXP. C'est une caractéristique qui doit être supportée par le système de fichier du système d'exploitation.
 
                 <p>
-                    Alors que sont
-                    les liens physiques ? Il est pratique de penser qu'un fichier est une
-                    association entre un <i>nom de fichier</i> et un <i>
-                        objet
-                        de données
-                    </i>. En utilisant l'Explorateur de Windows, on peut naviguer
-                    dans le système de fichiers en affichant une relation 1:1 entre le
-                    <i>nom de fichier</i> et l'<i>objet de données</i>, mais cette relation 1:1 n'est pas
-                    la même pour tous les systèmes
-                    de fichiers.
+                    Alors que sont les liens physiques ? Il est pratique de penser qu'un fichier est une association entre un <i>nom de fichier</i> et un <i>
+                        objet de données
+                    </i>. En utilisant l'Explorateur de Windows, on peut naviguer dans le système de fichiers en affichant une relation 1:1 entre le
+                    <i>nom de fichier</i> et l'<i>objet de données</i>, mais cette relation 1:1 n'est pas la même pour tous les systèmes de fichiers.
                 </p>
 
                 <p>
-                    Alors, comment peut-on
-                    créer de multiples entrées pour le même objet de données ? Sous Unix
-                    il existe un utilitaire en ligne de commande <i>ln</i>,
-                    qui est utilisé pour créer les entrées de liens vers des fichiers
-                    existants, donc on peut obtenir plusieurs noms de fichiers, appelés
-                    Liens Physiques, pour un seul objet de données.
+                    Quelques systèmes de fichiers, incluant UFS, XFS, et NTFS ont une relation N:1 entre <i>le nom du fichier</i> and the <i>l'objet données</i>,
+                    et ainsi il peut y avoir plus d'une entrée de répertoire pour un seul fichier.
                 </p>
 
                 <p>
-                    Pour chaque lien physique
-                    créé, le système de fichiers incrémente un compteur de référence
-                    stocké avec l'<i>objet de données</i>, c'est à dire qu'il conserve combien de
-                    <i>noms de fichiers</i> se réfèrent à l'objet de données, ce compteur
-                    étant mis à jour (par le système de fichier) à l'intérieur même de l'objet de
-                    données. Quand on supprime un nom de fichier référençant un <i>objet de données</i>,
-                    le compteur des <i>objets de données</i> est décrémenté de 1.
-                    Les <i>
-                        objets de données
-                    </i> eux-mêmes sont supprimés <b>seulement</b>
-                    quand le compteur de référence devient
-                    égal à 0.
+                    Alors, comment peut-on créer de multiples entrées pour le même objet de données ? Sous Unix il existe un utilitaire en ligne de commande <i>ln</i>, qui est utilisé pour 
+                    créer les entrées de liens vers des fichiers existants, donc on peut obtenir plusieurs noms de fichiers, appelés Liens Physiques, pour un seul objet de données.
                 </p>
 
                 <p>
-                    Le compteur de référence est
-                    le seul moyen de déterminer s'il y a de multiples références de
-                    <i>noms de fichiers</i> pour un <i>objet de données</i>, et il
-                    n'informe que de leur nombre PAS d'où ils
-                    sont.
+                    Pour chaque lien physique créé, le système de fichiers incrémente un compteur de référence
+                    stocké avec l'<i>objet de données</i>, c'est à dire qu'il conserve combien de <i>noms de fichiers</i> se réfèrent à l'objet de données, ce compteur
+                    étant mis à jour (par le système de fichier) à l'intérieur même de l'objet de données. Quand on supprime un nom de fichier référençant un <i>objet de données</i>,
+                    le compteur des <i>objets de données</i> est décrémenté de 1. Les <i>objets de données</i> eux-mêmes sont supprimés <b>seulement</b> quand le compteur de référence devient égal à 0.
+                </p>
+
+                <p>
+                    Le compteur de référence est le seul moyen de déterminer s'il y a de multiples références de <i>noms de fichiers</i> pour un <i>objet de données</i>, et il
+                    n'informe que de leur nombre PAS d'où ils sont.
                 </p>
 
                 <p>
                     <a name="junctions"><b>Les jonctions</b></a>
-                    sont des raccourcis dans la structure arborescente
-                    d'un graphe orienté. En naviguant via une jonction, on rend directement accessible
-                    un emplacement qui peut se trouver assez loin dans le système de fichiers. Les
-                    modifications, Créations, Renommages et Suppressions de fichiers à
-                    l'intérieur d'une structure de jonction se font en réalité sur la
-                    cible de la jonction, par exemple si vous supprimez un fichier dans une
-                    Jonction, c'est le fichier à l'emplacement original qui est supprimé.
+                    sont des raccourcis dans la structure arborescente d'un graphe orienté. En naviguant via une jonction, on rend directement accessible
+                    un emplacement qui peut se trouver assez loin dans le système de fichiers. Les modifications, Créations, Renommages et Suppressions de fichiers à
+                    l'intérieur d'une structure de jonction se font en réalité sur la cible de la jonction, par exemple si vous supprimez un fichier dans une Jonction, c'est le fichier à l'emplacement original qui est supprimé.
                 </p>
 
                 <p>
-                    <a name="symboliclinks"><b>Les Liens Symboliques</b></a> sont aux fichiers ce que
-                    sont les Jonctions aux répertoires en ce sens qu'ils sont à la fois transparents
-                    et Symboliques. La Transparence signifie qu'une application peut les
-                    accéder exactement comme elle le ferait pour tout autre fichier, et Symbolique
-                    signifie que l'objet de données peut se situer sur n'importe quel volume disponible,
-                    c'est à dire qu'ils ne sont pas limités à un seul volume comme les liens physiques.
-                    Les Liens Symboliques diffèrent des raccourcis en ce qu'ils
-                    permettent un accès transparent à l'objet de données, alors qu'avec un
-                    raccourci (.lnk), quelque chose doit lire et interpréter le contenu du
-                    fichier de raccourci puis ouvrir le fichier qu'il référence (autrement
-                    dit c'est un processus en 2 étapes). Quand une application utilise un
-                    lien symbolique, elle accède directement à l'objet donnée référencé par
-                    le lien symbolique (c'est donc un processus en une
-                    seule étape).
+                    <a name="symboliclinks"><b>Les Liens Symboliques</b></a> 
+                    sont aux fichiers ce que sont les Jonctions aux répertoires en ce sens qu'ils sont à la fois transparents et Symboliques. La Transparence signifie qu'une application peut les
+                    accéder exactement comme elle le ferait pour tout autre fichier, et Symbolique signifie que l'objet de données peut se situer sur n'importe quel volume disponible,
+                    c'est à dire qu'ils ne sont pas limités à un seul volume comme les liens physiques. Les Liens Symboliques diffèrent des raccourcis en ce qu'ils
+                    permettent un accès transparent à l'objet de données, alors qu'avec un raccourci (.lnk), quelque chose doit lire et interpréter le contenu du
+                    fichier de raccourci puis ouvrir le fichier qu'il référence (autrement dit c'est un processus en 2 
+                    étapes). Quand une application utilise un lien symbolique, elle accède directement à l'objet donnée référencé par
+                    le lien symbolique (c'est donc un processus en une seule étape).
                 </p>
             </td>
         </tr>
@@ -2787,13 +2623,11 @@
                     <li>Plates-formes supportées : NT4/W2K/WXP/W2K3/W2K3R2/W2K8/W2K8R2/W2K12/W2K12R2/WXP64/Vista/Windows7/8/10 en 32bits, 64bits ou Itanium.</li>
 
                     <li>
-                        Les liens physiques (Hardlinks) ne sont que pour des volumes NTFS, et pour les
-                        plates-formes supportées.
+                        Les liens physiques (Hardlinks) ne sont que pour des volumes NTFS, et pour les plates-formes supportées.
                     </li>
 
                     <li>
-                        Les liens physiques (Hardlinks) ne peuvent être obtenus qu'à l'intérieur de volumes NTFS,
-                        et ne peuvent s'étendre au-travers d'autres volumes NTFS.
+                        Les liens physiques (Hardlinks) ne peuvent être obtenus qu'à l'intérieur de volumes NTFS et ne peuvent s'étendre au-travers d'autres volumes NTFS.
                     </li>
 
                     <li>Les Jonctions ne peuvent pas être créées sur des volumes NTFS sous NT4.</li>
@@ -2801,18 +2635,13 @@
                     <li>
                         Les choix <i>Prendre comme cible du lien</i> et <'">Coller ..<i> ...</i>
                         ne sont visibles que s'il est possible de créer des liens physiques/Jonctions/Symbolique. E.G.: Si vous
-                        sélectionnez un fichier sur un lecteur FAT et appuyez sur le bouton d'action,
-                        vous ne verrez pas <i>Prendre comme cible du lien</i> dans le menu
-                        d'action, car le système de fichier FAT, ne supporte pas les
-                        liens physiques/Jonctions/Symboliques. Ceci arrive également si vous
-                        sélectionnez des fichiers sources sur un lecteur réseau, ou
-                        sélectionnez un fichier
-                        en tant que destination, etc.
+                        sélectionnez un fichier sur un lecteur FAT et appuyez sur le bouton d'action, vous ne verrez pas <i>Prendre comme cible du lien</i> dans le menu
+                        d'action, car le système de fichier FAT, ne supporte pas les liens physiques/Jonctions/Symboliques. Ceci arrive également si 
+                        vous sélectionnez des fichiers sources sur un lecteur réseau, ou sélectionnez un fichier en tant que destination, etc.
                     </li>
 
                     <li>
-                        Il existe une limitation de l'OS ne permettant pas plus de 1023 Liens physiques par fichier. C'est
-                        moins connu, mais c'est un fait.
+                        Il existe une limitation de l'OS ne permettant pas plus de 1023 Liens physiques par fichier. C'est moins connu, mais c'est un fait.
                     </li>
                     <li><a href="#refssupport">ReFs</a> ne supporte pas les liens physiques.</li>
 
@@ -2895,8 +2724,7 @@
                     <li>
                         <b>
                             <a name="faq04">Q</a> : Quand j'ai supprimé un répertoire "source", son point de jonction dans la "destination"
-                            a été laissé dans
-                            un état non opérationnel.<br />
+                            a été laissé dans un état non opérationnel.<br />
 
                             Y a-t-il une façon de s'en prémunir ? Par exemple, est-il possible de supprimer
                             automatiquement les points de jonction si la source associée est supprimée ? Ou, est-il possible
@@ -3112,14 +2940,14 @@
 
                     <li>
                         <b>
-                            <a name="faq15">Q</a>: When I right click a symbolic link and go to properties, and click on Link properties, if the path contained inside is invalid,
-                            will give you the message "The name '(invalid path goes here)' specified in the Target box is not valid. Make sure the path and file name are correc.
+                            <a name="faq15">Q</a>: Quand je fais un clic droit sur un lien symbolique, que je vais dans les propriétés, puis clique sur les Propriétés du Lien, si le chemin qui y est indiqué est non valide,
+                            j'obtiendrai un message "Le nom '(le mauvais chemin est affiché ici)' indiqué dans la boîte cible est invalide. Assurez-vous que le chemin et le nom du fichier sont corrects.
                         </b>
                         <br />
 
                         <p>
-                            A: Unfortunatley this is an explorer problem, and LSE has no chance to intercept.
-                            Broken symlinks/juncitons can be easily repaired by <a href="#replacementjunction">the replacement junction/symbolic link</a> feature
+                            A: Malheureusement c'est un problème de l'explorateur, et LSE n'a aucune chance de l'intercepter.
+                            Les Liens symboliques/jonctions corrompus peuvent être facilement réparés à l'aide le la fonctionalité de <a href="#replacementjunction">remplacement d'une jonction/lien symbolique</a>
                         </p>
                     </li>
 
@@ -3135,7 +2963,7 @@
 
         <tr>
             <td class="hanger">
-                <a name="history"><b>History</b></a>
+                <a name="history"><b>Historique</b></a>
             </td>
 
             <td class="bodytext">
@@ -4286,7 +4114,7 @@
                     or by donating bitcoins:<br /><br />
                     <img src="bitcoinlogo.png" />
                 </p><br />
-                    <b>bc1q4hvevwrmnwt7jg8vws0v8xajywhffl4gwca5av</b>
+                <b>bc1quahckcfxvsr3ylt5lsaf9fd8v7kwzumw757zst</b>
                 <img src="bitcoinlseqr.png" />
 
                 <br /><br />
