@@ -161,7 +161,7 @@
             </td>
 
             <td class="bodytext">
-                The NTFS file system implemented in NT4, Windows 2000, Windows XP, Windows XP64, and Windows7/8/10 supports a facility known as <b>hard links</b>
+                The NTFS file system supports a facility known as <b>hard links</b>
                 (referred to herein as <b>Hardlinks</b>). Hardlinks provide the ability to keep a single copy of a file yet have it
                 appear in multiple folders (directories).&nbsp;
 
@@ -178,7 +178,7 @@
                     Link Shell Extension (LSE) provides for the creation of
                     <a href="#hardlinks">Hardlinks</a>, <a href="#junctions">Junctions</a>,
                     <a href="#volumemountpoint">Volume Mountpoints</a>,
-                    and Windows7/8's <a href="#symboliclinks">Symbolic Links</a>,
+                    and <a href="#symboliclinks">Symbolic Links</a>,
                     (herein referred to collectively as Links) a folder <a href="#hardlinkclones">cloning process</a> that utilises
                     Hardlinks or Symbolic Links and a copy process taking care of Junctions, Symbolic Links, and Hardlinks.
                     LSE, as its name implies is implemented as a Shell extension and is accessed from Windows Explorer, or similar file/folder managers.
@@ -334,18 +334,6 @@
                 Overlay icons for Hardlinks can also be <a href="#customoverlayicons">customized.</a>
                 <br />
                 <br />
-
-                In Windows 2000 and XP Hardlinks can also be dropped via an Action button
-                click in the "white space" of Windows Explorer's right pane and choosing <b>Drop HardLink</b> from the
-                popup menu. It should be noted this feature is <b>only guaranteed to work in Windows Explorer</b>;
-                many Explorer replacements implement an application specific white space action menu that is not readily
-                accessible from general purpose shell extensions such as LSE.
-                <br />
-                <br />
-
-                <img src="drophardlinkbackground.png" alt="Drop Hardlinks in Background">
-                <br />
-                <br />
             </td>
         </tr>
 
@@ -373,7 +361,7 @@
 
             <td class="bodytext">
                 Since LSE supports <a href="#junctions">Junction</a>,
-                <a href="#hardlinkclones">Clones</a> and with Windows7/8/10 <a href="#symboliclinks">Symbolic Links</a>,
+                <a href="#hardlinkclones">Clones</a> and <a href="#symboliclinks">Symbolic Links</a>,
                 when one or more folders are selected as the Source Links they can be dropped in several forms.
                 <br />
                 <br />
@@ -423,10 +411,6 @@
                 <br />
                 <br />
 
-                With Windows XP this behaviour is different and LSE behaves under XP accordingly: 'HardLink of $filename'
-                <br />
-                <br />
-
                 <img src="autorename.png" alt="Automatic rename">
                 <br />
                 <br />
@@ -435,10 +419,6 @@
                 '$filename - Hardlink': It uses numbers to enumerate the multiple hardlinks of one file in the same directory, e.g.
                 <i>$filename - Hardlink (2).$ext.</i>
                 <br /><br />
-                With Windows XP this behaviour is different and the names are generated like <i>'Hardlink of $filename (2).</i>
-                <br />
-                <br />
-
                 The Auto Rename mechanism is also used when Junctions, Hardlink Clones,
                 Symbolic Links, Symbolic Link Clones, Mountpoints or Smart Copies are created
                 in the same directory.<br />
@@ -458,8 +438,7 @@
 
             <td class="bodytext">
                 <a href="http://technet.microsoft.com/en-us/sysinternals/bb896768">Junctions</a>
-                are a feature of NTFS version 5.0,&nbsp; they provide for the creation of
-                linkages among directories, Junction were not supported in NTFS Version 4.0
+                provide for the creation of linkages among directories.
                 <br />
                 <br />
 
@@ -506,24 +485,12 @@
                 the content within a junction, which seems most logical.
                 <br /><br />
 
-                <b><a name="junctionwindows7">Windows7/8/10</a>:</b>
-                With Windows Vista & Windows7/8/10 explorer is natively aware of Junctions, and no interception or CopyHook handler is necessary, Explorer
-                simply works out of the box with junctions. This is also the reason why the <i>Delete Junction</i> menue does not show up on Vista and Windows7/8/10.
-                <br /><br />
-
-                To show the origin of a junction, the <a href="#referencecount">reference column</a> of a junction shows
+                To show the origin of a junction with WindowsXP, the <a href="#referencecount">reference column</a> of a junction shows
                 the path to which the selected junction links.
                 <br />
                 <br />
 
                 <img src="junctionorigin.png" alt="Reference gives the origin of the Junction">
-                <br />
-                <br />
-
-                Junctions are a powerful feature, but can also be a <b>dangerous feature</b> without
-                Link ShellExtension precautions under Windows Version < Windows Vista. Nativly Explorer shipped with < Vista becomes unstable if you use normal delete or
-                rename functions on junction folders. Windows Explorer will always terminate abruptly and depending on system settings,
-                Windows XP may do likewise.
                 <br />
                 <br />
 
@@ -554,7 +521,7 @@
                 <br />
                 <br />
 
-                <b>With Vista and Windows7/8/10</b> some folders, e.g. c:\Program Files needs elevation for junctions
+                Elevation is needed in e.g. c:\Program Files needs for junctions
                 beeing created in. This is why the <a href="#VistaAndUAC">famous UAC</a> dialog must be acknowledged.
                 <br />
 
@@ -879,7 +846,7 @@
                 </p>
 
                 <p>
-                    When restoring Symbolic links under Windows7/8/10 and Windows Vista, LSE forks its helper
+                    When restoring Symbolic links LSE forks its helper
                     LSEUacHelper.exe to forwards this operation to it, because the creation of symbolic links
                     needs elevation, and thus brings up the <a href="#VistaAndUAC">famous UAC</a> dialog.
                 </p>
@@ -1331,8 +1298,7 @@
                     <img src="smartmoveprogress.png" alt="Progress bar during Smart Move">
                 </p>
 
-                With Vista & Windows7/8/10 LSE calls its <a href="#VistaAndUAC">UAC</a> helper LSEUacHelper.exe if it has to
-                update symbolic links, so don't be afraid if you get a UAC prompt during moving of folders.
+                If symbolic links have to be updated LSE calls its <a href="#VistaAndUAC">UAC</a> helper LSEUacHelper.exe.
                 <br />
                 <br />
 
@@ -1403,7 +1369,7 @@
                 </p>
 
                 <p>
-                    ... or with Windows Vista or Windows7/8/10 choose Symbolic Link Clone to create clones of existing tree structures.
+                    ... choose Symbolic Link Clone to create clones of existing tree structures.
                 </p>
 
                 <p>
@@ -1443,7 +1409,7 @@
                 </p>
 
                 <p>
-                    When creating Clones under Windows7/8/10 and Windows Vista, LSE forks its
+                    When creating Clones, LSE forks its
                     helper LSEUacHelper.exe to forwards this operation to it, if the folder tree
                     contains <a href="innerjunction">symbolic links</a>, because the creation of
                     symbolic links needs elevation, and thus brings up the
@@ -1791,7 +1757,7 @@
 
             <td class="bodytext">
                 <p>
-                    Volume Mountpoints are a feature of NTFS version 5.0, which provides functionality to
+                    Volume Mountpoints provides functionality to
                     map complete local volumes onto arbitrary disk locations. Volume Mountpoints
                     were not supported in NTFS Version 4.0
                 </p>
@@ -1835,18 +1801,12 @@
                 <p>
                     Make sure that only local volumes can be mounted but not mapped network drives.
                 <p>
-                    <b>Vista & Windows7/8/10: </b> With Vista & Windows7/8/10 the creation and deletion of Volume Mountpoints is bound to
+                    The creation and deletion of Volume Mountpoints is bound to
                     successful elevation, which means that the <a href="#VistaAndUAC">famous UAC</a> dialog
                     must be acknowledged.
                 </p>
 
-                <b>@Microsoft</b>: Why is it not possible with Windows7/8/10 & Vista to create a
-                Volume Mountpoint under e.g. 'c:\Program Files'. The return value on the
-                CreateMountPoint() call is ERROR_INVALID_PARAMETER, which is always the
-                'Error I don't know what to do' thrown by Windows. Please fix this!
-                <p>
-
-                </p><br /><br />
+                <br /><br />
 
             </td>
         </tr>
@@ -1935,13 +1895,11 @@
 
         <tr>
             <td class="hanger">
-                <a name="symboliclinkandvista"><b>SymbolicLink with<br />Vista and Windows7/8/10</b></a>
+                <a name="symboliclinkandvista"><b>SymbolicLinks</b></a>
             </td>
 
             <td class="bodytext">
-                With Windows Vista and Windows7/8/10 NTFS introduces a
-                new type of link, the <i>Symbolic Link.</i> LSE supports the creation of symbolic links
-                under Windows Vista and Windows7/8/10.
+                LSE supports the creation of symbolic links.
                 <br />
                 <br />
 
@@ -1956,7 +1914,7 @@
                 <br />
 
                 <p>
-                    Under Vista/W7 when the destination folder is action clicked the menu contains a <b>Drop As ...</b> submenu, to create a Symbolic Link
+                    When the destination folder is action clicked the menu contains a <b>Drop As ...</b> submenu, to create a Symbolic Link
                     select SymbolicLink from the submenu. Unlike Hardlinks Symbolic Links can span storage volumes.
                 </p>
 
@@ -2037,27 +1995,13 @@
 
             <td class="bodytext">
                 <p>
-                    With Vista and Windows7/8/10 it is possible to enumerate
-                    all hardlink siblings to a file in constant time. Simply select a hardlinked file and select
+                    Simply select a hardlinked file and select
                     <a href="#linkproperties">Properties </a>from the right click action menu:
                 <p>
 
                 <p>
                     <img src="enumeratehardlinks.png" alt="Enumerate Hardlinks" />
                 </p><br />
-
-                Unfortunately this feature is currently only available with Vista
-                since the Win32 API calls to enumerate hardlinks are not available with XP or W2K.
-                <p>
-                    Under XP reading and processing the unique file ID of all filenames on a disk
-                    is necessary to gather the same information. Since this operation is timeconsuming,
-                    the siblings of a hardlinked file are not shown immediately after opening
-                    the properties tab, but the 'Enumerate Siblings' button must be pressed.
-                <p>
-
-
-                    <img src="enumeratehardlinksxp.png" alt="Enumerate Hardlinks under XP" />
-                    <br />
 
                 <p>
                     Enumeration of all siblings under XP can take time, because in the worst case all
@@ -2084,31 +2028,13 @@
             </td>
             <td class="bodytext">
                 <p>
-                    One of the major Windows7/8/10 changes was the so called <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnlong/html/AccProtVista.asp">User Account Control (UAC)</a>.
-                    Due to UAC some API calls need elevation to administrative level, and this elevation must be acknowledged via the below shown dialog box. Unfortunately,
-                    and I still can't believe this, the API call CreateSymbolicLink is a call, which needs elevation, and thus causes this annoying dialog box come up every time a symbolic
-                    link is created.<br />
+                    Due to UAC some API calls need elevation to administrative level, and this elevation must be acknowledged via the below shown dialog box. 
 
                     So if you see the below box, and the program asking for elevation is LSEUacHelper.exe, it is Link Shell Extensions contribution to UAC and you must acknowledge it to get
                     Symbolic Links created.
                 </p>
                 <p>
                     <img src="uacunsigned.png" alt="vistauac" />
-                </p>
-                <br />
-
-                <p>
-                    UAC will be the reason, that many applications simply either will not work, or are not useable with Windows7/8/10. They are not useable, because
-                    privileged API calls and non privileged API calls are mixed in the code, and first need to be separated by architectural means into an separate .exe, which gets elevated,
-                    and an .exe for the rest of the coding.
-                    <br />
-                    <br />
-                    Many applications will simply fail, because calls like CreateProcess(), which are very common, do not work, if the process started with it needs elevation. Well the
-                    story goes on and on, and Link Shell Extension is a very small application, but to walk the learning curve was a hard way, especially because the documentation
-                    was rather difficult to get.
-                    <br />
-                    <br />
-                    I guess the main protection of UAC is that many small legacy apps are impossible to rewrite for Windows7/8/10, and they simply can not be used with Windows7/8/10 efficiently.
                 </p>
                 <br />
                 <br />
