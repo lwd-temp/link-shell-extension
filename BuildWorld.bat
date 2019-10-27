@@ -1,21 +1,37 @@
 @echo off
 set MEDIA=Media
 
-REM Set the version info 
+REM Set the version info for LinkShellExension
 REM
 set MAJOR_VERSION=3
 set MINOR_VERSION=9
 set PATCH_VERSION=2
 set HOTFIX_VERSION=601
 
+REM Set the version info for Commandline tools
+REM
+set MAJOR_CMD_VERSION=2
+set MINOR_CMD_VERSION=9
+set PATCH_CMD_VERSION=1
+set HOTFIX_CMD_VERSION=666
+
 @echo generating Version info
-REM Generate version info for c++
+REM Generate version info for Shell Extension
 REM
 set VERSION_FILE=Shared\version\version.h
 (echo #define MAJOR_VERSION %MAJOR_VERSION%)>%VERSION_FILE%
 (echo #define MINOR_VERSION %MINOR_VERSION%)>>%VERSION_FILE%
 (echo #define PATCH_VERSION %PATCH_VERSION%)>>%VERSION_FILE%
 (echo #define HOTFIX_VERSION %HOTFIX_VERSION%)>>%VERSION_FILE%
+
+
+REM Generate version info for command line tools
+REM
+set VERSION_FILE=Shared\version\cmd_version.h
+(echo #define MAJOR_VERSION %MAJOR_CMD_VERSION%)>%VERSION_FILE%
+(echo #define MINOR_VERSION %MINOR_CMD_VERSION%)>>%VERSION_FILE%
+(echo #define PATCH_VERSION %PATCH_CMD_VERSION%)>>%VERSION_FILE%
+(echo #define HOTFIX_VERSION %HOTFIX_CMD_VERSION%)>>%VERSION_FILE%
 
 REM LSE contains a schema in the registry. If from version to version this schema is heavily
 REM changed, then we need to increment the schema version number.
@@ -69,7 +85,7 @@ call bat\SourceIndex.bat
 
 REM Upload to symbolserver
 REM
-REM call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
+call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
 
 REM Copy over certificate
 REM
@@ -96,7 +112,7 @@ echo.
 echo ######## ln.exe  ######## 
 echo.
 pushd ln
-call PackMedia.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
+call PackMedia.bat %MAJOR_CMD_VERSION%%MINOR_CMD_VERSION%%PATCH_CMD_VERSION%%HOTFIX_CMD_VERSION%
 popd
 
 REM dupemerge.exe
@@ -105,5 +121,5 @@ echo.
 echo ######## Dupemerge.exe ######## 
 echo.
 pushd dupemerge
-call PackMedia.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
+call PackMedia.bat %MAJOR_CMD_VERSION%%MINOR_CMD_VERSION%%PATCH_CMD_VERSION%%HOTFIX_CMD_VERSION%
 popd

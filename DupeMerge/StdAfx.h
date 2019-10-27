@@ -18,8 +18,6 @@
 
 #include <ShObjIdl.h>
 
-
-#include "resource.h"
 //disable warnings on 255 char debug symbols
 #pragma warning (disable : 4786)
 //disable warnings on extern before template instantiation
@@ -34,6 +32,8 @@
 #include <atomic>
 
 using namespace std;
+
+#include "..\Shared\version\version_assembly.h"
 
 // Ultragetopt
 #define ULTRAGETOPT_REPLACE_GETOPT
