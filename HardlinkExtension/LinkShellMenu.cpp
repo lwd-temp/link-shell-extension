@@ -466,11 +466,12 @@ InsertCommand(
   INT&          a_nEntries
 )
 {
-	// Check if a command is already on the list
+  // Check if a command is already on the list
   for (UINT i = 0; i < a_CommandIdx; i++)
     if (a_Command == m_Command[i])
       return;
 
+  // Count mode
   if (a_nEntries < 0)
   {
     // No it was not on the list so add it
@@ -478,6 +479,7 @@ InsertCommand(
     m_Command[a_CommandIdx++] = a_Command;
   }
   else
+    // We are only in the count mode
     a_nEntries++;
 }
 
@@ -1135,12 +1137,6 @@ QueryContextMenu(
   if (uFlags & CMF_EXTENDEDVERBS)
     m_DropTarget.m_Flags |= eExtendedVerbs;
 
-  // The pick menue should only show up for files if the source is either NTFS or we are on Windows7
-  bool ShowMenue = true;
-  if (m_bTargetsFlag & eFile)
-    if (!(m_bTargetsFlag & eNTFS))
-      ShowMenue = false;
-
   // Decide on whether we are in a ContextMenu Handler or a Drag-Drop-Handler
   if (uFlags || m_ForceContext)
   {
@@ -1167,12 +1163,9 @@ QueryContextMenu(
       // Pick via Contextmenu
       if (m_nTargets)
       {
-        if (ShowMenue)
-        {
-          InsertMenu(hMenu, indexMenu++, MF_SEPARATOR | MF_BYPOSITION, 0, NULL);
-          InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuPickLinkSource]);
-          m_Command[aCommandIdx++] = ePickLinkSource;
-        }
+        InsertMenu(hMenu, indexMenu++, MF_SEPARATOR | MF_BYPOSITION, 0, NULL);
+        InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuPickLinkSource]);
+        m_Command[aCommandIdx++] = ePickLinkSource;
 #if !defined REMOVE_DELETE_JUNCTION
         if (m_bTargetsFlag & eJunction)
         {
@@ -1192,8 +1185,7 @@ QueryContextMenu(
   else
   {
     // This is for the drag and drop handler
-    if (ShowMenue)
-      CreateContextMenu(hMenu, indexMenu, idCmd, aCommandIdx, eMenue__Free__);
+    CreateContextMenu(hMenu, indexMenu, idCmd, aCommandIdx, eMenue__Free__);
   }
 
   //Must return number of menu items we added.
