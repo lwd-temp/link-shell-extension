@@ -476,24 +476,6 @@
                 <br />
 
 
-                Junctions can be deleted by using the Delete commands from Explorer as usual, if Link Shell Extension is installed, because
-                Link Shell Extension implements a so called CopyHook handler, which intercepts Explorers Delete commands, and thus fixes
-                Explorers problems with junctions.
-                <br />
-
-                Link Shell Extension changes Delete commands from Explorer on Junctions to unlinking Junctions, and not deleting
-                the content within a junction, which seems most logical.
-                <br /><br />
-
-                To show the origin of a junction with WindowsXP, the <a href="#referencecount">reference column</a> of a junction shows
-                the path to which the selected junction links.
-                <br />
-                <br />
-
-                <img src="junctionorigin.png" alt="Reference gives the origin of the Junction">
-                <br />
-                <br />
-
                 <b>Overlay Icons for Junctions</b><br />
                 To help distinguish junction folders from normal folders, an <b>overlay icon</b> is implemented
                 on junctions that shows a small three link chain icon under the folder.
@@ -521,7 +503,7 @@
                 <br />
                 <br />
 
-                Elevation is needed in e.g. c:\Program Files needs for junctions
+                Elevation is needed in e.g. c:\Program Files for junctions
                 beeing created in. This is why the <a href="#VistaAndUAC">famous UAC</a> dialog must be acknowledged.
                 <br />
 
@@ -907,7 +889,6 @@
                                 In the above example <i>Folder1</i> is copied to <i>Destination/Folder1</i>, but<i>Outer Junction/Symlink</i> is not available in the destination,
                                 because <i>Folder1/Outer Junction/Symlink </i> pointed to <i>Folder0/Outer Junction/Symlink Target</i>,
                                 which is not below <i>Folder1</i>.
-                            <p>
                             </p>
                             <p>
                                 The objective behind cropping Outer Junctions/Symlink Directories is to get a pure
@@ -1998,11 +1979,6 @@
                 </p><br />
 
                 <p>
-                    Enumeration of all siblings under XP can take time, because in the worst case all
-                    files contained on a logical volume must be at least opened for the filename.
-                <p>
-
-                <p>
                     The Hardlink Enumeration functionality is also available via
                     command line from
                     <a href="http://schinagl.priv.at/nt/ln/ln.html">ln.exe</a>
@@ -2205,59 +2181,6 @@
 
         <tr>
             <td class="hanger">
-                <a name="symboliclinksforwindowsxp"><b>Symbolic links for Windows XP</b></a>
-            </td>
-            <td class="bodytext">
-                <p>
-                    Technically it seems that NTFS5 even shipped with WindowsXP has always supported symbolic links, but the functionality was
-                    not available for user mode applications, and even not for the upper layers of ntfs.sys
-                </p>
-                <p>
-                    <b>BUT:</b> There are filter drivers available from Masatoshi Kimura for even WindowsXP, which enable symbolic links
-                    under XP. These drivers can be downloaded from his home page for <a href="http://emk.name/symlink-1.06-x64.zip">64 bit</a> and for
-                    <a href="http://emk.name/symlink-1.06-x86.cab">32 bit</a>.
-                    The <a href="http://emk.name/symlink-1.06-src.zip"> sources</a> are also available.
-                </p>
-
-                <p>
-                    Installation of these drivers is also quite simple.
-                    <ul>
-                        <li>Unpack the archive for your plattform, </li>
-
-                        <li>
-                            Open a command shell with administrator access privileges on a directory,
-                            containing both, senable.exe and symlink.sys, to run following commands:
-                            <ul>
-                                <li><b>senable.exe install</b> </li>
-                                copies the driver symlink.sys to %systemroot%\system32\drivers, registers it at
-                                HKLM\SYSTEM\CurrentControlSet\Services\SymLink and starts it.
-                                <li><b>senable.exe delete</b> </li>
-                                deletes the driver symlink.sys from %systemroot%\system32\drivers and registry,
-                                but nothing more. Once copied to %systemroot%\system32\drivers and registered, it
-                                still needs to be activated by seneable.exe on each Windows start. To unload the
-                                driver after deletion you need to reboot Windows, logoff is not enough.
-                            </ul>
-                        </li>
-                    </ul>
-                    To start the symbolic link driver automatically, change the registry value HKLM\SYSTEM\CurrentControlSet\Services\SymLink\Start from 2 (automatic) to 0 (boot).
-                    From now on, symlinks automatically become working after each Windows start, even if directly logged into your limited account.
-
-
-                <p>
-                    Link Shell Extension enables its complete symbolic link functionality under XP as soon as it finds
-                    this driver loaded. And, sensation(!): There is no UAC prompt necessary under XP for creating symbolic links ;-))
-                </p>
-
-                <p>
-                    Furthermore there are reports from users who tried out the driver and LSE also under Windows2000, and everything
-                    works fine.
-                </p>
-                <br />
-            </td>
-        </tr>
-
-        <tr>
-            <td class="hanger">
                 <a name="refssupport"><b>ReFs Support</b></a>
             </td>
             <td class="bodytext">
@@ -2391,8 +2314,7 @@
                 <p>
 
                     <b>Copy Mode</b><br />
-                    By checking the <i>Backup</i> Link Shell Extension will run in <a href="#backupmode">Backup Mode</a>. On WindowsXP
-                    this check box is grayed and its content set to unchecked, if the current user does not have sufficient privileges.
+                    By checking the <i>Backup</i> Link Shell Extension will run in <a href="#backupmode">Backup Mode</a>.
                 <p>
                     <br /><br />
 
@@ -2407,7 +2329,8 @@
             <td class="bodytext">
                 Link Shell Extension has built in overlay icons for junctions, hardlinks and symbolic links.
                 Since icons are subject to individual taste, the icon used by Link Shell Extension can
-                be specified. <p>
+                be specified.
+                <p>
                     Changing any settings related to overlay icons will ask for a restart of explorer
                     when Apply or Ok is pressed.
 
@@ -2450,10 +2373,10 @@
                 <p>
                     For my investigations the icon editor of choice capable of dealing with Windows7/8/10 icons was
                     <a href="http://www.rw-designer.com/3D_icon_editor.php">RealWorld Icon Editor</a>
-<p>
+                </p>
 
-                    <b>Apply Changes</b><br />
-                    When you press OK or Apply on LSEConfigs dialog, settings will be taken over.
+                <b>Apply Changes</b><br />
+                When you press OK or Apply on LSEConfigs dialog, settings will be taken over.
                 <p>
                     If changes were made to Link Shell Extensions language settings or
                     settings related to overlay icons, you will be asked to confirm a restart
@@ -2462,10 +2385,7 @@
                     within explorer.exe is interrupted.
 
                     <br />
-
                     <br />
-                    <br />
-
             </td>
         </tr>
 
@@ -2478,7 +2398,7 @@
 
             <td class="bodytext">
                 <a name="hardlinks"><b>Hardlinks</b></a> are a feature common to many Unix based systems, but are not directly available with
-                NT4/W2K/WXP. It is a feature, which must be supported by the file system of the operating system.
+                Windows. It is a feature, which must be supported by the file system of the operating system.
 
                 <p>
                     So what are Hardlinks? It is common to think of a file as being an association between a <i>file name</i> and a <i>
@@ -2564,8 +2484,6 @@
                         There is an OS limit of creating more than 1023 hardlinks per file. This is less known, but it is there.
                     </li>
                     <li><a href="#refssupport">ReFs</a> does not support hardlinks.</li>
-
-                    <li>Windows XP does by default not support symbolic links, but there is a driver to <a href="#symboliclinksforwindowsxp">enable symbolic links also under Windows XP</a></li>
                 </ul>
             </td>
         </tr>
@@ -2796,7 +2714,7 @@
                                     Pick Link Source x:\data\dropbox
                                 </li>
                                 <li>
-                                    In c:\users\[username] use <i>Drop as</i> and select <i>Symbolic Link</i> for Windows7/8/10 or <i>Junction</i> for WindowsXP
+                                    In c:\users\[username] use <i>Drop as</i> and select <i>Symbolic Link</i> or <i>Junction</i> 
                                 </li>
                                 <li>
                                     If everything went fine finally delete c:\users\[username]\dropbox_org

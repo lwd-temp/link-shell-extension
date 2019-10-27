@@ -123,7 +123,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i>Dernière mise à jour du 15 Octobre 2019, Version 3.9.2.6</i>
+                    <i>Dernière mise à jour du 29 Octobre 2019, Version 3.9.2.7</i>
                 </div>
             </td>
         </tr>
@@ -161,12 +161,12 @@
             </td>
 
             <td class="bodytext">
-                Le système de fichiers NTFS implémenté dans NT4, Windows 2000, Windows XP, Windows XP64, et Windows7/8/10 supporte une possibilité connue en tant que <b>liens physiques</b>
+                Le système de fichiers NTFS supporte une fonctionalité connue en tant que <b>liens physiques</b>
                 (que l'on nommera aussi ci-dessous <b>Hardlinks</b>). Les liens physiques donnent la possibilité de conserver une seule copie d'un fichier bien qu'il 
                 apparaisse dans de nombreux répertoires (directories).&nbsp;
 
-                Ils peuvent être créés par la commande POSIX <b><i>ln</i></b> incluse <i>dans</i> le Windows 
-                Resource Kit, la commande utilitaire <i>fsutil</i> incluse dans Windows XP ou mon utilitaire en ligne de commande
+                Ils peuvent être créés par la commande POSIX <b><i>ln</i></b> incluse <i>dans</i> le "Windows 
+                Resource Kit", la commande utilitaire <i>fsutil</i> incluse dans Windows ou via mon utilitaire en ligne de commande
                 <a href="http://schinagl.priv.at/nt/ln/ln.html">ln.exe</a>.&nbsp;
 
                 Aussi, en utilisant les fonctions standard de Windows les liens physiques ne peuvent être créés
@@ -178,7 +178,7 @@
                     Link Shell Extension (LSE) permet la création de
                     <a href="#hardlinks">Liens physiques</a>, <a href="#junctions">Jonctions</a>,
                     <a href="#volumemountpoint">Montage de Volume</a> ,
-                    et les<a href="#symboliclinks">Liens Symboliques</a> de Windows7/8/10,
+                    et les<a href="#symboliclinks">Liens Symboliques</a>,
                     considérés globalement comme des <a href="#hardlinkclones">processus de clonage</a> de répertoire qui utilise
                     des Liens physiques ou les Liens Symboliques et un processus de copie préservant les Jonctions, Liens Symboliques, et Liens Physiques.
                     LSE, comme son nom l'indique est implémenté en tant qu'extension du Shell et est accessible depuis l'Explorateur Windows, ou des gestionnaires de fichiers/répertoires du même genre.
@@ -187,9 +187,9 @@
                     L'extension permet à l'utilisateur de  sélectionner un ou plusieurs fichiers ou répertoires, puis avec la souris, d'achever la création des liens souhaités -
                     Liens Physiques, Jonctions ou Liens Symboliques, ou encore dans le cas de répertoires, de créer des clones consistants en des Liens Physiques ou Symboliques.
 
-                    LSE est pris en charge par toutes les versions de Windows qui supportent NTFS version 5.0 ou ultérieure, incluant Windows XP64 
-                    et Windows7/8/10. Les Liens Physiques, Jonctions et Liens Symboliques ne sont PAS supportés par le système de fichiers FAT,
-                    de même que le clonage ou la copie intelligente n'est pas supportée par le système de fichiers FAT.
+                    LSE est pris en charge par toutes les versions de Windows qui supportent NTFS version 5.0 ou ultérieure, Windows7/8/10.
+                    Les Liens Physiques, Jonctions et Liens Symboliques ne sont PAS supportés par le système de fichiers FAT,
+                    de même que le clonage ou la copie intelligente n'est pas non plus supportée par le système de fichiers FAT.
                 </p>
 
                 Dans ce document, les termes <b><i>bouton d'action</i></b> et <b>
@@ -328,21 +328,10 @@
                 <b>Superposition d'icônes pour les Liens Physiques</b><br />
                 Pour aider à distinguer les liens des fichiers normaux, une <b>icône de superposition</b> est implémentée
                 sur les liens et se caractérise par une flèche rouge superposée.<br /><br />
-                <img src="hardlinkicon.png" alt="Overlay Icon for Symbolic Links">
+                <img src="hardlinkicon_10.png" alt="Overlay Icon for Symbolic Links">
 
                 <br /><br />
                 Les icônes de superposition des liens peuvent être <a href="#customoverlayicons">personnalisées.</a>
-                <br />
-                <br />
-
-                Sous Windows 2000 et XPles Liens physiques peuvent aussi être créés via un clic sur le bouton d'action
-                dans un "espace vierge" de la fenêtre droite de l'explorateur Windows et en choisissant dans le menu de contexte <b>Coller un lien physique</b> (ou <b>Drop HardLink</b>)
-                A noter que cette façon de faire <b>n'est garantie de fonctionner que dans l'explorateur Windows</b> ;
-                un certain nombre de remplacements de l'Explorateur implémentent des actions de menus spécifiques via une action spécifique dans l'espace vierge mais qui ne
-                sont pas accessibles à un usage général pour des extensions comme LSE.
-                <br />
-
-                <img src="drophardlinkbackground.png" alt="Drop Hardlinks in Background">
                 <br />
                 <br />
             </td>
@@ -372,7 +361,7 @@
 
             <td class="bodytext">
                 Comme LSE supporte les <a href="#junctions">Jonctions</a>,
-                <a href="#hardlinkclones">Clones</a> et sous Windows7/8/10 les <a href="#symboliclinks">Liens Symboliques</a>,
+                <a href="#hardlinkclones">Clones</a> et les <a href="#symboliclinks">Liens Symboliques</a>,
                 si un ou plusieurs fichiers/répertoires sont sélectionnés comme liens source ils peuvent être créés comme liens sous plusieurs formes.
                 <br />
                 <br />
@@ -416,13 +405,9 @@
             </td>
 
             <td class="bodytext">
-                Les fichiers peuvent 
+                Les fichiers peuvent&nbsp; 
                 avoir un lien physique dans le même répertoire que le répertoire source. Parce que les deux entrées dans un répertoire ne peuvent pas avoir le même nom, LSE utilise
                 '$filename - Lien physique.$ext' comme nom du nouveau lien.
-                <br />
-                <br />
-
-                Sous Windows XP le comportement est différent et LSE s'y comporte ainsi : 'Lien physique de $filename'
                 <br />
                 <br />
 
@@ -434,10 +419,6 @@
                 '$filename - Lien physique': Il utilise des numéros pour différentier les liens physiques multiples d'un fichier dans un même répertoire, par exemple
                 <i>$filename - Lien physique (2).$ext.</i>
                 <br /><br />
-                Avec Windows XP ce comportement est un peu différent et les noms sont générés ainsi : <i>'Lien physique de $filename (2).</i> 
-                <br />
-                <br />
-
                 Le mécanisme d' Auto Renommage est également utilisé quand des Jonctions, Clones physiques,
                 Liens Symboliques, Clones Symboliques, Points de montages ou des Copies intelligentes sont créés
                 dans un même répertoire.<br />
@@ -457,8 +438,7 @@
 
             <td class="bodytext">
                 <a href="http://technet.microsoft.com/en-us/sysinternals/bb896768">Les Jonctions</a>
-                sont une caractéristique de NTFS version 5.0,&nbsp; qui permettent la création de liens
-                entre répertoires. Les Jonctions n'étaient pas supportées par les Versions NTFS 4.0
+                permettent la création de liens entre répertoires.
                 <br />
                 <br />
 
@@ -496,50 +476,20 @@
                 <br />
 
 
-                Les jonctions peuvent être supprimées comme d'habitude en utilisant la commande Supprimer de l'Explorateur, si Link Shell Extension est installé, car
-                Link Shell Extension implémente un gestionnaire dénommé CopyHook, qui intercepte les commandes Supprimer de l'Explorateur, et ainsi corrige
-                les problèmes que rencontre l'Explorateur avec les jonctions.
-                <br />
-
-                Link Shell Extension change la commande Supprimer de l'Explorateur sur les Jonctions en "Dissocier la Jonction", et non pas
-                la suppression du contenu interne de la jonction, ce qui semble plus logique.
-                <br /><br />
-
-                <b><a name="junctionwindows7">Windows7/8/10</a>:</b>
-                Dans Windows Vista & Windows7/8/10 l'explorateur connait en natif les Jonctions, aussi il n'y a plus besoin d'intercepter ni de gestionnaire comme  CopyHook. L'Explorateur
-                fonctionne correctement avec les jonctions. C'est aussi la raison pour laquelle le sous-menu <i>Supprimer la jonction</i> n'apparaît pas sous Vista ni Windows7/8/10.
-                <br /><br />
-
-                Pour afficher l'origine d'une jonction, la <a href="#referencecount">colonne Référence</a> d'une jonction affiche
-                le chemin vers lequel est liée la jonction.
-                <br />
-                <br />
-
-                <img src="junctionorigin.png" alt="Reference gives the origin of the Junction">
-                <br />
-                <br />
-
-                Les jonctions sont une fonctionnalité puissante, mais qui peut aussi être une <b>fonctionnalité dangereuse</b> sans
-                les précautions de l'extension Link Shell Extension pour les versions de Windows avant Windows Vista. En natif, l'explorateur livré avant Windows Vista devient instable si vous utilisez une suppression
-                ou un renommage standard dans les dossiers de jonction. L'explorateur de Windows se termine toujours brutalement et en fonction des paramètres du système,
-                il peut en être de même sous Windows XP.
-                <br />
-                <br />
-
                 <b>Superposition d'Icônes pour les Jonctions</b><br />
                 Afin de distinguer les répertoires joints des répertoires normaux, une <b>icône de superposition</b> est implémentée
                 sur les jonctions et représente trois maillons de chaîne en dessous du répertoire.
                 <br />
                 <br />
 
-                <img src="junctioniconvista.png" alt="Overlay Icon for Junctions"><br /><br />
+                <img src="junctionicon_10.png" alt="Overlay Icon for Junctions"><br /><br />
                 Les icônes superposées des jonctions peuvent aussi être <a href="#customoverlayicons">personnalisées.</a>
                 <br />
                 <br />
 
                 Les jonctions peuvent <b>s'étendre aux lecteurs réseaux</b> du moins quand le lecteur réseau peut être affecté à une lettre.
                 Malheureusement les Jonctions, qui ont pour cible un chemin UNC, peuvent bien être créées
-                par LSE, mais même Vista semble contenir un bug, qui l'empêche de traiter
+                par LSE, mais même Windows7/8/10 semble contenir un bug, qui l'empêche de traiter
                 correctement un chemin UNC par une jonction, même si LSE est correctement configuré
                 pour rediriger les jonctions UNC. Quand on double clique sur une jonction cible de type
                 UNC dans l'explorateur, une erreur ERROR_INVALID_REPARSE_DATA(4392),
@@ -553,8 +503,8 @@
                 <br />
                 <br />
 
-                <b>Avec Vista et Windows7/8/10</b> certains répertoires, comme par exemple c:\Program Files nécessitent des
-                privilèges pour pouvoir y créer des jonctions. C'est la raison pour laquelle le célèbre dialogue <a href="#VistaAndUAC">UAC</a> doit être accepté.
+                Une élévation de privilèges est nécessaire dans certains répertoires, comme par exemple c:\Program Files
+                pour pouvoir y créer des jonctions. C'est la raison pour laquelle le célèbre dialogue <a href="#VistaAndUAC">UAC</a> doit être accepté.
                 <br />
 
                 Pour être exact : seule la création de répertoire nécessite une élévation des privilèges dans ce type de situations, mais créer
@@ -780,7 +730,7 @@
                         </td>
                     </tr>
                 </table>
-                Windows 7/8/10 et Windows Vista supportent les Liens Symboliques qui se comportent comme suit durant
+                Windows 7/8/10 supportent les Liens Symboliques qui se comportent comme suit durant
                 une Copie Intelligente :
                 <br />
                 <br />
@@ -878,7 +828,7 @@
                 </p>
 
                 <p>
-                    Quand on restaure des liens symboliques sous Windows7/8/10 et Windows Vista, LSE redirige l'opération
+                    Quand on restaure des liens symboliques LSE redirige l'opération
                     de LSEUacHelper.exe vers lui-même, car la création de liens symbolique
                     nécessite une élévation de privilèges, et donc amène la fameuse boîte de dialogue <a href="#VistaAndUAC">UAC</a>.
                 </p>
@@ -936,14 +886,14 @@
                             <br />
                             <br />
                             <p>
-                                Dans l'exemple ci-dessus <i>Folder1</i> est copié vers <i>Destination/Folder1</i>, mais <i>la Jonction/Lien symbolique</i> n'est pas disponible dans la destination, 
+                                Dans l'exemple ci-dessus <i>Folder1</i> est copié vers <i>Destination/Folder1</i>, mais <i>la Jonction/Lien symbolique</i> n'est pas disponible dans la destination,
                                 car <i>Folder1/Outer Junction/Symlink</i> pointe vers la cible <i>Folder0/Outer Junction/Symlink Target</i>,
                                 qui n'est pas situé en dessous de <i>Folder1</i>.
-                            <p>
                             </p>
-                            L'objectif derrière cette découpe des répertoires sortants Jonctions/Liens symboliques est d'obtenir une copie
-                            pure lors d'une Copie Intelligente, un Miroir Intelligent, une copie Delorean and et un Clonage sans connexions
-                            vers la source.
+                            <p>
+                                L'objectif derrière cette découpe des répertoires sortants Jonctions/Liens symboliques est d'obtenir une copie
+                                pure lors d'une Copie Intelligente, un Miroir Intelligent, une copie Delorean and et un Clonage sans connexions
+                                vers la source.
                             </p>
 
                             <p>
@@ -1318,18 +1268,18 @@
                     de particulier à faire. Déplacez simplement un répertoire à la souris dans l'explorateur vers sa destination finale, ou par exemple pressez F2
                     dans l'Explorateur pour renommer un répertoire et LSE interceptera cette opération sous le capot, prendra soin des
                     jonctions ou liens symboliques, et les mettra à jour.
-                <p>
+                </p>
 
+                <p>
                     Intercepter une opération de déplacement ou de renommage signifie que LSE prend le contrôle avant le renommage/déplacement, et de façon récursive
                     recherche dans le répertoire sélectionné les jonctions ou liens symboliques. Toutefois, la recherche dans un grand nombre de fichiers et
                     répertoires prend du temps, aussi LSE affichera une barre de progression dès que la recherche prend plus de 250msec.
-                <p>
+                </p>
                 <p>
                     <img src="smartmoveprogress.png" alt="Barre de progrès pendant un Déplacement Intelligent">
                 </p>
 
-                Avec Vista & Windows7/8/10 LSE appelle son acolyte <a href="#VistaAndUAC">UAC</a> LSEUacHelper.exe s'il a à
-                mettre à jour des liens symboliques, aussi ne vous étonnez pas si vous obtenez un dialogue UAC durant le déplacement de répertoires.
+                Si des liens symboliques doivent être mis à jour LSE appelle son acolyte <a href="#VistaAndUAC">UAC</a> LSEUacHelper.exe.
                 <br />
                 <br />
 
@@ -1375,7 +1325,7 @@
                 Les Jonctions/Liens Symboliques Externes sont recréés conformément à la façon de faire de la
                 <a href="#outerjunctionhandling">Gestion des Jonctions/Liens Symboliques Externes</a> par exemple.<p>
 
-                    Avec Windows Vista et Windows7/8/10 ce processus de clonage est également disponible avec des Liens Symboliques en plus des Liens Physiques.
+                    Sous Windows7/8/10 ce processus de clonage est également disponible avec des Liens Symboliques en plus des Liens Physiques.
 
                 <p>
                     <img src="symlinkssmart.png" alt="Symbolic Link Clones the smart way" />
@@ -1400,7 +1350,7 @@
                 </p>
 
                 <p>
-                    ... ou alors avec Windows Vista ou Windows7/8/10 choisissez un clone symbolique pour créer des clones de la structure arborescente existante.
+                    ... choisissez un clone symbolique pour créer des clones de la structure arborescente existante.
                 </p>
 
                 <p>
@@ -1411,7 +1361,7 @@
                     Les Clones Physiques et Symboliques peuvent également être créés par Glisser-Déposer à la souris : sélectionnez un répertoire et glissez-le
                     tout en maintenant le bouton d'action enfoncé vers le répertoire de destination. Quand le bouton d'action
                     est relâché, ouvrez le sous-menu <b>Coller...</b> et sélectionnez <b>un clone physique</b>
-                    ou avec Windows Vista et Windows7/8/10 <b>un clone symbolique</b>:
+                    ou sous Windows7/8/10 <b>un clone symbolique</b>:
                 </p>
 
                 <p>
@@ -1436,11 +1386,11 @@
                     Comme le Clonage utilise des Liens Physiques ou des Liens Symboliques, ils ne sont disponibles que sur des volumes NTFS.
                     Le Clonage Physique ne peut pas dupliquer une structure de répertoire d'un volume disque vers un autre
                     volume, car les Liens Physiques sont limités à des opérations sur un même disque.
-                    Les Clones Symboliques peuvent être utilisés pour créer des clones inter-disques, mais seulement sur Vista ou Windows7/8/10
+                    Les Clones Symboliques peuvent être utilisés pour créer des clones inter-disques.
                 </p>
 
                 <p>
-                    Quand vous créez des Clones sous Windows7/8/10 et Windows Vista, LSE appelle son
+                    Quand vous créez des Clones, LSE appelle son
                     acolyte LSEUacHelper.exe pour lui sous-traiter cette opération, si l'arborescence du répertoire
                     contient <a href="innerjunction">des liens symboliques</a>, car la création de liens symboliques
                     nécessite une élévation de privilège, ce qui conduit au
@@ -1722,12 +1672,8 @@
                     non accessibles aux utilisateurs courants.
                     <ul>
                         <li>
-                            Sous Windows7/8/10, LSE lance toujours son processus d'aide LSEUacHelper.exe, qui par conséquent active
+                            LSE lance toujours son processus d'aide LSEUacHelper.exe, qui par conséquent active
                             <a href="#VistaAndUAC">la demande d'UAC</a> pour élévation de privilèges et vérification de mot de passe.
-                        </li>
-                        <li>
-                            Sous WindowsXP LSE ne va dans le mode de Sauvegarde que si l'utilisateur courant possède les
-                            <a href="#backupprivs">privilèges</a> nécessaires.
                         </li>
                     </ul>
                     Ceci s'applique à la Copie Intelligente, au Miroir Intelligent, au Clonage Intelligent, à la Copie Delorean, au Déplacement Intelligent
@@ -1788,8 +1734,8 @@
 
             <td class="bodytext">
                 <p>
-                    Les points de montage sont une composante de NTFS version 5.0, qui introduit la fonctionnalité de
-                    pouvoir accéder à un volume local complet depuis une position arbitraire de disque. Les points de montage de volume
+                    Les points de montage sont une fonctionnalité permettant 
+                    d'accéder à un volume local complet depuis une position arbitraire de disque. Les points de montage de volume
                     n'étaient pas supportés dans NTFS Version 4.0
                 </p>
 
@@ -1832,18 +1778,12 @@
                 <p>
                     Soyez sûrs que seuls des volumes locaux peuvent être montés, pas des disques réseaux.
                 <p>
-                    <b>Vista & Windows7/8/10: </b> Avec Vista & Windows7/8/10 la création et la suppression de points de montage de Volumes
+                    La création et la suppression de points de montage de Volumes
                     nécessite une élévation de privilèges, ce qui signifie que le <a href="#VistaAndUAC">fameux dialogue UAC</a>
                     doit être accepté.
                 </p>
 
-                <b>@Microsoft</b>: Pourquoi n'est-il pas possible sous Windows7/8/10 & Vista de créer
-                un point de montage de Volume dans par ex. 'c:\Program Files'. La valeur retournée par l'appel à
-                CreateMountPoint() est ERROR_INVALID_PARAMETER, ce qui est toujours
-                'Une erreur dont je ne sais pas quoi faire' envoyée par Windows. SVP corrigez cela!
-                <p>
-
-                </p><br /><br />
+                <br /><br />
 
             </td>
         </tr>
@@ -1870,8 +1810,7 @@
                 </p>
 
                 <p>
-                    Après avoir activé la colonne de référence le compteur est affiché pour chaque
-                    fichier. Cette fonction n'est accessible que sous Windows 2000 et XP, et n'est pas supportée sous Windows NT4.
+                    Après avoir activé la colonne de référence le compteur est affiché pour chaque fichier. 
                 </p>
 
                 <p>
@@ -1880,11 +1819,10 @@
                 <br />
 
                 <p>
-                    <b>Vista & Windows7/8/10:</b> La colonne affichant le compteur de référence
-                    ainsi que la source de la jonction ne sont pas accessibles, car la façon dont Vista et Windows7/8/10 traitent
+                    <b>Windows7/8/10:</b> La colonne affichant le compteur de référence
+                    ainsi que la source de la jonction ne sont pas accessibles, car la façon dont Windows7/8/10 traitent
                     les colonnes définies par l'utilisateur a été revue complètement par Microsoft et toutes les applications travaillant avec
-                    ce qu'on nomme les ColumnHandlers doivent être réécrites partiellement.	Microsoft a fait un tel bon travail dans le changement d'inteface, mais
-                    il est devenu impossible de réactiver cette fonctionalité dans Windows 7/8. Désolé.
+                    ce qu'on nomme les ColumnHandlers doivent être réécrites partiellement.
                 </p>
                 <br />
 
@@ -1932,13 +1870,11 @@
 
         <tr>
             <td class="hanger">
-                <a name="symboliclinkandvista"><b>Liens Symboliques sous<br />Vista et Windows7/8/10</b></a>
+                <a name="symboliclinkandvista"><b>Liens Symboliques</b></a>
             </td>
 
             <td class="bodytext">
-                Sous Windows Vista et Windows 7/8 NTFS a introduit un
-                nouveau type de lien, le <i>Lien Symbolique.</i> LSE supporte la création des liens symboliques
-                sous Windows Vista et Windows 7/8.
+                LSE supporte la création des liens symboliques.
                 <br />
                 <br />
 
@@ -1953,8 +1889,8 @@
                 <br />
 
                 <p>
-                    Sous Vista/W7 quand vous cliquez sur le bouton d'action dans le répertoire de destination, le menu contient un sous-menu <b>Coller ...</b>, et pour créer un Lien Symbolique
-                    sélectionnez dans le sous-menu "un Lien Symbolique". A l'inverse des liens physiques, les Liens Symboliques peuvent s'étendre au travers des volumes.
+                    Quand vous cliquez sur le bouton d'action dans le répertoire de destination, le menu contient un sous-menu <b>Coller ...</b>, et pour créer un Lien Symbolique
+                    sélectionnez dans le sous-menu "un Lien Symbolique". A l'inverse des liens physiques, les Liens Symboliques peuvent se propager au travers des volumes.
                 </p>
 
                 <p>
@@ -2002,7 +1938,7 @@
                 sur les liens symboliques et s'affiche comme une flèche vert clair sous le nom.<br /><br />
                 <br /><br />
 
-                <img src="symboliclinkiconvista.png" alt="Overlay Icon for Hardlinks" />
+                <img src="symboliclinkicon_10.png" alt="Overlay Icon for Hardlinks" />
                 <br /><br />
                 Les icônes de superposition des Liens Symboliques peuvent aussi être <a href="#customoverlayicons">personnalisées.</a>
                 <p>
@@ -2034,32 +1970,13 @@
 
             <td class="bodytext">
                 <p>
-                    Sous Vista et Windows 7/8 on peut énumérer
-                    tous les liens physiques ciblant un fichier en même temps. Sélectionnez tout simplement un fichier qui a un lien physique et
+                    Sélectionnez tout simplement un fichier qui a un lien physique et
                     sélectionnez ses <a href="#linkproperties">Propriétés </a>par un clic droit sur le menu d'action:
                 <p>
 
                 <p>
                     <img src="enumeratehardlinks.png" alt="Enumerate Hardlinks" />
                 </p><br />
-
-                Malheureusement cette fonctionnalité n'est actuellement disponible que depuis Vista
-                car les appels aux API Win32 pour énumérer les liens physiques ne sont pas disponibles sous XP ou W2K.
-                <p>
-                    Sous XP la lecture et le traitement du file ID unique de tous les noms de fichiers sur un disque
-                    est nécessaire pour rassembler la même information. Comme cette opération consomme pas mal de temps,
-                    le ciblage des liens physiques n'est pas directement affiché à l'ouverture
-                    de l'onglet des propriétés, mais le bouton 'Énumérer les cibles' doit être cliqué.
-                <p>
-
-
-                    <img src="enumeratehardlinksxp.png" alt="Enumerate Hardlinks under XP" />
-                    <br />
-
-                <p>
-                    L'énumération de toutes les cibles sous XP peut prendre pas mal de temps, car dans le pire des cas tous
-                    les noms de fichiers contenus sur un volume logique doivent au moins être parcourus.
-                <p>
 
                 <p>
                     La fonctionnalité d'Énumération de liens physiques est aussi disponible en
@@ -2081,31 +1998,13 @@
             </td>
             <td class="bodytext">
                 <p>
-                    L'un des changements majeurs de Windows7/8/10 est ce qu'on appelle le <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnlong/html/AccProtVista.asp">User Account Control (UAC)</a>. 
-                    En raison de l'UAC certains appels d'API nécessitent une élévation de privilèges au niveau administrateur, et cette élévation doit être acceptée via la boîte de dialogue montrée ci-dessous. Malheureusement,
-                    et je ne peux toujours pas y croire, l'appel de l'API CreateSymbolicLink est un appel qui nécessite une élévation, et de ce fait affiche cette ennuyeuse boîte de dialogue chaque fois qu'un lien symbolique
-                    est créé.<br />
+                    En raison de l'UAC certains appels d'API nécessitent une élévation de privilèges au niveau administrateur, et cette élévation doit être acceptée via la boîte de dialogue montrée ci-dessous. 
 
                     Donc si vous voyez la boîte ci-dessous, et que le programme qui demande l'élévation est LSEUacHelper.exe, c'est la contribution de Link Shell Extensions à l'UAC et vous devez l'accepter pour pouvoir créer
                     des Liens Symboliques.
                 </p>
                 <p>
                     <img src="uacunsigned.png" alt="vistauac" />
-                </p>
-                <br />
-
-                <p>
-                    L'UAC sera la raison pour laquelle de nombreuses applications soit ne fonctionneront plus, soit seront inutilisables sous Windows7/8/10. Elles sont inutilisables, parce que
-                    des appels d'API privilégiés et des appels d'API non privilégiés sont mélangés dans le code, et il faut en premier séparer dans un .exe à part, ce qui nécessite une élévation,
-                    et dans un autre .exe le reste du codage.
-                    <br />
-                    <br />
-                    De nombreuses applications vont tout simplement échouer, car des appels somme CreateProcess(), qui sont très communs, ne fonctionnent pas, si le processus avec lequel on les démarre nécessite une élévation. Bien
-                    l'histoire continue et continue, et Link Shell Extension est une toute petite application, mais comprendre tout cela a été très long, notamment parce que la documentation
-                    fut assez difficile à obtenir.
-                    <br />
-                    <br />
-                    Je suppose que la protection principale fournie par l'UAC est que de nombreuses petites applications anciennes sont impossibles à réécrire pour Windows7/8/10 et qu'elles ne peuvent tout simplement pas être utilisées efficacement avec Windows7/8/10.
                 </p>
                 <br />
                 <br />
@@ -2282,59 +2181,6 @@
 
         <tr>
             <td class="hanger">
-                <a name="symboliclinksforwindowsxp"><b>Liens Symboliques pour Windows XP</b></a>
-            </td>
-            <td class="bodytext">
-                <p>
-                    Techniquement il semble que NTFS5 même celui fourni avec WindowsXP ait toujours supporté les liens symboliques, mais que la fonctionnalité n'était
-                    pas utilisable pour les applications utilisateurs, et même pour les couches de niveau supérieur de ntfs.sys
-                </p>
-                <p>
-                    <b>MAIS :</b> Il existe des drivers disponibles chez Masatoshi Kimura pour WindowsXP, et qui activent les liens symboliques
-                    sous XP. Ces drivers peuvent être téléchargés depuis sa page d'accueil pour les versions <a href="http://emk.name/symlink-1.06-x64.zip">64 bit</a> et
-                    <a href="http://emk.name/symlink-1.06-x86.cab">32 bit</a>. 
-                    Les <a href="http://emk.name/symlink-1.06-src.zip"> sources</a> y sont également disponibles.
-                </p>
-
-                <p>
-                    L'installation de ces drivers est aussi assez simple.
-                    <ul>
-                        <li>Dézipper l'archive pour votre machine, </li>
-
-                        <li>
-                            Ouvrez une fenêtre de commande avec accès en mode administrateur sur un répertoire,
-                            contenant à la fois, senable.exe et symlink.sys, pour y lancer les commandes suivantes :
-                            <ul>
-                                <li><b>senable.exe install</b> </li>
-                                copie le driver symlink.sys vers %systemroot%\system32\drivers, l'enregistre dans la base de registre en
-                                HKLM\SYSTEM\CurrentControlSet\Services\SymLink puis le démarre.
-                                <li><b>senable.exe delete</b> </li>
-                                supprime le driver symlink.sys de %systemroot%\system32\drivers et de la base de registres,
-                                mais rien de plus. Une fois copié vers %systemroot%\system32\drivers et registré, il est encore
-                                nécessaire de l'activer par seneable.exe à chaque démarrage de Windows. Pour décharger le
-                                driver après suppression vous devez redémarrer Windows, une fermeture de session n'étant pas suffisante.
-                            </ul>
-                        </li>
-                    </ul>
-                    Pour démarrer le driver de liens symboliques automatiquement, changer la valeur de registre HKLM\SYSTEM\CurrentControlSet\Services\SymLink\Start de 2 (automatique) à 0 (boot).
-                    À partir de là, symlinks devient actif automatiquement à chaque démarrage de Windows, même si vous vous connectez sur un compte à droits limités.
-
-
-                <p>
-                    Link Shell Extension active complètement la fonctionnalité de lien symbolique sous XP dès qu'il trouve
-                    ce driver chargé. Et, bingo(!): Aucun dialogue UAC n'est nécessaire sous XP pour créer des liens symboliques ;-))
-                </p>
-
-                <p>
-                    D'autre part il y a des rapports d'utilisateurs qui ont testé le driver et LSE aussi sous Windows2000, et tout
-                    fonctionne bien.
-                </p>
-                <br />
-            </td>
-        </tr>
-
-        <tr>
-            <td class="hanger">
                 <a name="refssupport"><b>Support de ReFs</b></a>
             </td>
             <td class="bodytext">
@@ -2468,8 +2314,7 @@
                 <p>
 
                     <b>Mode Copie (ou Copie de sûreté)</b><br />
-                    En cochant la case de <i>Sauvegarde</i> Link Shell Extension sera exécuté dans le <a href="#backupmode">Mode Sauvegarde</a>. Sous WindowsXP
-                    cette case est grisée et son contenu forcé à "non coché", si l'utilisateur courant n'a pas les privilièges suffisants.
+                    En cochant la case de <i>Sauvegarde</i> Link Shell Extension sera exécuté dans le <a href="#backupmode">Mode Sauvegarde</a>. 
                 <p>
                     <br /><br />
 
@@ -2515,20 +2360,16 @@
                 <p>
                     <br />
 
-                    <b>Généralités</b><br /> Windows Vista et Windows 7 sont un peu particuliers, parce que des icônes de superposition en 256x256 ne doivent pas
+                    <b>Généralités</b><br /> Windows 7/8/10 sont un peu particuliers, parce que des icônes de superposition en 256x256 ne doivent pas
                     être cadrées dans le coin bas gauche de l'icône, et ne doivent pas être déjà plus petites pour parfaitement se 'superposer' à une icône existante.
                     Les icônes de superposition 256x256 doivent remplir complètement la place disponible et ne doivent pas non plus être redimensionnées.
-                    Vista le fait pour vous sur les icônes 256x256.
                 <p>
-                    En d'autres mots Vista prend n'importe quelle icône 256x256, la redimensionne en 92x92, la déplace
+                    En d'autres mots Windows7/8/10 prend n'importe quelle icône 256x256, la redimensionne en 92x92, la déplace
                     dans le coin bas à gauche et la superpose.
                 <p>
-                    Pour les autres résolutions inférieures à 256x256, Vista travaille de la même façon que XP, et vous
-                    devez préparer une icône de superposition pour le coin bas gauche.
+                    Pour les autres résolutions, inférieures à 256x256, sous Windows7/8/10 vous devez préparer une icône de superposition pour le coin bas gauche.
                 <p>
-                    D'autre part les icônes Vista ne devraient pas être enregistrées 'compressées', parce que XP ne peut pas lire les icônes compressées.
-                <p>
-                    D'après mes investigations, un bon choix d'éditeur d'icônes capable de travailler sur les icônes Vista est
+                    D'après mes investigations, un bon choix d'éditeur d'icônes capable de travailler sur les icônes Windows7/8/10 est
                     <a href="http://www.rw-designer.com/3D_icon_editor.php">RealWorld Icon Editor</a>
                 <p>
 
@@ -2558,11 +2399,12 @@
 
             <td class="bodytext">
                 <a name="hardlinks"><b>Les liens physiques</b></a> sont une caractéristique commune à la plupart des systèmes basés sur Unix, mais ne sont pas directement disponibles
-                avec NT4/W2K/WXP. C'est une caractéristique qui doit être supportée par le système de fichier du système d'exploitation.
+                avec Windows. C'est une caractéristique qui doit être supportée par le système de fichier du système d'exploitation.
 
                 <p>
                     Alors que sont les liens physiques ? Il est pratique de penser qu'un fichier est une association entre un <i>nom de fichier</i> et un <i>
-                        objet de données</i>. En utilisant l'Explorateur de Windows, on peut naviguer dans le système de fichiers en affichant une relation 1:1 entre le
+                        objet de données
+                    </i>. En utilisant l'Explorateur de Windows, on peut naviguer dans le système de fichiers en affichant une relation 1:1 entre le
                     <i>nom de fichier</i> et l'<i>objet de données</i>, mais cette relation 1:1 n'est pas la même pour tous les systèmes de fichiers.
                 </p>
 
@@ -2643,8 +2485,6 @@
                         Il existe une limitation de l'OS ne permettant pas plus de 1023 Liens physiques par fichier. C'est moins connu, mais c'est un fait.
                     </li>
                     <li><a href="#refssupport">ReFs</a> ne supporte pas les liens physiques.</li>
-
-                    <li>Windows XP par défaut ne supporte pas les liens symboliques, mais il existe un driver pour <a href="#symboliclinksforwindowsxp">activer aussi les liens symboliques sous Windows XP</a></li>
                 </ul>
             </td>
         </tr>
@@ -2875,7 +2715,7 @@
                                     Prendre comme source du lien x:\data\dropbox
                                 </li>
                                 <li>
-                                    Dans c:\users\[username] utilisez <i>Coller ...</i> et sélectionnez <i>un lien symbolique</i> sous Windows7/8/10 ou <i>une Jonction</i> pour WindowsXP
+                                    Dans c:\users\[username] utilisez <i>Coller ...</i> et sélectionnez <i>un lien symbolique</i> ou <i>une Jonction</i>
                                 </li>
                                 <li>
                                     Si tout s'est bien passé alors supprimez c:\users\[username]\dropbox_org
@@ -2908,18 +2748,6 @@
                             R : Les fichiers des ensembles de sauvegarde d'un --delorean sont liés physiquement s'ils sont identiques. NTFS fourni <i>un seul ensemble</i> d'horodatage et
                             d'attributs pour <i>toutes</i> les cibles de liens physiques d'un fichier, donc si un fichier a besoin d'attributs différents dans un ensemble de sauvegarde, il doit être copié.
                             <br /><br />
-                        </p>
-                    </li>
-
-                    <li>
-                        <b>
-                            <a name="faq13">Q</a> : Sous WindowsXP, j'essaie de 'Suppr' (supprimer donc) un répertoire, qui est référencé via une jonction ou un point de montage.
-                            J'obtiens un message 'Accès refusé'? Qu'est-ce qui ne va pas?
-                        </b>
-                        <br />
-
-                        <p>
-                            R : <a href="https://support.microsoft.com/en-us/kb/319368">Explorer.exe a un problème</a> avec les Jonctions et les Points de Montage dans ce cas précis.
                         </p>
                     </li>
 
@@ -2992,8 +2820,12 @@
                         </td>
 
                         <td>
-                            Version 3.9.2.6
+                            Version 3.9.2.7
                             <ul>
+                                <!-- 3.9.2.7, 29.9.2019 -->
+                                <li>Sur un système de fichiers non NTFS, on ne pouvait pas sélectionner un Lien Source. Introduit avec 3921</li>
+                                <li>Le démontage de volume ne fonctionnait pas, quand une élavation de privilèges était nécessaire.</li>
+                                <li>Nouvelles captures d'écrans Windows 10 pour la documentation et celle en ligne.</li>
                                 <!-- 3.9.2.6, 29.9.2019 -->
                                 <li>Signature du code par un certificat</li>
                                 <li>Lors du Remplacement de Jonction/Lien Symbolique/Point de Montage les attributs originaux étaient perdus</li>
@@ -4122,7 +3954,8 @@
                 <br /><br />
                 <br /><br />
 
-            Link Shellextension a aussi une page sur <a href="http://www.facebook.com/pages/Link-Shellextension/235959255982"> Facebook
+            Link Shellextension a aussi une page sur <a href="http://www.facebook.com/pages/Link-Shellextension/235959255982">
+                Facebook
             </a>, où vous pouvez trouver les annonces de nouvelles versions,
             et vous pouvez y discuter de demandes de fonctions futures<br /><br />
                 <a href="http://www.facebook.com/pages/Link-Shellextension/235959255982">
@@ -4131,7 +3964,8 @@
 
                 <br /><br />
 
-            Link Shellextension diffuse ses notes de versions via <a href="http://schinagl.priv.at/nt/hardlinkshellext/lse.xml"> RSS
+            Link Shellextension diffuse ses notes de versions via <a href="http://schinagl.priv.at/nt/hardlinkshellext/lse.xml">
+                RSS
                 </a>.
                 <br /><br />
                 <a href="http://schinagl.priv.at/nt/hardlinkshellext/lse.xml">
