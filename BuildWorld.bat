@@ -53,10 +53,23 @@ pause
 @echo.
 pause
 
-REM Index the pdb files and upload to symbolserver
+REM Source Indexing
+REM
+echo.
+echo Provide Tools for Source indexing
+echo.
+@echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\SourceIndex\git_source_index.exe tools\git_source_index.exe > nul
+@echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\SourceIndex\git_source_index_fetch.exe tools\git_source_index_fetch.exe > nul
+
+REM Source index pdbs
 REM
 call bat\SourceIndex.bat
-call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
+@del tools\git_source_index.exe
+@del tools\git_source_index_fetch.exe
+
+REM Upload to symbolserver
+REM
+REM call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
 
 REM Copy over certificate
 REM
