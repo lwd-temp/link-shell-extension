@@ -1,10 +1,10 @@
 #include "stdafx.h"
+
+#include "hardlink_types.h"
+#include "NtBase.h"
+
 #include "processes.h"
-
-#include "..\NtBase\NtBase.h"
-
 #include "resource.h"
-
 #include "strsafe.h"
 
 #if defined _DEBUG
@@ -45,7 +45,7 @@ BOOL WINAPI		_DllMainCRTStartup( HANDLE	hInst,
 bool	FindProc( char *szProcess )
 {
 	wchar_t		szProcessNameUni[1024];
-	PULONG		dPID;
+  PUINT_PTR dPID;
 	ULONG		dPIDSize = 0;
 
 	int szProcessNameLen = strlen(szProcess);
@@ -78,8 +78,8 @@ bool	FindProc( char *szProcess )
 bool	KillProc( char *szProcess )
 {
 	wchar_t		szProcessNameUni[1024];
-	PULONG		dPID;
-	ULONG		dPIDSize;
+  PUINT_PTR dPID;
+  ULONG		dPIDSize;
 
 	//
 	// enumerate processes names
