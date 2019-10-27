@@ -166,7 +166,7 @@
                 appear in multiple folders (directories).&nbsp;
 
                 They can be created with the POSIX command <b><i>ln</i></b> included <i>in</i> the Windows
-                Resource Kit, the <i>fsutil</i> command utility included in Windows XP or my command line
+                Resource Kit, the <i>fsutil</i> command utility included in Windows or my command line
                 <a href="http://schinagl.priv.at/nt/ln/ln.html">ln.exe</a> utility&nbsp;
 
                 Thus, using standard Windows facilities Hardlinks can only be created at
@@ -187,8 +187,8 @@
                     The extension allows the user to select one or many files or folders, then using the mouse, complete the creation of the required Links -
                     Hardlinks, Junctions or Symbolic Links or in the case of folders to create Clones consisting of Hard or Symbolic Links.
 
-                    LSE is supported on all Windows versions that support NTFS version 5.0 or later, including Windows XP64
-                    and Windows7/8/10. Hardlinks, Junctions and Symbolic Links are NOT supported on FAT
+                    LSE is supported on all Windows versions that support NTFS version 5.0 or later, Windows7/8/10. 
+                    Hardlinks, Junctions and Symbolic Links are NOT supported on FAT
                     file systems, and nor is the Cloning and Smart Copy process supported on FAT file systems.
                 </p>
 
@@ -507,7 +507,7 @@
 
                 Junctions can <b>span network drives</b> as long as the target is a mapped network drive.
                 Unfortunately Junctions, which have a UNC Path as target, can be created
-                with LSE, but even Vista seems to contain a bug, which prevents it from
+                with LSE, but even Windows7/8/10 seems to contain a bug, which prevents it from
                 dereferencing a UNC Path in a junction, even if LSE correctly sets up
                 the reparse info for UNC junctions. When a UNC target junction is
                 double clicked in explorer the error ERROR_INVALID_REPARSE_DATA(4392), will
@@ -748,7 +748,7 @@
                         </td>
                     </tr>
                 </table>
-                Windows7/8/10 and Windows Vista support Symbolic Links, which behave as follows during
+                Windows7/8/10 support Symbolic Links, which behave as follows during
                 Smart Copy:
                 <br />
                 <br />
@@ -1344,7 +1344,7 @@
                 Outer Junctions/Symbolic links are recreated with respect to the specified
                 <a href="#outerjunctionhandling">Outer Junction/Symbolic Link handling</a>. e.g.<p>
 
-                    With Windows Vista and Windows7/8/10 this cloning process is also available with Symbolic Links instead of Hardlinks.
+                    With Windows7/8/10 this cloning process is also available with Symbolic Links instead of Hardlinks.
 
                 <p>
                     <img src="symlinkssmart.png" alt="Symbolic Link Clones the smart way" />
@@ -1380,7 +1380,7 @@
                     HardLink and Symbolic Link Clones can also be created via Drag and Drop, select a folder and drag
                     with the action button depressed to a destination folder. When the action button
                     is released open the <b>Drop Here...</b> submenu and select <b>HardLink Clone</b>
-                    or with Windows Vista and Windows7/8/10 <b>Symbolic Link Clone</b>:
+                    or with Windows7/8/10 <b>Symbolic Link Clone</b>:
                 </p>
 
                 <p>
@@ -1405,7 +1405,7 @@
                     Because Clones use Hardlinks or Symbolic Links, they are only available within an NTFS volume.
                     Hardlink Cloning can not replicate the folder structure from one disk volume to a
                     different volume, because Hardlinks are limited to operation on a single volume.
-                    Symbolic Link Clones can be used to create volume spanning Clones, but only on Vista or Windows7/8/10
+                    Symbolic Link Clones can be used to create volume spanning Clones.
                 </p>
 
                 <p>
@@ -1691,12 +1691,8 @@
                     without access for the current users.
                     <ul>
                         <li>
-                            With Windows7/8/10 LSE always forks its helper process LSEUacHelper.exe, and thus raises the
+                            LSE always forks its helper process LSEUacHelper.exe, and thus raises the
                             <a href="#VistaAndUAC">UAC prompt</a> for elevation and password verification.
-                        </li>
-                        <li>
-                            With WindowsXP LSE only goes into Backup Mode, when the current user has the necessary
-                            <a href="#backupprivs">privileges</a>.
                         </li>
                     </ul>
                     It applies to SmartCopy, SmartMirror, SmartClone, Delorean Copy, SmartMove
@@ -1833,8 +1829,7 @@
                 </p>
 
                 <p>
-                    After enabling the reference column the reference count is shown for each
-                    file. This feature is only available in Windows 2000 and XP, it is not supported in Windows NT4.
+                    After enabling the reference column the reference count is shown for each file.
                 </p>
 
                 <p>
@@ -1843,11 +1838,10 @@
                 <br />
 
                 <p>
-                    <b>Vista & Windows7/8/10:</b> The column, which shows the reference
-                    count and the origin of the junction is not available, because the way Vista and Windows7/8/10 handles
+                    <b>Windows7/8/10:</b> The column, which shows the reference
+                    count and the origin of the junction is not available, because the way Windows7/8/10 handles
                     user defined columns has been completely revamped by Microsoft and all applications working with
-                    so called ColumnHandlers will not work. Microsoft did such a good job in changing interfaces, so
-                    that it is impossible to revive this feature in Windows7/8/10. Sorry.
+                    so called ColumnHandlers will not work.
                 </p>
                 <br />
 
@@ -2444,22 +2438,19 @@
                 <p>
                     <br />
 
-                    <b>General</b><br /> Windows Vista and Windows7/8/10 are a little bit special, because overlay icons for 256x256 must not
+                    <b>General</b><br /> Windows7/8/10 are a little bit special, because overlay icons for 256x256 must not
                     be in the lower left corner of the icon, and must not be already smaller to perfectly 'overlay'
                     an icon. 256x256 overlay icons must fill up the complete available icon, and also must not be resized.
-                    Vista does that for you for 256x256 icons.
                 <p>
-                    Or in other words Vista takes any 256x256 icon and resizes it to 92x92, moves it to the
+                    Or in other words Windows7/8/10 takes any 256x256 icon and resizes it to 92x92, moves it to the
                     left lower corner and overlays.
                 <p>
-                    For all other resolutions smaller than 256x256, Vista works in the same way as XP, you have
-                    to prepare an overlay icon in the lower left corner.
+                    For all other resolutions smaller than 256x256, Windows7/8/10 you have to prepare an overlay icon in the lower left corner.
                 <p>
-                    Furthermore Vista icons should not be saved 'compressed', because XP can not read compressed icons.
                 <p>
-                    For my investigations the icon editor of choice capable of dealing with Vista icons was
+                    For my investigations the icon editor of choice capable of dealing with Windows7/8/10 icons was
                     <a href="http://www.rw-designer.com/3D_icon_editor.php">RealWorld Icon Editor</a>
-                <p>
+<p>
 
                     <b>Apply Changes</b><br />
                     When you press OK or Apply on LSEConfigs dialog, settings will be taken over.
