@@ -2189,7 +2189,7 @@ DeleteMountPoint(
       if (ElevationNeeded())
       {
         // Write the command file, which is read by the elevated process
-        uacHelper.WriteArgs('n', L"empty", m_pTargets[i].m_Path);
+        uacHelper.WriteArgs('n', m_pTargets[i].m_Path, L"empty");
         RelayToSymlink = true;
       }
       else
