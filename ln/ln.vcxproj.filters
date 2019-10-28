@@ -64,9 +64,6 @@
     <None Include="LnAllTest.bat">
       <Filter>Test</Filter>
     </None>
-    <None Include="..\bat\Settings.bat">
-      <Filter>Test</Filter>
-    </None>
     <None Include="t_AbsoluteRelativ.bat">
       <Filter>Test</Filter>
     </None>

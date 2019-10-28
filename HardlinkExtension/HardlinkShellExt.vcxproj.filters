@@ -22,6 +22,9 @@
     <Filter Include="Test">
       <UniqueIdentifier>{4624c145-a026-48c1-ab1d-ed7cc1ae998c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Bat">
+      <UniqueIdentifier>{128a4300-c5f1-45ce-8c9d-ca1bc1db2175}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CopyHook.cpp">
@@ -65,12 +68,6 @@
     <None Include="res\PROGRESS.BIN">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="install\CodeSign.bat">
-      <Filter>Install</Filter>
-    </None>
-    <None Include="install\CreateInstall.bat">
-      <Filter>Install</Filter>
-    </None>
     <None Include="install\GetTime.nsh">
       <Filter>Install</Filter>
     </None>
@@ -96,16 +93,28 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="..\BuildWorld.bat">
-      <Filter>Install</Filter>
-    </None>
-    <None Include="..\bat\SourceIndex.bat">
-      <Filter>Install</Filter>
+      <Filter>Bat</Filter>
     </None>
     <None Include="..\bat\CertificateSettings.bat">
-      <Filter>Install</Filter>
+      <Filter>Bat</Filter>
+    </None>
+    <None Include="install\CodeSign.bat">
+      <Filter>Bat</Filter>
+    </None>
+    <None Include="install\CreateInstall.bat">
+      <Filter>Bat</Filter>
+    </None>
+    <None Include="..\bat\SourceIndex.bat">
+      <Filter>Bat</Filter>
     </None>
     <None Include="..\bat\SymServUpload.bat">
-      <Filter>Install</Filter>
+      <Filter>Bat</Filter>
+    </None>
+    <None Include="..\bat\Settings.bat">
+      <Filter>Bat</Filter>
+    </None>
+    <None Include="..\bat\SymStoreDel.bat">
+      <Filter>Bat</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\bat\FilesToUpload.txt">
-      <Filter>Install</Filter>
+      <Filter>Bat</Filter>
     </Text>
   </ItemGroup>
 </Project>

@@ -6,14 +6,14 @@ REM
 set MAJOR_VERSION=3
 set MINOR_VERSION=9
 set PATCH_VERSION=2
-set HOTFIX_VERSION=601
+set HOTFIX_VERSION=7
 
 REM Set the version info for Commandline tools
 REM
 set MAJOR_CMD_VERSION=2
 set MINOR_CMD_VERSION=9
-set PATCH_CMD_VERSION=1
-set HOTFIX_CMD_VERSION=666
+set PATCH_CMD_VERSION=2
+set HOTFIX_CMD_VERSION=4
 
 @echo generating Version info
 REM Generate version info for Shell Extension
@@ -90,7 +90,7 @@ call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_
 @echo.
 @echo Please commit to GIT now for he symbol transaction-id
 @echo The symbolserver - transactionId is kept unter bat/TransactionId.txt
-@echo If neccessary the SymUpload can be deleted via bat/SymStoreDel <TransactionId>
+@echo If neccessary the SymUpload can be deleted via bat/SymStoreDel ^<TransactionId^>
 @echo.
 pause
 
