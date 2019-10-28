@@ -90,7 +90,7 @@ call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_
 @echo.
 @echo Please commit to GIT now for he symbol transaction-id
 @echo The symbolserver - transactionId is kept unter bat/TransactionId.txt
-@echo If neccessary the SymUpload can be deleted via bat/SymStoreDel <TransactionId>
+@echo If neccessary the SymUpload can be deleted via bat/SymStoreDel ^<TransactionId^>
 @echo.
 pause
 
