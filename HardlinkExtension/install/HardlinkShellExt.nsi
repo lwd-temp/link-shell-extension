@@ -808,9 +808,9 @@ Section
   File ..\Doc\enumeratehardlinks.png
   File ..\Doc\enumeratehardlinksxp.png
   
-  File ..\Doc\hardlinkicon.png
-  File ..\Doc\junctioniconvista.png
-  File ..\Doc\symboliclinkiconvista.png
+  File ..\Doc\hardlinkicon_10.png
+  File ..\Doc\junctionicon_10.png
+  File ..\Doc\symboliclinkicon_10.png
 
   File ..\Doc\lseconfiggeneral.png
   File ..\Doc\lseconfighardlink.png
