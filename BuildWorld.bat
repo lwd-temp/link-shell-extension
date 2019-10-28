@@ -65,7 +65,7 @@ if not exist Media mkdir Media
 pause
 
 @echo.
-@echo Please commit to GIT now
+@echo Please commit to GIT now for the source
 @echo.
 pause
 
@@ -86,6 +86,13 @@ call bat\SourceIndex.bat
 REM Upload to symbolserver
 REM
 call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
+@REM 
+@echo.
+@echo Please commit to GIT now for he symbol transaction-id
+@echo The symbolserver - transactionId is kept unter bat/TransactionId.txt
+@echo If neccessary the SymUpload can be deleted via bat/SymStoreDel <TransactionId>
+@echo.
+pause
 
 REM Copy over certificate
 REM

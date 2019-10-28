@@ -19,6 +19,7 @@
 @set ERRLEV=%ERRORLEVEL%
 @set /p TRANSACTION_ID=<%SYMSTORE%\000Admin\LastId.txt
 @echo TRANSACTION_ID: %TRANSACTION_ID%
+@echo %TRANSACTION_ID% > %~dp0..\bat\TransactionId.txt
 
 @for /f "tokens=1,2 delims==" %%a in ('@%GREP% -i "Number of errors" %LOGFILE%') do @set ERRORS=%%b
 @call :TRIM ERRORS
