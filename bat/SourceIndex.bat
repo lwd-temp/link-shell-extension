@@ -1,9 +1,13 @@
-@echo.
-@echo ######## Source Indexing ######## 
-@echo.
 @setlocal enableextensions enabledelayedexpansion
 
 @set GIT_SRC_INDEX=%~dp0..\tools\git_source_index.exe
+if not exist %GIT_SRC_INDEX% ( 
+  @echo WARNING: ######## No SourceIndexing available ######## 
+  exit /b 
+)
+@echo.
+@echo ######## Source Indexing ######## 
+@echo.
 @set PDBSTR=%~dp0..\tools\pdbstr.exe
 @set GREP=%~dp0..\tools\grep.exe
 @set GIT_SOURCE_SERVER=SOURCE_SERVER
