@@ -1,45 +1,27 @@
 DEBUG_DEFINES müssen im Source in hardlink_types.h alle ok sein
 
-Versionsresource ln.exe über die Defines im ln\resource.h
-
-Edit BuildWord.bat and update version number
-
+Edit BuildWord.bat and update version number for LSE, ln.exe and Dupemerge.exe
 Unter Windows10 einen Admin Command Prompt aufmachen und dann 'Run As Admin' machen, sonst können die Stubs nicht nach Programm Files zurückkopiert werden
+
+Docu Versionsnummer linkshellextension.html top
+Docu Versionsnummer linkshellextension.html in history
+Docu Datum linkshellextension.html in history
+
+Docu Versionsnummer linkshellextension_fr.html top
+Docu Versionsnummer linkshellextension_fr.html in history
+Docu Datum linkshellextension_fr.html in history
+
+Docu Versionsnummer ln\Doc\ln.html top
+Docu Versionsnummer ln\Doc\ln.html  'The 2.9.2.x version is a stable version'
+
+Docu Versionsnummer lse.xml: <title> <pubDate> <description> <![CDATA[> <guid> 
 
 Check if all plattforms are selected in Batch Build
 BuildWorld.bat
 
-Docu Versionsnummer linkshellextension.html oben
-Docu Versionsnummer linkshellextension.html unten
-Docu Datum linkshellextension.html unten
-
-Docu Versionsnummer linkshellextension_fr.html oben
-Docu Versionsnummer linkshellextension_fr.html unten
-Docu Datum linkshellextension_fr.html unten
-
-Docu Versionsnummer ln\Doc\ln.html oben
-Docu Versionsnummer ln\Doc\ln.html  'The 2.9.1.x version is a stable version'
-
-Docu Versionsnummer lse.xml: <title> <pubDate> <description> <![CDATA[> <guid> 
-    <item>
-      <title>LSE 3.355 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
-      <pubDate>Mon, 13 June 2010 09:00:00 +0100</pubDate>
-      <description>
-        LSE released version 3.355
-      </description>
-      <content:encoded>
-        <![CDATA[
-        <ul>
-          <li>Fixed a crash during undeleting files from Recycle Bin.</li>
-        </ul>
-        ]]>
-      </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3355</guid>
-    </item>
-
-
 Copy neue Bilder nach $website
 
 Post to facebook
+Upload to Heise
+Backup Symbol Server
 

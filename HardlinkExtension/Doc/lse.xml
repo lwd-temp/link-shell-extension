@@ -7,6 +7,23 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.927 has been released.</title>
+      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <pubDate>Tue, 28 Oct 2019 10:00:15 +0100</pubDate>
+      <description>
+        LSE 3.927 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>On non NTFS drive files, could no be selected as Link Source. Introduced with 3921</li>
+          <li>Unmount volume did not work, when elevation was needed.</li>
+          <li>New Windows 10 screenshots for docu and docu streamlining.</li>
+        ]]>
+      </content:encoded>
+      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3927</guid>
+    </item>
+
+    <item>
       <title>LSE 3.926 has been released.</title>
       <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 15 Oct 2019 10:00:15 +0100</pubDate>

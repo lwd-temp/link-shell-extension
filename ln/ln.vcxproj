@@ -282,7 +282,6 @@
     <ResourceCompile Include="ln.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\bat\Settings.bat" />
     <CustomBuild Include="bat\DeleteAllHardlinks.bat">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CustomBuild>

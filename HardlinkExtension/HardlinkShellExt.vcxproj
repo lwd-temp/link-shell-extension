@@ -307,7 +307,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <None Include="..\bat\CertificateSettings.bat" />
+    <None Include="..\bat\Settings.bat" />
     <None Include="..\bat\SymServUpload.bat" />
+    <None Include="..\bat\SymStoreDel.bat" />
     <None Include="..\BuildWorld.bat" />
     <None Include="..\bat\SourceIndex.bat" />
     <None Include="LinkShellExtension.def" />
