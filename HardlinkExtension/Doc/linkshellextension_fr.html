@@ -162,10 +162,10 @@
 
             <td class="bodytext">
                 Le système de fichiers NTFS supporte une fonctionalité connue en tant que <b>liens physiques</b>
-                (que l'on nommera aussi ci-dessous <b>Hardlinks</b>). Les liens physiques donnent la possibilité de conserver une seule copie d'un fichier bien qu'il 
+                (que l'on nommera aussi ci-dessous <b>Hardlinks</b>). Les liens physiques donnent la possibilité de conserver une seule copie d'un fichier bien qu'il
                 apparaisse dans de nombreux répertoires (directories).&nbsp;
 
-                Ils peuvent être créés par la commande POSIX <b><i>ln</i></b> incluse <i>dans</i> le "Windows 
+                Ils peuvent être créés par la commande POSIX <b><i>ln</i></b> incluse <i>dans</i> le "Windows
                 Resource Kit", la commande utilitaire <i>fsutil</i> incluse dans Windows ou via mon utilitaire en ligne de commande
                 <a href="http://schinagl.priv.at/nt/ln/ln.html">ln.exe</a>.&nbsp;
 
@@ -199,7 +199,7 @@
                     </i>
                 </b>sont utilisés pour se référer au bouton droit de la souris et le menu de contexte qui s'affiche
                 quand on clique sur ce bouton (souvent désigné comme le menu contextuel). Sachant que des gens permutent l'usage des
-                boutons de la souris, Microsoft les appelle aussi boutons de souris <i>primaire</i> et <i>secondaire</i>. Nous préférons appeler les boutons de la souris comme bouton de 
+                boutons de la souris, Microsoft les appelle aussi boutons de souris <i>primaire</i> et <i>secondaire</i>. Nous préférons appeler les boutons de la souris comme bouton de
                 <b>Sélection</b> et bouton d'<b>Action</b> button;
                 et plutôt que d'utiliser des termes comme Menu contextuel, Menu du Shell, Menu droit de la Souris nous utiliserons le terme menu d'<b>Action</b>.
             </td>
@@ -365,7 +365,7 @@
                 si un ou plusieurs fichiers/répertoires sont sélectionnés comme liens source ils peuvent être créés comme liens sous plusieurs formes.
                 <br />
                 <br />
-                Pour éviter de surcharger les menus contextuels, un sous-menu contenant les différents types de liens applicables aux répertoires est alors proposé. 
+                Pour éviter de surcharger les menus contextuels, un sous-menu contenant les différents types de liens applicables aux répertoires est alors proposé.
                 <br />
                 <br />
 
@@ -405,7 +405,7 @@
             </td>
 
             <td class="bodytext">
-                Les fichiers peuvent&nbsp; 
+                Les fichiers peuvent&nbsp;
                 avoir un lien physique dans le même répertoire que le répertoire source. Parce que les deux entrées dans un répertoire ne peuvent pas avoir le même nom, LSE utilise
                 '$filename - Lien physique.$ext' comme nom du nouveau lien.
                 <br />
@@ -447,8 +447,8 @@
                 <br />
 
                 Les jonctions sont créées de la même manière que les Liens physiques, sauf que
-                la Source du Lien est un répertoire plutôt qu'un fichier. Sélectionnez un répertoire, cliquez sur le bouton droit de la souris et choisissez 
-               <b>Prendre comme cible du lien (Pick Link Source)</b> dans le menu d'actions, aller dans le répertoire de destination, cliquez sur le bouton d'action, ouvrez le
+                la Source du Lien est un répertoire plutôt qu'un fichier. Sélectionnez un répertoire, cliquez sur le bouton droit de la souris et choisissez
+                <b>Prendre comme cible du lien (Pick Link Source)</b> dans le menu d'actions, aller dans le répertoire de destination, cliquez sur le bouton d'action, ouvrez le
                 sous-menu <b>Coller ... (Drop As ...)</b> et sélectionnez <b>Une jonction </b>
                 <br />
                 <br />
@@ -759,7 +759,7 @@
                         </td>
                         <td>
                             Le lien symbolique 'Inner Symlink' a pour cible 'Inner
-                            Symlink Target'. Dans la terminologie de LSE ce type de lien symbolique est nommé <i>Lien Symbolique Interne</i>, car il pointe vers un fichier qui est 
+                            Symlink Target'. Dans la terminologie de LSE ce type de lien symbolique est nommé <i>Lien Symbolique Interne</i>, car il pointe vers un fichier qui est
                             dans le même répertoire père 'Folder 1'. Les <i>Liens Symboliques Internes</i> sont restaurés correctement par une Copie Intelligente dans l'emplacement de destination.
                             <br />
                             <br />
@@ -845,7 +845,7 @@
                 </p>
 
                 <p>
-                    <b>Ligne de commande<br /><br /></b>La fonctionnalité de Copie Intelligente est également disponible en ligne de commande depuis l'utilitaire 
+                    <b>Ligne de commande<br /><br /></b>La fonctionnalité de Copie Intelligente est également disponible en ligne de commande depuis l'utilitaire
                     <a href="http://schinagl.priv.at/nt/ln/ln.html">ln.exe</a> via le commutateur de ligne de commande --copy.
                 </p>
 
@@ -864,7 +864,7 @@
                 </a>
             </td>
             <td>
-                Lors d'une <a href="#smartcopy">Copie Intelligente</a>, un <a href="#smartmirror">Miroir Intelligent</a>, une <a href="#deloreancopy">Copie Delorean</a> et un <a href="#hardlinkclones">Clone</a> 
+                Lors d'une <a href="#smartcopy">Copie Intelligente</a>, un <a href="#smartmirror">Miroir Intelligent</a>, une <a href="#deloreancopy">Copie Delorean</a> et un <a href="#hardlinkclones">Clone</a>
                 ce qu'on appelle <a href="#innerjunction">Répertoires Jonctions/Liens symboliques sortants</a>
                 nécessite un traitement particulier. Il y a trois façons de faire avec ces répertoires Jonctions/Liens symboliques sortants :
                 <br />
@@ -923,7 +923,7 @@
                             <br />
 
                             <p>
-                                Dans l'exemple ci-dessus <i>Folder1</i> est copié vers <i>Destination/Folder1</i>, et <i>Outer Junction/Symlink</i> et tous les fichiers/répertoires en dessous de la cible 
+                                Dans l'exemple ci-dessus <i>Folder1</i> est copié vers <i>Destination/Folder1</i>, et <i>Outer Junction/Symlink</i> et tous les fichiers/répertoires en dessous de la cible
                                 <i>Outer Junction/Symlink</i> sont copiés vers le répertoire <i> Outer Junction/Symlink</i> de la destination.
                             </p>
 
@@ -1734,7 +1734,7 @@
 
             <td class="bodytext">
                 <p>
-                    Les points de montage sont une fonctionnalité permettant 
+                    Les points de montage sont une fonctionnalité permettant
                     d'accéder à un volume local complet depuis une position arbitraire de disque. Les points de montage de volume
                     n'étaient pas supportés dans NTFS Version 4.0
                 </p>
@@ -1754,7 +1754,7 @@
                 </p><br />
 
                 <p>
-                    Les points de montages peuvent aussi être créés par Glisser-Déposer lorsque le volume local sélectionné est glissé avec le bouton d'action enfoncé vers un répertoire de 
+                    Les points de montages peuvent aussi être créés par Glisser-Déposer lorsque le volume local sélectionné est glissé avec le bouton d'action enfoncé vers un répertoire de
                     destination ; quand vous relâchez le bouton droit de la souris, sélectionnez le sous-menu <b>Coller ...</b> puis <b>Un point de montage.</b>
                 </p>
 
@@ -1810,7 +1810,7 @@
                 </p>
 
                 <p>
-                    Après avoir activé la colonne de référence le compteur est affiché pour chaque fichier. 
+                    Après avoir activé la colonne de référence le compteur est affiché pour chaque fichier.
                 </p>
 
                 <p>
@@ -1998,7 +1998,7 @@
             </td>
             <td class="bodytext">
                 <p>
-                    En raison de l'UAC certains appels d'API nécessitent une élévation de privilèges au niveau administrateur, et cette élévation doit être acceptée via la boîte de dialogue montrée ci-dessous. 
+                    En raison de l'UAC certains appels d'API nécessitent une élévation de privilèges au niveau administrateur, et cette élévation doit être acceptée via la boîte de dialogue montrée ci-dessous.
 
                     Donc si vous voyez la boîte ci-dessous, et que le programme qui demande l'élévation est LSEUacHelper.exe, c'est la contribution de Link Shell Extensions à l'UAC et vous devez l'accepter pour pouvoir créer
                     des Liens Symboliques.
@@ -2314,7 +2314,7 @@
                 <p>
 
                     <b>Mode Copie (ou Copie de sûreté)</b><br />
-                    En cochant la case de <i>Sauvegarde</i> Link Shell Extension sera exécuté dans le <a href="#backupmode">Mode Sauvegarde</a>. 
+                    En cochant la case de <i>Sauvegarde</i> Link Shell Extension sera exécuté dans le <a href="#backupmode">Mode Sauvegarde</a>.
                 <p>
                     <br /><br />
 
@@ -2414,7 +2414,7 @@
                 </p>
 
                 <p>
-                    Alors, comment peut-on créer de multiples entrées pour le même objet de données ? Sous Unix il existe un utilitaire en ligne de commande <i>ln</i>, qui est utilisé pour 
+                    Alors, comment peut-on créer de multiples entrées pour le même objet de données ? Sous Unix il existe un utilitaire en ligne de commande <i>ln</i>, qui est utilisé pour
                     créer les entrées de liens vers des fichiers existants, donc on peut obtenir plusieurs noms de fichiers, appelés Liens Physiques, pour un seul objet de données.
                 </p>
 
@@ -2438,12 +2438,12 @@
                 </p>
 
                 <p>
-                    <a name="symboliclinks"><b>Les Liens Symboliques</b></a> 
+                    <a name="symboliclinks"><b>Les Liens Symboliques</b></a>
                     sont aux fichiers ce que sont les Jonctions aux répertoires en ce sens qu'ils sont à la fois transparents et Symboliques. La Transparence signifie qu'une application peut les
                     accéder exactement comme elle le ferait pour tout autre fichier, et Symbolique signifie que l'objet de données peut se situer sur n'importe quel volume disponible,
                     c'est à dire qu'ils ne sont pas limités à un seul volume comme les liens physiques. Les Liens Symboliques diffèrent des raccourcis en ce qu'ils
                     permettent un accès transparent à l'objet de données, alors qu'avec un raccourci (.lnk), quelque chose doit lire et interpréter le contenu du
-                    fichier de raccourci puis ouvrir le fichier qu'il référence (autrement dit c'est un processus en 2 
+                    fichier de raccourci puis ouvrir le fichier qu'il référence (autrement dit c'est un processus en 2
                     étapes). Quand une application utilise un lien symbolique, elle accède directement à l'objet donnée référencé par
                     le lien symbolique (c'est donc un processus en une seule étape).
                 </p>
@@ -2477,7 +2477,7 @@
                         Les choix <i>Prendre comme cible du lien</i> et <'">Coller ..<i> ...</i>
                         ne sont visibles que s'il est possible de créer des liens physiques/Jonctions/Symbolique. E.G.: Si vous
                         sélectionnez un fichier sur un lecteur FAT et appuyez sur le bouton d'action, vous ne verrez pas <i>Prendre comme cible du lien</i> dans le menu
-                        d'action, car le système de fichier FAT, ne supporte pas les liens physiques/Jonctions/Symboliques. Ceci arrive également si 
+                        d'action, car le système de fichier FAT, ne supporte pas les liens physiques/Jonctions/Symboliques. Ceci arrive également si
                         vous sélectionnez des fichiers sources sur un lecteur réseau, ou sélectionnez un fichier en tant que destination, etc.
                     </li>
 
@@ -3675,7 +3675,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top">
+                        <td class="history">
                             January 23rd 2002
                         </td>
 
@@ -3699,7 +3699,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top">
+                        <td class="history">
                             October 27th 2001
                         </td>
 
@@ -3795,11 +3795,11 @@
 
         <tr>
             <td class="hanger">
-            <a name="status"><b>État</b></a>
+                <a name="status"><b>État</b></a>
             </td>
 
             <td class="bodytext">
-            La version 3.8.6.x est une version stable pour les <a href="#limitations">plates-formes supportées.</a>
+                La version 3.8.6.x est une version stable pour les <a href="#limitations">plates-formes supportées.</a>
                 <br /><br />
             </td>
         </tr>
@@ -3810,40 +3810,40 @@
 
         <tr>
             <td class="hanger">
-            <a name="acknowledgements">Remerciements</a>
+                <a name="acknowledgements">Remerciements</a>
             </td>
 
             <td class="bodytext">
-            Je souhaite remercier ceux qui ont contribué de façon significative au développement de Link Shell Extension. En particulier :
+                Je souhaite remercier ceux qui ont contribué de façon significative au développement de Link Shell Extension. En particulier :
 
                 <p>
-                <a href="mailto:felix@mvps.org">Felix Kasza</a> pour <a href="http://www.mvps.org">les bases des liens physiques avec NT4.</a><br />
+                    <a href="mailto:felix@mvps.org">Felix Kasza</a> pour <a href="http://www.mvps.org">les bases des liens physiques avec NT4.</a><br />
 
-                Nullsoft pour le super <a href="http://nsis.sourceforge.net">nsis installateur</a><br />
+                    Nullsoft pour le super <a href="http://nsis.sourceforge.net">nsis installateur</a><br />
                     <a href="mailto:james@ractive.ch">Jean-Pierre Bergamin</a>
-                pour le <a href="http://www.ractive.ch">
+                    pour le <a href="http://www.ractive.ch">
                         drag and drop
-                    support d'exemples.
+                        support d'exemples.
                     </a><br />
                     <a href="mailto:TIllig@corillian.com">Travis Illig</a>
-                qui a suggéré d'ajouter les icônes de superposition pour les jonctions, et qu'il
-                utilise dans son <a href="http://www.paraesthesia.com/blog/comments.php?id=801_0_1_0_C">
+                    qui a suggéré d'ajouter les icônes de superposition pour les jonctions, et qu'il
+                    utilise dans son <a href="http://www.paraesthesia.com/blog/comments.php?id=801_0_1_0_C">
                         Junction Shell Extension.
                     </a><br />
 
-                <a href="mailto:mark@sysinternals.com">Mark Russinovich</a> pour des astuces sur les
-                <a href="http://www.sysinternals.com">jonctions</a><br />
+                    <a href="mailto:mark@sysinternals.com">Mark Russinovich</a> pour des astuces sur les
+                    <a href="http://www.sysinternals.com">jonctions</a><br />
 
-                <a href="mailto:pjd1001@hotmail.com">Philip Daniels</a> pour une revue technique
-                de la documentation<br />
+                    <a href="mailto:pjd1001@hotmail.com">Philip Daniels</a> pour une revue technique
+                    de la documentation<br />
 
-                <a href="http://www.bigfoot.com/~D.U.Thibault">Daniel Thibault</a> pour la traduction Française
-                du logiciel, et pour une douzaine de rapports de bugs et demandes de fonctionnalités.<br />
+                    <a href="http://www.bigfoot.com/~D.U.Thibault">Daniel Thibault</a> pour la traduction Française
+                    du logiciel, et pour une douzaine de rapports de bugs et demandes de fonctionnalités.<br />
 
-                 <a href="http://emk.name">Masatoshi Kimura</a> pour le driver de lien symbolique
-                 pour WindowsXP.<br />
+                    <a href="http://emk.name">Masatoshi Kimura</a> pour le driver de lien symbolique
+                    pour WindowsXP.<br />
 
-                 Gérard Durand pour la traduction en Français de la documentation.
+                    Gérard Durand pour la traduction en Français de la documentation.
                     <br />
                 </p>
             </td>
@@ -3855,15 +3855,15 @@
 
         <tr>
             <td class="hanger">
-            <a name="openissues"><b>Problèmes ouverts</b></a>
+                <a name="openissues"><b>Problèmes ouverts</b></a>
             </td>
 
             <td class="bodytext">
                 <ul>
                     <li>
-                    Sous Vista & Windows7 la gestion des colonnes dans l'explorateur, fournissant
-                    le compteur de référence, ne fonctionne plus, depuis que Microsoft a supprimé
-                    l'interface correspondant à cette fonctionnalité.
+                        Sous Vista & Windows7 la gestion des colonnes dans l'explorateur, fournissant
+                        le compteur de référence, ne fonctionne plus, depuis que Microsoft a supprimé
+                        l'interface correspondant à cette fonctionnalité.
                     </li>
                 </ul>
             </td>
@@ -3880,8 +3880,8 @@
 
             <td class="bodytext">
                 <ul>
-                <li>Ce programme est fourni en l'état. Voir <a href="license.txt"> license.txt</a> dans cette distribution pour les problèmes légaux.<br /></li>
-                <li>Link Shellextension utilise <a href="http://laurikari.net/tre">tre</a> comme moteur d'expression régulière. Voir la  <a href="license_tre.txt">licence tre</a>.</li>
+                    <li>Ce programme est fourni en l'état. Voir <a href="license.txt"> license.txt</a> dans cette distribution pour les problèmes légaux.<br /></li>
+                    <li>Link Shellextension utilise <a href="http://laurikari.net/tre">tre</a> comme moteur d'expression régulière. Voir la  <a href="license_tre.txt">licence tre</a>.</li>
                 </ul>
             </td>
         </tr>
@@ -3896,42 +3896,41 @@
             </td>
 
             <td class="bodytext">
-            Rapports de bug, ou demande de nouvelles fonctions sont à envoyer à
+                Rapports de bug, ou demande de nouvelles fonctions sont à envoyer à
                 <a href="mailto:Hermann.Schinagl@gmx.net">Hermann Schinagl.</a>.<br />
-                <p>
 
                 LSE est et restera un freeware, mais si LSE vous est réellement
                 utile et vous sauve beaucoup de temps, alors pensez
                 à une donation notamment par PayPal
 
-                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                        <input type="hidden" name="cmd" value="_donations">
-                        <input type="hidden" name="business" value="hermann.schinagl@gmx.net">
-                        <input type="hidden" name="item_name" value="LinkShellExtension Donation">
-                        <input type="hidden" name="no_shipping" value="0">
-                        <input type="hidden" name="no_note" value="1">
-                        <input type="hidden" name="currency_code" value="EUR">
-                        <input type="hidden" name="tax" value="0">
-                        <input type="hidden" name="lc" value="US">
-                        <input type="hidden" name="bn" value="PP-DonationsBF">
-                        <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                        <img alt="" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                    </form>
-                    <br /><br />
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_donations">
+                    <input type="hidden" name="business" value="hermann.schinagl@gmx.net">
+                    <input type="hidden" name="item_name" value="LinkShellExtension Donation">
+                    <input type="hidden" name="no_shipping" value="0">
+                    <input type="hidden" name="no_note" value="1">
+                    <input type="hidden" name="currency_code" value="EUR">
+                    <input type="hidden" name="tax" value="0">
+                    <input type="hidden" name="lc" value="US">
+                    <input type="hidden" name="bn" value="PP-DonationsBF">
+                    <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" src="https://www.paypal.com/en_US/i/scr/pixel.gif">
+                </form>
+                <br /><br />
 
                 ou une donation sur flattr
-                    <br /><br />
+                <br /><br />
 
-                    <a class="FlattrButton" style="display:none;" href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html"></a>
-                    <noscript>
-                        <a href="http://flattr.com/thing/180519/Link-Shell-Extension" target="_blank">
-                            <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" />
-                        </a>
-                    </noscript>
+                <a class="FlattrButton" style="display:none;" href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html"></a>
+                <noscript>
+                    <a href="http://flattr.com/thing/180519/Link-Shell-Extension" target="_blank">
+                        <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" />
+                    </a>
+                </noscript>
 
                 <p>
                     <br /><br />
-                ou en envoyant un don certifié depuis<br /><br />
+                    ou en envoyant un don certifié depuis<br /><br />
 
                     <a href="http://www.amazon.de/gp/gc/ref=sv_w_0/302-2139848-0001645">
                         <img src="amazon.de.png" alt="amazon.de" />
@@ -3941,35 +3940,33 @@
                     <br /><br />
 
                 <p>
-                    <br /><br />
-                ou en donnant des bitcoins :<br /><br />
+                    ou en donnant des bitcoins :<br /><br />
                     <img src="bitcoinlogo.png" />
-                </p><br />
+                </p>
+                <p>
                     <b>bc1q4hvevwrmnwt7jg8vws0v8xajywhffl4gwca5av</b>
-                <img src="bitcoinlseqr.png" />
-
-                <br /><br />
+                </p>
+                <p>
+                    <img src="bitcoinlseqr.png" />
                 </p>
 
-                <br /><br />
-                <br /><br />
 
-            Link Shellextension a aussi une page sur <a href="http://www.facebook.com/pages/Link-Shellextension/235959255982">
-                Facebook
-            </a>, où vous pouvez trouver les annonces de nouvelles versions,
-            et vous pouvez y discuter de demandes de fonctions futures<br /><br />
+                Link Shellextension a aussi une page sur <a href="http://www.facebook.com/pages/Link-Shellextension/235959255982">
+                    Facebook
+                </a>, où vous pouvez trouver les annonces de nouvelles versions,
+                et vous pouvez y discuter de demandes de fonctions futures<br /><br />
                 <a href="http://www.facebook.com/pages/Link-Shellextension/235959255982">
-                    <image src="facebook.png" width="160" height="42" alt="facebook">
+                    <image src="facebook.png" alt="facebook">
                 </a>.
 
                 <br /><br />
 
-            Link Shellextension diffuse ses notes de versions via <a href="http://schinagl.priv.at/nt/hardlinkshellext/lse.xml">
-                RSS
+                Link Shellextension broadcasts its release notes via <a href="http://schinagl.priv.at/nt/hardlinkshellext/lse.xml">
+                    RSS
                 </a>.
                 <br /><br />
                 <a href="http://schinagl.priv.at/nt/hardlinkshellext/lse.xml">
-                    <image src="rss.png" width="80" height="80" alt="rss feed">
+                    <image src="rss.png" alt="rss feed">
                 </a>.
 
                 <br /><br />
@@ -3978,20 +3975,20 @@
 
         <tr>
             <td class="hanger">
-            <a name="download"><b>Téléchargement</b></a>
+                <a name="download"><b>Téléchargement</b></a>
             </td>
 
             <td align="center" class="bodytext">
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
 
                     <tr>
-                        <td align="left" width="150" valign="top">
-                        <b>Tous les Windows 64<br /></b>
+                        <td class="hanger2">
+                            <b>Tous les Windows 64<br /></b>
                         </td>
                         <td>
-                        Cette version contient la version 64bit de Link Shell Extension, mais contient
-                        aussi la version 32bit, qui est installée en parallèle de la version 64bit, de façon à satisfaire certains gestionnaires
-                        de fichiers/explorateurs tiers comme total commander :<br />
+                            Cette version contient la version 64bit de Link Shell Extension, mais contient
+                            aussi la version 32bit, qui est installée en parallèle de la version 64bit, de façon à satisfaire certains gestionnaires
+                            de fichiers/explorateurs tiers comme total commander :<br />
                             <br />
                             <a href="http://schinagl.priv.at/nt/hardlinkshellext/HardLinkShellExt_X64.exe">
                                 <center>
@@ -3999,9 +3996,9 @@
                                 </center>
                             </a>
                             <br />
-                        Toutes les dlls nécessaires à l'exécution dont déjà installées sur votre système, mais si ce n'est pas le cas, récupérez les sur
-                        <a href="https://aka.ms/vs/15/release/vc_redist.x64.exe">ici en 64 bits</a>
-                        et <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">ici en 32 bits</a>
+                            Toutes les dlls nécessaires à l'exécution dont déjà installées sur votre système, mais si ce n'est pas le cas, récupérez les sur
+                            <a href="https://aka.ms/vs/15/release/vc_redist.x64.exe">ici en 64 bits</a>
+                            et <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">ici en 32 bits</a>
                             <br />
                         </td>
                     </tr>
@@ -4017,11 +4014,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="150" valign="top">
-                        <b>Tous les Windows 32<br /></b>
+                        <td class="hanger2">
+                            <b>Tous les Windows 32<br /></b>
                         </td>
                         <td>
-                        Téléchargez et installer tout simplement
+                            Téléchargez et installer tout simplement
                             <br />
                             <a href="http://schinagl.priv.at/nt/hardlinkshellext/HardLinkShellExt_win32.exe">
                                 <center>
@@ -4030,50 +4027,31 @@
                             </a>
                             <br />
                             <br />
-                        Toutes les dlls nécessaires à l'exécution sont déjà installées sur votre système, mais si ce n'est pas le cas, récupérez les sur
-                        <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">ici.</a>                <br />
+                            Toutes les dlls nécessaires à l'exécution sont déjà installées sur votre système, mais si ce n'est pas le cas, récupérez les sur
+                            <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">ici.</a>                <br />
                         </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <br />&nbsp
-                        </td>
-                    </tr>
 
                 </table>
+                <br />
+                <br />
             </td>
         </tr>
 
         <tr>
             <td class="hanger">
-            <a name="legacy"><b>Anciens<br />Téléchargements</b></a>
+                <a name="legacy"><b>Anciens<br />Téléchargements</b></a>
             </td>
             <td align="center" class="bodytext">
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
 
                     <tr>
-                        <td align="left" width="150" valign="top">
-                        <b>Tous les Windows Itanium<br /></b>
+                        <td class="hanger2">
+                            <b>All Windows Itanium<br /></b>
                         </td>
                         <td>
-                        La version Itanium n'est plus supportée, mais la dernière version 3.8.7.2 construite par VS2005 est conservée par commodité. <br />
-                        SVP, assurez-vous que les dlls runtime sont bien installées sur votre
-                        système. Ce package prérequis peut être téléchargé chez Microsoft:<br />
+                            La version Itanium n'est plus supportée, mais la dernière version 3.8.7.2 construite par VS2005 est conservée par commodité. <br />
+                            SVP, assurez-vous que les dlls runtime sont bien installées sur votre
+                            système. Ce package prérequis peut être téléchargé chez Microsoft:<br />
                             <br />
                             <a href="http://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_IA64.EXE">
                                 <center>
@@ -4081,7 +4059,7 @@
                                 </center>
                             </a>
                             <br />
-                        Enfin installer
+                            Enfin installer
                             <br />
                             <a href="http://schinagl.priv.at/nt/hardlinkshellext/save/3872/HardLinkShellExt_Itanium.exe">
                                 <center>
@@ -4098,14 +4076,14 @@
 
 
                     <tr>
-                        <td align="left" width="150" valign="top" class="hanger">
+                        <td class="hanger2">
                             <b>Windows NT4 </b>
                         </td>
                         <td align="left" class="bodytext">
-                        La version pour Windows NT4 ne sera plus développée,
-                        et ses fonctionnalités sont figées à celles de la version
-                        <a href="http://schinagl.priv.at/nt/hardlinkshellext/save/3200/HardlinkShellExt.exe">Link Shell Extension 3.2.0.0 (1.13Mb)</a>, qui, de base, a toutes les
-                        fonctions importantes.
+                            La version pour Windows NT4 ne sera plus développée,
+                            et ses fonctionnalités sont figées à celles de la version
+                            <a href="http://schinagl.priv.at/nt/hardlinkshellext/save/3200/HardlinkShellExt.exe">Link Shell Extension 3.2.0.0 (1.13Mb)</a>, qui, de base, a toutes les
+                            fonctions importantes.
                             <br />
                             <br />
                         </td>
@@ -4117,13 +4095,13 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="150" valign="top" class=" hanger">
+                        <td class="hanger2">
                             <b>Windows 2000<br />Windows XP</b>
                         </td>
                         <td align="left" class="bodytext">
-                        Les versions pour Windows 2000 et pour Windows XP ne seront plus développées, et leurs fonctionalités sont figées par
+                            Les versions pour Windows 2000 et pour Windows XP ne seront plus développées, et leurs fonctionalités sont figées par
                             <a href="http://schinagl.priv.at/nt/hardlinkshellext/save/3872/HardLinkShellExt_win32.exe">Link Shell Extension 3.8.7.2 (32 bit)</a>
-                        et
+                            et
                             <a href="http://schinagl.priv.at/nt/hardlinkshellext/save/3872/HardLinkShellExt_X64.exe">Link Shell Extension 3.8.7.2 (64 bit)</a>
                             <br /><br /><br />
                         </td>
@@ -4136,34 +4114,34 @@
 
 
                     <tr>
-                        <td align="left" width="150" valign="top" class="hanger">
-                        <b>Driver de liens Symboliques pour Windows XP</b>
+                        <td class="hanger2">
+                            <b>Symbolic Link Driver<br /> for Windows XP</b>
                         </td>
                         <td align="left" class="bodytext">
-                        Un driver pour activer même sous WindowsXP la <a href="#symboliclinksforwindowsxp">
-                             fonctionnalité de lien symbolique
-                        </a> est mis à disposition par Masatoshi Kimura. Vous pouvez télécharger le
-                        driver depuis sa page web ou depuis mon site agissant comme miroir.
+                            Un driver pour activer même sous WindowsXP la <a href="#symboliclinksforwindowsxp">
+                                fonctionnalité de lien symbolique
+                            </a> est mis à disposition par Masatoshi Kimura. Vous pouvez télécharger le
+                            driver depuis sa page web ou depuis mon site agissant comme miroir.
 
                             <br />
                             <br />
                             <a href="http://emk.name/symlink-1.06-x64.zip">
-                            <center>Drivers Symboliques pour WindowsXP 64 (86kb) [Site Original]</center>
+                                <center>Drivers Symboliques pour WindowsXP 64 (86kb) [Site Original]</center>
                             </a>
                             <a href="http://schinagl.priv.at/nt/hardlinkshellext/driver/symlink-1.06-x64.zip">
-                            <center>Drivers Symboliques pour WindowsXP 64 (86kb) [Miroir schinagl.priv.at]</center>
+                                <center>Drivers Symboliques pour WindowsXP 64 (86kb) [Miroir schinagl.priv.at]</center>
                             </a><br />
                             <a href="http://emk.name/symlink-1.06-x86.cab">
-                            <center>Drivers Symboliques pour WindowsXP (86kb) [Site Original]</center>
+                                <center>Drivers Symboliques pour WindowsXP (86kb) [Site Original]</center>
                             </a>
                             <a href="http://schinagl.priv.at/nt/hardlinkshellext/driver/symlink-1.06-x86.cab">
-                            <center>Drivers Symboliques pour WindowsXP (86kb) [Miroir schinagl.priv.at]</center>
+                                <center>Drivers Symboliques pour WindowsXP (86kb) [Miroir schinagl.priv.at]</center>
                             </a><br />
                             <a href="http://emk.name/symlink-1.06-src.zip">
-                            <center>Sources pour Drivers (23kb) [Site Original]</center>
+                                <center>Sources pour Drivers (23kb) [Site Original]</center>
                             </a>
                             <a href="http://schinagl.priv.at/nt/hardlinkshellext/driver/symlink-1.06-src.zip">
-                            <center>Sources pour Drivers (23) [Miroir schinagl.priv.at]</center>
+                                <center>Sources pour Drivers (23) [Miroir schinagl.priv.at]</center>
                             </a><br />
                         </td>
                     </tr>
