@@ -1187,13 +1187,6 @@ QueryContextMenu(
         InsertMenu(hMenu, indexMenu++, MF_SEPARATOR | MF_BYPOSITION, 0, NULL);
         InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuPickLinkSource]);
         m_Command[commandIdx++] = ePickLinkSource;
-#if !defined REMOVE_DELETE_JUNCTION
-        if (m_bTargetsFlag & eJunction)
-        {
-          InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuDeleteJunction]);
-          m_Command[commandIdx++] = eDeleteJunction;
-        }
-#endif
         if (m_bTargetsFlag & eMountPoint)
         {
           InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuDeleteMountPoint]);
@@ -1272,11 +1265,6 @@ InvokeCommand	(
           DropSymbolicLinkClone(m_DropTarget, lpcmi);
         break;
 
-  #if !defined REMOVE_DELETE_JUNCTION
-        case eDeleteJunction:
-          DeleteJunction();
-        break;
-  #endif
         case eDropCreateMountPoint:
           DropMountPoint(m_DropTarget);
         break;
@@ -2012,60 +2000,6 @@ DropSymbolicLinkClone(
     true
   );
 }
-
-#if !defined REMOVE_DELETE_JUNCTION
-HRESULT 
-HardLinkExt::
-DeleteJunction(
-)
-{
-  bool CreateJunctionsViaHelperExe = false;
-  UACHelper uacHelper;
-
-  // Walk through the selection and delete the directories
-  // which are junctions
-  for (UINT i = 0; i < m_nTargets; i++)
-  {
-    if (m_pTargets[i].m_Flags & eJunction)
-    {
-      BOOL b = RemoveDirectory(m_pTargets[i].m_Path);
-      if (!b)
-      {
-        // With Vista & W7, we are not allowed to delete Directories in folders like
-        // c:\Program Files (x86) wihtout UAC, so in this special case, the deletion
-        // of junction has to be relayed to an elevated .exe as done with Symbolic links
-#if defined UAC_FORCE
-        if (UAC_OUTPROC)
-#else
-        if (ElevationNeeded())
-#endif
-        {
-          // Write the command file, which is read by the elevated process
-          uacHelper.WriteArgs('k', L"empty", m_pTargets[i].m_Path);
-          CreateJunctionsViaHelperExe = true;
-        }
-        else
-        {
-          ErrorFromSystem(GetLastError());
-        }
-      }
-    }
-  }
-#if defined UAC_FORCE
-  if (UAC_OUTPROC)
-#else
-  if (CreateJunctionsViaHelperExe)
-#endif
-  {
-    DWORD r = uacHelper.Fork();
-    if (r)
-      ErrorFromSystem(r);
-  }
-
-  return NOERROR;
-}
-#endif
-
 
 
 HRESULT 

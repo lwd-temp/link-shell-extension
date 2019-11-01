@@ -194,12 +194,6 @@ private:
     LPCMINVOKECOMMANDINFO   lpcmi
 	);
 
-#if !defined REMOVE_DELETE_JUNCTION
-	HRESULT
-	DeleteJunction(
-	);
-#endif
-
 	HRESULT 
 	DropMountPoint(
 		Target&		aTarget,
