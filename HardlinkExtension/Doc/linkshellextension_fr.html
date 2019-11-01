@@ -161,7 +161,7 @@
             </td>
 
             <td class="bodytext">
-                Le système de fichiers NTFS supporte une fonctionalité connue en tant que <b>liens physiques</b>
+                Le système de fichiers NTFS supporte une fonctionnalité connue en tant que <b>liens physiques</b>
                 (que l'on nommera aussi ci-dessous <b>Hardlinks</b>). Les liens physiques donnent la possibilité de conserver une seule copie d'un fichier bien qu'il
                 apparaisse dans de nombreux répertoires (directories).&nbsp;
 
@@ -247,7 +247,7 @@
                 par l'intermédiaire d'un fichier .bat.<br /><br />
 
                 <b>Installation silencieuse</b><br />
-                /S ne fait apparaitre aucune requète pendant l'installation. Si on utilise le commutateur /S, explorer.exe sera redémarré après l'installation afin que Link Shell Extension
+                /S ne fait apparaitre aucune requête pendant l'installation. Si on utilise le commutateur /S, explorer.exe sera redémarré après l'installation afin que Link Shell Extension
                 soit actif immédiatement. <br /><br />
 
                 <b>Spécification de la langue</b><br />
@@ -539,7 +539,7 @@
                 <br />
 
                 On peut obtenir la même chose par Glisser-Déposer pour des Liens Symboliques sur Répertoires, Jonctions et points de montages, mais pas
-                pour des Liens Symboliques sur fichiers. Les Liens Symboliques sur fichiers doivente être réparés par 'Pendre comme source du lien',
+                pour des Liens Symboliques sur fichiers. Les Liens Symboliques sur fichiers doivent être réparés par 'Pendre comme source du lien',
                 'Coller ... un lien symbolique de remplacement' comme alternative de réparation.
                 <br />
                 <br />
@@ -566,8 +566,8 @@
                 <br />
 
                 <p>
-                    Pour utiliser cette fonctionalié sélectionnez simplement une Jonction existante, un Lien Symbolique ou un Point de Montage en tant que
-                    Source du Lien et glissez-le par dessus un répertoire déjà existant.
+                    Pour utiliser cette fonctionnalité sélectionnez simplement une Jonction existante, un Lien Symbolique ou un Point de Montage en tant que
+                    Source du Lien et glissez-le par-dessus un répertoire déjà existant.
                     En sélectionnant 'Coller ... Copie de Jonction/Lien Symbolique/Point de Montage' depuis le menu d'action, la
                     Jonction/le Lien Symbolique/Le Point de montage est copié vers la cible et la relation est ajustée
                 </p>
@@ -643,6 +643,7 @@
                             <p>
                                 Les liens physiques saturés peuvent être complètement copiés via la Copie Intelligente.
                             </p>
+                            <br />
                         </td>
                     </tr>
                     <tr>
@@ -709,6 +710,7 @@
                                 Les<i> Jonctions/Liens Symboliques Internes</i> sont restaurés correctement par une Copie Intelligente dans l'emplacement de
                                 destination.
                             </p>
+                            <br />
                         </td>
                     </tr>
                     <tr>
@@ -879,7 +881,7 @@
                             <br />
                             <br />
 
-                            <i>Crop</i> s'applique également sur les liens symboliques vers des fichiers sortants.
+                            <i>Supprimer</i> s'applique également sur les liens symboliques vers des fichiers sortants.
                             <br />
                             <br />
                             <img src="outerjunctionscrop.png" alt="Cropping outer Junctions">
@@ -1015,7 +1017,7 @@
                             <p>
                                 Dans l'exemple ci-dessus <i>Folder1</i> est copié vers <i>Destination</i>, et
                                 <i>Junction/Symlink F0</i> et est déroulé comme prévu, mais il contient des
-                                points d'analyse imbriqués internes. <i>Imbriqué</i> signifie "Point d'Analyse" pointant lui même vers un "Point d'Analyse".
+                                points d'analyse imbriqués internes. <i>Imbriqué</i> signifie "Point d'Analyse" pointant lui-même vers un "Point d'Analyse".
                             </p>
 
                             <p>
@@ -1097,7 +1099,7 @@
                                     que la cible est T:\Folder, mais ça ne marche pas avec les Jonctions.
                                 </li>
                                 <li>
-                                    Lorsque une Copie Intelligente/Miroir/Delorean est confrontée à une telle situation, elle traduit correctement la Jonction lors
+                                    Lorsqu'une Copie Intelligente/Miroir/Delorean est confrontée à une telle situation, elle traduit correctement la Jonction lors
                                     de la copie vers le disque Y:\ de la Machine Locale, et ainsi la Jonction finale pointe correctement la cible vers
                                     Y:\Dest\Bar\Folder
                                 </li>
@@ -1699,7 +1701,7 @@
                     <a name="backupprivs"></a>
                     Pour être en mesure d'effectuer des opérations de sauvegarde l'utilisateur doit posséder les droits SE_BACKUP_NAME et SE_RESTORE_NAME.
                     Un outil de configuration hors Windows peut assigner ces privilèges aux groupes Backup-Operator et Administrateur, mais
-                    en plus les privilèges ci-dessus pauvent êtres affectés individuellement à certains utilisateurs ou groupes.
+                    en plus les privilèges ci-dessus peuvent être affectés individuellement à certains utilisateurs ou groupes.
                     <br />
                     <br />
                     L'assignation de privilèges peut se faire
@@ -2022,7 +2024,7 @@
                 </p>
                 <p>
                     <b>Avec gpedit.msc</b><br />
-                    Démarrer gpedit.msc depuis une ligne de commande et accorder/revoquer les permissions aux utilisateurs spécifiques : Dans
+                    Démarrer gpedit.msc depuis une ligne de commande et accorder/révoquer les permissions aux utilisateurs spécifiques : Dans
                     "Computer Configuration" ->"Windows settings" -> "Security Settings" -> "Local Policies" -> "User Rights Assignments" -> "Create Symbolic Links".
                 </p>
                 <img src="symlinkpriv.png" alt="Changing Privileges for Symblic Link Creation" />
@@ -2166,7 +2168,7 @@
 
         <tr>
             <td class="hanger">
-                <a name="substhandling"><b>Subst Handling</b></a>
+                <a name="substhandling"><b>Prise en main de "Subst"</b></a>
             </td>
             <td class="bodytext">
                 <p>
@@ -2234,7 +2236,7 @@
                 </span>
 
                 <p>
-                    Par défault c'est <i>Btrfs</i> qui est configuré comme système de fichiers tiers connu.
+                    Par défaut c'est <i>Btrfs</i> qui est configuré comme système de fichiers tiers connu.
                 </p>
                 <p>
                     La configuration de votre système de fichiers favori pour être reconnu par LSE se fait à vos propres risques. A la base LSE effectuera toutes les opérations
@@ -2277,7 +2279,7 @@
                     <li>Japanese (Japonais)</li>
                     <li>Korean (Coréen)</li>
                     <li>Polish (Polonais)</li>
-                    <li>Portuguese Brazilian (Portuguais Brésilien)</li>
+                    <li>Portuguese Brazilian (Portugais Brésilien)</li>
                     <li>Russian (Russe)</li>
                     <li>Slovak (Slovaque)</li>
                     <li>Spanish (Espagnol)</li>
@@ -2305,7 +2307,7 @@
                     On obtient cela en décochant la case <i>Cibles distantes (Remote Capabilities)</i>.
                 <p>
                     <b>Jonction/Lien Symbolique sortant</b><br />
-                    Décider si <a href="#outerjunctionhandling">les Junctions sortantes doivent être gérées</a> par <i>Supresssion</i>,
+                    Décider si <a href="#outerjunctionhandling">les Jonctions sortantes doivent être gérées</a> par <i>Supresssion</i>,
                     être <i>Déroulées (ou exprimées)</i>, ce qui est par défaut, ou <i>Conservées</i>.
                 <p>
                     <b>Création de liens symboliques</b><br />
@@ -2518,7 +2520,7 @@
                         <b>
                             <a name="faq02">Q</a> : Toutefois la valeur du compteur de référence n'est pas mise à jour quand des liens physiques sont supprimés.
                             Par exemple, quand j'ajoute un lien physique la valeur augmente normalement, mais quand je supprime ce lien physique
-                            la valeur ne change pas. Est-ce un bug? Ou y a-t-il un moyen de rafraichir cela dans
+                            la valeur ne change pas. Est-ce un bug? Ou y a t-il un moyen de rafraichir cela dans
                             l'Explorateur de Windows ?
 
                         </b>
@@ -2564,7 +2566,7 @@
                             <a name="faq04">Q</a> : Quand j'ai supprimé un répertoire "source", son point de jonction dans la "destination"
                             a été laissé dans un état non opérationnel.<br />
 
-                            Y a-t-il une façon de s'en prémunir ? Par exemple, est-il possible de supprimer
+                            Y a t-il une façon de s'en prémunir ? Par exemple, est-il possible de supprimer
                             automatiquement les points de jonction si la source associée est supprimée ? Ou, est-il possible
                             d'avoir par la suite un programme capable de traiter a posteriori ces jonctions orphelines ?
 
@@ -2726,7 +2728,7 @@
 
                     <li>
                         <b>
-                            <a name="faq09">Q</a> : Quand je crée des liens Symboliques ils apparaissent dans l'Explorateur avec une taille de 0 octets. Je ne me rapelle pas si
+                            <a name="faq09">Q</a> : Quand je crée des liens Symboliques ils apparaissent dans l'Explorateur avec une taille de 0 octets. Je ne me rappelle pas si
                             c'est voulu ou non ?
                         </b>
                         <br />
@@ -2760,7 +2762,7 @@
 
                         <p>
                             R : Malheureusement c'est un problème de l'explorateur, et LSE n'a aucune chance de l'intercepter.
-                            Les Liens symboliques/jonctions corrompus peuvent être facilement réparés à l'aide le la fonctionalité de <a href="#replacementjunction">remplacement d'une jonction/lien symbolique</a>
+                            Les Liens symboliques/jonctions corrompus peuvent être facilement réparés à l'aide la fonctionnalité de <a href="#replacementjunction">remplacement d'une jonction/lien symbolique</a>
                         </p>
                     </li>
 
@@ -2773,7 +2775,7 @@
 
                         <p>
                             A: Malheureusement c'est un problème de l'explorateur, et LSE n'a aucune chance de l'intercepter.
-                            Les Liens symboliques/jonctions corrompus peuvent être facilement réparés à l'aide le la fonctionalité de <a href="#replacementjunction">remplacement d'une jonction/lien symbolique</a>
+                            Les Liens symboliques/jonctions corrompus peuvent être facilement réparés à l'aide la fonctionnalité de <a href="#replacementjunction">remplacement d'une jonction/lien symbolique</a>
                         </p>
                     </li>
 
@@ -2823,14 +2825,14 @@
                             <ul>
                                 <!-- 3.9.2.7, 15.10.2019 -->
                                 <li>Sur un système de fichiers non NTFS, on ne pouvait pas sélectionner un Lien Source. Introduit avec 3921</li>
-                                <li>Le démontage de volume ne fonctionnait pas, quand une élavation de privilèges était nécessaire.</li>
+                                <li>Le démontage de volume ne fonctionnait pas, quand une élévation de privilèges était nécessaire.</li>
                                 <li>Nouvelles captures d'écrans Windows 10 pour la documentation et celle en ligne.</li>
                                 <!-- 3.9.2.6, 29.9.2019 -->
                                 <li>Signature du code par un certificat</li>
                                 <li>Lors du Remplacement de Jonction/Lien Symbolique/Point de Montage les attributs originaux étaient perdus</li>
                                 <li>L'onglet Propriétés du lien affichait des liens symboliques relatif comme des liens absolus</li>
                                 <li>L'onglet Propriétés n'affichait pas les jonctions orphelines</li>
-                                <li>Création de liens symboliques sur des fichiers qui ne fonctionnaient pas dans des répertoires protégés comme 'Program Files' via le <a href="#changesymboliclinkprivilege">Mode Developpeur</a> sur "on".</li>
+                                <li>Création de liens symboliques sur des fichiers qui ne fonctionnaient pas dans des répertoires protégés comme 'Program Files' via le <a href="#changesymboliclinkprivilege">Mode Développeur</a> sur "on".</li>
                                 <li>Le remplacement de Jonctions/Liens Symboliques ne fonctionnait pas sur des Jonctions/Liens Symboliques orphelins.</li>
                                 <!-- 3.9.2.5, 26.7.2019 -->
                                 <li>UAChelper mélange de création de liens relatifs et absolus link creation. Introduit avec 3920</li>
@@ -2853,7 +2855,7 @@
                                 <li>Le mécanisme de remplacement des liens symboliques était corrompu en cas d'élévation de privilèges. Causé par 3.8.7.2</li>
                                 <!-- 3.9.1.1, 25.01.2019 -->
                                 <!-- 3.9.1.0, 13.01.2019 -->
-                                <li>Amélioration de l'estimation de la barre de progrès et introduction <a href="#smartmove">d'un dialoque de progrès Windows7</a></li>
+                                <li>Amélioration de l'estimation de la barre de progrès et introduction <a href="#smartmove">d'un dialogue de progrès Windows7</a></li>
                             </ul>
                         </td>
                     </tr>
@@ -4027,7 +4029,7 @@
                             </a>
                             <br />
                             <br />
-                            Toutes les dlls nécessaires à l'exécution sont déjà installées sur votre système, mais si ce n'est pas le cas, récupérez les sur
+                            Toutes les dlls nécessaires à l'exécution sont déjà installées sur votre système, mais si ce n'est pas le cas, récupérez les 
                             <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">ici.</a>                <br />
                         </td>
                     </tr>
@@ -4100,7 +4102,7 @@
                             <b>Windows 2000<br />Windows XP</b>
                         </td>
                         <td align="left" class="bodytext">
-                            Les versions pour Windows 2000 et pour Windows XP ne seront plus développées, et leurs fonctionalités sont figées par
+                            Les versions pour Windows 2000 et pour Windows XP ne seront plus développées, et leurs fonctionnalités sont figées par
                             <a href="http://schinagl.priv.at/nt/hardlinkshellext/save/3872/HardLinkShellExt_win32.exe">Link Shell Extension 3.8.7.2 (32 bit)</a>
                             et
                             <a href="http://schinagl.priv.at/nt/hardlinkshellext/save/3872/HardLinkShellExt_X64.exe">Link Shell Extension 3.8.7.2 (64 bit)</a>
