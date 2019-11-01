@@ -85,7 +85,8 @@ private:
 		eMountPoint = 0x10,
 		eSymbolicLink = 0x20,
 		eNTFS		= 0x40,
-    eExtendedVerbs = 0x80
+    eSymbolicLinkFile = 0x80,
+    eExtendedVerbs = 0x100
 	};
 
 	CommandType	m_Command[eCommandType__Free__];
