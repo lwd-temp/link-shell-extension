@@ -508,7 +508,7 @@ Function .onInit
 	Processes::CheckPlattform ${PLATTFORM};
 	Pop $R0
 	StrCmp $R0 "1" lbl_plattform_ok
-	  MessageBox MB_OK "This version of Link Shell Extension is not compatible with this plattform. Please download the proper$\r$\nversion from http://schinagl.priv.at/nt/hardlinkshellext/hardlinkshellext.html#download";
+	  MessageBox MB_OK "This version of Link Shell Extension is not compatible with this plattform. $\r$\nPlease download the properversion from$\r$\n https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#download";
 	  Abort;
 	lbl_plattform_ok:
 
@@ -528,7 +528,7 @@ Function .onInit
 	Pop $R0
 	StrCmp $R0 "1" lbl_redistlevel_ok
 	StrCmp $NO_REDIST "1" lbl_redistlevel_ok
-	  MessageBox MB_OK "The VS2017 Sp1 Redistributable Package is a prerequiste for Link Shell Extension to work on this plattform. ${SP1_DOWNLOAD}";
+	  MessageBox MB_OK "The VS2017 Sp1 Redistributable Package is a prerequiste for Link Shell Extension to work on this plattform.$\r$\n ${SP1_DOWNLOAD}";
 	  Abort;
 	lbl_redistlevel_ok:
 	

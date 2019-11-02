@@ -166,7 +166,20 @@ ExtractAndFork(
 	LPVOID pSymlink = LockResource(Symlink_han);
 
 #if defined _PROCESSES_DEBUG
-	FILE* f = fopen("c:\\ll.txt", "w");
+  _SYSTEMTIME SysTime;
+  GetLocalTime(&SysTime);
+
+  char filename[MAX_PATH];
+  sprintf(filename, "c:\\tmp\\Fork %04d-%02d-%02d %02d-%02d-%02d",
+    SysTime.wYear,
+    SysTime.wMonth,
+    SysTime.wDay,
+    SysTime.wHour,
+    SysTime.wMinute,
+    SysTime.wSecond
+  );
+
+  FILE* f = fopen(filename, "w");
 #endif
 	GetTempPath(MAX_PATH, sl);
 	strcat(sl, aExeName);
@@ -216,36 +229,37 @@ ExtractAndFork(
   si.dwFlags = STARTF_USESHOWWINDOW;
   si.wShowWindow = SW_HIDE;
 
+  UINT errormode = GetErrorMode();
+  SetErrorMode(SEM_FAILCRITICALERRORS);
 	BOOL b = CreateProcess(sl,
 		NULL, 
 		NULL,
 		NULL,
 		FALSE,
-		CREATE_NEW_PROCESS_GROUP | CREATE_DEFAULT_ERROR_MODE | DETACHED_PROCESS,
+		CREATE_NEW_PROCESS_GROUP | DETACHED_PROCESS | CREATE_NO_WINDOW,
 		NULL,
 		NULL,
 		&si,
 		&pi);
-
-	int err = 0;
-	if (!b)
-		err = GetLastError();
+  SetErrorMode(errormode);
 
   // Wait until child process exits.
   WaitForSingleObject( pi.hProcess, INFINITE );
 
-  // Close process and thread handles. 
+  DWORD ExitCode;
+  GetExitCodeProcess(pi.hProcess, &ExitCode);
+
   CloseHandle( pi.hProcess );
   CloseHandle( pi.hThread );
 
 #if !defined _PROCESSES_DEBUG
 	DeleteFile(sl);
 #else
-  fprintf(f, "CreateProcess GetLastError() '%s' '%s' %d\n", sl, aPlattform, err);
+  fprintf(f, "CreateProcess Result: '%s' '%s', LastError: %d, ExitCode %d\n", sl, aPlattform, ExitCode);
 	fclose(f);
 #endif
 
-  return err;
+  return ExitCode;
 }
 
 //-------------------------------------------------------------------------------------------
@@ -297,7 +311,7 @@ bool	Vcredist( char* aPlattform )
 {
   DWORD err = ExtractAndFork("VCRedistProbe.exe", aPlattform, 0);
 
-	if (ERROR_SXS_CANT_GEN_ACTCTX == err)
+	if (STATUS_DLL_NOT_FOUND == err)
 		 return false;
 	else
 		return true;
