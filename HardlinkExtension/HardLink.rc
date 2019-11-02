@@ -194,7 +194,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "ѓЉѓ“ѓNЊі‚Ж‚µ‚Д‘I‘р(&L)"
-    IDS_STRING_eTopMenuDeleteJunction "ѓWѓѓѓ“ѓNѓVѓ‡ѓ“‚МЌнЏњ(&J)"
     IDS_STRING_eTopMenuCancelLinkCreation "ѓЉѓ“ѓN‚МЌмђ¬‚р’†Ћ~(&L)"
     IDS_STRING_eTopMenuHardlink "ѓnЃ[ѓhѓЉѓ“ѓN"
     IDS_STRING_eTopMenuJunction "ѓWѓѓѓ“ѓNѓVѓ‡ѓ“"
@@ -404,7 +403,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "СЎФсФґБ¬ЅУµг(&L)"
-    IDS_STRING_eTopMenuDeleteJunction "ЙѕіэДїВјБ¬ЅУµг(&M)"
     IDS_STRING_eTopMenuCancelLinkCreation "ИЎПыСЎ¶ЁµДБ¬ЅУ(&Q)"
     IDS_STRING_eTopMenuHardlink "УІБ¬ЅУ"
     IDS_STRING_eTopMenuJunction "ДїВјБ¬ЅУµг"
@@ -617,7 +615,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "ёµЕ©јТЅє &ј±ЕГ"
-    IDS_STRING_eTopMenuDeleteJunction "Б¤јЗ &Б¦°Е"
     IDS_STRING_eTopMenuCancelLinkCreation "ёµЕ©»эјє &ГлјТ"
     IDS_STRING_eTopMenuHardlink "ЗПµеёµЕ©"
     IDS_STRING_eTopMenuJunction "Б¤јЗ"
@@ -844,7 +841,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Oznaиit jako &zdroj odkazu"
-    IDS_STRING_eTopMenuDeleteJunction "Odstranit &rozcestн"
     IDS_STRING_eTopMenuCancelLinkCreation "Zruљit tvorbu &odkazu"
     IDS_STRING_eTopMenuHardlink "Pevnэ odkaz"
     IDS_STRING_eTopMenuJunction "Rozcestн"
@@ -1074,7 +1070,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Uїy&j jako џrуdіa і№cza"
-    IDS_STRING_eTopMenuDeleteJunction "&Usuс powi№zanie"
     IDS_STRING_eTopMenuCancelLinkCreation "Zrezy&gnuj z tworzenia і№cza"
     IDS_STRING_eTopMenuHardlink "Dowi№zanie twarde"
     IDS_STRING_eTopMenuJunction "Powi№zanie"
@@ -1303,7 +1298,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Vybraќ &zdroj odkazu"
-    IDS_STRING_eTopMenuDeleteJunction "Odstrбniќ &prepojenie"
     IDS_STRING_eTopMenuCancelLinkCreation "Zruљiќ &tvorbu odkazu"
     IDS_STRING_eTopMenuHardlink "Pevnэ odkaz"
     IDS_STRING_eTopMenuJunction "Prepojenie"
@@ -1531,7 +1525,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Запомнить &источник ссылки"
-    IDS_STRING_eTopMenuDeleteJunction "Удалить &Junction связь"
     IDS_STRING_eTopMenuCancelLinkCreation "Отменить создание &ссылки"
     IDS_STRING_eTopMenuHardlink "Жесткая ссылка"
     IDS_STRING_eTopMenuJunction "Junction связь"
@@ -1759,7 +1752,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Вказати &Джерело посилання"
-    IDS_STRING_eTopMenuDeleteJunction "Видалити &з'єднання"
     IDS_STRING_eTopMenuCancelLinkCreation "Відмінити &створення посилання"
     IDS_STRING_eTopMenuHardlink "Жорстке посилання"
     IDS_STRING_eTopMenuJunction "З'єднання"
@@ -1996,7 +1988,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Prendre comme cible du &lien"
-    IDS_STRING_eTopMenuDeleteJunction "Supprimer la j&onction"
     IDS_STRING_eTopMenuCancelLinkCreation "Oublier la cible du &lien"
     IDS_STRING_eTopMenuHardlink "Lien physique"
     IDS_STRING_eTopMenuJunction "Jonction"
@@ -2222,7 +2213,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Pick &Link Source"
-    IDS_STRING_eTopMenuDeleteJunction "Delete &Junction"
     IDS_STRING_eTopMenuCancelLinkCreation "Cancel &Link Creation"
     IDS_STRING_eTopMenuHardlink "Hardlink"
     IDS_STRING_eTopMenuJunction "Junction"
@@ -2452,7 +2442,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Vдlj kдlla fцr &lдnk"
-    IDS_STRING_eTopMenuDeleteJunction "Ta bort &knutpunkt"
     IDS_STRING_eTopMenuCancelLinkCreation "Avbryt skapande av &lдnk"
     IDS_STRING_eTopMenuHardlink "Hеrdlдnk"
     IDS_STRING_eTopMenuJunction "Knutpunkt"
@@ -2682,7 +2671,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "&Link Quelle festsetzen"
-    IDS_STRING_eTopMenuDeleteJunction "&Junction lцschen"
     IDS_STRING_eTopMenuCancelLinkCreation "&Link Erstellung abbrechen"
     IDS_STRING_eTopMenuHardlink "Hardlink"
     IDS_STRING_eTopMenuJunction "Junction"
@@ -2947,7 +2935,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Pick &Link Source"
-    IDS_STRING_eTopMenuDeleteJunction "Delete &Junction"
     IDS_STRING_eTopMenuCancelLinkCreation "Cancel &Link Creation"
     IDS_STRING_eTopMenuHardlink "Hardlink"
     IDS_STRING_eTopMenuJunction "Junction"
@@ -3185,7 +3172,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Usa come origine del collegamento"
-    IDS_STRING_eTopMenuDeleteJunction "Elimina giunzione"
     IDS_STRING_eTopMenuCancelLinkCreation "Abbandona creazione collegamento"
     IDS_STRING_eTopMenuHardlink "Reale"
     IDS_STRING_eTopMenuJunction "Giunzione"
@@ -3412,7 +3398,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Selecionar a origem do Vнnculo"
-    IDS_STRING_eTopMenuDeleteJunction "Excluir Junзгo"
     IDS_STRING_eTopMenuCancelLinkCreation "Cancelar a criaзгo de Vнnculo"
     IDS_STRING_eTopMenuHardlink "Hardlink"
     IDS_STRING_eTopMenuJunction "Junзгo"
@@ -3702,7 +3687,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Seleccionar el origen del Vнnculo"
-    IDS_STRING_eTopMenuDeleteJunction "Eliminar Uniуn"
     IDS_STRING_eTopMenuCancelLinkCreation "Cancelar la creaciуn del Vнnculo"
     IDS_STRING_eTopMenuHardlink "Vнnculo Fuerte"
     IDS_STRING_eTopMenuJunction "Uniуn"
@@ -3938,7 +3922,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "Ерй&лпгЮ щт рсппсйумь деумпэ"
-    IDS_STRING_eTopMenuDeleteJunction "ДйбгсбцЮ &узмеЯпх уэндеузт"
     IDS_STRING_eTopMenuCancelLinkCreation "Б&кэсщуз дзмйпхсгЯбт деумпэ"
     IDS_STRING_eTopMenuHardlink "Деумьт хлйкпэ"
     IDS_STRING_eTopMenuJunction "УзмеЯп уэндеузт"
@@ -4166,7 +4149,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING_eTopMenuPickLinkSource "&Link Kaynaрэnэ Seз"
-    IDS_STRING_eTopMenuDeleteJunction "&Junction'э Sil"
     IDS_STRING_eTopMenuCancelLinkCreation "&Linki Эptal Et"
     IDS_STRING_eTopMenuHardlink "Hardlinki"
     IDS_STRING_eTopMenuJunction "Junction'э"

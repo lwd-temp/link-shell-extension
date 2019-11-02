@@ -9,10 +9,6 @@
 #define ISOLATION_AWARE_ENABLED 1
 #define SIDEBYSIDE_COMMONCONTROLS 1
 
-// Used to enable an extra menue entry to delete junctions from LSE
-// #define REMOVE_DELETE_JUNCTION
-
-
 #include <windows.h>
 #include <winnt.h>
 #include <winioctl.h>

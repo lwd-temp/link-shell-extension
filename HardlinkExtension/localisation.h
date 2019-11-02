@@ -8,9 +8,6 @@
 enum			TopMenuEntriesIdx
 {
 	eTopMenuPickLinkSource		= 0,
-#if !defined REMOVE_DELETE_JUNCTION
-		eTopMenuDeleteJunction,
-#endif
 	eTopMenuCancelLinkCreation,
 	eTopMenuHardlink,
 	eTopMenuJunction,	
@@ -71,10 +68,7 @@ enum			CommandType
 	eDropJunction,
 	eDropHardLinkClone,
 	eDropSymbolicLinkClone,
-#if !defined REMOVE_DELETE_JUNCTION
-	eDeleteJunction,
-#endif
-	eDropAs,
+  eDropAs,
 	eCancelPickLink,
 	eDropCreateMountPoint,
 	eDropDeleteMountPoint,
@@ -97,9 +91,6 @@ const PCHAR  VerbsA[eCommandType__Free__] = {
 							"DropJunction",
 							"DropHardLinkClone",
 							"DropSymbolicLinkClone",
-#if !defined REMOVE_DELETE_JUNCTION
-							"DeleteJunction",
-#endif
 							"DropAs",
 							"CancelPickLink",
 							"DropCreateMountPoint",
@@ -122,9 +113,6 @@ const PWCHAR  VerbsW[eCommandType__Free__] = {
 							L"DropJunction",
 							L"DropHardLinkClone",
 							L"DropSymbolicLinkClone",
-#if !defined REMOVE_DELETE_JUNCTION
-							L"DeleteJunction",
-#endif
 							L"DropAs",
 							L"CancelPickLink",
 							L"DropCreateMountPoint",

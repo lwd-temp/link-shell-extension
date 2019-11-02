@@ -134,7 +134,7 @@
             </td>
 
             <td class="bodytext">
-                The hallos statement can be found <a href="http://schinagl.priv.at/about/dsgvo.html">here</a>
+                The privacy statement can be found <a href="http://schinagl.priv.at/about/dsgvo.html">here</a>
             </td>
         </tr>
 
@@ -187,7 +187,7 @@
                     The extension allows the user to select one or many files or folders, then using the mouse, complete the creation of the required Links -
                     Hardlinks, Junctions or Symbolic Links or in the case of folders to create Clones consisting of Hard or Symbolic Links.
 
-                    LSE is supported on all Windows versions that support NTFS version 5.0 or later, Windows7/8/10. 
+                    LSE is supported on all Windows versions that support NTFS version 5.0 or later, Windows7/8/10.
                     Hardlinks, Junctions and Symbolic Links are NOT supported on FAT
                     file systems, and nor is the Cloning and Smart Copy process supported on FAT file systems.
                 </p>
@@ -643,6 +643,7 @@
                             <p>
                                 Saturated Hardlinks can be copied completely via Smart Copy.
                             </p>
+                            <br />
                         </td>
                     </tr>
                     <tr>
@@ -709,6 +710,7 @@
                                 <i>Inner Junctions/Symlink</i> are restored properly via Smart Copy in the destination
                                 location.
                             </p>
+                            <br />
                         </td>
                     </tr>
                     <tr>
@@ -1998,7 +2000,7 @@
             </td>
             <td class="bodytext">
                 <p>
-                    Due to UAC some API calls need elevation to administrative level, and this elevation must be acknowledged via the below shown dialog box. 
+                    Due to UAC some API calls need elevation to administrative level, and this elevation must be acknowledged via the below shown dialog box.
 
                     So if you see the below box, and the program asking for elevation is LSEUacHelper.exe, it is Link Shell Extensions contribution to UAC and you must acknowledge it to get
                     Symbolic Links created.
@@ -2714,7 +2716,7 @@
                                     Pick Link Source x:\data\dropbox
                                 </li>
                                 <li>
-                                    In c:\users\[username] use <i>Drop as</i> and select <i>Symbolic Link</i> or <i>Junction</i> 
+                                    In c:\users\[username] use <i>Drop as</i> and select <i>Symbolic Link</i> or <i>Junction</i>
                                 </li>
                                 <li>
                                     If everything went fine finally delete c:\users\[username]\dropbox_org
@@ -2822,7 +2824,7 @@
                             Version 3.9.2.7
                             <ul>
                                 <!-- 3.9.2.7, 15.10.2019 -->
-                                <li>On non NTFS drive files, could no be selected as Link Source. Introduced with 3921</li>
+                                <li>On non NTFS drives, files could no be selected as Link Source. Introduced with 3921</li>
                                 <li>Unmount volume did not work, when elevation was needed.</li>
                                 <li>New Windows 10 screenshots for docu and docu streamlining.</li>
                                 <!-- 3.9.2.6, 29.9.2019 -->
@@ -3674,7 +3676,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top">
+                        <td class="history">
                             January 23rd 2002
                         </td>
 
@@ -3698,7 +3700,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="120" valign="top">
+                        <td class="history">
                             October 27th 2001
                         </td>
 
@@ -3897,36 +3899,35 @@
             <td class="bodytext">
                 Bug reports, or feature requests send to
                 <a href="mailto:Hermann.Schinagl@gmx.net">Hermann Schinagl.</a>.<br />
-                <p>
 
-                    LSE is and will be freeware, but if LSE was really
-                    helpful for you and saved lots of your time please
-                    think of donations either via PayPal
+                LSE is and will be freeware, but if LSE was really
+                helpful for you and saved lots of your time please
+                think of donations either via PayPal
 
-                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                        <input type="hidden" name="cmd" value="_donations">
-                        <input type="hidden" name="business" value="hermann.schinagl@gmx.net">
-                        <input type="hidden" name="item_name" value="LinkShellExtension Donation">
-                        <input type="hidden" name="no_shipping" value="0">
-                        <input type="hidden" name="no_note" value="1">
-                        <input type="hidden" name="currency_code" value="EUR">
-                        <input type="hidden" name="tax" value="0">
-                        <input type="hidden" name="lc" value="US">
-                        <input type="hidden" name="bn" value="PP-DonationsBF">
-                        <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                        <img alt="" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                    </form>
-                    <br /><br />
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_donations">
+                    <input type="hidden" name="business" value="hermann.schinagl@gmx.net">
+                    <input type="hidden" name="item_name" value="LinkShellExtension Donation">
+                    <input type="hidden" name="no_shipping" value="0">
+                    <input type="hidden" name="no_note" value="1">
+                    <input type="hidden" name="currency_code" value="EUR">
+                    <input type="hidden" name="tax" value="0">
+                    <input type="hidden" name="lc" value="US">
+                    <input type="hidden" name="bn" value="PP-DonationsBF">
+                    <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" src="https://www.paypal.com/en_US/i/scr/pixel.gif">
+                </form>
+                <br /><br />
 
-                    or by flattring me
-                    <br /><br />
+                or by flattring me
+                <br /><br />
 
-                    <a class="FlattrButton" style="display:none;" href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html"></a>
-                    <noscript>
-                        <a href="http://flattr.com/thing/180519/Link-Shell-Extension" target="_blank">
-                            <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" />
-                        </a>
-                    </noscript>
+                <a class="FlattrButton" style="display:none;" href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html"></a>
+                <noscript>
+                    <a href="http://flattr.com/thing/180519/Link-Shell-Extension" target="_blank">
+                        <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" />
+                    </a>
+                </noscript>
 
                 <p>
                     <br /><br />
@@ -3940,17 +3941,16 @@
                     <br /><br />
 
                 <p>
-                    <br /><br />
-                    or by donating bitcoins:<br /><br />
+                    or by donating bitcoins:
                     <img src="bitcoinlogo.png" />
-                </p><br />
+                </p>
+                <p>
                     <b>bc1q4hvevwrmnwt7jg8vws0v8xajywhffl4gwca5av</b>
-                <img src="bitcoinlseqr.png" />
-
-                <br /><br />
+                </p>
+                <p>
+                    <img src="bitcoinlseqr.png" />
                 </p>
 
-                <br /><br />
                 <br /><br />
 
                 Link Shellextension also has its page on <a href="http://www.facebook.com/pages/Link-Shellextension/235959255982">
@@ -3958,7 +3958,7 @@
                 </a>, where you can find announcements for new releases,
                 and you can discuss feature requests<br /><br />
                 <a href="http://www.facebook.com/pages/Link-Shellextension/235959255982">
-                    <image src="facebook.png" width="160" height="42" alt="facebook">
+                    <image src="facebook.png" alt="facebook">
                 </a>.
 
                 <br /><br />
@@ -3968,7 +3968,7 @@
                 </a>.
                 <br /><br />
                 <a href="http://schinagl.priv.at/nt/hardlinkshellext/lse.xml">
-                    <image src="rss.png" width="80" height="80" alt="rss feed">
+                    <image src="rss.png" alt="rss feed">
                 </a>.
 
                 <br /><br />
@@ -3984,7 +3984,7 @@
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
 
                     <tr>
-                        <td align="left" width="150" valign="top">
+                        <td class="hanger2">
                             <b>All Windows 64<br /></b>
                         </td>
                         <td>
@@ -4016,7 +4016,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" width="150" valign="top">
+                        <td class="hanger2">
                             <b>All Windows 32<br /></b>
                         </td>
                         <td>
@@ -4033,28 +4033,10 @@
                             <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">here.</a>                <br />
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <br />&nbsp
-                        </td>
-                    </tr>
 
                 </table>
+                <br />
+                <br />
             </td>
         </tr>
 
@@ -4066,7 +4048,7 @@
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
 
                     <tr>
-                        <td align="left" width="150" valign="top">
+                        <td class="hanger2">
                             <b>All Windows Itanium<br /></b>
                         </td>
                         <td>
@@ -4097,7 +4079,7 @@
 
 
                     <tr>
-                        <td align="left" width="150" valign="top" class="hanger">
+                        <td class="hanger2">
                             <b>Windows NT4 </b>
                         </td>
                         <td align="left" class="bodytext">
@@ -4116,7 +4098,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left" width="150" valign="top" class=" hanger">
+                        <td class="hanger2">
                             <b>Windows 2000<br />Windows XP</b>
                         </td>
                         <td align="left" class="bodytext">
@@ -4135,7 +4117,7 @@
 
 
                     <tr>
-                        <td align="left" width="150" valign="top" class="hanger">
+                        <td class="hanger2">
                             <b>Symbolic Link Driver<br /> for Windows XP</b>
                         </td>
                         <td align="left" class="bodytext">

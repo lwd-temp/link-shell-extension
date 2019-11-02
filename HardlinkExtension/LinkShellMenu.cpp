@@ -110,12 +110,10 @@ GetFileAttr(
   const bool  aIsNtfs
 )
 {
-  struct _stat stat;
-
-  _wstat(aTarget.m_Path, &stat);
-  if (stat.st_mode & _S_IFDIR)
+  DWORD attr = GetFileAttributes(aTarget.m_Path);
+  if (attr & FILE_ATTRIBUTE_DIRECTORY)
   {
-    // Deal with Directories, Mountpoints, symbolic Links and Junctions
+    // Deal with Directories, Mountpoints, Symbolic Links and Junctions regardless if they are dangling or not
 
     // Check if the selected dir is a reparse point, and which one
     int ReparseType = ProbeReparsePoint(aTarget.m_Path, NULL);
@@ -162,27 +160,16 @@ GetFileAttr(
   }
   else
   {
-    // Deal with files, dangling Symbolic links or dangling Junctions
+    // Deal with files and symbolic links files
     if (ProbeSymbolicLink(aTarget.m_Path, NULL))
     {
-      aTarget.m_Flags |= eSymbolicLink;
-      aTargetsFlag |= eSymbolicLink;
+      aTarget.m_Flags |= eSymbolicLinkFile;
+      aTargetsFlag |= eSymbolicLinkFile;
     }
     else
     {
-      // It could be a dangling Junction
-      if (ProbeJunction(aTarget.m_Path, NULL))
-      {
-        aTarget.m_Flags |= eJunction;
-        aTargetsFlag |= eJunction;
-      }
-      else 
-      {
-        // No it is a file
-        aTarget.m_Flags |= eFile;
-        aTargetsFlag |= eFile;
-      }
-      
+      aTarget.m_Flags |= eFile;
+      aTargetsFlag |= eFile;
     }
   }
 
@@ -854,21 +841,35 @@ CreateContextMenu(
     }
   }
 
-  // DropSource is a SymbolicLink?
+  // DropSource is a SymbolicLink File?
+  if (m_bTargetsFlag & eSymbolicLinkFile)
+  {
+    if (m_DropTarget.m_Flags & (eDir | bJunction | eVolume | eMountPoint | eSymbolicLink | eSymbolicLinkFile))
+    {
+      if (a_SrcDstOnSameDrive)
+        // [0700] Drop a Symbolic link File on a file can create a hardlink
+        InsertCommand(a_hSubmenu, SubmenuIdx, a_idCmd, eMenuHardlink + a_MenuOffset, eDropHardLink, a_CommandIdx, a_nEntries);
+
+      // [1000] Drop a Symbolic Link File on a Directory can create chains of Symbolic Link
+      InsertCommand(a_hSubmenu, SubmenuIdx, a_idCmd, eMenuSymbolicLink + a_MenuOffset, eDropSymbolicLink, a_CommandIdx, a_nEntries);
+    }
+  }
+
+  // DropSource is a SymbolicLink Dir?
   if (m_bTargetsFlag & eSymbolicLink)
   {
     if (m_DropTarget.m_Flags & (eDir | bJunction | eVolume | eMountPoint | eSymbolicLink))
     {
-      // [1000] Drop a Symbolic Link on a Directory can create chains of Symbolic Link
-      // [1010] Drop a Symbolic Link on a Junction can create Symbolic Link
-      // [1020] Drop a Symbolic Link on a Volume can create Symbolic Link
-      // [1030] Drop a Symbolic Link on a Mountpoint can create Symbolic Link
+      // [1000] Drop a Symbolic Link Dir on a Directory can create chains of Symbolic Link
+      // [1010] Drop a Symbolic Link Dir on a Junction can create Symbolic Link
+      // [1020] Drop a Symbolic Link Dir on a Volume can create Symbolic Link
+      // [1030] Drop a Symbolic Link Dir on a Mountpoint can create Symbolic Link
       InsertCommand(a_hSubmenu, SubmenuIdx, a_idCmd, eMenuSymbolicLink + a_MenuOffset, eDropSymbolicLink, a_CommandIdx, a_nEntries);
 
-      // [1100] Drop a Symbolic Link on a Directory can create Junctions
-      // [1110] Drop a Symbolic Link on a Junction can create Junctions
-      // [1120] Drop a Symbolic Link on a Volume can create Junctions
-      // [1130] Drop a Symbolic Link on a Mountpoint can create Junctions
+      // [1100] Drop a Symbolic Link Dir on a Directory can create Junctions
+      // [1110] Drop a Symbolic Link Dir on a Junction can create Junctions
+      // [1120] Drop a Symbolic Link Dir on a Volume can create Junctions
+      // [1130] Drop a Symbolic Link Dir on a Mountpoint can create Junctions
       if (!(gLSESettings.GetFlags() & eDisableJunction))
         InsertCommand(a_hSubmenu, SubmenuIdx, a_idCmd, eMenuJunction + a_MenuOffset, eDropJunction, a_CommandIdx, a_nEntries);
 
@@ -905,14 +906,24 @@ CreateContextMenu(
   }
 
   // 
-  // The Replacement Stuff is always at the end of the menues
+  // Replacement Reparse Points
   // 
 
   // [0100]
-  // DropSource is a Everything?
-  if (m_bTargetsFlag & (eFile | eDir | eVolume | bJunction | eMountPoint | eSymbolicLink))
+  // DropSource is everything which can be referred via a Symbolic Link Dir
+  if (m_bTargetsFlag & (eDir | eVolume | bJunction | eMountPoint | eSymbolicLink))
   {
     if ((m_DropTarget.m_Flags & eSymbolicLink) && m_nTargets == 1)
+    {
+      // [0110] Drop a Directory on an already existing Symbolic Link, do the replace stuff
+      InsertCommand(a_hSubmenu, SubmenuIdx, a_idCmd, eMenuReplaceSymbolicLink + a_MenuOffset, eDropReplaceSymbolicLink, a_CommandIdx, a_nEntries);
+    }
+  }
+
+  // DropSource is a File or Symbolic Link File 
+  if (m_bTargetsFlag & (eFile | eSymbolicLinkFile))
+  {
+    if ((m_DropTarget.m_Flags & eSymbolicLinkFile) && m_nTargets == 1)
     {
       // [0110] Drop a Directory on an already existing Symbolic Link, do the replace stuff
       InsertCommand(a_hSubmenu, SubmenuIdx, a_idCmd, eMenuReplaceSymbolicLink + a_MenuOffset, eDropReplaceSymbolicLink, a_CommandIdx, a_nEntries);
@@ -940,7 +951,7 @@ CreateContextMenu(
   }
 
   //
-  // Copy Symbolic Links & Junctions
+  // Copy Reparse Points
   //
 
   // DropSource is a Symbolic Link
@@ -1004,36 +1015,21 @@ CreateContextMenu(
   int nEntries = 0;
   CreateContextMenu(a_hMenu, a_idCmd, a_CommandIdx, a_MenuOffset, nEntries, SrcDstOnSameDrive);
 
-  if (nEntries > 1)
+  switch (nEntries)
   {
-    // This clause expects just to offer a submenue for many entries on the main drop down menue
-    HMENU hSubmenu = CreatePopupMenu();
+    case 0:
+      // No match at all during counting
+      break;
 
-    // This time really add the menue
-    nEntries = -1;
-    CreateContextMenu(hSubmenu, a_idCmd, a_CommandIdx, a_MenuOffset, nEntries, SrcDstOnSameDrive);
-
-
-    // Insert the submenu into the ctx menu provided by Explorer.
-    MENUITEMINFO mii = { sizeof(MENUITEMINFO) };
-
-    mii.fMask = MIIM_SUBMENU | MIIM_STRING | MIIM_ID;
-    mii.wID = a_idCmd++;
-    mii.hSubMenu = hSubmenu;
-    mii.dwTypeData = MenuEntries[eMenuDropeAs + a_MenuOffset];
-    m_Command[a_CommandIdx++] = eDropAs;
-
-    InsertMenuItem(a_hMenu, a_indexMenu, TRUE, &mii);
-  }
-  else
-  {
-    // This clause expects just to offer *one* menue entry on the main drop down menue
-    nEntries = -1;
-    if (m_DropTarget.m_Flags & eNTFS)
+    case 1:
     {
-      int TargetsFlag = m_bTargetsFlag & (eFile | eDir | eJunction | eVolume | eMountPoint | eSymbolicLink);
-      switch (TargetsFlag)
+      // This clause expects just to offer *one* menue entry on the main drop down menue
+      nEntries = -1;
+      if (m_DropTarget.m_Flags & eNTFS)
       {
+        int TargetsFlag = m_bTargetsFlag & (eFile | eDir | eJunction | eVolume | eMountPoint | eSymbolicLink | eSymbolicLinkFile);
+        switch (TargetsFlag)
+        {
         case eFile:
         {
           if (m_DropTarget.m_Flags & eNTFS)
@@ -1054,7 +1050,7 @@ CreateContextMenu(
 
         case eDir:
           HTRACE(L"### 1 Menue eDir");
-        break;
+          break;
 
         case eJunction:
           // Was the destination a junction ...
@@ -1070,30 +1066,55 @@ CreateContextMenu(
             if (!(gLSESettings.GetFlags() & eDisableJunction))
               InsertCommand(a_hMenu, a_indexMenu, a_idCmd, eMenuDropJunction + a_MenuOffset, eDropJunction, a_CommandIdx, nEntries);
           }
-        break;
+          break;
 
         case eVolume:
           HTRACE(L"### 1 Menue eVolume");
-        break;
+          break;
 
         case eMountPoint:
           HTRACE(L"### 1 Menue eMountPint");
-        break;
+          break;
 
         case eSymbolicLink:
-          // A Junction was picked, and with Vista a Symbolic Link can point to a Junction
+        case eSymbolicLinkFile:
           if (m_DropTarget.m_Flags & eNTFS)
           {
-            InsertCommand(a_hMenu, a_indexMenu, a_idCmd, eMenuSymbolicLink + a_MenuOffset, eDropSymbolicLink, a_CommandIdx, nEntries);
+            InsertCommand(a_hMenu, a_indexMenu, a_idCmd, eMenuDropSymbolicLink + a_MenuOffset, eDropSymbolicLink, a_CommandIdx, nEntries);
           }
-        break;
+          break;
 
         default:
           HTRACE(L"### 1 Menue ILLEGAL");
-        break;
+          break;
 
-      } // switch (TargetsFlag)
-    } // if (m_DropTarget.m_Flags & eNTFS)
+        } // switch (TargetsFlag)
+      } // if (m_DropTarget.m_Flags & eNTFS)
+    }
+    break;
+
+    default:
+    {
+      // This clause expects just to offer a submenue for many entries on the main drop down menue
+      HMENU hSubmenu = CreatePopupMenu();
+
+      // This time really add the menue
+      nEntries = -1;
+      CreateContextMenu(hSubmenu, a_idCmd, a_CommandIdx, a_MenuOffset, nEntries, SrcDstOnSameDrive);
+
+
+      // Insert the submenu into the ctx menu provided by Explorer.
+      MENUITEMINFO mii = { sizeof(MENUITEMINFO) };
+
+      mii.fMask = MIIM_SUBMENU | MIIM_STRING | MIIM_ID;
+      mii.wID = a_idCmd++;
+      mii.hSubMenu = hSubmenu;
+      mii.dwTypeData = MenuEntries[eMenuDropeAs + a_MenuOffset];
+      m_Command[a_CommandIdx++] = eDropAs;
+
+      InsertMenuItem(a_hMenu, a_indexMenu, TRUE, &mii);
+    }
+    break;
   }
 }
 
@@ -1113,7 +1134,7 @@ QueryContextMenu(
   HTRACE(L"LSE::QueryContextMenu %08x, %08x, %08x, %08x, %08x\n", hMenu, indexMenu, idCmdFirst, idCmdLast, uFlags);
 
   UINT idCmd = idCmdFirst;
-  UINT aCommandIdx = 0;
+  UINT commandIdx = 0;
 
 //  int* p = NULL;
 //  *p = 22;
@@ -1150,11 +1171,11 @@ QueryContextMenu(
       InsertMenu(hMenu, indexMenu++, MF_SEPARATOR | MF_BYPOSITION, 0, NULL);
 
       InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuCancelLinkCreation]);
-      m_Command[aCommandIdx++] = eCancelPickLink;
+      m_Command[commandIdx++] = eCancelPickLink;
 
       // Make sure we only drop onto valid items
-      if (m_DropTarget.m_Flags & (eDir | eJunction | eVolume | eMountPoint | eSymbolicLink))
-        CreateContextMenu(hMenu, indexMenu, idCmd, aCommandIdx, 0);
+      if (m_DropTarget.m_Flags & (eDir | eJunction | eVolume | eMountPoint | eSymbolicLink | eSymbolicLinkFile))
+        CreateContextMenu(hMenu, indexMenu, idCmd, commandIdx, 0);
 
       FreeShellSelection();
     }
@@ -1165,18 +1186,11 @@ QueryContextMenu(
       {
         InsertMenu(hMenu, indexMenu++, MF_SEPARATOR | MF_BYPOSITION, 0, NULL);
         InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuPickLinkSource]);
-        m_Command[aCommandIdx++] = ePickLinkSource;
-#if !defined REMOVE_DELETE_JUNCTION
-        if (m_bTargetsFlag & eJunction)
-        {
-          InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuDeleteJunction]);
-          m_Command[aCommandIdx++] = eDeleteJunction;
-        }
-#endif
+        m_Command[commandIdx++] = ePickLinkSource;
         if (m_bTargetsFlag & eMountPoint)
         {
           InsertMenu(hMenu, indexMenu++, MF_STRING | MF_BYPOSITION, idCmd++, TopMenuEntries[eTopMenuDeleteMountPoint]);
-          m_Command[aCommandIdx++] = eDropDeleteMountPoint;
+          m_Command[commandIdx++] = eDropDeleteMountPoint;
         }
         InsertMenu(hMenu, indexMenu++, MF_SEPARATOR | MF_BYPOSITION, 0, NULL);
       }
@@ -1185,7 +1199,7 @@ QueryContextMenu(
   else
   {
     // This is for the drag and drop handler
-    CreateContextMenu(hMenu, indexMenu, idCmd, aCommandIdx, eMenue__Free__);
+    CreateContextMenu(hMenu, indexMenu, idCmd, commandIdx, eMenue__Free__);
   }
 
   //Must return number of menu items we added.
@@ -1251,11 +1265,6 @@ InvokeCommand	(
           DropSymbolicLinkClone(m_DropTarget, lpcmi);
         break;
 
-  #if !defined REMOVE_DELETE_JUNCTION
-        case eDeleteJunction:
-          DeleteJunction();
-        break;
-  #endif
         case eDropCreateMountPoint:
           DropMountPoint(m_DropTarget);
         break;
@@ -1417,48 +1426,48 @@ ClipboardToSelection(
 	bool aProbe
 )
 {
-	if (OpenClipboard(NULL))
-	{
-		// Get the data from the clipboard
-		PBYTE		buffer = (PBYTE)GetClipboardData(m_ClipFormat);
-		PULONG		pLong = (PULONG)buffer;
+  if (OpenClipboard(NULL))
+  {
+    // Get the data from the clipboard
+    PBYTE		buffer = (PBYTE)GetClipboardData(m_ClipFormat);
+    PULONG		pLong = (PULONG)buffer;
 
-		if (buffer)
-		{
-			// Get the overall flag from the clipboard
-			m_bTargetsFlag = *pLong;
-			buffer += sizeof m_bTargetsFlag;
+    if (buffer)
+    {
+      // Get the overall flag from the clipboard
+      m_bTargetsFlag = *pLong;
+      buffer += sizeof m_bTargetsFlag;
 
-			// Get the number of targets from the clipboard
-			pLong = (PULONG)buffer;
-			m_nTargets = *pLong;
-			buffer += sizeof ULONG;
-			
-			HTRACE (L"LSE::new ClipboardToSelection %d\n", aProbe);
-			m_pTargets = new Target[m_nTargets];
-			size_t		len;
-			for (ULONG i = 0; i < m_nTargets; i++)
-			{
-				// Get data from the clipboard
-				wcsncpy(m_pTargets[i].m_Path, (PWCHAR)buffer, HUGE_PATH);
-				len = wcslen(m_pTargets[i].m_Path);
-				len++;
-				len *= sizeof WCHAR;
-				buffer += len;
+      // Get the number of targets from the clipboard
+      pLong = (PULONG)buffer;
+      m_nTargets = *pLong;
+      buffer += sizeof ULONG;
 
-				memcpy (&m_pTargets[i].m_Flags, buffer, sizeof m_pTargets[i].m_Flags);
-				buffer += sizeof m_pTargets[i].m_Flags;
+      HTRACE(L"LSE::new ClipboardToSelection %d\n", aProbe);
+      m_pTargets = new Target[m_nTargets];
+      size_t		len;
+      for (ULONG i = 0; i < m_nTargets; i++)
+      {
+        // Get data from the clipboard
+        wcsncpy(m_pTargets[i].m_Path, (PWCHAR)buffer, HUGE_PATH);
+        len = wcslen(m_pTargets[i].m_Path);
+        len++;
+        len *= sizeof WCHAR;
+        buffer += len;
 
-				if (aProbe)
-					break;
-			}
+        memcpy(&m_pTargets[i].m_Flags, buffer, sizeof m_pTargets[i].m_Flags);
+        buffer += sizeof m_pTargets[i].m_Flags;
 
-			if (!aProbe)
-				EmptyClipboard();
-		}
-		CloseClipboard();
-	}
-	return NOERROR;
+        if (aProbe)
+          break;
+      }
+
+      if (!aProbe)
+        EmptyClipboard();
+    }
+    CloseClipboard();
+  }
+  return NOERROR;
 }
 
 HRESULT 
@@ -1466,12 +1475,12 @@ HardLinkExt::
 CancelPickLink(
 )
 {
-	if (OpenClipboard(NULL))
-	{
-		EmptyClipboard();
-		CloseClipboard();
-	}
-	return NOERROR;
+  if (OpenClipboard(NULL))
+  {
+    EmptyClipboard();
+    CloseClipboard();
+  }
+  return NOERROR;
 }
 
 HRESULT 
@@ -1480,38 +1489,38 @@ DropHardLink(
 	Target&		aTarget
 )
 {
-	WCHAR		dest[HUGE_PATH];
+  WCHAR		dest[HUGE_PATH];
 
 #if defined _DEBUG
   BOOL b = EnableTokenPrivilege(SE_BACKUP_NAME);
   BOOL r = EnableTokenPrivilege(SE_RESTORE_NAME);
-  BOOL c = EnableTokenPrivilege(SE_SECURITY_NAME );
+  BOOL c = EnableTokenPrivilege(SE_SECURITY_NAME);
 #endif
 
   PathAddBackslash(aTarget.m_Path);
 
-	if (!m_nTargets)
-		ClipboardToSelection(false);
+  if (!m_nTargets)
+    ClipboardToSelection(false);
 
   bool ElevationNeeded = false;
   for (ULONG i = 0; i < m_nTargets; i++)
-	{
-		CreateFileName(
+  {
+    CreateFileName(
       g_hInstance,
       gLSESettings.GetLanguageID(),
-			TopMenuEntries[eTopMenuHardlink], 
-			TopMenuEntries[eTopMenuTo], 
-			aTarget.m_Path, 
-			PathFindFileName(m_pTargets[i].m_Path), 
-			dest,
+      TopMenuEntries[eTopMenuHardlink],
+      TopMenuEntries[eTopMenuTo],
+      aTarget.m_Path,
+      PathFindFileName(m_pTargets[i].m_Path),
+      dest,
       IDS_STRING_eTopMenuOfOrderXP_1);
 
-		if (m_pTargets[i].m_Flags & eFile)
-		{
-			int result = CreateHardlink(m_pTargets[i].m_Path, dest);
-			if (ERROR_SUCCESS != result)
-			{
-				// Check if we propably failed due to missing elevation
+    if (m_pTargets[i].m_Flags & (eFile | eSymbolicLinkFile))
+    {
+      int result = CreateHardlink(m_pTargets[i].m_Path, dest);
+      if (ERROR_SUCCESS != result)
+      {
+        // Check if we propably failed due to missing elevation
         if (0 == i && ERROR_ACCESS_DENIED == result)
         {
           ElevationNeeded = true;
@@ -1521,32 +1530,32 @@ DropHardLink(
         {
           switch (result)
           {
-            case ERROR_TOO_MANY_LINKS:
-					    ErrorCreating(dest, 
-						    IDS_STRING_ErrExplorerCanNotCreateHardlink, 
-						    IDS_STRING_ErrCreatingHardlink,
-						    IDS_STRING_ErrHardlinkFailed
-					    );
+          case ERROR_TOO_MANY_LINKS:
+            ErrorCreating(dest,
+              IDS_STRING_ErrExplorerCanNotCreateHardlink,
+              IDS_STRING_ErrCreatingHardlink,
+              IDS_STRING_ErrHardlinkFailed
+            );
             break;
 
-            case ERROR_ALREADY_EXISTS:
-					    ErrorCreating(dest, 
-						    IDS_STRING_ErrExplorerAutoRenAlreadyExists, 
-						    IDS_STRING_ErrCreatingHardlink,
-						    IDS_STRING_ErrHardlinkFailed
-					    );
+          case ERROR_ALREADY_EXISTS:
+            ErrorCreating(dest,
+              IDS_STRING_ErrExplorerAutoRenAlreadyExists,
+              IDS_STRING_ErrCreatingHardlink,
+              IDS_STRING_ErrHardlinkFailed
+            );
             break;
 
-            default:
-					    ErrorFromSystem(result);
+          default:
+            ErrorFromSystem(result);
             break;
 
           }
         }
-			}
-		}
-	}
-  
+      }
+    }
+  }
+
   // It could turn out, that we need to elevate the hardlink creation, because the 
   // directories are e.g SYSTEM_ROOT or PROGRAM_FILES
   if (ElevationNeeded)
@@ -1554,47 +1563,46 @@ DropHardLink(
     UACHelper uacHelper;
 
     for (ULONG i = 0; i < m_nTargets; i++)
-	  {
-		  CreateFileName(
+    {
+      CreateFileName(
         g_hInstance,
         gLSESettings.GetLanguageID(),
-			  TopMenuEntries[eTopMenuHardlink], 
-			  TopMenuEntries[eTopMenuTo], 
-			  aTarget.m_Path, 
-			  PathFindFileName(m_pTargets[i].m_Path), 
-			  dest,
+        TopMenuEntries[eTopMenuHardlink],
+        TopMenuEntries[eTopMenuTo],
+        aTarget.m_Path,
+        PathFindFileName(m_pTargets[i].m_Path),
+        dest,
         IDS_STRING_eTopMenuOfOrderXP_1);
 
-		  if (m_pTargets[i].m_Flags & eFile)
+      if (m_pTargets[i].m_Flags & eFile)
       {
-			  // Write the command file, which is read by the elevated process
+        // Write the command file, which is read by the elevated process
         uacHelper.WriteArgs('h', m_pTargets[i].m_Path, dest);
       }
     }
-    
+
     DWORD r = uacHelper.Fork();
     if (r)
     {
       switch (r)
       {
-        case ERROR_ALREADY_EXISTS:
-          ErrorCreating(dest, 
-            IDS_STRING_ErrExplorerAutoRenAlreadyExists, 
-            IDS_STRING_ErrCreatingHardlink,
-            IDS_STRING_ErrHardlinkFailed
-            );
+      case ERROR_ALREADY_EXISTS:
+        ErrorCreating(dest,
+          IDS_STRING_ErrExplorerAutoRenAlreadyExists,
+          IDS_STRING_ErrCreatingHardlink,
+          IDS_STRING_ErrHardlinkFailed
+        );
         break;
 
-        default:
-          ErrorFromSystem(r);
+      default:
+        ErrorFromSystem(r);
         break;
       }
     }
 
   } // if (ElevationNeeded)
 
-
-	return NOERROR;
+  return NOERROR;
 }
 
 HRESULT 
@@ -1636,7 +1644,7 @@ DropSymbolicLink(
     // If chains of symbolic links should be created, we have to check wether it is a directory or file, 
     // and set the bits accordingly
     DWORD attr = INVALID_FILE_ATTRIBUTES;
-    if (m_pTargets[i].m_Flags & eSymbolicLink)
+    if (m_pTargets[i].m_Flags & (eSymbolicLink | eSymbolicLinkFile))
     {
       attr = GetFileAttributes(m_pTargets[i].m_Path);
       if (attr & FILE_ATTRIBUTE_DIRECTORY)
@@ -1992,60 +2000,6 @@ DropSymbolicLinkClone(
     true
   );
 }
-
-#if !defined REMOVE_DELETE_JUNCTION
-HRESULT 
-HardLinkExt::
-DeleteJunction(
-)
-{
-  bool CreateJunctionsViaHelperExe = false;
-  UACHelper uacHelper;
-
-  // Walk through the selection and delete the directories
-  // which are junctions
-  for (UINT i = 0; i < m_nTargets; i++)
-  {
-    if (m_pTargets[i].m_Flags & eJunction)
-    {
-      BOOL b = RemoveDirectory(m_pTargets[i].m_Path);
-      if (!b)
-      {
-        // With Vista & W7, we are not allowed to delete Directories in folders like
-        // c:\Program Files (x86) wihtout UAC, so in this special case, the deletion
-        // of junction has to be relayed to an elevated .exe as done with Symbolic links
-#if defined UAC_FORCE
-        if (UAC_OUTPROC)
-#else
-        if (ElevationNeeded())
-#endif
-        {
-          // Write the command file, which is read by the elevated process
-          uacHelper.WriteArgs('k', L"empty", m_pTargets[i].m_Path);
-          CreateJunctionsViaHelperExe = true;
-        }
-        else
-        {
-          ErrorFromSystem(GetLastError());
-        }
-      }
-    }
-  }
-#if defined UAC_FORCE
-  if (UAC_OUTPROC)
-#else
-  if (CreateJunctionsViaHelperExe)
-#endif
-  {
-    DWORD r = uacHelper.Fork();
-    if (r)
-      ErrorFromSystem(r);
-  }
-
-  return NOERROR;
-}
-#endif
-
 
 
 HRESULT 
