@@ -1,4 +1,4 @@
-DEBUG_DEFINES müssen im Source in hardlink_types.h alle ok sein
+DEBUG_DEFINES must not be enables in hardlink_types.h
 
 Edit BuildWord.bat and update version number for LSE, ln.exe and Dupemerge.exe
 Unter Windows10 einen Admin Command Prompt aufmachen und dann 'Run As Admin' machen, sonst können die Stubs nicht nach Programm Files zurückkopiert werden
