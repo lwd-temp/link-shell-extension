@@ -7,6 +7,23 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.928 has been released.</title>
+      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <pubDate>Tue, 02 Nov 2019 20:00:15 +0100</pubDate>
+      <description>
+        LSE 3.928 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>Removed 'Delete Junction' from main menu.</li>
+          <li>Improved menu hydraulics, e.g. once can not create Smart Copies of Symbolic Link Files.</li>
+          <li>Adapted check for Redistributables to VS2017 and Windows 10.</li>
+        ]]>
+      </content:encoded>
+      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3928</guid>
+    </item>
+
+    <item>
       <title>LSE 3.927 has been released.</title>
       <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 28 Oct 2019 10:00:15 +0100</pubDate>

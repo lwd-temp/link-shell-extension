@@ -123,7 +123,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i>Last Updated October 28  2019, Version 3.9.2.7</i>
+                    <i>Last Updated November 2 2019, Version 3.9.2.8</i>
                 </div>
             </td>
         </tr>
@@ -2817,13 +2817,17 @@
 
                     <tr>
                         <td class="history">
-                            <a name="3910">October 28, 2019</a>
+                            <a name="3910">November 2, 2019</a>
                         </td>
 
                         <td>
-                            Version 3.9.2.7
+                            Version 3.9.2.8
                             <ul>
-                                <!-- 3.9.2.7, 15.10.2019 -->
+                                <!-- 3.9.2.8, 02.11.2019 -->
+                                <li>Removed 'Delete Junction' from main menu.</li>
+                                <li>Improved menu hydraulics, e.g. once can not create Smart Copies of Symbolic Link Files.</li>
+                                <li>Adapted check for Redistributables to VS2017 and Windows 10.</li>
+                                <!-- 3.9.2.7, 28.10.2019 -->
                                 <li>On non NTFS drives, files could no be selected as Link Source. Introduced with 3921</li>
                                 <li>Unmount volume did not work, when elevation was needed.</li>
                                 <li>New Windows 10 screenshots for docu and docu streamlining.</li>
@@ -3114,7 +3118,7 @@
                                 <li>The target of the Symbolic Liks or Junctions can be edited in the <a href="#linkproperties">properties dialog</a>.</li>
                                 <li>Non administrators could not create symbolic links.</li>
 
-                                <li>With XP and the symlink driver installed the Delete Junction menue didn't show up.</li>
+                                <li>With XP and the symlink driver installed the Delete Junction menu didn't show up.</li>
                                 <li>The status of the <a href="#SymbolicLinkPrivilege">privilege for Symbolic Link Creation</a> is checked, so that UAC can be avoided</li>
 
                                 <li>Fixed deployment problems for the Win32bit version.</li>
@@ -3189,16 +3193,16 @@
                                 <li>Added a <a href="#configuration">configuration</a> tool for LSE options</li>
                                 <li>Added a <a href="#configuration">priority level</a> for the indidual overlay icons.</li>
                                 <li>Added an <a href="#configuration">option</a> to switch off overlay icons totally for each type of overlay.</li>
-                                <li>The Pick Link Source context menue now also shows up on FAT drives, if the item potentially is the source for a LSE operation.</li>
+                                <li>The Pick Link Source context menu now also shows up on FAT drives, if the item potentially is the source for a LSE operation.</li>
                                 <li>Overlay icons can be <a href="#disablingoverlayicons">disabled.</a></li>
                                 <li>Documented how the <a href="#silentinstall">install directory</a> can specified when using silent (un)install.</li>
-                                <li>The menu hydraulics have been reworked, so that it is decided early to only show menue for chioces, which are really possible.</li>
+                                <li>The menu hydraulics have been reworked, so that it is decided early to only show menu for chioces, which are really possible.</li>
                                 <li>LSE and symlink are now linked with ASLR.</li>
                                 <li>Tranparency glitches in the Junction overlay icon have been fixed.</li>
                                 <li>Hardlink Clone and Symboliclink Clone have been extended so that <a href="#hardlinkclones">Inner Junctions and inner Symbolic Links</a> are properly handled.</li>
                                 <li>LSE now supports also the replacement of <a href="#replacementjunction">Mountpoints and Symbolic Links</a>.</li>
                                 <li>LSE shows a dialog box whether explorer should be <a href="#installation">restarted</a> or not during non silent installation.</li>
-                                <li>Under Windows Vista and Window7 the <i><a href="#junctionwindows7">Delete Junction</a></i> menue doe not show up anymore.</li>
+                                <li>Under Windows Vista and Window7 the <i><a href="#junctionwindows7">Delete Junction</a></i> menu doe not show up anymore.</li>
                             </ul>
                         </td>
                     </tr>
