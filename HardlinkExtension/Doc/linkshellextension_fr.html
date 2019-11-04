@@ -123,7 +123,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i>Dernière mise à jour du 02 Novembre 2019, Version 3.9.2.8</i>
+                    <i>Dernière mise à jour du 4 Novembre 2019, Version 3.9.2.9</i>
                 </div>
             </td>
         </tr>
@@ -178,7 +178,7 @@
                     Link Shell Extension (LSE) permet la création de
                     <a href="#hardlinks">Liens physiques</a>, <a href="#junctions">Jonctions</a>,
                     <a href="#volumemountpoint">Montage de Volume</a> ,
-                    et les<a href="#symboliclinks">Liens Symboliques</a>,
+                    et les <a href="#symboliclinks">Liens Symboliques</a>,
                     considérés globalement comme des <a href="#hardlinkclones">processus de clonage</a> de répertoire qui utilise
                     des Liens physiques ou les Liens Symboliques et un processus de copie préservant les Jonctions, Liens Symboliques, et Liens Physiques.
                     LSE, comme son nom l'indique est implémenté en tant qu'extension du Shell et est accessible depuis l'Explorateur Windows, ou des gestionnaires de fichiers/répertoires du même genre.
@@ -313,7 +313,7 @@
                 <br />
 
                 Pour créer les liens physiques, vous devez choisir un répertoire de destination, et en cliquant sur le
-                bouton d'action de la souris dans le répertoire de destination, un menupop-up apparaît proposant l'entrée - <b>Coller un lien physique</b>
+                bouton d'action de la souris dans le répertoire de destination, un menu pop-up apparaît proposant l'entrée - <b>Coller un lien physique</b>
                 (ou <b> Drop HardLink</b>
                 <br />
                 <br />
@@ -343,7 +343,7 @@
             </td>
 
             <td class="bodytext">
-                Quand on clique sur le bouton d'action dans le répertoire de destination, enplus de l'option de Coller un lien physique, il est
+                Quand on clique sur le bouton d'action dans le répertoire de destination, en plus de l'option de Coller un lien physique, il est
                 possible d'<b>Oublier la cible du lien </b>(ou<b> Cancel Link Creation</b>).
                 <br />
                 <br />
@@ -385,7 +385,7 @@
             <td class="bodytext">
                 La création de liens physiques par des glisser-déposer est prise en charge: après avoir sélectionné un ou plusieurs fichiers, vous pouvez les faire
                 glisser vers le répertoire de destination en maintenant enfoncé le bouton d'action ; quand vous le relâchez choisissez <b>Déposer ici</b>
-                dans le menu d'action pour y créer les liens physiquesdes fichiers sélectionnés dans le répertoire de destination.
+                dans le menu d'action pour y créer les liens physiques des fichiers sélectionnés dans le répertoire de destination.
                 <br />
                 <br />
 
@@ -781,7 +781,7 @@
                             <br />
                             <br />
                             <p>
-                                Les <i>Liens Symboliques Externes</i> sont pris en charge par la Copie Intelligente via le traitement des<a href="#outerjunctionhandling">Jonctions/Liens Symboliques Externes</a>.
+                                Les <i>Liens Symboliques Externes</i> sont pris en charge par la Copie Intelligente via le traitement des <a href="#outerjunctionhandling">Jonctions/Liens Symboliques Externes</a>.
                             </p>
                         </td>
                     </tr>
@@ -1275,7 +1275,7 @@
                 <p>
                     Intercepter une opération de déplacement ou de renommage signifie que LSE prend le contrôle avant le renommage/déplacement, et de façon récursive
                     recherche dans le répertoire sélectionné les jonctions ou liens symboliques. Toutefois, la recherche dans un grand nombre de fichiers et
-                    répertoires prend du temps, aussi LSE affichera une barre de progression dès que la recherche prend plus de 250msec.
+                    répertoires prend du temps, aussi LSE affichera une barre de progression dès que la recherche prend plus de 250 msec.
                 </p>
                 <p>
                     <img src="smartmoveprogress.png" alt="Barre de progrès pendant un Déplacement Intelligent">
@@ -2817,13 +2817,15 @@
 
                     <tr>
                         <td class="history">
-                            <a name="3910">2 Novembre 2019</a>
+                            <a name="3910">4 Novembre 2019</a>
                         </td>
 
                         <td>
-                            Version 3.9.2.8
+                            Version 3.9.2.9
                             <ul>
-                                <!-- 3.9.2.8, 02.11.2019 -->
+                                <!-- 3.9.2.9, 4.11.2019 -->
+                                <li>Lots of strings very wrong. Introduced with 3.9.2.8</li>
+                                <!-- 3.9.2.8, 2.11.2019 -->
                                 <li>'Supprimer la jonction' enlevé du menu principal.</li>
                                 <li>Amélioration du menu 'hydraulics', c-a-d qu'on ne peut pas créer de Copies Intelligentes de fichiers liés par liens Symboliques.</li>
                                 <li>Adaptation des vérifications aux redistribuables de VS2017 et Windows 10.</li>
@@ -4126,7 +4128,7 @@
                         </td>
                         <td align="left" class="bodytext">
                             Un driver pour activer même sous WindowsXP la <a href="#symboliclinksforwindowsxp">
-                                fonctionnalité de lien symbolique
+                               fonctionnalité de lien symbolique
                             </a> est mis à disposition par Masatoshi Kimura. Vous pouvez télécharger le
                             driver depuis sa page web ou depuis mon site agissant comme miroir.
 

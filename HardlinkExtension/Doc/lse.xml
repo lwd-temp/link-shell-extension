@@ -7,6 +7,21 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.929 has been released.</title>
+      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <pubDate>Tue, 04 Nov 2019 20:00:15 +0100</pubDate>
+      <description>
+        LSE 3.929 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>Lots of strings very wrong. Introduced with 3.9.2.8</li>
+        ]]>
+      </content:encoded>
+      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3929</guid>
+    </item>
+
+    <item>
       <title>LSE 3.928 has been released.</title>
       <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 02 Nov 2019 20:00:15 +0100</pubDate>

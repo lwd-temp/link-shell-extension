@@ -6,7 +6,7 @@ REM
 set MAJOR_VERSION=3
 set MINOR_VERSION=9
 set PATCH_VERSION=2
-set HOTFIX_VERSION=8
+set HOTFIX_VERSION=9
 
 REM Set the version info for Commandline tools
 REM

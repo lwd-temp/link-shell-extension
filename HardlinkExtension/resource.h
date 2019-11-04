@@ -123,7 +123,7 @@
 #define IDS_STRING_HelpText15           314
 #define IDS_STRING_HelpText16           315
 #define IDS_STRING_HelpText17           316
-#define IDS_STRING_eTopMenuPickLinkSource 400
+#define IDS_STRING_eTopMenuPickLinkSource 401
 #define IDS_STRING_eTopMenuCancelLinkCreation 402
 #define IDS_STRING_eTopMenuHardlink     403
 #define IDS_STRING_eTopMenuJunction     404
