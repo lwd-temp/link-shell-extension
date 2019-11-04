@@ -885,85 +885,40 @@ ReplaceMountPoint(
 void
 RebootExplorer()
 {
+  int MsgRet = MessageBox(NULL,
+    L"To apply your changes Explorer.exe must be restarted\r\n\r\nPress Yes to restart or No to quit",
+    L"Caption",
+    MB_YESNO | MB_ICONEXCLAMATION);
+
+  if (IDYES == MsgRet)
   {
-    int MsgRet = 0;
-    _StringList Modules;
-    _StringSet  Processes;
+    wchar_t		szProcessNameUni[32] = EXPLORER;
 
-    // Search for processes which have our .dlls loaded
-    //
-    Modules.push_back(L"HardlinkShellExt.dll");
+    ULONG		dPIDSize = 0;
+    PUINT_PTR  dPID;
+    bool b = NtQueryProcessId(szProcessNameUni, &dPID, &dPIDSize);
 
-    do
+    if (b)
     {
-      NtQueryProcessByModule(Modules, Processes);
-
-      auto explorer = Processes.find(L"explorer.exe");
-      if (explorer != Processes.end())
-        Processes.erase(explorer);
-
-      if (Processes.size())
+      // Kill all proccesses with the given name
+      for (ULONG i = 0; i < dPIDSize; i++)
       {
-        wchar_t processes[HUGE_PATH];
-        processes[0] = 0x00;
-        for (const auto& iter : Processes)
+        HANDLE pHandle = OpenProcess(PROCESS_TERMINATE, FALSE, dPID[i]);
+        if (INVALID_HANDLE_VALUE != pHandle)
         {
-          wcscat_s (processes, HUGE_PATH, L"   ");
-          wcscat_s (processes, HUGE_PATH, iter.c_str());
-          wcscat_s (processes, HUGE_PATH, L"\r\n");
+          BOOL b = TerminateProcess(pHandle, 42);
+          if (FALSE == b)
+            HTRACE(L"RebootExplorer TerminateProcess failed: %d, %08x", dPID[i], GetLastError());
+          CloseHandle(pHandle);
         }
-
-        wchar_t Message[HUGE_PATH];
-        wsprintf(Message, L"To apply your changes please close the following applications \r\n\r\n%s\r\n", processes);
-
-
-        MsgRet = MessageBox(NULL,
-          Message,
-          L"Caption",
-          MB_ABORTRETRYIGNORE | MB_ICONEXCLAMATION);
-      }
-    } while (MsgRet == IDRETRY && Processes.size());
-
-    if (IDABORT == MsgRet)
-      return;
-
-    // go on with IDIGNORE
-    MsgRet = MessageBox(NULL,
-      L"To apply your changes Explorer.exe must be restarted\r\n\r\nPress Yes to restart or No to quit",
-      L"Caption",
-      MB_YESNO | MB_ICONEXCLAMATION);
-
-    if (IDYES == MsgRet)
-    {
-      wchar_t		szProcessNameUni[32] = EXPLORER;
-
-      ULONG		dPIDSize = 0;
-      PUINT_PTR  dPID;
-      bool b = NtQueryProcessId(szProcessNameUni, &dPID, &dPIDSize);
-
-      if (b)
-      {
-        // Kill all proccesses with the given name
-        for (ULONG i = 0; i < dPIDSize; i++)
+        else
         {
-          HANDLE pHandle = OpenProcess(PROCESS_TERMINATE, FALSE, dPID[i]);
-          if (INVALID_HANDLE_VALUE != pHandle)
-          {
-            BOOL b = TerminateProcess(pHandle, 42);
-            if (FALSE == b)
-              HTRACE(L"RebootExplorer TerminateProcess failed: %d, %08x", dPID[i], GetLastError());
-            CloseHandle(pHandle);
-          }
-          else
-          {
-            HTRACE(L"RebootExplorer OpenProcess failed: %d, %08x", dPID[i], GetLastError());
-          }
+          HTRACE(L"RebootExplorer OpenProcess failed: %d, %08x", dPID[i], GetLastError());
         }
-
-        GlobalFree(dPID);
       }
+
+      GlobalFree(dPID);
     }
-
   }
 }
 
