@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+// #define _PROCESSES_DEBUG
+
 #include "hardlink_types.h"
 #include "NtBase.h"
 
@@ -10,6 +12,7 @@
 #if defined _DEBUG
 #include "ProcessesTest.h"
 #endif;
+
 
 HINSTANCE					g_hInstance;
 HWND						  g_hwndParent;
@@ -75,61 +78,100 @@ bool	FindProc( char *szProcess )
 // kills a process by name
 // return value:	true	- process was found
 //					false	- process not found
-bool	KillProc( char *szProcess )
+bool	KillProc(char *szProcess)
 {
-	wchar_t		szProcessNameUni[1024];
+  wchar_t		szProcessNameUni[1024];
   PUINT_PTR dPID;
   ULONG		dPIDSize;
 
-	//
-	// enumerate processes names
-	//
-	int szProcessNameLen = strlen(szProcess);
-	int	szProcessNameUniLen = MultiByteToWideChar (
-		CP_UTF8,					// code page
-		0,							// performance and mapping flags
-		(const char*)szProcess,		// input (char*)
-		szProcessNameLen + 1,		// input len including 0-char
-		(wchar_t*)szProcessNameUni,	// output buffer (wchar_t*)
-		(szProcessNameLen + 1) * 2	// output buffer size
-	);
+  //
+  // enumerate processes names
+  //
+  int szProcessNameLen = strlen(szProcess);
+  int	szProcessNameUniLen = MultiByteToWideChar(
+    CP_UTF8,					// code page
+    0,							// performance and mapping flags
+    (const char*)szProcess,		// input (char*)
+    szProcessNameLen + 1,		// input len including 0-char
+    (wchar_t*)szProcessNameUni,	// output buffer (wchar_t*)
+    (szProcessNameLen + 1) * 2	// output buffer size
+  );
 
   bool found = false;
   bool b = NtQueryProcessId(szProcessNameUni, &dPID, &dPIDSize);
-	if (b)
-	{
-		HANDLE		hProcess;
-		//
-		// walk trough and compare see if the process is running
-		//
-		for (int k = 0; k < dPIDSize; k++)
-		{
-			if( NULL != ( hProcess = OpenProcess( PROCESS_ALL_ACCESS, FALSE, dPID[ k ] ) ) )
-			{
-				//
-				// kill process
-				//
-				if( false == TerminateProcess( hProcess, 0 ) )
-					CloseHandle( hProcess );
-				else
-					found = true;
+  if (b)
+  {
+#if defined _PROCESSES_DEBUG
+    _SYSTEMTIME SysTime;
+    GetLocalTime(&SysTime);
 
-				//
-				// refresh systray
-				//
-				UpdateWindow( FindWindow( NULL, "Shell_TrayWnd" ) );
+    char filename[MAX_PATH];
+    sprintf(filename, "c:\\tmp\\Kill %04d-%02d-%02d %02d-%02d-%02d",
+      SysTime.wYear,
+      SysTime.wMonth,
+      SysTime.wDay,
+      SysTime.wHour,
+      SysTime.wMinute,
+      SysTime.wSecond
+    );
 
-				//
-				// refresh desktop window
-				//
-				UpdateWindow( GetDesktopWindow() );
-				CloseHandle( hProcess );
-			}
-		}
-	}
-  return found;
+    FILE* f = fopen(filename, "w");
+#endif
+    HANDLE		hProcess = nullptr;
+
+    // walk trough and compare see if the process is running
+    //
+    for (int k = 0; k < dPIDSize; k++)
+    {
+      hProcess = OpenProcess(PROCESS_TERMINATE, FALSE, dPID[k]);
+      if (nullptr != hProcess)
+      {
+        //
+        // kill process
+        //
+        if (false == TerminateProcess(hProcess, 0))
+        {
+#if defined _PROCESSES_DEBUG
+          if (f)
+          {
+            fprintf(f, "TerminateProcess: Handle: %d, GetLastError: %d\n", hProcess, GetLastError());
+          }
+#endif
+          CloseHandle(hProcess);
+        }
+        else
+          found = true;
+
+        //
+        // refresh systray
+        //
+        UpdateWindow(FindWindow(NULL, "Shell_TrayWnd"));
+
+        //
+        // refresh desktop window
+        //
+        UpdateWindow(GetDesktopWindow());
+        CloseHandle(hProcess);
+      }
+      else
+      {
+#if defined _PROCESSES_DEBUG
+        if (f)
+        {
+          fprintf(f, "OpenProcess: Handle: %d, GetLastError: %d\n", hProcess, GetLastError());
+        }
+#endif
+      }
+    }
+#if defined _PROCESSES_DEBUG
+    if (f)
+    {
+      fclose(f);
+    }
+#endif
+    return found;
+  }
 }
-
 
 
 //-------------------------------------------------------------------------------------------
@@ -153,7 +195,6 @@ ExtractAndFork(
 			id_plattform = IDR_VCREDISTPROBE_X64 + aOffset;
 	}
 
-// #define _PROCESSES_DEBUG
 
 	HRSRC symlink_res = FindResourceW(g_hInstance, (LPCWSTR)id_plattform, L"EXE");
 	if (!symlink_res)
