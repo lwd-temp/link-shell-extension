@@ -7,6 +7,22 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.930 has been released.</title>
+      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <pubDate>Tue, 08 Nov 2019 20:00:15 +0100</pubDate>
+      <description>
+        LSE 3.930 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>For non Admin users under Windows 10, the explorer did not restart after install</li>
+          <li>During custom icon change one was asked to close lots of dependant apps, which is uneccessary. Reboot Explorer.exe is enough.</li>
+        ]]>
+      </content:encoded>
+      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3930</guid>
+    </item>
+
+    <item>
       <title>LSE 3.929 has been released.</title>
       <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 04 Nov 2019 20:00:15 +0100</pubDate>

@@ -16,12 +16,12 @@ Docu Versionsnummer ln\Doc\ln.html  'The 2.9.2.x version is a stable version'
 
 Docu Versionsnummer lse.xml: <title> <pubDate> <description> <![CDATA[> <guid> 
 
-Check if all plattforms are selected in Batch Build
 BuildWorld.bat
+Check if all plattforms are selected in Batch Build
 
-Copy neue Bilder nach $website
+Copy new Pictures to $website
 
 Post to facebook
 Upload to Heise
-Backup Symbol Server
+Backup Symbol Server and Media
 
