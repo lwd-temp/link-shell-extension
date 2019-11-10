@@ -1,789 +1,814 @@
 ﻿<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
 <html>
-  <head>
-    <meta content=
-    "HTML Tidy for Windows (vers 1st February 2003), see www.w3.org" name="generator">
-    <meta http-equiv="Content-Type" content=
-    "text/html; charset=utf-8">
+<head>
+    <meta content="HTML Tidy for Windows (vers 1st February 2003), see www.w3.org" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>dupemerge</title>
-  <style type="text/css">
-   body,td,th {
-	font-family: Arial, 'Segoe UI', Verdana, Geneva, sans-serif;
-	color: #000;
-	background-color: #FFF;
-}
-  .bodytext {
-	font-family: Arial, 'Segoe UI', Helvetica, sans-serif;
-	font-size: .9em;
-}
- 
-  .hanger {
-	font-weight: bold;
-	color: #25049F;
-	font-size: .9em;
-}
-  .ascode {
-	font-family: "Courier New", Courier, monospace;
-	font-weight: bold;
-	padding-left: 1em;
-	font-size: .9em;
-}
-  </style>
-  </head>
+    <style type="text/css">
+        body, td, th {
+            font-family: Arial, 'Segoe UI', Verdana, Geneva, sans-serif;
+            color: #000;
+            background-color: #fff;
+            vertical-align: top;
+        }
+
+        .bodytext {
+            font-family: Arial, 'Segoe UI', Helvetica, sans-serif;
+            vertical-align: top;
+        }
+
+        .hanger {
+            font-weight: bold;
+            color: #25049F;
+            width: 130px;
+            text-align: right;
+            vertical-align: top;
+        }
+
+        .hanger2 {
+            width: 110px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .history {
+            width: 140px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .ascode {
+            font-family: "Courier New", Courier;
+            font-weight: bold;
+            padding-left: 1.5em;
+        }
+
+        img {
+            border: hidden
+        }
+    </style>
+</head>
 <body>
     &nbsp;
-    <table cellspacing="10" cellpadding="0" width="97%"
-           border="0">
-      <tr>
-        <td colspan="2">
-          <img src="dupemerge.png" alt="dupemerge"
-          height="50" width="300">
-        </td>
-      </tr>
-
-      <tr>
-        <td colspan="2">
-          <div style="font-size:.8em; font-family: Arial, 'Segoe UI', Verdana, Geneva, sans-serif; font-style: italic; text-align: right;">
-          <i>Last updated December 28 2018, Version 1.102</i></div>
-        </td>
-      </tr>
-
-      <tr>
-        <td colspan="2" bgcolor="#F2F2F2">
-          <hr style="height: 5px; color: #F2F2F2; background-color: #F2F2F2; border: 0px;">
-        </td>
-      </tr>
-
-
-    <tr>
-      <td align="right" valign="top"><b>
-        <font face="arial" color="#25049F" size="-1"><a name="datenschutzerklärung">Datenschutzerklärung</a></font></b>
-      </td>
-
-      <td valign="bottom">
-        <font face="arial" size="-1">The privacy statement can be found <a href="http://schinagl.priv.at/about/dsgvo.html">here</a>
-        </font>
-      </td>
-    </tr>
-
-      <tr>
-        <td width="130" align="right" valign="top" class="hanger">
-			    <a name="quickstart"><b>Quick Start</b></a>
-			  </td>
-
-        <td valign="bottom" class="bodytext">
-          <a href="#contact">Download</a><br>
-          <a href="#introduction">Documentation</a><br>
-          <a href="#faq">Frequently asked questions (FAQ)</a><br>
-          <a href="#history">History</a><br>
-          <a href="#contact">Donations</a><br><br>
-        </td>
-      </tr>
-
-      <tr>
-        <td width="130" align="right" valign="top" class="hanger">
-          <a name="introduction"><b>Introduction</b></a>
-        </td>
-        
-        <td valign="bottom" class="bodytext">
-        Most hard disks contain quite a lot of completely identical files,
-        which consume a lot of disk space. This waste of space can be drastically
-        reduced by using the NTFS file system hardlink functionality to link the 
-        identical files ("dupes") together.<br>
-        Dupemerge searches for identical files on a logical drive and creates hardlinks among those
-        files, thus saving lots of hard disk space.<br>
-          <br>
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="right" valign="top" class="hanger">
-          <b>Installation</b>
-        </td>
-        <td valign="bottom" class="bodytext">
-          <p>Dupemerge.exe is a command line utility which runs from a command prompt window or in a batch or cmd script. It needs no formal &quot;setup&quot;. Copy dupemerge.exe
-        to some directory referenced by your PATH environment variable.
-        The <strong>%systemroot%</strong> (that is, c:\winnt or c:\windows) is a good place. </p>
-        <p>To remove it, delete the dupemerge.exe file from wherever you copied it. </p></td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <br>
-        </td>
-      </tr>
-
-      <tr>
-        <td align="right" valign="top" class="hanger">
-          <b>Using dupemerge</b>
-        </td>
-        <td valign="bottom" class="bodytext">dupemerge.exe can be controlled
-        by a few command line arguments, and its highlights are as follows: </td>
-      </tr>
-      <tr>
-        <td align="right" valign="top" class="hanger">&nbsp;
-          
-        </td>
-        <td valign="bottom" class="bodytext">
-          <table cellspacing="0" cellpadding="0" width="100%"
-          border="0">
-            <tr>
-              <td width="120" align="left" valign="top" class="bodytext">Specify path 
-              </td>
-              <td align="left" class="bodytext">
-
-                More than one path can be specified to search for dupes.
-                <br><br>
-
-                 <span class="ascode">dupemerge
-                c:\data c:\test\42</span><br>
-                <br>
-
-				The above command causes dupemerge to search 
-				<i>c:\data</i> and <i>c:\test\42</i> and below for dupes. Dupes might be
-				spread across given subdirectory trees: e.g. If the files c:\data\a.txt
-				c:\data\dd.txt and c:\test\42\new.bat are dupes, they get hardlinked
-				together.
-
-				</td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <br>
-              </td>
-            </tr>
-  
-            <!-- include -->
-            <tr>
-              <td width="120" align="left" valign="top" class="bodytext">
-              <b>--include<br/></b>
-              <a name="wildcard">Include via wildcards</a>
-              </td>
-              <td align="left" class="bodytext">
-                  In certain situations only a few files, e.g.: *.pdb,
-                  below a path should be checked for dupes. To accomplish this, dupemerge can be run
-                  with filters specified, to only match certain files.
-                  <br>
-                  <br>
-                  <span class="ascode">dupemerge --include *.dbg --wildcard a*.pdb c:\data</span><br>
-                  <br>
-                    In the above example dupemerge only searches for files which
-                    match the expressions specified with --include. The --include option can be used
-                    more than once.<br>
-                  <p>
-                    This option supports taking its arguments from file.
-                  </p>
-                  <span class="ascode">
-                    dupemerge --include @List.txt c:\data
-                  </span>
-                  <p>
-                    The above example references to a file <i>List.txt</i>, which on every line contains a matching pattern. e.g.
-                  <span class="ascode">
-                    <br />*.dbg
-                    <br />*.sbr
-                  </span>
-                  </p>
-                  <br />
-                </td>
-            </tr>
-  
-            <tr>
-              <td colspan="2">
-                <br>
-              </td>
-            </tr>
-  
-          <!-- includedir -->
-          <tr>
-            <td width="120" align="left" valign="top" class="bodytext">
-              <a name="includewildcardsdirectories"><b>--includedir</b><br />Include directories via wildcards<br /></a>
-            </td>
-            <td align="left" class="bodytext">
-              <p>
-                To selectivley run Dupemerge on certain directories, the --includedir option can be used with wildcards.
-               </p>
-              <br />
-              <span class="ascode">
-                dupemerge --includedir *test c:\data
-              </span>
-              <p>
-                Basically any arbitrary wildcard expressions can be used, because
-                the wildcard expressions are translated into a regular expression. This means that e.g *src\\sub?older*
-                is also a valid wildcard expression for --includedir.
-              </p>
-              <p>
-                The wildcard expression  specified under --includedir is applied to the whole path, which means that e.g.
-              </p>
-                <br />
-              <span class="ascode">
-                dupemerge --includedir "*fotos\\temp*" --copy c:\data
-              </span>
-              <p>
-                will include all directories containing 'fotos\temp' and their subdirectories. The above example will 
-                e.g. include 'fotos\tempur\myfotos', 'fotos\temp\myfotos' or 'fotos\tempomat\myfotos'. Please note 
-                that '\' has to be escaped via '\\'
-              </p>
-              <br />
-              <p>
-                This option supports taking its arguments from file.
-              </p>
-              <span class="ascode">
-                dupemerge --includedir @List.txt c:\data
-              </span>
-              <p>
-                The above example references to a file <i>List.txt</i>, which on every line contains a matching pattern. e.g.
-              <span class="ascode">
-                <br />*fotos\\temp*
-                <br />aDir
-              </span>
-              </p>
-              <br />
-            </td>
-          </tr>
-          <tr>
+    <table>
+        <tr>
             <td colspan="2">
-              <br />
+                <img src="dupemerge.png" alt="dupemerge">
             </td>
-          </tr>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <div style="font-size:.8em; font-family: Arial, 'Segoe UI', Verdana, Geneva, sans-serif; font-style: italic; text-align: right;">
+                    <i>Last updated December 28 2018, Version 1.102</i>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" bgcolor="#F2F2F2">
+                <hr style="height: 5px; color: #F2F2F2; background-color: #F2F2F2; border: 0px;">
+            </td>
+        </tr>
 
 
-            <!-- exclude -->
-            <tr>
-              <td width="120" align="left" valign="top" class="bodytext">
-              <b>--exclude<br/></b>
-              <a name="exclude">Exclude via wildcards</a>
-              </td>
-              <td align="left" class="bodytext">
-                  In certain situations all but a few files, e.g.: *.pdb,
-                  below a path should be checked for dupes. To accomplish this, dupemerge can be run
-                  with filters specified, to exclude certain files.
-                  <br>
-                  <br>
-                  <span class="ascode">dupemerge --exclude *.dbg --exclude a*.pdb c:\data</span><br>
-                  <br>
-                  In the above example dupemerge only searches for all files, but not the ones given via 
-                  the --exclude. The --exclude option can be used more than once.
-                  <br>
-                  <p>
-                    This option supports taking its arguments from file.
-                  </p>
-                  <span class="ascode">
-                    dupemerge --exclude @List.txt c:\data
-                  </span>
-                  <p>
-                    The above example references to a file <i>List.txt</i>, which on every line contains a matching pattern. e.g.
-                  <span class="ascode">
-                    <br />*.pdb
-                    <br />*.sbr
-                    <br />Myfile*.*
-                  </span>
-                  </p>
-                  <br />
-               </td>
-            </tr>
-  
-            <tr>
-              <td colspan="2">
-                <br>
-              </td>
-            </tr>
-  
-            <!-- excludedir -->
-            <tr>
-              <td width="120" align="left" valign="top" class="bodytext">
-              <b>--excludedir<br/></b>
-              <a name="excludewildcardsdirectories">Exclude directories via wildcards</a>
-              </td>
-              <td align="left" class="bodytext">
-                  In certain situations not all directories below a path should be checked for dupes. To accomplish this, 
-                  dupemerge can be run to exclude certain directories.
-                  <br>
-                  <br>
-                  <span class="ascode">dupemerge --excludedir DontWantIt --excludedir DisLike c:\data</span><br>
-                  <br>
-                  In the above example dupemerge searches all files except the ones excluded via --excludedir.
-                  The --excludedir option can be used more than once in one invocation.
-                  <br>
+        <tr>
+            <td align="right" valign="top">
+                <b>
+                    <a name="datenschutzerklärung">Privacy Statement</a>
+                </b>
+            </td>
 
-                  <p>
-                    Basically any arbitrary wildcard expressions can be used, because
-                    the wildcard expressions are translated into a regular expression. This means that e.g *file*.ext*.*
-                    is also a valid wildcard expression for --excludedir.
-                  </p>
-                  <span class="ascode">
-                    dupemerge --excludedir *test* c:\data 
-                  </span>
-                  <p>
-                    The wildcard expression  specified under --excludedir is applied to the whole path, which means that e.g.
-                  </p>
-                  <br />
-                  <span class="ascode">
-                    dupemerge --excludedir "fotos\\temp" c:\data
-                  </span>
-                  <p>
-                    will exclude all directories containing 'fotos\temp' and their
-                    subdirectories. The above example will e.g. exclude 'fotos\tempur\myfotos', 'fotos\temp\myfotos'
-                    or 'fotos\tempomat\myfotos'. Please note sure that '\' has to be escaped via '\\'
-                  </p>
-                  <br />
-                  <p>
-                    This option supports taking its arguments from file.
-                  </p>
-                  <span class="ascode">
-                    dupemerge --excludedir @List.txt c:\data
-                  </span>
-                  <p>
-                    The above example references to a file <i>List.txt</i>, which on every line contains a matching pattern. e.g.
-                  <span class="ascode">
-                    <br />*fotos\\temp*
-                    <br />aDir
-                  </span>
-                  </p>
-                  <br />
+            <td>
+
+                The privacy statement can be found <a href="http://schinagl.priv.at/about/dsgvo.html">here</a>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td class="hanger">
+                <a name="quickstart"><b>Quick Start</b></a>
+            </td>
+
+            <td>
+                <a href="#contact">Download</a><br />
+                <a href="#introduction">Documentation</a><br />
+                <a href="#faq">Frequently asked questions (FAQ)</a><br />
+                <a href="#history">History</a><br />
+                <a href="#contact">Donations</a><br /><br />
+            </td>
+        </tr>
+
+        <tr>
+            <td class="hanger">
+                <a name="introduction"><b>Introduction</b></a>
+            </td>
+
+            <td>
+                Most hard disks contain quite a lot of completely identical files,
+                which consume a lot of disk space. This waste of space can be drastically
+                reduced by using the NTFS file system hardlink functionality to link the
+                identical files ("dupes") together.<br />
+                Dupemerge searches for identical files on a logical drive and creates hardlinks among those
+                files, thus saving lots of hard disk space.<br />
+                <br />
+            </td>
+        </tr>
+
+        <tr>
+            <td class="hanger">
+                <b>Installation</b>
+            </td>
+            <td>
+                <p>
+                    Dupemerge.exe is a command line utility which runs from a command prompt window or in a batch or cmd script. It needs no formal &quot;setup&quot;. Copy dupemerge.exe
+                    to some directory referenced by your PATH environment variable.
+                    The <strong>%systemroot%</strong> (that is, c:\winnt or c:\windows) is a good place.
+                </p>
+                <p>To remove it, delete the dupemerge.exe file from wherever you copied it. </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <br />
+            </td>
+        </tr>
+
+        <tr>
+            <td class="hanger">
+                <b>Using dupemerge</b>
+            </td>
+            <td>
+                dupemerge.exe can be controlled
+                by a few command line arguments, and its highlights are as follows:
+            </td>
+        </tr>
+        <tr>
+            <td class="hanger">
+                &nbsp;
+
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td class="hanger2">
+                            Specify path
+                        </td>
+                        <td align="left" class="bodytext">
+
+                            More than one path can be specified to search for dupes.
+                            <br /><br />
+
+                            <span class="ascode">
+                                dupemerge
+                                c:\data c:\test\42
+                            </span><br />
+                            <br />
+
+                            The above command causes dupemerge to search
+                            <i>c:\data</i> and <i>c:\test\42</i> and below for dupes. Dupes might be
+                            spread across given subdirectory trees: e.g. If the files c:\data\a.txt
+                            c:\data\dd.txt and c:\test\42\new.bat are dupes, they get hardlinked
+                            together.
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <br />
+                        </td>
+                    </tr>
+
+                    <!-- include -->
+                    <tr>
+                        <td class="hanger2">
+                            <b>--include<br /></b>
+                            <a name="wildcard">Include via wildcards</a>
+                        </td>
+                        <td align="left" class="bodytext">
+                            In certain situations only a few files, e.g.: *.pdb,
+                            below a path should be checked for dupes. To accomplish this, dupemerge can be run
+                            with filters specified, to only match certain files.
+                            <br />
+                            <br />
+                            <span class="ascode">dupemerge --include *.dbg --wildcard a*.pdb c:\data</span><br />
+                            <br />
+                            In the above example dupemerge only searches for files which
+                            match the expressions specified with --include. The --include option can be used
+                            more than once.<br />
+                            <p>
+                                This option supports taking its arguments from file.
+                            </p>
+                            <span class="ascode">
+                                dupemerge --include @List.txt c:\data
+                            </span>
+                            <p>
+                                The above example references to a file <i>List.txt</i>, which on every line contains a matching pattern. e.g.
+                                <span class="ascode">
+                                    <br />*.dbg
+                                    <br />*.sbr
+                                </span>
+                            </p>
+                            <br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <br />
+                        </td>
+                    </tr>
+
+                    <!-- includedir -->
+                    <tr>
+                        <td class="hanger2">
+                            <a name="includewildcardsdirectories"><b>--includedir</b><br />Include directories via wildcards<br /></a>
+                        </td>
+                        <td align="left" class="bodytext">
+                            <p>
+                                To selectivley run Dupemerge on certain directories, the --includedir option can be used with wildcards.
+                            </p>
+                            <br />
+                            <span class="ascode">
+                                dupemerge --includedir *test c:\data
+                            </span>
+                            <p>
+                                Basically any arbitrary wildcard expressions can be used, because
+                                the wildcard expressions are translated into a regular expression. This means that e.g *src\\sub?older*
+                                is also a valid wildcard expression for --includedir.
+                            </p>
+                            <p>
+                                The wildcard expression  specified under --includedir is applied to the whole path, which means that e.g.
+                            </p>
+                            <br />
+                            <span class="ascode">
+                                dupemerge --includedir "*fotos\\temp*" --copy c:\data
+                            </span>
+                            <p>
+                                will include all directories containing 'fotos\temp' and their subdirectories. The above example will
+                                e.g. include 'fotos\tempur\myfotos', 'fotos\temp\myfotos' or 'fotos\tempomat\myfotos'. Please note
+                                that '\' has to be escaped via '\\'
+                            </p>
+                            <br />
+                            <p>
+                                This option supports taking its arguments from file.
+                            </p>
+                            <span class="ascode">
+                                dupemerge --includedir @List.txt c:\data
+                            </span>
+                            <p>
+                                The above example references to a file <i>List.txt</i>, which on every line contains a matching pattern. e.g.
+                                <span class="ascode">
+                                    <br />*fotos\\temp*
+                                    <br />aDir
+                                </span>
+                            </p>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <br />
+                        </td>
+                    </tr>
 
 
-               </td>
-            </tr>
-  
-            <tr>
-              <td colspan="2">
-                <br>
-              </td>
-            </tr>
-  
-            <!-- regexp -->
-            <tr>
-              <td width="120" align="left" valign="top" class="bodytext">
-              <b>--regexp<br/></b>
-              <a name="regexp">Use regular expressions</a>
-              </td>
-              <td align="left" class="bodytext">
-                  In certain situations some kinds of files, e.g.
-                  all files containing only letters, should be checked for dupes. To accomplish this,
-                  dupemerge can be run with regular expression filters specified, to only match certain
-                  files.
-                  <br>
-                  <br>
-                  <span class="ascode">dupemerge --regexp "[a-z]*" c:\data</span>
-                  <br>
-                  <br>                
-                    In the above example dupemerge only searches for files which
-                    match the regular expressions specified with --regexp. The --regexp option can be
-                    used more than once.
-                  <br>
-                  <p>
-                    This option supports taking its arguments from file.
-                  </p>
-                  <span class="ascode">
-                    dupemerge --regexp @List.txt c:\data
-                  </span>
-                  <p>
-                    The above example references to a file <i>List.txt</i>, which on every line contains a matching pattern. e.g.
-                  <span class="ascode">
-                    <br />[a-z]*
-                    <br />[0-9]*
-                  </span>
-                  </p>
-                  <br />
-               </td>
-            </tr>
+                    <!-- exclude -->
+                    <tr>
+                        <td class="hanger2">
+                            <b>--exclude<br /></b>
+                            <a name="exclude">Exclude via wildcards</a>
+                        </td>
+                        <td align="left" class="bodytext">
+                            In certain situations all but a few files, e.g.: *.pdb,
+                            below a path should be checked for dupes. To accomplish this, dupemerge can be run
+                            with filters specified, to exclude certain files.
+                            <br />
+                            <br />
+                            <span class="ascode">dupemerge --exclude *.dbg --exclude a*.pdb c:\data</span><br />
+                            <br />
+                            In the above example dupemerge only searches for all files, but not the ones given via
+                            the --exclude. The --exclude option can be used more than once.
+                            <br />
+                            <p>
+                                This option supports taking its arguments from file.
+                            </p>
+                            <span class="ascode">
+                                dupemerge --exclude @List.txt c:\data
+                            </span>
+                            <p>
+                                The above example references to a file <i>List.txt</i>, which on every line contains a matching pattern. e.g.
+                                <span class="ascode">
+                                    <br />*.pdb
+                                    <br />*.sbr
+                                    <br />Myfile*.*
+                                </span>
+                            </p>
+                            <br />
+                        </td>
+                    </tr>
 
-            <tr>
-              <td colspan="2">
-                <br>
-              </td>
-            </tr>
+                    <tr>
+                        <td colspan="2">
+                            <br />
+                        </td>
+                    </tr>
 
-            <!-- list -->
-            <tr>
-              <td width="120" align="left" valign="top" class="bodytext">
-              <b>--list<br/></b>
-              <a name="list">List only</a>
-              </td>
-              <td align="left" class="bodytext">
-                  To find out which files are dupes, but to not hardlink
-                  those files, dupemerge can be run in <i>list</i> mode
-                  <br>
-                  <br>
-                  <span class="ascode">dupemerge --list c:\data c:\test\42</span><br>
-                  <br>                An extensive report is generated showing which files are dupes in 
-                     <i>c:\data</i> and below and <i>c:\test\42</i> and below.
-              </td>
-            </tr>
+                    <!-- excludedir -->
+                    <tr>
+                        <td class="hanger2">
+                            <b>--excludedir<br /></b>
+                            <a name="excludewildcardsdirectories">Exclude directories via wildcards</a>
+                        </td>
+                        <td align="left" class="bodytext">
+                            In certain situations not all directories below a path should be checked for dupes. To accomplish this,
+                            dupemerge can be run to exclude certain directories.
+                            <br />
+                            <br />
+                            <span class="ascode">dupemerge --excludedir DontWantIt --excludedir DisLike c:\data</span><br />
+                            <br />
+                            In the above example dupemerge searches all files except the ones excluded via --excludedir.
+                            The --excludedir option can be used more than once in one invocation.
+                            <br />
 
-            <tr>
-              <td colspan="2">
-                <br>
-              </td>
-            </tr>
+                            <p>
+                                Basically any arbitrary wildcard expressions can be used, because
+                                the wildcard expressions are translated into a regular expression. This means that e.g *file*.ext*.*
+                                is also a valid wildcard expression for --excludedir.
+                            </p>
+                            <span class="ascode">
+                                dupemerge --excludedir *test* c:\data
+                            </span>
+                            <p>
+                                The wildcard expression  specified under --excludedir is applied to the whole path, which means that e.g.
+                            </p>
+                            <br />
+                            <span class="ascode">
+                                dupemerge --excludedir "fotos\\temp" c:\data
+                            </span>
+                            <p>
+                                will exclude all directories containing 'fotos\temp' and their
+                                subdirectories. The above example will e.g. exclude 'fotos\tempur\myfotos', 'fotos\temp\myfotos'
+                                or 'fotos\tempomat\myfotos'. Please note sure that '\' has to be escaped via '\\'
+                            </p>
+                            <br />
+                            <p>
+                                This option supports taking its arguments from file.
+                            </p>
+                            <span class="ascode">
+                                dupemerge --excludedir @List.txt c:\data
+                            </span>
+                            <p>
+                                The above example references to a file <i>List.txt</i>, which on every line contains a matching pattern. e.g.
+                                <span class="ascode">
+                                    <br />*fotos\\temp*
+                                    <br />aDir
+                                </span>
+                            </p>
+                            <br />
+                        </td>
+                    </tr>
 
-            <!-- minsize, maxsize -->
-            <tr>
-              <td width="120" align="left" valign="top" class="bodytext">
-              <b>--minsize<br/></b>
-              <b>--maxsize<br/></b>
-              <a name="size">Size dependent check</a>
-              </td>
-              <td align="left" class="bodytext">
-                
-				The size of the files to be compared can be controlled by two switches<br>
-                <br>
-                <span class="ascode">dupemerge
-                --minsize 3000 --maxsize 500000 c:\data</span><br>
-                <br>
-                In the above example dupemerge searches
-                for files bigger than <i>3000</i> bytes and smaller than <i>500000</i> bytes below
-                <i>c:\data</i>.
+                    <tr>
+                        <td colspan="2">
+                            <br />
+                        </td>
+                    </tr>
 
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <br>
-              </td>
-            </tr>
+                    <!-- regexp -->
+                    <tr>
+                        <td class="hanger2">
+                            <b>--regexp<br /></b>
+                            <a name="regexp">Use regular expressions</a>
+                        </td>
+                        <td align="left" class="bodytext">
+                            In certain situations some kinds of files, e.g.
+                            all files containing only letters, should be checked for dupes. To accomplish this,
+                            dupemerge can be run with regular expression filters specified, to only match certain
+                            files.
+                            <br />
+                            <br />
+                            <span class="ascode">dupemerge --regexp "[a-z]*" c:\data</span>
+                            <br />
+                            <br />
+                            In the above example dupemerge only searches for files which
+                            match the regular expressions specified with --regexp. The --regexp option can be
+                            used more than once.
+                            <br />
+                            <p>
+                                This option supports taking its arguments from file.
+                            </p>
+                            <span class="ascode">
+                                dupemerge --regexp @List.txt c:\data
+                            </span>
+                            <p>
+                                The above example references to a file <i>List.txt</i>, which on every line contains a matching pattern. e.g.
+                                <span class="ascode">
+                                    <br />[a-z]*
+                                    <br />[0-9]*
+                                </span>
+                            </p>
+                            <br />
+                        </td>
+                    </tr>
 
-            <!-- sort -->
-            <tr>
-              <td width="120" align="left" valign="top" class="bodytext">
-              <b>--sort<br/></b>
-              <a name="sortorder">Sort Order</a>
-              </td>
-              <td align="left" class="bodytext">
-                
-				The output shows the order of found dupegroups either random or by cardinality or by filesize. This
-				is controlled by the <i>--sort</i> switch, which has the <i>filesize</i> or the <i>cardinality</i>
-				modifier. The default behaviour is to show dupegroups random.
-				<br>
-                <br>
-                <span class="ascode">dupemerge --sort cardinality c:\data
-                <br>
-                <br>
+                    <tr>
+                        <td colspan="2">
+                            <br />
+                        </td>
+                    </tr>
+
+                    <!-- list -->
+                    <tr>
+                        <td class="hanger2">
+                            <b>--list<br /></b>
+                            <a name="list">List only</a>
+                        </td>
+                        <td align="left" class="bodytext">
+                            To find out which files are dupes, but to not hardlink
+                            those files, dupemerge can be run in <i>list</i> mode
+                            <br />
+                            <br />
+                            <span class="ascode">dupemerge --list c:\data c:\test\42</span><br />
+                            <br />                An extensive report is generated showing which files are dupes in
+                            <i>c:\data</i> and below and <i>c:\test\42</i> and below.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <br />
+                        </td>
+                    </tr>
+
+                    <!-- minsize, maxsize -->
+                    <tr>
+                        <td class="hanger2">
+                            <b>--minsize<br /></b>
+                            <b>--maxsize<br /></b>
+                            <a name="size">Size dependent check</a>
+                        </td>
+                        <td align="left" class="bodytext">
+
+                            The size of the files to be compared can be controlled by two switches<br />
+                            <br />
+                            <span class="ascode">
+                                dupemerge
+                                --minsize 3000 --maxsize 500000 c:\data
+                            </span><br />
+                            <br />
+                            In the above example dupemerge searches
+                            for files bigger than <i>3000</i> bytes and smaller than <i>500000</i> bytes below
+                            <i>c:\data</i>.
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <br />
+                        </td>
+                    </tr>
+
+                    <!-- sort -->
+                    <tr>
+                        <td class="hanger2">
+                            <b>--sort<br /></b>
+                            <a name="sortorder">Sort Order</a>
+                        </td>
+                        <td align="left" class="bodytext">
+
+                            The output shows the order of found dupegroups either random or by cardinality or by filesize. This
+                            is controlled by the <i>--sort</i> switch, which has the <i>filesize</i> or the <i>cardinality</i>
+                            modifier. The default behaviour is to show dupegroups random.
+                            <br />
+                            <br />
+                            <span class="ascode">
+                                dupemerge --sort cardinality c:\data
+                                <br />
+                                <br />
+                            </span>
+                            In the above example dupemerge searches
+                            for files below <i>c:\data</i> and prints the output so that the dupegroup with most
+                            identical files is printed first, and the dupegroup with fewest identical files is printed&nbsp;last.
+                            <br />
+                            <br />
+                            <span class="ascode">
+                                dupemerge --sort filesize c:\data
+                                <br />
+                                <br />
+                            </span>
+                            In the above example dupemerge searches
+                            for files below <i>c:\data</i> and prints the output so that the dupegroup which contains the largest
+                            files is printed first, and the dupegroup with smallest files is printed&nbsp;last.
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <br />
+            </td>
+        </tr>
+
+        <tr>
+            <td class="hanger">
+                <b><a name="output">Output</a></b>
+            </td>
+            <td>
+                <p>
+                    Dupemerge.exe returns its status at the end of its operation:
+                </p>
+
+
+                <span class="ascode">
+                    -f c:\backup\test\deleteme.dat<br />
+                    !*h c:\backup\test\cannothardlink.dat<br />
+                    !\f (0x00000005) c:\data\failed\AccessDenied.txt<br />
+                    !/f (0x00000005) c:\data\failed\MappingFailed.txt<br />
                 </span>
-                In the above example dupemerge searches
-                for files below <i>c:\data</i> and prints the output so that the dupegroup with most
-                identical files is printed first, and the dupegroup with fewest identical files is printed&nbsp;last.
-				<br>
-                <br>
-                <span class="ascode">dupemerge --sort filesize c:\data
-                <br>
-                <br>
-                </span>
-                In the above example dupemerge searches
-                for files below <i>c:\data</i> and prints the output so that the dupegroup which contains the largest
-                files is printed first, and the dupegroup with smallest files is printed&nbsp;last.
+                <br />
+                Basically DupeMerge protocols each action it did, and prefixes two characters
+                to each item it processed for each line of the output. The first column of the output
+                contains the <i>Operation</i>, which was performed, and the second column specfies the
+                <i>Type</i> of item, which was processed.<br /><p>
 
-              </td>
-            </tr>
-            
+                <table>
+                    <tr>
+                        <td>
+                            <b>Operation</b>
+                        </td>
+                        <td>
+                            <b>Description</b>
+                        </td>
+                    </tr>
 
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <br>
-        </td>
-      </tr>
+                    <tr>
+                        <td class="ascode">
+                            *
+                        </td>
+                        <td>
+                            Hardlink a file
+                        </td>
+                    </tr>
 
-      <tr>
-        <td align="right" valign="top" class="hanger">
-          <b><a name="output">Output</a></b>
-        </td>
-        <td valign="bottom" class="bodytext">
-          <p>Dupemerge.exe returns its status at the end of its operation:
-          </p>
+                    <tr>
+                        <td class="ascode">
+                            -
+                        </td>
+                        <td>
+                            Remove an item from the target that is not present in the source. Used during Smart Mirror
+                        </td>
+                    </tr>
 
+                    <tr>
+                        <td class="ascode">
+                            ?
+                        </td>
+                        <td>
+                            Enumerate an item.
+                        </td>
+                    </tr>
 
-          <span class="ascode">
-            -f c:\backup\test\deleteme.dat<br>
-            !*h c:\backup\test\cannothardlink.dat<br>
-            !\f (0x00000005) c:\data\failed\AccessDenied.txt<br>
-            !/f (0x00000005) c:\data\failed\MappingFailed.txt<br>
-          </span>
-          <br>
-          Basically DupeMerge protocols each action it did, and prefixes two characters
-          to each item it processed for each line of the output. The first column of the output
-          contains the <i>Operation</i>, which was performed, and the second column specfies the
-          <i>Type</i> of item, which was processed.<br><p>
+                    <tr>
+                        <td class="ascode">
+                            ~
+                        </td>
+                        <td>
+                            Item has been excluded by command line arguments.
+                        </td>
+                    </tr>
 
-          <table cellspacing="0" cellpadding="0" width="100%" border="0">
-					<tr>
-						<td align="left" width="170" valign="top">
-							<b>Operation</b>
-						</td>
-						<td align="left" width="380" valign="top">
-							<b>Description</b>
-						</td>
-					</tr>
+                    <tr>
+                        <td class="ascode">
+                            \
+                        </td>
+                        <td>
+                            Opening a file.
+                        </td>
+                    </tr>
 
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							*
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							Hardlink a file
-						</td>
-					</tr>
+                    <tr>
+                        <td class="ascode">
+                            /
+                        </td>
+                        <td>
+                            Map file into adress space.
+                        </td>
+                    </tr>
 
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							-
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							Remove an item from the target that is not present in the source. Used during Smart Mirror
-						</td>
-					</tr>
+                    <tr>
+                        <td class="ascode">
+                            =
+                        </td>
+                        <td>
+                            Move/Rename a file.
+                        </td>
+                    </tr>
 
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							?
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							Enumerate an item.
-						</td>
-					</tr>
+                    <tr>
+                        <td class="ascode">
+                            !
+                        </td>
+                        <td>
+                            An error happened.
+                        </td>
+                    </tr>
 
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							~
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							Item has been excluded by command line arguments.
-						</td>
-					</tr>
+                    <tr>
+                        <td class="ascode">
+                            '
+                        </td>
+                        <td>
+                            Informational Message
+                        </td>
+                    </tr>
 
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							\
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							Opening a file.
-						</td>
-					</tr>
+                </table>
+                <br />
+                <br />
+                <table>
+                    <tr>
+                        <td>
+                            <b>Item</b>
+                        </td>
+                        <td>
+                            <b>Description</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ascode">
+                            f
+                        </td>
+                        <td>
+                            A File is processed.
+                        </td>
+                    </tr>
 
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							/
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							Map file into adress space.
-						</td>
-					</tr>
+                    <tr>
+                        <td class="ascode">
+                            h
+                        </td>
+                        <td>
+                            A Hardlink is processed.
+                        </td>
+                    </tr>
 
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							=
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							Move/Rename a file.
-						</td>
-					</tr>
+                    <tr>
+                        <td class="ascode">
+                            s
+                        </td>
+                        <td>
+                            A Symbolic link file or Symbolic Link Directory.
+                        </td>
+                    </tr>
 
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							!
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							An error happened.
-						</td>
-					</tr>
+                    <tr>
+                        <td class="ascode">
+                            j
+                        </td>
+                        <td>
+                            A Junction is processed.
+                        </td>
+                    </tr>
 
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							'
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							Informational Message
-						</td>
-					</tr>
+                    <tr>
+                        <td class="ascode">
+                            d
+                        </td>
+                        <td>
+                            A Directory is processed.
+                        </td>
+                    </tr>
 
-					</table>
-					<br><p>
-
-
-          <table cellspacing="0" cellpadding="0" width="100%" border="0">
-					<tr>
-						<td align="left" width="170" valign="top" class="bodytext">
-							<b>Item</b>
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							<b>Description</b>
-						</td>
-					</tr>
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							f
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							A File is processed.
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							h
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							A Hardlink is processed.
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							s
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							A Symbolic link file or Symbolic Link Directory.
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							j
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							A Junction is processed.
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							d
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							A Directory is processed.
-						</td>
-					</tr>
-
-					</table>
-					<br><p>
-
-          <table cellspacing="0" cellpadding="0" width="100%" border="0">
-					<tr>
-						<td align="left" width="170" valign="top" class="bodytext">
-							<b>Sample</b>
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							<b>Description</b>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-						  ~d d:\source\mydir
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							The directory d:\source\mydir has been excluded intentionally by either e.g. --exclude.<br><p>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							~f d:\source\aFile
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							The file d:\source\aFile has been excluded intentionally by 
-							e.g. --exclude.<br><p>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							!\f (0x00000005) d:\src\deny
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							The read access to the file 'deny' has been denied. This means the file is not part of the deduping process.<br><p>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							!/f (0x00000005) d:\src\deny
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							Could not map the file 'deny' into the adress space to calculate a checksum. This means the file is not part of the deduping process.<br><p>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							!-f (0x00000005) d:\src\deny
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							Failed to delete a file because the access has been denied.<br><p>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							!=f (0x00000005) d:\src\Dupe.txt
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							Failed to rename file before hardlinking.<br><p>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							!*h (0x00000476) d:\s\Gt1023.txt
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							Dupemerged reached the OS limit of 1024 hardlinks per file.<br><p>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-							!*h (0x000005b4) d:\s\changed.txt
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							The timestamp of the file has changed since it was enumerated.<br><p>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left" width="10" valign="top" class="ascode">
-						  <a name="error0585">!*h (0x00000585) d:\</a>
-						</td>
-						<td align="left" width="380" valign="top" class="bodytext">
-							The NTFS implentation of this drive is broken. It returns the same file-index for files with different file size.<br> 
-							This is only a warning and DupeMerge continues but ignores the retrieved file-indices. It calculates all dupe-info on its own, which takes a bit longer.<p>
-						</td>
-					</tr>
-
-					</table>
+                </table>
+                <br />
+                <br />
 
 
+                <table>
+                    <tr>
+                        <td>
+                            <b>Sample</b>
+                        </td>
+                        <td>
+                            <b>Description</b>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ascode">
+                            ~d d:\source\mydir
+                        </td>
+                        <td>
+                            The directory d:\source\mydir has been excluded intentionally by either e.g. --exclude.
+                            <br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ascode">
+                            ~f d:\source\aFile
+                        </td>
+                        <td>
+                            The file d:\source\aFile has been excluded intentionally by
+                            e.g. --exclude.
+                            <br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ascode">
+                            !\f (0x00000005) d:\src\deny
+                        </td>
+                        <td>
+                            The read access to the file 'deny' has been denied. This means the file is not part of the deduping process.<br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ascode">
+                            !/f (0x00000005) d:\src\deny
+                        </td>
+                        <td>
+                            Could not map the file 'deny' into the adress space to calculate a checksum. This means the file is not part of the deduping process.
+                            <br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ascode">
+                            !-f (0x00000005) d:\src\deny
+                        </td>
+                        <td>
+                            Failed to delete a file because the access has been denied.<br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ascode">
+                            !=f (0x00000005) d:\src\Dupe.txt
+                        </td>
+                        <td>
+                            Failed to rename file before hardlinking.<br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ascode">
+                            !*h (0x00000476) d:\s\Gt1023.txt
+                        </td>
+                        <td>
+                            Dupemerged reached the OS limit of 1024 hardlinks per file.<br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ascode">
+                            !*h (0x000005b4) d:\s\changed.txt
+                        </td>
+                        <td>
+                            The timestamp of the file has changed since it was enumerated.<br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ascode">
+                            <a name="error0585">!*h (0x00000585) d:\</a>
+                        </td>
+                        <td>
+                            The NTFS implentation of this drive is broken. It returns the same file-index for files with different file size.<br />
+                            This is only a warning and DupeMerge continues but ignores the retrieved file-indices. It calculates all dupe-info on its own, which takes a bit longer.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <br />
+            </td>
+        </tr>
 
 
-
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <br>
-        </td>
-      </tr>
-
-
-      <tr>
-        <td align="right" valign="top" width="130" class="hanger">
-          <b>Backgrounders</b>
-        </td>
-        <td valign="bottom" class="bodytext">
+        <tr>
+            <td class="hanger">
+                <b>Backgrounders</b>
+            </td>
+            <td>
                 Dupemerge creates a cryptological hashsum for each file found below
                 the given paths
                 and compares those hashes to each other to find the dupes. There is no file date comparison
-                involved in detecting dupes, only the size and content of the files.<br><br>
+                involved in detecting dupes, only the size and content of the files.<br /><br />
 
                 To speed up comparison, only files with the same size get compared
                 to each other. Furthermore the hashsums for equal sized files
                 get calculated incrementally, which means that during the first
                 pass only the first 4 kilobyte are hashed and compared, and
                 during the next rounds more and more data are hashed and compared.
-          <br><br>
+                <br /><br />
 
                 Due to long run time on large disks, a file which has already been
                 hashsummed might change before all dupes to that file are found.
@@ -791,703 +816,653 @@
                 dupemerge saves the file write time of a file when it hashsums
                 the file and checks back if this time changed when it tries to
                 hardlink dupes.
-                <br><br>
+                <br /><br />
 
-                <b><a name="multipleruns">Multiple Runs</a></b><br>
+                <b><a name="multipleruns">Multiple Runs</a></b><br />
                 If dupemerge is run once, hardlinks among identical files
                 are created. To save time during a second run on the same
                 locations, dupemerge checks if a file is already a hardlink, and
                 tries to find the other hardlinks by comparing the unique
-                NTFS file-id. This saves a lot of time, because 
+                NTFS file-id. This saves a lot of time, because
                 checksums for large files need not be created twice.
-                <br><br>
-                
-                <b><a name="transactionbasedhardlinking">Transaction based Hardlinking</a></b><br>
-                Before DupeMerge hardlinks file together it renames the file to a 
+                <br /><br />
+
+                <b><a name="transactionbasedhardlinking">Transaction based Hardlinking</a></b><br />
+                Before DupeMerge hardlinks file together it renames the file to a
                 temporary name, then creates the hardlink, and afterwards deletes the temporary file.
                 All that is done to be able to roll-back the operation if e.g the hardlinking failes.
-                <br><br>
+                <br /><br />
 
-                <b><a name="timestamphandling">TimeStamp Handling</a></b><br>
-                A tupel of hardlinks for one file has always the one timestamp. This is by design of NTFS. But 
-                things are a bit confusing sometimes, because after hardlinking the same timestamp is only shown, 
-                after the hardlink was once e.g. opened/accessed. So it may happen, that immediatley after dupemerge 
+                <b><a name="timestamphandling">TimeStamp Handling</a></b><br />
+                A tupel of hardlinks for one file has always the one timestamp. This is by design of NTFS. But
+                things are a bit confusing sometimes, because after hardlinking the same timestamp is only shown,
+                after the hardlink was once e.g. opened/accessed. So it may happen, that immediatley after dupemerge
                 one observes different timestamps within a tupel of hardlinks, but after such a hardlink has been opened
                 for e.g. read, the timestamp changes to the timestamp of the whole tupel. That's also by design of NTFS.
-                <br>
-                
-                <br><br>
-                
+                <br />
+
+                <br /><br />
+
                 Dupemerge has a dupe-find algorithm which is tuned
                 to perform especially well on large server disks, where it has been
                 tested in depth to guarantee data integrity.
-                <br><br>
+                <br /><br />
 
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <br>
-        </td>
-      </tr>
-      <tr>
-        <td align="right" valign="top" class="hanger">
-          <b>Limitations</b>
-        </td>
-        <td valign="bottom"><ul>
-          <li class="bodytext">The dupemerge.exe can only be used with NT4/W2K/WXP/W2K3/Windows7/W2K8</li>
-          <li class="bodytext">Dupes can only be merged within a NTFS volumes, under NT4/W2K/WXP/W2K3/Windows7/W2K8</li>
-          <li class="bodytext">Dupes can not be merged across NTFS volumes</li>
-          <li class="bodytext">Dupes can only be merged on *fixed* NTFS volumes</li>
-          <li class="bodytext">Dupes can only be merged on local NTFS volumes</li>
-          <li class="bodytext">There is a NTFS limit of having not more than 1023 hardlinks to one file. Dupemerge knows about this and won't create more than 1023 hardlinks for one file</li>
-          </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td class="hanger">
+                <b>Limitations</b>
+            </td>
+            <td>
+                <ul>
+                    <li>The dupemerge.exe can only be used with NT4/W2K/WXP/W2K3/Windows7/W2K8</li>
+                    <li>Dupes can only be merged within a NTFS volumes, under NT4/W2K/WXP/W2K3/Windows7/W2K8</li>
+                    <li>Dupes can not be merged across NTFS volumes</li>
+                    <li>Dupes can only be merged on *fixed* NTFS volumes</li>
+                    <li>Dupes can only be merged on local NTFS volumes</li>
+                    <li>There is a NTFS limit of having not more than 1023 hardlinks to one file. Dupemerge knows about this and won't create more than 1023 hardlinks for one file</li>
+                </ul>
 
-        </td>
-      </tr>
+            </td>
+        </tr>
 
-      <tr>
-        <td colspan="2">
-          <br>
-        </td>
-      </tr>
+        <tr>
+            <td colspan="2">
+                <br />
+            </td>
+        </tr>
 
-      <tr>
-        <td align="right" valign="top" class="hanger">
-          <a name="faq"><b>Frequently Asked questions</b></a>
-        </td>
-        <td valign="bottom" class="bodytext">
-          <p><strong>Hello, this may seem a basic question, but how do I know how much space dupemerge has saved by using hard links?
-          If I have two identical directories A & B and run <span class="ascode">dupemerge.exe C:\A C:\B</span>, I'd imagine that the resulting size of the two directories would be halved.  However windows explorer still thinks the size on disk of the two directories combined is double rather than half.          Can you not see the saved space via explorer?</strong></p>
-          <p>          A: You can't see the saved space via Explorer, because
-          Explorer simply adds the size of files found
-          below a given location. Explorer does not currently care when two files are hardlinked.
-          It simply reports the size of each file's data, and then totals the sizes even though the total may include duplications. 
-            
-          To see the saved space open a command prompt and
-          type 'dir', run dupemerge, and once again run 'dir'.          Or via Explorer: Open the drive and take a look at the
-          drive properties, before and after running dupemerge.          </p>
-          <p>One can use the <a href="../hardlinkshellext/hardlinkshellext.html">Hard Link Shell Extension</a> 
-          or the <a href="http://schinagl.priv.at/nt/ln/ln.html#listsiblings">ln.exe --list</a> command 
-          or the <a href="http://schinagl.priv.at/nt/ln/ln.html#truesize">ln.exe --truesize</a> command 
-          to see how many filenames are hard-linked 
-          to any file. That can provide another way to learn how much space is saved by using hard links.</p>
-          
-        </td>
-      </tr>
+        <tr>
+            <td class="hanger">
+                <a name="faq"><b>Frequently Asked questions</b></a>
+            </td>
+            <td>
+                <p>
+                    <strong>
+                        Hello, this may seem a basic question, but how do I know how much space dupemerge has saved by using hard links?
+                        If I have two identical directories A & B and run <span class="ascode">dupemerge.exe C:\A C:\B</span>, I'd imagine that the resulting size of the two directories would be halved.  However windows explorer still thinks the size on disk of the two directories combined is double rather than half.          Can you not see the saved space via explorer?
+                    </strong>
+                </p>
+                <p>
+                    A: You can't see the saved space via Explorer, because
+                    Explorer simply adds the size of files found
+                    below a given location. Explorer does not currently care when two files are hardlinked.
+                    It simply reports the size of each file's data, and then totals the sizes even though the total may include duplications.
 
-      <tr>
-        <td colspan="2">
-          <br>
-        </td>
-      </tr>
+                    To see the saved space open a command prompt and
+                    type 'dir', run dupemerge, and once again run 'dir'.          Or via Explorer: Open the drive and take a look at the
+                    drive properties, before and after running dupemerge.
+                </p>
+                <p>
+                    One can use the <a href="../hardlinkshellext/hardlinkshellext.html">Hard Link Shell Extension</a>
+                    or the <a href="http://schinagl.priv.at/nt/ln/ln.html#listsiblings">ln.exe --list</a> command
+                    or the <a href="http://schinagl.priv.at/nt/ln/ln.html#truesize">ln.exe --truesize</a> command
+                    to see how many filenames are hard-linked
+                    to any file. That can provide another way to learn how much space is saved by using hard links.
+                </p>
 
-      <tr>
-        <td align="right" valign="top" class="hanger">
-          <a name="history"><b>History</b></a>
-        </td>
-        <td valign="bottom">
-            <table cellspacing="0" cellpadding="0" width="100%"
-                   border="0">
+            </td>
+        </tr>
 
+        <tr>
+            <td colspan="2">
+                <br />
+            </td>
+        </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">December 28 2018</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        <a name="1100">
-                            Version 1.102 released.<br>
-                        <ul>
-                            <li>[Internal] but important change from VS2005 (sic) to VS2017. Basically everything compiled smoothly except for the heap, thus...</li>
-                            <li>
-                                [Internal] Removed the Rockall fast heap. This was neccessary, but also a big performance gain. Memory allocation is 2 times faster,
-                                and memory deletion is 10 times faster. Memory allocation is crucial for the core of Dupemerge.
-                            </li>
-                            <li>[Internal] Dropped Itanium configuration, since VS2017 does not support it anymore, and I am sure there is no Itanium hardware out in the wild anymore.</li>
-                        </ul>
-                    </td>
-                </tr>
+        <tr>
+            <td class="hanger">
+                <a name="history"><b>History</b></a>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td class="history">
+                            December 28 2018
+                        </td>
+                        <td>
+                            <a name="1100">Version 1.102 released.<br /></a>
+                            <ul>
+                                <li>[Internal] but important change from VS2005 (sic) to VS2017. Basically everything compiled smoothly except for the heap, thus...</li>
+                                <li>
+                                    [Internal] Removed the Rockall fast heap. This was neccessary, but also a big performance gain. Memory allocation is 2 times faster,
+                                    and memory deletion is 10 times faster. Memory allocation is crucial for the core of Dupemerge.
+                                </li>
+                                <li>[Internal] Dropped Itanium configuration, since VS2017 does not support it anymore, and I am sure there is no Itanium hardware out in the wild anymore.</li>
+                            </ul>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">June 15 2017</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        <a name="1080">
-                            Version 1.080 released.<br>
+                    <tr>
+                        <td class="history">
+                            June 15 2017
+                        </td>
+                        <td>
+                            <a name="1080">Version 1.080 released.<br /></a>
                             <ul>
                                 <li>Added the <a href=#excludewildcardsdirectories>excludedirectories</a> option.</li>
                                 <li>Added the <a href=#includewildcardsdirectories>includedirectories</a> option.</li>
                                 <li><a href=#wildcard>include</a>/<a href=#exclude>exclude</a>/<a href=#includewildcardsdirectories>includedir</a>/<a href=#excludewildcardsdirectories>excludedir</a> options can take its arguments from file.</li>
                             </ul>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">October 18 2014</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        <a name="1070">
-                            Version 1.07.001 released.<br>
+                    <tr>
+                        <td class="history">
+                            October 18 2014
+                        </td>
+                        <td>
+                            <a name="1070">Version 1.07.001 released.<br /></a>
                             <ul>
                                 <li>Certain Unicode command line arguments could drive the command line parser crazy.</li>
                             </ul>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">August 23th 2013</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        <a name="1070">
-                            Version 1.07 released.<br>
+                    <tr>
+                        <td class="history">
+                            August 23th 2013
+                        </td>
+                        <td>
+                            <a name="1070">Version 1.07 released.<br /></a>
                             <ul>
                                 <li>Dead Junctions to a different drive could lead to not detecting hardlinks during all operations. Very Nasty, but no dataloss caused.</li>
                             </ul>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">August 20th 2013</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        <a name="1060">
-                            Version 1.06 released.<br>
+                    <tr>
+                        <td class="history">
+                            August 20th 2013
+                        </td>
+                        <td>
+                            <a name="1060">Version 1.06 released.<br /></a>
                             <ul>
-                                <li class="bodytext">Introduced a sanity check for <a href="#error0585">broken NTFS</a> implementations.</li>
-                                <li class="bodytext">When hardlinking a tupel of equal files, the tupels <a href="#timestamphandling">common date</a> is the date of the oldest file of the tupel.</li>
-                                <li class="bodytext">The statistics is printed after the detailed log and not before.</li>
-                                <br>
+                                <li>Introduced a sanity check for <a href="#error0585">broken NTFS</a> implementations.</li>
+                                <li>When hardlinking a tupel of equal files, the tupels <a href="#timestamphandling">common date</a> is the date of the oldest file of the tupel.</li>
+                                <li>The statistics is printed after the detailed log and not before.</li>
                             </ul>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">August 7th 2013</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        <a name="1050">
-                            Version 1.05 released. <br>
+                    <tr>
+                        <td class="history">
+                            August 7th 2013
+                        </td>
+                        <td>
+                            <a name="1050">Version 1.05 released. <br /></a>
                             <ul>
-                                <li class="bodytext">
+                                <li>
                                     Fixed a crash during cleanup at the very end when all was correctly done.
-                                    <br>
                                 </li>
-                                <br>
                             </ul>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">April 5th 2013</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        <a name="1040">
-                            Version 1.04 released. <br>
+                    <tr>
+                        <td class="history">
+                            April 5th 2013
+                        </td>
+                        <td>
+                            <a name="1040">Version 1.04 released. <br /></a>
                             <ul>
-                                <li class="bodytext">
+                                <li>
                                     Fixed a crash when files were larger than 16gb.
-                                    <br>
                                 </li>
-                                <br>
                             </ul>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">October 28th 2012</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        <a name="1010">
-                            Version 1.03 released. <br>
+                    <tr>
+                        <td class="history">
+                            October 28th 2012
+                        </td>
+                        <td>
+                            <a name="1010">Version 1.03 released. <br /></a>
                             <ul>
-                                <li class="bodytext">
+                                <li>
                                     The number of new dupegroups was reported non deterministic when huge amounts of files were scanned, but always calculated correct.
-                                    <br>
                                 </li>
 
-                                <li class="bodytext">
+                                <li>
                                     The --output option didn't redirect output properly.
-                                    <br>
                                 </li>
 
-                                <li class="bodytext">
+                                <li>
                                     Improved summary statistics.
-                                    <br>
                                 </li>
 
-                                <li class="bodytext">
+                                <li>
                                     Error message is printed out if the 1024 hardlink limit per file is exceeded.
-                                    <br>
                                 </li>
-
-                                <br>
                             </ul>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">October 1st 2012</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        <a name="1000">
-                            Version 1.0 released. <br>
+                    <tr>
+                        <td class="history">
+                            October 1st 2012
+                        </td>
+                        <td>
+                            <a name="1000">Version 1.0 released. <br /></a>
                             <ul>
-                                <li class="bodytext">
+                                <li>
                                     In rare situations not all dupes of a group were merged into one group but in e.g two groups.
-                                    <br>
                                 </li>
 
-                                <li class="bodytext">
+                                <li>
                                     Fast file enumeration is now the default.
-                                    <br>
                                 </li>
 
-                                <li class="bodytext">
+                                <li>
                                     Little tweaks here and there, but in general a long journey has ended and this version qualifies for a 1.0 release
-                                    <br>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="history">
+                            September 16th 2012
+                        </td>
+                        <td>
+                            Version 0.9998 released. <br />
+                            <ul>
+                                <li>
+                                    Fixed a bug which caused the message 'Could not map view of file' to show up on certain files, causing the files to be not part of the deduping process
+                                </li>
+                                <li>
+                                    Fixed a problem, where dupemerge did not find all dupes.
+                                </li>
+                                <li>
+                                    Time during operation is printed in readable hh:mm:ss.mss
+                                </li>
+                                <li>
+                                    Dupemerge now uses the fast file enumerator which is also used in LSE and ln.exe. This speeds up file enumeration by the factor 10+
                                 </li>
 
-                                <br>
+                                <li>
+                                    Fixed a problem where files larger than 4gb were never detected as dupes.
+                                </li>
+                                <li>
+                                    Files larger than 4gb sometimes might have caused the 'Could map view of file' error message
+                                </li>
+                                <li>
+                                    In general filesize is not a limiting factor anymore
+                                </li>
+
+                                <li>
+                                    DupeMerge now also handles files with ReadOnly attribute set
+                                </li>
+
+                                <li>
+                                    Added the --output option
+                                </li>
+                                <li>
+                                    Added a <a href="#output">error reporting</a> capabilty.
+                                </li>
+                                <li>
+                                    Added the <a href="#exclude">--exclude</a> option
+                                </li>
+                                <li>
+                                    Fixed the statistic output so that only new dupegroups are printed out.
+                                </li>
                             </ul>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">September 16th 2012</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        Version 0.9998 released. <br>
-                        <ul>
-                            <li class="bodytext">
-                                Fixed a bug which caused the message 'Could not map view of file' to show up on certain files, causing the files to be not part of the deduping process
-                                <br>
-                            </li>
-                            <li class="bodytext">
-                                Fixed a problem, where dupemerge did not find all dupes.
-                                <br>
-                            </li>
-                            <li class="bodytext">
-                                Time during operation is printed in readable hh:mm:ss.mss
-                                <br>
-                            </li>
-                            <li class="bodytext">
-                                Dupemerge now uses the fast file enumerator which is also used in LSE and ln.exe. This speeds up file enumeration by the factor 10+
-                                <br>
-                            </li>
+                    <tr>
+                        <td class="history">
+                            February 25th 2012
+                        </td>
+                        <td>
+                            Version 0.9994 released. <br />
+                            <ul>
+                                <li>
+                                    Dupemerge does not climb down junctions or symbolic link directories and ignores symbolic link files.<br />
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
 
-                            <li class="bodytext">
-                                Fixed a problem where files larger than 4gb were never detected as dupes.
-                                <br>
-                            </li>
-                            <li class="bodytext">
-                                Files larger than 4gb sometimes might have caused the 'Could map view of file' error message
-                                <br>
-                            </li>
-                            <li class="bodytext">
-                                In general filesize is not a limiting factor anymore
-                                <br>
-                            </li>
+                    <tr>
+                        <td class="history">
+                            December 17th 2010
+                        </td>
+                        <td>
+                            Version 0.9993 released.
+                            <ul>
+                                <li>
+                                    Dupemerge does not merge more than 1022 equal files, because there is a
+                                    NTFS limit of having not more than 1023 hardlinks to one file. This is a temporary
+                                    solution. Let's see what can be done to improve situation here.<br />
+                                </li>
+                                <li>
+                                    The regular expression machine used in dupemerge has been changed to tre-0.8.0,
+                                    which means regexp patterns are no longer case sensitive, and the regexp machine
+                                    works for 100%.
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
 
-                            <li class="bodytext">
-                                DupeMerge now also handles files with ReadOnly attribute set
-                                <br>
-                            </li>
+                    <tr>
+                        <td class="history">
+                            June 29th 2008
+                        </td>
+                        <td>
+                            Version 0.999 released. <br />
+                            Dupemerge preserves the timestamps of original files when it merges the files via hardlinks.<br /><br />
+                            Itanium binaries are available.<br /><br />
+                        </td>
+                    </tr>
 
-                            <li class="bodytext">
-                                Added the --output option
-                                <br>
-                            </li>
-                            <li class="bodytext">
-                                Added a <a href="#output"></a>error reporting</a> capabilty.
-                                <br>
-                            </li>
-                            <li class="bodytext">
-                                Added the <a href="#exclude">--exclude</a> option
-                                <br>
-                            </li>
-                            <li class="bodytext">
-                                Fixed the statistic output so that only new dupegroups are printed out.
-                                <br>
-                            </li>
+                    <tr>
+                        <td class="history">
+                            October 21st 2007
+                        </td>
+                        <td>
+                            Version 0.998 released. <br />
+                            Dupemerge respects the NTFS limit of having not more than 1023 hardlinks on one file<br /><br />
+                            Binaries are now available for 32bit and 64bit, because the compiler for this tool changed to VS2005<br /><br />
+                        </td>
+                    </tr>
 
-                            <br>
-                        </ul>
-                    </td>
-                </tr>
+                    <tr>
+                        <td class="history">
+                            January 25th 2007
+                        </td>
+                        <td>
+                            Version 0.997
+                            released. <br />
+                            There is an issue with dupemerge when it climbs down junctions/symbolic links. Until a proper
+                            fix to the main-algorithm is out, dupemerge is does not run down junctions/symbolic links, and
+                            it keeps files below junctions/symbolic links completely untouched.<br /><br />
+                            <br /><br />
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">February 25th 2012</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        Version 0.9994 released. <br>                <ul>
-                            <li class="bodytext">
-                                Dupemerge does not climb down junctions or symbolic link directories and ignores symbolic link files.<br>
-                            </li>
-                            <br>
-                        </ul>
-                    </td>
-                </tr>
+                    <tr>
+                        <td class="history">
+                            November 3rd 2006
+                        </td>
+                        <td>
+                            Version 0.995 released. <br />
+                            Improved the <i>recursive runner</i> performance, which yields faster scanning time.<br /><br />
+                            Fixed a super rare merging bug, if dupemerge was run a second time on the same directory
+                            and file sizes and numbers were in a super rare constellation.<br /><br />
+                            Migrated to the hardlink baseservices components, which also drive
+                            <a href="../hardlinkshellext/hardlinkshellext.html">LinkShellExt</a> and
+                            <a href="../ln/ln.html">ln</a>.<br /><br />
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">December 17th 2010</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        Version 0.9993 released. <br>                <ul>
-                            <li class="bodytext">
-                                Dupemerge does not merge more than 1022 equal files, because there is a
-                                NTFS limit of having not more than 1023 hardlinks to one file. This is a temporary
-                                solution. Let's see what can be done to improve situation here.<br>
-                            </li>
-                            <li class="bodytext">
-                                The regular expression machine used in dupemerge has been changed to tre-0.8.0,
-                                which means regexp patterns are no longer case sensitive, and the regexp machine
-                                works for 100%.
-                                <br>
-                            </li>
-                            <br>
-                        </ul>
-                    </td>
-                </tr>
+                    <tr>
+                        <td class="history">
+                            March 18th 2006
+                        </td>
+                        <td>
+                            Version 0.991 released.<br />
+                            Fixed a critcal merging bug, which occur ed in very rare situations, when
+                            dupemerge was run a second time on the same directory. Did tests on large
+                            amounts of data, and checked the output via a second program, to prove integrity.<br /><br />
+                            Added calculation on savings resulting in running dupemerge, even with -l switch.<br /><br />
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        June 29th 2008
-                    </td>
-                    <td align="left" class="bodytext">
-                        Version 0.999 released. <br>
-                        Dupemerge preserves the timestamps of original files when it merges the files via hardlinks.<br><br>
-                        Itanium binaries are available.<br><br>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        October 21st 2007
-                    </td>
-                    <td align="left" class="bodytext">
-                        Version 0.998 released. <br>
-                        Dupemerge respects the NTFS limit of having not more than 1023 hardlinks on one file<br><br>
-                        Binaries are now available for 32bit and 64bit, because the compiler for this tool changed to VS2005<br><br>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font face="arial" size="-1">January 25th 2007</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        Version 0.997
-                        released. <br>
-                        There is an issue with dupemerge when it climbs down junctions/symbolic links. Until a proper
-                        fix to the main-algorithm is out, dupemerge is does not run down junctions/symbolic links, and
-                        it keeps files below junctions/symbolic links completely untouched.<br><br>
-                        <br><br>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font size="-1" face="arial">November 3rd 2006</font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        Version 0.995
-                        released. <br>
-                        Improved the <i>recursive runner</i> performance, which yields faster scanning time.<br><br>
-                        Fixed a super rare merging bug, if dupemerge was run a second time on the same directory
-                        and file sizes and numbers were in a super rare constellation.<br><br>
-                        Migrated to the hardlink baseservices components, which also drive
-                        <a href="../hardlinkshellext/hardlinkshellext.html">LinkShellExt</a> and
-                        <a href="../ln/ln.html">ln</a>.<br><br>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font size="-1" face="arial">
-                            March 18th
-                            2006
-                        </font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        Version 0.991 released.<br>
-                        Fixed a critcal merging bug, which occur ed in very rare situations, when
-                        dupemerge was run a second time on the same directory. Did tests on large
-                        amounts of data, and checked the output via a second program, to prove integrity.<br><br>
-                        Added calculation on savings resulting in running dupemerge, even with -l switch.<br><br>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font size="-1" face="arial">
-                            February 17th
-                            2006
-                        </font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        Version 0.985
-                        released. Added a check if given paths are on NTFS drives.<br><br>
-                    </td>
-                </tr>
+                    <tr>
+                        <td class="history">
+                            February 17th 2006
+                        </td>
+                        <td>
+                            Version 0.985 released. <br />
+                            Added a check if given paths are on NTFS drives.<br /><br />
+                        </td>
+                    </tr>
 
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font size="-1" face="arial">
-                            Novemver 5th
-                            2005
-                        </font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        Version 0.98
-                        released. Fixed the problems with bogus progress output.<br><br>
-                    </td>
-                </tr>
+                    <tr>
+                        <td class="history">
+                            Novemver 5th 2005
+                        </td>
+                        <td>
+                            Version 0.98 released.<br />
+                            Fixed the problems with bogus progress output.<br /><br />
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td align="left" width="150" valign="top" class="bodytext">
-                        <font size="-1" face="arial">
-                            January 10th
-                            2005
-                        </font>
-                    </td>
-                    <td align="left" class="bodytext">
-                        Version 0.95
-                        released<br>
-                    </td>
-                </tr>
-
-
-
-            </table>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <br>
-        </td>
-      </tr>
-
-    <tr>
-      <td align="right"
-          valign="top"><b><font color="#25049F" size="-1" face="arial">Status</font></b></td>
-
-      <td valign="bottom" class="bodytext">The 1.100 version is the base for ongoing development, which will be the support 
-      for multi-core machines, so that has calculation is distributed onto all available cores.
-      <br></td>
-    </tr>
-
-    <tr>
-      <td colspan="2"><br></td>
-    </tr>
-
-
-
-      <tr>
-        <td align="right" valign="top" class="hanger">
-          <b>Acknowledgements</b>
-        </td>
-        <td valign="bottom" class="bodytext">
-          I wish to thank those who have contributed significantly to the development of dupemerge.
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <br>
-        </td>
-      </tr>
-      <tr>
-        <td align="right" valign="top" class="hanger">
-          <b>Open Issues</b>
-        </td>
-        <td valign="bottom">
-          
-          <p class="bodytext">With Dupemerge 1.100 all known open issues have been worked off.</p>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <br>
-        </td>
-      </tr>
-
-      <tr>
-        <td align="right" valign="top" class="hanger">
-          <b>License</b>
-        </td>
-        <td valign="bottom">
-          <li>This program is provided as is. Please see <a href="license.txt"> license.txt</a><br></li>
-          <li>ln.exe uses <a href="http://laurikari.net/tre/">tre</a> the as regular expression machine. See the BSD 
-          style <a href="license_tre.txt">tre license</a>.</li>
-          <li>ln.exe uses <a href="http://kevinlocke.name/programs/ultragetopt.php">ultragetopt</a> for command line parsing. See the <a href="license_ultragetop.txt">ultragetopt license</a>.</li>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <br>
-        </td>
-      </tr>
-
-      <tr>
-	  <td align="right" valign="top" class="hanger"><b>
-	  <a name="contact">Contact / Donations</a>
-      </b></td>
-
-	  <td valign="bottom" class="bodytext">
-		 Bug reports or feature requests send to
-		 <a href="mailto:Hermann.Schinagl@gmx.net">Hermann Schinagl.</a>.<br>
-		 
-     <p>Dupemerge.exe is and will be freeware, but if Dupemerge.exe was really
-		 helpful for you and saved lots of your time please think of donations either via PayPal
-		 </p>
-
-		 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-		 <input type="hidden" name="cmd" value="_donations">
-		 <input type="hidden" name="business" value="hermann.schinagl@gmx.net">
-		 <input type="hidden" name="item_name" value="Dupemerge.exe Donation">
-		 <input type="hidden" name="no_shipping" value="0">
-		 <input type="hidden" name="no_note" value="1">
-		 <input type="hidden" name="currency_code" value="EUR">
-		 <input type="hidden" name="tax" value="0">
-		 <input type="hidden" name="lc" value="US">
-		 <input type="hidden" name="bn" value="PP-DonationsBF">
-		 <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-		 <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-		 </form>
-
-		 <p><br><br>
-		   or by sending me a gift certificate from<br><br>
-		   <a href="http://www.amazon.de/gp/gc/ref=sv_w_0/302-2139848-0001645">
-		    <image src="amazon.de.png"
-		     width="174" height="44" border="0" alt="amazon.de">
-		    </a>.
-
- 		 <p><br><br>
-         or by donating bitcoins:<br><br>
-         <img src="bitcoinlogo.png"/></p><br>
-           <b>bc1quahckcfxvsr3ylt5lsaf9fd8v7kwzumw757zst</b>
-         <img src="bitcoinlseqr.png" />
-         
-         <br><br>
-      </p>
-      
-		  <br>
-	   </td>
-	</tr>
-
-
-      <tr>
-        <td colspan="2">
-          <br>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2" bgcolor="#F2F2F2">
-          <img src="../../images/spacer.gif" width="1" height="5">
-        </td>
-      </tr>
-
-
-    <tr>
-      <td align="right" valign="top" class="hanger"><b>
-        <a name="download">Download</a>
-      </font></b></td>
-
-      <td align="center">
-        <table cellspacing="0" cellpadding="0" width="100%"
-               border="0">
-
-          <tr>
-            <td align="left" width="150" valign="top" class="bodytext">
-				<b>All Windows 32bit</b>
+                    <tr>
+                        <td class="history">
+                            January 10th 2005
+                        </td>
+                        <td>
+                            Version 0.95 released<br />
+                        </td>
+                    </tr>
+                </table>
             </td>
+        </tr>
 
-            <td align="left" class="bodytext">
-                Simply download and extract
-                <a href="http://schinagl.priv.at/nt/dupemerge/dupemerge.zip"> dupemerge.zip (174kB) </a>
-                to your favourite tools directory. All neccesary runtime dlls are already installed on your system, but if not, grab them from
-                <a href="https://www.microsoft.com/de-at/download/details.aspx?id=48145">here.</a>
+        <tr>
+            <td colspan="2">
                 <br />
+            </td>
+        </tr>
+
+        <tr>
+            <td class="hanger">
+                <b>Status</b>
+            </td>
+
+            <td>
+                The 1.100 version is the base for ongoing development, which will be the support
+                for multi-core machines, so that has calculation is distributed onto all available cores.
                 <br />
-                <br>
             </td>
-          </tr>
+        </tr>
 
-          <tr>
-            <td colspan="2">&nbsp;</td>
-		  </tr>
+        <tr>
+            <td colspan="2"><br /></td>
+        </tr>
 
-          <tr>
-              <td align="left" width="150" valign="top" class="bodytext">
-                      <b>All Windows 64bit</b>
-              </td>
 
-              <td align="left" class="bodytext">
-                  Simply download and extract
-                  <a href="http://schinagl.priv.at/nt/dupemerge/dupemerge64.zip"> dupemerge64.zip (219kB) </a>
-                  to your favourite tools directory. All neccesary runtime dlls are already installed on your system, but if not, grab them from
-                  <a href="https://www.microsoft.com/de-at/download/details.aspx?id=48145">here.</a>
-                  <br />
-                  <br />
-                  <br>
-              </td>
-          </tr>
 
-          <tr>
-            <td align="left" width="150" valign="top" class="bodytext"><b>
-			Windows Itanium<br>
-			</b>
+        <tr>
+            <td class="hanger">
+                <b>Acknowledgements</b>
+            </td>
+            <td>
+                I wish to thank those who have contributed significantly to the development of dupemerge.
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td class="hanger">
+                <b>Open Issues</b>
+            </td>
+            <td>
+
+                <p class="bodytext">With Dupemerge 1.100 all known open issues have been worked off.</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <br />
+            </td>
+        </tr>
+
+        <tr>
+            <td class="hanger">
+                <b>License</b>
+            </td>
+            <td>
+                <ul>
+                    <li>This program is provided as is. Please see <a href="license.txt"> license.txt</a><br /></li>
+                    <li>
+                        dupemerge.exe uses <a href="http://laurikari.net/tre/">tre</a> the as regular expression machine. See the BSD
+                        style <a href="license_tre.txt">tre license</a>.
+                    </li>
+                    <li>dupemerge.exe uses <a href="http://kevinlocke.name/programs/ultragetopt.php">ultragetopt</a> for command line parsing. See the <a href="license_ultragetop.txt">ultragetopt license</a>.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <br />
+            </td>
+        </tr>
+
+        <tr>
+            <td class="hanger">
+                <b>
+                    <a name="contact">Contact / Donations</a>
+                </b>
             </td>
 
-            <td align="left" class="bodytext">
-                The Itanium version is not supported anymore, but the last VS2005 based version 1.0.8.0 is kept for legacy.
-                Please make sure that the necessary runtime .dlls are installed on your system.
-                This prerequisites package can be downloaded from Microsoft:<br><br>
-                <center>
-                    <a href="http://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_IA64.EXE">
-                        <center>
-                            vcredist_IA64.exe for VS2005 SP1, version 6195/June 2011 (6.3 Mb)
-                        </center>
-                    </a>
-                </center>
+            <td>
+                Bug reports or feature requests send to
+                <a href="mailto:Hermann.Schinagl@gmx.net">Hermann Schinagl.</a>.<br />
 
+                <p>
+                    Dupemerge.exe is and will be freeware, but if Dupemerge.exe was really
+                    helpful for you and saved lots of your time please think of donations either via PayPal
+                </p>
 
-                <br>
-                Afterwards install the
-                <br><center>
-                    <a href="http://www.schinagl.priv.at/nt/dupemerge/dupemergeItanium.zip">
-                        dupemergeItanium.zip (347kB)
-                    </a>
-                </center>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_donations">
+                    <input type="hidden" name="business" value="hermann.schinagl@gmx.net">
+                    <input type="hidden" name="item_name" value="Dupemerge.exe Donation">
+                    <input type="hidden" name="no_shipping" value="0">
+                    <input type="hidden" name="no_note" value="1">
+                    <input type="hidden" name="currency_code" value="EUR">
+                    <input type="hidden" name="tax" value="0">
+                    <input type="hidden" name="lc" value="US">
+                    <input type="hidden" name="bn" value="PP-DonationsBF">
+                    <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
 
-                <br>
+                <p>
+                    <br /><br />
+                    or by sending me a gift certificate from<br /><br />
+                    <a href="http://www.amazon.de/gp/gc/ref=sv_w_0/302-2139848-0001645">
+                        <image src="amazon.de.png" alt="amazon.de">
+                    </a>.
+
+                <p>
+                    <br /><br />
+                    or by donating bitcoins:<br /><br />
+                    <img src="bitcoinlogo.png" alt="bitcoinlogo" /><br />
+                    <b>bc1q4hvevwrmnwt7jg8vws0v8xajywhffl4gwca5av</b>
+                    <img alt="bitcoinlseqr" src="bitcoinlseqr.png" />
+                </p>
+
+                <br />
             </td>
-          </tr>
-
-        </table>
-    </tr>
+        </tr>
 
 
+        <tr>
+            <td colspan="2">
+                <br />
+            </td>
+        </tr>
 
-      <tr>
 
-        <td colspan="2" bgcolor="#F2F2F2">
-          <hr style="height: 5px; color: #F2F2F2; background-color: #F2F2F2; border: 0px;">
-        </td>
-      </tr>
+        <tr>
+            <td class="hanger">
+                <b><a name="download">Download</a></b>
+            </td>
+
+            <td align="center">
+                <table>
+                    <tr>
+                        <td align="left" valign="top" class="bodytext">
+                            <b>All Windows 32bit</b>
+                        </td>
+
+                        <td align="left" class="bodytext">
+                            Simply download and extract
+                            <a href="http://schinagl.priv.at/nt/dupemerge/dupemerge.zip"> dupemerge.zip (174kB) </a>
+                            to your favourite tools directory. All neccesary runtime dlls are already installed on your system, but if not, grab them from
+                            <a href="https://www.microsoft.com/de-at/download/details.aspx?id=48145">here.</a>
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td align="left" valign="top" class="bodytext">
+                            <b>All Windows 64bit</b>
+                        </td>
+
+                        <td align="left" class="bodytext">
+                            Simply download and extract
+                            <a href="http://schinagl.priv.at/nt/dupemerge/dupemerge64.zip"> dupemerge64.zip (219kB) </a>
+                            to your favourite tools directory. All neccesary runtime dlls are already installed on your system, but if not, grab them from
+                            <a href="https://www.microsoft.com/de-at/download/details.aspx?id=48145">here.</a>
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="left" valign="top" class="bodytext">
+                            <b>
+                                Windows Itanium<br />
+                            </b>
+                        </td>
+
+                        <td align="left" class="bodytext">
+                            The Itanium version is not supported anymore, but the last VS2005 based version 1.0.8.0 is kept for legacy.
+                            Please make sure that the necessary runtime .dlls are installed on your system.
+                            This prerequisites package can be downloaded from Microsoft:<br /><br />
+                            <center>
+                                <a href="http://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_IA64.EXE">
+                                    <center>
+                                        vcredist_IA64.exe for VS2005 SP1, version 6195/June 2011 (6.3 Mb)
+                                    </center>
+                                </a>
+                            </center>
+
+
+                            <br />
+                            Afterwards install the
+                            <br /><center>
+                                <a href="http://www.schinagl.priv.at/nt/dupemerge/dupemergeItanium.zip">
+                                    dupemergeItanium.zip (347kB)
+                                </a>
+                            </center>
+
+                            <br />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+
+            <td colspan="2" bgcolor="#F2F2F2">
+                <hr style="height: 5px; color: #F2F2F2; background-color: #F2F2F2; border: 0px;">
+            </td>
+        </tr>
     </table>
-  </body>
+</body>
 </html>

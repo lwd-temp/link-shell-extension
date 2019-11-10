@@ -22,8 +22,10 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_AUSTRIAN
 // Version
 //
 
-#define PRODUCT_NAME "ln.exe"
-#include "..\Shared\version\cmd_version.rc2"
+#define PRODUCT_NAME "ln"
+#define ORIGINAL_FILENAME "ln.exe"
+#include "ln_version.h"
+#include "..\Shared\version\version.rc2"
 
 
 #ifdef APSTUDIO_INVOKED

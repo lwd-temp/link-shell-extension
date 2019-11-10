@@ -33,6 +33,7 @@
 
 using namespace std;
 
+#include "dupemerge_version.h"
 #include "..\Shared\version\version_assembly.h"
 
 // Ultragetopt

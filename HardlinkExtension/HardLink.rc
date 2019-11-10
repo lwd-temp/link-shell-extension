@@ -2750,7 +2750,9 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
-
+#define PRODUCT_NAME "Link Shell Extension"
+#define ORIGINAL_FILENAME "Hardlinkshellext.dll"
+#include "lse_version.h"
 #include "..\Shared\version\version.rc2"
 
 /////////////////////////////////////////////////////////////////////////////

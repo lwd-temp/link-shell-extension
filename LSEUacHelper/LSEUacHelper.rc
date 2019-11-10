@@ -23,6 +23,9 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_AUSTRIAN
 //
 // Version
 //
+#define PRODUCT_NAME "Link Shell Extension"
+#define ORIGINAL_FILENAME "LSEUacHelper.exe"
+#include "..\HardlinkExtension\lse_version.h"
 #include "..\Shared\version\version.rc2"
 
 #ifdef APSTUDIO_INVOKED

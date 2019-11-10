@@ -908,7 +908,9 @@ END
 //
 // Version
 //
-
+#define PRODUCT_NAME "Link Shell Extension"
+#define ORIGINAL_FILENAME "LSEConfig.exe"
+#include "..\HardlinkExtension\lse_version.h"
 #include "..\Shared\version\version.rc2"
 
 

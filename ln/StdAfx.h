@@ -55,6 +55,7 @@ using namespace std;
 #include <WinSock.h>
 #pragma comment(lib, "wsock32.lib")
 
+#include "ln_version.h"
 #include "..\Shared\version\version_assembly.h"
 
 // regular expression parser

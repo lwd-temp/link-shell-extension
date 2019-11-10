@@ -1,17 +1,5 @@
 
-#define STR_VALUE(arg)    #arg
-#define STR_NAME(name)    STR_VALUE(name)
-
-#include "version.h"
-
-#define MAJOR_VERSION_STRING			STR_NAME(MAJOR_VERSION)
-#define MINOR_VERSION_STRING			STR_NAME(MINOR_VERSION)
-#define PATCH_VERSION_STRING			STR_NAME(PATCH_VERSION)
-#define HOTFIX_VERSION_STRING			STR_NAME(HOTFIX_VERSION)
-#define VERSION_DOT "."
-
-#define VERSION_STRING MAJOR_VERSION_STRING VERSION_DOT MINOR_VERSION_STRING VERSION_DOT PATCH_VERSION_STRING VERSION_DOT HOTFIX_VERSION_STRING
-#define VERSION_NUMBER MAJOR_VERSION_STRING VERSION_DOT MINOR_VERSION_STRING PATCH_VERSION_STRING HOTFIX_VERSION_STRING
+#include "version_assembly.h"
 
 
 VS_VERSION_INFO VERSIONINFO
@@ -23,27 +11,25 @@ VS_VERSION_INFO VERSIONINFO
 #else
  FILEFLAGS 0x0L
 #endif
- FILEOS 0x4L
- FILETYPE 0x2L
+ FILEOS 0x40004L
+ FILETYPE 0x1L
  FILESUBTYPE 0x0L
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040904b0"
+        BLOCK "0c0704b0"
         BEGIN
-            VALUE "CompanyName", "Hermann Schinagl"
-            VALUE "FileDescription", "Link Shell Extension"
+            VALUE "FileDescription", PRODUCT_NAME
             VALUE "FileVersion", VERSION_STRING
-            VALUE "InternalName", "Link Shell Extension"
-            VALUE "LegalCopyright", "Copyright ? 1999-2019 Hermann Schinagl"
-            VALUE "OriginalFilename", "Hardlinkshellext.dll"
-            VALUE "ProductName", "Link Shell Extension"
+            VALUE "InternalName", PRODUCT_NAME
+            VALUE "LegalCopyright", "Copyright © 1999-2019 Hermann Schinagl"
+            VALUE "OriginalFilename", ORIGINAL_FILENAME
             VALUE "ProductVersion", VERSION_STRING
         END
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "Translation", 0x409, 1200
+        VALUE "Translation", 0xc07, 1200
     END
 END
 

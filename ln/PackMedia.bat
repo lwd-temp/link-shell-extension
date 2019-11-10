@@ -93,6 +93,8 @@ goto :EOF
 %ZIP% %1 Doc\license_tre.txt
 %ZIP% %1 Doc\license_ultragetop.txt
 
+%ZIP% %1 Doc\ln.html
+
 %ZIP% %1 Doc\Blog\blog.html
 %ZIP% %1 Doc\Blog\blog.png
 %ZIP% %1 Doc\Blog\deloreandelete.png
