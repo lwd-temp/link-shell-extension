@@ -1,5 +1,3 @@
-#include "cmd_version.h"
-
 #define STR_VALUE(arg)    #arg
 #define STR_NAME(name)    STR_VALUE(name)
 

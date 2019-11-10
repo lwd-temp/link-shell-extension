@@ -22,8 +22,10 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_AUSTRIAN
 // Version
 //
 
-#define PRODUCT_NAME "Dupemerge.exe"
-#include "..\Shared\version\cmd_version.rc2"
+#define PRODUCT_NAME "Dupemerge"
+#define ORIGINAL_FILENAME "Dupemerge.exe"
+#include "dupemerge_version.h"
+#include "..\Shared\version\version.rc2"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////

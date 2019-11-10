@@ -3,35 +3,50 @@ set MEDIA=Media
 
 REM Set the version info for LinkShellExension
 REM
-set MAJOR_VERSION=3
-set MINOR_VERSION=9
-set PATCH_VERSION=3
-set HOTFIX_VERSION=0
+set MAJOR_LSE_VERSION=3
+set MINOR_LSE_VERSION=9
+set PATCH_LSE_VERSION=3
+set HOTFIX_LSE_VERSION=0
 
-REM Set the version info for Commandline tools
+REM Set the version info for ln.exe
 REM
-set MAJOR_CMD_VERSION=2
-set MINOR_CMD_VERSION=9
-set PATCH_CMD_VERSION=2
-set HOTFIX_CMD_VERSION=4
+set MAJOR_LN_VERSION=2
+set MINOR_LN_VERSION=9
+set PATCH_LN_VERSION=2
+set HOTFIX_LN_VERSION=4
+
+REM Set the version info for dupemerge.exe
+REM
+set MAJOR_DUPEMERGE_VERSION=1
+set MINOR_DUPEMERGE_VERSION=1
+set PATCH_DUPEMERGE_VERSION=0
+set HOTFIX_DUPEMERGE_VERSION=2
 
 @echo generating Version info
 REM Generate version info for Shell Extension
 REM
-set VERSION_FILE=Shared\version\version.h
-(echo #define MAJOR_VERSION %MAJOR_VERSION%)>%VERSION_FILE%
-(echo #define MINOR_VERSION %MINOR_VERSION%)>>%VERSION_FILE%
-(echo #define PATCH_VERSION %PATCH_VERSION%)>>%VERSION_FILE%
-(echo #define HOTFIX_VERSION %HOTFIX_VERSION%)>>%VERSION_FILE%
+set VERSION_FILE=HardlinkExtension\lse_version.h
+(echo #define MAJOR_VERSION %MAJOR_LSE_VERSION%)>%VERSION_FILE%
+(echo #define MINOR_VERSION %MINOR_LSE_VERSION%)>>%VERSION_FILE%
+(echo #define PATCH_VERSION %PATCH_LSE_VERSION%)>>%VERSION_FILE%
+(echo #define HOTFIX_VERSION %HOTFIX_LSE_VERSION%)>>%VERSION_FILE%
 
 
-REM Generate version info for command line tools
+REM Generate version info for ln.exe
 REM
-set VERSION_FILE=Shared\version\cmd_version.h
-(echo #define MAJOR_VERSION %MAJOR_CMD_VERSION%)>%VERSION_FILE%
-(echo #define MINOR_VERSION %MINOR_CMD_VERSION%)>>%VERSION_FILE%
-(echo #define PATCH_VERSION %PATCH_CMD_VERSION%)>>%VERSION_FILE%
-(echo #define HOTFIX_VERSION %HOTFIX_CMD_VERSION%)>>%VERSION_FILE%
+set VERSION_FILE=ln\ln_version.h
+(echo #define MAJOR_VERSION %MAJOR_LN_VERSION%)>%VERSION_FILE%
+(echo #define MINOR_VERSION %MINOR_LN_VERSION%)>>%VERSION_FILE%
+(echo #define PATCH_VERSION %PATCH_LN_VERSION%)>>%VERSION_FILE%
+(echo #define HOTFIX_VERSION %HOTFIX_LN_VERSION%)>>%VERSION_FILE%
+
+REM Generate version info for dupemerge.exe
+REM
+set VERSION_FILE=dupemerge\dupemerge_version.h
+(echo #define MAJOR_VERSION %MAJOR_DUPEMERGE_VERSION%)>%VERSION_FILE%
+(echo #define MINOR_VERSION %MINOR_DUPEMERGE_VERSION%)>>%VERSION_FILE%
+(echo #define PATCH_VERSION %PATCH_DUPEMERGE_VERSION%)>>%VERSION_FILE%
+(echo #define HOTFIX_VERSION %HOTFIX_DUPEMERGE_VERSION%)>>%VERSION_FILE%
 
 REM LSE contains a schema in the registry. If from version to version this schema is heavily
 REM changed, then we need to increment the schema version number.
@@ -119,7 +134,7 @@ echo.
 echo ######## ln.exe  ######## 
 echo.
 pushd ln
-call PackMedia.bat %MAJOR_CMD_VERSION%%MINOR_CMD_VERSION%%PATCH_CMD_VERSION%%HOTFIX_CMD_VERSION%
+call PackMedia.bat %MAJOR_LN_VERSION%%MINOR_LN_VERSION%%PATCH_LN_VERSION%%HOTFIX_LN_VERSION%
 popd
 
 REM dupemerge.exe
@@ -128,5 +143,5 @@ echo.
 echo ######## Dupemerge.exe ######## 
 echo.
 pushd dupemerge
-call PackMedia.bat %MAJOR_CMD_VERSION%%MINOR_CMD_VERSION%%PATCH_CMD_VERSION%%HOTFIX_CMD_VERSION%
+call PackMedia.bat %MAJOR_LN_VERSION%%MINOR_LN_VERSION%%PATCH_LN_VERSION%%HOTFIX_LN_VERSION%
 popd

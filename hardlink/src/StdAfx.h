@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include "..\..\Shared\version\version.h"
-
 #include <ShObjIdl.h>
 #include <sddl.h>
 
