@@ -71,6 +71,11 @@ REM
 set VERSION_FILE=HardlinkExtension\install\LSE_version.nsh
 (echo !define LSE_VERSION "%MAJOR_VERSION%.%MINOR_VERSION%.%PATCH_VERSION%.%HOTFIX_VERSION%")>%VERSION_FILE%
 
+REM Generate version info for nuspec 
+REM
+set VERSION_FILE=HardlinkExtension\install\choco\LSE_version.txt
+(echo %MAJOR_VERSION%.%MINOR_VERSION%.%PATCH_VERSION%.%HOTFIX_VERSION%>%VERSION_FILE%
+
 REM Rebuild
 REM
 if not exist Media mkdir Media

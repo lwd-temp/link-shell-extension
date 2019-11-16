@@ -5,7 +5,11 @@
 @set GSAR=%ROOT%\tools\gsar.exe
 @set CPACK=cpack.exe
 
-@REM Prepare the has sums
+@REM Prepare the nuspec file
+@set /p LSE_VERSION=<LSE_version.txt
+@%GSAR% linkshellextension.nuspec.template -f -s##LSE_VERSION## -r%LSE_VERSION% linkshellextension.nuspec
+
+@REM Prepare the hash sums for the installer
 @call :genhash %ROOT%\Media\HardLinkShellExt_win32.exe
 @%GSAR% tools\chocolateyInstall.ps1.template -f -s##CHECKSUM32## -r%SHA256% tools\chocolateyInstall.ps1 >nul
 @call :genhash %ROOT%\Media\HardLinkShellExt_X64.exe
@@ -18,7 +22,7 @@
 @REM choco install LinkShellExtension -source "'%cd%;https://chocolatey.org/api/v2/'"
 
 @REM Push package to chocolatey
-@choco push ..\..\..\media\LinkShellExtension.3.9.3.0.nupkg --source https://push.chocolatey.org/
+REM @choco push ..\..\..\media\LinkShellExtension.3.9.3.0.nupkg --source https://push.chocolatey.org/
 
 @goto :EOF
 
