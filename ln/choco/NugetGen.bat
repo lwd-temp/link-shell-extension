@@ -1,18 +1,18 @@
 @set CERTUTIL=certutil.exe
-@set ROOT=..\..\..
+@set ROOT=..\..
 @set HEAD=%ROOT%\tools\head.exe
 @set TAIL=%ROOT%\tools\tail.exe
 @set GSAR=%ROOT%\tools\gsar.exe
 @set CPACK=cpack.exe
 
 @REM Prepare the nuspec file
-@set /p LSE_VERSION=<LSE_version.txt
-@%GSAR% linkshellextension.nuspec.template -f -s##LSE_VERSION## -r%LSE_VERSION% linkshellextension.nuspec
+@set /p LN_VERSION=<LN_version.txt
+@%GSAR% ln.nuspec.template -f -s##LN_VERSION## -r%LN_VERSION% ln.nuspec
 
 @REM Prepare the hash sums for the installer
-@call :genhash %ROOT%\Media\HardLinkShellExt_win32.exe
+@call :genhash %ROOT%\Media\ln.zip
 @%GSAR% tools\chocolateyInstall.ps1.template -f -s##CHECKSUM32## -r%SHA256% tools\chocolateyInstall.ps1 >nul
-@call :genhash %ROOT%\Media\HardLinkShellExt_X64.exe
+@call :genhash %ROOT%\Media\ln64.zip
 @%GSAR% tools\chocolateyInstall.ps1 -s##CHECKSUM64## -r%SHA256% -o >nul
 
 @REM Generate the packages
@@ -22,7 +22,7 @@
 @REM choco install LinkShellExtension -source "'%cd%;https://chocolatey.org/api/v2/'"
 
 @REM Push package to chocolatey
-@choco push ..\..\..\media\LinkShellExtension.%LSE_VERSION%.nupkg --source https://push.chocolatey.org/
+REM @choco push ..\..\..\media\ln.%LN_VERSION%.nupkg --source https://push.chocolatey.org/
 
 @goto :EOF
 
