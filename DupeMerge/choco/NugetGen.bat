@@ -6,23 +6,23 @@
 @set CPACK=cpack.exe
 
 @REM Prepare the nuspec file
-@set /p LN_VERSION=<LN_version.txt
-@%GSAR% ln.nuspec.template -f -s##LN_VERSION## -r%LN_VERSION% ln.nuspec
+@set /p DUPEMERGE_VERSION=<DupeMerge_version.txt
+@%GSAR% dupemerge.nuspec.template -f -s##DUPEMERGE_VERSION## -r%DUPEMERGE_VERSION% dupemerge.nuspec
 
 @REM Prepare the hash sums for the installer
-@call :genhash %ROOT%\Media\ln.zip
+@call :genhash %ROOT%\Media\dupemerge.zip
 @%GSAR% tools\chocolateyInstall.ps1.template -f -s##CHECKSUM32## -r%SHA256% tools\chocolateyInstall.ps1 >nul
-@call :genhash %ROOT%\Media\ln64.zip
+@call :genhash %ROOT%\Media\dupemerge64.zip
 @%GSAR% tools\chocolateyInstall.ps1 -s##CHECKSUM64## -r%SHA256% -o >nul
 
 @REM Generate the packages
 @%CPACK% --outputdirectory %ROOT%\Media
 
 @REM Verify package
-@REM choco install ln -source "'%cd%;https://chocolatey.org/api/v2/'"
+@REM choco install dupemerge -source "'%cd%;https://chocolatey.org/api/v2/'"
 
 @REM Push package to chocolatey
-@choco push %ROOT%\media\ln.%LN_VERSION%.nupkg --source https://push.chocolatey.org/
+REM @choco push %ROOT%\media\dupemerge.%DUPEMERGE_VERSION%.nupkg --source https://push.chocolatey.org/
 
 @goto :EOF
 

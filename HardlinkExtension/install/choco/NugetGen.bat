@@ -22,7 +22,7 @@
 @REM choco install LinkShellExtension -source "'%cd%;https://chocolatey.org/api/v2/'"
 
 @REM Push package to chocolatey
-@choco push ..\..\..\media\LinkShellExtension.%LSE_VERSION%.nupkg --source https://push.chocolatey.org/
+@choco push %ROOT%\media\LinkShellExtension.%LSE_VERSION%.nupkg --source https://push.chocolatey.org/
 
 @goto :EOF
 
