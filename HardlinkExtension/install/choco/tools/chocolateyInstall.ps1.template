@@ -1,6 +1,6 @@
 ﻿$packageName = 'Link Shellextension'
 $installerType = 'exe'
-$silentArgs = '/S'
+$silentArgs = '/S /noredist'
 $url = 'https://schinagl.priv.at/nt/hardlinkshellext/HardLinkShellExt_win32.exe'
 $checksum = '##CHECKSUM32##'
 $checksumType = 'sha256'
