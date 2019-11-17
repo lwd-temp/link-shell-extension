@@ -300,6 +300,29 @@
 
         <tr>
             <td class="hanger">
+                <a name="choco"><b>Chocolatey<br />Installation</b></a>
+            </td>
+
+            <td class="bodytext">
+                Link ShellExtension can also be installed via <a href="https://chocolatey.org">chocolatey</a> by issuing
+                <br /><br />
+                <span class="ascode">
+                    choco install linkshellextension
+                </span>
+                <br />
+                <br />
+                from a command prompt. Make sure you have <a href="https://chocolatey.org/install">chocolatey installed</a>.
+                The current user must have administrator privileges in order to install the software via choco
+                <br />
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><br /></td>
+        </tr>
+
+        <tr>
+            <td class="hanger">
                 <a name="usinglinkshellextension"><b>Using Link Shell Extension</b></a>
             </td>
 
@@ -1285,7 +1308,7 @@
                 <br />
                 <br />
 
-                If backup mode is enabled the UAC helper LSEUacHelper.exe is called anyway, because LSE needs to enumerate files in locations, 
+                If backup mode is enabled the UAC helper LSEUacHelper.exe is called anyway, because LSE needs to enumerate files in locations,
                 where it might have no permissions.
                 <br />
                 <br />
@@ -2821,12 +2844,28 @@
 
                     <tr>
                         <td class="history">
+                            <a name="3930">November 17, 2019</a>
+                        </td>
+                        <td>
+                            Version 3.9.3.1
+                            <ul>
+                                <!-- 3.9.3.1, 17.11.2019 -->
+                                <li>Link ShellExtension now maintains its <a href="#choco"> chocolatey package</a>.</li>
+                                <li>Link ShellExtension is public on <a href="https://gitlab.com/schinagl/link-shell-extension">gitlab</a>.</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="history">
                             <a name="3910">November 8, 2019</a>
                         </td>
 
                         <td>
                             Version 3.9.3.0
                             <ul>
+                                <!-- 3.9.3.1, 17.11.2019 -->
+                                <li>Link ShellExtension now maintains its <a href="#choco"> chocolatey package</a>.</li>
                                 <!-- 3.9.3.0, 8.11.2019 -->
                                 <li>For non Admin users under Windows 10, the explorer did not restart after install</li>
                                 <li>During custom icon change one was asked to close lots of dependant apps, which is uneccessary. Reboot Explorer.exe is enough.</li>
@@ -3995,7 +4034,6 @@
 
             <td align="center" class="bodytext">
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
-
                     <tr>
                         <td class="hanger2">
                             <b>All Windows 64<br /></b>
@@ -4043,7 +4081,26 @@
                             <br />
                             <br />
                             All neccesary runtime dlls are already installed on your system, but if not grab it from
-                            <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">here.</a>                <br />
+                            <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">here.</a>
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="hanger2">
+                            <a name="choco"><b>Chocolatey<br />Installation</b></a>
+                        </td>
+
+                        <td class="bodytext">
+                            Link ShellExtension can also be installed via <a href="https://chocolatey.org">chocolatey</a> by issuing
+                            <br /><br />
+                            <span class="ascode">
+                                choco install linkshellextension
+                            </span>
+                            <br />
+                            <br />
                         </td>
                     </tr>
 
