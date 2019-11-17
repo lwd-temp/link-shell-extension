@@ -523,6 +523,8 @@ Function .onInit
 	; MessageBox MB_OK "Windows Version '$WINDOWS_VERSION'"
 
 	# Check if prerequisites are available
+	IfSilent lbl_NoPlatRedistCheck
+
 	lbl_redistlevel:
 	Processes::VcRedistLevel ${PLATTFORM};
 	Pop $R0
