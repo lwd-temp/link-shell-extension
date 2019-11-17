@@ -110,7 +110,7 @@
     <None Include="install\choco\tools\chocolateyInstall.ps1">
       <Filter>Install\choco</Filter>
     </None>
-    <None Include="install\choco\tools\chocolateyInstall.ps1.template">
+    <None Include="install\choco\chocolateyInstall.ps1.template">
       <Filter>Install\choco</Filter>
     </None>
     <None Include="install\choco\tools\chocolateyUninstall.ps1">

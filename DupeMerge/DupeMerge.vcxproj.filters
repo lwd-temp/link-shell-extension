@@ -70,7 +70,7 @@
     <None Include="choco\tools\chocolateyInstall.ps1">
       <Filter>Intall\choco</Filter>
     </None>
-    <None Include="choco\tools\chocolateyInstall.ps1.template">
+    <None Include="choco\chocolateyInstall.ps1.template">
       <Filter>Intall\choco</Filter>
     </None>
     <None Include="choco\NugetGen.bat">

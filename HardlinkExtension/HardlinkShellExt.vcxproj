@@ -318,7 +318,7 @@
     <None Include="install\choco\linkshellextension.nuspec.template" />
     <None Include="install\choco\NugetGen.bat" />
     <None Include="install\choco\tools\chocolateyInstall.ps1" />
-    <None Include="install\choco\tools\chocolateyInstall.ps1.template" />
+    <None Include="install\choco\chocolateyInstall.ps1.template" />
     <None Include="install\choco\tools\chocolateyUninstall.ps1" />
     <None Include="LinkShellExtension.def" />
     <None Include="install\CodeSign.bat" />

@@ -11,7 +11,7 @@
 
 @REM Prepare the hash sums for the installer
 @call :genhash %ROOT%\Media\dupemerge.zip
-@%GSAR% tools\chocolateyInstall.ps1.template -f -s##CHECKSUM32## -r%SHA256% tools\chocolateyInstall.ps1 >nul
+@%GSAR% chocolateyInstall.ps1.template -f -s##CHECKSUM32## -r%SHA256% tools\chocolateyInstall.ps1 >nul
 @call :genhash %ROOT%\Media\dupemerge64.zip
 @%GSAR% tools\chocolateyInstall.ps1 -s##CHECKSUM64## -r%SHA256% -o >nul
 

@@ -253,7 +253,7 @@
     <None Include="choco\tools\chocolateyInstall.ps1">
       <Filter>Install\choco</Filter>
     </None>
-    <None Include="choco\tools\chocolateyInstall.ps1.template">
+    <None Include="choco\chocolateyInstall.ps1.template">
       <Filter>Install\choco</Filter>
     </None>
   </ItemGroup>
