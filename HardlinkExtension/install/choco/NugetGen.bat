@@ -14,6 +14,7 @@
 @%GSAR% chocolateyInstall.ps1.template -f -s##CHECKSUM32## -r%SHA256% tools\chocolateyInstall.ps1 >nul
 @call :genhash %ROOT%\Media\HardLinkShellExt_X64.exe
 @%GSAR% tools\chocolateyInstall.ps1 -s##CHECKSUM64## -r%SHA256% -o >nul
+set PACKAGE_NAME=LinkShellExtension.%LSE_VERSION%.nupkg
 set LSE_VERSION=%LSE_VERSION:.=%
 @%GSAR% tools\chocolateyInstall.ps1 -s##LSE_VERSION## -r%LSE_VERSION% -o >nul
 
@@ -24,7 +25,7 @@ set LSE_VERSION=%LSE_VERSION:.=%
 @REM choco install LinkShellExtension -source "'%cd%;https://chocolatey.org/api/v2/'"
 
 @REM Push package to chocolatey
-REM @choco push %ROOT%\media\LinkShellExtension.%LSE_VERSION%.nupkg --source https://push.chocolatey.org/
+@choco push %ROOT%\media\%PACKAGE_NAME% --source https://push.chocolatey.org/
 
 @goto :EOF
 

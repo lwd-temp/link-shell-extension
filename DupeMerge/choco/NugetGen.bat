@@ -14,6 +14,7 @@
 @%GSAR% chocolateyInstall.ps1.template -f -s##CHECKSUM32## -r%SHA256% tools\chocolateyInstall.ps1 >nul
 @call :genhash %ROOT%\Media\dupemerge64.zip
 @%GSAR% tools\chocolateyInstall.ps1 -s##CHECKSUM64## -r%SHA256% -o >nul
+set PACKAGE_NAME=dupemerge.%DUPEMERGE_VERSION%.nupkg
 set DUPEMERGE_VERSION=%DUPEMERGE_VERSION:.=%
 @%GSAR% tools\chocolateyInstall.ps1 -s##DUPEMERGE_VERSION## -r%DUPEMERGE_VERSION% -o >nul
 
@@ -24,7 +25,7 @@ set DUPEMERGE_VERSION=%DUPEMERGE_VERSION:.=%
 @REM choco install dupemerge -source "'%cd%;https://chocolatey.org/api/v2/'"
 
 @REM Push package to chocolatey
-REM @choco push %ROOT%\media\dupemerge.%DUPEMERGE_VERSION%.nupkg --source https://push.chocolatey.org/
+@choco push %ROOT%\media\%PACKAGE_NAME% --source https://push.chocolatey.org/
 
 @goto :EOF
 

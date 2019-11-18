@@ -14,6 +14,7 @@
 @%GSAR% chocolateyInstall.ps1.template -f -s##CHECKSUM32## -r%SHA256% tools\chocolateyInstall.ps1 >nul
 @call :genhash %ROOT%\Media\ln64.zip
 @%GSAR% tools\chocolateyInstall.ps1 -s##CHECKSUM64## -r%SHA256% -o >nul
+set PACKAGE_NAME=ln.%LN_VERSION%.nupkg
 set LN_VERSION=%LN_VERSION:.=%
 @%GSAR% tools\chocolateyInstall.ps1 -s##LN_VERSION## -r%LN_VERSION% -o >nul
 
@@ -24,7 +25,7 @@ set LN_VERSION=%LN_VERSION:.=%
 @REM choco install ln -source "'%cd%;https://chocolatey.org/api/v2/'"
 
 @REM Push package to chocolatey
-REM @choco push %ROOT%\media\ln.%LN_VERSION%.nupkg --source https://push.chocolatey.org/
+@choco push %ROOT%\media\%PACKAGE_NAME% --source https://push.chocolatey.org/
 
 @goto :EOF
 
