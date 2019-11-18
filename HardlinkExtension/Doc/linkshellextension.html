@@ -300,6 +300,29 @@
 
         <tr>
             <td class="hanger">
+                <a name="choco"><b>Chocolatey<br />Installation</b></a>
+            </td>
+
+            <td class="bodytext">
+                Link ShellExtension can also be installed via <a href="https://chocolatey.org">chocolatey</a> by issuing
+                <br /><br />
+                <span class="ascode">
+                    choco install linkshellextension
+                </span>
+                <br />
+                <br />
+                from a command prompt. Make sure you have <a href="https://chocolatey.org/install">chocolatey installed</a>.
+                The current user must have administrator privileges in order to install the software via choco
+                <br />
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><br /></td>
+        </tr>
+
+        <tr>
+            <td class="hanger">
                 <a name="usinglinkshellextension"><b>Using Link Shell Extension</b></a>
             </td>
 
@@ -1285,7 +1308,7 @@
                 <br />
                 <br />
 
-                If backup mode is enabled the UAC helper LSEUacHelper.exe is called anyway, because LSE needs to enumerate files in locations, 
+                If backup mode is enabled the UAC helper LSEUacHelper.exe is called anyway, because LSE needs to enumerate files in locations,
                 where it might have no permissions.
                 <br />
                 <br />
@@ -2821,6 +2844,20 @@
 
                     <tr>
                         <td class="history">
+                            <a name="3930">November 17, 2019</a>
+                        </td>
+                        <td>
+                            Version 3.9.3.1
+                            <ul>
+                                <!-- 3.9.3.1, 17.11.2019 -->
+                                <li>Link ShellExtension now maintains its <a href="#choco"> chocolatey package</a>.</li>
+                                <li>Link ShellExtension is public on <a href="https://gitlab.com/schinagl/link-shell-extension">gitlab</a>.</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="history">
                             <a name="3910">November 8, 2019</a>
                         </td>
 
@@ -2837,7 +2874,7 @@
                                 <li>Improved menu hydraulics, e.g. once can not create Smart Copies of Symbolic Link Files.</li>
                                 <li>Adapted check for Redistributables to VS2017 and Windows 10.</li>
                                 <!-- 3.9.2.7, 28.10.2019 -->
-                                <li>On non NTFS drives, files could no be selected as Link Source. Introduced with 3921</li>
+                                <li>On non NTFS drives, files could not be selected as Link Source. Introduced with 3921</li>
                                 <li>Unmount volume did not work, when elevation was needed.</li>
                                 <li>New Windows 10 screenshots for docu and docu streamlining.</li>
                                 <!-- 3.9.2.6, 29.9.2019 -->
@@ -2850,7 +2887,7 @@
                                 <!-- 3.9.2.5, 26.7.2019 -->
                                 <li>UAChelper mixed up relative and absolute link creation. Introduced with 3920</li>
                                 <!-- 3.9.2.5, 10.5.2019 -->
-                                <li>Added Ukranian localization, Finish localisation for missing texts</li>
+                                <li>Added Ukranian localization, Finished localisation for missing texts</li>
                                 <!-- 3.9.2.4, 28.4.2019 -->
                                 <li>Cross Drive Drops didn't work. Introduced with 3921</li>
                                 <!-- 3.9.2.3, 26.4.2019 -->
@@ -3995,7 +4032,6 @@
 
             <td align="center" class="bodytext">
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
-
                     <tr>
                         <td class="hanger2">
                             <b>All Windows 64<br /></b>
@@ -4043,7 +4079,26 @@
                             <br />
                             <br />
                             All neccesary runtime dlls are already installed on your system, but if not grab it from
-                            <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">here.</a>                <br />
+                            <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">here.</a>
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="hanger2">
+                            <b>Chocolatey<br />Installation</b>
+                        </td>
+
+                        <td class="bodytext">
+                            Link ShellExtension can also be installed via <a href="https://chocolatey.org">chocolatey</a> by issuing
+                            <br /><br />
+                            <span class="ascode">
+                                choco install linkshellextension
+                            </span>
+                            <br />
+                            <br />
                         </td>
                     </tr>
 

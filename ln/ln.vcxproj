@@ -303,6 +303,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CustomBuild>
+    <None Include="choco\ln.nuspec" />
+    <None Include="choco\NugetGen.bat" />
+    <None Include="choco\tools\chocolateyInstall.ps1" />
+    <None Include="choco\chocolateyInstall.ps1.template" />
     <None Include="LnAllTest.bat" />
     <None Include="PackMedia.bat" />
     <None Include="t_AbsoluteRelativ.bat" />

@@ -89,7 +89,7 @@
             </td>
 
             <td valign="bottom">
-                    The privacy statement can be found <a href="http://schinagl.priv.at/about/dsgvo.html">here</a>
+                The privacy statement can be found <a href="http://schinagl.priv.at/about/dsgvo.html">here</a>
             </td>
         </tr>
 
@@ -128,11 +128,28 @@
                 Installation
             </td>
             <td class="bodytext">
-                copy ln.exe to some directory referenced by your PATH environment variable. %systemroot% is a good place.
+                Copy ln.exe to some directory referenced by your PATH environment variable. %systemroot% is a good place.
+                <br />
+                <br />
             </td>
         </tr>
+
+        <!-- Chocolatey -->
         <tr>
-            <td colspan="2">
+            <td class="hanger">
+                <a name="choco">Chocolatey<br />Installation</a>
+            </td>
+
+            <td class="bodytext">
+                ln.exe can also be installed via <a href="https://chocolatey.org">chocolatey</a> by issuing
+                <br /><br />
+                <span class="ascode">
+                    choco install ln
+                </span>
+                <br />
+                <br />
+                from a command prompt. Make sure you have <a href="https://chocolatey.org/install">chocolatey installed</a>.
+                <br />
                 <br />
             </td>
         </tr>
@@ -1328,15 +1345,15 @@
                                 </tr>
 
                                 <!-- One day we could give a message when just the compression status changes. The engine could do this
-                                <tr>
-                                    <td class="bodytext">
-                                        %
-                                    </td>
-                                    <td class="bodytext">
-                                        Item is already present in the target, but with different compression state. Used during Smart Mirror
-                                    </td>
-                                </tr>
-                                -->
+                            <tr>
+                                <td class="bodytext">
+                                    %
+                                </td>
+                                <td class="bodytext">
+                                    Item is already present in the target, but with different compression state. Used during Smart Mirror
+                                </td>
+                            </tr>
+                            -->
 
                                 <tr>
                                     <td class="bodytext">
@@ -5158,6 +5175,9 @@
                         <td align="left" class="bodytext">
                             <a name="2900">Version 2.9.2.4</a>
                             <ul>
+                                <!-- 2.9.2.5, 17.11.2019 -->
+                                <li>ln now maintains its <a href="#choco"> chocolatey package</a>.</li>
+                                <li>ln is public on <a href="https://gitlab.com/schinagl/link-shell-extension">gitlab</a>.</li>
                                 <!-- 2.9.2.4, 28.10.2019 -->
                                 <li>ln.exe is signed with a code signing certificate.</li>
                                 <!-- 2.9.2.3, 26.4.2019 -->
@@ -5874,9 +5894,7 @@
                 <table cellspacing="0" cellpadding="0" border="0">
                     <tr>
                         <td class="hanger2">
-                            <b>
-                                All Windows 32bit<br />
-                            </b>
+                            <b>Windows 32bit<br /></b>
                         </td>
                         <td align="left" class="bodytext">
                             Simply download and extract
@@ -5886,25 +5904,38 @@
                             <a href="https://www.microsoft.com/de-at/download/details.aspx?id=48145">here.</a>
                             <br />
                             <br />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp
+                            <br />
                         </td>
                     </tr>
 
                     <tr>
                         <td class="hanger2">
-                            <b>
-                                All Windows 64bit<br />
-                            </b>
+                            <b>Windows 64bit<br /></b>
                         </td>
                         <td align="left" class="bodytext">
                             Simply download and extract
                             <a href="http://www.schinagl.priv.at/nt/ln/ln64.zip">ln64.zip (2.24Mb)</a>
                             to your favourite tools directory. All neccesary runtime dlls are already installed on your system, but if not grab it from
                             <a href="https://www.microsoft.com/de-at/download/details.aspx?id=48145">here.</a>
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="hanger2">
+                            <b>Chocolatey<br />Installation</b>
+                        </td>
+
+                        <td class="bodytext">
+                            ln.exe can also be installed via <a href="https://chocolatey.org">chocolatey</a> by issuing
+                            <br /><br />
+                            <span class="ascode">
+                                choco install ln
+                            </span>
+                            <br />
+                            <br />
+                            from a command prompt. Make sure you have <a href="https://chocolatey.org/install">chocolatey installed</a>.
                             <br />
                             <br />
                         </td>

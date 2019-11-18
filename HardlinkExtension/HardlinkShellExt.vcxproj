@@ -312,6 +312,14 @@
     <None Include="..\bat\SymStoreDel.bat" />
     <None Include="..\BuildWorld.bat" />
     <None Include="..\bat\SourceIndex.bat" />
+    <None Include="install\choco\linkshellextension.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="install\choco\linkshellextension.nuspec.template" />
+    <None Include="install\choco\NugetGen.bat" />
+    <None Include="install\choco\tools\chocolateyInstall.ps1" />
+    <None Include="install\choco\chocolateyInstall.ps1.template" />
+    <None Include="install\choco\tools\chocolateyUninstall.ps1" />
     <None Include="LinkShellExtension.def" />
     <None Include="install\CodeSign.bat" />
     <None Include="install\CreateInstall.bat" />

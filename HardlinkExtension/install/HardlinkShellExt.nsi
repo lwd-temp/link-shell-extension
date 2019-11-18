@@ -524,10 +524,10 @@ Function .onInit
 
 	# Check if prerequisites are available
 	lbl_redistlevel:
+	StrCmp $NO_REDIST "1" lbl_redistlevel_ok
 	Processes::VcRedistLevel ${PLATTFORM};
 	Pop $R0
 	StrCmp $R0 "1" lbl_redistlevel_ok
-	StrCmp $NO_REDIST "1" lbl_redistlevel_ok
 	  MessageBox MB_OK "The VS2017 Sp1 Redistributable Package is a prerequiste for Link Shell Extension to work on this plattform.$\r$\n ${SP1_DOWNLOAD}";
 	  Abort;
 	lbl_redistlevel_ok:

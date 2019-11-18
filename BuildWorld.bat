@@ -61,15 +61,30 @@ REM (echo #define LSE_CURRENT_VERSION %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSI
 REM Generate version info for install media stamp
 REM
 set VERSION_FILE=HardlinkExtension\install\stampver.inf
-(echo FileVersion=%MAJOR_VERSION%.%MINOR_VERSION%.%PATCH_VERSION%.%HOTFIX_VERSION%)>%VERSION_FILE%
-(echo ProductVersion=%MAJOR_VERSION%.%MINOR_VERSION%.%PATCH_VERSION%.%HOTFIX_VERSION%)>>%VERSION_FILE%
+(echo FileVersion=%MAJOR_LSE_VERSION%.%MINOR_LSE_VERSION%.%PATCH_LSE_VERSION%.%HOTFIX_LSE_VERSION%)>%VERSION_FILE%
+(echo ProductVersion=%MAJOR_LSE_VERSION%.%MINOR_LSE_VERSION%.%PATCH_LSE_VERSION%.%HOTFIX_LSE_VERSION%)>>%VERSION_FILE%
 (echo FileFormat=%%a.%%b.%%c.%%d)>>%VERSION_FILE%
 (echo ProductFormat=%%a.%%b.%%c.%%d)>>%VERSION_FILE%
 
 REM Generate version info for installer script
 REM
 set VERSION_FILE=HardlinkExtension\install\LSE_version.nsh
-(echo !define LSE_VERSION "%MAJOR_VERSION%.%MINOR_VERSION%.%PATCH_VERSION%.%HOTFIX_VERSION%")>%VERSION_FILE%
+(echo !define LSE_VERSION "%MAJOR_LSE_VERSION%.%MINOR_LSE_VERSION%.%PATCH_LSE_VERSION%.%HOTFIX_LSE_VERSION%")>%VERSION_FILE%
+
+REM Generate version info for LinkShellExtension.nuspec 
+REM
+set VERSION_FILE=HardlinkExtension\install\choco\LSE_version.txt
+(echo %MAJOR_LSE_VERSION%.%MINOR_LSE_VERSION%.%PATCH_LSE_VERSION%.%HOTFIX_LSE_VERSION%)>%VERSION_FILE%
+
+REM Generate version info for ln.nuspec 
+REM
+set VERSION_FILE=ln\choco\ln_version.txt
+(echo %MAJOR_LN_VERSION%.%MINOR_LN_VERSION%.%PATCH_LN_VERSION%.%HOTFIX_LN_VERSION%)>%VERSION_FILE%
+
+REM Generate version info for dupemerge.nuspec 
+REM
+set VERSION_FILE=dupemerge\choco\dupemerge_version.txt
+(echo %MAJOR_DUPEMERGE_VERSION%.%MINOR_DUPEMERGE_VERSION%.%PATCH_DUPEMERGE_VERSION%.%HOTFIX_DUPEMERGE_VERSION%)>%VERSION_FILE%
 
 REM Rebuild
 REM

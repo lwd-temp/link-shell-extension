@@ -25,6 +25,12 @@
     <Filter Include="Bat">
       <UniqueIdentifier>{128a4300-c5f1-45ce-8c9d-ca1bc1db2175}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Install\choco">
+      <UniqueIdentifier>{a6c8c152-491c-4ef7-8a79-8334e40cf2e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Install\nsis">
+      <UniqueIdentifier>{ddc69bfb-4b7d-4042-b1d4-96338eedff0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CopyHook.cpp">
@@ -68,25 +74,7 @@
     <None Include="res\PROGRESS.BIN">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="install\GetTime.nsh">
-      <Filter>Install</Filter>
-    </None>
-    <None Include="install\GetWindowsVersion.nsh">
-      <Filter>Install</Filter>
-    </None>
-    <None Include="install\HardlinkShellExt.nsi">
-      <Filter>Install</Filter>
-    </None>
-    <None Include="install\HardlinkShellExt_win32.nsi">
-      <Filter>Install</Filter>
-    </None>
-    <None Include="install\HardlinkShellExt_x64.nsi">
-      <Filter>Install</Filter>
-    </None>
     <None Include="install\ReleaseChecklist.txt">
-      <Filter>Install</Filter>
-    </None>
-    <None Include="install\WriteEnvStr.nsh">
       <Filter>Install</Filter>
     </None>
     <None Include="LinkShellExtension.def">
@@ -115,6 +103,42 @@
     </None>
     <None Include="..\bat\SymStoreDel.bat">
       <Filter>Bat</Filter>
+    </None>
+    <None Include="install\choco\linkshellextension.nuspec">
+      <Filter>Install\choco</Filter>
+    </None>
+    <None Include="install\choco\tools\chocolateyInstall.ps1">
+      <Filter>Install\choco</Filter>
+    </None>
+    <None Include="install\choco\chocolateyInstall.ps1.template">
+      <Filter>Install\choco</Filter>
+    </None>
+    <None Include="install\choco\tools\chocolateyUninstall.ps1">
+      <Filter>Install\choco</Filter>
+    </None>
+    <None Include="install\GetTime.nsh">
+      <Filter>Install\nsis</Filter>
+    </None>
+    <None Include="install\GetWindowsVersion.nsh">
+      <Filter>Install\nsis</Filter>
+    </None>
+    <None Include="install\HardlinkShellExt.nsi">
+      <Filter>Install\nsis</Filter>
+    </None>
+    <None Include="install\HardlinkShellExt_win32.nsi">
+      <Filter>Install\nsis</Filter>
+    </None>
+    <None Include="install\HardlinkShellExt_x64.nsi">
+      <Filter>Install\nsis</Filter>
+    </None>
+    <None Include="install\WriteEnvStr.nsh">
+      <Filter>Install\nsis</Filter>
+    </None>
+    <None Include="install\choco\NugetGen.bat">
+      <Filter>Install\choco</Filter>
+    </None>
+    <None Include="install\choco\linkshellextension.nuspec.template">
+      <Filter>Install\choco</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

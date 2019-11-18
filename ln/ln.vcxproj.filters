@@ -24,6 +24,9 @@
     <Filter Include="Install">
       <UniqueIdentifier>{1cdd2c60-6fdb-48ee-a552-12070610bbe7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Install\choco">
+      <UniqueIdentifier>{d13c6984-9845-4a97-9343-da1a1e63dbbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ln.cpp">
@@ -240,6 +243,18 @@
     </None>
     <None Include="PackMedia.bat">
       <Filter>Install</Filter>
+    </None>
+    <None Include="choco\ln.nuspec">
+      <Filter>Install\choco</Filter>
+    </None>
+    <None Include="choco\NugetGen.bat">
+      <Filter>Install\choco</Filter>
+    </None>
+    <None Include="choco\tools\chocolateyInstall.ps1">
+      <Filter>Install\choco</Filter>
+    </None>
+    <None Include="choco\chocolateyInstall.ps1.template">
+      <Filter>Install\choco</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
