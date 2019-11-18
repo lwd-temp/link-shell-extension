@@ -10,15 +10,15 @@
     <description>
 Link Shell Extension (LSE) provides for the creation of Hardlinks, Junctions, Volume Mountpoints, Symbolic Links, a folder cloning process that utilises Hardlinks or Symbolic Links and a copy process taking care of Junctions, Symbolic Links, and Hardlinks. LSE, as its name implies is implemented as a Shell extension and is accessed from Windows Explorer, or similar file/folder managers.  The extension allows the user to select one or many files or folders, then using the mouse, complete the creation of the required Links - Hardlinks, Junctions or Symbolic Links or in the case of folders to create Clones consisting of Hard or Symbolic Links. LSE is supported on all Windows versions that support NTFS version 5.0 or later. Hardlinks, Junctions and Symbolic Links are NOT supported on FAT file systems, and nor is the Cloning and Smart Copy process supported on FAT file systems.
     </description>
-    <packageSourceUrl>https://schinagl.priv.at/nt/hardlinkshellext/HardLinkShellExt_X64.exe</packageSourceUrl>
+    <packageSourceUrl>https://gitlab.com/schinagl/link-shell-extension/tree/master/HardlinkExtension/install/choco</packageSourceUrl>
     <projectUrl>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html</projectUrl>
     <tags>explorer extension junction hardlink symboliclink symlink freeware admin</tags>
     <copyright>© 1999 - 2019 Hermann Schinagl</copyright>
-    <licenseUrl>http://schinagl.priv.at/nt/hardlinkshellext/license.txt</licenseUrl>
+    <licenseUrl>https://schinagl.priv.at/nt/hardlinkshellext/license.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://schinagl.priv.at/nt/hardlinkshellext/symboliclinkicon_10.png</iconUrl>
     <releaseNotes>
-[Changelog](http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#history)
+[Changelog](https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#history)
     </releaseNotes>
     <dependencies>
       <dependency id="vcredist2017" version="14.16.27033" />

@@ -9,18 +9,19 @@
     <summary>Advanced command line hardlink tool</summary>
     <description>
 The NTFS filesystem supports a lot of features like Hardlinks, Junctions Symbolic Links and Mount Points, which are sparsley supported by standard tools. This tool is kind of a NTFS Swiss Army Knife and can do lots of things, like create SmartCopies, which preserve the inner and outer Hardlink/Junction/SymbolicLink structure, does hardlink based incremental Backups and a lot of other things which can not be found anywhere.
-[FAQ](http://schinagl.priv.at/nt/ln/ln.html#faq)
-[Manual](http://schinagl.priv.at/nt/ln/ln.html#introduction)
+[FAQ](https://schinagl.priv.at/nt/ln/ln.html#faq)
+[Manual](https://schinagl.priv.at/nt/ln/ln.html#introduction)
     </description>
-    <packageSourceUrl>https://schinagl.priv.at/nt/ln/ln64.zip</packageSourceUrl>
-    <projectUrl>https://schinagl.priv.at/nt/ln/ln.thml</projectUrl>
-    <tags>hardlink cli freeware</tags>
+    <packageSourceUrl>https://gitlab.com/schinagl/link-shell-extension/tree/master/ln/choco</packageSourceUrl>
+    <projectUrl>https://schinagl.priv.at/nt/ln/ln.html</projectUrl>
+    <tags>hardlink cli junction symboliclink symlink freeware admin</tags>
     <copyright>© 1999 - 2019 Hermann Schinagl</copyright>
-    <licenseUrl>http://schinagl.priv.at/nt/ln/license.txt</licenseUrl>
+    <licenseUrl>https://schinagl.priv.at/nt/ln/license.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://schinagl.priv.at/nt/hardlinkshellext/hardlinkicon_10.png</iconUrl>
     <releaseNotes>
 #### Program
-* [Changelog](http://schinagl.priv.at/nt/ln/ln.html#history)
+* [Changelog](https://schinagl.priv.at/nt/ln/ln.html#history)
     </releaseNotes>
     <dependencies>
       <dependency id="vcredist2017" version="14.16.27033" />

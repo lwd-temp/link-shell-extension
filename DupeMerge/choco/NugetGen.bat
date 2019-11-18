@@ -14,6 +14,8 @@
 @%GSAR% chocolateyInstall.ps1.template -f -s##CHECKSUM32## -r%SHA256% tools\chocolateyInstall.ps1 >nul
 @call :genhash %ROOT%\Media\dupemerge64.zip
 @%GSAR% tools\chocolateyInstall.ps1 -s##CHECKSUM64## -r%SHA256% -o >nul
+set DUPEMERGE_VERSION=%DUPEMERGE_VERSION:.=%
+@%GSAR% tools\chocolateyInstall.ps1 -s##DUPEMERGE_VERSION## -r%DUPEMERGE_VERSION% -o >nul
 
 @REM Generate the packages
 @%CPACK% --outputdirectory %ROOT%\Media

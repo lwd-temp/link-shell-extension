@@ -1,8 +1,8 @@
 ﻿$packageName = 'ln'
-$url = 'https://schinagl.priv.at/nt/ln/ln.zip'
+$url = 'https://schinagl.priv.at/nt/ln/save/##LN_VERSION##/ln.zip'
 $checksum = '##CHECKSUM32##'
 $checksumType = 'sha256'
-$url64 = 'https://schinagl.priv.at/nt/ln/ln64.zip'
+$url64 = 'https://schinagl.priv.at/nt/ln/save/##LN_VERSION##/ln64.zip'
 $checksum64 = '##CHECKSUM64##'
 $checksumType64 = 'sha256'
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
