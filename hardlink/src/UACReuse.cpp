@@ -275,8 +275,16 @@ void UACHelper::WriteArgs(
   // so we need the current SID in symlink, because there we need to read the settings from current user
   wchar_t*  currentSid;
   bool bSidValid = GetCurrentSid(&currentSid);
-  fwprintf(m_UacArgs, L"%s\n", currentSid);
-  LocalFree(currentSid);
+  if (bSidValid)
+  {
+    fwprintf(m_UacArgs, L"%s\n", currentSid);
+    LocalFree(currentSid);
+  }
+  else
+  {
+    // Hopefully never get there
+    fwprintf(m_UacArgs, L"S-0-0-00-0000000000-0000000000-0000000000-0000\n", currentSid);
+  }
 }
 
 void UACHelper::SaveProgressbarPosition(
