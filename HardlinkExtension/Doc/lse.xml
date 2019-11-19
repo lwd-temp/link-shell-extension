@@ -2,24 +2,25 @@
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Link Shellextension</title>
-    <link>http://schinagl.priv.at/nt/hardlinkshellext/</link>
+    <link>https://schinagl.priv.at/nt/hardlinkshellext/</link>
     <description>News and announcements of Link Shellextension.</description>
     <language>en</language>
 
     <item>
       <title>LSE 3.931 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3930</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3930</link>
       <pubDate>Tue, 17 Nov 2019 20:00:15 +0100</pubDate>
       <description>
         LSE 3.931 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Link ShellExtension now maintains its <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#choco"> chocolatey package</a>.</li>
+          <li>Fixed crash when username was > 20 chars as non-admin during symbolic link drop.</li>
+          <li>Link ShellExtension now <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#choco">maintains</a> its  <a href="https://chocolatey.org/packages/LinkShellExtension/3.9.3.0">chocolatey package</a>.</li>
           <li>Link ShellExtension is public on <a href="https://gitlab.com/schinagl/link-shell-extension">gitlab</a>.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3931</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3931</guid>
     </item>
 
     <item>
