@@ -528,16 +528,19 @@ bool GetCurrentSid(LPWSTR* aSid)
       }
       else
       {
-        // The buffer was too small, so try again with returned buffer site
-        delete[] domainName;
-        delete[] userName;
-        userName = new TCHAR[cbUser];
-        domainName = new TCHAR[cbDomain];
-        bLookup = LookupAccountSid(NULL, pSid, userName, &cbUser, domainName, &cbDomain, &nu);
-        if (TRUE == bLookup)
+        // The buffer was too small, so try again with returned buffer size
+        if (ERROR_INSUFFICIENT_BUFFER == GetLastError())
         {
-          ConvertSidToStringSid(pSid, aSid);
-          RetVal = true;
+          delete[] domainName;
+          delete[] userName;
+          userName = new TCHAR[cbUser];
+          domainName = new TCHAR[cbDomain];
+          bLookup = LookupAccountSid(NULL, pSid, userName, &cbUser, domainName, &cbDomain, &nu);
+          if (TRUE == bLookup)
+          {
+            ConvertSidToStringSid(pSid, aSid);
+            RetVal = true;
+          }
         }
       }
       delete[] domainName;
