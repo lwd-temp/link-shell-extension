@@ -515,7 +515,7 @@ bool GetCurrentSid(LPWSTR* aSid)
       PSID pSid = ((PTOKEN_USER)buf)->User.Sid;
 
       // check user name for SID
-      const int bufSize = 5;
+      const int bufSize = 128;
       DWORD cbUser = bufSize, cbDomain = bufSize;
       TCHAR* userName = new TCHAR[bufSize];
       TCHAR* domainName = new TCHAR[bufSize];
@@ -540,6 +540,8 @@ bool GetCurrentSid(LPWSTR* aSid)
           RetVal = true;
         }
       }
+      delete[] domainName;
+      delete[] userName;
     }
     LocalFree(buf);
     CloseHandle(hTok);
