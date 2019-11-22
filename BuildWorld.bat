@@ -124,13 +124,14 @@ call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_
 @echo.
 pause
 
-REM Copy over certificate
+REM Copy over certificate & ftp access
 REM
 echo.
 echo Provide Certificate for signing
 echo.
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.pfx shared\certificate\schinagl.priv.at.pfx > nul
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.txt shared\certificate\schinagl.priv.at.txt > nul
+@echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\ftp_*.* bat
 
 REM Create installer
 REM

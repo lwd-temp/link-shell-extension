@@ -43,8 +43,9 @@
     <projectUrl>https://schinagl.priv.at/nt/dupemerge/dupemerge.html</projectUrl>
     <tags>cli ntfs data-integrity checksum dedupe freeware</tags>
     <copyright>© 1999 - 2019 Hermann Schinagl</copyright>
-    <licenseUrl>http://schinagl.priv.at/nt/dupemerge/license.txt</licenseUrl>
+    <licenseUrl>https://schinagl.priv.at/nt/dupemerge/license.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://schinagl.priv.at/nt/hardlinkshellext/hardlinkicon_10.png</iconUrl>
     <releaseNotes>
       #### Program
       * [Changelog](https://schinagl.priv.at/nt/dupemerge/dupemerge.html#history)
