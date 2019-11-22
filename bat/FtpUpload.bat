@@ -7,5 +7,5 @@
 
 @set FTP=%~dp0..\tools\ncftpput.exe
 
-@%FTP% -v -m -u %FTP_USERNAME% -p %FTP_PASSWORD%  %FTP_SITE% /html/schinagl/xd/%PROJECT_DIR% %FILE%
+@%FTP% -v -m -u %FTP_USERNAME% -p %FTP_PASSWORD%  %FTP_SITE% /html/schinagl/nt/%PROJECT_DIR% %FILE%
 popd
