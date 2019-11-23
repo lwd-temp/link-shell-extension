@@ -161,3 +161,11 @@ echo.
 pushd dupemerge
 call PackMedia.bat %MAJOR_LN_VERSION%%MINOR_LN_VERSION%%PATCH_LN_VERSION%%HOTFIX_LN_VERSION%
 popd
+
+REM media Upload
+REM
+echo ######
+echo Press key to continue to Media Upload or stop script here
+echo ######
+pause
+bat\MediaUpload.bat
