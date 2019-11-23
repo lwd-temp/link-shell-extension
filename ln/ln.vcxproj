@@ -304,6 +304,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <None Include="choco\ln.nuspec" />
+    <None Include="choco\ln.nuspec.template" />
     <None Include="choco\NugetGen.bat" />
     <None Include="choco\tools\chocolateyInstall.ps1" />
     <None Include="choco\chocolateyInstall.ps1.template" />
