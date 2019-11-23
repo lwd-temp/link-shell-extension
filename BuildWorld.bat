@@ -109,13 +109,13 @@ echo.
 
 REM Source index pdbs
 REM
-REM call bat\SourceIndex.bat
+call bat\SourceIndex.bat
 @del tools\git_source_index.exe
 @del tools\git_source_index_fetch.exe
 
 REM Upload to symbolserver
 REM
-REM call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_VERSION%%HOTFIX_VERSION%
+call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_VERSION%%HOTFIX_VERSION%
 @REM 
 @echo.
 @echo Please commit to GIT now for he symbol transaction-id
