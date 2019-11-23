@@ -6,7 +6,7 @@ REM
 set MAJOR_LSE_VERSION=3
 set MINOR_LSE_VERSION=9
 set PATCH_LSE_VERSION=3
-set HOTFIX_LSE_VERSION=0
+set HOTFIX_LSE_VERSION=1
 
 REM Set the version info for ln.exe
 REM
@@ -109,13 +109,13 @@ echo.
 
 REM Source index pdbs
 REM
-call bat\SourceIndex.bat
+REM call bat\SourceIndex.bat
 @del tools\git_source_index.exe
 @del tools\git_source_index_fetch.exe
 
 REM Upload to symbolserver
 REM
-call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
+REM call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_VERSION%%HOTFIX_VERSION%
 @REM 
 @echo.
 @echo Please commit to GIT now for he symbol transaction-id
@@ -166,6 +166,6 @@ REM media Upload
 REM
 echo ######
 echo Press key to continue to Media Upload or stop script here
-echo ######
+echo.
 pause
 bat\MediaUpload.bat

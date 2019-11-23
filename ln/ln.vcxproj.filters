@@ -256,6 +256,9 @@
     <None Include="choco\chocolateyInstall.ps1.template">
       <Filter>Install\choco</Filter>
     </None>
+    <None Include="choco\ln.nuspec.template">
+      <Filter>Install\choco</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Doc\ln.html">

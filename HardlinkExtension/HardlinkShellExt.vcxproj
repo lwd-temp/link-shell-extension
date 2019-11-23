@@ -307,6 +307,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <None Include="..\bat\CertificateSettings.bat" />
+    <None Include="..\bat\FtpUpload.bat" />
+    <None Include="..\bat\MediaUpload.bat" />
     <None Include="..\bat\Settings.bat" />
     <None Include="..\bat\SymServUpload.bat" />
     <None Include="..\bat\SymStoreDel.bat" />
@@ -361,9 +363,6 @@
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="HardlinkShellExt.dll.trust.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\bat\FilesToUpload.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -140,6 +140,12 @@
     <None Include="install\choco\linkshellextension.nuspec.template">
       <Filter>Install\choco</Filter>
     </None>
+    <None Include="..\bat\FtpUpload.bat">
+      <Filter>Bat</Filter>
+    </None>
+    <None Include="..\bat\MediaUpload.bat">
+      <Filter>Bat</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CopyHook.h">
@@ -196,10 +202,5 @@
     <CustomBuild Include="Doc\lse.xml">
       <Filter>Docu</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\bat\FilesToUpload.txt">
-      <Filter>Bat</Filter>
-    </Text>
   </ItemGroup>
 </Project>
