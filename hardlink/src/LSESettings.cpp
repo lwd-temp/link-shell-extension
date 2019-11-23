@@ -498,11 +498,11 @@ bool GetCurrentSid(LPWSTR* aSid)
 {
   int RetVal = false;
 
-  HANDLE hTok = NULL;
+  HANDLE hTok = INVALID_HANDLE_VALUE;
   if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hTok))
   {
     // get user info size
-    LPBYTE buf = NULL;
+    LPBYTE buf = nullptr;
     DWORD  dwSize = 0;
     GetTokenInformation(hTok, TokenUser, NULL, 0, &dwSize);
     if (dwSize)
@@ -515,15 +515,36 @@ bool GetCurrentSid(LPWSTR* aSid)
       PSID pSid = ((PTOKEN_USER)buf)->User.Sid;
 
       // check user name for SID
-      DWORD cbUser = 20, cbDomain = 20;
-      TCHAR user[20], domain[20];
+      const int bufSize = 128;
+      DWORD cbUser = bufSize, cbDomain = bufSize;
+      TCHAR* userName = new TCHAR[bufSize];
+      TCHAR* domainName = new TCHAR[bufSize];
       SID_NAME_USE nu;
-      BOOL bLookup = LookupAccountSid(NULL, pSid, user, &cbUser, domain, &cbDomain, &nu);
-      if (bLookup)
+      BOOL bLookup = LookupAccountSid(NULL, pSid, userName, &cbUser, domainName, &cbDomain, &nu);
+      if (TRUE == bLookup)
       {
         ConvertSidToStringSid(pSid, aSid);
         RetVal = true;
       }
+      else
+      {
+        // The buffer was too small, so try again with returned buffer size
+        if (ERROR_INSUFFICIENT_BUFFER == GetLastError())
+        {
+          delete[] domainName;
+          delete[] userName;
+          userName = new TCHAR[cbUser];
+          domainName = new TCHAR[cbDomain];
+          bLookup = LookupAccountSid(NULL, pSid, userName, &cbUser, domainName, &cbDomain, &nu);
+          if (TRUE == bLookup)
+          {
+            ConvertSidToStringSid(pSid, aSid);
+            RetVal = true;
+          }
+        }
+      }
+      delete[] domainName;
+      delete[] userName;
     }
     LocalFree(buf);
     CloseHandle(hTok);

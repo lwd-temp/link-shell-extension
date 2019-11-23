@@ -124,13 +124,14 @@ call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_
 @echo.
 pause
 
-REM Copy over certificate
+REM Copy over certificate & ftp access
 REM
 echo.
 echo Provide Certificate for signing
 echo.
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.pfx shared\certificate\schinagl.priv.at.pfx > nul
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.txt shared\certificate\schinagl.priv.at.txt > nul
+@echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\ftp_*.* bat
 
 REM Create installer
 REM
@@ -160,3 +161,11 @@ echo.
 pushd dupemerge
 call PackMedia.bat %MAJOR_LN_VERSION%%MINOR_LN_VERSION%%PATCH_LN_VERSION%%HOTFIX_LN_VERSION%
 popd
+
+REM media Upload
+REM
+echo ######
+echo Press key to continue to Media Upload or stop script here
+echo ######
+pause
+bat\MediaUpload.bat
