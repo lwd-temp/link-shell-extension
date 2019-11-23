@@ -1,7 +1,7 @@
 @%~d0
 
 @echo.
-@echo ######## Media Symbolserver upload ######## 
+@echo ######## Media upload ######## 
 
 @set ROOT=%~dp0..
 
@@ -16,7 +16,7 @@
 @call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\linkshellextension.html
 @call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\linkshellextension_fr.html
 @call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\lse.xml
-@copy %ROOT%\HardlinkExtension\Doc\linkshellextension.html %ROOT%\HardlinkExtension\Doc\hardlinkshellext.html
+@copy %ROOT%\HardlinkExtension\Doc\linkshellextension.html %ROOT%\HardlinkExtension\Doc\hardlinkshellext.html > nul
 @call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\hardlinkshellext.html
 
 @REM Upload ln.exe
