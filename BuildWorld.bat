@@ -109,13 +109,13 @@ echo.
 
 REM Source index pdbs
 REM
-REM call bat\SourceIndex.bat
+call bat\SourceIndex.bat
 @del tools\git_source_index.exe
 @del tools\git_source_index_fetch.exe
 
 REM Upload to symbolserver
 REM
-REM call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_VERSION%%HOTFIX_VERSION%
+call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_VERSION%%HOTFIX_VERSION%
 @REM 
 @echo.
 @echo Please commit to GIT now for he symbol transaction-id
@@ -124,17 +124,17 @@ REM call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_
 @echo.
 pause
 
-REM Copy over certificate & ftp access
-REM
+@REM Copy over certificate & ftp access
+@REM
 echo.
 echo Provide Certificate for signing
 echo.
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.pfx shared\certificate\schinagl.priv.at.pfx > nul
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.txt shared\certificate\schinagl.priv.at.txt > nul
-@echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\ftp_*.* bat
+@echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\ftp_*.* bat > nul
 
-REM Create installer
-REM
+@REM Create installer
+@REM
 echo.
 echo ######## Link Shell Extension ######## 
 echo.
@@ -144,8 +144,8 @@ call CodeSign.bat
 popd
 @echo F|@xcopy /y HardlinkExtension\Doc\linkshellextension.html HardlinkExtension\Doc\hardlinkshellext.html > nul
 
-REM Pack ln.exe
-REM
+@REM Pack ln.exe
+@REM
 echo.
 echo ######## ln.exe  ######## 
 echo.
@@ -153,8 +153,8 @@ pushd ln
 call PackMedia.bat %MAJOR_LN_VERSION%%MINOR_LN_VERSION%%PATCH_LN_VERSION%%HOTFIX_LN_VERSION%
 popd
 
-REM dupemerge.exe
-REM
+@REM dupemerge.exe
+@REM
 echo.
 echo ######## Dupemerge.exe ######## 
 echo.
@@ -162,10 +162,17 @@ pushd dupemerge
 call PackMedia.bat %MAJOR_LN_VERSION%%MINOR_LN_VERSION%%PATCH_LN_VERSION%%HOTFIX_LN_VERSION%
 popd
 
-REM media Upload
-REM
-echo ######
-echo Press key to continue to Media Upload or stop script here
+@REM Media Upload
+@REM
+echo.
+echo ###### Press key to continue to Media Upload or stop script here
 echo.
 pause
-bat\MediaUpload.bat
+call bat\MediaUpload.bat
+
+@REM Media GIT Commit
+@REM
+echo.
+echo ###### Once more commit to GIT for SHA256 hashes for choco
+echo.
+pause

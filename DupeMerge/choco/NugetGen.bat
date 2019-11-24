@@ -16,8 +16,8 @@
 @%GSAR% %~dp0chocolateyInstall.ps1.template -f -s##CHECKSUM32## -r%SHA256% %~dp0tools\chocolateyInstall.ps1 >nul
 @call :genhash %ROOT%\Media\dupemerge64.zip
 @%GSAR% %~dp0tools\chocolateyInstall.ps1 -s##CHECKSUM64## -r%SHA256% -o >nul
-set PACKAGE_NAME=dupemerge.%DUPEMERGE_VERSION%.nupkg
-set DUPEMERGE_VERSION=%DUPEMERGE_VERSION:.=%
+@set PACKAGE_NAME=dupemerge.%DUPEMERGE_VERSION%.nupkg
+@set DUPEMERGE_VERSION=%DUPEMERGE_VERSION:.=%
 @%GSAR% %~dp0tools\chocolateyInstall.ps1 -s##DUPEMERGE_VERSION## -r%DUPEMERGE_VERSION% -o >nul
 
 @REM Generate the packages
@@ -27,8 +27,8 @@ set DUPEMERGE_VERSION=%DUPEMERGE_VERSION:.=%
 @REM choco install dupemerge -source "'%cd%;https://chocolatey.org/api/v2/'"
 
 @REM Upload the media
-call %ROOT%\bat\FtpUpload.bat dupemerge/save/%DUPEMERGE_VERSION% %ROOT%/media/dupemerge.zip
-call %ROOT%\bat\FtpUpload.bat dupemerge/save/%DUPEMERGE_VERSION% %ROOT%/media/dupemerge64.zip
+@call %ROOT%\bat\FtpUpload.bat dupemerge/save/%DUPEMERGE_VERSION% %ROOT%/media/dupemerge.zip
+@call %ROOT%\bat\FtpUpload.bat dupemerge/save/%DUPEMERGE_VERSION% %ROOT%/media/dupemerge64.zip
 
 
 @REM Push package to chocolatey

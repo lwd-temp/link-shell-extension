@@ -16,8 +16,8 @@
 @%GSAR% %~dp0chocolateyInstall.ps1.template -f -s##CHECKSUM32## -r%SHA256% %~dp0tools\chocolateyInstall.ps1 >nul
 @call :genhash %ROOT%\Media\HardLinkShellExt_X64.exe
 @%GSAR% %~dp0tools\chocolateyInstall.ps1 -s##CHECKSUM64## -r%SHA256% -o >nul
-set PACKAGE_NAME=LinkShellExtension.%LSE_VERSION%.nupkg
-set LSE_VERSION=%LSE_VERSION:.=%
+@set PACKAGE_NAME=LinkShellExtension.%LSE_VERSION%.nupkg
+@set LSE_VERSION=%LSE_VERSION:.=%
 @%GSAR% %~dp0tools\chocolateyInstall.ps1 -s##LSE_VERSION## -r%LSE_VERSION% -o >nul
 
 @REM Generate the packages
@@ -27,8 +27,8 @@ set LSE_VERSION=%LSE_VERSION:.=%
 @REM choco install LinkShellExtension -source "'%cd%;https://chocolatey.org/api/v2/'"
 
 @REM Upload the media
-call %ROOT%\bat\FtpUpload.bat hardlinkshellext/save/%LSE_VERSION% %ROOT%/media/HardLinkShellExt_X64.exe
-call %ROOT%\bat\FtpUpload.bat hardlinkshellext/save/%LSE_VERSION% %ROOT%/media/HardLinkShellExt_win32.exe
+@call %ROOT%\bat\FtpUpload.bat hardlinkshellext/save/%LSE_VERSION% %ROOT%/media/HardLinkShellExt_X64.exe
+@call %ROOT%\bat\FtpUpload.bat hardlinkshellext/save/%LSE_VERSION% %ROOT%/media/HardLinkShellExt_win32.exe
 
 @REM Push package to chocolatey
 @choco push %ROOT%\media\%PACKAGE_NAME% --source https://push.chocolatey.org/

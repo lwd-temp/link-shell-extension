@@ -1,7 +1,7 @@
 @%~d0
 
 @echo.
-@echo ######## Media Symbolserver upload ######## 
+@echo ######## Media upload ######## 
 
 @set ROOT=%~dp0..
 
@@ -16,13 +16,13 @@
 @call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\linkshellextension.html
 @call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\linkshellextension_fr.html
 @call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\lse.xml
-@copy %ROOT%\HardlinkExtension\Doc\linkshellextension.html %ROOT%\HardlinkExtension\Doc\hardlinkshellext.html
+@copy %ROOT%\HardlinkExtension\Doc\linkshellextension.html %ROOT%\HardlinkExtension\Doc\hardlinkshellext.html > nul
 @call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\hardlinkshellext.html
 
 @REM Upload ln.exe
 @REM
 :No_LseUpLoad
-@goto No_LnUpLoad
+REM @goto No_LnUpLoad
 @call %ROOT%\ln\choco\NugetGen.bat
 
 @call %~dp0FtpUpload.bat ln %ROOT%\Media\ln.zip
@@ -32,7 +32,7 @@
 @REM Upload dupemerge.exe
 @REM
 :No_LnUpLoad
-@goto :EOF
+REM @goto :EOF
 @call %ROOT%\dupemerge\choco\NugetGen.bat
 
 @call %~dp0FtpUpload.bat dupemerge %ROOT%\Media\dupemerge.zip
