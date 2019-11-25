@@ -913,7 +913,7 @@ public:
 class	EnumHardlinkSiblingsGlue
 {
 	public:
-    EnumHardlinkSiblingsGlue() {};
+    EnumHardlinkSiblingsGlue() : m_RefCount{ 0 } {};
 		virtual void Print(wchar_t* pSiblingFileName) = 0;
 
 	protected:	
@@ -1224,7 +1224,10 @@ class FileInfoContainer
     // EnumHardlinkSiblings Related Methods
     struct EnumHardlinkSiblingsParams
     {
-      EnumHardlinkSiblingsParams() {};
+      EnumHardlinkSiblingsParams() : 
+        m_SrcPath {nullptr}, m_ExcludePath{nullptr},
+        m_pEnumHardlinkSiblingsGlue{ nullptr }, m_PathNameStatusList{ nullptr }, 
+        m_pContext{ nullptr }, m_Quiet{ false }, m_This{ nullptr } {};
 
 			PWCHAR						          m_SrcPath;
 			PWCHAR						          m_ExcludePath;
@@ -1281,8 +1284,8 @@ class FileInfoContainer
     // SmartCopy Related Methods
     struct SmartCopyParams
     {
-      SmartCopyParams() {};
-
+      SmartCopyParams() : m_Stats{ nullptr }, m_PathNameStatusList{ nullptr }, m_pContext{ nullptr }, m_This{ nullptr } {};
+    
       CopyStatistics*	      m_Stats;
       _PathNameStatusList*  m_PathNameStatusList;
       AsyncContext*         m_pContext;
@@ -1374,7 +1377,7 @@ class FileInfoContainer
     // Dispose Related Methods
     struct DisposeParams
     {
-      DisposeParams() {};
+      DisposeParams() : m_pContext { nullptr }, m_This{ nullptr }, m_pStats{ nullptr } {};
 
       AsyncContext*         m_pContext;
       FileInfoContainer*    m_This;
@@ -1556,7 +1559,7 @@ class FileInfoContainer
     // FindHardlink related methods
     struct FindHardLinkParams
     {
-      FindHardLinkParams() {};
+      FindHardLinkParams() : m_RefCount{ 0 }, m_Stats { nullptr }, m_PathNameStatusList{ nullptr }, m_pContext{ nullptr }, m_This{ nullptr }{};
 
       _ArgvList             m_SrcPathList;
       int		                m_RefCount;
@@ -2354,7 +2357,7 @@ class FileInfoContainer
 
     struct CheckDupesParams
     {
-      CheckDupesParams() {};
+      CheckDupesParams() : m_PathNameStatusList{ nullptr }, m_pStats{ nullptr }, m_pContext{ nullptr }, m_This{ nullptr }, m_pTlsStats{ nullptr } {};
 
       _Pathes::iterator	    m_Start;
       _Pathes::iterator	    m_End;
@@ -2457,7 +2460,7 @@ class FileInfoContainer
 
     struct DupeMergeParams
     {
-      DupeMergeParams() {};
+      DupeMergeParams() : m_DebugFlags{ 0 }, m_Stats{ nullptr }, m_PathNameStatusList{ nullptr }, m_pContext{ nullptr }, m_This{ nullptr } {};
 
       _ArgvList             m_SrcPathList;
       int                   m_DebugFlags;

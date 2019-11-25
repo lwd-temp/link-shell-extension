@@ -138,7 +138,7 @@ NtQueryProcessByModule(
           for (i = 0; i < (cbNeeded / sizeof(HMODULE)); ++i)
           {
             wchar_t szModName[MAX_PATH];
-            if (GetModuleFileNameExW(hProcess, hMods[i], szModName, sizeof(szModName)))
+            if (GetModuleFileNameExW(hProcess, hMods[i], szModName, _countof(szModName)))
             {
               for (const auto& ii : aModuleNames)
               {

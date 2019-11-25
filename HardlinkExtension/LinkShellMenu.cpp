@@ -998,8 +998,8 @@ CreateContextMenu(
 {
   // Check the number of entries to be added
 
-  wchar_t     DropTarget[HUGE_PATH];
-  wchar_t     Targets[HUGE_PATH];
+  wchar_t     DropTarget[HUGE_PATH] = { 0 };
+  wchar_t     Targets[HUGE_PATH] = { 0 };
   if (ERROR_SUCCESS != ReparseCanonicalize(m_DropTarget.m_Path, DropTarget, HUGE_PATH))
     return;
   if (ERROR_SUCCESS != ReparseCanonicalize(m_pTargets[0].m_Path, Targets, HUGE_PATH))
@@ -1489,7 +1489,7 @@ DropHardLink(
 	Target&		aTarget
 )
 {
-  WCHAR		dest[HUGE_PATH];
+  WCHAR		dest[HUGE_PATH] = { 0 };
 
 #if defined _DEBUG
   BOOL b = EnableTokenPrivilege(SE_BACKUP_NAME);
@@ -1612,7 +1612,7 @@ DropSymbolicLink(
   bool      aCopy
 )
 {
-  WCHAR		dest[HUGE_PATH];
+  WCHAR		dest[HUGE_PATH] = { 0 };
 
   bool Elevation = ElevationNeeded();
   PathAddBackslash(aTarget.m_Path);
@@ -1654,7 +1654,7 @@ DropSymbolicLink(
     }
 
     int SymbolicLinkRelation = gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE;
-    wchar_t target[HUGE_PATH];
+    wchar_t target[HUGE_PATH] = { 0 };
     if (aCopy)
     {
       ProbeSymbolicLink(m_pTargets[i].m_Path, target);
@@ -1731,8 +1731,8 @@ DropSymbolicLink(
     // Check if two directories should be linked together
     if (m_pTargets[i].m_Flags & (eDir | eJunction | eVolume | eMountPoint | eSymbolicLink))
     {
-      WCHAR	DestNoSymlink[HUGE_PATH];
-      WCHAR	SourceNoSymlink[HUGE_PATH];
+      WCHAR	DestNoSymlink[HUGE_PATH] = { 0 };
+      WCHAR	SourceNoSymlink[HUGE_PATH] = { 0 };
 
       // Check if recursive symbolic links are about to be created
       ReparseCanonicalize(target, SourceNoSymlink, HUGE_PATH);
@@ -1818,7 +1818,7 @@ DropJunction(
   bool      aCopy
 )
 {
-  WCHAR		dest[HUGE_PATH];
+  WCHAR		dest[HUGE_PATH] = { 0 };
 
   PathAddBackslash(aTarget.m_Path);
 
@@ -1840,10 +1840,10 @@ DropJunction(
   {
     if (m_pTargets[i].m_Flags & (eDir | eJunction | eVolume | eMountPoint | eSymbolicLink))
     {
-      WCHAR	DestNoJunction[HUGE_PATH];
-      WCHAR	SourceNoJunction[HUGE_PATH];
+      WCHAR	DestNoJunction[HUGE_PATH] = { 0 };
+      WCHAR	SourceNoJunction[HUGE_PATH] = { 0 };
 
-      wchar_t		dp[MAX_PATH];
+      wchar_t		dp[MAX_PATH] = { 0 };
       wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
 
       CreateFileName(
@@ -1856,7 +1856,7 @@ DropJunction(
         dest,
         IDS_STRING_eTopMenuOfOrderXP_1);
 
-      wchar_t target[HUGE_PATH];
+      wchar_t target[HUGE_PATH] = { 0 };
       if (aCopy)
         ProbeJunction(m_pTargets[i].m_Path, target);
       else
@@ -2009,7 +2009,7 @@ DropMountPoint(
   bool      aCopy
 )
 {
-  WCHAR		dest[HUGE_PATH];
+  WCHAR		dest[HUGE_PATH] = { 0 };
 
   PathAddBackslash(aTarget.m_Path);
 
@@ -2019,12 +2019,12 @@ DropMountPoint(
   // Either Mountpoint creation or Mountpoint Copy are let in
   if ((m_pTargets[0].m_Flags & eVolume) || (m_pTargets[0].m_Flags & eMountPoint && aCopy))
   {
-    WCHAR	DestNoJunction[HUGE_PATH];
-    WCHAR	SourceNoJunction[HUGE_PATH];
+    WCHAR	DestNoJunction[HUGE_PATH] = { 0 };
+    WCHAR	SourceNoJunction[HUGE_PATH] = { 0 };
 
     // Automagically create a directory with the volume name
     // of the source drive. This only happens if you drag
-    wchar_t		dp[MAX_PATH];
+    wchar_t		dp[MAX_PATH] = { 0 };
     wchar_t*	pFilename = DrivePrefix(m_pTargets[0].m_Path, dp);
 
     CreateFileName(
@@ -2038,7 +2038,7 @@ DropMountPoint(
       IDS_STRING_eTopMenuOfOrderXP_1);
 
 
-    wchar_t target[HUGE_PATH], volumeName[HUGE_PATH];
+    wchar_t target[HUGE_PATH] = { 0 }, volumeName[HUGE_PATH] = { 0 };
     if (aCopy)
       ProbeMountPoint(m_pTargets[0].m_Path, target, HUGE_PATH, volumeName);
     else
@@ -2641,10 +2641,10 @@ SmartXXX(
 
       // Create a filename in 'dest' according to the 
       // e.g 'Hardlink(n) of' syntax
-      wchar_t		dp[MAX_PATH];
+      wchar_t		dp[MAX_PATH] = { 0 };
       wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
 
-      WCHAR		dest[HUGE_PATH];
+      WCHAR		dest[HUGE_PATH] = { 0 };
 
       int rr = CreateFileName(
         g_hInstance,
@@ -3084,7 +3084,7 @@ DropReplaceJunction(
   DWORD RetVal = ERROR_SUCCESS;
   if (m_pTargets[0].m_Flags & (eDir | eJunction | eVolume | eMountPoint))
   {
-    WCHAR	SourceNoJunction[HUGE_PATH];
+    WCHAR	SourceNoJunction[HUGE_PATH] = { 0 };
 
     ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction, HUGE_PATH);
     PathAddBackslash(SourceNoJunction);
@@ -3209,7 +3209,7 @@ DropReplaceSymbolicLink(
   if (!m_nTargets)
     ClipboardToSelection(false);
 
-  WCHAR	PurePath[HUGE_PATH];
+  WCHAR	PurePath[HUGE_PATH] = { 0 };
 
   ReparseCanonicalize(m_pTargets[0].m_Path, PurePath, HUGE_PATH);
   PathAddBackslash(PurePath);
@@ -3288,7 +3288,7 @@ DropReplaceMountPoint(
 
   if (m_pTargets[0].m_Flags & eVolume)
   {
-    WCHAR	PurePath[HUGE_PATH];
+    WCHAR	PurePath[HUGE_PATH] = { 0 };
 
     ReparseCanonicalize(m_pTargets[0].m_Path, PurePath, HUGE_PATH);
     PathAddBackslash(PurePath);

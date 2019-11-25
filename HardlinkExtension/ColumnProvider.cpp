@@ -95,7 +95,7 @@ GetItemData(
     // Add Destination for directories
     if ( pscd->dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY )
     {
-      WCHAR Dest[HUGE_PATH];
+      WCHAR Dest[HUGE_PATH] = { 0 };
       if (ProbeJunction((PWCHAR)pscd->wszFile, Dest))
       {
         pvarData->vt = VT_BSTR;
@@ -113,7 +113,7 @@ GetItemData(
       else
       {
         // Add Destination for Volume mountpoints
-        WCHAR	VolumeName[HUGE_PATH];
+        WCHAR	VolumeName[HUGE_PATH] = { 0 };
         if (ProbeMountPoint((PWCHAR)pscd->wszFile, Dest, HUGE_PATH, VolumeName))
         {
           pvarData->vt = VT_BSTR;

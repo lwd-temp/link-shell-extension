@@ -1,25 +1,31 @@
-+d C:\data\cpp\hardlinks\ln\test\symlink\dest
-+d C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder0
-+d C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder0\Outer SymLink Target 1
-+d C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1
-+d C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder2
-+d C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder3
-+d C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder3\Inner SymLink Target 1
-+d C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder3\Inner SymLink Target 2
-+d C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder3\Inner SymLink Target 3
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder3\Inner SymLink Target 3\File B in Inner SymLink Target 3
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder3\Inner SymLink Target 3\File C in Inner SymLink Target 3
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder0\Outer SymLink Target 1\File A in Outer SymLink Target 1
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder0\Outer SymLink Target 1\File B in Outer SymLink Target 1
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder3\Inner SymLink Target 3\File A in Inner SymLink Target 3
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder3\Inner SymLink Target 2\File B in Inner SymLink Target 2
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder2\File B in Folder2
-*h C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder3\Hardlink to File B in Folder2 Ref 3
-*h C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder0\Hardlink to File B in Folder2 Ref 3
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder2\File C in Folder2
-*h C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder3\Hardlink to File C in Folder2 Ref 2
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder0\Outer SymLink Target 1\File C in Outer SymLink Target 1
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder0\File B in Folder0
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder3\Inner SymLink Target 1\File A in Inner SymLink Target 1
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder0\File A in Folder0
-+f C:\data\cpp\hardlinks\ln\test\symlink\dest\Folder1\Folder3\File C in Folder3
+{
+"Statistics":
+[
+{
+"Items":[
+{"op":"+","er":0,"ty":"d","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\dest"},
+{"op":"+","er":0,"ty":"d","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\dest\\F0"},
+{"op":"+","er":0,"ty":"d","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\dest\\F0\\F0_F1"},
+{"op":"+","er":0,"ty":"d","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\dest\\F0\\F0_F1\\F0_F1_F0"},
+{"op":"+","er":0,"ty":"d","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\dest\\F0\\F0_F1\\F0_F1_F1"},
+{"op":"+","er":0,"ty":"d","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\dest\\F1"},
+{"op":"+","er":0,"ty":"d","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\dest\\F1\\F1_F0"},
+{"op":"+","er":0,"ty":"d","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\dest\\F2"},
+{"op":"+","er":0,"ty":"f","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\dest\\F0\\F0.txt"},
+{"op":"+","er":0,"ty":"f","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\dest\\F0\\F0_F1\\F0_F1.txt"},
+{"op":"+","er":0,"ty":"f","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\dest\\F0\\F0_F1\\F0_F1_F1\\F0_F1_F1.txt"},
+{"op":"+","er":0,"ty":"j","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\dest\\F0\\F0_F1\\F0_F1_J2"},
+{"op":"?","er":1059,"ty":"r","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\source\\F1\\F1_F0\\F1_F0_J0"},
+{"op":"?","er":1059,"ty":"r","pa":"C:\\data\\cpp\\git\\hardlinks\\ln\\test\\json\\source\\F2\\F2_J0"}],
+"Summary":{
+"Total":{"Folder":8,"File":3,"Junction":1,"Mountpoint":0,"ReparseUnknown":2,"Symlink":0,"Byte":1392},
+"Copied":{"Folder":8,"File":3,"Junction":"-1","Mountpoint":"-1","ReparseUnknown":"-1","Symlink":"-1","Byte":1392},
+"Linked":{"Folder":"-1","File":0,"Junction":1,"Mountpoint":0,"ReparseUnknown":0,"Symlink":0,"Byte":0},
+"Skipped":{"Folder":0,"File":0,"Junction":0,"Mountpoint":0,"ReparseUnknown":0,"Symlink":0,"Byte":0},
+"Excluded":{"Folder":0,"File":0,"Junction":0,"Mountpoint":0,"ReparseUnknown":0,"Symlink":0,"Byte":0},
+"Failed":{"Folder":0,"File":0,"Junction":0,"Mountpoint":0,"ReparseUnknown":2,"Symlink":0,"Byte":0}},
+"Times":{
+"Overall":191267}
+}
+]
+}

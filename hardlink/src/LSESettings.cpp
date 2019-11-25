@@ -99,9 +99,8 @@ int LSESettings::_CopySettings(
     );
 
     aType = REG_SZ;
-    wchar_t JunctionIcon[MAX_PATH];
-    JunctionIcon[0] = 0x00;
-    DWORD JunctionLen;
+    wchar_t JunctionIcon[MAX_PATH] = { 0 };
+    DWORD JunctionLen{ 0 };
     RegQueryValueEx(
       RegKey,
       LSE_REGISTRY_JUNCTION_ICON,
@@ -111,9 +110,8 @@ int LSESettings::_CopySettings(
       &JunctionLen
     );
 
-    wchar_t HardlinkIcon[MAX_PATH];
-    HardlinkIcon[0] = 0x00;
-    DWORD HardlinkLen;
+    wchar_t HardlinkIcon[MAX_PATH] = { 0 };
+    DWORD HardlinkLen{ 0 };
     RegQueryValueEx(
       RegKey,
       LSE_REGISTRY_HARDLINK_ICON,
@@ -125,7 +123,7 @@ int LSESettings::_CopySettings(
 
     wchar_t SymbolicLinkIcon[MAX_PATH];
     SymbolicLinkIcon[0] = 0x00;
-    DWORD SymbolicLinkLen;
+    DWORD SymbolicLinkLen = 0;
     RegQueryValueEx(
       RegKey,
       LSE_REGISTRY_SYMBOLICLINK_ICON,
@@ -512,39 +510,42 @@ bool GetCurrentSid(LPWSTR* aSid)
     if (GetTokenInformation(hTok, TokenUser, buf, dwSize, &dwSize))
     {
       // here's the SID we've looked for
-      PSID pSid = ((PTOKEN_USER)buf)->User.Sid;
+      if (buf)
+      {
+        PSID pSid = ((PTOKEN_USER)buf)->User.Sid;
 
-      // check user name for SID
-      const int bufSize = 128;
-      DWORD cbUser = bufSize, cbDomain = bufSize;
-      TCHAR* userName = new TCHAR[bufSize];
-      TCHAR* domainName = new TCHAR[bufSize];
-      SID_NAME_USE nu;
-      BOOL bLookup = LookupAccountSid(NULL, pSid, userName, &cbUser, domainName, &cbDomain, &nu);
-      if (TRUE == bLookup)
-      {
-        ConvertSidToStringSid(pSid, aSid);
-        RetVal = true;
-      }
-      else
-      {
-        // The buffer was too small, so try again with returned buffer size
-        if (ERROR_INSUFFICIENT_BUFFER == GetLastError())
+        // check user name for SID
+        const int bufSize = 128;
+        DWORD cbUser = bufSize, cbDomain = bufSize;
+        TCHAR* userName = new TCHAR[bufSize];
+        TCHAR* domainName = new TCHAR[bufSize];
+        SID_NAME_USE nu;
+        BOOL bLookup = LookupAccountSid(NULL, pSid, userName, &cbUser, domainName, &cbDomain, &nu);
+        if (TRUE == bLookup)
         {
-          delete[] domainName;
-          delete[] userName;
-          userName = new TCHAR[cbUser];
-          domainName = new TCHAR[cbDomain];
-          bLookup = LookupAccountSid(NULL, pSid, userName, &cbUser, domainName, &cbDomain, &nu);
-          if (TRUE == bLookup)
+          ConvertSidToStringSid(pSid, aSid);
+          RetVal = true;
+        }
+        else
+        {
+          // The buffer was too small, so try again with returned buffer size
+          if (ERROR_INSUFFICIENT_BUFFER == GetLastError())
           {
-            ConvertSidToStringSid(pSid, aSid);
-            RetVal = true;
+            delete[] domainName;
+            delete[] userName;
+            userName = new TCHAR[cbUser];
+            domainName = new TCHAR[cbDomain];
+            bLookup = LookupAccountSid(NULL, pSid, userName, &cbUser, domainName, &cbDomain, &nu);
+            if (TRUE == bLookup)
+            {
+              ConvertSidToStringSid(pSid, aSid);
+              RetVal = true;
+            }
           }
         }
+        delete[] domainName;
+        delete[] userName;
       }
-      delete[] domainName;
-      delete[] userName;
     }
     LocalFree(buf);
     CloseHandle(hTok);
@@ -815,7 +816,7 @@ ReadFileSystems()
     {
       // Parse Filesystems from the registry
       TCHAR		seps[] = _T(";");
-      PTCHAR  NextToken;
+      PTCHAR  NextToken{ nullptr };
       PTCHAR	token = wcstok_s(SuppFs, seps, &NextToken);
       if (token)
         m_ThirdPartyFileSystems.push_back(token);

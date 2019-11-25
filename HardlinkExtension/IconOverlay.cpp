@@ -151,10 +151,7 @@ GetIconFromRegistry(
 
 		if (ERROR_SUCCESS == RetVal)
 		{
-
-			struct _stat	buf;
-			int	r = _wstat (pwszIconFile, &buf);
-			if (r < 0)
+			if (INVALID_FILE_ATTRIBUTES == GetFileAttributes(pwszIconFile))
 			{
 				GetModuleFileNameW(g_hInstance, pwszIconFile, aIconFileLength);
 				HTRACE (L"LSE::IconOverlayHardlink::GetOverlayInfo file '%s' not found:\n", pwszIconFile, errno);

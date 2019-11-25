@@ -45,8 +45,6 @@
     }
 
 
-typedef LONG	NTSTATUS;
-
 typedef enum _SYSTEMINFOCLASS {
 	SystemProcessListInformation = 0x0005
 } SYSTEMINFOCLASS;
