@@ -127,7 +127,7 @@
       <DelayLoadDLLs>uxtheme.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <StackReserveSize>15000000 </StackReserveSize>
+      <StackReserveSize>45000000 </StackReserveSize>
       <TargetMachine>MachineX86</TargetMachine>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -171,7 +171,7 @@
       <ModuleDefinitionFile>LinkShellExtension.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <StackReserveSize>15000000 </StackReserveSize>
+      <StackReserveSize>45000000 </StackReserveSize>
       <TargetMachine>MachineX64</TargetMachine>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <OptimizeReferences>true</OptimizeReferences>
@@ -215,7 +215,7 @@
       <DelayLoadDLLs>uxtheme.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <StackReserveSize>15000000 </StackReserveSize>
+      <StackReserveSize>45000000 </StackReserveSize>
       <StackCommitSize>
       </StackCommitSize>
       <TargetMachine>MachineX86</TargetMachine>
@@ -261,7 +261,7 @@
       <DelayLoadDLLs>uxtheme.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <StackReserveSize>15000000 </StackReserveSize>
+      <StackReserveSize>45000000 </StackReserveSize>
       <StackCommitSize>
       </StackCommitSize>
       <TargetMachine>MachineX64</TargetMachine>

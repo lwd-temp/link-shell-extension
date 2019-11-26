@@ -1562,7 +1562,7 @@ DropHardLink(
   {
     UACHelper uacHelper;
 
-    for (ULONG i = 0; i < m_nTargets; i++)
+    for (ULONG i = 0; i < m_nTargets; ++i)
     {
       CreateFileName(
         g_hInstance,
@@ -1819,24 +1819,21 @@ DropJunction(
 )
 {
   WCHAR		dest[HUGE_PATH] = { 0 };
-
   PathAddBackslash(aTarget.m_Path);
 
-  // Only get the data from the clipboard if we do not already
-  // have data in m_pTargets
+  // Only get the data from the clipboard if we do not already have data in m_pTargets
   // The idea behind is to support Pick/Drop in parallel to the
   // drag-drop handler, which does not put data onto the clipboard
   // but does it only via m_pTargets
   if (!m_nTargets)
     ClipboardToSelection(false);
 
-  // Under e.g c:\program Files (x86) it is not allowed to create
-  // junctions without UAC, so we have to fork in that case and
-  // have all variables prepared
+  // Under e.g c:\program Files (x86) it is not allowed to create junctions without UAC, 
+  // so we have to fork in that case and have all variables prepared
   bool CreateJunctionsViaHelperExe = false;
   UACHelper uacHelper;
 
-  for (ULONG i = 0; i < m_nTargets; i++)
+  for (ULONG i = 0; i < m_nTargets; ++i)
   {
     if (m_pTargets[i].m_Flags & (eDir | eJunction | eVolume | eMountPoint | eSymbolicLink))
     {
@@ -1940,10 +1937,10 @@ DropJunction(
   if (CreateJunctionsViaHelperExe)
 #endif
   {
-    DWORD r = uacHelper.Fork();
-    if (r)
+    DWORD RetVal = uacHelper.Fork();
+    if (RetVal)
     {
-      switch (r)
+      switch (RetVal)
       {
       case ERROR_ALREADY_EXISTS:
         ErrorCreating(dest,
@@ -1954,7 +1951,7 @@ DropJunction(
         break;
 
       default:
-        ErrorFromSystem(r);
+        ErrorFromSystem(RetVal);
         break;
       }
     }
@@ -2071,19 +2068,17 @@ DropMountPoint(
       if (ElevationNeeded())
 #endif
       {
-        UACHelper uacHelper;
-
         // Write the command file, which is read by the elevated process
+        UACHelper uacHelper;
         uacHelper.WriteArgs('m', target, dest);
-
-        uacHelper.Fork();
+        RetVal = uacHelper.Fork();
       }
       else
       {
         RetVal = CreateMountPoint(target, dest);
       }
 
-      if (S_OK != RetVal)
+      if (ERROR_SUCCESS != RetVal)
       {
         switch (RetVal)
         {
@@ -2107,12 +2102,7 @@ DropMountPoint(
       }
     }
   }
-  /*
-      // If files were selected aside directories or junction
-      // create hardlinks for the files
-      if (m_pTargets[i].m_Flags & eFile)
-        CreateHardlink(m_pTargets[i].m_Path, dest);
-  */
+  
 	return NOERROR;
 }
 
@@ -2125,9 +2115,9 @@ DeleteMountPoint(
   UACHelper uacHelper;
   bool RelayToSymlink = false;
 
-  for (UINT i = 0; i < m_nTargets; i++)
+  DWORD RetVal;
+  for (UINT i = 0; i < m_nTargets; ++i)
   {
-    DWORD RetVal;
     if (m_pTargets[i].m_Flags & eMountPoint)
     {
       // With Vista it is not allowed to unmount a drive
@@ -2142,7 +2132,7 @@ DeleteMountPoint(
       {
         RetVal = ::DeleteMountPoint(m_pTargets[i].m_Path);
         RemoveDirectory(m_pTargets[i].m_Path);
-        if (S_OK != RetVal)
+        if (ERROR_SUCCESS != RetVal)
           ErrorFromSystem(RetVal);
       }
     }
@@ -2154,8 +2144,8 @@ DeleteMountPoint(
   if (RelayToSymlink)
 #endif
   {
-    DWORD r = uacHelper.Fork();
-    if (r)
+    RetVal = uacHelper.Fork();
+    if (ERROR_SUCCESS != RetVal)
       ErrorFromSystem(GetLastError());
   }
   return NOERROR;
@@ -2923,7 +2913,7 @@ SmartXXX(
   #endif
 
           // Fork Process
-	  DWORD r = uacHelper.Fork();
+          DWORD r = uacHelper.Fork();
         }
         else
         {
@@ -3100,7 +3090,7 @@ DropReplaceJunction(
     {
       HTRACE(L"LSE::DropReplaceJunction: '%s' -> '%s', %ld\n", aTarget.m_Path, m_pTargets[0].m_Path, m_pTargets[0].m_Flags);
       RetVal = ReplaceJunction(aTarget.m_Path, m_pTargets[0].m_Path);
-      if (S_OK != RetVal)
+      if (ERROR_SUCCESS != RetVal)
         ErrorFromSystem(RetVal);
     }
 
@@ -3224,7 +3214,7 @@ DropReplaceSymbolicLink(
   else
   {
     DWORD RetVal = ReplaceSymbolicLink(aTarget.m_Path, m_pTargets[0].m_Path, false);
-    if (S_OK != RetVal)
+    if (ERROR_SUCCESS != RetVal)
       ErrorFromSystem(RetVal);
   }
   return NOERROR;
@@ -3250,9 +3240,8 @@ ReplaceMountPoint(
   if (ElevationNeeded() || (gLSESettings.GetFlags() & eBackupMode))
 #endif
   {
-    UACHelper uacHelper;
-
     // Write the command file, which is read by the elevated process
+    UACHelper uacHelper;
     uacHelper.WriteArgs('o', aSource, aTarget);
 
     RetVal = uacHelper.Fork();
@@ -3262,7 +3251,7 @@ ReplaceMountPoint(
     RetVal = ::DeleteMountPoint(aTarget);
     SetFileAttributes(aSource, MountPointAttributes & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
     RemoveDirectory(aTarget);
-    if (S_OK == RetVal)
+    if (ERROR_SUCCESS == RetVal)
     {
       CreateDirectory(aTarget, NULL);
       RetVal = CreateMountPoint(aSource, aTarget);
@@ -3304,9 +3293,8 @@ DropReplaceMountPoint(
     {
       HTRACE(L"LSE::DropReplaceMountPoint: '%s' -> '%s', %ld\n", aTarget.m_Path, m_pTargets[0].m_Path, m_pTargets[0].m_Flags);
 
-      DWORD RetVal;
-      RetVal = ReplaceMountPoint(aTarget.m_Path, m_pTargets[0].m_Path);
-      if (S_OK != RetVal)
+      DWORD RetVal = ReplaceMountPoint(aTarget.m_Path, m_pTargets[0].m_Path);
+      if (ERROR_SUCCESS != RetVal)
         ErrorFromSystem(RetVal);
     }
   }

@@ -2020,7 +2020,7 @@ CreateMountPoint (
   else
     return GetLastError();
 
-  return S_OK;
+  return ERROR_SUCCESS;
 }
 
 //--------------------------------------------------------------------
@@ -2369,7 +2369,10 @@ CopyStatistics():
   m_DupeTotalBytesToHash{ 0 },
   m_DupeCurrentBytesHashed{ 0 },
   m_DupeBytesSaved{ 0 },
-  m_State{ eVoid }
+  m_State{ eVoid },
+  m_StartTime{ 0 },
+  m_CopyTime{ 0 },
+  m_EndTime{ 0 }
 {
 	InitializeCriticalSection (&m_EventGuard);
 	InitializeCriticalSection (&m_StatGuard);
@@ -3286,7 +3289,7 @@ _FindHardLinkTraditionalRecursive(
   //
   // Since the depth of the recursion is the depth of the source tree
   // we need to make sure this depth is not exceeded, otherwise we get cryptic
-  // error messages from crashes and crash dump, which do not give any clue
+  // error messages from crashes and crash dumps, which do not give any clue
   //
   // Taken from
   // http://stackoverflow.com/questions/1740888/determining-stack-space-with-visual-studio
@@ -3316,7 +3319,7 @@ _FindHardLinkTraditionalRecursive(
   m_LastStackUsageFindHardlink = used_stack_size;
 
   // Make sure this number is the same as given under the linker section
-  // via /stack:number . It seems that 15Mb is enough for a path with 128
+  // via /stack:number . It seems that 45Mb is enough for a path with 128
   // levels aka 256 character for MAX_PATH
   if (used_stack_size + m_StackUsageFindHardlink > STACKSIZE)
     return ERROR_STACK_BUFFER_OVERRUN;
@@ -13218,7 +13221,7 @@ HardlinkDupes(
 
     if (!(m_Flags & eListOnly))
     {
-      int								r;
+      int r;
 
       // Search for an entry which has not changed since the last scan
       // This will be the reference file. Usually the first file
@@ -13233,7 +13236,7 @@ HardlinkDupes(
       }
 
       // Now hardlink all files found to the reference file
-      if (reference != end)
+      if (reference != end && pFileInfoReference)
       {
         WIN32_FILE_ATTRIBUTE_DATA	HardlinkAttributeOldest;
 

@@ -465,7 +465,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
         SendMessage(hEdit, EM_LIMITTEXT, (WPARAM)0, (LPARAM)0);
         ShowWindow(hEdit, SW_SHOWNORMAL);
 
-        wcscat(VolumeName, L"\r\n");
+        wcscat_s(VolumeName, MAX_PATH, L"\r\n");
         int ndx = GetWindowTextLength(hEdit);
         SendMessage(hEdit, EM_SETSEL, (WPARAM)ndx, (LPARAM)ndx);
         SendMessage(hEdit, EM_REPLACESEL, 0, (LPARAM)VolumeName);
@@ -638,7 +638,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
 
           do
           {
-            wcscat(LinkName, L"\r\n");
+            wcscat_s(LinkName, HUGE_PATH + 2, L"\r\n");
             int ndx = GetWindowTextLength(hEdit);
             SendMessage(hEdit, EM_SETSEL, (WPARAM)ndx, (LPARAM)ndx);
             SendMessage(hEdit, EM_REPLACESEL, 0, (LPARAM)LinkName);

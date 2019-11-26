@@ -127,7 +127,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <StackCommitSize>
       </StackCommitSize>
-      <StackReserveSize>15000000</StackReserveSize>
+      <StackReserveSize>45000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -168,7 +168,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <StackCommitSize>
       </StackCommitSize>
-      <StackReserveSize>15000000</StackReserveSize>
+      <StackReserveSize>45000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -207,7 +207,7 @@
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
       <StackCommitSize>
       </StackCommitSize>
-      <StackReserveSize>15000000</StackReserveSize>
+      <StackReserveSize>45000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -250,7 +250,7 @@
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
       <StackCommitSize>
       </StackCommitSize>
-      <StackReserveSize>15000000</StackReserveSize>
+      <StackReserveSize>45000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
