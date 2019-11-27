@@ -115,7 +115,7 @@ call bat\SourceIndex.bat
 
 REM Upload to symbolserver
 REM
-call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_VERSION%%HOTFIX_VERSION%
+call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_VERSION%%HOTFIX_LSE_VERSION%
 @REM 
 @echo.
 @echo Please commit to GIT now for he symbol transaction-id
