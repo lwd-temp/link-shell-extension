@@ -1918,16 +1918,6 @@ DropJunction(
           }
         }
       }
-
-    }
-
-    // If files were selected aside directories or junction
-    // create hardlinks for the files
-    if (m_pTargets[i].m_Flags & eFile)
-    {
-      int result = CreateHardlink(m_pTargets[i].m_Path, dest);
-      if (ERROR_SUCCESS != result)
-        ErrorFromSystem(result);
     }
   }
 
