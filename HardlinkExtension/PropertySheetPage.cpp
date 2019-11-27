@@ -431,19 +431,19 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
   struct _stat stat;
   _wstat(pReparseProperties->Source, &stat);
 
-  wchar_t Buffer[MAX_PATH];
+  wchar_t Buffer[MAX_PATH] = { 0 };
   if (stat.st_mode & _S_IFDIR)
   {
     // Check if the selected dir is a junction, so that we
     // we can provide junction delete menue
-    WCHAR Dest[HUGE_PATH];
+    WCHAR Dest[HUGE_PATH] = { 0 };
     if (ProbeJunction(pReparseProperties->Source, Dest))
     {
       ShowJunction(hwnd, Buffer, Dest, pReparseProperties);
     }
     else
     {
-      WCHAR VolumeName[MAX_PATH];
+      WCHAR VolumeName[MAX_PATH] = { 0 };
       if (ProbeMountPoint(pReparseProperties->Source, Dest, HUGE_PATH, VolumeName))
       {
         // Show Mountpoint
@@ -465,7 +465,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
         SendMessage(hEdit, EM_LIMITTEXT, (WPARAM)0, (LPARAM)0);
         ShowWindow(hEdit, SW_SHOWNORMAL);
 
-        wcscat(VolumeName, L"\r\n");
+        wcscat_s(VolumeName, MAX_PATH, L"\r\n");
         int ndx = GetWindowTextLength(hEdit);
         SendMessage(hEdit, EM_SETSEL, (WPARAM)ndx, (LPARAM)ndx);
         SendMessage(hEdit, EM_REPLACESEL, 0, (LPARAM)VolumeName);
@@ -506,7 +506,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
           // Since we can only resolve the symbolic link here, because pReparseProperties->Source
           // is a parameter of this function, the full path to the symbolic link has to be stored 
           // in the pReparseProperties struct
-          WCHAR SymlinkTarget[HUGE_PATH];
+          WCHAR SymlinkTarget[HUGE_PATH] = { 0 };
           int r = ResolveSymboliclink(pReparseProperties->Source, Dest, SymlinkTarget);
           pReparseProperties->SetTarget(Dest, REPARSE_POINT_SYMBOLICLINK);
 
@@ -534,7 +534,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
   }
   else
   {
-    wchar_t	Dest[MAX_PATH];
+    wchar_t	Dest[MAX_PATH] = { 0 };
     // Make sure we check for the Symbolic Link first, because a 
     // symbolic link might also point to a hardlink, but
     // we don't want to see the properties what the symbolic
@@ -638,7 +638,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
 
           do
           {
-            wcscat(LinkName, L"\r\n");
+            wcscat_s(LinkName, HUGE_PATH + 2, L"\r\n");
             int ndx = GetWindowTextLength(hEdit);
             SendMessage(hEdit, EM_SETSEL, (WPARAM)ndx, (LPARAM)ndx);
             SendMessage(hEdit, EM_REPLACESEL, 0, (LPARAM)LinkName);
@@ -705,7 +705,7 @@ BOOL OnApply ( HWND hwnd, PSHNOTIFY* phdr )
           ReplaceSymbolicLink(pReparseProperties->Source, Destination, true);
           
           // The absolute destination shall be stored so that Explore Target can take the value
-          WCHAR SymlinkTarget[HUGE_PATH];
+          WCHAR SymlinkTarget[HUGE_PATH] = { 0 };
           int r = ResolveSymboliclink(pReparseProperties->Source, Destination, SymlinkTarget);
 
           if (S_OK == r)

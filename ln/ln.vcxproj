@@ -116,7 +116,7 @@
       <Culture>0x0c07</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/dynamicbase /nxcompat /stack:15000000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/dynamicbase /nxcompat %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>netapi32.lib;shlwapi.lib;hardlink.lib;mpr.lib;ntdll.lib;user32.lib;tre.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -125,6 +125,9 @@
       <TargetMachine>MachineX86</TargetMachine>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <StackCommitSize>
+      </StackCommitSize>
+      <StackReserveSize>45000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -154,7 +157,7 @@
       <Culture>0x0c07</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/dynamicbase /nxcompat /stack:15000000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/dynamicbase /nxcompat %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>netapi32.lib;shlwapi.lib;hardlink.lib;mpr.lib;ntdll.lib;user32.lib;tre.lib;Shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -163,6 +166,9 @@
       <TargetMachine>MachineX64</TargetMachine>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <StackCommitSize>
+      </StackCommitSize>
+      <StackReserveSize>45000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -189,7 +195,7 @@
       <Culture>0x0c07</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/dynamicbase /nxcompat /stack:15000000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/dynamicbase /nxcompat %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>netapi32.lib;shlwapi.lib;hardlink.lib;mpr.lib;ntdll.lib;user32.lib;tre.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -199,6 +205,9 @@
       <OptimizeReferences>false</OptimizeReferences>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <StackCommitSize>
+      </StackCommitSize>
+      <StackReserveSize>45000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -229,7 +238,7 @@
       <Culture>0x0c07</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/dynamicbase /nxcompat /stack:15000000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/dynamicbase /nxcompat %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>netapi32.lib;shlwapi.lib;hardlink.lib;mpr.lib;ntdll.lib;user32.lib;tre.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -239,6 +248,9 @@
       <OptimizeReferences>false</OptimizeReferences>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <StackCommitSize>
+      </StackCommitSize>
+      <StackReserveSize>45000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -69,12 +69,12 @@
       <Culture>0x0c07</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions> /stack:15000000 %(AdditionalOptions)</AdditionalOptions>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <EntryPointSymbol>wmainCRTStartup</EntryPointSymbol>
       <TargetMachine>MachineX86</TargetMachine>
+      <StackReserveSize>45000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -97,11 +97,11 @@
       <Culture>0x0c07</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions> /stack:15000000 %(AdditionalOptions)</AdditionalOptions>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <SubSystem>Console</SubSystem>
       <EntryPointSymbol>wmainCRTStartup</EntryPointSymbol>
       <TargetMachine>MachineX86</TargetMachine>
+      <StackReserveSize>45000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

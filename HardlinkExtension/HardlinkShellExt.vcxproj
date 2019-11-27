@@ -119,7 +119,7 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/dynamicbase /nxcompat /stack:15000000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/dynamicbase /nxcompat %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>hardlink.lib;shlwapi.lib;user32.lib;Oleaut32.lib;ole32.lib;comctl32.lib;uxtheme.lib;mpr.lib;gdi32.lib;ntdll.lib;tre.lib;netapi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -127,7 +127,7 @@
       <DelayLoadDLLs>uxtheme.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <StackReserveSize>4194304</StackReserveSize>
+      <StackReserveSize>45000000 </StackReserveSize>
       <TargetMachine>MachineX86</TargetMachine>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -164,14 +164,14 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/dynamicbase /nxcompat /stack:15000000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/dynamicbase /nxcompat %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>hardlink.lib;shlwapi.lib;user32.lib;Oleaut32.lib;ole32.lib;comctl32.lib;uxtheme.lib;mpr.lib;gdi32.lib;ntdll.lib;netapi32.lib;tre.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>LinkShellExtension.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <StackReserveSize>4194304</StackReserveSize>
+      <StackReserveSize>45000000 </StackReserveSize>
       <TargetMachine>MachineX64</TargetMachine>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <OptimizeReferences>true</OptimizeReferences>
@@ -207,7 +207,7 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/dynamicbase /nxcompat /stack:15000000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/dynamicbase /nxcompat %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>hardlink.lib;shlwapi.lib;user32.lib;Oleaut32.lib;ole32.lib;comctl32.lib;uxtheme.lib;mpr.lib;gdi32.lib;ntdll.lib;tre.lib;netapi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -215,8 +215,9 @@
       <DelayLoadDLLs>uxtheme.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <StackReserveSize>16777216</StackReserveSize>
-      <StackCommitSize>16777216</StackCommitSize>
+      <StackReserveSize>45000000 </StackReserveSize>
+      <StackCommitSize>
+      </StackCommitSize>
       <TargetMachine>MachineX86</TargetMachine>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
       <OptimizeReferences>false</OptimizeReferences>
@@ -252,7 +253,7 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/dynamicbase /nxcompat /stack:30000000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/dynamicbase /nxcompat %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>hardlink.lib;shlwapi.lib;user32.lib;Oleaut32.lib;ole32.lib;comctl32.lib;uxtheme.lib;mpr.lib;gdi32.lib;ntdll.lib;tre.lib;netapi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -260,8 +261,9 @@
       <DelayLoadDLLs>uxtheme.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <StackReserveSize>16777216</StackReserveSize>
-      <StackCommitSize>16777216</StackCommitSize>
+      <StackReserveSize>45000000 </StackReserveSize>
+      <StackCommitSize>
+      </StackCommitSize>
       <TargetMachine>MachineX64</TargetMachine>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
       <OptimizeReferences>false</OptimizeReferences>

@@ -325,15 +325,15 @@ struct _ReadWriteHandShake
 };
 
 DWORD WINAPI WriteEncryptedStreamCallBack(
-  PBYTE   a_WriteData, 
-  PVOID   pvCallbackContext, 
-  PULONG  a_WriteLength
+  __in     PBYTE   a_WriteData,
+  __in     PVOID   pvCallbackContext,
+  __inout  PULONG  a_WriteLength
 );
 
 DWORD WINAPI ReadEncryptedStreamCallBack(
-  PBYTE a_ReadData, 
-  PVOID pvCallbackContext, 
-  ULONG a_ReadLength
+  __in     PBYTE a_ReadData,
+  __in     PVOID pvCallbackContext,
+  __in     ULONG a_ReadLength
 );
 
 int

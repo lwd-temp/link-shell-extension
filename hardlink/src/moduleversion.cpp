@@ -10,7 +10,7 @@
 #include "StdAfx.h"
 #include "ModuleVersion.h"
 
-CModuleVersion::CModuleVersion() : m_pVersionInfo(NULL)
+CModuleVersion::CModuleVersion() : m_pVersionInfo{ nullptr }
 {
 }
 

@@ -283,7 +283,7 @@ void UACHelper::WriteArgs(
   else
   {
     // Hopefully never get there
-    fwprintf(m_UacArgs, L"S-0-0-00-0000000000-0000000000-0000000000-0000\n", currentSid);
+    fwprintf(m_UacArgs, L"S-0-0-00-0000000000-0000000000-0000000000-0000\n");
   }
 }
 

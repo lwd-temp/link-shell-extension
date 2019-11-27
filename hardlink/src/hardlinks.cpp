@@ -503,7 +503,7 @@ CreateSymboliclink(
     // Check if the location, where symbolic link has to be created, is also a symbolic link
     // If yes *and* the target is on another drive, then resolve it.
     // Do this only for one level
-    wchar_t ReparseTarget[HUGE_PATH];
+    wchar_t ReparseTarget[HUGE_PATH] = { 0 };
     if (ProbeReparsePoint(lpSymlinkFileName, ReparseTarget))
     {
       bool VeryLongSymlinkFileNameTarget = IsVeryLongPath(ReparseTarget);
@@ -921,7 +921,7 @@ CreateJunction(
       // If a Junction already exists, we have to check if it
       // Points to the same location, and if yes then return 
       // ERROR_ALREADY_EXISTS
-      wchar_t Destination[HUGE_PATH];
+      wchar_t Destination[HUGE_PATH] = { 0 };
       BOOL AlreadyExists = ProbeJunction(LinkDirectory, Destination);
       if (AlreadyExists)
       {
@@ -1396,7 +1396,7 @@ IsFileSystemNtfs (
   // Check the filesystemtype
   WCHAR		FileSystemName[MAX_PATH];
   FileSystemName[0] = 0x00;
-  WCHAR		Drive[HUGE_PATH];
+  WCHAR		Drive[HUGE_PATH] = { 0 };
   UINT		DriveType = DRIVE_UNKNOWN;
 
   int SwitchPos = 0;
@@ -2020,7 +2020,7 @@ CreateMountPoint (
   else
     return GetLastError();
 
-  return S_OK;
+  return ERROR_SUCCESS;
 }
 
 //--------------------------------------------------------------------
@@ -2285,93 +2285,95 @@ bool CheckIfOnSameDrive(
 
 CopyStatistics::
 CopyStatistics():
-  m_DirectoryTotal(0),
-  m_DirectoryCreated(0),
-  m_DirectoryCreateSkipped(0),
-  m_DirectoryCreateFailed(0),
-  m_DirectoriesCleaned(0),
-  m_DirectoriesCleanedFailed(0),
-  m_DirectoriesExcluded(0),
+  m_DirectoryTotal{ 0 },
+  m_DirectoryCreated{ 0 },
+  m_DirectoryCreateSkipped{ 0 },
+  m_DirectoryCreateFailed{ 0 },
+  m_DirectoriesCleaned{ 0 },
+  m_DirectoriesCleanedFailed{ 0 },
+  m_DirectoriesExcluded{ 0 },
 
-  m_FilesTotal(0),
-  m_FilesCopied(0),
-  m_FilesCopySkipped(0),
-  m_FilesCopyFailed(0),
-  m_FilesLinked(0),
-  m_FilesLinkSkipped(0),
-  m_FilesLinkFailed(0),
-  m_FilesCleaned(0),
-  m_FilesCleanedFailed(0),
-  m_FilesExcluded(0),
-  m_FilesCropped(0),
-  m_FilesSelected(0),
+  m_FilesTotal{ 0 },
+  m_FilesCopied{ 0 },
+  m_FilesCopySkipped{ 0 },
+  m_FilesCopyFailed{ 0 },
+  m_FilesLinked{ 0 },
+  m_FilesLinkSkipped{ 0 },
+  m_FilesLinkFailed{ 0 },
+  m_FilesCleaned{ 0 },
+  m_FilesCleanedFailed{ 0 },
+  m_FilesExcluded{ 0 },
+  m_FilesCropped{ 0 },
+  m_FilesSelected{ 0 },
 
-  m_BytesTotal(0),
-  m_BytesCopied(0),
-  m_BytesCopySkippped(0),
-  m_BytesCopyFailed(0),
-  m_BytesLinked(0),
-  m_BytesLinkFailed(0),
-  m_BytesLinkSkipped(0),
-  m_BytesCleaned(0),
-  m_BytesExcluded(0),
+  m_BytesTotal{ 0 },
+  m_BytesCopied{ 0 },
+  m_BytesCopySkippped{ 0 },
+  m_BytesCopyFailed{ 0 },
+  m_BytesLinked{ 0 },
+  m_BytesLinkFailed{ 0 },
+  m_BytesLinkSkipped{ 0 },
+  m_BytesCleaned{ 0 },
+  m_BytesExcluded{ 0 },
 
 
-  m_SymlinksTotal(0),
-  m_SymlinksRestored(0),
-  m_SymlinksRestoreSkipped(0),
-  m_SymlinksRestoreFailed(0),
-  m_SymlinksCleaned(0),
-  m_SymlinksCleanedFailed(0),
-  m_SymlinksExcluded(0),
-  m_SymlinksCropped(0),
-  m_SymlinksDangling(0),
-  m_SymlinksSelected(0),
+  m_SymlinksTotal{ 0 },
+  m_SymlinksRestored{ 0 },
+  m_SymlinksRestoreSkipped{ 0 },
+  m_SymlinksRestoreFailed{ 0 },
+  m_SymlinksCleaned{ 0 },
+  m_SymlinksCleanedFailed{ 0 },
+  m_SymlinksExcluded{ 0 },
+  m_SymlinksCropped{ 0 },
+  m_SymlinksDangling{ 0 },
+  m_SymlinksSelected{ 0 },
 
-  m_JunctionsTotal(0),
-  m_JunctionsRestored(0),
-  m_JunctionsRestoreSkipped(0),
-  m_JunctionsRestoreFailed(0),
-  m_JunctionsCleaned(0),
-  m_JunctionsCleanedFailed(0),
-  m_JunctionsExcluded(0),
-  m_JunctionsCropped(0),
-  m_JunctionsDangling(0),
+  m_JunctionsTotal{ 0 },
+  m_JunctionsRestored{ 0 },
+  m_JunctionsRestoreSkipped{ 0 },
+  m_JunctionsRestoreFailed{ 0 },
+  m_JunctionsCleaned{ 0 },
+  m_JunctionsCleanedFailed{ 0 },
+  m_JunctionsExcluded{ 0 },
+  m_JunctionsCropped{ 0 },
+  m_JunctionsDangling{ 0 },
 
-  m_MountpointsTotal(0),
-  m_MountpointsRestored(0),
-  m_MountpointsRestoreSkipped(0),
-  m_MountpointsRestoreFailed(0),
-  m_MountpointsCleaned(0),
-  m_MountpointsCleanedFailed(0),
-  m_MountpointsExcluded(0),
-  m_MountpointsCropped(0),
-  m_MountpointsDangling(0),
+  m_MountpointsTotal{ 0 },
+  m_MountpointsRestored{ 0 },
+  m_MountpointsRestoreSkipped{ 0 },
+  m_MountpointsRestoreFailed{ 0 },
+  m_MountpointsCleaned{ 0 },
+  m_MountpointsCleanedFailed{ 0 },
+  m_MountpointsExcluded{ 0 },
+  m_MountpointsCropped{ 0 },
+  m_MountpointsDangling{ 0 },
 
-  m_ReparsePointTotal(0),
-  m_ReparsePointRestored(0),
-  m_ReparsePointRestoreSkipped(0),
-  m_ReparsePointRestoreFailed(0),
-  m_ReparsePointCleaned(0),
-  m_ReparsePointCleanedFailed(0),
-  m_ReparsePointExcluded(0),
-  m_ReparsePointCropped(0),
-  m_ReparsePointDangling(0),
+  m_ReparsePointTotal{ 0 },
+  m_ReparsePointRestored{ 0 },
+  m_ReparsePointRestoreSkipped{ 0 },
+  m_ReparsePointRestoreFailed{ 0 },
+  m_ReparsePointCleaned{ 0 },
+  m_ReparsePointCleanedFailed{ 0 },
+  m_ReparsePointExcluded{ 0 },
+  m_ReparsePointCropped{ 0 },
+  m_ReparsePointDangling{ 0 },
 
-  m_HardlinksTotal(0),
-  m_HardlinksTotalBytes(0),
+  m_HardlinksTotal{ 0 },
+  m_HardlinksTotalBytes{ 0 },
 
-  m_DupeGroupsTotal(0),
-  m_DupeGroupsNew(0),
-  m_DupeGroupsOld(0),
-  m_DupeFilesHardlinked(0),
-  m_DupeFilesHardlinkFailed(0),
-  m_DupeTotalBytesToHash(0),
-  m_DupeCurrentBytesHashed(0),
-  m_DupeBytesSaved(0)
-
+  m_DupeGroupsTotal{ 0 },
+  m_DupeGroupsNew{ 0 },
+  m_DupeGroupsOld{ 0 },
+  m_DupeFilesHardlinked{ 0 },
+  m_DupeFilesHardlinkFailed{ 0 },
+  m_DupeTotalBytesToHash{ 0 },
+  m_DupeCurrentBytesHashed{ 0 },
+  m_DupeBytesSaved{ 0 },
+  m_State{ eVoid },
+  m_StartTime{ 0 },
+  m_CopyTime{ 0 },
+  m_EndTime{ 0 }
 {
-  m_State = eVoid;
 	InitializeCriticalSection (&m_EventGuard);
 	InitializeCriticalSection (&m_StatGuard);
 }
@@ -2560,32 +2562,32 @@ operator+=(const CopyStatistics& stats)
 
 FileInfoContainer::
 FileInfoContainer() :
-  m_StackUsageFindHardlink(0),
-  m_LastStackUsageFindHardlink(0),
+  m_StackUsageFindHardlink{ 0 },
+  m_LastStackUsageFindHardlink{ 0 },
 
-  m_DateTimeTolerance(0),
-  m_HardlinkLimit(cMaxHardlinkLimit),
+  m_DateTimeTolerance{ 0 },
+  m_HardlinkLimit{ cMaxHardlinkLimit },
 
-  m_MaxRound(0),
+  m_MaxRound{ 0 },
 
-  m_pLookAsideFileInfoContainer(NULL),
-  m_CurDestPathIdx(-1),
-  m_CurSourcePathLen(0),
-  m_Prepared (false),
+  m_pLookAsideFileInfoContainer{ nullptr },
+  m_CurDestPathIdx{ -1 },
+  m_CurSourcePathLen{ 0 },
+  m_Prepared{ false },
 
-  m_Flags(eSmartCopy),
-  m_Flags2(0),
+  m_Flags{ eSmartCopy },
+  m_Flags2{ 0 },
 
 
-  m_CurrentSerialNumber(0),
-  m_OutputFile(NULL),
+  m_CurrentSerialNumber{ 0 },
+  m_OutputFile{ nullptr },
 
-  m_MinSize(0),
-  m_MaxSize(0x7fffffffffffffff),
+  m_MinSize{ 0 },
+  m_MaxSize{ 0x7fffffffffffffff },
 
-  m_pSecDesc(NULL),
-  m_JsonWriterState(false),
-  m_pJsonWriterState(&m_JsonWriterState)
+  m_pSecDesc{ nullptr },
+  m_JsonWriterState{false},
+  m_pJsonWriterState{ &m_JsonWriterState }
 {
 	GetSystemInfo (&m_SystemInfo);
 	m_SystemAllocGranularity = m_SystemInfo.dwAllocationGranularity;
@@ -3287,7 +3289,7 @@ _FindHardLinkTraditionalRecursive(
   //
   // Since the depth of the recursion is the depth of the source tree
   // we need to make sure this depth is not exceeded, otherwise we get cryptic
-  // error messages from crashes and crash dump, which do not give any clue
+  // error messages from crashes and crash dumps, which do not give any clue
   //
   // Taken from
   // http://stackoverflow.com/questions/1740888/determining-stack-space-with-visual-studio
@@ -3317,7 +3319,7 @@ _FindHardLinkTraditionalRecursive(
   m_LastStackUsageFindHardlink = used_stack_size;
 
   // Make sure this number is the same as given under the linker section
-  // via /stack:number . It seems that 15Mb is enough for a path with 128
+  // via /stack:number . It seems that 45Mb is enough for a path with 128
   // levels aka 256 character for MAX_PATH
   if (used_stack_size + m_StackUsageFindHardlink > STACKSIZE)
     return ERROR_STACK_BUFFER_OVERRUN;
@@ -3668,7 +3670,7 @@ _FindHardLinkTraditionalRecursive(
                   if ( PathIsRelative(&ReparseSrcTarget[PATH_PARSE_SWITCHOFF_SIZE]) )
                   {
                     // Resolve the symlinks
-                    WCHAR ReparseSrcTargetFullPath[HUGE_PATH];
+                    WCHAR ReparseSrcTargetFullPath[HUGE_PATH] = { 0 };
 
                     WCHAR ReparseFullPath[HUGE_PATH + PATH_PARSE_SWITCHOFF_SIZE];
                     wcscpy_s(ReparseFullPath, HUGE_PATH, &(*aCurrentReparsePointReferencePath)[PATH_PARSE_SWITCHOFF_SIZE]);
@@ -7509,7 +7511,7 @@ CopyDirectories(
   if (aBegin == aEnd)
     return RetVal;
 
-  WCHAR	DestPath[HUGE_PATH];
+  WCHAR	DestPath[HUGE_PATH] = { 0 };
   size_t  DestPathLen = 0;
 
   // Create all Directories. Sorting brings directories in such an order
@@ -8105,7 +8107,7 @@ CopyReparsePoints(
     {
       LastReparseSize = CurrentReparseSize;
       
-      WCHAR	DestPath[HUGE_PATH + PATH_PARSE_SWITCHOFF_SIZE];
+      WCHAR	DestPath[HUGE_PATH + PATH_PARSE_SWITCHOFF_SIZE] = { 0 };
       size_t  DestPathLen = 0;
 
       // Create all junctions. Sorting brings junctions in such an order
@@ -9411,7 +9413,7 @@ RestoreTimeStamps(
   if (aBegin == aEnd)
     return RetVal;
 
-  WCHAR	DestPath[HUGE_PATH];
+  WCHAR	DestPath[HUGE_PATH] = { 0 };
   size_t  DestPathLen = 0;
 
   // Directories have to be sorted in Descending Order now
@@ -9501,7 +9503,7 @@ CopyDirectoryAttributes(
   if (aBegin == aEnd)
     return RetVal;
 
-  WCHAR	DestPath[HUGE_PATH];
+  WCHAR	DestPath[HUGE_PATH] = { 0 };
   size_t  DestPathLen = 0;
 
   // Directories have to be sorted in Descending Order now
@@ -9597,8 +9599,8 @@ CloneFiles(
   if (aBegin == aEnd)
     return ERROR_SUCCESS;
 
-  wchar_t DestPath[HUGE_PATH + PATH_PARSE_SWITCHOFF_SIZE];
-  size_t  DestPathLen;
+  wchar_t DestPath[HUGE_PATH + PATH_PARSE_SWITCHOFF_SIZE] = { 0 };
+  size_t  DestPathLen{ 0 };
 
   // start with an invalid value
   int DestPathIdx = -1;
@@ -9905,8 +9907,8 @@ CleanItems(
   if (aBegin == aEnd)
     return ERROR_SUCCESS;
 
-  wchar_t DestPath[HUGE_PATH + PATH_PARSE_SWITCHOFF_SIZE];
-  size_t  DestPathLen;
+  wchar_t DestPath[HUGE_PATH + PATH_PARSE_SWITCHOFF_SIZE] = { 0 };
+  size_t  DestPathLen{ 0 };
 
   // start with an invalid value
   int DestPathIdx = -1;
@@ -9956,7 +9958,7 @@ CleanItems(
     // So we have to iterate through all possible source locations to make sure we
     // find the combination
     //
-    FileInfo* pLookAside;
+    FileInfo* pLookAside{ nullptr };
     int PathParseSwitchOffSize = PATH_PARSE_SWITCHOFF_SIZE;
     int CurrentDestPathIdx = 0;
     while ( CurrentDestPathIdx < m_AnchorPathCache.size() )
@@ -10680,9 +10682,8 @@ CheckSymbolicLinks()
   CopyStatistics	      aStats;
   Prepare(eSmartClone, &aStats);
 
-  WCHAR	DummyReparsePointTarget[HUGE_PATH];
-  _Pathes::iterator iter;
-  for (iter = m_Filenames.begin(); iter !=  m_HardlinkBegin; ++iter)
+  WCHAR	DummyReparsePointTarget[HUGE_PATH] = { 0 };
+  for (_Pathes::iterator iter = m_Filenames.begin(); iter !=  m_HardlinkBegin; ++iter)
   {
     FileInfo*	pF = *iter;
     if ( REPARSE_POINT_SYMBOLICLINK == ProbeReparsePoint(pF->m_FileName, DummyReparsePointTarget) )
@@ -12683,7 +12684,7 @@ Load(
   fwscanf_s(a_File, L"%x\n", &size);
   for (int i = 0; i < size; ++i)
   {
-    wchar_t LocalRootPathName[MAX_PATH];
+    wchar_t LocalRootPathName[MAX_PATH] = { 0 };
     DWORD VolumeSerialNumber;
     fwscanf_s (a_File, L"%[^\"]\"%x\n", LocalRootPathName, MAX_PATH, &VolumeSerialNumber);
 
@@ -13220,12 +13221,12 @@ HardlinkDupes(
 
     if (!(m_Flags & eListOnly))
     {
-      int								r;
+      int r;
 
       // Search for an entry which has not changed since the last scan
       // This will be the reference file. Usually the first file
       _Pathes::iterator	reference;
-      FileInfo* pFileInfoReference;
+      FileInfo* pFileInfoReference{ nullptr };
       for (reference = start; reference != end; ++reference)
       {
         pFileInfoReference = *reference;
@@ -13235,7 +13236,7 @@ HardlinkDupes(
       }
 
       // Now hardlink all files found to the reference file
-      if (reference != end)
+      if (reference != end && pFileInfoReference)
       {
         WIN32_FILE_ATTRIBUTE_DATA	HardlinkAttributeOldest;
 

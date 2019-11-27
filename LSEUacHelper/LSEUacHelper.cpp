@@ -425,7 +425,7 @@ DeloreanCopy(
 
     CopyStatistics	aStats;
     CopyStatistics	MirrorStats;
-    FILE* LogFile;
+    FILE* LogFile = { nullptr };
     
     Progressbar aProgressbar;
 
@@ -602,7 +602,7 @@ ReplaceJunction(
   int SecDescSize = 0;
 
   int iResult = ERROR_SUCCESS;
-  wchar_t  JunctionTmpName[HUGE_PATH];
+  wchar_t  JunctionTmpName[HUGE_PATH] = { 0 };
   
   DWORD JunctionAttributes = GetFileAttributes(arg0);
 
@@ -690,7 +690,7 @@ ReplaceSymbolicLink(
   int SecDescSize = 0;
 
   int iResult = ERROR_SUCCESS;
-  wchar_t  SymlinkTmpName[HUGE_PATH];
+  wchar_t  SymlinkTmpName[HUGE_PATH] = { 0 };
 
   DWORD SymLinkAttribute = GetFileAttributes(arg0);
 
@@ -743,7 +743,7 @@ ReplaceSymbolicLink(
     if ( PathIsRelative(&SymLinkTarget[PATH_PARSE_SWITCHOFF_SIZE]) )
     {
       // Resolve the symlinks
-      WCHAR ReparseSrcTargetFullPath[HUGE_PATH];
+      WCHAR ReparseSrcTargetFullPath[HUGE_PATH] = { 0 };
       ResolveSymboliclink(arg0, &SymLinkTarget[PATH_PARSE_SWITCHOFF_SIZE], ReparseSrcTargetFullPath);
       
       // Unfortunately PathCanonicalize() cuts out \\?\ so we have to prepend it
@@ -808,7 +808,7 @@ ReplaceMountPoint(
   int SecDescSize = 0;
 
   int iResult = ERROR_SUCCESS;
-  wchar_t  MountPointTmpName[HUGE_PATH];
+  wchar_t  MountPointTmpName[HUGE_PATH] = { 0 };
   DWORD MountpointAttributes = GetFileAttributes(arg0);
 
   if (gLSESettings.GetFlags() & eBackupMode)
@@ -1027,7 +1027,7 @@ extern "C"
         fwscanf_s(LseUacHelperArgs, L"%s", sid, _countof(sid));
         gLSESettings.Init(sid);
         // eat rest of line
-        fgetws(sid, HUGE_PATH, LseUacHelperArgs);
+        fgetws(sid, MAX_PATH, LseUacHelperArgs);
         int bb = gLSESettings.GetFlags();
 
 				switch (line[1])

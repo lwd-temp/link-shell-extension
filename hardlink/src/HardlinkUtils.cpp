@@ -75,7 +75,7 @@ WaitMultiple()
 
 // ProgressPrediction
 //
-ProgressPrediction::ProgressPrediction()
+ProgressPrediction::ProgressPrediction() : m_Increment{ 0 }
 {
 }
 
@@ -1985,8 +1985,8 @@ CopyEaRecords(
   __in     HANDLE                 a_NewFileHandle
 )
 {
-  PFILE_FULL_EA_INFORMATION pFileEaInfo;
-  DWORD dwFileEaInfoSize;
+  PFILE_FULL_EA_INFORMATION pFileEaInfo{ nullptr };
+  DWORD dwFileEaInfoSize{ 0 };
 
   int iResult = GetEaRecords(a_ExistingFileHandle, &pFileEaInfo, &dwFileEaInfoSize);
   if ((ERROR_SUCCESS == iResult) && dwFileEaInfoSize)
@@ -2744,8 +2744,8 @@ CopyFileEx3(
   __in_opt LPVOID                 lpData,
   __in_opt LPBOOL                 pbCancel,
   __in     DWORD                  dwCopyFlags,
-  __inout PSECURITY_DESCRIPTOR*   a_pSecDesc,
-  __in     int*                   a_SecDescSize,
+  __inout  PSECURITY_DESCRIPTOR*   a_pSecDesc,
+  __inout  int*                   a_SecDescSize,
   __in     __int64                a_DateTimeTolerance,
   __in     _PathNameStatusList*   a_PathNameStatusList
 )
@@ -2819,7 +2819,7 @@ CopyFileEx3(
   {
     // Try to retrieve basic attributes
     FILETIME64 ExistingCreationTime, ExistingLastAccessTime, ExistingLastWriteTime;
-    DWORD ExistingFileAttributes;
+    DWORD ExistingFileAttributes{ 0 };
     iResult = GetFileBasicInformation(
       ExistingFileHandle, 
       &ExistingFileAttributes, 
@@ -3633,7 +3633,7 @@ CopyAlternativeStreams(
           {
             // Retrieve the attributes for alternative streams. Sounds weird, but there
             // can be sparse alternative streams
-            DWORD ExistingFileAttributes;
+            DWORD ExistingFileAttributes{ 0 };
             FILETIME64 ExistingCreationTime, ExistingLastAccessTime, ExistingLastWriteTime;
             iResult = GetFileBasicInformation(
               ExistingFileHandle, 
