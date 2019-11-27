@@ -159,7 +159,7 @@ echo.
 echo ######## Dupemerge.exe ######## 
 echo.
 pushd dupemerge
-call PackMedia.bat %MAJOR_LN_VERSION%%MINOR_LN_VERSION%%PATCH_LN_VERSION%%HOTFIX_LN_VERSION%
+call PackMedia.bat %MAJOR_DUPEMERGE_VERSION%%MINOR_DUPEMERGE_VERSION%%PATCH_DUPEMERGE_VERSION%%HOTFIX_DUPEMERGE_VERSION%
 popd
 
 @REM Media Upload
