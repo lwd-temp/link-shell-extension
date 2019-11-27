@@ -20,7 +20,7 @@ REM
 set MAJOR_DUPEMERGE_VERSION=1
 set MINOR_DUPEMERGE_VERSION=1
 set PATCH_DUPEMERGE_VERSION=0
-set HOTFIX_DUPEMERGE_VERSION=2
+set HOTFIX_DUPEMERGE_VERSION=3
 
 @echo generating Version info
 REM Generate version info for Shell Extension
@@ -115,7 +115,7 @@ call bat\SourceIndex.bat
 
 REM Upload to symbolserver
 REM
-call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_VERSION%%HOTFIX_VERSION%
+call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_VERSION%%HOTFIX_LSE_VERSION%
 @REM 
 @echo.
 @echo Please commit to GIT now for he symbol transaction-id
@@ -159,7 +159,7 @@ echo.
 echo ######## Dupemerge.exe ######## 
 echo.
 pushd dupemerge
-call PackMedia.bat %MAJOR_LN_VERSION%%MINOR_LN_VERSION%%PATCH_LN_VERSION%%HOTFIX_LN_VERSION%
+call PackMedia.bat %MAJOR_DUPEMERGE_VERSION%%MINOR_DUPEMERGE_VERSION%%PATCH_DUPEMERGE_VERSION%%HOTFIX_DUPEMERGE_VERSION%
 popd
 
 @REM Media Upload

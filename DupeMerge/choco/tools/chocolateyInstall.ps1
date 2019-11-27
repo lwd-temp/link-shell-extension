@@ -1,9 +1,9 @@
 ﻿$packageName = 'dupemerge'
-$url = 'https://schinagl.priv.at/nt/dupemerge/dupemerge.zip'
-$checksum = 'fce525818990ff54f384459310807fcf44bd83604aa019bee83e6a9c384b05bb'
+$url = 'https://schinagl.priv.at/nt/dupemerge/save/1103/dupemerge.zip'
+$checksum = '89dd7d2046038a0634b9e3bcc866103e05741b76d64c553dd3cbb17170a3e389'
 $checksumType = 'sha256'
-$url64 = 'https://schinagl.priv.at/nt/dupemerge/dupemerge64.zip'
-$checksum64 = '7a27b83f4e34ecaff90f0b9f610570f04141f39a2cdebe3aa123d0fb38467a18'
+$url64 = 'https://schinagl.priv.at/nt/dupemerge/save/1103/dupemerge64.zip'
+$checksum64 = '2237c2e9cc11a6aded52b79151b6e1b19866a7fb564f82dbed65c046afa7492e'
 $checksumType64 = 'sha256'
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 

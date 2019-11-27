@@ -16,11 +16,6 @@ set BINDIR=%HARDLINKHOME%\Bin\win32\Release
 set ARCHIVE=ln%VERSION%.zip
 call :ZipBinary %MEDIA%\%ARCHIVE% %BINDIR%
 call :ZipAllFiles %MEDIA%\%ARCHIVE%
-%BINDIR%\ln.exe %MEDIA%\%ARCHIVE% %MEDIA%\ln.zip > nul
-
-set ARCHIVE=ln%VERSION%_dbg.zip
-call :ZipBinary %MEDIA%\%ARCHIVE% %BINDIR%
-call :ZipDebug %MEDIA%\%ARCHIVE% %BINDIR%
 
 REM x64
 REM
@@ -28,11 +23,6 @@ set BINDIR=%HARDLINKHOME%\Bin\x64\Release
 set ARCHIVE=ln64%VERSION%.zip
 call :ZipBinary %MEDIA%\%ARCHIVE% %BINDIR%
 call :ZipAllFiles %MEDIA%\%ARCHIVE%
-%BINDIR%\ln.exe %MEDIA%\%ARCHIVE% %MEDIA%\ln64.zip > nul
-
-set ARCHIVE=ln64%VERSION%_dbg.zip
-call :ZipBinary %MEDIA%\%ARCHIVE% %BINDIR%
-call :ZipDebug %MEDIA%\%ARCHIVE% %BINDIR%
 
 :ausmausraus
 
@@ -101,12 +91,6 @@ goto :EOF
 %ZIP% %1 Doc\blog\deloreandelete_sequence.png
 %ZIP% %1 Doc\Blog\lnbirthday.png
 %ZIP% %1 Doc\Blog\blog.html
-exit /b
-
-:ZipDebug
-pushd %2
-%ZIP% %1 "ln.pdb"
-popd
 exit /b
 
 :ZipBinary

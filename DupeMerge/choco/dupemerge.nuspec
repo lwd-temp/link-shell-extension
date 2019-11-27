@@ -3,7 +3,7 @@
   <metadata>
     <id>dupemerge</id>
     <title>Dupemerge</title>
-    <version>1.1.0.2</version>
+    <version>1.1.0.3</version>
     <authors>Hermann Schinagl</authors>
     <owners>Hermann Schinagl</owners>
     <summary>Command line file integrity and file deduplication utility</summary>
@@ -36,18 +36,19 @@
       Dupemerge has a dupe-find algorithm which is tuned to perform especially well on large server disks, where it has been tested in depth to guarantee data integrity.
 
       ### Documentation
-      * [FAQ](http://schinagl.priv.at/nt/dupemerge/dupemerge.html#faq)
-      * [Manual](http://schinagl.priv.at/nt/dupemerge/dupemerge.html#introduction)
+      * [FAQ](https://schinagl.priv.at/nt/dupemerge/dupemerge.html#faq)
+      * [Manual](https://schinagl.priv.at/nt/dupemerge/dupemerge.html#introduction)
     </description>
-    <packageSourceUrl>https://schinagl.priv.at/nt/dupemerge/dupemerge64.zip</packageSourceUrl>
+    <packageSourceUrl>https://gitlab.com/schinagl/link-shell-extension/tree/master/DupeMerge/choco</packageSourceUrl>
     <projectUrl>https://schinagl.priv.at/nt/dupemerge/dupemerge.html</projectUrl>
     <tags>cli ntfs data-integrity checksum dedupe freeware</tags>
     <copyright>© 1999 - 2019 Hermann Schinagl</copyright>
-    <licenseUrl>http://schinagl.priv.at/nt/dupemerge/license.txt</licenseUrl>
+    <licenseUrl>https://schinagl.priv.at/nt/dupemerge/license.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://schinagl.priv.at/nt/hardlinkshellext/hardlinkicon_10.png</iconUrl>
     <releaseNotes>
       #### Program
-      * [Changelog](http://schinagl.priv.at/nt/dupemerge/dupemerge.html#history)
+      * [Changelog](https://schinagl.priv.at/nt/dupemerge/dupemerge.html#history)
     </releaseNotes>
     <dependencies>
       <dependency id="vcredist2017" version="14.16.27033" />
