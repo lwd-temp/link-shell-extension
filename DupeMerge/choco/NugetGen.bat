@@ -7,18 +7,21 @@
 @set GSAR=%ROOT%\tools\gsar.exe
 @set CPACK=cpack.exe
 
-@REM Prepare the nuspec file
-@set /p DUPEMERGE_VERSION=<%~dp0DupeMerge_version.txt
-@%GSAR% %~dp0dupemerge.nuspec.template -f -s##DUPEMERGE_VERSION## -r%DUPEMERGE_VERSION% %~dp0dupemerge.nuspec
-
 @REM Prepare the hash sums for the installer
 @call :genhash %ROOT%\Media\dupemerge.zip
 @%GSAR% %~dp0chocolateyInstall.ps1.template -f -s##CHECKSUM32## -r%SHA256% %~dp0tools\chocolateyInstall.ps1 >nul
 @call :genhash %ROOT%\Media\dupemerge64.zip
 @%GSAR% %~dp0tools\chocolateyInstall.ps1 -s##CHECKSUM64## -r%SHA256% -o >nul
-@set PACKAGE_NAME=dupemerge.%DUPEMERGE_VERSION%.nupkg
-@set DUPEMERGE_VERSION=%DUPEMERGE_VERSION:.=%
-@%GSAR% %~dp0tools\chocolateyInstall.ps1 -s##DUPEMERGE_VERSION## -r%DUPEMERGE_VERSION% -o >nul
+
+@Rem Prepare the version number
+@set /p DUPEMERGE_VERSION=<%~dp0DupeMerge_version.txt
+@set UPLOAD_DIR=%DUPEMERGE_VERSION:.=%
+@set DUPEMERGE_VERSION=%UPLOAD_DIR:~0,1%.%UPLOAD_DIR:~1,3%
+@%GSAR% %~dp0tools\chocolateyInstall.ps1 -s##DUPEMERGE_VERSION## -r%UPLOAD_DIR% -o >nul
+
+@REM Prepare the nuspec file
+@%GSAR% %~dp0dupemerge.nuspec.template -f -s##DUPEMERGE_VERSION## -r%DUPEMERGE_VERSION% %~dp0dupemerge.nuspec
+
 
 @REM Generate the packages
 @%CPACK% %~dp0dupemerge.nuspec --outputdirectory %ROOT%\Media
@@ -27,12 +30,12 @@
 @REM choco install dupemerge -source "'%cd%;https://chocolatey.org/api/v2/'"
 
 @REM Upload the media
-@call %ROOT%\bat\FtpUpload.bat dupemerge/save/%DUPEMERGE_VERSION% %ROOT%/media/dupemerge.zip
-@call %ROOT%\bat\FtpUpload.bat dupemerge/save/%DUPEMERGE_VERSION% %ROOT%/media/dupemerge64.zip
+@call %ROOT%\bat\FtpUpload.bat dupemerge/save/%UPLOAD_DIR% %ROOT%/media/dupemerge.zip
+@call %ROOT%\bat\FtpUpload.bat dupemerge/save/%UPLOAD_DIR% %ROOT%/media/dupemerge64.zip
 
 
 @REM Push package to chocolatey
-@choco push %ROOT%\media\%PACKAGE_NAME% --source https://push.chocolatey.org/
+@choco push %ROOT%\media\dupemerge.%DUPEMERGE_VERSION%.nupkg --source https://push.chocolatey.org/
 
 @goto :EOF
 
