@@ -152,7 +152,11 @@ AddSample(
   if (apProgressOffset)
     currentPoints += apProgressOffset->m_Points;
 
-  return (int)(m_Increment ? currentPoints / m_Increment : 100);
+  __int64 percentage = 100;
+  // Check for overshoots
+  if (currentPoints <= m_Start.second.m_Points)
+    percentage = m_Increment ? currentPoints / m_Increment : 100;
+  return (int)percentage;
 }
 
 // Calculates the progress and returns and estimate how long progress will last.
@@ -203,7 +207,18 @@ TimeLeft(SYSTEMTIME& a_TimeLeft, Effort& a_Effort)
 
   CurrentFileTime.ul64DateTime >>= cAccuracy;
   __int64 dX = CurrentFileTime.ul64DateTime - m_Start.first.ul64DateTime;
-  __int64 dY = m_Start.second.m_Points - m_Values.back().second.m_Points;
+  
+  __int64 dY = 0;
+  if (m_Values.back().second.m_Points < 0)
+  {
+    // If we undershoot the x-axis, we have to raise the start 
+    m_Start.second.m_Points -= m_Values.back().second.m_Points;
+    dY = m_Start.second.m_Points;
+  }
+  else
+  {
+    dY = m_Start.second.m_Points - m_Values.back().second.m_Points;
+  }
   __int64 k;
   
   // If things are very fast, we might enter this in no time, thus ....

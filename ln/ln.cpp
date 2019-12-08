@@ -3752,6 +3752,17 @@ wmain(
     //
     if (AdsDev)
     {
+      Effort MaxProgress;
+      Effort Progress;
+
+      MaxProgress.m_Points = 3'408'913'456'736;
+      ProgressPrediction progressPrediction;
+      progressPrediction.SetStart(MaxProgress);
+
+      int Percentage = 0;
+      Progress.m_Points = 6'408'913'456'736;
+      int NewPercentage = progressPrediction.AddSample(Progress);
+
       Exit(ERR_ERROR);
     }
 
