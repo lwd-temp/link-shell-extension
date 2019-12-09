@@ -19,7 +19,7 @@ class AsyncContext
   protected:
     Effort            m_Progress;
     Effort            m_SnapShotValue;
-    CRITICAL_SECTION  m_DataLock;
+    mutex             m_DataLock;
     wchar_t           m_SourcePath[HUGE_PATH];
     wchar_t           m_DestPath[HUGE_PATH];
 
