@@ -4,9 +4,8 @@
 #include "AsyncContext.h"
 
 AsyncContext::
-AsyncContext() : m_WaitEvent{ 0 }, m_RetVal{ 0 }, m_Status{ eRunning }, m_SourcePath{ 0 }, m_DestPath{0}
+AsyncContext() : m_WaitEvent{ INVALID_HANDLE_VALUE }, m_RetVal{ 0 }, m_Status{ eRunning }, m_SourcePath{ 0 }, m_DestPath{0}
 {
-  InitializeCriticalSection(&m_DataLock);
   Reset();
 }
 
@@ -15,7 +14,7 @@ AsyncContext::
 PutStatus(wchar_t*  aSource, wchar_t* aDestination)
 {
   int RetVal;
-  EnterCriticalSection(&m_DataLock);
+  scoped_lock  lock(m_DataLock);
 #if 0
   // Use this, if you want to slow down the operation, thus showing the progress bar 
   Sleep(1);
@@ -38,8 +37,6 @@ PutStatus(wchar_t*  aSource, wchar_t* aDestination)
   else
     RetVal = ERROR_REQUEST_ABORTED;
 
-  LeaveCriticalSection(&m_DataLock);
-
   return RetVal;
 }
 
@@ -47,8 +44,7 @@ int
 AsyncContext::
 GetStatus(wchar_t*  aSourcePath, wchar_t*  aDestpath)
 {
-  // TODO: statt der CriticalSection einen atomic whcar verwenden, dann ist das alles viel übersichtlicher
-  EnterCriticalSection(&m_DataLock);
+  scoped_lock  lock(m_DataLock);
   if (m_SourcePath[0])
   {
     wcscpy_s(aSourcePath, HUGE_PATH, m_SourcePath);
@@ -60,7 +56,6 @@ GetStatus(wchar_t*  aSourcePath, wchar_t*  aDestpath)
     wcscpy_s(aDestpath, HUGE_PATH, m_DestPath);
     m_DestPath[0] = 0x00;
   }
-  LeaveCriticalSection(&m_DataLock);
   
   return true;
 }
@@ -94,8 +89,10 @@ AddProgress(
 AsyncContext::
 ~AsyncContext()
 {
-  DeleteCriticalSection(&m_DataLock);
-  if (m_WaitEvent)
+  if (INVALID_HANDLE_VALUE != m_WaitEvent)
+  {
     CloseHandle(m_WaitEvent);
+    m_WaitEvent = INVALID_HANDLE_VALUE;
+  }
 }
 

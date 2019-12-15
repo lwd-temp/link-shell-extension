@@ -489,7 +489,7 @@ LnSmartXXX(
       iter->ArgvDest = aDestination.Argv;
 
   AsyncContext    Context;
-  AsyncContext*    pContext = NULL;
+  AsyncContext*    pContext = nullptr;
 
   if (gProgress)
     pContext = &Context;
@@ -521,15 +521,13 @@ LnSmartXXX(
 
 	GetLocalTime(&aStats.m_CopyTime);
 
-  // #define SIM_CONTEXT
-#if defined SIM_CONTEXT
-// __int64 MaxProgress = 123456789012342;
- __int64 MaxProgress = 123456789;
-// __int64 MaxProgress = 123456;
-#else
   wchar_t ModeLiteral[MAX_PATH];
   Effort MaxProgress;
   FileList.Prepare(aMode, &aStats, &MaxProgress);
+
+  // Since context was used during enumeration, reset it
+  if (pContext)
+    Context.Reset();
   switch (aMode)
   {
     case FileInfoContainer::eSmartCopy:
@@ -550,7 +548,6 @@ LnSmartXXX(
     break;
   
   }
-#endif
 
   // Print progress if async
   // 
@@ -558,33 +555,18 @@ LnSmartXXX(
   {
     wprintf (L"\n%s ...      0%%, Items              , Time left:         ", ModeLiteral);
 
-    Context.Reset();
     ProgressPrediction progressPrediction;
     progressPrediction.SetStart(MaxProgress);
     int Percentage = 0;
 
-#if defined SIM_CONTEXT
-    __int64 SimContext = 0;
-    while (1)
-    {
-      SimContext += 23456;
-      int NewPercentage = (int)(SimContext / Increment);
-#else
     int UpdCnt = gUpdateIntervall;
     while (!Context.Wait(250))
     {
       int NewPercentage = progressPrediction.AddSample(Context.GetProgress());
-#endif
       if (NewPercentage != Percentage)
       {
         Percentage = NewPercentage;
         PrintProgress(Percentage, progressPrediction);
-
-#if defined SIM_CONTEXT
-        Sleep (250);
-        if (100 < Percentage)
-          break;
-#endif
       }
       if (!--UpdCnt)
       {
@@ -863,6 +845,7 @@ void _Mirror(
     MirrorContext.Reset();
   }
 
+  // Once cleaning is done start the mirror process
   MirrorList.SetLookAsideContainer(&CloneList);
   MirrorList.SmartMirror(&MirrorStatistics, &PathNameStatusList, pMirrorContext);
 

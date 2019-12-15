@@ -31,7 +31,6 @@
 #include <atomic>
 #include <mutex>
 
-using namespace std;
 
 #include <conio.h>
 
@@ -48,6 +47,7 @@ using namespace std;
 
 #include <WinSock.h>
 #pragma comment(lib, "wsock32.lib")
+using namespace std;
 
 // regular expression parser
 #include <..\..\shared\tre-0.8.0\lib\regex.h>
