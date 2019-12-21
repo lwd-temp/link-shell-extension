@@ -140,9 +140,8 @@ AddSample(
   FILETIME64    CurrentTime;
   SystemTimeToFileTime(&ct, &CurrentTime.FileTime);
 
-  // Also offset the time to m_Start and To stay in the range of __int64 in belows calculation, we shift 
-  // by 18bit which is a factor of 262144 and brings us to an accuracy of ~1/4 a second because FILETIME is
-  // in 100ns
+  // Also offset the time to m_Start and To stay in the range of __int64 in belows calculation, we shift by 18bit 
+  // which is a factor of 262144 and brings us to an accuracy of ~1/4 a second because FILETIME is in 100ns
   sample.first.ul64DateTime = CurrentTime.ul64DateTime >> cAccuracy;
   sample.first.ul64DateTime -= m_Start.first.ul64DateTime;
 

@@ -9938,15 +9938,37 @@ CleanItems(
   {
     FileInfo*	pF = *iter;
 
-    // Check whether we have to go async
+    // When we are async we shall provide a proper progress increment
     if (apContext)
     {
-      // Increment the progress
-      apContext->AddProgress(1, 1, 1);
+      int progressIncrement = 0;
+      switch (aItemType)
+      {
+        case FILE_ATTRIBUTE_NORMAL:
+        {
+          progressIncrement = eFileWeight;
+          break;
+        }
+
+        case FILE_ATTRIBUTE_REPARSE_POINT:
+        {
+          progressIncrement = eReparseWeight;
+          break;
+        }
+        case FILE_ATTRIBUTE_DIRECTORY:
+        {
+          progressIncrement = eDirectoryWeight;
+          break;
+        }
+      }
+
+      // We found it on the LookasideContainer, so don't do anything except counting the progress properly
+      apContext->AddProgress(progressIncrement, 1, 1);
     }
 
 
-    // With CleanItems we assume, that there the Destpath has a different meaning
+
+    // With CleanItems we assume that the Destpath has a different meaning
     // than with the other SmartXXX function: If only one source is given during 
     // --delorean, then we are sure we only have one Destpath and all items have 
     // just the one and only DestPathIdx in pF->m_DespathIdx, because they were all
@@ -10075,8 +10097,7 @@ CleanItems(
             BOOL RemovedDirectory = RemoveDirectory(pF->m_FileName);
             if (!RemovedDirectory)
             {
-              // There might be files which have flags set so that they
-              // can't be deleted
+              // There might be files which have flags set so that they can't be deleted
               SetFileAttributes(pF->m_FileName, FILE_ATTRIBUTE_NORMAL);
 
               // Lets give it one more try with fixed attributes
@@ -10410,6 +10431,58 @@ Prepare(
   return aEffort ? EstimateEffort(aMode, aEffort) : 0;
 }
 
+// Estimate effort for hardlink groups
+void
+FileInfoContainer::
+EstimateHardlinkGroupEffort(
+  _Pathes::iterator&	a_Begin,
+  _Pathes::iterator&	a_End,
+  Effort* a_Effort
+)
+{
+  // Check if there are hardlinks at all
+  if (a_Begin != a_End)
+  {
+    // Smart Copy overall amount calculation
+    _Pathes::iterator	iter = a_Begin;
+    _Pathes::iterator	last = a_Begin;
+
+    // Go through all files and only the size of the first sibbling
+    // and for all sibblings just add eHardlinkWeight
+    while (++iter != a_End)
+    {
+      if ((*iter)->m_FileIndex.ul64 != (*last)->m_FileIndex.ul64 || (*iter)->m_DiskIndex != (*last)->m_DiskIndex)
+      {
+        // border of set
+        auto nSiblings = distance(last, iter);
+        a_Effort->m_Items += nSiblings;
+
+        // With size we calculate hardlinks as 1 and count one sibling with full size
+        a_Effort->m_Size += nSiblings - 1;
+        a_Effort->m_Size += (*last)->m_FileSize.ul64;
+
+        // During calculation hardlinks are a bit heavier than just the size
+        a_Effort->m_Points += (nSiblings - 1) * eHardlinkWeight;
+        a_Effort->m_Points += (*last)->m_FileSize.ul64;
+
+        last = iter;
+      }
+    }
+
+    // Last set
+    auto nSiblings = distance(last, iter);
+    a_Effort->m_Items += nSiblings;
+
+    // With size we calculate hardlinks as 1 and count one sibling with full size
+    a_Effort->m_Size += nSiblings - 1;
+    a_Effort->m_Size += (*last)->m_FileSize.ul64;
+
+    // During calculation hardlinks are a bit heavier than just the size
+    a_Effort->m_Points += (nSiblings - 1) * eHardlinkWeight;
+    a_Effort->m_Points += (*last)->m_FileSize.ul64;
+  }
+}
+
 // Estimate effort for the operations on containers
 //
 int
@@ -10434,47 +10507,7 @@ EstimateEffort(
       auto points = aEffort->m_Points.load();
       HTRACE(L"Effort CM nDirectories: %I64d, %I64d\n", nDirectories, points);
 
-      // Check if there are hardlinks at all
-      if (m_HardlinkBegin != m_DirectoryBegin)
-      {
-        // Smart Copy overall amount calculation
-        _Pathes::iterator	iter = m_HardlinkBegin;
-        _Pathes::iterator	last = m_HardlinkBegin;
-
-        // Go through all files and only the size of the first sibbling
-        // and for all sibblings just add eHardlinkWeight
-        while (++iter != m_DirectoryBegin)
-        {
-          if ((*iter)->m_FileIndex.ul64 != (*last)->m_FileIndex.ul64 || (*iter)->m_DiskIndex != (*last)->m_DiskIndex)
-          {
-            // border of set
-            auto nSiblings = distance(last, iter);
-            aEffort->m_Items += nSiblings;
-
-            // With size we calculate hardlinks as 1 and count one sibling with full size
-            aEffort->m_Size += nSiblings - 1;
-            aEffort->m_Size += (*last)->m_FileSize.ul64;
-
-            // During calculation hardlinks are a bit heavier than just the size
-            aEffort->m_Points += (nSiblings - 1) * eHardlinkWeight;
-            aEffort->m_Points += (*last)->m_FileSize.ul64;
-
-            last = iter;
-          }
-        }
-
-        // Last set
-        auto nSiblings = distance(last, iter);
-        aEffort->m_Items += nSiblings;
-
-        // With size we calculate hardlinks as 1 and count one sibling with full size
-        aEffort->m_Size += nSiblings - 1;
-        aEffort->m_Size += (*last)->m_FileSize.ul64;
-
-        // During calculation hardlinks are a bit heavier than just the size
-        aEffort->m_Points += (nSiblings - 1) * eHardlinkWeight;
-        aEffort->m_Points += (*last)->m_FileSize.ul64;
-      }
+      EstimateHardlinkGroupEffort(m_HardlinkBegin, m_DirectoryBegin, aEffort);
       HTRACE(L"Effort CM nFiles: %I64d, %I64d\n", aEffort->m_Items - nDirectories, aEffort->m_Points - points);
 
       // Add effort for Reparse Points
@@ -10513,22 +10546,27 @@ EstimateEffort(
 
     case FileInfoContainer::eSmartClean:
     {
-      // Smart Clean overall amount calculation. The weight on all operations is 1
+      // Smart Clean overall amount calculation.
+      // Files & Hardlinks
+      auto nFiles = distance(m_HardlinkBegin, m_DirectoryBegin);
+      aEffort->m_Points = nFiles * eFileWeight;
+      for (auto fileEntry = m_HardlinkBegin; fileEntry != m_DirectoryBegin; ++fileEntry)
+        aEffort->m_Size += (*fileEntry)->m_FileSize.ul64;
+      aEffort->m_Items = nFiles;
+      HTRACE(L"Effort CL timestamps nFiles: %I64d\n", nFiles);
 
-      // Add effort for Files
-      auto MaxPoints = distance(m_HardlinkBegin, m_DirectoryBegin);
-      HTRACE(L"Effort CL timestamps nFiles: %I64d\n", MaxPoints);
-
-      // Add effort for Reparsepoints
+      // Reparsepoints
       auto nReparsePoints = distance(m_Filenames.begin(), m_HardlinkBegin);
-      MaxPoints += nReparsePoints;
+      aEffort->m_Points += nReparsePoints * eReparseWeight;
+      aEffort->m_Size++;
+      aEffort->m_Items += nReparsePoints;
       HTRACE(L"Effort CL timestamps nReparsePoints: %I64d\n", nReparsePoints);
 
-      // Add effort for Directories
+      // Directories
       auto nDirectories = distance(m_DirectoryBegin, m_Filenames.end());
-      aEffort->m_Items = MaxPoints + nDirectories;
-      aEffort->m_Size = MaxPoints + nDirectories;
-      aEffort->m_Points = MaxPoints + nDirectories * eTimeStampWeight;
+      aEffort->m_Points += nDirectories * eDirectoryWeight;
+      aEffort->m_Size++;
+      aEffort->m_Items += nDirectories;
       HTRACE(L"Effort CL timestamps nDirectories: %I64d\n", nDirectories);
     }
     break;

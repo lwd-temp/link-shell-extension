@@ -787,30 +787,33 @@ void _Mirror(
 )
 {
   // Sequentially run Clean and Mirror, because it won't work in parallel.
-  // Why: If we would just deal with items there or not, parallel would work, but
-  // unfortunatley items can also be renamed during mirror and this breaks the parallel
-  // approach
+  // Why: If we would just deal with items there or not, parallel would work, but unfortunatley 
+  // items can also be renamed during mirror and this breaks the parallel approach
 
   AsyncContext  MirrorContext;
-  AsyncContext* pMirrorContext = NULL;
+  AsyncContext* pMirrorContext = nullptr;
   if (gProgress)
     pMirrorContext = &MirrorContext;
 
-  Effort MaxProgress;
-  MirrorList.Prepare(FileInfoContainer::eSmartMirror, &MirrorStatistics, &MaxProgress);
+  Effort MaxMirrorEffort;
+  MirrorList.Prepare(FileInfoContainer::eSmartMirror, &MirrorStatistics, &MaxMirrorEffort);
 
   // Lets clean the cloned backup
+  __int64 stard;
   CloneList.SetLookAsideContainer(&MirrorList);
   CopyStatistics	CleanStatistics;
-  Effort NullEffort;
+  Effort MaxCleanEffort;
   if (!aDeloreanMerge)
   {
-    CloneList.Prepare(FileInfoContainer::eSmartClean, &CleanStatistics, &NullEffort);
+    CloneList.Prepare(FileInfoContainer::eSmartClean, &CleanStatistics, &MaxCleanEffort);
     CloneList.SmartClean(&MirrorStatistics, &PathNameStatusList, pMirrorContext);
   }
 
+  MaxMirrorEffort += MaxCleanEffort;
 
-  // TODO Check if NullEffort passt was die Anzahl der Files betrifft
+  stard = MaxMirrorEffort.m_Points.load();
+  wprintf(L"\nDEBUG: Effort Clean expected %I64d\n", stard);
+
 
   // Print SmartClean progress
   //
@@ -821,7 +824,7 @@ void _Mirror(
   {
     wprintf(L"Mirroring...    0%%, Items                , Time left:         ");
 
-    progressPrediction.SetStart(MaxProgress);
+    progressPrediction.SetStart(MaxMirrorEffort);
 
     int UpdCnt = gUpdateIntervall;
     while (!MirrorContext.Wait(250))
@@ -844,6 +847,9 @@ void _Mirror(
 
     MirrorContext.Reset();
   }
+
+  __int64 klean  = CleanOverallProgress.m_Points.load();
+  //wprintf(L"\nDEBUG: Effort Clean finally %I64d, Overshoot: %I64d\n", klean, klean - stard);
 
   // Once cleaning is done start the mirror process
   MirrorList.SetLookAsideContainer(&CloneList);
@@ -869,6 +875,9 @@ void _Mirror(
       }
     }
     PrintElapsed(progressPrediction);
+
+    __int64 vinal = MirrorContext.GetProgress().m_Points.load();
+    wprintf(L"\nDEBUG: Effort Mirror finally %I64d, Overshoot: %I64d\n", vinal, vinal - stard - klean);
   }
 
   GetLocalTime(&MirrorStatistics.m_EndTime);

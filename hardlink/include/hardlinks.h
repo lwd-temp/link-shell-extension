@@ -1756,7 +1756,8 @@ class FileInfoContainer
 
     enum ItemWeight
     {
-      eHardlinkWeight = 105,
+      eFileWeight = 105,
+      eHardlinkWeight = eFileWeight,
       eDirectoryWeight = 105,
       eTimeStampWeight = 50,
       eReparseWeight = 1
@@ -1767,6 +1768,14 @@ class FileInfoContainer
       FileInfoContainer::CopyReparsePointFlags  aMode,
       CopyStatistics*	                          pStats,
       Effort *                                  aEffort = NULL
+    );
+
+    // Estimate effort for hardlink groups
+    void
+    EstimateHardlinkGroupEffort(
+      _Pathes::iterator&	a_Begin,
+      _Pathes::iterator&	a_End,
+      Effort* a_Effort
     );
 
     int
