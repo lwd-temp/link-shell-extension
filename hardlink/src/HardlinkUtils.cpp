@@ -332,7 +332,7 @@ int PrintTrueSizeCopyStatsNormal(
 
 	oss << endl;
 
-  oss << "                        Total               Bytes" << endl; 
+  oss << "                        Items               Bytes" << endl; 
 
   oss << "    File:";
   oss << setfill(' ') << setw(20) << aStats.m_FilesTotal;
@@ -345,7 +345,7 @@ int PrintTrueSizeCopyStatsNormal(
   oss << endl;
 
   oss << "   Total:";
-  oss << setfill(' ') << setw(20) << aStats.m_FilesTotal - (aStats.m_FilesTotal - aStats.m_HardlinksTotal);
+  oss << setfill(' ') << setw(20) << "-";  // aStats.m_HardlinksTotal
   oss << setfill(' ') << setw(20) << aStats.m_BytesTotal - (aStats.m_BytesTotal - aStats.m_HardlinksTotalBytes);
   oss << endl;
 
@@ -425,10 +425,10 @@ int PrintTrueSizeCopyStatsJson(
 {
   fwprintf (a_OutputFile, L"{\n\"Summary\":{\n");
 
-  fwprintf (a_OutputFile, L"\"Total\":{\"File\":%I64d,\"Hardlink\":%I64d,\"Total\":%I64d,\"Folder\":%I64d,\"Junction\":%I64d,\"Symlink\":%I64d},\n",
+  fwprintf (a_OutputFile, L"\"Items\":{\"File\":%I64d,\"Hardlink\":%I64d,\"Total\":\"-1\",\"Folder\":%I64d,\"Junction\":%I64d,\"Symlink\":%I64d},\n",
     aStats.m_FilesTotal,
     aStats.m_FilesTotal - aStats.m_HardlinksTotal,
-    aStats.m_FilesTotal - (aStats.m_FilesTotal - aStats.m_HardlinksTotal),
+//    aStats.m_HardlinksTotal,
     aStats.m_DirectoryTotal,
     aStats.m_JunctionsTotal,
     aStats.m_SymlinksTotal

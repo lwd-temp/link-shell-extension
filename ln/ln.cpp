@@ -78,15 +78,15 @@ static struct option	long_options[] =
   { "hardlinklimit", required_argument, NULL, '\0' }, // undocumented: Specify the hardlink limit. By default 1023, for testing can be set seperatley. Used in Autoamted Test
   { "generatehardlinks", required_argument, NULL, '\0' }, // undocumented: Specify how many hardlinks are generated automatically. for automated test only
   { "1023safe", no_argument, NULL, '\0' },
-  { "json", no_argument, NULL, '\0' }, // undocumented: Output is in json format
+  { "json", no_argument, NULL, '\0' }, // Output is in json format
   { "forcestats", no_argument, NULL, '\0' }, // undocumented, for automated test only. Show stats regardless of automated test
   { "progress", no_argument, NULL, '\0' }, // Shows the progress
   { "merge", required_argument, NULL, '\0' }, // Merges two delorean sets
   { "delete", required_argument, NULL, '\0' }, // Deletes a tree and take care of hardlinks
   { "supportfs", required_argument, NULL, '\0' },
   { "follow", optional_argument, NULL, '\0' },
-
   { "followregexp", optional_argument, NULL, '\0' },
+  { "checkprogress", no_argument, NULL, '\0' }, // // undocumented: debug, bound to --automated_test, shows estimated effort and real effort for pogress calculation
   { 0, 0, 0, 0 }
 };
 
@@ -96,22 +96,23 @@ static struct option	long_options[] =
 const int cBaseJustLongOpts = 0x19;
 
 int							  gLogLevel = FileInfoContainer::eLogVerbose;
-bool              gAutomatedTest = false;
+bool              gAutomatedTest{ false };
 FILE*             gStdOutFile;
 intptr_t          gStdOutHandle;
-bool              gSwitchOffNtfsCheck = false;
-bool              gDupemerge = false;
-bool              gNoEa = false;
-bool              gNoSparseFile = false;
-bool              gNoAds = false;
-bool              gResolveUNC = true;
-bool              gDeloreanVerbose = false;
-int               gDeloreanSleep = 0;
-bool              g1023safe = false;
-bool              gJson = false;
-bool              gProgress = false;
+bool              gSwitchOffNtfsCheck{ false };
+bool              gDupemerge{ false };
+bool              gNoEa{ false };
+bool              gNoSparseFile{ false };
+bool              gNoAds{ false };
+bool              gResolveUNC{ true };
+bool              gDeloreanVerbose{ false };
+int               gDeloreanSleep{ 0 };
+bool              g1023safe{ false };
+bool              gJson{ false };
+bool              gProgress{ false };
 const wchar_t     gProgressIndicator[] = { L'|', L'/', L'-', L'\\' }; 
-const int gUpdateIntervall = 4;
+bool              gCheckProgress{ false };
+const int         gUpdateIntervall{ 4 };
 
 class	ln_EnumHardlinkSiblingsGlue : public EnumHardlinkSiblingsGlue
 {
@@ -522,8 +523,8 @@ LnSmartXXX(
 	GetLocalTime(&aStats.m_CopyTime);
 
   wchar_t ModeLiteral[MAX_PATH];
-  Effort MaxProgress;
-  FileList.Prepare(aMode, &aStats, &MaxProgress);
+  Effort maxProgress;
+  FileList.Prepare(aMode, &aStats, &maxProgress);
 
   // Since context was used during enumeration, reset it
   if (pContext)
@@ -543,7 +544,7 @@ LnSmartXXX(
     break;
 
     case FileInfoContainer::eSmartClean:
-      FileList.SmartClean (&aStats, &PathNameStatusList, pContext);
+      FileList.SmartClean(&aStats, &PathNameStatusList, pContext);
       wcscpy_s(ModeLiteral, MAX_PATH, L"Deleting");
     break;
   
@@ -556,7 +557,7 @@ LnSmartXXX(
     wprintf (L"\n%s ...      0%%, Items              , Time left:         ", ModeLiteral);
 
     ProgressPrediction progressPrediction;
-    progressPrediction.SetStart(MaxProgress);
+    progressPrediction.SetStart(maxProgress);
     int Percentage = 0;
 
     int UpdCnt = gUpdateIntervall;
@@ -575,6 +576,12 @@ LnSmartXXX(
       }
     }
     PrintElapsed(progressPrediction);
+  }
+
+  if (gCheckProgress)
+  {
+    __int64 copyOvershoot = maxProgress.m_Points.load() - Context.GetProgress().m_Points.load();
+    wprintf(L"\nDEBUG: %s Overshoot: %I64d, Effort: %I64d\n", ModeLiteral, copyOvershoot, maxProgress.m_Points.load());
   }
 
   if (FileInfoContainer::eSmartClean == aMode)
@@ -795,25 +802,20 @@ void _Mirror(
   if (gProgress)
     pMirrorContext = &MirrorContext;
 
-  Effort MaxMirrorEffort;
-  MirrorList.Prepare(FileInfoContainer::eSmartMirror, &MirrorStatistics, &MaxMirrorEffort);
+  Effort maxMirrorEffort;
+  MirrorList.Prepare(FileInfoContainer::eSmartMirror, &MirrorStatistics, &maxMirrorEffort);
 
   // Lets clean the cloned backup
-  __int64 stard;
   CloneList.SetLookAsideContainer(&MirrorList);
   CopyStatistics	CleanStatistics;
-  Effort MaxCleanEffort;
+  Effort maxCleanEffort;
   if (!aDeloreanMerge)
   {
-    CloneList.Prepare(FileInfoContainer::eSmartClean, &CleanStatistics, &MaxCleanEffort);
+    CloneList.Prepare(FileInfoContainer::eSmartClean, &CleanStatistics, &maxCleanEffort);
     CloneList.SmartClean(&MirrorStatistics, &PathNameStatusList, pMirrorContext);
   }
 
-  MaxMirrorEffort += MaxCleanEffort;
-
-  stard = MaxMirrorEffort.m_Points.load();
-  wprintf(L"\nDEBUG: Effort Clean expected %I64d\n", stard);
-
+  maxMirrorEffort += maxCleanEffort;
 
   // Print SmartClean progress
   //
@@ -824,7 +826,7 @@ void _Mirror(
   {
     wprintf(L"Mirroring...    0%%, Items                , Time left:         ");
 
-    progressPrediction.SetStart(MaxMirrorEffort);
+    progressPrediction.SetStart(maxMirrorEffort);
 
     int UpdCnt = gUpdateIntervall;
     while (!MirrorContext.Wait(250))
@@ -848,8 +850,11 @@ void _Mirror(
     MirrorContext.Reset();
   }
 
-  __int64 klean  = CleanOverallProgress.m_Points.load();
-  //wprintf(L"\nDEBUG: Effort Clean finally %I64d, Overshoot: %I64d\n", klean, klean - stard);
+  if (gCheckProgress)
+  {
+    __int64 cleanOvershoot = maxCleanEffort.m_Points.load() - CleanOverallProgress.m_Points.load();
+    wprintf(L"\nDEBUG: Clean Overshoot: %I64d, Effort: %I64d\n", cleanOvershoot, maxCleanEffort.m_Points.load());
+  }
 
   // Once cleaning is done start the mirror process
   MirrorList.SetLookAsideContainer(&CloneList);
@@ -876,8 +881,11 @@ void _Mirror(
     }
     PrintElapsed(progressPrediction);
 
-    __int64 vinal = MirrorContext.GetProgress().m_Points.load();
-    wprintf(L"\nDEBUG: Effort Mirror finally %I64d, Overshoot: %I64d\n", vinal, vinal - stard - klean);
+    if (gCheckProgress)
+    {
+      __int64 mirrorOvershoot = maxMirrorEffort.m_Points.load() - MirrorContext.GetProgress().m_Points.load() - maxCleanEffort.m_Points.load();
+      wprintf(L"\nDEBUG: Mirror Overshoot: %I64d, Effort: %I64d\n", mirrorOvershoot, maxMirrorEffort.m_Points.load() - maxCleanEffort.m_Points.load());
+    }
   }
 
   GetLocalTime(&MirrorStatistics.m_EndTime);
@@ -3100,6 +3108,17 @@ wmain(
             }
             break;
 
+            // --checkprogress
+            case cBaseJustLongOpts + 0x28:
+            {
+              if (gAutomatedTest)
+                gCheckProgress = true;
+            }
+            break;
+
+
+
+            
             default:
               fwprintf (gStdOutFile, L"Unknown LongOpt %d:'%S'\n", longind, long_options[longind].name);
             break;
