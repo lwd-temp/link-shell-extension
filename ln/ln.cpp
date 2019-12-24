@@ -85,6 +85,7 @@ static struct option	long_options[] =
   { "delete", required_argument, NULL, '\0' }, // Deletes a tree and take care of hardlinks
   { "supportfs", required_argument, NULL, '\0' },
   { "follow", optional_argument, NULL, '\0' },
+ 
   { "followregexp", optional_argument, NULL, '\0' },
   { "checkprogress", no_argument, NULL, '\0' }, // // undocumented: debug, bound to --automated_test, shows estimated effort and real effort for pogress calculation
   { 0, 0, 0, 0 }
@@ -303,14 +304,18 @@ void PrintProgress(__int64 aPercentage, ProgressPrediction& aProgressPrediction)
   }
 }
 
-void PrintElapsed(ProgressPrediction& aProgressPrediction)
+void PrintElapsed(ProgressPrediction& aProgressPrediction, __int64 aFakeEffort = -1)
 {
   SYSTEMTIME duration;
   Effort effort;
   aProgressPrediction.Duration(duration, effort);
 
   char nItems[MAX_PATH];
-  FormatNumber(nItems, MAX_PATH, effort.m_Items.load());
+  if (aFakeEffort < 0)
+    FormatNumber(nItems, MAX_PATH, effort.m_Items.load());
+  else
+    FormatNumber(nItems, MAX_PATH, aFakeEffort);
+
   wprintf (L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b100%%, Items %14S, Time elapsed: %02d:%02d:%02d\n",
     nItems,
     duration.wHour,
@@ -815,6 +820,7 @@ void _Mirror(
     CloneList.SmartClean(&MirrorStatistics, &PathNameStatusList, pMirrorContext);
   }
 
+  __int64 maxMirrorItems = maxMirrorEffort.m_Items.load();
   maxMirrorEffort += maxCleanEffort;
 
   // Print SmartClean progress
@@ -879,7 +885,11 @@ void _Mirror(
         PrintProgress(Percentage, progressPrediction);
       }
     }
-    PrintElapsed(progressPrediction);
+    // With mirror we also have the items to be cleaned into account, because they can make up a lot of 
+    // the progress. Think of mirroring against a destination, which contains 10 times the number of files
+    // of the source. But at the very end we would like to show up only the numbers of items from the source,
+    // so we have to pass this number to PrintElapsed()
+    PrintElapsed(progressPrediction, maxMirrorItems);
 
     if (gCheckProgress)
     {
