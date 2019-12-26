@@ -6712,6 +6712,11 @@ CopyHardlink(
 
   int RetVal = ERROR_SUCCESS;
 
+#if defined _DEBUG
+  size_t effort = distance(aBegin, aEnd);
+  int count = 0;
+#endif
+
   _Pathes::iterator copyiter = aBegin;
 
   BOOL CopyOk = false;
@@ -6821,368 +6826,373 @@ CopyHardlink(
     FileInfo* pLookAside = NULL;
     switch (aFlags & (eSmartMirror | eSmartCopy))
     {
-    case eSmartMirror:
-    {
-      pLookAside = m_pLookAsideFileInfoContainer->Find(aDestPath);
-      if (pLookAside)
-        DoCopy = pF->IsDifferent(pLookAside, m_DateTimeTolerance);
-
-      if (false == DoCopy)
+      case eSmartMirror:
       {
-        // DoCopy == false
-        // The files were the same
-        if (m_Flags2 & eDeloreanMerge)
+        pLookAside = m_pLookAsideFileInfoContainer->Find(aDestPath);
+        if (pLookAside)
+          DoCopy = pF->IsDifferent(pLookAside, m_DateTimeTolerance);
+
+        if (false == DoCopy)
         {
-          // With --merge having the same files means: hardlink the files, aka merge the sets
-          //
-
-          // The files could be already hardlinked so lets check with via pLookAside
-          if (pLookAside->m_FileIndex.ul64 == pF->m_FileIndex.ul64)
-          {
-            // uuups the files are already hardlinked
-            Log(L"°=f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
-          }
-          else
-          {
-            // No the files to be merged are already hardlinked, so lets go and try to merge them
-            wchar_t	LinkName[HUGE_PATH + 2];
-            DWORD LinkNameLength = HUGE_PATH;
-            HRESULT HardlinkResult;
-
-            // We have to check if we exceed the number of 1023 hardlink limit
-
-            // If we are in --traditional we know the refcount from enumeration. With the fast mode 
-            // we don't know it, so we have to query it once, even if it is time-consuming
-            if (!(m_Flags & eTraditional))
-            {
-              pF->m_RefCount = -1;
-
-              // Open the file so that we can read out the refcount
-              HANDLE	SourceFileHandle = CreateFileW(
-                pF->m_FileName,
-                m_Flags & eBackupMode ? GENERIC_READ | READ_CONTROL | ACCESS_SYSTEM_SECURITY | FILE_READ_EA : FILE_READ_ATTRIBUTES | FILE_READ_EA,
-                FILE_SHARE_READ,
-                NULL,
-                OPEN_EXISTING,
-                m_Flags & eBackupMode ? FILE_ATTRIBUTE_NORMAL | FILE_FLAG_BACKUP_SEMANTICS : FILE_ATTRIBUTE_NORMAL,
-                NULL
-              );
-              if (INVALID_HANDLE_VALUE != SourceFileHandle)
-              {
-                BY_HANDLE_FILE_INFORMATION	FileInformation;
-                BOOL	r = GetFileInformationByHandle(SourceFileHandle, &FileInformation);
-                if (r)
-                  pF->m_RefCount = FileInformation.nNumberOfLinks;
-
-                CloseHandle(SourceFileHandle);
-              }
-            }
-            // By the end we have a valid pF->m_RefCount
-
-
-            // Iterate through all siblings, add it to a temporary list and count how many siblings there are
-            int DestNumberSiblings = 0;
-            wcsncpy_s(LinkName, LinkNameLength, aDestPath, PATH_PARSE_SWITCHOFF_SIZE + 2);
-            HANDLE FindHardLinkHandle = FindFirstFileNameW(aDestPath, 0, &LinkNameLength, &LinkName[PATH_PARSE_SWITCHOFF_SIZE + 2]);
-            if (INVALID_HANDLE_VALUE != FindHardLinkHandle)
-            {
-              // Add to list, because one can not delete aDestPath itself while iterating over the siblings
-              _StringList Siblings;
-              do
-              {
-                Siblings.push_back(LinkName);
-                LinkNameLength = HUGE_PATH;
-                DestNumberSiblings++;
-              } while (FindNextFileNameW(FindHardLinkHandle, &LinkNameLength, &LinkName[PATH_PARSE_SWITCHOFF_SIZE + 2]));
-              FindClose(FindHardLinkHandle);
-
-              // Check if we do not exceed the hardlink limit of 1023
-              if (DestNumberSiblings + pF->m_RefCount < m_HardlinkLimit)
-              {
-                // If there was at least one sibling, and the refcount will not be exceeded
-                if (Siblings.size())
-                {
-                  bool MergeSuccess = true;
-
-                  // Hardlink the siblings
-                  for (_StringListIterator iter = Siblings.begin(); iter != Siblings.end(); ++iter)
-                  {
-                    BOOL bDeleted = DeleteSibling(iter->c_str(), GetFileAttributes(iter->c_str()));
-                    HardlinkResult = TRUE == CreateHardLink(iter->c_str(), pF->m_FileName, NULL) ? ERROR_SUCCESS : GetLastError();
-
-                    if (ERROR_SUCCESS == HardlinkResult)
-                    {
-                      pStats->m_FilesLinked++;
-                      pStats->m_BytesLinked += pF->m_FileSize.ul64;
-                      //                      Log(L"°f %s\n", &iter->c_str()[PathParseSwitchOffSize], m_Flags, eLogVerbose);
-                    }
-                    else
-                    {
-                      pStats->m_FilesLinkFailed++;
-                      pStats->m_BytesLinkFailed += pF->m_FileSize.ul64;
-
-                      PathNameStatus pns(MergeF, &iter->c_str()[PathParseSwitchOffSize], ERROR_ALREADY_EXISTS == HardlinkResult ? ERROR_FILE_EXISTS : HardlinkResult);
-                      aPathNameStatusList->push_back(pns);
-
-                      MergeSuccess = false;
-                    }
-                  }
-
-                  if (MergeSuccess)
-                    Log(L"°f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
-
-                  Siblings.clear();
-                }
-              } // if (DestNumberSiblings + pF->m_RefCount < m_HardlinkLimit)
-              else
-              {
-                /// The hardlink limit was exceed for this file, can't link
-                Log(L"°~f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
-              }
-            }
-          }
-        }
-        else
-        {
-          // With --mirror having the same files means: do nothing
-          pStats->m_FilesCopySkipped++;
-          pStats->m_BytesCopySkippped += pF->m_FileSize.ul64;
-
-          Log(L"=f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+          // DoCopy == false
+          // The files were the same
 
           if (apContext)
           {
             // Anyway if the files are the same we have to move on with the progressbar
             apContext->AddProgress(pF->m_FileSize.ul64, pF->m_FileSize.ul64, 1);
+#if defined _DEBUG
+            count++;
+#endif
+
           }
-        }
 
-        // Skipping is ok to leave the loop
-        CopyOk = true;
-
-        // we are done here with SmartMirror
-        break;
-      }
-      else // if (false == DoCopy)
-      {
-        // DoCopy == true;
-
-        // The file in the source is different than in the destination so delete it, and use the 
-        // SmartCopy below to replace this file. But if we are only copying over we don't want to report 
-        // that we first deleted it and then copied it over, because this info is useless. We
-        // are just reporting that we copied it over later
-
-        // But there are situations if the permission to a file in the destination are not enough that
-        // it was enumerated and found in the LookAside buffer, but the file is there and a deletion
-        // is necessary. Then use pF to at least try to delete the type of file, if it is in the source.
-        // If it is a different type in the destination, and the permissions are not enough, then we 
-        // are lost
-        FileInfo* pFileInfo = pLookAside ? pLookAside : pF;
-
-        bool bDeleted = false;
-        if (pF->m_Type != pFileInfo->m_Type)
-        {
-          // There are changes of m_Type for which it is neccesary to delete the file, e.g if a file 
-          // changed into a symlink, but if just the compression bit changed, there is no need to delete
-          if (pF->m_Type & FILE_ATTRIBUTE_COMPRESSED ^ pFileInfo->m_Type & FILE_ATTRIBUTE_COMPRESSED)
+          if (m_Flags2 & eDeloreanMerge)
           {
-            // Fake a deletion, let it copy over, and also copy the attribute
-            bDeleted = true;
-            CompressionChanged = true;
+            // With --merge having the same files means: hardlink the files, aka merge the sets
+            //
+
+            // The files could be already hardlinked so lets check with via pLookAside
+            if (pLookAside->m_FileIndex.ul64 == pF->m_FileIndex.ul64)
+            {
+              // uuups the files are already hardlinked
+              Log(L"°=f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+            }
+            else
+            {
+              // No the files to be merged are already hardlinked, so lets go and try to merge them
+              wchar_t	LinkName[HUGE_PATH + 2];
+              DWORD LinkNameLength = HUGE_PATH;
+              HRESULT HardlinkResult;
+
+              // We have to check if we exceed the number of 1023 hardlink limit
+
+              // If we are in --traditional we know the refcount from enumeration. With the fast mode 
+              // we don't know it, so we have to query it once, even if it is time-consuming
+              if (!(m_Flags & eTraditional))
+              {
+                pF->m_RefCount = -1;
+
+                // Open the file so that we can read out the refcount
+                HANDLE	SourceFileHandle = CreateFileW(
+                  pF->m_FileName,
+                  m_Flags & eBackupMode ? GENERIC_READ | READ_CONTROL | ACCESS_SYSTEM_SECURITY | FILE_READ_EA : FILE_READ_ATTRIBUTES | FILE_READ_EA,
+                  FILE_SHARE_READ,
+                  NULL,
+                  OPEN_EXISTING,
+                  m_Flags & eBackupMode ? FILE_ATTRIBUTE_NORMAL | FILE_FLAG_BACKUP_SEMANTICS : FILE_ATTRIBUTE_NORMAL,
+                  NULL
+                );
+                if (INVALID_HANDLE_VALUE != SourceFileHandle)
+                {
+                  BY_HANDLE_FILE_INFORMATION	FileInformation;
+                  BOOL	r = GetFileInformationByHandle(SourceFileHandle, &FileInformation);
+                  if (r)
+                    pF->m_RefCount = FileInformation.nNumberOfLinks;
+
+                  CloseHandle(SourceFileHandle);
+                }
+              }
+              // By the end we have a valid pF->m_RefCount
+
+
+              // Iterate through all siblings, add it to a temporary list and count how many siblings there are
+              int DestNumberSiblings = 0;
+              wcsncpy_s(LinkName, LinkNameLength, aDestPath, PATH_PARSE_SWITCHOFF_SIZE + 2);
+              HANDLE FindHardLinkHandle = FindFirstFileNameW(aDestPath, 0, &LinkNameLength, &LinkName[PATH_PARSE_SWITCHOFF_SIZE + 2]);
+              if (INVALID_HANDLE_VALUE != FindHardLinkHandle)
+              {
+                // Add to list, because one can not delete aDestPath itself while iterating over the siblings
+                _StringList Siblings;
+                do
+                {
+                  Siblings.push_back(LinkName);
+                  LinkNameLength = HUGE_PATH;
+                  DestNumberSiblings++;
+                } while (FindNextFileNameW(FindHardLinkHandle, &LinkNameLength, &LinkName[PATH_PARSE_SWITCHOFF_SIZE + 2]));
+                FindClose(FindHardLinkHandle);
+
+                // Check if we do not exceed the hardlink limit of 1023
+                if (DestNumberSiblings + pF->m_RefCount < m_HardlinkLimit)
+                {
+                  // If there was at least one sibling, and the refcount will not be exceeded
+                  if (Siblings.size())
+                  {
+                    bool MergeSuccess = true;
+
+                    // Hardlink the siblings
+                    for (_StringListIterator iter = Siblings.begin(); iter != Siblings.end(); ++iter)
+                    {
+                      BOOL bDeleted = DeleteSibling(iter->c_str(), GetFileAttributes(iter->c_str()));
+                      HardlinkResult = TRUE == CreateHardLink(iter->c_str(), pF->m_FileName, NULL) ? ERROR_SUCCESS : GetLastError();
+
+                      if (ERROR_SUCCESS == HardlinkResult)
+                      {
+                        pStats->m_FilesLinked++;
+                        pStats->m_BytesLinked += pF->m_FileSize.ul64;
+                        // Log(L"°f %s\n", &iter->c_str()[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+                      }
+                      else
+                      {
+                        pStats->m_FilesLinkFailed++;
+                        pStats->m_BytesLinkFailed += pF->m_FileSize.ul64;
+
+                        PathNameStatus pns(MergeF, &iter->c_str()[PathParseSwitchOffSize], ERROR_ALREADY_EXISTS == HardlinkResult ? ERROR_FILE_EXISTS : HardlinkResult);
+                        aPathNameStatusList->push_back(pns);
+
+                        MergeSuccess = false;
+                      }
+                    }
+
+                    if (MergeSuccess)
+                      Log(L"°f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+
+                    Siblings.clear();
+                  }
+                } // if (DestNumberSiblings + pF->m_RefCount < m_HardlinkLimit)
+                else
+                {
+                  /// The hardlink limit was exceed for this file, can't link
+                  Log(L"°~f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+                }
+              }
+            }
           }
           else
           {
-            // If the type of item in the source and destination is different, we would like to report this
-            bDeleted = DeleteItem(aDestPath, pFileInfo, aPathNameStatusList, pStats);
-          }
-        }
-        else // if (pF->m_Type != pFileInfo->m_Type)
-        {
-          // If it is the same just try to delete it
-          bDeleted = DeleteFileAndReport(aDestPath, aPathNameStatusList);
-        }
-
-        // Remove the item, and if it was found in the LookAside Cache, use it.
-        if (!bDeleted)
-        {
-          // Couldn't delete file
-          pStats->m_FilesCopyFailed++;
-          pStats->m_BytesCopyFailed += pF->m_FileSize.ul64;
-
-          // Thus we would like to leave the loop for this item
-          CopyOk = true;
-          break;
-        }
-      } // if (false == DoCopy)
-    }
-    // break intentionally omitted
-
-    case eSmartCopy:
-    {
-      // Check whether we have to go async
-      if (apContext)
-      {
-        // Set the status, and check if CopyHardlink has been cancelled from outside
-        int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize_Source], &aDestPath[PathParseSwitchOffSize]);
-        if (ERROR_REQUEST_ABORTED == r)
-          RetVal = ERROR_REQUEST_ABORTED;
-      }
-
-      // 
-      if (DoCopy)
-      {
-        DWORD                 LastError;
-        _PathNameStatusList   CopyFileError;
-        int                   CopyOkInt = ERROR_SUCCESS;
-
-        if (apContext)
-        {
-          // Since CopyFileEx only returns absolute progress values, we have to create a snapshot
-          apContext->CreateSnapShot();
-
-          CopyOkInt = CopyFileEx3(
-            pF->m_FileName,
-            //              L"\\\\?\\f:\\tmp\\hhh.txt",
-            aDestPath,
-            (LPPROGRESS_ROUTINE)CopyProgressRoutine,
-            apContext,
-            (LPBOOL)&apContext->m_Status,
-            CopyFlags,
-            &m_pSecDesc,
-            &m_SecDescSize,
-            m_DateTimeTolerance,
-            &CopyFileError
-          );
-          CopyOk = ERROR_SUCCESS == CopyOkInt;
-          LastError = GetLastError();
-
-          // Anyway at the end we have to add the size to the progress
-          apContext->Add2SnapShot(pF->m_FileSize.ul64, pF->m_FileSize.ul64, 1);
-        }
-        else
-        {
-          BOOL                  bCancel = FALSE;
-
-          // Normal way
-          CopyOkInt = CopyFileEx3(
-            pF->m_FileName,
-            aDestPath,
-            NULL,
-            NULL,
-            &bCancel,
-            CopyFlags,
-            &m_pSecDesc,
-            &m_SecDescSize,
-            m_DateTimeTolerance,
-            &CopyFileError
-          );
-          CopyOk = ERROR_SUCCESS == CopyOkInt;
-          LastError = GetLastError();
-        }
-
-        switch (CopyOkInt)
-        {
-        case ERROR_ALREADY_EXISTS:
-        {
-          // File in destination was there, has same size, but is older or of same age than source. Don't copy
-          DoCopy = false;
-
-          pStats->m_FilesCopySkipped++;
-          pStats->m_BytesCopySkippped += pF->m_FileSize.ul64;
-
-          Log(L"=f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
-
-          // But having a leader of the hardlink tupel already there is also ok
-          // so that we can tie all other files to it. We need to set CopyOk to 
-          // true so that the loop to copy at the leader of the hardlink tupel
-          // ends
-          CopyOk = true;
-        }
-        break;
-
-        case ERROR_SUCCESS:
-        {
-          if (CompressionChanged)
-          {
-            // if only the compression changed we assume this as beeing already there
+            // With --mirror having the same files means: do nothing
             pStats->m_FilesCopySkipped++;
             pStats->m_BytesCopySkippped += pF->m_FileSize.ul64;
 
             Log(L"=f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
           }
-          else
-          {
-            pStats->m_FilesCopied++;
-            pStats->m_BytesCopied += pF->m_FileSize.ul64;
 
-            Log(L"+f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogChanged);
-          }
-        }
-        break;
-
-        case ERROR_FILE_EXISTS:
-        {
-          // To be more specific about which file could not be opened, we abuse the ERROR_FILE_EXISTS
-          // for indication of a problem in the *target file*, and ERROR_ACCESS_DENIED as usual as
-          // indication for problems on the *source file*
-          pStats->m_FilesCopyFailed++;
-          pStats->m_BytesCopyFailed += pF->m_FileSize.ul64;
-
-          // If the CopyfileEx3 function provides itself a more detailed error description, then use it
-          if (CopyFileError.size())
-          {
-            for (_PathNameStatusList::iterator iter = CopyFileError.begin(); iter != CopyFileError.end(); ++iter)
-              aPathNameStatusList->push_back(*iter);
-          }
-          else
-          {
-            PathNameStatus pns(PlusF, &aDestPath[PathParseSwitchOffSize], ERROR_ACCESS_DENIED);
-            aPathNameStatusList->push_back(pns);
-          }
-
-          // This item can not be copied, so leave the loop
+          // Skipping is ok to leave the loop
           CopyOk = true;
+
+          // we are done here with SmartMirror
+          break;
         }
-        break;
-
-        case ERROR_ACCESS_DENIED:
-        default:
+        else // if (false == DoCopy)
         {
-          // Copy Operation failed
-          pStats->m_FilesCopyFailed++;
-          pStats->m_BytesCopyFailed += pF->m_FileSize.ul64;
+          // DoCopy == true;
 
-          // If the CopyfileEx3 function provides itself a more detailed error description, then use it
-          if (CopyFileError.size())
+          // The file in the source is different than in the destination so delete it, and use the 
+          // SmartCopy below to replace this file. But if we are only copying over we don't want to report 
+          // that we first deleted it and then copied it over, because this info is useless. We
+          // are just reporting that we copied it over later
+
+          // But there are situations if the permission to a file in the destination are not enough that
+          // it was enumerated and found in the LookAside buffer, but the file is there and a deletion
+          // is necessary. Then use pF to at least try to delete the type of file, if it is in the source.
+          // If it is a different type in the destination, and the permissions are not enough, then we 
+          // are lost
+          FileInfo* pFileInfo = pLookAside ? pLookAside : pF;
+
+          bool bDeleted = false;
+          if (pF->m_Type != pFileInfo->m_Type)
           {
-            for (_PathNameStatusList::iterator iter = CopyFileError.begin(); iter != CopyFileError.end(); ++iter)
-              aPathNameStatusList->push_back(*iter);
+            // There are changes of m_Type for which it is neccesary to delete the file, e.g if a file 
+            // changed into a symlink, but if just the compression bit changed, there is no need to delete
+            if (pF->m_Type & FILE_ATTRIBUTE_COMPRESSED ^ pFileInfo->m_Type & FILE_ATTRIBUTE_COMPRESSED)
+            {
+              // Fake a deletion, let it copy over, and also copy the attribute
+              bDeleted = true;
+              CompressionChanged = true;
+            }
+            else
+            {
+              // If the type of item in the source and destination is different, we would like to report this
+              bDeleted = DeleteItem(aDestPath, pFileInfo, aPathNameStatusList, pStats);
+            }
+          }
+          else // if (pF->m_Type != pFileInfo->m_Type)
+          {
+            // If it is the same just try to delete it
+            bDeleted = DeleteFileAndReport(aDestPath, aPathNameStatusList);
+          }
+
+          // Remove the item, and if it was found in the LookAside Cache, use it.
+          if (!bDeleted)
+          {
+            // Couldn't delete file
+            pStats->m_FilesCopyFailed++;
+            pStats->m_BytesCopyFailed += pF->m_FileSize.ul64;
+
+            // Thus we would like to leave the loop for this item
+            CopyOk = true;
+          
+            // Breaking here will not bring us to SmartCopy
+            break;
+          }
+        } // if (false == DoCopy)
+      }
+      // break intentionally omitted. 
+      /// We deleted successfully before and want to use SmartCopy to copy over the leader
+
+      case eSmartCopy:
+      {
+        // Check whether we have to go async
+        if (apContext)
+        {
+          // Set the status, and check if CopyHardlink has been cancelled from outside
+          int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize_Source], &aDestPath[PathParseSwitchOffSize]);
+          if (ERROR_REQUEST_ABORTED == r)
+            RetVal = ERROR_REQUEST_ABORTED;
+        }
+
+        // 
+        if (DoCopy)
+        {
+          DWORD                 LastError;
+          _PathNameStatusList   CopyFileError;
+          int                   CopyOkInt = ERROR_SUCCESS;
+
+          if (apContext)
+          {
+            // Since CopyFileEx only returns absolute progress values, we have to create a snapshot
+            apContext->CreateSnapShot();
+
+            CopyOkInt = CopyFileEx3(
+              pF->m_FileName,
+              //              L"\\\\?\\f:\\tmp\\hhh.txt",
+              aDestPath,
+              (LPPROGRESS_ROUTINE)CopyProgressRoutine,
+              apContext,
+              (LPBOOL)&apContext->m_Status,
+              CopyFlags,
+              &m_pSecDesc,
+              &m_SecDescSize,
+              m_DateTimeTolerance,
+              &CopyFileError
+            );
+            CopyOk = ERROR_SUCCESS == CopyOkInt;
+            LastError = GetLastError();
+
+            // Anyway at the end we have to add the size to the progress
+            apContext->Add2SnapShot(pF->m_FileSize.ul64, pF->m_FileSize.ul64, 1);
           }
           else
           {
-            PathNameStatus pns(PlusF, &(pF->m_FileName[PathParseSwitchOffSize_Source]), LastError);
-            aPathNameStatusList->push_back(pns);
+            BOOL bCancel = FALSE;
+
+            // Normal way
+            CopyOkInt = CopyFileEx3(
+              pF->m_FileName,
+              aDestPath,
+              NULL,
+              NULL,
+              &bCancel,
+              CopyFlags,
+              &m_pSecDesc,
+              &m_SecDescSize,
+              m_DateTimeTolerance,
+              &CopyFileError
+            );
+            CopyOk = ERROR_SUCCESS == CopyOkInt;
+            LastError = GetLastError();
           }
 
-          // This item can not be copied, so leave the loop
-          CopyOk = true;
-        }
-        break;
-        }
-      } // if (DoCopy)
-    }
-    break;
+          switch (CopyOkInt)
+          {
+            case ERROR_ALREADY_EXISTS:
+            {
+              // File in destination was there, has same size, but is older or of same age than source. Don't copy
+              DoCopy = false;
+
+              pStats->m_FilesCopySkipped++;
+              pStats->m_BytesCopySkippped += pF->m_FileSize.ul64;
+
+              Log(L"=f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+
+              // But having a leader of the hardlink tupel already there is also ok
+              // so that we can tie all other files to it. We need to set CopyOk to 
+              // true so that the loop to copy at the leader of the hardlink tupel
+              // ends
+              CopyOk = true;
+            }
+            break;
+
+            case ERROR_SUCCESS:
+            {
+              if (CompressionChanged)
+              {
+                // if only the compression changed we assume this as beeing already there
+                pStats->m_FilesCopySkipped++;
+                pStats->m_BytesCopySkippped += pF->m_FileSize.ul64;
+
+                Log(L"=f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+              }
+              else
+              {
+                pStats->m_FilesCopied++;
+                pStats->m_BytesCopied += pF->m_FileSize.ul64;
+
+                Log(L"+f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogChanged);
+              }
+            }
+            break;
+
+            case ERROR_FILE_EXISTS:
+            {
+              // To be more specific about which file could not be opened, we abuse the ERROR_FILE_EXISTS
+              // for indication of a problem in the *target file*, and ERROR_ACCESS_DENIED as usual as
+              // indication for problems on the *source file*
+              pStats->m_FilesCopyFailed++;
+              pStats->m_BytesCopyFailed += pF->m_FileSize.ul64;
+
+              // If the CopyfileEx3 function provides itself a more detailed error description, then use it
+              if (CopyFileError.size())
+              {
+                for (_PathNameStatusList::iterator iter = CopyFileError.begin(); iter != CopyFileError.end(); ++iter)
+                  aPathNameStatusList->push_back(*iter);
+              }
+              else
+              {
+                PathNameStatus pns(PlusF, &aDestPath[PathParseSwitchOffSize], ERROR_ACCESS_DENIED);
+                aPathNameStatusList->push_back(pns);
+              }
+
+              // This item can not be copied, so leave the loop
+              CopyOk = true;
+            }
+            break;
+
+            case ERROR_ACCESS_DENIED:
+            default:
+            {
+              // Copy Operation failed
+              pStats->m_FilesCopyFailed++;
+              pStats->m_BytesCopyFailed += pF->m_FileSize.ul64;
+
+              // If the CopyfileEx3 function provides itself a more detailed error description, then use it
+              if (CopyFileError.size())
+              {
+                for (_PathNameStatusList::iterator iter = CopyFileError.begin(); iter != CopyFileError.end(); ++iter)
+                  aPathNameStatusList->push_back(*iter);
+              }
+              else
+              {
+                PathNameStatus pns(PlusF, &(pF->m_FileName[PathParseSwitchOffSize_Source]), LastError);
+                aPathNameStatusList->push_back(pns);
+              }
+
+              // This item can not be copied, so leave the loop
+              CopyOk = true;
+            }
+            break;
+          }
+        } // if (DoCopy)
+      }
+      break;
     }
 
     ++copyiter;
-    // Go on until one file was copied successfully, or we reach
-    // the end of the tupel
+    // Go on until one file was copied successfully, or we reach the end of the tupel
   } while (CopyOk == false && copyiter != aEnd);
 
 
-  //
-  // Hardlink all other files of a dupe to the first file, aka
-  // the 'leader' of the hardlink tupel.
+  // Hardlink all other files of a tupel to the first file, aka the 'leader' of the hardlink tupel.
   //
   wchar_t		LinkFile[HUGE_PATH];
   wcscpy_s(LinkFile, HUGE_PATH, aDestPath);
@@ -7226,7 +7236,9 @@ CopyHardlink(
         }
       }
       else
+      {
         LinkFile[aDestPathLen] = 0x00;
+      }
 
       wcscat_s(LinkFile, HUGE_PATH, &pF->m_FileName[pF->m_SourcePathLen]);
 
@@ -7237,6 +7249,12 @@ CopyHardlink(
         if (IsVeryLongPath(pF->m_FileName))
           PathParseSwitchOffSize_Source = PATH_PARSE_SWITCHOFF_SIZE;
 
+        // Increment the progress by 'weight' of hardlink creation
+        apContext->AddProgress(eHardlinkWeight, 1, 1);
+#if defined _DEBUG
+        count++;
+#endif
+
         // Set the status, and check if Smartcopy has been cancelled from outside
         int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize_Source], &aDestPath[PathParseSwitchOffSize]);
         if (ERROR_REQUEST_ABORTED == r)
@@ -7244,9 +7262,6 @@ CopyHardlink(
           RetVal = ERROR_REQUEST_ABORTED;
           break;
         }
-
-        // Increment the progress by 'weight' of hardlink creation
-        apContext->AddProgress(eHardlinkWeight, 1, 1);
       }
 
       // aDestPath and LinkFile are both long path safe
@@ -7254,100 +7269,112 @@ CopyHardlink(
 
       switch (aFlags & (eSmartMirror | eSmartCopy))
       {
-      case eSmartMirror:
-      {
-        // In Mirror mode things get linked only if the file is newer
-        FileInfo* pLookAside = m_pLookAsideFileInfoContainer->Find(LinkFile);
-        if (pLookAside)
-          DoHardlink = pF->IsDifferent(pLookAside, m_DateTimeTolerance);
-
-        // DoCopy is here because it is set during copying the file under HardlinkLeaderPath. If it was copied, 
-        // we also have to newly tie all the other dupes to the just newly copied HardlinkLeader
-        if (true == DoHardlink || true == DoCopy)
+        case eSmartMirror:
         {
-          FileInfo* pFileInfo = pLookAside ? pLookAside : pF;
+          // In Mirror mode things get linked only if the file is newer
+          FileInfo* pLookAside = m_pLookAsideFileInfoContainer->Find(LinkFile);
+          if (pLookAside)
+            DoHardlink = pF->IsDifferent(pLookAside, m_DateTimeTolerance);
 
-          // Only if the type changed we would like to have it with with report...
-          if (pF->m_Type != pFileInfo->m_Type)
-            DeleteItem(LinkFile, pFileInfo, aPathNameStatusList, pStats);
-          else
-            // ... otherwise delete it silently
-            DeleteFile(LinkFile);
-
-          // Code will be continued with case: SmartCopy
-        }
-        else
-        {
-          pStats->m_FilesLinkSkipped++;
-          pStats->m_BytesLinkSkipped += pF->m_FileSize.ul64;
-
-          Log(L"=h %s\n", &LinkFile[PathParseSwitchOffSize], m_Flags, eLogVerbose);
-
-          break;
-        }
-      }
-      // break intentionally omitted
-
-      case eSmartCopy:
-      {
-        // If the a file has been copied we have to force that all other files get 
-        // newly hardlinked, because it could happen, that a file x.ext gets a new
-        // hardlink 'hardlink of x.ext', but the uniqe id of 'hardlink of x.ext'
-        // is lower than the uniqe id of x.ext. Then 'hardlink of x.ext' would
-        // get copied as a new file, because it is the 'leader' of the hardlink 
-        // n-tupel, but x.ext is alreay there in the destination, but not
-        // hardlinked to 'hardlink of x.ext'. So this would split up a hardlink 
-        // n-tupel. ==> Once a file is copied hardlink all its siblings newly
-        if (DoCopy)
-          BOOL DeleteOk = DeleteFile(LinkFile);
-
-        int result = CreateHardlink(aDestPath, LinkFile);
-        if (ERROR_SUCCESS == result)
-        {
-          // Successfully created hardlink
-          if (!DoCopy && IsFirstHardlink)
+          // DoCopy is here because it is set during copying the file under HardlinkLeaderPath. If it was copied, 
+          // we also have to newly tie all the other dupes to the just newly copied HardlinkLeader
+          if (true == DoHardlink || true == DoCopy)
           {
-            // There is a situation, where the first file (leader) of the hardlink tupel 
-            // didn't get copied, but new hardlinks have been linked to that file. In this case
-            // we have to print out the name of this 'leader', which has not not been copied
-            // so that we know, that the following files are linked to that leader.
-            // 
-            // If the leader would have been copied, it would be easy, because it would
-            // in any case be printed as copied file, but here we need to pull the
-            // name of the 'hardlink leader' and show it. 
-            //
-            Log(L".f %s\n", &HardlinkLeaderPath[PathParseSwitchOffSize], m_Flags, eLogChanged);
-            IsFirstHardlink = false;
+            FileInfo* pFileInfo = pLookAside ? pLookAside : pF;
+
+            // Only if the type changed we would like to have it with with report...
+            if (pF->m_Type != pFileInfo->m_Type)
+              DeleteItem(LinkFile, pFileInfo, aPathNameStatusList, pStats);
+            else
+              // ... otherwise delete it silently
+              DeleteFile(LinkFile);
+
+            // Code will be continued with case: SmartCopy
           }
-
-          pStats->m_FilesLinked++;
-          pStats->m_BytesLinked += pF->m_FileSize.ul64;
-
-          Log(L"*h %s\n", &LinkFile[PathParseSwitchOffSize], m_Flags, eLogChanged);
-        }
-        else
-        {
-          // Failed in hardlink creation
-          if (ERROR_ALREADY_EXISTS == result)
+          else
           {
             pStats->m_FilesLinkSkipped++;
             pStats->m_BytesLinkSkipped += pF->m_FileSize.ul64;
 
             Log(L"=h %s\n", &LinkFile[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+
+            break;
+          }
+        }
+        // break intentionally omitted
+
+        case eSmartCopy:
+        {
+          // If the a file has been copied we have to force that all other files get 
+          // newly hardlinked, because it could happen, that a file x.ext gets a new
+          // hardlink 'hardlink of x.ext', but the uniqe id of 'hardlink of x.ext'
+          // is lower than the uniqe id of x.ext. Then 'hardlink of x.ext' would
+          // get copied as a new file, because it is the 'leader' of the hardlink 
+          // n-tupel, but x.ext is alreay there in the destination, but not
+          // hardlinked to 'hardlink of x.ext'. So this would split up a hardlink 
+          // n-tupel. ==> Once a file is copied hardlink all its siblings newly
+          if (DoCopy)
+            BOOL DeleteOk = DeleteFile(LinkFile);
+
+          int result = CreateHardlink(aDestPath, LinkFile);
+          if (ERROR_SUCCESS == result)
+          {
+            // Successfully created hardlink
+            if (!DoCopy && IsFirstHardlink)
+            {
+              // There is a situation, where the first file (leader) of the hardlink tupel 
+              // didn't get copied, but new hardlinks have been linked to that file. In this case
+              // we have to print out the name of this 'leader', which has not not been copied
+              // so that we know, that the following files are linked to that leader.
+              // 
+              // If the leader would have been copied, it would be easy, because it would
+              // in any case be printed as copied file, but here we need to pull the
+              // name of the 'hardlink leader' and show it. 
+              //
+              Log(L".f %s\n", &HardlinkLeaderPath[PathParseSwitchOffSize], m_Flags, eLogChanged);
+              IsFirstHardlink = false;
+            }
+
+            pStats->m_FilesLinked++;
+            pStats->m_BytesLinked += pF->m_FileSize.ul64;
+
+            Log(L"*h %s\n", &LinkFile[PathParseSwitchOffSize], m_Flags, eLogChanged);
           }
           else
           {
-            pStats->m_FilesLinkFailed++;
-            pStats->m_BytesLinkFailed += pF->m_FileSize.ul64;
+            // Failed in hardlink creation
+            if (ERROR_ALREADY_EXISTS == result)
+            {
+              pStats->m_FilesLinkSkipped++;
+              pStats->m_BytesLinkSkipped += pF->m_FileSize.ul64;
 
-            PathNameStatus pns(StarH, &LinkFile[PathParseSwitchOffSize], result);
-            aPathNameStatusList->push_back(pns);
-          } // if (ERROR_ALREADY_EXISTS == result)
-        }
-        break;
-      } // case SmartCopy
+              Log(L"=h %s\n", &LinkFile[PathParseSwitchOffSize], m_Flags, eLogVerbose);
+            }
+            else
+            {
+              pStats->m_FilesLinkFailed++;
+              pStats->m_BytesLinkFailed += pF->m_FileSize.ul64;
+
+              PathNameStatus pns(StarH, &LinkFile[PathParseSwitchOffSize], result);
+              aPathNameStatusList->push_back(pns);
+            } // if (ERROR_ALREADY_EXISTS == result)
+          }
+          break;
+        } // case SmartCopy
       } // switch
     } // for (iter = aBegin; iter != aEnd; ++iter)
+  }
+  else
+  {
+    // DeloreanMerge
+    if (apContext)
+    {
+      size_t nSiblings = distance(copyiter, aEnd);
+      apContext->AddProgress(nSiblings * eHardlinkWeight, nSiblings, nSiblings);
+#if defined _DEBUG
+      count += nSiblings;
+#endif
+    }
   }
 
   // aDestPathIdx must never get of sync with aDestPath so at the end copy it
@@ -8086,9 +8113,14 @@ CopyReparsePoints(
 
   int RetVal = ERROR_SUCCESS;
 
+#if defined _DEBUG
+  size_t effort = distance(ReparseBegin, ReparseEnd);
+  int count = 0;
+#endif
+
   // This loop covers the dead reparse points. We stay in here until all dead reparse 
   // points are processed and added to the statistics
-  while (ReparseBegin != ReparseEnd) 
+  while (ReparseBegin != ReparseEnd)
   {
     // This loop processes nested reparse points, and we can only leave this loop
     // if the number of nested reparse points does not shrink anymore.
@@ -9380,6 +9412,9 @@ CopyReparsePoints(
         // Increment the progress by the created reparse points
         size_t ReparsePointsCreated = LastReparseSize - CurrentReparseSize;
         apContext->AddProgress(ReparsePointsCreated * eReparseWeight, ReparsePointsCreated, ReparsePointsCreated);
+#if defined _DEBUG
+        count += ReparsePointsCreated;
+#endif
       }
 
     } while (CurrentReparseSize < LastReparseSize);
@@ -9390,10 +9425,6 @@ CopyReparsePoints(
       FileInfo* pF = *iter;
       pF->m_Type |= FILE_ATTRIBUTE_DEAD_REPARSE_POINT;
       pF->m_Type &= ~FILE_ATTRIBUTE_NESTED_REPARSE_POINT;
-      if (apContext)
-      {
-        apContext->AddProgress(eReparseWeight, 1, 1);
-      }
     }
   } 
   return RetVal;
@@ -9424,9 +9455,13 @@ RestoreTimeStamps(
   // start with an invalid value
   int DestPathIdx = -1;
 
+#if defined _DEBUG
+  size_t effort = distance(aBegin, aEnd);
+  int count = 0;
+#endif
+
   // Restore timestamps on directories and junctions
-  _Pathes::iterator iter;
-  for (iter = aBegin; iter != aEnd; ++iter)
+  for (_Pathes::iterator iter = aBegin; iter != aEnd; ++iter)
   {
     FileInfo*	pF = *iter;
 
@@ -9442,6 +9477,10 @@ RestoreTimeStamps(
     {
       // Increment the progress
       apContext->AddProgress(eTimeStampWeight, 1, 0);
+
+#if defined _DEBUG
+      count++;
+#endif
 
       // Set the status, and check if RestoreTimeStamps has been cancelled from outside
       int r = apContext->PutStatus(&pF->m_FileName[PATH_PARSE_SWITCHOFF_SIZE], &DestPath[PATH_PARSE_SWITCHOFF_SIZE]);
@@ -9520,6 +9559,11 @@ CopyDirectoryAttributes(
   if (aFlags & eSmartMirror)
     CopyDirFlags |= COPY_FILE_COPY_ACCESS_TIME | COPY_FILE_COPY_CREATION_TIME;
 
+#if defined _DEBUG
+  size_t effort = distance(aBegin, aEnd);
+  int count = 0;
+#endif
+
   // Restore timestamps on directories and junctions
   for (_Pathes::iterator iter = aBegin; iter != aEnd; ++iter)
   {
@@ -9531,14 +9575,20 @@ CopyDirectoryAttributes(
       DestPathIdx = pF->m_DestPathIdx;
     }
 
+    if (apContext)
+    {
+      // Increment the progress
+      apContext->AddProgress(eTimeStampWeight, 1, 0);
+#if defined _DEBUG
+      count++;
+#endif
+    }
+
     wcscat_s(DestPath, HUGE_PATH, &(pF->m_FileName[pF->m_SourcePathLen]));
     if (INVALID_FILE_ATTRIBUTES != GetFileAttributes(DestPath))
     {
       if (apContext)
       {
-        // Increment the progress
-        apContext->AddProgress(eTimeStampWeight, 1, 0);
-
         size_t PathParseSwitchOffSize_Source = 0;
         if (IsVeryLongPath(pF->m_FileName))
           PathParseSwitchOffSize_Source = PATH_PARSE_SWITCHOFF_SIZE;
@@ -9618,6 +9668,11 @@ CloneFiles(
   if (m_Flags2 & eNoEa)
     CopyFlags |= COPY_FILE_COPY_SKIP_EA;
 
+#if defined _DEBUG
+  size_t effort = distance(aBegin, aEnd);
+  int count = 0;
+#endif
+
   // Go through all files
   _Pathes::iterator iter = aBegin;
   do
@@ -9669,11 +9724,12 @@ CloneFiles(
     // Check whether we have to go async
     if (apContext)
     {
-      // We are running Async on a thread
-
       // Increment the progress
       apContext->AddProgress(eHardlinkWeight, 1, 1);
 
+#if defined _DEBUG
+      count++;
+#endif
       // Set the status, and check if CloneFile has been cancelled from outside
       int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize], &DestPath[PathParseSwitchOffSize]);
       if ( ERROR_REQUEST_ABORTED == r)
@@ -10507,7 +10563,20 @@ EstimateEffort(
       auto points = aEffort->m_Points.load();
       HTRACE(L"Effort CM nDirectories: %I64d, %I64d\n", nDirectories, points);
 
-      EstimateHardlinkGroupEffort(m_HardlinkBegin, m_DirectoryBegin, aEffort);
+      if (m_Flags2 & eCloneMirror)
+      {
+        // During Clonemirror and DeloreanMerge the effort calculation is is different than during copy.
+        //  Since there is no copy the effort for linking is always the single weight
+        auto nFiles = distance(m_HardlinkBegin, m_DirectoryBegin);
+        aEffort->m_Points += nFiles * eHardlinkWeight;
+        aEffort->m_Size += nFiles;
+        aEffort->m_Items += nFiles;
+      }
+      else
+      {
+        EstimateHardlinkGroupEffort(m_HardlinkBegin, m_DirectoryBegin, aEffort);
+      }
+
       HTRACE(L"Effort CM nFiles: %I64d, %I64d\n", aEffort->m_Items - nDirectories, aEffort->m_Points - points);
 
       // Add effort for Reparse Points
@@ -10578,42 +10647,42 @@ EstimateEffort(
 
       // Add effort for Directories
       auto nDirectories = distance(m_DirectoryBegin, m_Filenames.end());
-      aEffort->m_Items = nDirectories;
-      aEffort->m_Size = nDirectories;
       aEffort->m_Points = nDirectories * eDirectoryWeight;
+      aEffort->m_Size = nDirectories;
+      aEffort->m_Items = nDirectories;
       HTRACE(L"Effort CE nDirectories: %I64d\n", nDirectories);
 
       // Add effort for Files
       auto nFiles = distance(m_HardlinkBegin, m_DirectoryBegin);
-      aEffort->m_Items += nFiles;
-      aEffort->m_Size += nFiles;
       aEffort->m_Points += nFiles * eHardlinkWeight;
+      aEffort->m_Size += nFiles;
+      aEffort->m_Items += nFiles;
       HTRACE(L"Effort CE nFiles: %I64d\n", nFiles);
 
       // Add effort for Reparsepoints
       auto nReparsePoints = distance(m_Filenames.begin(), m_HardlinkBegin);
-      aEffort->m_Items += nReparsePoints;
-      aEffort->m_Size += nReparsePoints;
       aEffort->m_Points += nReparsePoints * eReparseWeight;
+      aEffort->m_Size += nReparsePoints;
+      aEffort->m_Items += nReparsePoints;
       HTRACE(L"Effort CE nReparsepoints: %I64d\n", nReparsePoints);
 
       // Add effort for restoring the timestamps on reparsepoints
-//      aEffort->m_Items += nReparsePoints;
-      aEffort->m_Size += nReparsePoints;
       aEffort->m_Points += nReparsePoints * eTimeStampWeight;
+      aEffort->m_Size += nReparsePoints;
+      // aEffort->m_Items += nReparsePoints;
       HTRACE(L"Effort CE timestamps nReparsepoints: %I64d\n", nReparsePoints);
 
       // Add effort for restoring the timestamps on directories
-//      aEffort->m_Items += nDirectories;
-      aEffort->m_Size += nDirectories;
       aEffort->m_Points += nDirectories * eTimeStampWeight;
+      aEffort->m_Size += nDirectories;
+      // aEffort->m_Items += nDirectories;
       HTRACE(L"Effort CE timestamps nDirectories: %I64d\n", nDirectories);
 
       // Add effort for restoring the Attributes on directories
       auto nAttributes = distance(m_DateTimeRestore.begin(), m_DateTimeRestore.end());
-//      aEffort->m_Items += nAttributes;
-      aEffort->m_Size += nAttributes;
       aEffort->m_Points += nAttributes * eTimeStampWeight;
+      aEffort->m_Size += nAttributes;
+      // aEffort->m_Items += nAttributes;
       HTRACE(L"Effort CE nAttributes: %I64d\n", nAttributes);
     }
     break;
@@ -11573,7 +11642,6 @@ _SmartMirror(
   }
 
   // Restore timestamps on directories
-  // Sorting brings directories in such an order so that we can easily set the timestamps.
   //
   r = RestoreTimeStamps(
     m_DirectoryBegin,

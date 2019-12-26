@@ -581,12 +581,13 @@ LnSmartXXX(
       }
     }
     PrintElapsed(progressPrediction);
-  }
 
-  if (gCheckProgress)
-  {
-    __int64 copyOvershoot = maxProgress.m_Points.load() - Context.GetProgress().m_Points.load();
-    wprintf(L"\nDEBUG: %s Overshoot: %I64d, Effort: %I64d\n", ModeLiteral, copyOvershoot, maxProgress.m_Points.load());
+    if (gCheckProgress)
+    {
+      __int64 copyOvershoot = maxProgress.m_Points.load() - Context.GetProgress().m_Points.load();
+      if (copyOvershoot)
+        fwprintf(gStdOutFile, L"DEBUG: %s Overshoot: %I64d, Effort: %I64d\n", ModeLiteral, copyOvershoot, maxProgress.m_Points.load());
+    }
   }
 
   if (FileInfoContainer::eSmartClean == aMode)
@@ -831,35 +832,42 @@ void _Mirror(
   if (gProgress)
   {
     wprintf(L"Mirroring...    0%%, Items                , Time left:         ");
-
     progressPrediction.SetStart(maxMirrorEffort);
 
-    int UpdCnt = gUpdateIntervall;
-    while (!MirrorContext.Wait(250))
+    // Only if we are in normal mode, clean is run. With Delorean Merge we don't
+    if (!aDeloreanMerge)
     {
-      int NewPercentage = progressPrediction.AddSample(MirrorContext.GetProgress());
-      if (NewPercentage != Percentage)
+      int UpdCnt = gUpdateIntervall;
+      while (!MirrorContext.Wait(250))
       {
-        Percentage = NewPercentage;
-        PrintProgress(Percentage, progressPrediction);
+        int NewPercentage = progressPrediction.AddSample(MirrorContext.GetProgress());
+        if (NewPercentage != Percentage)
+        {
+          Percentage = NewPercentage;
+          PrintProgress(Percentage, progressPrediction);
+        }
+        if (!--UpdCnt)
+        {
+          UpdCnt = gUpdateIntervall;
+          PrintProgress(Percentage, progressPrediction);
+        }
       }
-      if (!--UpdCnt)
+      CleanOverallProgress = MirrorContext.GetProgress();
+      progressPrediction.AddSample(MirrorContext.GetProgress(), &CleanOverallProgress);
+      PrintProgress(Percentage, progressPrediction);
+
+      // During Debug we would like to know how good the effort prediction was. There should be almost no over or under shoots
+      if (gCheckProgress)
       {
-        UpdCnt = gUpdateIntervall;
-        PrintProgress(Percentage, progressPrediction);
+        if (maxCleanEffort.m_Points.load() > 0)
+        {
+          __int64 cleanOvershoot = maxCleanEffort.m_Points.load() - CleanOverallProgress.m_Points.load();
+          if (cleanOvershoot)
+            fwprintf(gStdOutFile, L"DEBUG: Clean Overshoot: %I64d, Effort: %I64d\n", cleanOvershoot, maxCleanEffort.m_Points.load());
+        }
       }
     }
-    CleanOverallProgress = MirrorContext.GetProgress();
-    progressPrediction.AddSample(MirrorContext.GetProgress(), &CleanOverallProgress);
-    PrintProgress(Percentage, progressPrediction);
-
     MirrorContext.Reset();
-  }
-
-  if (gCheckProgress)
-  {
-    __int64 cleanOvershoot = maxCleanEffort.m_Points.load() - CleanOverallProgress.m_Points.load();
-    wprintf(L"\nDEBUG: Clean Overshoot: %I64d, Effort: %I64d\n", cleanOvershoot, maxCleanEffort.m_Points.load());
   }
 
   // Once cleaning is done start the mirror process
@@ -894,7 +902,8 @@ void _Mirror(
     if (gCheckProgress)
     {
       __int64 mirrorOvershoot = maxMirrorEffort.m_Points.load() - MirrorContext.GetProgress().m_Points.load() - maxCleanEffort.m_Points.load();
-      wprintf(L"\nDEBUG: Mirror Overshoot: %I64d, Effort: %I64d\n", mirrorOvershoot, maxMirrorEffort.m_Points.load() - maxCleanEffort.m_Points.load());
+      if (mirrorOvershoot)
+        fwprintf(gStdOutFile, L"DEBUG: Mirror Overshoot: %I64d, Effort: %I64d\n", mirrorOvershoot, maxMirrorEffort.m_Points.load() - maxCleanEffort.m_Points.load());
     }
   }
 
