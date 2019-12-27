@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ * Copyright (C) 1999 - 2020, Hermann Schinagl, hermann@schinagl.priv.at
  */
 
 #pragma once
@@ -10,47 +10,24 @@
 #define SIDEBYSIDE_COMMONCONTROLS 1
 
 #include <windows.h>
-#include <winnt.h>
-#include <winioctl.h>
+#include <stdio.h>
 #include <tchar.h>
 
 #define INITGUID
 #include <initguid.h>
 #include <shlguid.h>
 
-#include <winnetwk.h>
-#pragma comment(lib, "wsock32.lib")
-
-
-#include <ShlObj.h>
-
-#include <stdio.h>
-
-//disable warnings on 255 char debug symbols
-#pragma warning (disable : 4786)
-//disable warnings on extern before template instantiation
-#pragma warning (disable : 4231)
-#include <vector>
-#include <algorithm>
-#include <list>
-#include <atomic>
-#include <map>
-#include <set>
-#include <mutex>
-
-using namespace std;
+#include <shlobj.h>
 
 #include "uxtheme.h"
 #include "winuser.h"
 #include "commctrl.h"
 
-#include <sys/stat.h>
 #include <shlwapi.h>
-#include <strsafe.h>
 
 #include "resource.h"
 
-#include <..\..\shared\tre-0.8.0\lib\regex.h>
+using namespace std;
 
 // Include interfaces from hardlink.lib
 #include "HardlinkLib.h"

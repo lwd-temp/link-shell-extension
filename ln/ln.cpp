@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ * Copyright (C) 1999 - 2020, Hermann Schinagl, hermann@schinagl.priv.at
  */
 
 // TODO ERROR: 'test\hardlinks' and '' are not on same volume, wenn der Pfad falsch ist

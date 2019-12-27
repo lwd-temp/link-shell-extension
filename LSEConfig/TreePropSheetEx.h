@@ -78,11 +78,11 @@ class CTreePropSheetEx
   //! Splitter class.
   typedef CTreePropSheetSplitter tSplitter;
   //! Managed pointer (auto_ptr) to splitter class.
-  typedef std::auto_ptr<tSplitter> tSplitterPtr;
+  typedef std::unique_ptr<tSplitter> tSplitterPtr;
   //! Layout manager.
   typedef CTreePropSheetResizableLibHook tLayoutManager;
   //! Managed pointer (auto_ptr) to layout manager.
-  typedef std::auto_ptr<tLayoutManager> tLayoutManagerPtr;
+  typedef std::unique_ptr<tLayoutManager> tLayoutManagerPtr;
 
 // Construction/Destruction
 public:
