@@ -7022,6 +7022,15 @@ CopyHardlink(
             // Thus we would like to leave the loop for this item
             CopyOk = true;
           
+            // We also have to move ahead with the progress, which would normally be done during copy
+            if (apContext)
+            {
+              apContext->AddProgress(pF->m_FileSize.ul64, 1, 1);
+#if defined _DEBUG
+              count++;
+#endif
+            }
+
             // Breaking here will not bring us to SmartCopy
             break;
           }
@@ -10408,80 +10417,79 @@ Prepare(
   m_FATFilenameBegin = m_Filenames.begin();
 
   // return on an empty set
-  if (m_Filenames.begin() == m_Filenames.end())
-    return 0;
-
-  m_FilenamesSave = m_Filenames;
-
-  // #define SMARTCOPY_DEBUG // DEBUG_DEFINES
-#if defined SMARTCOPY_DEBUG
-  // Dump all entries
-  HTRACE(L"PrepareSmartCopy All Entries %d\n", distance(m_Filenames.begin(), m_Filenames.end()));
-  Dump(m_Filenames.begin(), m_Filenames.end());
-#endif
-
-  // divide into Reparse Point and the rest
-  // m_HardlinkBegin
-  _Pathes::iterator DelayedReparsePointBegin = partition(m_Filenames.begin(), m_Filenames.end(), IsReparsePoint());
-
-  // divide the rest(==Directories & Files) into filenames and directories
-  m_DirectoryBegin = partition(DelayedReparsePointBegin, m_Filenames.end(), IsDirectory());
-
-  // The files might contain delayed Reparse Points, which will either 
-  // be ReparsePoints or files, once it has been decided
-  m_HardlinkBegin = partition(DelayedReparsePointBegin, m_DirectoryBegin, IsDelayedReparsePoint());
-
-#if defined SMARTCOPY_DEBUG
-  // Dump the reparse points
-  HTRACE(L"PrepareSmartCopy reparse points: %d\n", distance(m_Filenames.begin(), DelayedReparsePointBegin));
-  Dump(m_Filenames.begin(), DelayedReparsePointBegin);
-
-  // Dump the Delayed ReparsePoints
-  HTRACE(L"PrepareSmartCopy Delayed ReparsePoints %d\n", distance(DelayedReparsePointBegin, m_HardlinkBegin));
-  Dump(DelayedReparsePointBegin, m_HardlinkBegin);
-#endif
-
-  // Sort the files so that hardlink sibblings are adjacent to each other
-  sort(m_HardlinkBegin, m_DirectoryBegin, PathIdxFileIndexSorter());
-
-  // Decide which Symbolic link ReparsePoints are inner or outer
-  _Pathes::iterator NewFilenameBegin = ResolveDelayedReparsePoints(DelayedReparsePointBegin, m_HardlinkBegin, m_DirectoryBegin, pStats);
-  if (NewFilenameBegin != m_HardlinkBegin)
+  if (m_Filenames.begin() != m_Filenames.end())
   {
-    m_HardlinkBegin = NewFilenameBegin;
+    m_FilenamesSave = m_Filenames;
 
-    // And sort again, because we have new items among the FILE_ATTRIBUTE_NORMAL set
+    // #define SMARTCOPY_DEBUG // DEBUG_DEFINES
+#if defined SMARTCOPY_DEBUG
+    // Dump all entries
+    HTRACE(L"PrepareSmartCopy All Entries %d\n", distance(m_Filenames.begin(), m_Filenames.end()));
+    Dump(m_Filenames.begin(), m_Filenames.end());
+#endif
+
+    // divide into Reparse Point and the rest
+    // m_HardlinkBegin
+    _Pathes::iterator DelayedReparsePointBegin = partition(m_Filenames.begin(), m_Filenames.end(), IsReparsePoint());
+
+    // divide the rest(==Directories & Files) into filenames and directories
+    m_DirectoryBegin = partition(DelayedReparsePointBegin, m_Filenames.end(), IsDirectory());
+
+    // The files might contain delayed Reparse Points, which will either 
+    // be ReparsePoints or files, once it has been decided
+    m_HardlinkBegin = partition(DelayedReparsePointBegin, m_DirectoryBegin, IsDelayedReparsePoint());
+
+#if defined SMARTCOPY_DEBUG
+    // Dump the reparse points
+    HTRACE(L"PrepareSmartCopy reparse points: %d\n", distance(m_Filenames.begin(), DelayedReparsePointBegin));
+    Dump(m_Filenames.begin(), DelayedReparsePointBegin);
+
+    // Dump the Delayed ReparsePoints
+    HTRACE(L"PrepareSmartCopy Delayed ReparsePoints %d\n", distance(DelayedReparsePointBegin, m_HardlinkBegin));
+    Dump(DelayedReparsePointBegin, m_HardlinkBegin);
+#endif
+
+    // Sort the files so that hardlink sibblings are adjacent to each other
     sort(m_HardlinkBegin, m_DirectoryBegin, PathIdxFileIndexSorter());
-  }
 
-  // Hardlinks contain possible hardlinks and plain files, if this container 
-  // traversed a FAT partition. Plain files have a disk ID of 0xffffffff, and
-  // a random file ID 
-  m_FATFilenameBegin = partition(m_HardlinkBegin, m_DirectoryBegin, IsPlainFile());
+    // Decide which Symbolic link ReparsePoints are inner or outer
+    _Pathes::iterator NewFilenameBegin = ResolveDelayedReparsePoints(DelayedReparsePointBegin, m_HardlinkBegin, m_DirectoryBegin, pStats);
+    if (NewFilenameBegin != m_HardlinkBegin)
+    {
+      m_HardlinkBegin = NewFilenameBegin;
 
-  //  Dump(m_HardlinkBegin, m_DirectoryBegin);
+      // And sort again, because we have new items among the FILE_ATTRIBUTE_NORMAL set
+      sort(m_HardlinkBegin, m_DirectoryBegin, PathIdxFileIndexSorter());
+    }
+
+    // Hardlinks contain possible hardlinks and plain files, if this container 
+    // traversed a FAT partition. Plain files have a disk ID of 0xffffffff, and
+    // a random file ID 
+    m_FATFilenameBegin = partition(m_HardlinkBegin, m_DirectoryBegin, IsPlainFile());
+
+    // Dump(m_HardlinkBegin, m_DirectoryBegin);
 
     // To avoid hardlink clustering of plain files, each files get a uniq file id,
     // so that the normal mechanisms of Smartcopy can be used
-  __int64 Idx = 0;
-  for (_Pathes::iterator iter = m_FATFilenameBegin; iter != m_DirectoryBegin; ++iter)
-    (*iter)->m_FileIndex.ul64 = Idx++;
+    __int64 Idx = 0;
+    for (_Pathes::iterator iter = m_FATFilenameBegin; iter != m_DirectoryBegin; ++iter)
+      (*iter)->m_FileIndex.ul64 = Idx++;
 
 #if defined SMARTCOPY_DEBUG
-  // Dump the reparse points
-  HTRACE(L"PrepareSmartCopy reparse points %d\n", distance(m_Filenames.begin(), m_HardlinkBegin));
-  Dump(m_Filenames.begin(), m_HardlinkBegin);
+    // Dump the reparse points
+    HTRACE(L"PrepareSmartCopy reparse points %d\n", distance(m_Filenames.begin(), m_HardlinkBegin));
+    Dump(m_Filenames.begin(), m_HardlinkBegin);
 
-  // Dump the Filenames
-  HTRACE(L"PrepareSmartCopy Filenames %d\n", distance(m_HardlinkBegin, m_DirectoryBegin));
-  Dump(m_HardlinkBegin, m_DirectoryBegin);
+    // Dump the Filenames
+    HTRACE(L"PrepareSmartCopy Filenames %d\n", distance(m_HardlinkBegin, m_DirectoryBegin));
+    Dump(m_HardlinkBegin, m_DirectoryBegin);
 
-  // Dump the directories
-  HTRACE(L"PrepareSmartCopy Directories %d\n", distance(m_DirectoryBegin, m_Filenames.end()));
-  Dump(m_DirectoryBegin, m_Filenames.end());
+    // Dump the directories
+    HTRACE(L"PrepareSmartCopy Directories %d\n", distance(m_DirectoryBegin, m_Filenames.end()));
+    Dump(m_DirectoryBegin, m_Filenames.end());
 
 #endif
-
+  }
   // Only calc effort with a valid mode. There are situations, where PrepareSmartCopy is only called to
   // prepare the container
   return aEffort ? EstimateEffort(aMode, aEffort) : 0;
@@ -10751,7 +10759,6 @@ ResolveDelayedReparsePoints(
       pStats->m_HeapAllocTime.Stop();
 
       wcscpy_s ((*iter)->m_ReparseSrcTargetHint, ReparseSrcTargetHintLength, pReparseSrcTargetHint);
-
     }
     else
     {
@@ -10790,8 +10797,7 @@ CheckSymbolicLinks()
   Prepare(eSmartClone, &aStats);
 
   WCHAR	DummyReparsePointTarget[HUGE_PATH];
-  _Pathes::iterator iter;
-  for (iter = m_Filenames.begin(); iter !=  m_HardlinkBegin; ++iter)
+  for (_Pathes::iterator iter = m_Filenames.begin(); iter !=  m_HardlinkBegin; ++iter)
   {
     FileInfo*	pF = *iter;
     if ( REPARSE_POINT_SYMBOLICLINK == ProbeReparsePoint(pF->m_FileName, DummyReparsePointTarget) )
@@ -11513,7 +11519,7 @@ _SmartMirror(
     // NTFS is broken
     InvalidateFileIndex(m_HardlinkBegin, m_DirectoryBegin);
 
-    // Print an error the message if we dupemerge was not forced
+    // Print an error message for broken NTFS implementation
     if (!(m_Flags2 & eDupemerge))
     {
       wchar_t BrokenDrive[HUGE_PATH];
