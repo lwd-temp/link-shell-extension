@@ -120,7 +120,7 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/dynamicbase /nxcompat /stack:15000000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/dynamicbase /nxcompat %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>hardlink.lib;shlwapi.lib;user32.lib;Oleaut32.lib;ole32.lib;comctl32.lib;uxtheme.lib;mpr.lib;gdi32.lib;ntdll.lib;tre.lib;netapi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -128,7 +128,7 @@
       <DelayLoadDLLs>uxtheme.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <StackReserveSize>4194304</StackReserveSize>
+      <StackReserveSize>45000000 </StackReserveSize>
       <TargetMachine>MachineX86</TargetMachine>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -166,14 +166,14 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/dynamicbase /nxcompat /stack:15000000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/dynamicbase /nxcompat %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>hardlink.lib;shlwapi.lib;user32.lib;Oleaut32.lib;ole32.lib;comctl32.lib;uxtheme.lib;mpr.lib;gdi32.lib;ntdll.lib;netapi32.lib;tre.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>LinkShellExtension.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <StackReserveSize>4194304</StackReserveSize>
+      <StackReserveSize>45000000 </StackReserveSize>
       <TargetMachine>MachineX64</TargetMachine>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <OptimizeReferences>true</OptimizeReferences>
@@ -210,7 +210,7 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/dynamicbase /nxcompat /stack:15000000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/dynamicbase /nxcompat %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>hardlink.lib;shlwapi.lib;user32.lib;Oleaut32.lib;ole32.lib;comctl32.lib;uxtheme.lib;mpr.lib;gdi32.lib;ntdll.lib;tre.lib;netapi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -218,8 +218,9 @@
       <DelayLoadDLLs>uxtheme.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <StackReserveSize>16777216</StackReserveSize>
-      <StackCommitSize>16777216</StackCommitSize>
+      <StackReserveSize>45000000 </StackReserveSize>
+      <StackCommitSize>
+      </StackCommitSize>
       <TargetMachine>MachineX86</TargetMachine>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
       <OptimizeReferences>false</OptimizeReferences>
@@ -256,7 +257,7 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/dynamicbase /nxcompat /stack:30000000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/dynamicbase /nxcompat %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>hardlink.lib;shlwapi.lib;user32.lib;Oleaut32.lib;ole32.lib;comctl32.lib;uxtheme.lib;mpr.lib;gdi32.lib;ntdll.lib;tre.lib;netapi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -264,8 +265,9 @@
       <DelayLoadDLLs>uxtheme.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <StackReserveSize>16777216</StackReserveSize>
-      <StackCommitSize>16777216</StackCommitSize>
+      <StackReserveSize>45000000 </StackReserveSize>
+      <StackCommitSize>
+      </StackCommitSize>
       <TargetMachine>MachineX64</TargetMachine>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
       <OptimizeReferences>false</OptimizeReferences>
@@ -311,11 +313,21 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <None Include="..\bat\CertificateSettings.bat" />
+    <None Include="..\bat\FtpUpload.bat" />
+    <None Include="..\bat\MediaUpload.bat" />
     <None Include="..\bat\Settings.bat" />
     <None Include="..\bat\SymServUpload.bat" />
     <None Include="..\bat\SymStoreDel.bat" />
     <None Include="..\BuildWorld.bat" />
     <None Include="..\bat\SourceIndex.bat" />
+    <None Include="install\choco\linkshellextension.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="install\choco\linkshellextension.nuspec.template" />
+    <None Include="install\choco\NugetGen.bat" />
+    <None Include="install\choco\tools\chocolateyInstall.ps1" />
+    <None Include="install\choco\chocolateyInstall.ps1.template" />
+    <None Include="install\choco\tools\chocolateyUninstall.ps1" />
     <None Include="LinkShellExtension.def" />
     <None Include="install\CodeSign.bat" />
     <None Include="install\CreateInstall.bat" />
@@ -357,9 +369,6 @@
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="HardlinkShellExt.dll.trust.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\bat\FilesToUpload.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,7 +6,7 @@ REM
 set MAJOR_LSE_VERSION=3
 set MINOR_LSE_VERSION=9
 set PATCH_LSE_VERSION=3
-set HOTFIX_LSE_VERSION=0
+set HOTFIX_LSE_VERSION=1
 
 REM Set the version info for ln.exe
 REM
@@ -20,7 +20,7 @@ REM
 set MAJOR_DUPEMERGE_VERSION=1
 set MINOR_DUPEMERGE_VERSION=1
 set PATCH_DUPEMERGE_VERSION=0
-set HOTFIX_DUPEMERGE_VERSION=2
+set HOTFIX_DUPEMERGE_VERSION=3
 
 @echo generating Version info
 REM Generate version info for Shell Extension
@@ -61,15 +61,30 @@ REM (echo #define LSE_CURRENT_VERSION %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSI
 REM Generate version info for install media stamp
 REM
 set VERSION_FILE=HardlinkExtension\install\stampver.inf
-(echo FileVersion=%MAJOR_VERSION%.%MINOR_VERSION%.%PATCH_VERSION%.%HOTFIX_VERSION%)>%VERSION_FILE%
-(echo ProductVersion=%MAJOR_VERSION%.%MINOR_VERSION%.%PATCH_VERSION%.%HOTFIX_VERSION%)>>%VERSION_FILE%
+(echo FileVersion=%MAJOR_LSE_VERSION%.%MINOR_LSE_VERSION%.%PATCH_LSE_VERSION%.%HOTFIX_LSE_VERSION%)>%VERSION_FILE%
+(echo ProductVersion=%MAJOR_LSE_VERSION%.%MINOR_LSE_VERSION%.%PATCH_LSE_VERSION%.%HOTFIX_LSE_VERSION%)>>%VERSION_FILE%
 (echo FileFormat=%%a.%%b.%%c.%%d)>>%VERSION_FILE%
 (echo ProductFormat=%%a.%%b.%%c.%%d)>>%VERSION_FILE%
 
 REM Generate version info for installer script
 REM
 set VERSION_FILE=HardlinkExtension\install\LSE_version.nsh
-(echo !define LSE_VERSION "%MAJOR_VERSION%.%MINOR_VERSION%.%PATCH_VERSION%.%HOTFIX_VERSION%")>%VERSION_FILE%
+(echo !define LSE_VERSION "%MAJOR_LSE_VERSION%.%MINOR_LSE_VERSION%.%PATCH_LSE_VERSION%.%HOTFIX_LSE_VERSION%")>%VERSION_FILE%
+
+REM Generate version info for LinkShellExtension.nuspec 
+REM
+set VERSION_FILE=HardlinkExtension\install\choco\LSE_version.txt
+(echo %MAJOR_LSE_VERSION%.%MINOR_LSE_VERSION%.%PATCH_LSE_VERSION%.%HOTFIX_LSE_VERSION%)>%VERSION_FILE%
+
+REM Generate version info for ln.nuspec 
+REM
+set VERSION_FILE=ln\choco\ln_version.txt
+(echo %MAJOR_LN_VERSION%.%MINOR_LN_VERSION%.%PATCH_LN_VERSION%.%HOTFIX_LN_VERSION%)>%VERSION_FILE%
+
+REM Generate version info for dupemerge.nuspec 
+REM
+set VERSION_FILE=dupemerge\choco\dupemerge_version.txt
+(echo %MAJOR_DUPEMERGE_VERSION%.%MINOR_DUPEMERGE_VERSION%.%PATCH_DUPEMERGE_VERSION%.%HOTFIX_DUPEMERGE_VERSION%)>%VERSION_FILE%
 
 REM Rebuild
 REM
@@ -100,7 +115,7 @@ call bat\SourceIndex.bat
 
 REM Upload to symbolserver
 REM
-call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_VERSION%
+call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_VERSION%%HOTFIX_LSE_VERSION%
 @REM 
 @echo.
 @echo Please commit to GIT now for he symbol transaction-id
@@ -109,16 +124,17 @@ call bat\SymServUpload.bat %MAJOR_VERSION%%MINOR_VERSION%%PATCH_VERSION%%HOTFIX_
 @echo.
 pause
 
-REM Copy over certificate
-REM
+@REM Copy over certificate & ftp access
+@REM
 echo.
 echo Provide Certificate for signing
 echo.
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.pfx shared\certificate\schinagl.priv.at.pfx > nul
 @echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\schinagl.priv.at.txt shared\certificate\schinagl.priv.at.txt > nul
+@echo F|@xcopy /y ..\hardlinks.supl\KnowledgeBase\certificate\ftp_*.* bat > nul
 
-REM Create installer
-REM
+@REM Create installer
+@REM
 echo.
 echo ######## Link Shell Extension ######## 
 echo.
@@ -128,8 +144,8 @@ call CodeSign.bat
 popd
 @echo F|@xcopy /y HardlinkExtension\Doc\linkshellextension.html HardlinkExtension\Doc\hardlinkshellext.html > nul
 
-REM Pack ln.exe
-REM
+@REM Pack ln.exe
+@REM
 echo.
 echo ######## ln.exe  ######## 
 echo.
@@ -137,11 +153,26 @@ pushd ln
 call PackMedia.bat %MAJOR_LN_VERSION%%MINOR_LN_VERSION%%PATCH_LN_VERSION%%HOTFIX_LN_VERSION%
 popd
 
-REM dupemerge.exe
-REM
+@REM dupemerge.exe
+@REM
 echo.
 echo ######## Dupemerge.exe ######## 
 echo.
 pushd dupemerge
-call PackMedia.bat %MAJOR_LN_VERSION%%MINOR_LN_VERSION%%PATCH_LN_VERSION%%HOTFIX_LN_VERSION%
+call PackMedia.bat %MAJOR_DUPEMERGE_VERSION%%MINOR_DUPEMERGE_VERSION%%PATCH_DUPEMERGE_VERSION%%HOTFIX_DUPEMERGE_VERSION%
 popd
+
+@REM Media Upload
+@REM
+echo.
+echo ###### Press key to continue to Media Upload or stop script here
+echo.
+pause
+call bat\MediaUpload.bat
+
+@REM Media GIT Commit
+@REM
+echo.
+echo ###### Once more commit to GIT for SHA256 hashes for choco
+echo.
+pause

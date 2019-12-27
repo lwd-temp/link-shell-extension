@@ -123,7 +123,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i>Dernière mise à jour du 8 Novembre 2019, Version 3.9.3.0</i>
+                    <i>Dernière mise à jour du 23 Novembre 2019, Version 3.9.3.1</i>
                 </div>
             </td>
         </tr>
@@ -300,6 +300,29 @@
 
         <tr>
             <td class="hanger">
+                <a name="choco"><b>Installation<br />via Chocolatey</b></a>
+            </td>
+
+            <td class="bodytext">
+                On peut aussi installer Link ShellExtension via <a href="https://chocolatey.org">chocolatey</a> en entrant
+                <br /><br />
+                <span class="ascode">
+                    choco install linkshellextension
+                </span>
+                <br />
+                <br />
+                en ligne de commande. Assurez-vous d'avoir <a href="https://chocolatey.org/install">installé chocolatey</a>.
+                L'utilisateur courant doit posséder des privilèges administrateur pour pouvoir installer le logiciel via choco.
+                <br />
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><br /></td>
+        </tr>
+
+        <tr>
+            <td class="hanger">
                 <a name="usinglinkshellextension"><b>Utilisation de Link Shell Extension</b></a>
             </td>
 
@@ -369,7 +392,7 @@
                 <br />
                 <br />
 
-                <img src="submenue.png" alt="Popup Submenue">
+                <img src="submenue.png" alt="Popup Submenu">
             </td>
         </tr>
 
@@ -1285,6 +1308,10 @@
                 <br />
                 <br />
 
+                Si le mode sauvegarde est activé le compagnon UAC, LSEUacHelper.exe, est appelé dans tous les cas, car LSE a besoin d'énumérer les fichiers là où 
+                il pourrait ne pas en avoir les droits.
+                <br />
+                <br />
                 <p>
                     Le Déplacement Intelligent crée des liens symboliques <a href="#relativevsabsolutesymboliclinks">relatifs</a> durant une opération de Déplacement Intelligent.
                 </p>
@@ -2377,8 +2404,8 @@
                     <a href="http://www.rw-designer.com/3D_icon_editor.php">RealWorld Icon Editor</a>
                 </p>
 
-                    <b>Appliquer les Changements</b><br />
-                    Quand vous appuyez sur OK ou Appliquer dans le dialogue de LSEConfigs, les configurations seront remplacées.
+                <b>Appliquer les Changements</b><br />
+                Quand vous appuyez sur OK ou Appliquer dans le dialogue de LSEConfigs, les configurations seront remplacées.
                 <p>
                     Si des changements sont effectués sur la configuration de la langue de Link Shell Extensions ou d'une
                     configuration relative aux icônes de superposition, on vous demandera de confirmer le redémarrage de
@@ -2817,6 +2844,22 @@
 
                     <tr>
                         <td class="history">
+                            <a name="3931">23 Novembre 2019</a>
+                        </td>
+                        <td>
+                            Version 3.9.3.1
+                            <ul>
+                                <!-- 3.9.3.1, 19.11.2019 -->
+                                <li>Correction d'un crash lorsque le nom de l'utilisateur est > 20 caractères en tant que non-admin lors de la création d'un lien symbolique.</li>
+                                <!-- 3.9.3.1, 17.11.2019 -->
+                                <li>Link ShellExtension <a href="#choco">maintient</a> un <a href="https://chocolatey.org/packages/LinkShellExtension/3.9.3.0">package chocolatey</a>.</li>
+                                <li>Link ShellExtension est publique sur <a href="https://gitlab.com/schinagl/link-shell-extension">gitlab</a>.</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="history">
                             <a name="3910">8 Novembre 2019</a>
                         </td>
 
@@ -2825,14 +2868,14 @@
                             <ul>
                                 <!-- 3.9.3.0, 8.11.2019 -->
                                 <li>Pour des utilisateurs non administrateurs sous Windows 10, l'explorateur ne se relançait pas après une installation</li>
-                                <li>Lors d'un changement d'icône personnalisé, on demandait de clore plusieurs applications dépendantes, ce qui n'est pas utile. Relancer l'explorateur est suffisant.</li>
+                                <li>Lors d'un changement d'icône personnalisée, on demandait de clore plusieurs applications dépendantes, ce qui n'est pas utile. Relancer l'explorateur est suffisant.</li>
                                 <!-- 3.9.2.9, 4.11.2019 -->
                                 <li>Un certain nombre de chaînes de caractères étaient erronées. Introduit par 3.9.2.8</li>
                                 <!-- 3.9.2.8, 2.11.2019 -->
                                 <li>'Supprimer la jonction' enlevé du menu principal.</li>
                                 <li>Amélioration de la gestion des menus, comme par exemple, on ne peut pas créer de Copies Intelligentes de fichiers liés par liens Symboliques.</li>
                                 <li>Adaptation des vérifications aux redistribuables de VS2017 et Windows 10.</li>
-                                <!-- 3.9.2.7, 15.10.2019 -->
+                                <!-- 3.9.2.7, 28.10.2019 -->
                                 <li>Sur un système de fichiers non NTFS, on ne pouvait pas sélectionner un Lien Source. Introduit avec 3921</li>
                                 <li>Le démontage de volume ne fonctionnait pas, quand une élévation de privilèges était nécessaire.</li>
                                 <li>Nouvelles captures d'écrans Windows 10 pour la documentation et celle en ligne.</li>
@@ -3123,7 +3166,7 @@
                                 <li>The target of the Symbolic Liks or Junctions can be edited in the <a href="#linkproperties">properties dialog</a>.</li>
                                 <li>Non administrators could not create symbolic links.</li>
 
-                                <li>With XP and the symlink driver installed the Delete Junction menue didn't show up.</li>
+                                <li>With XP and the symlink driver installed the Delete Junction menu didn't show up.</li>
                                 <li>The status of the <a href="#SymbolicLinkPrivilege">privilege for Symbolic Link Creation</a> is checked, so that UAC can be avoided</li>
 
                                 <li>Fixed deployment problems for the Win32bit version.</li>
@@ -3198,16 +3241,16 @@
                                 <li>Added a <a href="#configuration">configuration</a> tool for LSE options</li>
                                 <li>Added a <a href="#configuration">priority level</a> for the indidual overlay icons.</li>
                                 <li>Added an <a href="#configuration">option</a> to switch off overlay icons totally for each type of overlay.</li>
-                                <li>The Pick Link Source context menue now also shows up on FAT drives, if the item potentially is the source for a LSE operation.</li>
+                                <li>The Pick Link Source context menu now also shows up on FAT drives, if the item potentially is the source for a LSE operation.</li>
                                 <li>Overlay icons can be <a href="#disablingoverlayicons">disabled.</a></li>
                                 <li>Documented how the <a href="#silentinstall">install directory</a> can specified when using silent (un)install.</li>
-                                <li>The menu hydraulics have been reworked, so that it is decided early to only show menue for chioces, which are really possible.</li>
+                                <li>The menu hydraulics have been reworked, so that it is decided early to only show menu for chioces, which are really possible.</li>
                                 <li>LSE and symlink are now linked with ASLR.</li>
                                 <li>Tranparency glitches in the Junction overlay icon have been fixed.</li>
                                 <li>Hardlink Clone and Symboliclink Clone have been extended so that <a href="#hardlinkclones">Inner Junctions and inner Symbolic Links</a> are properly handled.</li>
                                 <li>LSE now supports also the replacement of <a href="#replacementjunction">Mountpoints and Symbolic Links</a>.</li>
                                 <li>LSE shows a dialog box whether explorer should be <a href="#installation">restarted</a> or not during non silent installation.</li>
-                                <li>Under Windows Vista and Window7 the <i><a href="#junctionwindows7">Delete Junction</a></i> menue doe not show up anymore.</li>
+                                <li>Under Windows Vista and Window7 the <i><a href="#junctionwindows7">Delete Junction</a></i> menu doe not show up anymore.</li>
                             </ul>
                         </td>
                     </tr>
@@ -3991,7 +4034,6 @@
 
             <td align="center" class="bodytext">
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
-
                     <tr>
                         <td class="hanger2">
                             <b>Tous les Windows 64<br /></b>
@@ -4007,7 +4049,7 @@
                                 </center>
                             </a>
                             <br />
-                            Toutes les dlls nécessaires à l'exécution dont déjà installées sur votre système, mais si ce n'est pas le cas, récupérez les 
+                            Toutes les dlls nécessaires à l'exécution dont déjà installées sur votre système, mais si ce n'est pas le cas, récupérez-les 
                             <a href="https://aka.ms/vs/15/release/vc_redist.x64.exe">ici en 64 bits</a>
                             et <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">ici en 32 bits</a>
                             <br />
@@ -4038,8 +4080,27 @@
                             </a>
                             <br />
                             <br />
-                            Toutes les dlls nécessaires à l'exécution sont déjà installées sur votre système, mais si ce n'est pas le cas, récupérez les 
-                            <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">ici.</a>                <br />
+                            Toutes les dlls nécessaires à l'exécution sont déjà installées sur votre système, mais si ce n'est pas le cas, récupérez-les
+                            <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">ici.</a>
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="hanger2">
+                            <b>Installation via<br />Chocolatey</b>
+                        </td>
+
+                        <td class="bodytext">
+                            On peut aussi installer Link ShellExtension via <a href="https://chocolatey.org">chocolatey</a> en entrant
+                            <br /><br />
+                            <span class="ascode">
+                                choco install linkshellextension
+                            </span>
+                            <br />
+                            <br />
                         </td>
                     </tr>
 
@@ -4131,7 +4192,7 @@
                         </td>
                         <td align="left" class="bodytext">
                             Un driver pour activer même sous WindowsXP la <a href="#symboliclinksforwindowsxp">
-                               fonctionnalité de lien symbolique
+                                fonctionnalité de lien symbolique
                             </a> est mis à disposition par Masatoshi Kimura. Vous pouvez télécharger le
                             driver depuis sa page web ou depuis mon site agissant comme miroir.
 

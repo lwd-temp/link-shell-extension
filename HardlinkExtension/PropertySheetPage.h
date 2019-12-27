@@ -122,8 +122,8 @@ struct ReparseProperties
   void
   Init() 
   {
-    Source = NULL;
-    Target = NULL;
+    Source = nullptr;
+    Target = nullptr;
     Type = REPARSE_POINT_UNDEFINED;
   };
   

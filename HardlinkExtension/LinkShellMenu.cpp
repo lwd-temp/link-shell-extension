@@ -998,8 +998,8 @@ CreateContextMenu(
 {
   // Check the number of entries to be added
 
-  wchar_t     DropTarget[HUGE_PATH];
-  wchar_t     Targets[HUGE_PATH];
+  wchar_t     DropTarget[HUGE_PATH] = { 0 };
+  wchar_t     Targets[HUGE_PATH] = { 0 };
   if (ERROR_SUCCESS != ReparseCanonicalize(m_DropTarget.m_Path, DropTarget, HUGE_PATH))
     return;
   if (ERROR_SUCCESS != ReparseCanonicalize(m_pTargets[0].m_Path, Targets, HUGE_PATH))
@@ -1489,7 +1489,7 @@ DropHardLink(
 	Target&		aTarget
 )
 {
-  WCHAR		dest[HUGE_PATH];
+  WCHAR		dest[HUGE_PATH] = { 0 };
 
 #if defined _DEBUG
   BOOL b = EnableTokenPrivilege(SE_BACKUP_NAME);
@@ -1562,7 +1562,7 @@ DropHardLink(
   {
     UACHelper uacHelper;
 
-    for (ULONG i = 0; i < m_nTargets; i++)
+    for (ULONG i = 0; i < m_nTargets; ++i)
     {
       CreateFileName(
         g_hInstance,
@@ -1612,7 +1612,7 @@ DropSymbolicLink(
   bool      aCopy
 )
 {
-  WCHAR		dest[HUGE_PATH];
+  WCHAR		dest[HUGE_PATH] = { 0 };
 
   bool Elevation = ElevationNeeded();
   PathAddBackslash(aTarget.m_Path);
@@ -1654,7 +1654,7 @@ DropSymbolicLink(
     }
 
     int SymbolicLinkRelation = gLSESettings.GetFlags() & eForceAbsoluteSymbolicLinks ? 0 : SYMLINK_FLAG_RELATIVE;
-    wchar_t target[HUGE_PATH];
+    wchar_t target[HUGE_PATH] = { 0 };
     if (aCopy)
     {
       ProbeSymbolicLink(m_pTargets[i].m_Path, target);
@@ -1731,8 +1731,8 @@ DropSymbolicLink(
     // Check if two directories should be linked together
     if (m_pTargets[i].m_Flags & (eDir | eJunction | eVolume | eMountPoint | eSymbolicLink))
     {
-      WCHAR	DestNoSymlink[HUGE_PATH];
-      WCHAR	SourceNoSymlink[HUGE_PATH];
+      WCHAR	DestNoSymlink[HUGE_PATH] = { 0 };
+      WCHAR	SourceNoSymlink[HUGE_PATH] = { 0 };
 
       // Check if recursive symbolic links are about to be created
       ReparseCanonicalize(target, SourceNoSymlink, HUGE_PATH);
@@ -1818,32 +1818,29 @@ DropJunction(
   bool      aCopy
 )
 {
-  WCHAR		dest[HUGE_PATH];
-
+  WCHAR		dest[HUGE_PATH] = { 0 };
   PathAddBackslash(aTarget.m_Path);
 
-  // Only get the data from the clipboard if we do not already
-  // have data in m_pTargets
+  // Only get the data from the clipboard if we do not already have data in m_pTargets
   // The idea behind is to support Pick/Drop in parallel to the
   // drag-drop handler, which does not put data onto the clipboard
   // but does it only via m_pTargets
   if (!m_nTargets)
     ClipboardToSelection(false);
 
-  // Under e.g c:\program Files (x86) it is not allowed to create
-  // junctions without UAC, so we have to fork in that case and
-  // have all variables prepared
+  // Under e.g c:\program Files (x86) it is not allowed to create junctions without UAC, 
+  // so we have to fork in that case and have all variables prepared
   bool CreateJunctionsViaHelperExe = false;
   UACHelper uacHelper;
 
-  for (ULONG i = 0; i < m_nTargets; i++)
+  for (ULONG i = 0; i < m_nTargets; ++i)
   {
     if (m_pTargets[i].m_Flags & (eDir | eJunction | eVolume | eMountPoint | eSymbolicLink))
     {
-      WCHAR	DestNoJunction[HUGE_PATH];
-      WCHAR	SourceNoJunction[HUGE_PATH];
+      WCHAR	DestNoJunction[HUGE_PATH] = { 0 };
+      WCHAR	SourceNoJunction[HUGE_PATH] = { 0 };
 
-      wchar_t		dp[MAX_PATH];
+      wchar_t		dp[MAX_PATH] = { 0 };
       wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
 
       CreateFileName(
@@ -1856,7 +1853,7 @@ DropJunction(
         dest,
         IDS_STRING_eTopMenuOfOrderXP_1);
 
-      wchar_t target[HUGE_PATH];
+      wchar_t target[HUGE_PATH] = { 0 };
       if (aCopy)
         ProbeJunction(m_pTargets[i].m_Path, target);
       else
@@ -1921,16 +1918,6 @@ DropJunction(
           }
         }
       }
-
-    }
-
-    // If files were selected aside directories or junction
-    // create hardlinks for the files
-    if (m_pTargets[i].m_Flags & eFile)
-    {
-      int result = CreateHardlink(m_pTargets[i].m_Path, dest);
-      if (ERROR_SUCCESS != result)
-        ErrorFromSystem(result);
     }
   }
 
@@ -1940,10 +1927,10 @@ DropJunction(
   if (CreateJunctionsViaHelperExe)
 #endif
   {
-    DWORD r = uacHelper.Fork();
-    if (r)
+    DWORD RetVal = uacHelper.Fork();
+    if (RetVal)
     {
-      switch (r)
+      switch (RetVal)
       {
       case ERROR_ALREADY_EXISTS:
         ErrorCreating(dest,
@@ -1954,7 +1941,7 @@ DropJunction(
         break;
 
       default:
-        ErrorFromSystem(r);
+        ErrorFromSystem(RetVal);
         break;
       }
     }
@@ -2009,7 +1996,7 @@ DropMountPoint(
   bool      aCopy
 )
 {
-  WCHAR		dest[HUGE_PATH];
+  WCHAR		dest[HUGE_PATH] = { 0 };
 
   PathAddBackslash(aTarget.m_Path);
 
@@ -2019,12 +2006,12 @@ DropMountPoint(
   // Either Mountpoint creation or Mountpoint Copy are let in
   if ((m_pTargets[0].m_Flags & eVolume) || (m_pTargets[0].m_Flags & eMountPoint && aCopy))
   {
-    WCHAR	DestNoJunction[HUGE_PATH];
-    WCHAR	SourceNoJunction[HUGE_PATH];
+    WCHAR	DestNoJunction[HUGE_PATH] = { 0 };
+    WCHAR	SourceNoJunction[HUGE_PATH] = { 0 };
 
     // Automagically create a directory with the volume name
     // of the source drive. This only happens if you drag
-    wchar_t		dp[MAX_PATH];
+    wchar_t		dp[MAX_PATH] = { 0 };
     wchar_t*	pFilename = DrivePrefix(m_pTargets[0].m_Path, dp);
 
     CreateFileName(
@@ -2038,7 +2025,7 @@ DropMountPoint(
       IDS_STRING_eTopMenuOfOrderXP_1);
 
 
-    wchar_t target[HUGE_PATH], volumeName[HUGE_PATH];
+    wchar_t target[HUGE_PATH] = { 0 }, volumeName[HUGE_PATH] = { 0 };
     if (aCopy)
       ProbeMountPoint(m_pTargets[0].m_Path, target, HUGE_PATH, volumeName);
     else
@@ -2071,19 +2058,17 @@ DropMountPoint(
       if (ElevationNeeded())
 #endif
       {
-        UACHelper uacHelper;
-
         // Write the command file, which is read by the elevated process
+        UACHelper uacHelper;
         uacHelper.WriteArgs('m', target, dest);
-
-        uacHelper.Fork();
+        RetVal = uacHelper.Fork();
       }
       else
       {
         RetVal = CreateMountPoint(target, dest);
       }
 
-      if (S_OK != RetVal)
+      if (ERROR_SUCCESS != RetVal)
       {
         switch (RetVal)
         {
@@ -2107,12 +2092,7 @@ DropMountPoint(
       }
     }
   }
-  /*
-      // If files were selected aside directories or junction
-      // create hardlinks for the files
-      if (m_pTargets[i].m_Flags & eFile)
-        CreateHardlink(m_pTargets[i].m_Path, dest);
-  */
+  
 	return NOERROR;
 }
 
@@ -2125,9 +2105,9 @@ DeleteMountPoint(
   UACHelper uacHelper;
   bool RelayToSymlink = false;
 
-  for (UINT i = 0; i < m_nTargets; i++)
+  DWORD RetVal;
+  for (UINT i = 0; i < m_nTargets; ++i)
   {
-    DWORD RetVal;
     if (m_pTargets[i].m_Flags & eMountPoint)
     {
       // With Vista it is not allowed to unmount a drive
@@ -2142,7 +2122,7 @@ DeleteMountPoint(
       {
         RetVal = ::DeleteMountPoint(m_pTargets[i].m_Path);
         RemoveDirectory(m_pTargets[i].m_Path);
-        if (S_OK != RetVal)
+        if (ERROR_SUCCESS != RetVal)
           ErrorFromSystem(RetVal);
       }
     }
@@ -2154,8 +2134,8 @@ DeleteMountPoint(
   if (RelayToSymlink)
 #endif
   {
-    DWORD r = uacHelper.Fork();
-    if (r)
+    RetVal = uacHelper.Fork();
+    if (ERROR_SUCCESS != RetVal)
       ErrorFromSystem(GetLastError());
   }
   return NOERROR;
@@ -2641,10 +2621,10 @@ SmartXXX(
 
       // Create a filename in 'dest' according to the 
       // e.g 'Hardlink(n) of' syntax
-      wchar_t		dp[MAX_PATH];
+      wchar_t		dp[MAX_PATH] = { 0 };
       wchar_t*	pFilename = DrivePrefix(m_pTargets[i].m_Path, dp);
 
-      WCHAR		dest[HUGE_PATH];
+      WCHAR		dest[HUGE_PATH] = { 0 };
 
       int rr = CreateFileName(
         g_hInstance,
@@ -2923,7 +2903,7 @@ SmartXXX(
   #endif
 
           // Fork Process
-	  DWORD r = uacHelper.Fork();
+          DWORD r = uacHelper.Fork();
         }
         else
         {
@@ -3084,7 +3064,7 @@ DropReplaceJunction(
   DWORD RetVal = ERROR_SUCCESS;
   if (m_pTargets[0].m_Flags & (eDir | eJunction | eVolume | eMountPoint))
   {
-    WCHAR	SourceNoJunction[HUGE_PATH];
+    WCHAR	SourceNoJunction[HUGE_PATH] = { 0 };
 
     ReparseCanonicalize(m_pTargets[0].m_Path, SourceNoJunction, HUGE_PATH);
     PathAddBackslash(SourceNoJunction);
@@ -3100,7 +3080,7 @@ DropReplaceJunction(
     {
       HTRACE(L"LSE::DropReplaceJunction: '%s' -> '%s', %ld\n", aTarget.m_Path, m_pTargets[0].m_Path, m_pTargets[0].m_Flags);
       RetVal = ReplaceJunction(aTarget.m_Path, m_pTargets[0].m_Path);
-      if (S_OK != RetVal)
+      if (ERROR_SUCCESS != RetVal)
         ErrorFromSystem(RetVal);
     }
 
@@ -3209,7 +3189,7 @@ DropReplaceSymbolicLink(
   if (!m_nTargets)
     ClipboardToSelection(false);
 
-  WCHAR	PurePath[HUGE_PATH];
+  WCHAR	PurePath[HUGE_PATH] = { 0 };
 
   ReparseCanonicalize(m_pTargets[0].m_Path, PurePath, HUGE_PATH);
   PathAddBackslash(PurePath);
@@ -3224,7 +3204,7 @@ DropReplaceSymbolicLink(
   else
   {
     DWORD RetVal = ReplaceSymbolicLink(aTarget.m_Path, m_pTargets[0].m_Path, false);
-    if (S_OK != RetVal)
+    if (ERROR_SUCCESS != RetVal)
       ErrorFromSystem(RetVal);
   }
   return NOERROR;
@@ -3250,9 +3230,8 @@ ReplaceMountPoint(
   if (ElevationNeeded() || (gLSESettings.GetFlags() & eBackupMode))
 #endif
   {
-    UACHelper uacHelper;
-
     // Write the command file, which is read by the elevated process
+    UACHelper uacHelper;
     uacHelper.WriteArgs('o', aSource, aTarget);
 
     RetVal = uacHelper.Fork();
@@ -3262,7 +3241,7 @@ ReplaceMountPoint(
     RetVal = ::DeleteMountPoint(aTarget);
     SetFileAttributes(aSource, MountPointAttributes & ~(FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM));
     RemoveDirectory(aTarget);
-    if (S_OK == RetVal)
+    if (ERROR_SUCCESS == RetVal)
     {
       CreateDirectory(aTarget, NULL);
       RetVal = CreateMountPoint(aSource, aTarget);
@@ -3288,7 +3267,7 @@ DropReplaceMountPoint(
 
   if (m_pTargets[0].m_Flags & eVolume)
   {
-    WCHAR	PurePath[HUGE_PATH];
+    WCHAR	PurePath[HUGE_PATH] = { 0 };
 
     ReparseCanonicalize(m_pTargets[0].m_Path, PurePath, HUGE_PATH);
     PathAddBackslash(PurePath);
@@ -3304,9 +3283,8 @@ DropReplaceMountPoint(
     {
       HTRACE(L"LSE::DropReplaceMountPoint: '%s' -> '%s', %ld\n", aTarget.m_Path, m_pTargets[0].m_Path, m_pTargets[0].m_Flags);
 
-      DWORD RetVal;
-      RetVal = ReplaceMountPoint(aTarget.m_Path, m_pTargets[0].m_Path);
-      if (S_OK != RetVal)
+      DWORD RetVal = ReplaceMountPoint(aTarget.m_Path, m_pTargets[0].m_Path);
+      if (ERROR_SUCCESS != RetVal)
         ErrorFromSystem(RetVal);
     }
   }

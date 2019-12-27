@@ -138,7 +138,8 @@ STDAPI DllCanUnloadNow(void)
     return (g_cRefThisDll == 0 ? S_OK : S_FALSE);
 }
 
-STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, LPVOID *ppvOut)
+_Check_return_
+STDAPI DllGetClassObject(_In_ REFCLSID rclsid, _In_ REFIID riid, _Outptr_ LPVOID FAR* ppvOut)
 {
   *ppvOut = NULL;
 

@@ -60,7 +60,7 @@
         <tr>
             <td colspan="2">
                 <div style="font-size:.8em; font-family: Arial, 'Segoe UI', Verdana, Geneva, sans-serif; font-style: italic; text-align: right;">
-                    <i>Last updated December 28 2018, Version 1.102</i>
+                    <i>Last updated November 27 2019, Version 1.103</i>
                 </div>
             </td>
         </tr>
@@ -924,11 +924,14 @@
                 <table>
                     <tr>
                         <td class="history">
-                            December 28 2018
+                            November 27 2019
                         </td>
                         <td>
-                            <a name="1100">Version 1.102 released.<br /></a>
+                            <a name="1100">Version 1.103 released.<br /></a>
                             <ul>
+                                <!-- 1.1.0.3, 27.11.2019 -->
+                                <li>Recompiled with signed binary and new version number to make it to chocolatey</li> 
+                                <li>[Internal] but important change from VS2005 (sic) to VS2017. Basically everything compiled smoothly except for the heap, thus...</li>
                                 <li>[Internal] but important change from VS2005 (sic) to VS2017. Basically everything compiled smoothly except for the heap, thus...</li>
                                 <li>
                                     [Internal] Removed the Rockall fast heap. This was neccessary, but also a big performance gain. Memory allocation is 2 times faster,

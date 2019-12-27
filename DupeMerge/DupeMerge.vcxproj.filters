@@ -18,6 +18,9 @@
     <Filter Include="Intall">
       <UniqueIdentifier>{ba569b9f-d2a8-4e24-b111-9ae040e13269}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Intall\choco">
+      <UniqueIdentifier>{fb51f255-ddd9-4404-bf4a-902a1316f4f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DupeMerge.cpp">
@@ -57,6 +60,21 @@
     <None Include="todo.txt" />
     <None Include="PackMedia.bat">
       <Filter>Intall</Filter>
+    </None>
+    <None Include="choco\dupemerge.nuspec">
+      <Filter>Intall\choco</Filter>
+    </None>
+    <None Include="choco\dupemerge.nuspec.template">
+      <Filter>Intall\choco</Filter>
+    </None>
+    <None Include="choco\tools\chocolateyInstall.ps1">
+      <Filter>Intall\choco</Filter>
+    </None>
+    <None Include="choco\chocolateyInstall.ps1.template">
+      <Filter>Intall\choco</Filter>
+    </None>
+    <None Include="choco\NugetGen.bat">
+      <Filter>Intall\choco</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

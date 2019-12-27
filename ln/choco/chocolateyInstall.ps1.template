@@ -1,0 +1,17 @@
+﻿$packageName = 'ln'
+$url = 'https://schinagl.priv.at/nt/ln/save/##LN_VERSION##/ln.zip'
+$checksum = '##CHECKSUM32##'
+$checksumType = 'sha256'
+$url64 = 'https://schinagl.priv.at/nt/ln/save/##LN_VERSION##/ln64.zip'
+$checksum64 = '##CHECKSUM64##'
+$checksumType64 = 'sha256'
+$toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+
+Install-ChocolateyZipPackage -PackageName "$packageName" `
+                             -Url "$url" `
+                             -UnzipLocation "$toolsDir" `
+                             -Url64bit "$url64" `
+                             -Checksum "$checksum" `
+                             -ChecksumType "$checksumType" `
+                             -Checksum64 "$checksum64" `
+                             -ChecksumType64 "$checksumType64"
