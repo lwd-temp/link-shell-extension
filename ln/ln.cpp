@@ -586,6 +586,8 @@ LnSmartXXX(
     {
       __int64 copyOvershoot = maxProgress.m_Points.load() - Context.GetProgress().m_Points.load();
       if (copyOvershoot)
+        // We do overshootm when run with --dupemerge, because the amount of files to operated on changes during the copy operation.
+        // Regression test thus contains one line with 'Overshoot'. All other overshoots shall be 0 and shall not show up.
         fwprintf(gStdOutFile, L"DEBUG: %s Overshoot: %I64d, Effort: %I64d\n", ModeLiteral, copyOvershoot, maxProgress.m_Points.load());
     }
   }
