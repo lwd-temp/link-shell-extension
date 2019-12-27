@@ -87,7 +87,6 @@ static struct option	long_options[] =
   { "follow", optional_argument, NULL, '\0' },
  
   { "followregexp", optional_argument, NULL, '\0' },
-  { "checkprogress", no_argument, NULL, '\0' }, // // undocumented: debug, bound to --automated_test, shows estimated effort and real effort for pogress calculation
   { 0, 0, 0, 0 }
 };
 
@@ -112,7 +111,6 @@ bool              g1023safe{ false };
 bool              gJson{ false };
 bool              gProgress{ false };
 const wchar_t     gProgressIndicator[] = { L'|', L'/', L'-', L'\\' }; 
-bool              gCheckProgress{ false };
 const int         gUpdateIntervall{ 4 };
 
 class	ln_EnumHardlinkSiblingsGlue : public EnumHardlinkSiblingsGlue
@@ -582,7 +580,7 @@ LnSmartXXX(
     }
     PrintElapsed(progressPrediction);
 
-    if (gCheckProgress)
+    if (gAutomatedTest)
     {
       __int64 copyOvershoot = maxProgress.m_Points.load() - Context.GetProgress().m_Points.load();
       if (copyOvershoot)
@@ -859,7 +857,7 @@ void _Mirror(
       PrintProgress(Percentage, progressPrediction);
 
       // During Debug we would like to know how good the effort prediction was. There should be almost no over or under shoots
-      if (gCheckProgress)
+      if (gAutomatedTest)
       {
         if (maxCleanEffort.m_Points.load() > 0)
         {
@@ -901,7 +899,7 @@ void _Mirror(
     // so we have to pass this number to PrintElapsed()
     PrintElapsed(progressPrediction, maxMirrorItems);
 
-    if (gCheckProgress)
+    if (gAutomatedTest)
     {
       __int64 mirrorOvershoot = maxMirrorEffort.m_Points.load() - MirrorContext.GetProgress().m_Points.load() - maxCleanEffort.m_Points.load();
       if (mirrorOvershoot)
@@ -3129,17 +3127,6 @@ wmain(
             }
             break;
 
-            // --checkprogress
-            case cBaseJustLongOpts + 0x28:
-            {
-              if (gAutomatedTest)
-                gCheckProgress = true;
-            }
-            break;
-
-
-
-            
             default:
               fwprintf (gStdOutFile, L"Unknown LongOpt %d:'%S'\n", longind, long_options[longind].name);
             break;
