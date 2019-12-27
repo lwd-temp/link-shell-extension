@@ -140,9 +140,8 @@ AddSample(
   FILETIME64    CurrentTime;
   SystemTimeToFileTime(&ct, &CurrentTime.FileTime);
 
-  // Also offset the time to m_Start and To stay in the range of __int64 in belows calculation, we shift 
-  // by 18bit which is a factor of 262144 and brings us to an accuracy of ~1/4 a second because FILETIME is
-  // in 100ns
+  // Also offset the time to m_Start and To stay in the range of __int64 in belows calculation, we shift by 18bit 
+  // which is a factor of 262144 and brings us to an accuracy of ~1/4 a second because FILETIME is in 100ns
   sample.first.ul64DateTime = CurrentTime.ul64DateTime >> cAccuracy;
   sample.first.ul64DateTime -= m_Start.first.ul64DateTime;
 
@@ -152,7 +151,11 @@ AddSample(
   if (apProgressOffset)
     currentPoints += apProgressOffset->m_Points;
 
-  return (int)(m_Increment ? currentPoints / m_Increment : 100);
+  __int64 percentage = 100;
+  // Check for overshoots
+  if (currentPoints <= m_Start.second.m_Points)
+    percentage = m_Increment ? currentPoints / m_Increment : 100;
+  return (int)percentage;
 }
 
 // Calculates the progress and returns and estimate how long progress will last.
@@ -204,12 +207,10 @@ TimeLeft(SYSTEMTIME& a_TimeLeft, Effort& a_Effort)
   CurrentFileTime.ul64DateTime >>= cAccuracy;
   __int64 dX = CurrentFileTime.ul64DateTime - m_Start.first.ul64DateTime;
   __int64 dY = m_Start.second.m_Points - m_Values.back().second.m_Points;
-  __int64 k;
   
   // If things are very fast, we might enter this in no time, thus ....
-  if (dX == 0)
-    k = 0;
-  else
+  __int64 k = 0;
+  if (dX != 0)
     k = dY / dX;
 
   FILETIME64 EndTime;
@@ -331,7 +332,7 @@ int PrintTrueSizeCopyStatsNormal(
 
 	oss << endl;
 
-  oss << "                        Total               Bytes" << endl; 
+  oss << "                        Items               Bytes" << endl; 
 
   oss << "    File:";
   oss << setfill(' ') << setw(20) << aStats.m_FilesTotal;
@@ -344,7 +345,7 @@ int PrintTrueSizeCopyStatsNormal(
   oss << endl;
 
   oss << "   Total:";
-  oss << setfill(' ') << setw(20) << aStats.m_FilesTotal - (aStats.m_FilesTotal - aStats.m_HardlinksTotal);
+  oss << setfill(' ') << setw(20) << "-";  // aStats.m_HardlinksTotal
   oss << setfill(' ') << setw(20) << aStats.m_BytesTotal - (aStats.m_BytesTotal - aStats.m_HardlinksTotalBytes);
   oss << endl;
 
@@ -424,10 +425,10 @@ int PrintTrueSizeCopyStatsJson(
 {
   fwprintf (a_OutputFile, L"{\n\"Summary\":{\n");
 
-  fwprintf (a_OutputFile, L"\"Total\":{\"File\":%I64d,\"Hardlink\":%I64d,\"Total\":%I64d,\"Folder\":%I64d,\"Junction\":%I64d,\"Symlink\":%I64d},\n",
+  fwprintf (a_OutputFile, L"\"Items\":{\"File\":%I64d,\"Hardlink\":%I64d,\"Total\":\"-1\",\"Folder\":%I64d,\"Junction\":%I64d,\"Symlink\":%I64d},\n",
     aStats.m_FilesTotal,
     aStats.m_FilesTotal - aStats.m_HardlinksTotal,
-    aStats.m_FilesTotal - (aStats.m_FilesTotal - aStats.m_HardlinksTotal),
+//    aStats.m_HardlinksTotal,
     aStats.m_DirectoryTotal,
     aStats.m_JunctionsTotal,
     aStats.m_SymlinksTotal

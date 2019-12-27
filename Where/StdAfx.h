@@ -25,6 +25,7 @@
 #include <map>
 #include <set>
 #include <algorithm>
+#include <mutex>
 
 
 #define ULTRAGETOPT_REPLACE_GETOPT

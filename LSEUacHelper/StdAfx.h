@@ -19,8 +19,8 @@
 #include <atomic>
 #include <map>
 #include <set>
+#include <mutex>
 
-using namespace std;
 
 #include <windows.h>
 #include <winbase.h>
@@ -39,7 +39,10 @@ using namespace std;
 // regular expression parser
 #include "..\..\shared\tre-0.8.0\lib\regex.h" 
 
+using namespace std;
+
 // Include interfaces from hardlink.lib
 #include "HardlinkLib.h"
+
 
 #pragma comment(lib, "wsock32.lib")

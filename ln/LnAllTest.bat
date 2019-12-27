@@ -24,8 +24,7 @@ set BASEPATH_DS=%BASEPATH:\=\\%
 %GSAR% -s%~p0 -r\BasePath -o %OUTPUT%
 
 %GSAR% -s..\Tools\where.exe -rWHERE -o %OUTPUT%
-%GSAR% -s--automated_traditional -r -o %OUTPUT%
-%GSAR% -s--automated_test -r -o %OUTPUT%
+%GSAR% -s"%LN_TEST_OPTIONS%" -r -o %OUTPUT%
 
 
 %GSAR% -s%EMPTYTESTDRIVE%:\ -rEMPTYTESTDRIVE\ -o %OUTPUT%

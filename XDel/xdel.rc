@@ -26,38 +26,13 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_AUSTRIAN
 // Version
 //
 
-VS_VERSION_INFO VERSIONINFO
- FILEVERSION 5,3,0,1
- PRODUCTVERSION 5,3,0,1
- FILEFLAGSMASK 0x3fL
-#ifdef _DEBUG
- FILEFLAGS 0x1L
-#else
- FILEFLAGS 0x0L
-#endif
- FILEOS 0x40004L
- FILETYPE 0x1L
- FILESUBTYPE 0x0L
-BEGIN
-    BLOCK "StringFileInfo"
-    BEGIN
-        BLOCK "0c0704b0"
-        BEGIN
-            VALUE "CompanyName", "Schinagl"
-            VALUE "FileDescription", "xdel"
-            VALUE "FileVersion", "5, 3, 0, 1"
-            VALUE "InternalName", "XDEL"
-            VALUE "LegalCopyright", "Copyright © 1999-2018 Hermann Schinagl"
-            VALUE "OriginalFilename", "xdel.exe"
-            VALUE "ProductName", "XDEL"
-            VALUE "ProductVersion", "5, 3, 0, 1"
-        END
-    END
-    BLOCK "VarFileInfo"
-    BEGIN
-        VALUE "Translation", 0xc07, 1200
-    END
-END
+#define PRODUCT_NAME "xdel"
+#define ORIGINAL_FILENAME "xdel.exe"
+#define MAJOR_VERSION 5
+#define MINOR_VERSION 3
+#define PATCH_VERSION 0
+#define HOTFIX_VERSION 1
+#include "..\Shared\version\version.rc2"
 
 
 #ifdef APSTUDIO_INVOKED

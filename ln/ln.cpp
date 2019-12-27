@@ -78,14 +78,14 @@ static struct option	long_options[] =
   { "hardlinklimit", required_argument, NULL, '\0' }, // undocumented: Specify the hardlink limit. By default 1023, for testing can be set seperatley. Used in Autoamted Test
   { "generatehardlinks", required_argument, NULL, '\0' }, // undocumented: Specify how many hardlinks are generated automatically. for automated test only
   { "1023safe", no_argument, NULL, '\0' },
-  { "json", no_argument, NULL, '\0' }, // undocumented: Output is in json format
+  { "json", no_argument, NULL, '\0' }, // Output is in json format
   { "forcestats", no_argument, NULL, '\0' }, // undocumented, for automated test only. Show stats regardless of automated test
   { "progress", no_argument, NULL, '\0' }, // Shows the progress
   { "merge", required_argument, NULL, '\0' }, // Merges two delorean sets
   { "delete", required_argument, NULL, '\0' }, // Deletes a tree and take care of hardlinks
   { "supportfs", required_argument, NULL, '\0' },
   { "follow", optional_argument, NULL, '\0' },
-
+ 
   { "followregexp", optional_argument, NULL, '\0' },
   { 0, 0, 0, 0 }
 };
@@ -96,22 +96,22 @@ static struct option	long_options[] =
 const int cBaseJustLongOpts = 0x19;
 
 int							  gLogLevel = FileInfoContainer::eLogVerbose;
-bool              gAutomatedTest = false;
+bool              gAutomatedTest{ false };
 FILE*             gStdOutFile;
 intptr_t          gStdOutHandle;
-bool              gSwitchOffNtfsCheck = false;
-bool              gDupemerge = false;
-bool              gNoEa = false;
-bool              gNoSparseFile = false;
-bool              gNoAds = false;
-bool              gResolveUNC = true;
-bool              gDeloreanVerbose = false;
-int               gDeloreanSleep = 0;
-bool              g1023safe = false;
-bool              gJson = false;
-bool              gProgress = false;
+bool              gSwitchOffNtfsCheck{ false };
+bool              gDupemerge{ false };
+bool              gNoEa{ false };
+bool              gNoSparseFile{ false };
+bool              gNoAds{ false };
+bool              gResolveUNC{ true };
+bool              gDeloreanVerbose{ false };
+int               gDeloreanSleep{ 0 };
+bool              g1023safe{ false };
+bool              gJson{ false };
+bool              gProgress{ false };
 const wchar_t     gProgressIndicator[] = { L'|', L'/', L'-', L'\\' }; 
-const int gUpdateIntervall = 4;
+const int         gUpdateIntervall{ 4 };
 
 class	ln_EnumHardlinkSiblingsGlue : public EnumHardlinkSiblingsGlue
 {
@@ -302,14 +302,18 @@ void PrintProgress(__int64 aPercentage, ProgressPrediction& aProgressPrediction)
   }
 }
 
-void PrintElapsed(ProgressPrediction& aProgressPrediction)
+void PrintElapsed(ProgressPrediction& aProgressPrediction, __int64 aFakeEffort = -1)
 {
   SYSTEMTIME duration;
   Effort effort;
   aProgressPrediction.Duration(duration, effort);
 
   char nItems[MAX_PATH];
-  FormatNumber(nItems, MAX_PATH, effort.m_Items.load());
+  if (aFakeEffort < 0)
+    FormatNumber(nItems, MAX_PATH, effort.m_Items.load());
+  else
+    FormatNumber(nItems, MAX_PATH, aFakeEffort);
+
   wprintf (L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b100%%, Items %14S, Time elapsed: %02d:%02d:%02d\n",
     nItems,
     duration.wHour,
@@ -489,7 +493,7 @@ LnSmartXXX(
       iter->ArgvDest = aDestination.Argv;
 
   AsyncContext    Context;
-  AsyncContext*    pContext = NULL;
+  AsyncContext*    pContext = nullptr;
 
   if (gProgress)
     pContext = &Context;
@@ -521,15 +525,13 @@ LnSmartXXX(
 
 	GetLocalTime(&aStats.m_CopyTime);
 
-  // #define SIM_CONTEXT
-#if defined SIM_CONTEXT
-// __int64 MaxProgress = 123456789012342;
- __int64 MaxProgress = 123456789;
-// __int64 MaxProgress = 123456;
-#else
   wchar_t ModeLiteral[MAX_PATH];
-  Effort MaxProgress;
-  FileList.Prepare(aMode, &aStats, &MaxProgress);
+  Effort maxProgress;
+  FileList.Prepare(aMode, &aStats, &maxProgress);
+
+  // Since context was used during enumeration, reset it
+  if (pContext)
+    Context.Reset();
   switch (aMode)
   {
     case FileInfoContainer::eSmartCopy:
@@ -545,12 +547,11 @@ LnSmartXXX(
     break;
 
     case FileInfoContainer::eSmartClean:
-      FileList.SmartClean (&aStats, &PathNameStatusList, pContext);
+      FileList.SmartClean(&aStats, &PathNameStatusList, pContext);
       wcscpy_s(ModeLiteral, MAX_PATH, L"Deleting");
     break;
   
   }
-#endif
 
   // Print progress if async
   // 
@@ -558,33 +559,18 @@ LnSmartXXX(
   {
     wprintf (L"\n%s ...      0%%, Items              , Time left:         ", ModeLiteral);
 
-    Context.Reset();
     ProgressPrediction progressPrediction;
-    progressPrediction.SetStart(MaxProgress);
+    progressPrediction.SetStart(maxProgress);
     int Percentage = 0;
 
-#if defined SIM_CONTEXT
-    __int64 SimContext = 0;
-    while (1)
-    {
-      SimContext += 23456;
-      int NewPercentage = (int)(SimContext / Increment);
-#else
     int UpdCnt = gUpdateIntervall;
     while (!Context.Wait(250))
     {
       int NewPercentage = progressPrediction.AddSample(Context.GetProgress());
-#endif
       if (NewPercentage != Percentage)
       {
         Percentage = NewPercentage;
         PrintProgress(Percentage, progressPrediction);
-
-#if defined SIM_CONTEXT
-        Sleep (250);
-        if (100 < Percentage)
-          break;
-#endif
       }
       if (!--UpdCnt)
       {
@@ -593,6 +579,15 @@ LnSmartXXX(
       }
     }
     PrintElapsed(progressPrediction);
+
+    if (gAutomatedTest)
+    {
+      __int64 copyOvershoot = maxProgress.m_Points.load() - Context.GetProgress().m_Points.load();
+      if (copyOvershoot)
+        // We do overshootm when run with --dupemerge, because the amount of files to operated on changes during the copy operation.
+        // Regression test thus contains one line with 'Overshoot'. All other overshoots shall be 0 and shall not show up.
+        fwprintf(gStdOutFile, L"DEBUG: %s Overshoot: %I64d, Effort: %I64d\n", ModeLiteral, copyOvershoot, maxProgress.m_Points.load());
+    }
   }
 
   if (FileInfoContainer::eSmartClean == aMode)
@@ -805,30 +800,29 @@ void _Mirror(
 )
 {
   // Sequentially run Clean and Mirror, because it won't work in parallel.
-  // Why: If we would just deal with items there or not, parallel would work, but
-  // unfortunatley items can also be renamed during mirror and this breaks the parallel
-  // approach
+  // Why: If we would just deal with items there or not, parallel would work, but unfortunatley 
+  // items can also be renamed during mirror and this breaks the parallel approach
 
   AsyncContext  MirrorContext;
-  AsyncContext* pMirrorContext = NULL;
+  AsyncContext* pMirrorContext = nullptr;
   if (gProgress)
     pMirrorContext = &MirrorContext;
 
-  Effort MaxProgress;
-  MirrorList.Prepare(FileInfoContainer::eSmartMirror, &MirrorStatistics, &MaxProgress);
+  Effort maxMirrorEffort;
+  MirrorList.Prepare(FileInfoContainer::eSmartMirror, &MirrorStatistics, &maxMirrorEffort);
 
   // Lets clean the cloned backup
   CloneList.SetLookAsideContainer(&MirrorList);
   CopyStatistics	CleanStatistics;
-  Effort NullEffort;
+  Effort maxCleanEffort;
   if (!aDeloreanMerge)
   {
-    CloneList.Prepare(FileInfoContainer::eSmartClean, &CleanStatistics, &NullEffort);
+    CloneList.Prepare(FileInfoContainer::eSmartClean, &CleanStatistics, &maxCleanEffort);
     CloneList.SmartClean(&MirrorStatistics, &PathNameStatusList, pMirrorContext);
   }
 
-
-  // TODO Check if NullEffort passt was die Anzahl der Files betrifft
+  __int64 maxMirrorItems = maxMirrorEffort.m_Items.load();
+  maxMirrorEffort += maxCleanEffort;
 
   // Print SmartClean progress
   //
@@ -838,31 +832,45 @@ void _Mirror(
   if (gProgress)
   {
     wprintf(L"Mirroring...    0%%, Items                , Time left:         ");
+    progressPrediction.SetStart(maxMirrorEffort);
 
-    progressPrediction.SetStart(MaxProgress);
-
-    int UpdCnt = gUpdateIntervall;
-    while (!MirrorContext.Wait(250))
+    // Only if we are in normal mode, clean is run. With Delorean Merge we don't
+    if (!aDeloreanMerge)
     {
-      int NewPercentage = progressPrediction.AddSample(MirrorContext.GetProgress());
-      if (NewPercentage != Percentage)
+      int UpdCnt = gUpdateIntervall;
+      while (!MirrorContext.Wait(250))
       {
-        Percentage = NewPercentage;
-        PrintProgress(Percentage, progressPrediction);
+        int NewPercentage = progressPrediction.AddSample(MirrorContext.GetProgress());
+        if (NewPercentage != Percentage)
+        {
+          Percentage = NewPercentage;
+          PrintProgress(Percentage, progressPrediction);
+        }
+        if (!--UpdCnt)
+        {
+          UpdCnt = gUpdateIntervall;
+          PrintProgress(Percentage, progressPrediction);
+        }
       }
-      if (!--UpdCnt)
+      CleanOverallProgress = MirrorContext.GetProgress();
+      progressPrediction.AddSample(MirrorContext.GetProgress(), &CleanOverallProgress);
+      PrintProgress(Percentage, progressPrediction);
+
+      // During Debug we would like to know how good the effort prediction was. There should be almost no over or under shoots
+      if (gAutomatedTest)
       {
-        UpdCnt = gUpdateIntervall;
-        PrintProgress(Percentage, progressPrediction);
+        if (maxCleanEffort.m_Points.load() > 0)
+        {
+          __int64 cleanOvershoot = maxCleanEffort.m_Points.load() - CleanOverallProgress.m_Points.load();
+          if (cleanOvershoot)
+            fwprintf(gStdOutFile, L"DEBUG: Clean Overshoot: %I64d, Effort: %I64d\n", cleanOvershoot, maxCleanEffort.m_Points.load());
+        }
       }
     }
-    CleanOverallProgress = MirrorContext.GetProgress();
-    progressPrediction.AddSample(MirrorContext.GetProgress(), &CleanOverallProgress);
-    PrintProgress(Percentage, progressPrediction);
-
     MirrorContext.Reset();
   }
 
+  // Once cleaning is done start the mirror process
   MirrorList.SetLookAsideContainer(&CloneList);
   MirrorList.SmartMirror(&MirrorStatistics, &PathNameStatusList, pMirrorContext);
 
@@ -885,7 +893,18 @@ void _Mirror(
         PrintProgress(Percentage, progressPrediction);
       }
     }
-    PrintElapsed(progressPrediction);
+    // With mirror we also have the items to be cleaned into account, because they can make up a lot of 
+    // the progress. Think of mirroring against a destination, which contains 10 times the number of files
+    // of the source. But at the very end we would like to show up only the numbers of items from the source,
+    // so we have to pass this number to PrintElapsed()
+    PrintElapsed(progressPrediction, maxMirrorItems);
+
+    if (gAutomatedTest)
+    {
+      __int64 mirrorOvershoot = maxMirrorEffort.m_Points.load() - MirrorContext.GetProgress().m_Points.load() - maxCleanEffort.m_Points.load();
+      if (mirrorOvershoot)
+        fwprintf(gStdOutFile, L"DEBUG: Mirror Overshoot: %I64d, Effort: %I64d\n", mirrorOvershoot, maxMirrorEffort.m_Points.load() - maxCleanEffort.m_Points.load());
+    }
   }
 
   GetLocalTime(&MirrorStatistics.m_EndTime);
@@ -3752,6 +3771,17 @@ wmain(
     //
     if (AdsDev)
     {
+      Effort MaxProgress;
+      Effort Progress;
+
+      MaxProgress.m_Points = 3'408'913'456'736;
+      ProgressPrediction progressPrediction;
+      progressPrediction.SetStart(MaxProgress);
+
+      int Percentage = 0;
+      Progress.m_Points = 6'408'913'456'736;
+      int NewPercentage = progressPrediction.AddSample(Progress);
+
       Exit(ERR_ERROR);
     }
 

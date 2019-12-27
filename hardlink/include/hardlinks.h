@@ -866,24 +866,24 @@ public:
 
 	_StatisticsEvent	m_StatisticsEvents;
 
-	enum
-	{
-		eVoid							= 0x00,
-		eScanning					= 0x01,
-		eScanned					= 0x02,
-		ePreparation			= 0x03,
-		ePreparated				= 0x04,
-		eDupeMerge				= 0x05,
-		eDupeMerged				= 0x06,
-		eFinished					= 0x07
-	};
+  enum
+  {
+    eVoid = 0x00,
+    eScanning = 0x01,
+    eScanned = 0x02,
+    ePreparation = 0x03,
+    ePreparated = 0x04,
+    eDupeMerge = 0x05,
+    eDupeMerged = 0x06,
+    eFinished = 0x07
+  };
 
-	protected:
-		CRITICAL_SECTION	m_EventGuard;
-		CRITICAL_SECTION	m_StatGuard;
+  protected:
+    mutex             m_EventGuard;
+    mutex	            m_StatGuard;
 
-	private:		
-		int					m_State;
+  private:
+    int					m_State;
 
 	public:
 		int
@@ -1759,10 +1759,11 @@ class FileInfoContainer
 
     enum ItemWeight
     {
-      eHardlinkWeight = 100,
-      eDirectoryWeight = 100,
+      eFileWeight = 105,
+      eHardlinkWeight = eFileWeight,
+      eDirectoryWeight = 105,
       eTimeStampWeight = 50,
-      eReparseWeight = 100
+      eReparseWeight = 1
     };
 
     int 
@@ -1770,6 +1771,14 @@ class FileInfoContainer
       FileInfoContainer::CopyReparsePointFlags  aMode,
       CopyStatistics*	                          pStats,
       Effort *                                  aEffort = NULL
+    );
+
+    // Estimate effort for hardlink groups
+    void
+    EstimateHardlinkGroupEffort(
+      _Pathes::iterator&	a_Begin,
+      _Pathes::iterator&	a_End,
+      Effort* a_Effort
     );
 
     int

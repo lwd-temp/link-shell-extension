@@ -2374,21 +2374,18 @@ CopyStatistics():
   m_CopyTime{ 0 },
   m_EndTime{ 0 }
 {
-	InitializeCriticalSection (&m_EventGuard);
-	InitializeCriticalSection (&m_StatGuard);
 }
 
 CopyStatistics::~CopyStatistics()
 {
-	DeleteCriticalSection (&m_EventGuard);
-	DeleteCriticalSection (&m_StatGuard);
 }
 
 int
 CopyStatistics::
 AddTlsStat(CopyStatistics* rCopyStatistics)
 {
-  EnterCriticalSection(&m_StatGuard);
+  {
+    scoped_lock  lock(m_StatGuard);
   
 //  rCopyStatistics->m_DupeGroupsTotal += m_DupeGroupsTotal;
 //  rCopyStatistics->m_DupeGroupsNew += m_DupeGroupsNew;
@@ -2399,7 +2396,7 @@ AddTlsStat(CopyStatistics* rCopyStatistics)
   m_DupeCurrentBytesHashed += rCopyStatistics->m_DupeCurrentBytesHashed;
 //  rCopyStatistics->m_DupeBytesSaved += m_DupeBytesSaved;
 
-  LeaveCriticalSection(&m_StatGuard);
+  }
 
   return ERROR_SUCCESS;
 }
@@ -2439,12 +2436,12 @@ Proceed(int aNewState)
 	se.m_state = aNewState;
 	GetSystemTime(&se.m_time);
 
-	EnterCriticalSection (&m_EventGuard);
+  {
+    scoped_lock  lock(m_EventGuard);
 	m_StatisticsEvents.push_back (se);
-	LeaveCriticalSection (&m_EventGuard);
+  }
 
 	m_State = aNewState;
-
 	return errOk;
 }
 
@@ -2452,7 +2449,8 @@ int
 CopyStatistics::
 GetDupeEvent(StatisticsEvent& aStatisticsEvent)
 {
-	EnterCriticalSection (&m_EventGuard);
+  {
+    scoped_lock  lock(m_EventGuard);
 	if (m_StatisticsEvents.begin () != m_StatisticsEvents.end ())
 	{
 		StatisticsEvent& rStatisticsEvents = m_StatisticsEvents.front ();
@@ -2466,8 +2464,7 @@ GetDupeEvent(StatisticsEvent& aStatisticsEvent)
 		aStatisticsEvent.m_state = m_State;
 		GetSystemTime(&aStatisticsEvent.m_time);
 	}
-
-	LeaveCriticalSection (&m_EventGuard);
+  }
 
 	return errOk;
 }
@@ -3371,7 +3368,7 @@ _FindHardLinkTraditionalRecursive(
 #endif
             if (apContext)
             {
-              apContext->AddProgress(1, 1, 1);
+              apContext->AddProgress(eDirectoryWeight, 1, 1);
 
               // Set the status, and check if FindHardLink has been cancelled from outside
               int r = apContext->PutStatus(&aSrcPath[PathParseSwitchOffSize]);
@@ -4080,7 +4077,7 @@ _FindHardLinkRecursive(
 #endif
               if (apContext)
               {
-                apContext->AddProgress(1, 1, 1);
+                apContext->AddProgress(eDirectoryWeight, 1, 1);
 
                 // Set the status, and check if FindHardLink has been cancelled from outside
                 int r = apContext->PutStatus(&aSrcPath[PathParseSwitchOffSize]);
@@ -6717,6 +6714,11 @@ CopyHardlink(
 
   int RetVal = ERROR_SUCCESS;
 
+#if defined _DEBUG
+  size_t effort = distance(aBegin, aEnd);
+  int count = 0;
+#endif
+
   _Pathes::iterator copyiter = aBegin;
 
   BOOL CopyOk = false;
@@ -6836,6 +6838,17 @@ CopyHardlink(
         {
           // DoCopy == false
           // The files were the same
+
+          if (apContext)
+          {
+            // Anyway if the files are the same we have to move on with the progressbar
+            apContext->AddProgress(pF->m_FileSize.ul64, pF->m_FileSize.ul64, 1);
+#if defined _DEBUG
+            count++;
+#endif
+
+          }
+
           if (m_Flags2 & eDeloreanMerge)
           {
             // With --merge having the same files means: hardlink the files, aka merge the sets
@@ -6954,12 +6967,6 @@ CopyHardlink(
             pStats->m_BytesCopySkippped += pF->m_FileSize.ul64;
 
             Log(L"=f %s\n", &aDestPath[PathParseSwitchOffSize], m_Flags, eLogVerbose);
-
-            if (apContext)
-            {
-              // Anyway if the files are the same we have to move on with the progressbar
-              apContext->AddProgress(pF->m_FileSize.ul64, pF->m_FileSize.ul64, 1);
-		        }
           }
 		  
 		      // Skipping is ok to leave the loop
@@ -7016,11 +7023,23 @@ CopyHardlink(
 
             // Thus we would like to leave the loop for this item
             CopyOk = true;
+          
+            // We also have to move ahead with the progress, which would normally be done during copy
+            if (apContext)
+            {
+              apContext->AddProgress(pF->m_FileSize.ul64, 1, 1);
+#if defined _DEBUG
+              count++;
+#endif
+            }
+
+            // Breaking here will not bring us to SmartCopy
             break;
           }
         } // if (false == DoCopy)
       }
-      // break intentionally omitted
+      // break intentionally omitted. 
+      /// We deleted successfully before and want to use SmartCopy to copy over the leader
 
       case eSmartCopy:
       {
@@ -7180,14 +7199,11 @@ CopyHardlink(
     }
 
     ++copyiter;
-    // Go on until one file was copied successfully, or we reach
-    // the end of the tupel
+    // Go on until one file was copied successfully, or we reach the end of the tupel
   } while (CopyOk == false && copyiter != aEnd  );
 
 
-  //
-  // Hardlink all other files of a dupe to the first file, aka
-  // the 'leader' of the hardlink tupel.
+  // Hardlink all other files of a tupel to the first file, aka the 'leader' of the hardlink tupel.
   //
   wchar_t		LinkFile[HUGE_PATH];
   wcscpy_s(LinkFile, HUGE_PATH, aDestPath);
@@ -7195,6 +7211,7 @@ CopyHardlink(
   // Only link to the leader during copy, but not during --merge, because the 
   // merge has already happened while operating on the leader. See above
   if (!(m_Flags2 & eDeloreanMerge))
+  {
     for (_Pathes::iterator iter = copyiter; iter != aEnd; ++iter)
     {
       FileInfo*	pF = *iter;
@@ -7230,7 +7247,9 @@ CopyHardlink(
         }
       }
       else
+      {
         LinkFile[aDestPathLen] = 0x00;
+      }
 
       wcscat_s(LinkFile, HUGE_PATH, &pF->m_FileName[pF->m_SourcePathLen]);
 
@@ -7241,6 +7260,12 @@ CopyHardlink(
         if (IsVeryLongPath(pF->m_FileName))
           PathParseSwitchOffSize_Source = PATH_PARSE_SWITCHOFF_SIZE;
 
+        // Increment the progress by 'weight' of hardlink creation
+        apContext->AddProgress(eHardlinkWeight, 1, 1);
+#if defined _DEBUG
+        count++;
+#endif
+
         // Set the status, and check if Smartcopy has been cancelled from outside
         int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize_Source], &aDestPath[PathParseSwitchOffSize]);
         if ( ERROR_REQUEST_ABORTED == r)
@@ -7248,9 +7273,6 @@ CopyHardlink(
           RetVal = ERROR_REQUEST_ABORTED;
           break;
         }
-
-        // Increment the progress by 'weight' of hardlink creation
-        apContext->AddProgress(eHardlinkWeight, 1, 1);
       }
 
       // aDestPath and LinkFile are both long path safe
@@ -7352,6 +7374,19 @@ CopyHardlink(
         } // case SmartCopy
       } // switch
     } // for (iter = aBegin; iter != aEnd; ++iter)
+  }
+  else
+  {
+    // DeloreanMerge
+    if (apContext)
+    {
+      size_t nSiblings = distance(copyiter, aEnd);
+      apContext->AddProgress(nSiblings * eHardlinkWeight, nSiblings, nSiblings);
+#if defined _DEBUG
+      count += nSiblings;
+#endif
+    }
+  }
 
   // aDestPathIdx must never get of sync with aDestPath so at the end copy it
   // back to aDestPath. Before chop it back
@@ -8089,6 +8124,11 @@ CopyReparsePoints(
 
   int RetVal = ERROR_SUCCESS;
 
+#if defined _DEBUG
+  size_t effort = distance(ReparseBegin, ReparseEnd);
+  int count = 0;
+#endif
+
   // This loop covers the dead reparse points. We stay in here until all dead reparse 
   // points are processed and added to the statistics
   while (ReparseBegin != ReparseEnd) 
@@ -8170,12 +8210,6 @@ CopyReparsePoints(
           }
         }
         // Here we should end up in any case with ReparseSrcTarget beeing a long absolute path
-
-        if (apContext)
-        {
-          // Increment the progress
-          apContext->AddProgress(eReparseWeight, 1, 1);
-        }
 
         if (REPARSE_POINT_FAIL != ReparsePointType)
         {
@@ -9384,11 +9418,20 @@ CopyReparsePoints(
       ReparseBegin = partition (ReparseBegin, ReparseEnd, IsNestedReparsePoint());
       CurrentReparseSize = distance(ReparseBegin, ReparseEnd);
     
+      if (apContext)
+      {
+        // Increment the progress by the created reparse points
+        size_t ReparsePointsCreated = LastReparseSize - CurrentReparseSize;
+        apContext->AddProgress(ReparsePointsCreated * eReparseWeight, ReparsePointsCreated, ReparsePointsCreated);
+#if defined _DEBUG
+        count += ReparsePointsCreated;
+#endif
+      }
+
     } while (CurrentReparseSize < LastReparseSize);
 
     // All reparse point which are leftover now, are dead reparse points
-    _Pathes::iterator iter;
-    for (iter = ReparseBegin; iter != ReparseEnd; ++iter)
+    for (_Pathes::iterator iter = ReparseBegin; iter != ReparseEnd; ++iter)
     {
       FileInfo* pF = *iter;
       pF->m_Type |= FILE_ATTRIBUTE_DEAD_REPARSE_POINT;
@@ -9423,9 +9466,13 @@ RestoreTimeStamps(
   // start with an invalid value
   int DestPathIdx = -1;
 
+#if defined _DEBUG
+  size_t effort = distance(aBegin, aEnd);
+  int count = 0;
+#endif
+
   // Restore timestamps on directories and junctions
-  _Pathes::iterator iter;
-  for (iter = aBegin; iter != aEnd; ++iter)
+  for (_Pathes::iterator iter = aBegin; iter != aEnd; ++iter)
   {
     FileInfo*	pF = *iter;
 
@@ -9441,6 +9488,10 @@ RestoreTimeStamps(
     {
       // Increment the progress
       apContext->AddProgress(eTimeStampWeight, 1, 0);
+
+#if defined _DEBUG
+      count++;
+#endif
 
       // Set the status, and check if RestoreTimeStamps has been cancelled from outside
       int r = apContext->PutStatus(&pF->m_FileName[PATH_PARSE_SWITCHOFF_SIZE], &DestPath[PATH_PARSE_SWITCHOFF_SIZE]);
@@ -9519,9 +9570,13 @@ CopyDirectoryAttributes(
   if (aFlags & eSmartMirror)
     CopyDirFlags |= COPY_FILE_COPY_ACCESS_TIME | COPY_FILE_COPY_CREATION_TIME;
 
+#if defined _DEBUG
+  size_t effort = distance(aBegin, aEnd);
+  int count = 0;
+#endif
+
   // Restore timestamps on directories and junctions
-  _Pathes::iterator iter;
-  for (iter = aBegin; iter != aEnd; ++iter)
+  for (_Pathes::iterator iter = aBegin; iter != aEnd; ++iter)
   {
     FileInfo*	pF = *iter;
 
@@ -9531,14 +9586,20 @@ CopyDirectoryAttributes(
       DestPathIdx = pF->m_DestPathIdx;
     }
 
+    if (apContext)
+    {
+      // Increment the progress
+      apContext->AddProgress(eTimeStampWeight, 1, 0);
+#if defined _DEBUG
+      count++;
+#endif
+    }
+
     wcscat_s(DestPath, HUGE_PATH, &(pF->m_FileName[pF->m_SourcePathLen]));
     if (INVALID_FILE_ATTRIBUTES != GetFileAttributes(DestPath))
     {
       if (apContext)
       {
-        // Increment the progress
-        apContext->AddProgress(eTimeStampWeight, 1, 0);
-
         size_t PathParseSwitchOffSize_Source = 0;
         if (IsVeryLongPath(pF->m_FileName))
           PathParseSwitchOffSize_Source = PATH_PARSE_SWITCHOFF_SIZE;
@@ -9618,6 +9679,11 @@ CloneFiles(
   if (m_Flags2 & eNoEa)
     CopyFlags |= COPY_FILE_COPY_SKIP_EA;
 
+#if defined _DEBUG
+  size_t effort = distance(aBegin, aEnd);
+  int count = 0;
+#endif
+
   // Go through all files
   _Pathes::iterator iter = aBegin;
   do
@@ -9669,11 +9735,12 @@ CloneFiles(
     // Check whether we have to go async
     if (apContext)
     {
-      // We are running Async on a thread
-
       // Increment the progress
       apContext->AddProgress(eHardlinkWeight, 1, 1);
 
+#if defined _DEBUG
+      count++;
+#endif
       // Set the status, and check if CloneFile has been cancelled from outside
       int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize], &DestPath[PathParseSwitchOffSize]);
       if ( ERROR_REQUEST_ABORTED == r)
@@ -9938,15 +10005,37 @@ CleanItems(
   {
     FileInfo*	pF = *iter;
 
-    // Check whether we have to go async
+    // When we are async we shall provide a proper progress increment
     if (apContext)
     {
-      // Increment the progress
-      apContext->AddProgress(1, 1, 1);
+      int progressIncrement = 0;
+      switch (aItemType)
+      {
+        case FILE_ATTRIBUTE_NORMAL:
+        {
+          progressIncrement = eFileWeight;
+          break;
+        }
+
+        case FILE_ATTRIBUTE_REPARSE_POINT:
+        {
+          progressIncrement = eReparseWeight;
+          break;
+        }
+        case FILE_ATTRIBUTE_DIRECTORY:
+        {
+          progressIncrement = eDirectoryWeight;
+          break;
+        }
+      }
+
+      // We found it on the LookasideContainer, so don't do anything except counting the progress properly
+      apContext->AddProgress(progressIncrement, 1, 1);
     }
 
 
-    // With CleanItems we assume, that there the Destpath has a different meaning
+
+    // With CleanItems we assume that the Destpath has a different meaning
     // than with the other SmartXXX function: If only one source is given during 
     // --delorean, then we are sure we only have one Destpath and all items have 
     // just the one and only DestPathIdx in pF->m_DespathIdx, because they were all
@@ -10075,8 +10164,7 @@ CleanItems(
             BOOL RemovedDirectory = RemoveDirectory(pF->m_FileName);
             if (!RemovedDirectory)
             {
-              // There might be files which have flags set so that they
-              // can't be deleted
+              // There might be files which have flags set so that they can't be deleted
               SetFileAttributes(pF->m_FileName, FILE_ATTRIBUTE_NORMAL);
 
               // Lets give it one more try with fixed attributes
@@ -10331,9 +10419,8 @@ Prepare(
   m_FATFilenameBegin = m_Filenames.begin();
 
   // return on an empty set
-  if (m_Filenames.begin() == m_Filenames.end())
-    return 0;
-
+  if (m_Filenames.begin() != m_Filenames.end())
+  {
   m_FilenamesSave = m_Filenames;
 
   // #define SMARTCOPY_DEBUG // DEBUG_DEFINES
@@ -10404,11 +10491,63 @@ Prepare(
   Dump(m_DirectoryBegin, m_Filenames.end());
 
 #endif
-
+  }
   // Only calc effort with a valid mode. There are situations, where PrepareSmartCopy is only called to
   // prepare the container
   return aEffort ? EstimateEffort(aMode, aEffort) : 0;
 }
+
+// Estimate effort for hardlink groups
+void
+FileInfoContainer::
+EstimateHardlinkGroupEffort(
+  _Pathes::iterator&	a_Begin,
+  _Pathes::iterator&	a_End,
+  Effort* a_Effort
+)
+{
+      // Check if there are hardlinks at all
+  if (a_Begin != a_End)
+      {
+        // Smart Copy overall amount calculation
+    _Pathes::iterator	iter = a_Begin;
+    _Pathes::iterator	last = a_Begin;
+
+        // Go through all files and only the size of the first sibbling
+        // and for all sibblings just add eHardlinkWeight
+    while (++iter != a_End)
+        {
+          if ((*iter)->m_FileIndex.ul64 != (*last)->m_FileIndex.ul64 || (*iter)->m_DiskIndex != (*last)->m_DiskIndex)
+          {
+            // border of set
+            auto nSiblings = distance(last, iter);
+        a_Effort->m_Items += nSiblings;
+
+            // With size we calculate hardlinks as 1 and count one sibling with full size
+        a_Effort->m_Size += nSiblings - 1;
+        a_Effort->m_Size += (*last)->m_FileSize.ul64;
+
+            // During calculation hardlinks are a bit heavier than just the size
+        a_Effort->m_Points += (nSiblings - 1) * eHardlinkWeight;
+        a_Effort->m_Points += (*last)->m_FileSize.ul64;
+
+            last = iter;
+          }
+        }
+
+        // Last set
+        auto nSiblings = distance(last, iter);
+    a_Effort->m_Items += nSiblings;
+
+        // With size we calculate hardlinks as 1 and count one sibling with full size
+    a_Effort->m_Size += nSiblings - 1;
+    a_Effort->m_Size += (*last)->m_FileSize.ul64;
+
+        // During calculation hardlinks are a bit heavier than just the size
+    a_Effort->m_Points += (nSiblings - 1) * eHardlinkWeight;
+    a_Effort->m_Points += (*last)->m_FileSize.ul64;
+  }
+      }
 
 // Estimate effort for the operations on containers
 //
@@ -10434,47 +10573,20 @@ EstimateEffort(
       auto points = aEffort->m_Points.load();
       HTRACE(L"Effort CM nDirectories: %I64d, %I64d\n", nDirectories, points);
 
-      // Check if there are hardlinks at all
-      if (m_HardlinkBegin != m_DirectoryBegin)
+      if (m_Flags2 & eCloneMirror)
       {
-        // Smart Copy overall amount calculation
-        _Pathes::iterator	iter = m_HardlinkBegin;
-        _Pathes::iterator	last = m_HardlinkBegin;
-
-        // Go through all files and only the size of the first sibbling
-        // and for all sibblings just add eHardlinkWeight
-        while (++iter != m_DirectoryBegin)
-        {
-          if ((*iter)->m_FileIndex.ul64 != (*last)->m_FileIndex.ul64 || (*iter)->m_DiskIndex != (*last)->m_DiskIndex)
-          {
-            // border of set
-            auto nSiblings = distance(last, iter);
-            aEffort->m_Items += nSiblings;
-
-            // With size we calculate hardlinks as 1 and count one sibling with full size
-            aEffort->m_Size += nSiblings - 1;
-            aEffort->m_Size += (*last)->m_FileSize.ul64;
-
-            // During calculation hardlinks are a bit heavier than just the size
-            aEffort->m_Points += (nSiblings - 1) * eHardlinkWeight;
-            aEffort->m_Points += (*last)->m_FileSize.ul64;
-
-            last = iter;
-          }
-        }
-
-        // Last set
-        auto nSiblings = distance(last, iter);
-        aEffort->m_Items += nSiblings;
-
-        // With size we calculate hardlinks as 1 and count one sibling with full size
-        aEffort->m_Size += nSiblings - 1;
-        aEffort->m_Size += (*last)->m_FileSize.ul64;
-
-        // During calculation hardlinks are a bit heavier than just the size
-        aEffort->m_Points += (nSiblings - 1) * eHardlinkWeight;
-        aEffort->m_Points += (*last)->m_FileSize.ul64;
+        // During Clonemirror and DeloreanMerge the effort calculation is is different than during copy.
+        //  Since there is no copy the effort for linking is always the single weight
+        auto nFiles = distance(m_HardlinkBegin, m_DirectoryBegin);
+        aEffort->m_Points += nFiles * eHardlinkWeight;
+        aEffort->m_Size += nFiles;
+        aEffort->m_Items += nFiles;
       }
+      else
+      {
+        EstimateHardlinkGroupEffort(m_HardlinkBegin, m_DirectoryBegin, aEffort);
+      }
+
       HTRACE(L"Effort CM nFiles: %I64d, %I64d\n", aEffort->m_Items - nDirectories, aEffort->m_Points - points);
 
       // Add effort for Reparse Points
@@ -10513,22 +10625,27 @@ EstimateEffort(
 
     case FileInfoContainer::eSmartClean:
     {
-      // Smart Clean overall amount calculation. The weight on all operations is 1
+      // Smart Clean overall amount calculation.
+      // Files & Hardlinks
+      auto nFiles = distance(m_HardlinkBegin, m_DirectoryBegin);
+      aEffort->m_Points = nFiles * eFileWeight;
+      for (auto fileEntry = m_HardlinkBegin; fileEntry != m_DirectoryBegin; ++fileEntry)
+        aEffort->m_Size += (*fileEntry)->m_FileSize.ul64;
+      aEffort->m_Items = nFiles;
+      HTRACE(L"Effort CL timestamps nFiles: %I64d\n", nFiles);
 
-      // Add effort for Files
-      auto MaxPoints = distance(m_HardlinkBegin, m_DirectoryBegin);
-      HTRACE(L"Effort CL timestamps nFiles: %I64d\n", MaxPoints);
-
-      // Add effort for Reparsepoints
+      // Reparsepoints
       auto nReparsePoints = distance(m_Filenames.begin(), m_HardlinkBegin);
-      MaxPoints += nReparsePoints;
+      aEffort->m_Points += nReparsePoints * eReparseWeight;
+      aEffort->m_Size++;
+      aEffort->m_Items += nReparsePoints;
       HTRACE(L"Effort CL timestamps nReparsePoints: %I64d\n", nReparsePoints);
 
-      // Add effort for Directories
+      // Directories
       auto nDirectories = distance(m_DirectoryBegin, m_Filenames.end());
-      aEffort->m_Items = MaxPoints + nDirectories;
-      aEffort->m_Size = MaxPoints + nDirectories;
-      aEffort->m_Points = MaxPoints + nDirectories * eTimeStampWeight;
+      aEffort->m_Points += nDirectories * eDirectoryWeight;
+      aEffort->m_Size++;
+      aEffort->m_Items += nDirectories;
       HTRACE(L"Effort CL timestamps nDirectories: %I64d\n", nDirectories);
     }
     break;
@@ -10540,42 +10657,42 @@ EstimateEffort(
 
       // Add effort for Directories
       auto nDirectories = distance(m_DirectoryBegin, m_Filenames.end());
-      aEffort->m_Items = nDirectories;
-      aEffort->m_Size = nDirectories;
       aEffort->m_Points = nDirectories * eDirectoryWeight;
+      aEffort->m_Size = nDirectories;
+      aEffort->m_Items = nDirectories;
       HTRACE(L"Effort CE nDirectories: %I64d\n", nDirectories);
 
       // Add effort for Files
       auto nFiles = distance(m_HardlinkBegin, m_DirectoryBegin);
-      aEffort->m_Items += nFiles;
-      aEffort->m_Size += nFiles;
       aEffort->m_Points += nFiles * eHardlinkWeight;
+      aEffort->m_Size += nFiles;
+      aEffort->m_Items += nFiles;
       HTRACE(L"Effort CE nFiles: %I64d\n", nFiles);
 
       // Add effort for Reparsepoints
       auto nReparsePoints = distance(m_Filenames.begin(), m_HardlinkBegin);
-      aEffort->m_Items += nReparsePoints;
-      aEffort->m_Size += nReparsePoints;
       aEffort->m_Points += nReparsePoints * eReparseWeight;
+      aEffort->m_Size += nReparsePoints;
+      aEffort->m_Items += nReparsePoints;
       HTRACE(L"Effort CE nReparsepoints: %I64d\n", nReparsePoints);
 
       // Add effort for restoring the timestamps on reparsepoints
-//      aEffort->m_Items += nReparsePoints;
-      aEffort->m_Size += nReparsePoints;
       aEffort->m_Points += nReparsePoints * eTimeStampWeight;
+      aEffort->m_Size += nReparsePoints;
+//      aEffort->m_Items += nReparsePoints;
       HTRACE(L"Effort CE timestamps nReparsepoints: %I64d\n", nReparsePoints);
 
       // Add effort for restoring the timestamps on directories
-//      aEffort->m_Items += nDirectories;
-      aEffort->m_Size += nDirectories;
       aEffort->m_Points += nDirectories * eTimeStampWeight;
+      aEffort->m_Size += nDirectories;
+//      aEffort->m_Items += nDirectories;
       HTRACE(L"Effort CE timestamps nDirectories: %I64d\n", nDirectories);
 
       // Add effort for restoring the Attributes on directories
       auto nAttributes = distance(m_DateTimeRestore.begin(), m_DateTimeRestore.end());
-//      aEffort->m_Items += nAttributes;
-      aEffort->m_Size += nAttributes;
       aEffort->m_Points += nAttributes * eTimeStampWeight;
+      aEffort->m_Size += nAttributes;
+//      aEffort->m_Items += nAttributes;
       HTRACE(L"Effort CE nAttributes: %I64d\n", nAttributes);
     }
     break;
@@ -10644,7 +10761,6 @@ ResolveDelayedReparsePoints(
       pStats->m_HeapAllocTime.Stop();
 
       wcscpy_s ((*iter)->m_ReparseSrcTargetHint, ReparseSrcTargetHintLength, pReparseSrcTargetHint);
-
     }
     else
     {
@@ -11405,7 +11521,7 @@ _SmartMirror(
     // NTFS is broken
     InvalidateFileIndex(m_HardlinkBegin, m_DirectoryBegin);
 
-    // Print an error the message if we dupemerge was not forced
+    // Print an error message for broken NTFS implementation
     if (!(m_Flags2 & eDupemerge))
     {
       wchar_t BrokenDrive[HUGE_PATH];
@@ -11534,7 +11650,6 @@ _SmartMirror(
   }
 
   // Restore timestamps on directories
-  // Sorting brings directories in such an order so that we can easily set the timestamps.
   //
   r = RestoreTimeStamps(
     m_DirectoryBegin,
@@ -13221,7 +13336,7 @@ HardlinkDupes(
 
     if (!(m_Flags & eListOnly))
     {
-      int r;
+      int								r;
 
       // Search for an entry which has not changed since the last scan
       // This will be the reference file. Usually the first file

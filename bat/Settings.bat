@@ -1,10 +1,10 @@
 REM goto Win10_arachnida
 REM goto Win10_sleipnir
 REM goto atgrzwn501360
-REM goto atgrzwn501360_c
+goto atgrzwn501360_c
 REM goto quadtatzw10
 REM goto xp_nbuild16
-goto Win7_quadtatz
+REM goto Win7_quadtatz
 REM goto VmWareW2K12
 REM goto xp_nbuild16
 
