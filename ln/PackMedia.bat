@@ -82,6 +82,7 @@ goto :EOF
 %ZIP% %1 Doc\license.txt
 %ZIP% %1 Doc\license_tre.txt
 %ZIP% %1 Doc\license_ultragetop.txt
+%ZIP% %1 Doc\license_uint128.txt
 
 %ZIP% %1 Doc\ln.html
 

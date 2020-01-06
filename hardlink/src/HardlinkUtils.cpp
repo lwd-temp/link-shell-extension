@@ -18,6 +18,7 @@
 #include "HardlinkUtils.h"
 #include "NtBase.h"
 
+// Used for best fitted line prediction
 #include "uint128_t.h"
 
 
@@ -78,7 +79,7 @@ WaitMultiple()
 
 // ProgressPrediction
 //
-ProgressPrediction::ProgressPrediction() : m_Increment{ 0 }, m_Offset { 0 }
+ProgressPrediction::ProgressPrediction() : m_Increment{ 0 }
 {
 }
 
@@ -96,7 +97,7 @@ SetStart(const Effort& aMaxProgress)
   GetLocalTime(&ct);
   SystemTimeToFileTime(&ct, &m_Start.first.FileTime);
 #if defined DEBUG_PREDICTION_REPLAY
-  fakeTime.ul64DateTime = m_Start.first.ul64DateTime;
+  m_fakeTime.ul64DateTime = m_Start.first.ul64DateTime;
 #endif
   m_Start.second = aMaxProgress;
 
@@ -146,8 +147,8 @@ AddSample(
   FILETIME64    CurrentTime;
 #if defined DEBUG_PREDICTION_REPLAY
   // Increment by 250ms since unit of Filetime is 100ns
-  fakeTime.ul64DateTime += 250'000'0;
-  CurrentTime.ul64DateTime = fakeTime.ul64DateTime;
+  m_fakeTime.ul64DateTime += 250'000'0;
+  CurrentTime.ul64DateTime = m_fakeTime.ul64DateTime;
 #else
   // Retrieve time and convert to Filetime
   SYSTEMTIME    ct;
@@ -177,7 +178,6 @@ bool
 ProgressPrediction::
 TimeLeft(SYSTEMTIME& a_TimeLeft, Effort& a_Effort)
 {
-#if 1
   // We are calculating a best fitted line via a linear regression to get rid of the 
   // annyoing jumps in prediction, which occur when only the slope is calculated.
   //
@@ -217,24 +217,6 @@ TimeLeft(SYSTEMTIME& a_TimeLeft, Effort& a_Effort)
     EndTime.ul64DateTime = 0;
   else
     EndTime.ul64DateTime = counter / denom;
-#else
-  // Best fitted line prediction but not with large number support.
-  __int64 SumX = 0;
-  __int64 SumY = m_Start.second.m_Points;
-  __int64 SumXX = 0; 
-  __int64 SumXY = 0; 
-  for (auto sample : m_Values)
-  {
-    SumX += sample.first.ul64DateTime;
-    SumY += sample.second.m_Points;
-    SumXX += sample.first.ul64DateTime * sample.first.ul64DateTime;
-    SumXY += sample.first.ul64DateTime * sample.second.m_Points;
-  }
-
-  // This is the magic math 
-  FILETIME64 EndTime;
-  EndTime.l64DateTime = - (__int64)(SumY * SumXX - SumX * SumXY) / (__int64)((m_Values.size() + 1) * SumXY - SumX * SumY );
-#endif
 
   // Shift back in the range of 100ns and reverse the offset
   EndTime.ul64DateTime <<= cAccuracy;
