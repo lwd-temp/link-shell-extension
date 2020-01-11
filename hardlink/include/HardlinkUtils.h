@@ -1,8 +1,12 @@
 /*
- * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ * Copyright (C) 1999 - 2020, Hermann Schinagl, hermann@schinagl.priv.at
  */
 
 #pragma once
+
+#if defined DEBUG_PREDICTION_RECORD
+#include <fstream>
+#endif
 
 class WaitQueue 
 {
@@ -35,7 +39,7 @@ protected:
 class ProgressPrediction
 {
 private:
-    const int           cMaxSamples = 5;
+    const int           cMaxSamples = 15;
     const int           cAccuracy = 18;
 
     typedef pair<FILETIME64, Effort> _ProgressSample;
@@ -46,6 +50,14 @@ private:
 
     __int64 m_Increment;
 
+#if defined DEBUG_PREDICTION_RECORD
+    ofstream m_Logfile;
+#endif
+#if defined DEBUG_PREDICTION_REPLAY
+    FILE* m_EffortDataFile;
+    FILETIME64  m_fakeTime;
+#endif
+
 public:
   ProgressPrediction();
   ~ProgressPrediction();
@@ -54,6 +66,30 @@ public:
   void SetStart(const Effort& aMaxProgress);
   void Duration(SYSTEMTIME& aDuration, Effort& a_Effort);
   bool TimeLeft(SYSTEMTIME& a_TimeStamp, Effort& a_Effort);
+
+#if defined DEBUG_PREDICTION_RECORD
+  void Start(char* aFilename) { m_Logfile.open(aFilename); };
+  void Stop() { m_Logfile.close(); };
+#endif
+
+#if defined DEBUG_PREDICTION_REPLAY
+  bool Open(char* aFilename) { return nullptr != (m_EffortDataFile = fopen(aFilename, "r")); };
+  void Close() { fclose(m_EffortDataFile); };
+  bool ReadSample(Effort& a_fakeEffort) 
+  { 
+    if (!feof(m_EffortDataFile)) 
+    {
+      __int64 points, items, size;
+      fscanf(m_EffortDataFile, "%I64d;%I64d;%I64d", &points, &items, &size);
+      a_fakeEffort.m_Points = points;
+      a_fakeEffort.m_Items = items;
+      a_fakeEffort.m_Size = size;
+      return true;
+    }
+    return false;
+  };
+#endif
+
 };
 
 class use_WSA {

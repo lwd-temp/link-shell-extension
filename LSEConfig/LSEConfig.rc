@@ -899,7 +899,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,11,20,20
     LTEXT           "Link Shellextension 1.0",IDC_STATIC_LSE_VERSION,40,10,119,8,SS_NOPREFIX
-    LTEXT           "Copyright (C) 1999 - 2019 Hermann Schinagl",IDC_STATIC,40,25,157,8
+    LTEXT           "Copyright (C) 1999 - 2020 Hermann Schinagl",IDC_STATIC,40,25,157,8
     DEFPUSHBUTTON   "OK",IDOK,196,17,50,16,WS_GROUP
 END
 

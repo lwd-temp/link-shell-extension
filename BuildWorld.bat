@@ -6,14 +6,14 @@ REM
 set MAJOR_LSE_VERSION=3
 set MINOR_LSE_VERSION=9
 set PATCH_LSE_VERSION=3
-set HOTFIX_LSE_VERSION=1
+set HOTFIX_LSE_VERSION=2
 
 REM Set the version info for ln.exe
 REM
 set MAJOR_LN_VERSION=2
 set MINOR_LN_VERSION=9
 set PATCH_LN_VERSION=2
-set HOTFIX_LN_VERSION=4
+set HOTFIX_LN_VERSION=5
 
 REM Set the version info for dupemerge.exe
 REM

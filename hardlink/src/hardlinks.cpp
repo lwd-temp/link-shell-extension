@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 1999 - 2019, Hermann Schinagl, Hermann.Schinagl@gmx.net
+  Copyright (C) 1999 - 2020, Hermann Schinagl, Hermann.Schinagl@gmx.net
 */
 
 #include "stdafx.h"
@@ -4088,44 +4088,28 @@ _FindHardLinkRecursive(
                 }
               }
 
-#if defined DEBUG_REGEXP_SEAN_MALONEY
-              // Try out for seanmaloney@hotmail.com: Ln.exe --includedir bug?. Siehe Inbox
               // Check if there are reg exps for exclusion of directories
               bool RegExpIncludeMatch; 
-              bool RegExpExcludeMatch;
-
               if (!m_RegExpInclDirList.size())
                 // An empty include list means 'take everything'
                 RegExpIncludeMatch = true;
               else
-                // But if there are items on the include list we would like just have them
+                // But if there are items on the include list we would like only to have them
                 RegExpIncludeMatch = MatchRegExpList(&aSrcPath[PathParseSwitchOffSize], m_RegExpInclDirList);
 
               // But afterwards exclude
-              RegExpExcludeMatch = MatchRegExpList(&aSrcPath[PathParseSwitchOffSize], m_RegExpExclDirList);
+              bool RegExpExcludeMatch = MatchRegExpList(&aSrcPath[PathParseSwitchOffSize], m_RegExpExclDirList);
 
               bool RegExpMatch = RegExpIncludeMatch && !RegExpExcludeMatch;
+#if defined DEBUG_REGEXP_SEAN_MALONEY
+              // Try out for seanmaloney@hotmail.com: Ln.exe --includedir bug?. Siehe Inbox
+              // The problem is that we want to match patterns of a path e.g. *p1\\p2*, but crawling down does not happen
+              // because when we come here, only *p1 would match. So to match path patterns, which go over many levels, we have
+              // to delay this to the full path, but this can only be done, once we have gone down the recursion.
+              // But at the end of the recursion it might turn out, that no match was there, but then on the way down the recursion many directories
+              // have been added, which didn't match, but had to be added just to crawl down. sic!
               if (RegExpMatch || ( m_RegExpInclDirList.size() && !RegExpIncludeMatch ) )
 #else
-              // Check if there are reg exps for exclusion of directories
-              bool RegExpMatch;
-
-              if (!m_RegExpInclDirList.size())
-                // An empty Incl List means 'take everything'
-                RegExpMatch = true;
-              else
-              {
-                // But if there are items on the incl-list we would like just have them
-                aStats->m_RegExpMatchTime.Start();
-                RegExpMatch = MatchRegExpList(&aSrcPath[PathParseSwitchOffSize], m_RegExpInclDirList);
-                aStats->m_RegExpMatchTime.Stop();
-              }
-
-              // But afterwards exclude
-              aStats->m_RegExpMatchTime.Start();
-              RegExpMatch &= !MatchRegExpList(&aSrcPath[PathParseSwitchOffSize], m_RegExpExclDirList);
-              aStats->m_RegExpMatchTime.Stop();
-
               if (RegExpMatch)
 #endif
               {
@@ -4135,8 +4119,7 @@ _FindHardLinkRecursive(
                 wchar_t ReparseSrcTargetHint[HUGE_PATH];
                 ReparseSrcTargetHint[0] = 0x00;
                 
-                // IsOuterReparseTarget() might throw fatal error, which prevent further
-                // adding of that directory to the pool
+                // IsOuterReparseTarget() might throw fatal error, which prevent further adding of that directory to the pool
                 bool  FatalReparseError = false;
                 bool DoRecursion = IsOuterReparsePoint(
                   aSrcPath, 
@@ -4184,7 +4167,7 @@ _FindHardLinkRecursive(
                 __int64 FileAddedOneLevelBelow = 0;
                 if (DoRecursion)
                 {
-                  int	rr = _FindHardLinkRecursive (aSrcPath, 
+                  int	RecursionResult = _FindHardLinkRecursive (aSrcPath, 
                     aSrcSize,
                     aCurrentReparsePointReferencePath,
                     aCurrentBoundaryCross, 
@@ -4210,13 +4193,13 @@ _FindHardLinkRecursive(
                   }
 
                   // In case of catastrophic error, the recursion can be broken
-                  if (rr != 0)
+                  if (RecursionResult != 0)
                   {
                     // TBD: if we encounter an error escape the recursion, and use PathNameStatuslist 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-                    wprintf(L"%s FileInfoContainer::_FindHardLinkRecursive 07 %08x\n", m_ContainerName, rr);
+                    wprintf(L"%s FileInfoContainer::_FindHardLinkRecursive 07 %08x\n", m_ContainerName, RecursionResult);
 #endif
-                    RetVal = rr;
+                    RetVal = RecursionResult;
                     break;
                   }
                 }
@@ -4237,7 +4220,7 @@ _FindHardLinkRecursive(
                   if (m_RegExpInclFileList.size() && aRefCount <= 0)
                   {
 #if defined USE_VECTOR
-                    // Remove Last added directory
+                    // Remove last added directory
                     m_PathVector.pop_back();
                     m_Filenames.pop_back();
 #else    
@@ -4366,11 +4349,13 @@ _FindHardLinkRecursive(
             bool RegExpMatch;
 
             if (!m_RegExpInclFileList.size())
-              // An empty Incl List means 'take everything'
+            {
+              // An empty include List means 'take everything'
               RegExpMatch = true;
+            }
             else
             {
-              // But if there are items on the incl-list we would like just have them
+              // But if there are items on the include list we would like only to have them
               aStats->m_RegExpMatchTime.Start();
               RegExpMatch = MatchRegExpList(aSrcPath, m_RegExpInclFileList);
               aStats->m_RegExpMatchTime.Stop();

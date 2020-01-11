@@ -2,6 +2,9 @@
 @cd %~dp0
 @echo off
 
+@REM MS also offers EV Code Certificates, which enable immediate acceptance by SmartScreeen of Windows Defender
+@REM https://blogs.msdn.microsoft.com/ie/2012/08/14/microsoft-smartscreen-extended-validation-ev-code-signing-certificates/
+
 call ..\..\bat\Settings.bat
 call ..\..\bat\CertificateSettings.bat
 if %ERRORLEVEL% == 0 goto SignBinaryFiles

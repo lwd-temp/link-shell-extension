@@ -4,7 +4,7 @@ call ..\bat\settings.bat
 set CONFIG=Release
 REM set CONFIG=DEBUG
 
-set LN_TEST_OPTIONS=--automated_test
+set LN_TEST_OPTIONS=--automated_test --progress 
 REM
 REM The test should be done with everything running under --traditional
 REM

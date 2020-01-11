@@ -1,5 +1,5 @@
 ﻿/*
-	Copyright (C) 1999 - 2019, Hermann Schinagl, Hermann.Schinagl@gmx.net
+	Copyright (C) 1999 - 2020, Hermann Schinagl, Hermann.Schinagl@gmx.net
 */
 
 #include "stdafx.h"
@@ -17,6 +17,10 @@
 
 #include "HardlinkUtils.h"
 #include "NtBase.h"
+
+// Used for best fitted line prediction
+#include "uint128_t.h"
+
 
 extern FILE* gStdOutFile;
 
@@ -91,12 +95,15 @@ SetStart(const Effort& aMaxProgress)
 { 
   SYSTEMTIME  ct;
   GetLocalTime(&ct);
-
   SystemTimeToFileTime(&ct, &m_Start.first.FileTime);
-
-  // Furthermore reduce accuracy to 1/4 of a second
-  m_Start.first.ul64DateTime >>= cAccuracy;
+#if defined DEBUG_PREDICTION_REPLAY
+  m_fakeTime.ul64DateTime = m_Start.first.ul64DateTime;
+#endif
   m_Start.second = aMaxProgress;
+
+#if defined DEBUG_PREDICTION_RECORD
+  m_Logfile << aMaxProgress.m_Points << ";" << aMaxProgress.m_Items << ";" << aMaxProgress.m_Size << endl;
+#endif
 
   m_Increment = aMaxProgress.m_Points.load() / 100;
 
@@ -113,7 +120,7 @@ Duration(SYSTEMTIME& aDuration, Effort& a_Effort)
   SystemTimeToFileTime(&currentTime, &currentFileTime.FileTime);
 
   FILETIME64 duration;
-  duration.ul64DateTime = currentFileTime.ul64DateTime - (m_Start.first.ul64DateTime << cAccuracy);
+  duration.ul64DateTime = currentFileTime.ul64DateTime - m_Start.first.ul64DateTime;
 
   FileTimeToSystemTime(&duration.FileTime, &aDuration);
   a_Effort = m_Start.second;
@@ -127,6 +134,9 @@ AddSample(
   const Effort*   apProgressOffset
 )
 {
+#if defined DEBUG_PREDICTION_RECORD
+  m_Logfile << aProgress.m_Points << ";" << aProgress.m_Items << ";" << aProgress.m_Size << endl;
+#endif
   if (m_Values.size() >= cMaxSamples)
     m_Values.pop_front();
 
@@ -134,17 +144,21 @@ AddSample(
   _ProgressSample sample;
   sample.second = m_Start.second - aProgress;
 
+  FILETIME64    CurrentTime;
+#if defined DEBUG_PREDICTION_REPLAY
+  // Increment by 250ms since unit of Filetime is 100ns
+  m_fakeTime.ul64DateTime += 250'000'0;
+  CurrentTime.ul64DateTime = m_fakeTime.ul64DateTime;
+#else
   // Retrieve time and convert to Filetime
   SYSTEMTIME    ct;
   GetLocalTime(&ct);
-  FILETIME64    CurrentTime;
   SystemTimeToFileTime(&ct, &CurrentTime.FileTime);
+#endif
 
-  // Also offset the time to m_Start and To stay in the range of __int64 in belows calculation, we shift by 18bit 
+  // Also offset the time to m_Start and to stay in the range of __int64 in belows calculation, we shift by 18bit 
   // which is a factor of 262144 and brings us to an accuracy of ~1/4 a second because FILETIME is in 100ns
-  sample.first.ul64DateTime = CurrentTime.ul64DateTime >> cAccuracy;
-  sample.first.ul64DateTime -= m_Start.first.ul64DateTime;
-
+  sample.first.ul64DateTime = (CurrentTime.ul64DateTime - m_Start.first.ul64DateTime) >> cAccuracy;
   m_Values.push_back(sample);
 
   __int64 currentPoints = aProgress.m_Points;
@@ -164,27 +178,49 @@ bool
 ProgressPrediction::
 TimeLeft(SYSTEMTIME& a_TimeLeft, Effort& a_Effort)
 {
-// #define NEW_PROGRESS_PREDICTION 1
-#if defined NEW_PROGRESS_PREDICTION
-  __int64 SumX = 0;
-  __int64 SumY = m_Start.second.m_Points;
-  __int64 SumXX = 0; 
-  __int64 SumXY = 0; 
+  // We are calculating a best fitted line via a linear regression to get rid of the 
+  // annyoing jumps in prediction, which occur when only the slope is calculated.
+  //
+  // Since the best fitted line is based on 15 point, there can be very high numbers during calculation
+  // and which is why 128 bit numbers are used. We always have the first point part of the calculation for the
+  // best fitted line to make it more monotonic decreasing. Some might think that a good progress calc is easy :-)
+  uint128_t SumX = 0;
+  uint128_t SumY = m_Start.second.m_Points.load();
+  uint128_t SumXX = 0;
+  uint128_t SumXY = 0;
   for (auto sample : m_Values)
   {
     SumX += sample.first.ul64DateTime;
-    SumY += sample.second.m_Points;
+    SumY += sample.second.m_Points.load();
     SumXX += sample.first.ul64DateTime * sample.first.ul64DateTime;
-    SumXY += sample.first.ul64DateTime * sample.second.m_Points;
+    SumXY += sample.first.ul64DateTime * sample.second.m_Points.load();
   }
 
-  // This is the magic math 
+  // The below calc could also be written in one line:
+  //   EndTime.l64DateTime = - (__int64)(SumY * SumXX - SumX * SumXY) / (__int64)((m_Values.size() + 1) * SumXY - SumX * SumY );
+  // but the uint128_t class used for calculation only deals with unsigned numbers, so we have to take care not
+  // to go below 0 with results of the denominator. 
   FILETIME64 EndTime;
-  EndTime.l64DateTime = - (SumY * SumXX - SumX * SumXY) / (m_Values.size() * SumXY - SumX * SumY ) + m_Start.first.ul64DateTime;
-//  EndTime.l64DateTime =  (SumY * SumXX - SumX * SumXY) / (SumX * SumY - m_Values.size() * SumXY ) + m_Start.first.ul64DateTime;
-  
-  // Shift back in the range of 100ns
+  uint128_t counter = SumY * SumXX - SumX * SumXY;
+  uint128_t denom_f1 = (m_Values.size() + 1) * SumXY;
+  uint128_t denom_f2 = SumX * SumY;
+  uint128_t denom;
+  if (denom_f2 > denom_f1)
+  {
+    denom = denom_f2 - denom_f1;
+  }
+  else
+  {
+    denom = denom_f1 - denom_f2;
+  }
+  if (denom == 0)
+    EndTime.ul64DateTime = 0;
+  else
+    EndTime.ul64DateTime = counter / denom;
+
+  // Shift back in the range of 100ns and reverse the offset
   EndTime.ul64DateTime <<= cAccuracy;
+  EndTime.ul64DateTime += m_Start.first.ul64DateTime;
 
   // Get current time
   SYSTEMTIME    CurrentTime;
@@ -194,43 +230,12 @@ TimeLeft(SYSTEMTIME& a_TimeLeft, Effort& a_Effort)
 
   FILETIME64 TimeLeft;
   TimeLeft.ul64DateTime = EndTime.ul64DateTime - CurrentFileTime.ul64DateTime;
-//  TimeLeft.ul64DateTime = CurrentFileTime.ul64DateTime - EndTime.ul64DateTime;
-  FileTimeToSystemTime(&TimeLeft.FileTime, &a_TimeLeft);
-
-  return true;
-#else
-  SYSTEMTIME    CurrentTime;
-  GetLocalTime(&CurrentTime);
-  FILETIME64    CurrentFileTime;
-  SystemTimeToFileTime(&CurrentTime, &CurrentFileTime.FileTime);
-
-  CurrentFileTime.ul64DateTime >>= cAccuracy;
-  __int64 dX = CurrentFileTime.ul64DateTime - m_Start.first.ul64DateTime;
-  __int64 dY = m_Start.second.m_Points - m_Values.back().second.m_Points;
-  
-  // If things are very fast, we might enter this in no time, thus ....
-  __int64 k = 0;
-  if (dX != 0)
-    k = dY / dX;
-
-  FILETIME64 EndTime;
-  // Check if prediction is unsure
-  if (k > 0)
-  {
-    EndTime.l64DateTime = m_Start.second.m_Points.load() / k;
-
-    FILETIME64 TimeLeft;
-    TimeLeft.ul64DateTime = m_Start.first.ul64DateTime + EndTime.ul64DateTime - CurrentFileTime.ul64DateTime;
-    // Shift back in the range of 100ns
-    TimeLeft.ul64DateTime <<= cAccuracy;
-
-    FileTimeToSystemTime(&TimeLeft.FileTime, &a_TimeLeft);
-    a_Effort = m_Values.back().second;
+  BOOL timeConverted = FileTimeToSystemTime(&TimeLeft.FileTime, &a_TimeLeft);
+  a_Effort = m_Values.back().second;
+  if (timeConverted)
     return true;
-  }
   else
     return false;
-#endif
 }
 
 char* FormatNumber(char* aResult, int aLength, ULONG64 aNumber)

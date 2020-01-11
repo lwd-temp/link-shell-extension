@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ * Copyright (C) 1999 - 2020, Hermann Schinagl, hermann@schinagl.priv.at
  */
 
 #pragma once
@@ -48,6 +48,16 @@
 // for a simple regex which has been transformed from a wildcard. Using one expression on 401000 items takes 1500 mSec with tre
 // The same with regex takes 20000 mSec. So for now we will not move to c++ 11 regex, because it is too slow. 
 // #define REGEXP_STL
+
+
+// Test the progress calculation with real world datam but without copying large amounts of files
+// Used to record files with effort triples. 
+// #define DEBUG_PREDICTION_RECORD
+
+// Used to replay files with effort triples via --adsdev
+// #define DEBUG_PREDICTION_REPLAY
+
+
 
 // Test a safe delete via DeleteSiblings(), so that Hardlink Attribute Teleportation does
 // not interfere the delorean process
@@ -257,7 +267,7 @@ public:
     Anchor = 2,
   };
 
-  _ArgvPath() : DriveType(0), FileAttribute(0), Flags(0) {};
+  _ArgvPath() : DriveType{ 0 }, FileAttribute{ 0 }, Flags{ 0 } {};
 };
 
 
@@ -304,7 +314,7 @@ typedef union
 class PathNameStatus
 {
 	public:
-    PathNameStatus() : m_ErrorCode(ERROR_SUCCESS), m_PathName(NULL), m_Operation(0) {};
+    PathNameStatus() : m_ErrorCode{ ERROR_SUCCESS }, m_PathName{ nullptr }, m_Operation{ 0 } {};
     PathNameStatus(const int a_Operation, const wchar_t* a_pPathName, const int aErrorCode);
   
     wchar_t*      m_PathName;

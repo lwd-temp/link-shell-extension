@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ * Copyright (C) 1999 - 2020, Hermann Schinagl, hermann@schinagl.priv.at
  */
 
 #pragma once
@@ -63,5 +63,7 @@ using namespace std;
 #include "md5.h"
 
 #include <psapi.h>
+
+
 
 

@@ -70,7 +70,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i><font face="arial">Last Updated January 5, 2020 Version 2.9.2.5</font></i>
+                    <i><font face="arial">Last Updated January 11, 2020 Version 2.9.2.5</font></i>
                 </div>
             </td>
         </tr>
@@ -2537,20 +2537,8 @@
                                 Basically any arbitrary wildcard expressions can be used, because
                                 the wildcard expressions are translated into a regular expression. This means that e.g *file*.ext*.*
                                 is also a valid wildcard expression for --excludedir.
+                                Wildcard expression shall not span more than one directory level: e.g. *fotos\\temp* will not succeed.
                             </p>
-                            <p>
-                                The wildcard expression  specified under --excludedir is applied to the whole path, which means that e.g.
-                            </p>
-                            <br />
-                            <span class="ascode">
-                                ln --excludedir "fotos\\temp" --copy c:\source d:\b\dest
-                            </span>
-                            <p>
-                                will exclude all directories containing 'fotos\temp' and their
-                                subdirectories. The above example will e.g. exclude 'fotos\tempur\myfotos', 'fotos\temp\myfotos'
-                                or 'fotos\tempomat\myfotos'. Please note sure that '\' has to be escaped via '\\'
-                            </p>
-                            <br />
                             <p>
                                 This option supports taking its arguments from file.
                             </p>
@@ -2560,7 +2548,7 @@
                             <p>
                                 The above example references to a file <i>List.txt</i>, which on every line contains a matching pattern. e.g.
                                 <span class="ascode">
-                                    <br />*fotos\\temp*
+                                    <br />*fotos*
                                     <br />aDir
                                 </span>
                             </p>
@@ -2829,22 +2817,10 @@
                             </span>
                             <p>
                                 Basically any arbitrary wildcard expressions can be used, because
-                                the wildcard expressions are translated into a regular expression. This means that e.g *src\\sub?older*
-                                is also a valid wildcard expression for --includedir.
+                                the wildcard expressions are translated into a regular expression. This means that e.g *ub?older*
+                                is also a valid wildcard expression for --includedir. 
+                                Wildcard expression shall not span more than one directory level: e.g. *fotos\\temp* will not succeed 
                             </p>
-                            <p>
-                                The wildcard expression  specified under --includedir is applied to the whole path, which means that e.g.
-                            </p>
-                            <br />
-                            <span class="ascode">
-                                ln --includedir "*fotos\\temp*" --copy c:\source d:\b\dest
-                            </span>
-                            <p>
-                                will include all directories containing 'fotos\temp' and their subdirectories. The above example will
-                                e.g. include 'fotos\tempur\myfotos', 'fotos\temp\myfotos' or 'fotos\tempomat\myfotos'. Please note
-                                that '\' has to be escaped via '\\'
-                            </p>
-                            <br />
                             <p>
                                 This option supports taking its arguments from file.
                             </p>
@@ -2854,7 +2830,7 @@
                             <p>
                                 The above example references to a file <i>List.txt</i>, which on every line contains a matching pattern. e.g.
                                 <span class="ascode">
-                                    <br />*fotos\\temp*
+                                    <br />*fotos*
                                     <br />aDir
                                 </span>
                             </p>
@@ -5170,15 +5146,15 @@
 
                     <tr>
                         <td class="hanger2">
-                            October 28, 2019
+                            January 11, 2020
                         </td>
                         <td align="left" class="bodytext">
                             <a name="2900">Version 2.9.2.5</a>
                             <ul>
-                                <!-- 2.9.2.5, 20.12.2019 -->
-                                <li>The --progress calculation ran into overshoots, showing e.g. 177%.</li>
-                                <li>ln now maintains its <a href="#choco"> chocolatey package</a>.</li>
-                                <li>ln is public on <a href="https://gitlab.com/schinagl/link-shell-extension">gitlab</a>.</li>
+                                <!-- 2.9.2.5, 5.1.2020 -->
+                                <li>The <a href="#progress">--progress</a> calculation ran into overshoots, showing e.g. 177%.</li>
+                                <li>ln.exe now maintains its <a href="#choco">chocolatey package</a>.</li>
+                                <li>ln.exe is public on <a href="https://gitlab.com/schinagl/link-shell-extension">gitlab</a>.</li>
                                 <!-- 2.9.2.4, 28.10.2019 -->
                                 <li>ln.exe is signed with a code signing certificate.</li>
                                 <!-- 2.9.2.3, 26.4.2019 -->
@@ -5812,6 +5788,7 @@
                     <li>This program is provided as is. See <a href="license.txt"> license.txt</a> from this distribution for legal issues.<br /></li>
                     <li>ln.exe uses <a href="http://laurikari.net/tre">tre</a> as the regular expression machine. See the <a href="license_tre.txt">tre license</a>.</li>
                     <li>ln.exe uses <a href="http://kevinlocke.name/programs/ultragetopt.php">ultragetopt</a> for command line parsing. See the <a href="license_ultragetop.txt">ultragetopt license</a>.</li>
+                    <li>ln.exe uses <a href="https://github.com/calccrypto/uint128_t">uint128</a> for large number calculations. See the <a href="license_uint128.txt">uint128 license</a>.</li>
                 </ul>
             </td>
         </tr>

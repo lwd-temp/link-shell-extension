@@ -370,6 +370,9 @@
   <ItemGroup>
     <Manifest Include="HardlinkShellExt.dll.trust.manifest" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\bat\FilesToUpload.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

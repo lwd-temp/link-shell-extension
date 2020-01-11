@@ -1,5 +1,5 @@
 ﻿/*
-	Copyright (C) 1999 - 2019, Hermann Schinagl, Hermann.Schinagl@gmx.net
+	Copyright (C) 1999 - 2020, Hermann Schinagl, Hermann.Schinagl@gmx.net
 */
 
 #include "stdafx.h"

@@ -123,7 +123,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i>Dernière mise à jour du 23 Novembre 2019, Version 3.9.3.1</i>
+                    <i>Dernière mise à jour du 11 Janvier 2020, Version 3.9.3.2</i>
                 </div>
             </td>
         </tr>
@@ -220,14 +220,28 @@
                     LSE s'installe en exécutant le programme d'installation
                     <a href="#download">(HardLinkShellExt_$(platform).exe)</a>.
                     Suivez les instructions données par le programme, il n'y a pas
-                    d'entrées obligatoires requises pendant l'installation, et on peut
-                    modifier le répertoire d'installation de LSE qui par
+                    d'entrées obligatoires requises pendant l'installation. On peut	modifier le répertoire d'installation de LSE qui par
                     défaut est
                     <br />
                     <br />
                     C:\Program Files\LinkShellExtension<br />
                 <p>
+                    <b><a name="smartscreen">Fenêtre contextuelle Smartscreen</a></b><br />
+                    Sous Windows 10 la fonction "SmartScreen" de Windows Defender peut s'afficher afin de vous prévenir :
 
+                    <i>
+                        <br /><br />
+                        Windows a protégé votre PC<br />
+                        Windows Defender SmartScreen a empêché une application inconnue de démarrer. L'exécution de cette application pourrait mettre votre PC en danger.
+                        <br /><br />
+                    </i>
+
+                    Choisissez s'il vous plait 'Installer Tout de même'. LSE est signé avec un certificat de signature de code standard, mais pas par un 
+                    <a href="https://blogs.msdn.microsoft.com/ie/2012/08/14/microsoft-smartscreen-extended-validation-ev-code-signing-certificates/">certificat de signature EV (Extended Validation)</a>, 
+                    qui permettrait d'éviter que Smartscreen n'interfère.
+                    <br /><br />
+
+                    <b>Redémarrage de l'explorateur</b><br />
                     Durant l'installation Explorer.exe doit être relancé pour rendre active l'extension Link Shell Extension.
                     Cela signifie que toutes les opérations en cours dans explorer.exe seront interrompues, mais lors
                     d'une installation interactive vous pouvez décider de différer le redémarrage d'explorer.exe.
@@ -2844,11 +2858,13 @@
 
                     <tr>
                         <td class="history">
-                            <a name="3931">23 Novembre 2019</a>
+                            <a name="3932">11 Janvier 2020</a>
                         </td>
                         <td>
-                            Version 3.9.3.1
+                            Version 3.9.3.2
                             <ul>
+                                <!-- 3.9.3.2, 5.01.2020 -->
+                                <li>Prédiction de la barre de progrès légèrement améliorée.</li>
                                 <!-- 3.9.3.1, 19.11.2019 -->
                                 <li>Correction d'un crash lorsque le nom de l'utilisateur est > 20 caractères en tant que non-admin lors de la création d'un lien symbolique.</li>
                                 <!-- 3.9.3.1, 17.11.2019 -->

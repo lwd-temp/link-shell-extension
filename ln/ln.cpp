@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 1999 - 2019, Hermann Schinagl, hermann@schinagl.priv.at
+ * Copyright (C) 1999 - 2020, Hermann Schinagl, hermann@schinagl.priv.at
  */
 
 // TODO ERROR: 'test\hardlinks' and '' are not on same volume, wenn der Pfad falsch ist
@@ -560,6 +560,9 @@ LnSmartXXX(
     wprintf (L"\n%s ...      0%%, Items              , Time left:         ", ModeLiteral);
 
     ProgressPrediction progressPrediction;
+#if defined DEBUG_PREDICTION_RECORD
+    progressPrediction.Start("c:\\tmp\\progress.log");
+#endif
     progressPrediction.SetStart(maxProgress);
     int Percentage = 0;
 
@@ -579,6 +582,9 @@ LnSmartXXX(
       }
     }
     PrintElapsed(progressPrediction);
+#if defined DEBUG_PREDICTION_RECORD
+    progressPrediction.Stop();
+#endif
 
     if (gAutomatedTest)
     {
@@ -3771,23 +3777,44 @@ wmain(
     //
     if (AdsDev)
     {
+#if defined DEBUG_PREDICTION_REPLAY
       Effort MaxProgress;
       Effort Progress;
 
-      MaxProgress.m_Points = 3'408'913'456'736;
       ProgressPrediction progressPrediction;
+      int Percentage = 0;
+      progressPrediction.Open("D:\\data\\cpp\\hardlinks\\tmp\\progress_PumaOpen_second.log");
+      progressPrediction.ReadSample(MaxProgress);
       progressPrediction.SetStart(MaxProgress);
 
-      int Percentage = 0;
-      Progress.m_Points = 6'408'913'456'736;
-      int NewPercentage = progressPrediction.AddSample(Progress);
-
+      int UpdCnt = gUpdateIntervall;
+      while (true)
+      {
+        Sleep(250);
+        Effort fakeEffort;
+        bool r = progressPrediction.ReadSample(fakeEffort);
+        if (!r)
+          break;
+        int NewPercentage = progressPrediction.AddSample(fakeEffort);
+        if (NewPercentage != Percentage)
+        {
+          Percentage = NewPercentage;
+          PrintProgress(Percentage, progressPrediction);
+        }
+        if (!--UpdCnt)
+        {
+          UpdCnt = gUpdateIntervall;
+          PrintProgress(Percentage, progressPrediction);
+        }
+      }
+      PrintElapsed(progressPrediction);
+#endif
       Exit(ERR_ERROR);
     }
 
-
     // for hardlinks check if source and destination are on same volume
     if (!Symbolic)
+    {
       if (!CheckIfOnSameDrive(&Argv1[PATH_PARSE_SWITCHOFF_SIZE], &Argv2[PATH_PARSE_SWITCHOFF_SIZE])) // HHH
       {
         if (gLogLevel != FileInfoContainer::eLogQuiet)
@@ -3796,98 +3823,51 @@ wmain(
         }
         Exit(ERR_NOT_ON_SAME_VOLUME);
       }
+    }
 
-      // recursive
-      if (recursive)
+    // recursive
+    if (recursive)
+    {
+      // Check first argument
+      if (INVALID_FILE_ATTRIBUTES == Argv1Path.FileAttribute)
       {
-        // Check first argument
-        if (INVALID_FILE_ATTRIBUTES == Argv1Path.FileAttribute)
+        if (gLogLevel != FileInfoContainer::eLogQuiet)
+        {
+          fwprintf (gStdOutFile, L"ERROR: source directory '%s' does not exist\n", Argv1Path.ArgvOrg.c_str());
+        }
+        RetVal = ERR_SOURCE_DIR_DOES_NOT_EXIST;
+      }
+      else
+      {
+        if (!(Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY))
         {
           if (gLogLevel != FileInfoContainer::eLogQuiet)
           {
-            fwprintf (gStdOutFile, L"ERROR: source directory '%s' does not exist\n", Argv1Path.ArgvOrg.c_str());
+            fwprintf (gStdOutFile, L"ERROR: '%s' is not a directory\n", Argv1Path.ArgvOrg.c_str());
           }
-          RetVal = ERR_SOURCE_DIR_DOES_NOT_EXIST;
-        }
-        else
-        {
-          if (!(Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY))
-          {
-            if (gLogLevel != FileInfoContainer::eLogQuiet)
-            {
-              fwprintf (gStdOutFile, L"ERROR: '%s' is not a directory\n", Argv1Path.ArgvOrg.c_str());
-            }
-            RetVal = ERR_ARG_IS_NOT_A_DIRECTORY;
-          }
-        }
-
-        // Check second argument
-        if ((INVALID_FILE_ATTRIBUTES == Argv2Path.FileAttribute) && (0 == RetVal))
-        {
-          CreateDirectoryHierarchy(Argv2, wcslen(Argv2));
-          if (INVALID_FILE_ATTRIBUTES == GetFileAttributes(Argv2))
-          {
-            if (gLogLevel != FileInfoContainer::eLogQuiet)
-            {
-              fwprintf (gStdOutFile, L"ERROR: failed to create '%s'\n", Argv2Path.ArgvOrg.c_str());
-            }
-            RetVal = ERR_FAILED_TO_CREATE_DIR;
-          }
-        }
-        else
-        {
-          if (
-              !(Argv2Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY) && 
-              (Argv2Path.FileAttribute & (FILE_ATTRIBUTE_NORMAL | FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM | FILE_ATTRIBUTE_ARCHIVE) )
-             )
-          {
-            if (gLogLevel != FileInfoContainer::eLogQuiet)
-            {
-              fwprintf (gStdOutFile, L"ERROR: file '%s' already exists\n", Argv2Path.ArgvOrg.c_str());
-            }
-            RetVal = ERR_FILE_ALREADY_EXISTS;
-          }
-        }
-        if (0 == RetVal)
-        {
-          RemoveDirectory(Argv2Path.Argv.c_str());
-
-          int RetVal = LnSmartXXX (
-            SourceDirList, 
-            Argv2Path, 
-            Absolute, 
-            Symbolic, 
-            FileInfoContainer::eSmartClone, 
-            &IncludeFileList, 
-            &IncludeDirList,
-            &ExcludeFileList, 
-            &ExcludeDirList,
-            AlwaysUnroll ? NULL : &UnrollDirList, 
-            AlwaysSplice ? NULL : &SpliceDirList,
-            bSkipFiles,
-            Traditional,
-            Backup,
-            KeepSymlinkRelation,
-            TimeToleranceValue,
-            HardlinkLimitValue
-          );
-          Exit(RetVal);
+          RetVal = ERR_ARG_IS_NOT_A_DIRECTORY;
         }
       }
-      else // this is not recursive
+
+      // Check second argument
+      if ((INVALID_FILE_ATTRIBUTES == Argv2Path.FileAttribute) && (0 == RetVal))
       {
-        // Check first argument
-        if (INVALID_FILE_ATTRIBUTES == Argv1Path.FileAttribute)
+        CreateDirectoryHierarchy(Argv2, wcslen(Argv2));
+        if (INVALID_FILE_ATTRIBUTES == GetFileAttributes(Argv2))
         {
           if (gLogLevel != FileInfoContainer::eLogQuiet)
           {
-            fwprintf (gStdOutFile, L"ERROR: file '%s' does not exist\n", Argv1Path.ArgvOrg.c_str());
+            fwprintf (gStdOutFile, L"ERROR: failed to create '%s'\n", Argv2Path.ArgvOrg.c_str());
           }
-          RetVal = ERR_FILE_DOES_NOT_EXIST;
+          RetVal = ERR_FAILED_TO_CREATE_DIR;
         }
-
-        // Check second argument if the file to be linked is already there
-        if (INVALID_FILE_ATTRIBUTES != Argv2Path.FileAttribute && 0 == RetVal && !Symbolic)
+      }
+      else
+      {
+        if (
+            !(Argv2Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY) && 
+            (Argv2Path.FileAttribute & (FILE_ATTRIBUTE_NORMAL | FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM | FILE_ATTRIBUTE_ARCHIVE) )
+            )
         {
           if (gLogLevel != FileInfoContainer::eLogQuiet)
           {
@@ -3895,71 +3875,119 @@ wmain(
           }
           RetVal = ERR_FILE_ALREADY_EXISTS;
         }
+      }
+      if (0 == RetVal)
+      {
+        RemoveDirectory(Argv2Path.Argv.c_str());
 
-        // Check second argument if the file to be linked is already there
-        if (INVALID_FILE_ATTRIBUTES == Argv2Path.FileAttribute && 0 == RetVal && GetLastError() == ERROR_PATH_NOT_FOUND)
+        int RetVal = LnSmartXXX (
+          SourceDirList, 
+          Argv2Path, 
+          Absolute, 
+          Symbolic, 
+          FileInfoContainer::eSmartClone, 
+          &IncludeFileList, 
+          &IncludeDirList,
+          &ExcludeFileList, 
+          &ExcludeDirList,
+          AlwaysUnroll ? NULL : &UnrollDirList, 
+          AlwaysSplice ? NULL : &SpliceDirList,
+          bSkipFiles,
+          Traditional,
+          Backup,
+          KeepSymlinkRelation,
+          TimeToleranceValue,
+          HardlinkLimitValue
+        );
+        Exit(RetVal);
+      }
+    }
+    else // this is not recursive
+    {
+      // Check first argument
+      if (INVALID_FILE_ATTRIBUTES == Argv1Path.FileAttribute)
+      {
+        if (gLogLevel != FileInfoContainer::eLogQuiet)
         {
-          // The path to the destination file did not exist
-          wchar_t* filename = PathFindFileName(Argv2);
-          *--filename = 0x00;
-          CreateDirectoryHierarchy(Argv2, wcslen(Argv2));
-          *filename = '\\';
+          fwprintf (gStdOutFile, L"ERROR: file '%s' does not exist\n", Argv1Path.ArgvOrg.c_str());
+        }
+        RetVal = ERR_FILE_DOES_NOT_EXIST;
+      }
+
+      // Check second argument if the file to be linked is already there
+      if (INVALID_FILE_ATTRIBUTES != Argv2Path.FileAttribute && 0 == RetVal && !Symbolic)
+      {
+        if (gLogLevel != FileInfoContainer::eLogQuiet)
+        {
+          fwprintf (gStdOutFile, L"ERROR: file '%s' already exists\n", Argv2Path.ArgvOrg.c_str());
+        }
+        RetVal = ERR_FILE_ALREADY_EXISTS;
+      }
+
+      // Check second argument if the file to be linked is already there
+      if (INVALID_FILE_ATTRIBUTES == Argv2Path.FileAttribute && 0 == RetVal && GetLastError() == ERROR_PATH_NOT_FOUND)
+      {
+        // The path to the destination file did not exist
+        wchar_t* filename = PathFindFileName(Argv2);
+        *--filename = 0x00;
+        CreateDirectoryHierarchy(Argv2, wcslen(Argv2));
+        *filename = '\\';
+      }
+
+      // lets create the link if everything was fine up till now
+      if (0 == RetVal)
+      {
+        int result;
+        if (Symbolic)
+        {
+          int RelativeFlag = Absolute ? 0 : SYMLINK_FLAG_RELATIVE;
+          if (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
+            RelativeFlag |= SYMLINK_FLAG_DIRECTORY;
+
+          result = CreateSymboliclink(Argv2, Argv1, RelativeFlag);
+        }
+        else
+        {
+          result = CreateHardlink (Argv1, Argv2);
         }
 
-        // lets create the link if everything was fine up till now
-        if (0 == RetVal)
+        if (ERROR_SUCCESS == result)
         {
-          int result;
-          if (Symbolic)
+          if (gLogLevel != FileInfoContainer::eLogQuiet)
           {
-            int RelativeFlag = Absolute ? 0 : SYMLINK_FLAG_RELATIVE;
-            if (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
-              RelativeFlag |= SYMLINK_FLAG_DIRECTORY;
-
-            result = CreateSymboliclink(Argv2, Argv1, RelativeFlag);
+            fwprintf (gStdOutFile, L"%s\n", Argv1Path.ArgvOrg.c_str());
           }
-          else
-          {
-            result = CreateHardlink (Argv1, Argv2);
-          }
-
-          if (ERROR_SUCCESS == result)
+        }
+        else
+        {
+          if (ERROR_ALREADY_EXISTS == result)
           {
             if (gLogLevel != FileInfoContainer::eLogQuiet)
             {
-              fwprintf (gStdOutFile, L"%s\n", Argv1Path.ArgvOrg.c_str());
+              fwprintf (gStdOutFile, L"ERROR: '%s' already exists\n", Argv2Path.ArgvOrg.c_str());
             }
+            RetVal = ERR_FILE_ALREADY_EXISTS;
           }
           else
           {
-            if (ERROR_ALREADY_EXISTS == result)
+            if (gLogLevel != FileInfoContainer::eLogQuiet)
             {
-              if (gLogLevel != FileInfoContainer::eLogQuiet)
-              {
-                fwprintf (gStdOutFile, L"ERROR: '%s' already exists\n", Argv2Path.ArgvOrg.c_str());
-              }
-              RetVal = ERR_FILE_ALREADY_EXISTS;
+              // Trau mich nicht da eine Fehlermeldung auszugeben, weil das den Regression test vernichtet
+              // fwprintf (gStdOutFile, L"ERROR: failed to create '%s', (%08x)\n", Argv2Path.ArgvOrg.c_str(), result);
             }
-            else
-            {
-              if (gLogLevel != FileInfoContainer::eLogQuiet)
-              {
-                // Trau mich nicht da eine Fehlermeldung auszugeben, weil das den Regression test vernichtet
-                // fwprintf (gStdOutFile, L"ERROR: failed to create '%s', (%08x)\n", Argv2Path.ArgvOrg.c_str(), result);
-              }
-              RetVal = ERR_CREATE_HARDLINK_FAILED;
-            }
+            RetVal = ERR_CREATE_HARDLINK_FAILED;
           }
         }
-
-        if (!gLogLevel && 0 == RetVal)
-        {
-          if (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
-            fwprintf (gStdOutFile, L"1 directory linked\n");
-          else
-            fwprintf (gStdOutFile, L"1 file linked\n");
-        }
       }
+
+      if (!gLogLevel && 0 == RetVal)
+      {
+        if (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
+          fwprintf (gStdOutFile, L"1 directory linked\n");
+        else
+          fwprintf (gStdOutFile, L"1 file linked\n");
+      }
+    }
 
 
       // Delete ANSI options

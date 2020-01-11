@@ -218,6 +218,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\UACReuse.cpp" />
+    <ClCompile Include="src\uint128_t.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Shared\version\RegSchemaVersion.h" />

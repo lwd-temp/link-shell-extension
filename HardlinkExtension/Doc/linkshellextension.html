@@ -123,7 +123,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i>Last Updated November 23 2019, Version 3.9.3.1</i>
+                    <i>Last Updated January 11 2020, Version 3.9.3.2</i>
                 </div>
             </td>
         </tr>
@@ -220,16 +220,30 @@
                     LSE is installed by executing the install program
                     <a href="#download">(HardLinkShellExt_$(platform).exe)</a>.
                     Follow the instructions issued by the program, there are no mandatory
-                    inputs required during installation, it is possible to
-                    change the location into which LSE is installed, the
+                    inputs required during installation. It is possible to change the location into which LSE is installed, the
                     default is
                     <br />
                     <br />
                     C:\Program Files\LinkShellExtension<br />
                 <p>
+                    <b><a name="smartscreen">Smartscreen pop-up</a></b><br />
+                    With Windows 10 the SmartScreen facility of Windows Defender might pop up and warns you:
 
+                    <i>
+                        <br /><br />
+                        Windows protected your PC<br />
+                        Windows Defender SmartScreen prevented an unrecognized app from starting. Running this app might put your PC at risk.
+                        <br /><br />
+                    </i>
+
+                    Please choose 'Install Anyway'. LSE is signed with a Standard Code Signing Certificate, but not with an 
+                    <a href="https://blogs.msdn.microsoft.com/ie/2012/08/14/microsoft-smartscreen-extended-validation-ev-code-signing-certificates/">EV Code Signing certificate</a>, 
+                    which would prevent Smartscreen from interferring.
+                    <br /><br />
+
+                    <b>Explorer Restart</b><br />
                     During installation Explorer.exe has to be restarted to make Link Shell Extension active.
-                    This means that all pending operations with explorer.exe are interrupted, but with the
+                    This means that all pending operations with explorer.exe are interrupted but with the
                     interactive install you can decide to postpone the explorer.exe restart. A dialog box
                     will give you the choices during installation.
                 </p>
@@ -2844,11 +2858,13 @@
 
                     <tr>
                         <td class="history">
-                            <a name="3930">November 23, 2019</a>
+                            <a name="3930">January 11, 2020</a>
                         </td>
                         <td>
-                            Version 3.9.3.1
+                            Version 3.9.3.2
                             <ul>
+                                <!-- 3.9.3.2, 5.01.2020 -->
+                                <li>Progress bar prediction has been improved.</li>
                                 <!-- 3.9.3.1, 19.11.2019 -->
                                 <li>Fixed crash when username was > 20 chars as non-admin during symbolic link drop.</li>
                                 <!-- 3.9.3.1, 17.11.2019 -->
@@ -2880,7 +2896,7 @@
                                 <li>Unmount volume did not work, when elevation was needed.</li>
                                 <li>New Windows 10 screenshots for docu and docu streamlining.</li>
                                 <!-- 3.9.2.6, 29.9.2019 -->
-                                <li>Signed with a code sign certificate</li>
+                                <li>Signed with a <a href="#smartscreen">standard code signing certificate</a></li>
                                 <li>During Replace Junction/Symbolic Link/Mountpoint the original attributes got lost</li>
                                 <li>The Link Properties Tab showed relative symbolic link dirs as absolute</li>
                                 <li>The Link Properties Tab did not show up on dangling Junctions</li>
