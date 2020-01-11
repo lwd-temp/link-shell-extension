@@ -203,4 +203,9 @@
       <Filter>Docu</Filter>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\bat\FilesToUpload.txt">
+      <Filter>Bat</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

@@ -7,6 +7,49 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.932 has been released.</title>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3930</link>
+      <pubDate>Tue, 11 Jan 202019:00:15 +0100</pubDate>
+      <description>
+        LSE 3.932 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>Progress bar prediction has been improved.</li>
+        ]]>
+      </content:encoded>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3932</guid>
+    </item>
+
+    <item>
+      <title>ln.exe 2.925 has been released.</title>
+      <link>http://schinagl.priv.at/nt/ln/ln.html#2900</link>
+      <pubDate>Mon, 11 January 2020 19:00:50:15 +0100</pubDate>
+      <description>
+        ln.exe 2.925 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+            <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#progress">--progress</a> calculation ran into overshoots, showing e.g. 177%.</li>
+            <li>ln.exe now maintains its <a href="http://schinagl.priv.at/nt/ln/ln.html#choco">chocolatey package</a>.</li>
+            <li>ln.exe is public on <a href="https://gitlab.com/schinagl/link-shell-extension">gitlab</a>.</li>
+            <!-- 2.9.2.4, 28.10.2019 -->
+            <li>ln.exe is signed with a code signing certificate.</li>
+            <!-- 2.9.2.3, 26.4.2019 -->
+            <!-- 2.9.2.0, 4.4.2019 -->
+            <li>ln.exe is on gitlab.com. For now only private, but hope to change this soon.</li>
+            <!-- 2.9.1.x, xx.02.2019-->
+            <li>--delete now also deletes the starting directory.</li>
+            <!-- 2.9.1.3, 15.02.2019-->
+            <li>Division by zero with --progress in some situations.</li>
+            <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#deeppathdelete">--delete option</a> has been modified to stop on outer reparse <a href="http://schinagl.priv.at/nt/ln/ln.html#innerjunction">boundaries</a>.</li>
+            <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#follow">--follow option</a> has been introduced to follow accross outer <a href="http://schinagl.priv.at/nt/ln/ln.html#innerjunction">reparse boundaries</a> during --delete.</li>
+        ]]>
+      </content:encoded>
+      <guid>http://schinagl.priv.at/nt/ln/ln.html#2925</guid>
+    </item>
+
+    <item>
       <title>LSE 3.931 has been released.</title>
       <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3930</link>
       <pubDate>Tue, 17 Nov 2019 20:00:15 +0100</pubDate>
