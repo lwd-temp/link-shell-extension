@@ -13,7 +13,7 @@ Link Shell Extension (LSE) provides for the creation of Hardlinks, Junctions, Vo
     <packageSourceUrl>https://gitlab.com/schinagl/link-shell-extension/tree/master/HardlinkExtension/install/choco</packageSourceUrl>
     <projectUrl>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html</projectUrl>
     <tags>explorer extension junction hardlink symboliclink symlink freeware admin</tags>
-    <copyright>© 1999 - 2019 Hermann Schinagl</copyright>
+    <copyright>© 1999 - 2020 Hermann Schinagl</copyright>
     <licenseUrl>https://schinagl.priv.at/nt/hardlinkshellext/license.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://schinagl.priv.at/nt/hardlinkshellext/symboliclinkicon_10.png</iconUrl>
