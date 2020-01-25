@@ -15,7 +15,7 @@ The NTFS filesystem supports a lot of features like Hardlinks, Junctions Symboli
     <packageSourceUrl>https://gitlab.com/schinagl/link-shell-extension/tree/master/ln/choco</packageSourceUrl>
     <projectUrl>https://schinagl.priv.at/nt/ln/ln.html</projectUrl>
     <tags>hardlink cli junction symboliclink symlink freeware admin</tags>
-    <copyright>© 1999 - 2019 Hermann Schinagl</copyright>
+    <copyright>© 1999 - 2020 Hermann Schinagl</copyright>
     <licenseUrl>https://schinagl.priv.at/nt/ln/license.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://schinagl.priv.at/nt/hardlinkshellext/hardlinkicon_10.png</iconUrl>
