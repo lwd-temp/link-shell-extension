@@ -9415,6 +9415,10 @@ CopyReparsePoints(
 
     } while (CurrentReparseSize < LastReparseSize);
 
+    // Catch the break and propagate it through the loops
+    if (ERROR_REQUEST_ABORTED == RetVal)
+      break;
+
     // All reparse point which are leftover now, are dead reparse points
     for (_Pathes::iterator iter = ReparseBegin; iter != ReparseEnd; ++iter)
     {
@@ -9728,8 +9732,11 @@ CloneFiles(
 #endif
       // Set the status, and check if CloneFile has been cancelled from outside
       int r = apContext->PutStatus(&pF->m_FileName[PathParseSwitchOffSize], &DestPath[PathParseSwitchOffSize]);
-      if ( ERROR_REQUEST_ABORTED == r)
+      if (ERROR_REQUEST_ABORTED == r)
+      {
         RetVal = ERROR_REQUEST_ABORTED;
+        break;
+      }
     }
 
     // Decide whether to make hard or symbolic links
@@ -10059,7 +10066,10 @@ CleanItems(
         // Set the status, and check if CleanItems has been cancelled from outside
         int r = apContext->PutStatus(&pF->m_FileName[PATH_PARSE_SWITCHOFF_SIZE], &DestPath[PathParseSwitchOffSize]);
         if (ERROR_REQUEST_ABORTED == r)
+        {
           RetVal = ERROR_REQUEST_ABORTED;
+          break;
+        }
       }
 
       switch (CompOper)
@@ -10107,6 +10117,9 @@ CleanItems(
       CurrentDestPathIdx++;
     } 
 
+    // If someone pressed cancel during the operation leave the loop
+    if (ERROR_REQUEST_ABORTED == RetVal)
+      break;
 
     if (!pLookAside)
     {
@@ -10273,6 +10286,7 @@ CleanItems(
     }
 
     DestPath[DestPathLen] = 0x00;
+
   }
 
   return RetVal;
