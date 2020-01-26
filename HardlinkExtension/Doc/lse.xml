@@ -7,9 +7,24 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.933 has been released.</title>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3930</link>
+      <pubDate>Tue, 26 Jan 2020 19:00:15 +0100</pubDate>
+      <description>
+        LSE 3.933 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>During Hardlink/Symbolic Link Clone pressing Cancel didn't have an impact.</li>
+        ]]>
+      </content:encoded>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3933</guid>
+    </item>
+
+    <item>
       <title>LSE 3.932 has been released.</title>
       <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3930</link>
-      <pubDate>Tue, 11 Jan 202019:00:15 +0100</pubDate>
+      <pubDate>Tue, 11 Jan 2020 19:00:15 +0100</pubDate>
       <description>
         LSE 3.932 has been released.
       </description>
