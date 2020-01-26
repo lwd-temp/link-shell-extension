@@ -3,7 +3,7 @@
   <metadata>
     <id>LinkShellExtension</id>
     <title>Link Shell Extension</title>
-    <version>3.9.3.2</version>
+    <version>3.9.3.3</version>
     <authors>Hermann Schinagl</authors>
     <owners>schinagl</owners>
     <summary>Explorer extension for easy creation of Hardlinks, Junctions, Volume Mountpoints and Symbolic Links</summary>
