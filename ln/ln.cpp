@@ -283,6 +283,56 @@ HardlinkEnum(
 	return hardlinksgroups;
 }
 
+#if defined _DEBUG
+void TestPrintProgress()
+{
+  char nItems[MAX_PATH];
+  FormatNumber(nItems, MAX_PATH, 73);
+
+  SYSTEMTIME currentTime;
+  GetLocalTime(&currentTime);
+
+  FILETIME64 currentFileTime;
+  SystemTimeToFileTime(&currentTime, &currentFileTime.FileTime);
+
+  SYSTEMTIME pastTime;
+  FILETIME64 pastFileTime;
+  pastFileTime.ul64DateTime = currentFileTime.ul64DateTime - (320LL * 24 * 60 * 60 * 1000 * 1000 * 10);
+
+  SYSTEMTIME timeLeft;
+  FILETIME64 duationFileTime;
+
+  duationFileTime.ul64DateTime = currentFileTime.ul64DateTime - pastFileTime.ul64DateTime;
+  FileTimeToSystemTime(&duationFileTime.FileTime, &timeLeft);
+
+  constexpr int DaysTillMonth[] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
+  int totalDays = timeLeft.wDay - 1 + timeLeft.wMonth < 12 ? DaysTillMonth[timeLeft.wMonth - 1] : 0;
+
+  // # 34%, Items 12345678901234, Time elapsed: 123d 02:03:04#
+  if (totalDays)
+  {
+    wprintf(L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b%3d%%, Items %14S, Time left: %3dd %02d:%02d:%02d",
+      (int)73,
+      nItems,
+      totalDays,
+      timeLeft.wHour,
+      timeLeft.wMinute,
+      timeLeft.wSecond
+    );
+  }
+  else
+  {
+    wprintf(L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b%3d%%, Items %14S, Time left:      %02d:%02d:%02d",
+      (int)73,
+      nItems,
+      timeLeft.wHour,
+      timeLeft.wMinute,
+      timeLeft.wSecond
+    );
+  }
+}
+#endif
+
 void PrintProgress(__int64 aPercentage, ProgressPrediction& aProgressPrediction)
 {
   SYSTEMTIME timeLeft;
@@ -292,21 +342,40 @@ void PrintProgress(__int64 aPercentage, ProgressPrediction& aProgressPrediction)
   {
     char nItems[MAX_PATH];
     FormatNumber(nItems, MAX_PATH, effort.m_Items.load());
-    wprintf (L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b%3d%%, Items %14S, Time left: %02d:%02d:%02d",
-      (int)aPercentage,
-      nItems,
-      timeLeft.wHour,
-      timeLeft.wMinute,
-      timeLeft.wSecond
-    );
+
+    constexpr int DaysTillMonth[] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
+    int totalDays = timeLeft.wDay - 1 + timeLeft.wMonth < 12 ? DaysTillMonth[timeLeft.wMonth - 1] : 0;
+
+    // # 34%, Items 12345678901234, Time elapsed: 123d 02:03:04#
+    if (totalDays)
+    {
+      wprintf(L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b%3d%%, Items %14S, Time left: %3dd %02d:%02d:%02d",
+        (int)aPercentage,
+        nItems,
+        totalDays,
+        timeLeft.wHour,
+        timeLeft.wMinute,
+        timeLeft.wSecond
+      );
+    }
+    else
+    {
+      wprintf(L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b%3d%%, Items %14S, Time left:      %02d:%02d:%02d",
+        (int)aPercentage,
+        nItems,
+        timeLeft.wHour,
+        timeLeft.wMinute,
+        timeLeft.wSecond
+      );
+    }
   }
 }
 
 void PrintElapsed(ProgressPrediction& aProgressPrediction, __int64 aFakeEffort = -1)
 {
-  SYSTEMTIME duration;
+  SYSTEMTIME timeLeft;
   Effort effort;
-  aProgressPrediction.Duration(duration, effort);
+  aProgressPrediction.Duration(timeLeft, effort);
 
   char nItems[MAX_PATH];
   if (aFakeEffort < 0)
@@ -314,11 +383,29 @@ void PrintElapsed(ProgressPrediction& aProgressPrediction, __int64 aFakeEffort =
   else
     FormatNumber(nItems, MAX_PATH, aFakeEffort);
 
-  wprintf (L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b100%%, Items %14S, Time elapsed: %02d:%02d:%02d\n",
-    nItems,
-    duration.wHour,
-    duration.wMinute,
-    duration.wSecond);
+  constexpr int DaysTillMonth[] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
+  int totalDays = timeLeft.wDay - 1 + timeLeft.wMonth < 12 ? DaysTillMonth[timeLeft.wMonth - 1] : 0;
+
+  // # 34%, Items 12345678901234, Time elapsed: 123d 02:03:04#
+  if (totalDays)
+  {
+    wprintf(L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b100%%, Items %14S, Time left: %3dd %02d:%02d:%02d",
+      nItems,
+      totalDays,
+      timeLeft.wHour,
+      timeLeft.wMinute,
+      timeLeft.wSecond
+    );
+  }
+  else
+  {
+    wprintf(L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b100%%, Items %14S, Time left:      %02d:%02d:%02d",
+      nItems,
+      timeLeft.wHour,
+      timeLeft.wMinute,
+      timeLeft.wSecond
+    );
+  }
 }
 
 int
@@ -1970,7 +2057,9 @@ wmain(
 		// properly open up stderr, so geopt must be disabled to print extended
 		// error message to stderr
 		opterr = 0;
-
+#if defined _DEBUG
+    TestPrintProgress();
+#endif
     InitCreateHardlink ();
 
 #if 0
