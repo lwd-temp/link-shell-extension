@@ -110,7 +110,6 @@ int               gDeloreanSleep{ 0 };
 bool              g1023safe{ false };
 bool              gJson{ false };
 bool              gProgress{ false };
-const wchar_t     gProgressIndicator[] = { L'|', L'/', L'-', L'\\' }; 
 const int         gUpdateIntervall{ 4 };
 
 class	ln_EnumHardlinkSiblingsGlue : public EnumHardlinkSiblingsGlue
@@ -295,7 +294,6 @@ void TestPrintProgress()
   FILETIME64 currentFileTime;
   SystemTimeToFileTime(&currentTime, &currentFileTime.FileTime);
 
-  SYSTEMTIME pastTime;
   FILETIME64 pastFileTime;
   pastFileTime.ul64DateTime = currentFileTime.ul64DateTime - (320LL * 24 * 60 * 60 * 1000 * 1000 * 10);
 
@@ -306,13 +304,14 @@ void TestPrintProgress()
   FileTimeToSystemTime(&duationFileTime.FileTime, &timeLeft);
 
   constexpr int DaysTillMonth[] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
-  int totalDays = timeLeft.wDay - 1 + timeLeft.wMonth < 12 ? DaysTillMonth[timeLeft.wMonth - 1] : 0;
+  int totalDays = timeLeft.wDay - 1 + (timeLeft.wMonth < 12 ? DaysTillMonth[timeLeft.wMonth - 1] : 0);
 
   // # 34%, Items 12345678901234, Time elapsed: 123d 02:03:04#
+  // Max number of items: 99'999'999'999'999
   if (totalDays)
   {
     wprintf(L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b%3d%%, Items %14S, Time left: %3dd %02d:%02d:%02d",
-      (int)73,
+      (int)48,
       nItems,
       totalDays,
       timeLeft.wHour,
@@ -323,7 +322,7 @@ void TestPrintProgress()
   else
   {
     wprintf(L"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b%3d%%, Items %14S, Time left:      %02d:%02d:%02d",
-      (int)73,
+      (int)48,
       nItems,
       timeLeft.wHour,
       timeLeft.wMinute,
@@ -344,7 +343,7 @@ void PrintProgress(__int64 aPercentage, ProgressPrediction& aProgressPrediction)
     FormatNumber(nItems, MAX_PATH, effort.m_Items.load());
 
     constexpr int DaysTillMonth[] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
-    int totalDays = timeLeft.wDay - 1 + timeLeft.wMonth < 12 ? DaysTillMonth[timeLeft.wMonth - 1] : 0;
+    int totalDays = timeLeft.wDay - 1 + (timeLeft.wMonth < 12 ? DaysTillMonth[timeLeft.wMonth - 1] : 0);
 
     // # 34%, Items 12345678901234, Time elapsed: 123d 02:03:04#
     if (totalDays)
@@ -384,7 +383,7 @@ void PrintElapsed(ProgressPrediction& aProgressPrediction, __int64 aFakeEffort =
     FormatNumber(nItems, MAX_PATH, aFakeEffort);
 
   constexpr int DaysTillMonth[] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
-  int totalDays = timeLeft.wDay - 1 + timeLeft.wMonth < 12 ? DaysTillMonth[timeLeft.wMonth - 1] : 0;
+  int totalDays = timeLeft.wDay - 1 + (timeLeft.wMonth < 12 ? DaysTillMonth[timeLeft.wMonth - 1] : 0);
 
   // # 34%, Items 12345678901234, Time elapsed: 123d 02:03:04#
   if (totalDays)
@@ -405,6 +404,21 @@ void PrintElapsed(ProgressPrediction& aProgressPrediction, __int64 aFakeEffort =
       timeLeft.wMinute,
       timeLeft.wSecond
     );
+  }
+}
+void Enumerating(AsyncContext& aContext)
+{
+  // Print progress if async
+  // 
+  if (gProgress)
+  {
+    constexpr wchar_t     progressIndicator[] = { L'|', L'/', L'-', L'\\' };
+    int ProgressCount = 0;
+    wprintf(L"Enumerating ...   ");
+    while (!aContext.Wait(250))
+      wprintf(L"\b%c", progressIndicator[++ProgressCount % 4]);
+
+    wprintf(L"\b \n");
   }
 }
 
@@ -436,14 +450,17 @@ TrueSize(
     FileList.SetExcludeList(aExcludeFileList);
     FileList.SetExcludeDirList(aExcludeDirList);
 
-    if (aTraditional)
-      FileList.SetFlags(FileInfoContainer::eTraditional);
-
     if (aSkipFiles)
       FileList.SetFlags(FileInfoContainer::eSkipFiles);
 
     // Enumerate affected files
-    int r = FileList.FindHardLink(aSourceDirList, 0, &stats, &pathNameStatusList, NULL);
+    AsyncContext    Context;
+    AsyncContext*   pContext = nullptr;
+
+    if (gProgress)
+      pContext = &Context;
+    int r = FileList.FindHardLink(aSourceDirList, 0, &stats, &pathNameStatusList, pContext);
+    Enumerating(Context);
 
     // Calculate the true Size
     FileList.TrueSize(&stats, &pathNameStatusList, NULL);
@@ -585,19 +602,7 @@ LnSmartXXX(
   if (gProgress)
     pContext = &Context;
   FileList.FindHardLink (aSourceDirList, 0, &aStats, &PathNameStatusList, pContext);
-
-  // Print progress if async
-  // 
-  if (gProgress)
-  {
-    int ProgressCount = 0;
-    while (!Context.Wait(250))
-    {
-      if (!ProgressCount)
-        wprintf (L"Enumerating ...  ");
-      wprintf (L"\b%c", gProgressIndicator[++ProgressCount % 4]);
-    }
-  }
+  Enumerating(Context);
 
   // Check if enumerating worked
   //
@@ -623,19 +628,19 @@ LnSmartXXX(
   {
     case FileInfoContainer::eSmartCopy:
       FileList.SmartCopy (&aStats, &PathNameStatusList, pContext);
-      wcscpy_s(ModeLiteral, MAX_PATH, L"Copying ");
+      wcscpy_s(ModeLiteral, MAX_PATH, L"Copying  ");
     break;
   
     case FileInfoContainer::eSmartClone:
       if (aHardVsSymbolic)
         FileList.SetFlags(FileInfoContainer::eSymboliclinkClone);
       FileList.SmartClone (&aStats, &PathNameStatusList, pContext);
-      wcscpy_s(ModeLiteral, MAX_PATH, L"Cloning");
+      wcscpy_s(ModeLiteral, MAX_PATH, L"Cloning ");
     break;
 
     case FileInfoContainer::eSmartClean:
       FileList.SmartClean(&aStats, &PathNameStatusList, pContext);
-      wcscpy_s(ModeLiteral, MAX_PATH, L"Deleting");
+      wcscpy_s(ModeLiteral, MAX_PATH, L"Deleting ");
     break;
   
   }
@@ -644,7 +649,9 @@ LnSmartXXX(
   // 
   if (gProgress)
   {
-    wprintf (L"\n%s ...      0%%, Items              , Time left:         ", ModeLiteral);
+    //                  # 34%, Items 12345678901234, Time elapsed: 123d 02:03:04#
+    //  #ssssssss...bbbbppp%%, Items               , Time left: 123d 02:03:04#
+    wprintf(L"%9s...      0%%, Items               , Time left:              ", ModeLiteral);
 
     ProgressPrediction progressPrediction;
 #if defined DEBUG_PREDICTION_RECORD
@@ -677,7 +684,7 @@ LnSmartXXX(
     {
       __int64 copyOvershoot = maxProgress.m_Points.load() - Context.GetProgress().m_Points.load();
       if (copyOvershoot)
-        // We do overshootm when run with --dupemerge, because the amount of files to operated on changes during the copy operation.
+        // We do overshoot when run with --dupemerge, because the amount of files to be operated on changes during the copy operation.
         // Regression test thus contains one line with 'Overshoot'. All other overshoots shall be 0 and shall not show up.
         fwprintf(gStdOutFile, L"DEBUG: %s Overshoot: %I64d, Effort: %I64d\n", ModeLiteral, copyOvershoot, maxProgress.m_Points.load());
     }
@@ -924,7 +931,7 @@ void _Mirror(
   ProgressPrediction progressPrediction;
   if (gProgress)
   {
-    wprintf(L"Mirroring...    0%%, Items                , Time left:         ");
+    wprintf(L"Mirroring...    0%%, Items               , Time left:              ");
     progressPrediction.SetStart(maxMirrorEffort);
 
     // Only if we are in normal mode, clean is run. With Delorean Merge we don't
@@ -1170,15 +1177,7 @@ Delorean(
     pCloneContext = &CloneContext;
 
   CloneList.FindHardLink (CloneDestination, 0, &CloneStatistics, &PathNameStatusListClone, pCloneContext);
-  if (gProgress)
-  {
-    while (!CloneContext.Wait(250))
-    {
-      if (!ProgressCount)
-        wprintf (L"Enumerating ...  ");
-      wprintf (L"\b%c", gProgressIndicator[++ProgressCount % 4]);
-    }
-  }
+  Enumerating(CloneContext);
 
   GetLocalTime(&CloneStatistics.m_CopyTime);
   Effort MaxProgress;
@@ -1192,7 +1191,7 @@ Delorean(
   //
   if (gProgress)
   {
-    wprintf (L"\nCloning  ...    0%%, Items                , Time left:         ");
+    wprintf(L"Cloning  ...    0%%, Items               , Time left:              ");
     int Percentage = 0;
 
     ProgressPrediction progressPrediction;
@@ -1553,19 +1552,7 @@ Mirror(
 
 #if !defined SEPERATED_CLONE_MIRROR
   // Wait until both enum threads have finished
-
-  // Print progress
-  // 
-  int ProgressCount = 0;
-  while (!MirrorContext.Wait(250))
-  {
-    if (gProgress)
-    {
-      if (!ProgressCount)
-        wprintf (L"Enumerating ...  ");
-      wprintf (L"\b%c", gProgressIndicator[++ProgressCount % 4]);
-    }
-  }
+  Enumerating(MirrorContext);
 #endif
 
   MirrorStatistics.m_StartTime = CloneStatistics.m_StartTime ;
@@ -2057,7 +2044,7 @@ wmain(
 		// properly open up stderr, so geopt must be disabled to print extended
 		// error message to stderr
 		opterr = 0;
-#if defined _DEBUG
+#if defined DEBUG_TEST_PRINT_PROGRESS
     TestPrintProgress();
 #endif
     InitCreateHardlink ();

@@ -57,6 +57,8 @@
 // Used to replay files with effort triples via --adsdev
 // #define DEBUG_PREDICTION_REPLAY
 
+// Used to test the format printing of ln command line porgress even with days duration
+// define DEBUG_TEST_PRINT_PROGRESS
 
 
 // Test a safe delete via DeleteSiblings(), so that Hardlink Attribute Teleportation does
