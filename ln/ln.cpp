@@ -691,7 +691,7 @@ LnSmartXXX(
     }
   }
 
-  if (FileInfoContainer::eSmartClean == aMode)
+  if (aMode == FileInfoContainer::eSmartClean)
   {
     // Delete the anchor directories too
     for (auto iter : aSourceDirList)
