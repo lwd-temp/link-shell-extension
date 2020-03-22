@@ -65,6 +65,9 @@
 // not interfere the delorean process
 // #define DEBUG_DS
 
+// The property page dialog of LSE shows a Truesize Dialog. This is not yet finished
+// #define DEBUG_SHOW_TRUESIZE
+
 #define NTQUERYDIRECTORY_BUFSIZE 100000
 
 #define FAT_SERIAL_NUMBER 0xffffffff

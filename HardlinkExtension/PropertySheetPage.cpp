@@ -221,7 +221,21 @@ Initialize(
     _wstat(m_File, &stat);
     if (stat.st_mode & _S_IFDIR)
     {
+#if defined DEBUG_SHOW_TRUESIZE
       // Junctions, Mountpoints, SymbolicLinkDirs are all of type Directory. So no eed to check further
+#else
+      // Check if the selected dir is a junction, so that we
+      // we can provide junction delete menue
+      if (!ProbeJunction(m_File, NULL))
+      {
+        if (!ProbeMountPoint(m_File, NULL, 0, NULL))
+        {
+          // Check if we are under Vista
+          if (!ProbeSymbolicLink(m_File, NULL))
+            rVal = E_INVALIDARG;
+        }
+      }
+#endif
     }
     else
     {
@@ -329,9 +343,11 @@ INT_PTR CALLBACK PropPageDlgProc ( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM l
           OnExploreTarget(hwnd, lParam);
         break;
 
+#if defined DEBUG_SHOW_TRUESIZE
         case IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_BUTTON:
           OnTrueSize(hwnd, lParam);
         break;
+#endif
 
         default:
           // HTRACE(L"WM_COMMAND: lparam %08x, wparam %08x\n", lParam, wParam);
@@ -423,6 +439,7 @@ void ShowTrueSizeData(HWND aHwnd, CopyStatistics& aStats)
 
 void ShowTrueSizeDlg(HWND aHwnd)
 {
+#if defined DEBUG_SHOW_TRUESIZE
   // Show TrueSize Menu
   for (int dlgItem = IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_FILE; dlgItem < IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_FREE; ++dlgItem)
   {
@@ -430,6 +447,7 @@ void ShowTrueSizeDlg(HWND aHwnd)
     ShowWindow(hStatic, SW_SHOWNORMAL);
   }
   UpdateWindow(aHwnd);
+#endif
 }
 
 void OnTrueSize(HWND aHwnd, LPARAM lParam)
@@ -521,6 +539,12 @@ BOOL OnInitDialog ( HWND aHwnd, LPARAM lParam )
   PROPSHEETPAGE*  ppsp = (PROPSHEETPAGE*)lParam;
   ReparseProperties*		pReparseProperties = (ReparseProperties*)ppsp->lParam;
 
+#if !defined DEBUG_SHOW_TRUESIZE
+  // hide truesize button
+  HWND hStatic = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_BUTTON);
+  ShowWindow(hStatic, SW_HIDE);
+  UpdateWindow(aHwnd);
+#endif
 
   if (g_Themed)
   {
@@ -643,6 +667,7 @@ BOOL OnInitDialog ( HWND aHwnd, LPARAM lParam )
         }
         else
         {
+#if defined DEBUG_SHOW_TRUESIZE
           // directory
           int p = 0;
           if (IsVeryLongPath(pReparseProperties->Source))
@@ -664,6 +689,7 @@ BOOL OnInitDialog ( HWND aHwnd, LPARAM lParam )
           SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, pReparseProperties->Source);
 
           ShowTrueSizeDlg(aHwnd);
+#endif
         }
       }
     }
