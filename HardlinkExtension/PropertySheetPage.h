@@ -12,6 +12,7 @@ INT_PTR CALLBACK PropPageDlgProc ( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM l
 UINT CALLBACK PropPageCallbackProc ( HWND hwnd, UINT uMsg, LPPROPSHEETPAGE ppsp );
 BOOL OnInitDialog ( HWND hwnd, LPARAM lParam );
 void OnExploreTarget ( HWND hwnd, LPARAM lParam );
+void OnTrueSize(HWND hwnd, LPARAM lParam);
 BOOL OnApply ( HWND hwnd, PSHNOTIFY* phdr );
 
 

@@ -44,24 +44,29 @@
 // Disable the Stopwatch functionality
 // #define DEBUG_STOPWATCH
 
-// Use STL regular Expression system. This is just an experiment, an dit turned out, that regex is 13t imes slower on average 
+// Use STL regular Expression system. This is just an experiment, and it turned out, that regex is 13t imes slower on average 
 // for a simple regex which has been transformed from a wildcard. Using one expression on 401000 items takes 1500 mSec with tre
 // The same with regex takes 20000 mSec. So for now we will not move to c++ 11 regex, because it is too slow. 
 // #define REGEXP_STL
 
 
-// Test the progress calculation with real world datam but without copying large amounts of files
+// Test the progress calculation with real world data, but without copying large amounts of files
 // Used to record files with effort triples. 
 // #define DEBUG_PREDICTION_RECORD
 
 // Used to replay files with effort triples via --adsdev
 // #define DEBUG_PREDICTION_REPLAY
 
+// Used to test the format printing of ln command line progress even with days duration
+// #define DEBUG_TEST_PRINT_PROGRESS
 
 
 // Test a safe delete via DeleteSiblings(), so that Hardlink Attribute Teleportation does
 // not interfere the delorean process
 // #define DEBUG_DS
+
+// The property page dialog of LSE shows a Truesize Dialog. This is not yet finished
+// #define DEBUG_SHOW_TRUESIZE
 
 #define NTQUERYDIRECTORY_BUFSIZE 100000
 

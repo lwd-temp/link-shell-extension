@@ -7,6 +7,21 @@
     <language>en</language>
 
     <item>
+      <title>ln.exe 2.926 has been released.</title>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2900</link>
+      <pubDate>Sun, 22 March 2020 19:00:50:15 +0100</pubDate>
+      <description>
+        ln.exe 2.926 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li><a href="https://schinagl.priv.at/nt/ln/ln.html#progress">--progress</a> also shows <i>days</i> if expected duration is bigger than 24hours</li>
+        ]]>
+      </content:encoded>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2926</guid>
+    </item>
+
+    <item>
       <title>LSE 3.933 has been released.</title>
       <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3930</link>
       <pubDate>Tue, 26 Jan 2020 19:00:15 +0100</pubDate>
@@ -38,15 +53,15 @@
 
     <item>
       <title>ln.exe 2.925 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2900</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2900</link>
       <pubDate>Mon, 11 January 2020 19:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.925 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-            <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#progress">--progress</a> calculation ran into overshoots, showing e.g. 177%.</li>
-            <li>ln.exe now maintains its <a href="http://schinagl.priv.at/nt/ln/ln.html#choco">chocolatey package</a>.</li>
+            <li>The <a href="https://schinagl.priv.at/nt/ln/ln.html#progress">--progress</a> calculation ran into overshoots, showing e.g. 177%.</li>
+            <li>ln.exe now maintains its <a href="https://schinagl.priv.at/nt/ln/ln.html#choco">chocolatey package</a>.</li>
             <li>ln.exe is public on <a href="https://gitlab.com/schinagl/link-shell-extension">gitlab</a>.</li>
             <!-- 2.9.2.4, 28.10.2019 -->
             <li>ln.exe is signed with a code signing certificate.</li>
@@ -57,11 +72,11 @@
             <li>--delete now also deletes the starting directory.</li>
             <!-- 2.9.1.3, 15.02.2019-->
             <li>Division by zero with --progress in some situations.</li>
-            <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#deeppathdelete">--delete option</a> has been modified to stop on outer reparse <a href="http://schinagl.priv.at/nt/ln/ln.html#innerjunction">boundaries</a>.</li>
-            <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#follow">--follow option</a> has been introduced to follow accross outer <a href="http://schinagl.priv.at/nt/ln/ln.html#innerjunction">reparse boundaries</a> during --delete.</li>
+            <li>The <a href="https://schinagl.priv.at/nt/ln/ln.html#deeppathdelete">--delete option</a> has been modified to stop on outer reparse <a href="https://schinagl.priv.at/nt/ln/ln.html#innerjunction">boundaries</a>.</li>
+            <li>The <a href="https://schinagl.priv.at/nt/ln/ln.html#follow">--follow option</a> has been introduced to follow accross outer <a href="https://schinagl.priv.at/nt/ln/ln.html#innerjunction">reparse boundaries</a> during --delete.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2925</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2925</guid>
     </item>
 
     <item>
@@ -83,7 +98,7 @@
 
     <item>
       <title>LSE 3.930 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 08 Nov 2019 20:00:15 +0100</pubDate>
       <description>
         LSE 3.930 has been released.
@@ -94,12 +109,12 @@
           <li>During custom icon change one was asked to close lots of dependant apps, which is uneccessary. Reboot Explorer.exe is enough.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3930</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3930</guid>
     </item>
 
     <item>
       <title>LSE 3.929 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 04 Nov 2019 20:00:15 +0100</pubDate>
       <description>
         LSE 3.929 has been released.
@@ -109,12 +124,12 @@
           <li>Lots of strings very wrong. Introduced with 3.9.2.8</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3929</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3929</guid>
     </item>
 
     <item>
       <title>LSE 3.928 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 02 Nov 2019 20:00:15 +0100</pubDate>
       <description>
         LSE 3.928 has been released.
@@ -126,12 +141,12 @@
           <li>Adapted check for Redistributables to VS2017 and Windows 10.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3928</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3928</guid>
     </item>
 
     <item>
       <title>LSE 3.927 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 28 Oct 2019 10:00:15 +0100</pubDate>
       <description>
         LSE 3.927 has been released.
@@ -143,12 +158,12 @@
           <li>New Windows 10 screenshots for docu and docu streamlining.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3927</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3927</guid>
     </item>
 
     <item>
       <title>LSE 3.926 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 15 Oct 2019 10:00:15 +0100</pubDate>
       <description>
         LSE 3.926 has been released.
@@ -159,16 +174,16 @@
           <li>During Replace Junction/Symbolic Link/Mountpoint the original attributes got lost</li>
           <li>The Link Properties Tab showed relative symbolic link dirs as absolute</li>
           <li>The Link Properties Tab did not show up on dangling Junctions</li>
-          <li>Creation of file symbolic links didn't work in protected folders like 'Program Files' with <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#changesymboliclinkprivilege">Developer Mode</a> on.</li>
+          <li>Creation of file symbolic links didn't work in protected folders like 'Program Files' with <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#changesymboliclinkprivilege">Developer Mode</a> on.</li>
           <li>Replacement Junction/Symbolic Link didn't work on dangling Junction/Symbolic Link.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3926</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3926</guid>
     </item>
 
     <item>
       <title>LSE 3.925 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 26 Jul 2019 10:00:15 +0100</pubDate>
       <description>
         LSE 3.925 has been released.
@@ -179,12 +194,12 @@
           <li>Added Ukranian localization, Finish localisation for missing texts</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3925</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3925</guid>
     </item>
 
     <item>
       <title>LSE 3.924 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 28 Apr 2019 20:00:15 +0100</pubDate>
       <description>
         LSE 3.924 has been released.
@@ -194,12 +209,12 @@
           <li>Cross Drive Drops didn't work. Introduced with 3921</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3924</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3924</guid>
     </item>
 
     <item>
       <title>LSE 3.923 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 26 Apr 2019 20:00:15 +0100</pubDate>
       <description>
         LSE 3.923 has been released.
@@ -210,12 +225,12 @@
           <li>Autorename had a flaw when having more than 9 files with same name in a directory</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3923</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3923</guid>
     </item>
 
     <item>
       <title>LSE 3.922 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 14 Apr 2019 20:00:15 +0100</pubDate>
       <description>
         LSE 3.922 has been released.
@@ -225,27 +240,27 @@
           <li>Backup mode was broken. Introduced with 3921</a></li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3922</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3922</guid>
     </item>
 
     <item>
       <title>LSE 3.921 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 11 Apr 2019 20:00:15 +0100</pubDate>
       <description>
         LSE 3.921 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Introduce <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#copyreparse">Copy Symbolic Link/Junction/Mountpoint</a></li>
+          <li>Introduce <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#copyreparse">Copy Symbolic Link/Junction/Mountpoint</a></li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3921</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3921</guid>
     </item>
 
     <item>
       <title>LSE 3.920 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 04 Apr 2019 20:00:15 +0100</pubDate>
       <description>
         LSE 3.920 has been released.
@@ -256,12 +271,12 @@
           <li>LSE is on gitlab.com. For now only private, but hope to change this soon.</a></li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3920</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3920</guid>
     </item>
 
     <item>
       <title>ln.exe 2.874 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2874</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2874</link>
       <pubDate>Mon, 12 March 2019 11:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.874 has been released.
@@ -269,8 +284,8 @@
       <content:encoded>
         <![CDATA[
           <!-- 2.8.7.4, 12.03.2019 -->
-          <li>The <a href="follow">--follow option</a> has been introduced to follow accross outer <a href="http://schinagl.priv.at/nt/ln/ln.html#innerjunction">reparse boundaries</a> during --delete.</li>
-          <li>Matching the first character of an wildcard expression with <a href="http://schinagl.priv.at/nt/ln/ln.html#excludewildcardsfiles">--exclude --include</a> was not correct</li>
+          <li>The <a href="follow">--follow option</a> has been introduced to follow accross outer <a href="https://schinagl.priv.at/nt/ln/ln.html#innerjunction">reparse boundaries</a> during --delete.</li>
+          <li>Matching the first character of an wildcard expression with <a href="https://schinagl.priv.at/nt/ln/ln.html#excludewildcardsfiles">--exclude --include</a> was not correct</li>
           <li>Empty lines on the filter file for wildcard expression caused an selection of *</li>
           <!-- 2.8.7.302, 07.08.2018 -->
           <li>DeloreanHanoi/Deloreancopy now use ln --delete instead of rd. Thx to Dietmar Kleiner</li>
@@ -282,12 +297,12 @@
           <li>Fixed too many links error handling during --mirror.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2874</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2874</guid>
     </item>
 
     <item>
       <title>LSE 3.913 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 15 Feb 2019 20:00:15 +0100</pubDate>
       <description>
         LSE 3.913 has been released.
@@ -298,12 +313,12 @@
           <li>The symbolic replacement mechansism was broken for the elevated use-case. Caused by 3.8.7.2</a></li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3913</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3913</guid>
     </item>
 
     <item>
       <title>ln.exe 2.913 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2900</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2900</link>
       <pubDate>Mon, 15 Feb 2018 20:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.913 has been released.
@@ -312,31 +327,31 @@
         <![CDATA[
         <!-- 2.9.1.1, 25.01.2019-->
           <li>Division by zero with --progress in some situations</a>.
-          <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#deeppathdelete">--delete option</a> has been modified to stop on outer reparse <a href="http://schinagl.priv.at/nt/ln/ln.html#innerjunction">boundaries</a>.
-          <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#follow">--follow option</a> has been introduced to follow accross outer <a href="http://schinagl.priv.at/nt/ln/ln.html#innerjunction">reparse boundaries</a> during --delete.
+          <li>The <a href="https://schinagl.priv.at/nt/ln/ln.html#deeppathdelete">--delete option</a> has been modified to stop on outer reparse <a href="https://schinagl.priv.at/nt/ln/ln.html#innerjunction">boundaries</a>.
+          <li>The <a href="https://schinagl.priv.at/nt/ln/ln.html#follow">--follow option</a> has been introduced to follow accross outer <a href="https://schinagl.priv.at/nt/ln/ln.html#innerjunction">reparse boundaries</a> during --delete.
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2913</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2913</guid>
     </item>
 
     <item>
       <title>LSE 3.911 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 25 January 2019 20:00:15 +0100</pubDate>
       <description>
         LSE 3.911 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Improved the progress estimation for the progressbar and introduced the <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#smartmove">Windows7 progress dialog</a></li>
+          <li>Improved the progress estimation for the progressbar and introduced the <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#smartmove">Windows7 progress dialog</a></li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3911</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3911</guid>
     </item>
 
     <item>
       <title>ln.exe 2.911 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2900</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2900</link>
       <pubDate>Mon, 25 Jan 2018 22:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.911 has been released.
@@ -345,32 +360,32 @@
         <![CDATA[
         <!-- 2.9.1.1, 25.01.2019-->
         <li>The 32bit version uses Wow64DisableWow64FsRedirection to access System32 properly</li>
-        <li>Matching the first character of an wildcard expression with <a href="http://schinagl.priv.at/nt/ln/ln.html#excludewildcardsfiles">--exclude --include</a> was not correct</li>
+        <li>Matching the first character of an wildcard expression with <a href="https://schinagl.priv.at/nt/ln/ln.html#excludewildcardsfiles">--exclude --include</a> was not correct</li>
         <li>Empty lines on the filter file for wildcard expression caused an selection of *</li>
-        <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#progress">--progress option</a> should be more accurate and shows the remaining files</li>
+        <li>The <a href="https://schinagl.priv.at/nt/ln/ln.html#progress">--progress option</a> should be more accurate and shows the remaining files</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2911</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2911</guid>
     </item>
 
     <item>
       <title>LSE 3.910 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</link>
       <pubDate>Tue, 12 January 2019 20:00:15 +0100</pubDate>
       <description>
         LSE 3.910 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Improved the progress estimation for the progressbar and introduced the <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#smartmove">Windows7 progress dialog</a></li>
+          <li>Improved the progress estimation for the progressbar and introduced the <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#smartmove">Windows7 progress dialog</a></li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3910</guid>
     </item>
 
     <item>
       <title>LSE 3.902 XP Support ditched.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3900</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3900</link>
       <pubDate>Tue, 12 January 2019 13:00:15 +0100</pubDate>
       <description>
         LSE 3.902 XP Support accidently ditched
@@ -386,17 +401,17 @@
 		at least at a first glance
 		</li>
         <li>On the other hand the good news is that
-		<a href="http://schinagl.priv.at/nt/hardlinkshellext/smartmoveprogress.png">the new progess bar now works</a> 
+		<a href="https://schinagl.priv.at/nt/hardlinkshellext/smartmoveprogress.png">the new progess bar now works</a> 
 		in all use cases in my dev environment.
 		</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3902_01</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3902_01</guid>
     </item>
 
     <item>
       <title>ln.exe 2.902 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2900</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2900</link>
       <pubDate>Mon, 28 Dec 2018 12:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.902 has been released.
@@ -407,12 +422,12 @@
         <li>Updated the compiler settings</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2902</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2902</guid>
     </item>
 
     <item>
       <title>LSE 3.902 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3900</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3900</link>
       <pubDate>Tue, 28 December 2018 13:00:15 +0100</pubDate>
       <description>
         LSE 3.902 has been released.
@@ -425,12 +440,12 @@
         <li>Removed vcredist-vs2005 check from installer</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3902</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3902</guid>
     </item>
 
     <item>
       <title>DupeMerge.exe 1.102 has been released.</title>
-      <link>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1100</link>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1100</link>
       <pubDate>Sun, 28 December 2018 14:10:15 +0100</pubDate>
       <description>
         DupeMerge.exe 1.102 has been released.
@@ -445,12 +460,12 @@
         <li>[Internal] Dropped Itanium configuration, since VS2017 does not support it anymore, and I am sure there is no Itanium hardware out in the wild anymore.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1102</guid>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1102</guid>
     </item>
 
     <item>
       <title>LSE 3.900 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3900</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3900</link>
       <pubDate>Tue, 26 December 2018 09:00:15 +0100</pubDate>
       <description>
         LSE 3.900 has been released.
@@ -466,12 +481,12 @@
         <li>[Internal] Dropped Itanium configuration, since VS2017 does not support it anymore, and I am sure there is no Itanium hardware out in the wild anymore.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3900</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3900</guid>
     </item>
 
     <item>
       <title>ln.exe 2.900 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2900</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2900</link>
       <pubDate>Mon, 25 Dec 2018 19:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.900 has been released.
@@ -486,19 +501,19 @@
         </li>
         <li>[Internal] Dropped Itanium configuration, since VS2017 does not support it anymore, and I am sure there is no Itanium hardware out in the wild anymore.</li>
         <!-- 2.8.7.302, 07.08.2018 -->
-        <li>Added the <a href="http://schinagl.priv.at/nt/ln/ln.html#supportfs">--supportfs</a> option.</li>
+        <li>Added the <a href="https://schinagl.priv.at/nt/ln/ln.html#supportfs">--supportfs</a> option.</li>
         <li>DeloreanHanoi/Deloreancopy now use ln --delete instead of rd. Thx to Dietmar Kleiner</li>
         <!-- 2.8.7.301, 31.05.2018 -->
         <li>Wildcard expression didn't work correctly when using ~</li>
         <!-- 2.8.7.3, 31.03.2018 -->
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2900</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2900</guid>
     </item>
 
     <item>
       <title>LSE 3.872 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3869</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3869</link>
       <pubDate>Mon, 2 December 2018 09:00:15 +0100</pubDate>
       <description>
         LSE 3.872 has been released.
@@ -506,15 +521,15 @@
       <content:encoded>
         <![CDATA[
           <!-- 3.8.7.2 -->
-          <li><a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#thirdpartyfilesystems">Third party filesystems</a> can be configured.</li>
+          <li><a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#thirdpartyfilesystems">Third party filesystems</a> can be configured.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3872</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3872</guid>
     </item>
 
     <item>
       <title>LSE 3.870 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3869</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3869</link>
       <pubDate>Mon, 23 May 2018 09:00:15 +0100</pubDate>
       <description>
         LSE 3.870 has been released.
@@ -528,13 +543,13 @@
           <li>The property dialog for hardlinks when used on substituted drives showed wrong path for the siblings.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3870</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3870</guid>
     </item>
 
 
     <item>
       <title>ln.exe 2.873 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2870</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2870</link>
       <pubDate>Mon, 21 May 2018 11:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.873 has been released.
@@ -545,18 +560,18 @@
           <li>DeloreanHanoi.bat can now also copy save whole drives, e.g. DeloreanHanoi.bat g:\ z:\save 5</li>
           <!-- 2.8.7.3, 10.01.2017 -->
           <li>Fixed too many links error handling during --mirror.</li>
-          <li><a href="http://schinagl.priv.at/nt/ln/ln.html#deloreandelete">Deletion of delorean</a> sets properly implemented.</li>
-          <li>Added the <a href="http://schinagl.priv.at/nt/ln/ln.html#deeppathdelete">--delete option</a>.</li>
-          <li><a href="http://schinagl.priv.at/nt/ln/ln.html#deeppathdelete">--deeppathdelete</a> can also delete single files.</li>
-          <li>Improved error reporting during <a href="http://schinagl.priv.at/nt/ln/ln.html#merge">--merge</a>, when files could not be merged.</li>
+          <li><a href="https://schinagl.priv.at/nt/ln/ln.html#deloreandelete">Deletion of delorean</a> sets properly implemented.</li>
+          <li>Added the <a href="https://schinagl.priv.at/nt/ln/ln.html#deeppathdelete">--delete option</a>.</li>
+          <li><a href="https://schinagl.priv.at/nt/ln/ln.html#deeppathdelete">--deeppathdelete</a> can also delete single files.</li>
+          <li>Improved error reporting during <a href="https://schinagl.priv.at/nt/ln/ln.html#merge">--merge</a>, when files could not be merged.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2872</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2872</guid>
     </item>
 
     <item>
       <title>LSE 3.869 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3869</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3869</link>
       <pubDate>Mon, 3 March 2018 19:00:15 +0100</pubDate>
       <description>
         LSE 3.869 has been released.
@@ -566,27 +581,27 @@
           <li>The Overlay icons didn't show up under 32bit applications.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3869</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3869</guid>
     </item>
 
     <item>
       <title>ln.exe 2.872 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2870</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2870</link>
       <pubDate>Mon, 15 May 2016 11:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.872 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#merge">--merge option</a> can now merge <a href="http://schinagl.priv.at/nt/ln/ln.html#deloreancopy">delorean backup </a> sets.</li>
+          <li>The <a href="https://schinagl.priv.at/nt/ln/ln.html#merge">--merge option</a> can now merge <a href="https://schinagl.priv.at/nt/ln/ln.html#deloreancopy">delorean backup </a> sets.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2872</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2872</guid>
     </item>
 
     <item>
       <title>ln.exe 2.870 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2870</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2870</link>
       <pubDate>Mon, 29 March 2016 19:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.870 has been released.
@@ -596,12 +611,12 @@
           <li>Avoids fragmentation during copy operations and thus faster on large files.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2870</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2870</guid>
     </item>
 
     <item>
       <title>LSE 3.868 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3867</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3867</link>
       <pubDate>Mon, 19 April 2016 19:00:15 +0100</pubDate>
       <description>
         LSE 3.868 has been released.
@@ -613,12 +628,12 @@
           <li>Creation of hardlinks in UAC protected folders caused an error message, even if the hardlink was created.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3868</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3868</guid>
     </item>
 
     <item>
       <title>ln.exe 2.871 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2870</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2870</link>
       <pubDate>Mon, 15 April 2016 19:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.871 has been released.
@@ -628,12 +643,12 @@
           <li>With --progress ln.exe could crash due to progress calculation.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2871</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2871</guid>
     </item>
 
     <item>
       <title>ln.exe 2.870 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2870</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2870</link>
       <pubDate>Mon, 29 March 2016 19:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.870 has been released.
@@ -643,12 +658,12 @@
           <li>Avoids fragmentation during copy operations and thus faster on large files.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2870</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2870</guid>
     </item>
 
     <item>
       <title>ln.exe 2.869 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2861</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2861</link>
       <pubDate>Mon, 14 March 2016 19:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.869 has been released.
@@ -658,27 +673,27 @@
           <li>With --progress the remaining time during --delorean was calculated wrong.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2869</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2869</guid>
     </item>
 
     <item>
       <title>ln.exe 2.868 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2861</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2861</link>
       <pubDate>Mon, 28 February 2016 19:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.868 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#progress">--progress</a> option shows the progress on the console.</li>
+          <li>The <a href="https://schinagl.priv.at/nt/ln/ln.html#progress">--progress</a> option shows the progress on the console.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2868</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2868</guid>
     </item>
 
     <item>
       <title>ln.exe 2.867 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2861</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2861</link>
       <pubDate>Mon, 1 February 2016 19:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.867 has been released.
@@ -686,20 +701,20 @@
       <content:encoded>
         <![CDATA[
           <li>Take 2: Files with different compression state between source and target were flagged as erroneous during --mirror.</li>
-          <li>Hardlinks were broken on copy when the source path was given via either <a href="http://schinagl.priv.at/nt/ln/ln.html#volumeguidsupport">VolumeGUID</a> or Windows Namespace</li>
-          <li>In --backup mode, when used with <a href="http://schinagl.priv.at/nt/ln/ln.html#anchormirror">--anchor</a>, <a href="http://schinagl.priv.at/nt/ln/ln.html#danglingjunction">dangling junctions</a> were not copied properly.</li>
-          <li>Wrong drive letter shown with <a href="http://schinagl.priv.at/nt/ln/ln.html#listsiblings">--list</a> on <a href="http://schinagl.priv.at/nt/ln/ln.html#substhandling">subst'd</a> drives.</li>
-          <li>Minor updates to <a href="http://schinagl.priv.at/nt/ln/ln.html#batfiles">deloreancopy.bat and DeloreanHanoi.bat</a> regarding script error handling.</li>
+          <li>Hardlinks were broken on copy when the source path was given via either <a href="https://schinagl.priv.at/nt/ln/ln.html#volumeguidsupport">VolumeGUID</a> or Windows Namespace</li>
+          <li>In --backup mode, when used with <a href="https://schinagl.priv.at/nt/ln/ln.html#anchormirror">--anchor</a>, <a href="https://schinagl.priv.at/nt/ln/ln.html#danglingjunction">dangling junctions</a> were not copied properly.</li>
+          <li>Wrong drive letter shown with <a href="https://schinagl.priv.at/nt/ln/ln.html#listsiblings">--list</a> on <a href="https://schinagl.priv.at/nt/ln/ln.html#substhandling">subst'd</a> drives.</li>
+          <li>Minor updates to <a href="https://schinagl.priv.at/nt/ln/ln.html#batfiles">deloreancopy.bat and DeloreanHanoi.bat</a> regarding script error handling.</li>
           <li>Realtive symbolic links on absolute symbolic links to a different drive, were not created properly.</li>
           <li>Relative symbolic links on UNC path were recreated with wrong target during SmartCopy.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2867</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2867</guid>
     </item>
 
     <item>
       <title>LSE 3.867 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3867</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3867</link>
       <pubDate>Mon, 1 February 2016 19:00:15 +0100</pubDate>
       <description>
         LSE 3.867 has been released.
@@ -710,16 +725,16 @@
           <li>Added Greek localization. Thanks to George Malamas!</li>
           <li>SmartMove didn't work when Backup Mode was enabled.</li>
           <li>Runs again with Windows 2000 (Flaw introduced with 3.8.6.6).</li>
-          <li>The Vcredist check is back by default, but can be skipped by passing <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#novcredist">/noredist</a> during install via commandline.</li>
+          <li>The Vcredist check is back by default, but can be skipped by passing <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#novcredist">/noredist</a> during install via commandline.</li>
           <li>Relative symbolic links on UNC path were recreated with wrong target.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3867</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3867</guid>
     </item>
 
     <item>
       <title>LSE 3.866 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
       <pubDate>Sun, 10 January 2016 16:00:15 +0100</pubDate>
       <description>
         LSE 3.866 has been released.
@@ -729,12 +744,12 @@
           <li>Prerequisites still checked by installer with Windows10.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3866</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3866</guid>
     </item>
 
     <item>
       <title>LSE 3.865 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
       <pubDate>Sun, 15 December 2015 21:00:15 +0100</pubDate>
       <description>
         LSE 3.865 has been released.
@@ -744,12 +759,12 @@
           <li>Prerequisites install not needed with Windows 10, thus do not check for prerequisites under Windows 10.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3865</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3865</guid>
     </item>
 
     <item>
       <title>LSE 3.864 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
       <pubDate>Sun, 29 November 2015 12:00:15 +0100</pubDate>
       <description>
         LSE 3.864 has been released.
@@ -759,12 +774,12 @@
           <li>On Windows10 systems which have been upgraded from Windows7 the enumeration of hardlinks siblings via the property page takes very long.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3864</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3864</guid>
     </item>
 
     <item>
       <title>LSE 3.863 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
       <pubDate>Sun, 4 October 2015 12:00:15 +0100</pubDate>
       <description>
         LSE 3.863 has been released.
@@ -774,12 +789,12 @@
           <li>Fixed a crash in W10 when closing the properties dialog on junctions/symlinks.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3863</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3863</guid>
     </item>
 
     <item>
       <title>LSE 3.862 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
       <pubDate>Sun, 17 May 2015 21:00:15 +0100</pubDate>
       <description>
         LSE 3.862 has been released.
@@ -790,45 +805,45 @@
           <li>Added localization for Korean. Thanks to Mireado from Korea!</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3862</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3862</guid>
     </item>
 
     <item>
       <title>ln.exe 2.865 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2861</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2861</link>
       <pubDate>Sun, 17 May 2015 15:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.865 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Added the <a href="http://schinagl.priv.at/nt/ln/ln.html#1023safe">--1023safe option</a>.</li>
-          <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#smartmirror">--mirror</a> option didn't show the number of removed items in the summary.</li>
-          <li>The output can be in Json now by issuing the <a href="http://schinagl.priv.at/nt/ln/ln.html#json">--json</a> option.</li>
+          <li>Added the <a href="https://schinagl.priv.at/nt/ln/ln.html#1023safe">--1023safe option</a>.</li>
+          <li>The <a href="https://schinagl.priv.at/nt/ln/ln.html#smartmirror">--mirror</a> option didn't show the number of removed items in the summary.</li>
+          <li>The output can be in Json now by issuing the <a href="https://schinagl.priv.at/nt/ln/ln.html#json">--json</a> option.</li>
           <li>Files with different compression state between source and target were flagged as erroneous during --mirror.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2865</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2865</guid>
     </item>
 
     <item>
       <title>ln.exe 2.864 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2861</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2861</link>
       <pubDate>Tue, 10 April 2015 13:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.864 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Added handling for <a href="http://schinagl.priv.at/nt/ln/ln.html#invalidreparse">unsupported reparse points</a>.</li>
+          <li>Added handling for <a href="https://schinagl.priv.at/nt/ln/ln.html#invalidreparse">unsupported reparse points</a>.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2864</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2864</guid>
     </item>
 
     <item>
       <title>LSE 3.861 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
       <pubDate>Sun, 6 April 2015 21:00:15 +0100</pubDate>
       <description>
         LSE 3.861 has been released.
@@ -836,35 +851,35 @@
       <content:encoded>
         <![CDATA[
           <li>In a rare situation only the first symbolic link of a smart-copy was linked incorrectly.</li>
-          <li>The <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#autorename">Auto Rename</a> functionality didn't work in rare situations. Fixed for XP and Windows7/8/10</li>
+          <li>The <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#autorename">Auto Rename</a> functionality didn't work in rare situations. Fixed for XP and Windows7/8/10</li>
           <li>Adaptions for Windows 10 Tech Preview 9841/9926.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3861</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3861</guid>
     </item>
 
     <item>
       <title>ln.exe 2.863 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2861</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2861</link>
       <pubDate>Tue, 30 March 2015 21:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.863 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Wait time needed during Delorean Copy due to <a href="http://schinagl.priv.at/nt/ln/ln.html#smb2redirectorcache">SMB2 Cache issues</a>.</li>
-          <li>Reading arguments from file for <a href="http://schinagl.priv.at/nt/ln/ln.html#excludewildcardsfiles">--ex/include</a> didn't work.</li>
-          <li><a href="http://schinagl.priv.at/nt/ln/ln.html#excludewildcardsfiles">--ex/include</a> failed with files containing ()[]{}-+$.</li>
-          <li>The combination of <a href="http://schinagl.priv.at/nt/ln/ln.html#anchormirror">--anchor and --mirror</a> was broken. The result was as if it was --copy.</li>
-          <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#smartmirror">--mirror</a> option didn't copy <a href="http://schinagl.priv.at/nt/ln/ln.html#backup">ACLs</a>.</li>
+          <li>Wait time needed during Delorean Copy due to <a href="https://schinagl.priv.at/nt/ln/ln.html#smb2redirectorcache">SMB2 Cache issues</a>.</li>
+          <li>Reading arguments from file for <a href="https://schinagl.priv.at/nt/ln/ln.html#excludewildcardsfiles">--ex/include</a> didn't work.</li>
+          <li><a href="https://schinagl.priv.at/nt/ln/ln.html#excludewildcardsfiles">--ex/include</a> failed with files containing ()[]{}-+$.</li>
+          <li>The combination of <a href="https://schinagl.priv.at/nt/ln/ln.html#anchormirror">--anchor and --mirror</a> was broken. The result was as if it was --copy.</li>
+          <li>The <a href="https://schinagl.priv.at/nt/ln/ln.html#smartmirror">--mirror</a> option didn't copy <a href="https://schinagl.priv.at/nt/ln/ln.html#backup">ACLs</a>.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2863</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2863</guid>
     </item>
 
     <item>
       <title>ln.exe 2.861 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2861</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2861</link>
       <pubDate>Tue, 08 January 2015 21:30:50:15 +0100</pubDate>
       <description>
         ln.exe 2.861 has been released.
@@ -872,15 +887,15 @@
       <content:encoded>
         <![CDATA[
           <li>The regular expression parser didn't use the extended regular expressions mode, but only the (obsolete) basic regular expression mode.</li>
-          <li>Accessing drives via <a href="http://schinagl.priv.at/nt/ln/ln.html#volumeguidsupport">Windows Namespace</a> in \\?\GLOBALROOT\Device is also possible.</li>
+          <li>Accessing drives via <a href="https://schinagl.priv.at/nt/ln/ln.html#volumeguidsupport">Windows Namespace</a> in \\?\GLOBALROOT\Device is also possible.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2861</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2861</guid>
     </item>
 
     <item>
       <title>LSE 3.860 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</link>
       <pubDate>Sun, 28 Deember 2014 14:00:15 +0100</pubDate>
       <description>
         LSE 3.860 has been released.
@@ -891,12 +906,12 @@
           <li>The progress bar didn't increase properly during Smartmirror if the files were the same.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3860</guid>
     </item>
 
     <item>
       <title>ln.exe 2.860 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2830</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2830</link>
       <pubDate>Tue, 10 November 2014 19:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.860 has been released.
@@ -907,49 +922,49 @@
           <li>SmartClone on empty folder created empty file for destination folder.</li>
           <li>UNC path in some situations were chopped at the begining in the log-ouput.</li>
           <li>Certain Unicode command line arguments could drive the command line parser crazy.</li>
-          <li><a href="http://schinagl.priv.at/nt/ln/ln.html#hardlinkclonemirror">Hardlink Clone Mirror</a> failed if files were already existing.</li>
-          <li>Several options support taking its content from a <a href="http://schinagl.priv.at/nt/ln/ln.html#excludewildcardsfiles">referenced file</a>.</li>
-          <li>Added the <a href="http://schinagl.priv.at/nt/ln/ln.html#anchor">--anchor</a>.</li>
-          <li><a href="http://schinagl.priv.at/nt/ln/ln.html#clonemirror">SymbolicLink Clone Mirror</a> sometimes removed and created symlinks unneccessarily.</li>
+          <li><a href="https://schinagl.priv.at/nt/ln/ln.html#hardlinkclonemirror">Hardlink Clone Mirror</a> failed if files were already existing.</li>
+          <li>Several options support taking its content from a <a href="https://schinagl.priv.at/nt/ln/ln.html#excludewildcardsfiles">referenced file</a>.</li>
+          <li>Added the <a href="https://schinagl.priv.at/nt/ln/ln.html#anchor">--anchor</a>.</li>
+          <li><a href="https://schinagl.priv.at/nt/ln/ln.html#clonemirror">SymbolicLink Clone Mirror</a> sometimes removed and created symlinks unneccessarily.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2860</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2860</guid>
     </item>
 
     <item>
       <title>ln.exe 2.852 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2830</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2830</link>
       <pubDate>Tue, 28 June 2014 19:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.852 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Added <a href="http://schinagl.priv.at/nt/ln/ln.html#hardlinkclonemirror">Hardlink Clone Mirror</a> option: --recursive combined with --mirror now mirrors hardlink link clones.</li>
+          <li>Added <a href="https://schinagl.priv.at/nt/ln/ln.html#hardlinkclonemirror">Hardlink Clone Mirror</a> option: --recursive combined with --mirror now mirrors hardlink link clones.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2852</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2852</guid>
     </item>
 
     <item>
       <title>ln.exe 2.851 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2830</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2830</link>
       <pubDate>Tue, 22 June 2014 10:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.851 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Tweaked <a href="http://schinagl.priv.at/nt/ln/bat/DeLoreanHanoi.bat">DeloreanHanoi.bat</a>, a way to use ln.exe for the <a href="http://en.wikipedia.org/wiki/Backup_rotation_scheme#Tower_of_Hanoi">Tower of Hanoi backup rotation scheme</a>.</li>
+          <li>Tweaked <a href="https://schinagl.priv.at/nt/ln/bat/DeLoreanHanoi.bat">DeloreanHanoi.bat</a>, a way to use ln.exe for the <a href="http://en.wikipedia.org/wiki/Backup_rotation_scheme#Tower_of_Hanoi">Tower of Hanoi backup rotation scheme</a>.</li>
           <li>Files with a size beeing a multiple of 16777216 were copied properly, but generated an error message even if there was none.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2851</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2851</guid>
     </item>
 
     <item>
       <title>LSE 3.851 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3850</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3850</link>
       <pubDate>Wed, 2 June 2014 19:00:15 +0100</pubDate>
       <description>
         LSE 3.851 has been released.
@@ -959,38 +974,38 @@
           <li>UNC path as Link Source for SmartCopy/Mirror/Delorean/SymbolicLinkClone now work.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3851</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3851</guid>
     </item>
 
     <item>
       <title>LSE 3.850 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3850</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3850</link>
       <pubDate>Wed, 17 May 2014 11:00:15 +0100</pubDate>
       <description>
         LSE 3.850 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>The <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#backupmode">Backup Mode</a> arrived to LSE.</li>
+          <li>The <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#backupmode">Backup Mode</a> arrived to LSE.</li>
           <li>LSE produced logfiles with LF but not CR/LF.</li>
           
           <li>Junctions/Symbolic Links/Mountpoints ACLs are preserved when the target is changed either via 
-               <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#replacementjunction">Replacement</a> functions or editing from the Link Properties.</li>
-          <li>Japanese translation for <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#configuration">LSEConfig</a>.</li>
-          <li>The target of mountpoints can be changed from <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#linkproperties">Link Properties</a>.</li>
-          <li>LSE now can handle <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#mountpointcopy">Mountpoints</a> during SmartXXX/Delorean operations.</li>
+               <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#replacementjunction">Replacement</a> functions or editing from the Link Properties.</li>
+          <li>Japanese translation for <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#configuration">LSEConfig</a>.</li>
+          <li>The target of mountpoints can be changed from <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#linkproperties">Link Properties</a>.</li>
+          <li>LSE now can handle <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#mountpointcopy">Mountpoints</a> during SmartXXX/Delorean operations.</li>
           <li>WindowsXP: Symbolic links across drives didn't work.</li>
-          <li>WindowsXP: Symbolic links to <a href="http://schinagl.priv.at/nt/ln/ln.html#volumeguidsupport">Volume GUIDs</a> didn't work.</li>
-          <li>WindowsXP: Symbolic links between <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#verylongpath">very long path</a> didn't work.</li>
+          <li>WindowsXP: Symbolic links to <a href="https://schinagl.priv.at/nt/ln/ln.html#volumeguidsupport">Volume GUIDs</a> didn't work.</li>
+          <li>WindowsXP: Symbolic links between <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#verylongpath">very long path</a> didn't work.</li>
           <li>WindowsXP: Lots of tweaks here and there.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3850</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3850</guid>
     </item>
 
     <item>
       <title>ln.exe 2.850 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2830</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2830</link>
       <pubDate>Tue, 17 May 2014 11:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.850 has been released.
@@ -998,35 +1013,35 @@
       <content:encoded>
         <![CDATA[
           <li>Tackled with the some more symlink and Windows XP issues.</li>
-          <li>ln.exe now can handle <a href="http://schinagl.priv.at/nt/ln/ln.html#mountpointcopy">mountpoints</a> during SmartXXX operations.</li>
-          <li>Documented the <a href="http://schinagl.priv.at/nt/ln/ln.html#destination">--destination</a> option.</li>
+          <li>ln.exe now can handle <a href="https://schinagl.priv.at/nt/ln/ln.html#mountpointcopy">mountpoints</a> during SmartXXX operations.</li>
+          <li>Documented the <a href="https://schinagl.priv.at/nt/ln/ln.html#destination">--destination</a> option.</li>
           <li>WindowsXP: Symbolic links across drives didn't work.</li>
-          <li>WindowsXP: Symbolic links to <a href="http://schinagl.priv.at/nt/ln/ln.html#symbolicvolumeguid">Volume GUIDs</a> didn't work.</li>
-          <li>WindowsXP: Symbolic links between <a href="http://schinagl.priv.at/nt/ln/ln.html#verylongpath">very long path</a> didn't work.</li>
+          <li>WindowsXP: Symbolic links to <a href="https://schinagl.priv.at/nt/ln/ln.html#symbolicvolumeguid">Volume GUIDs</a> didn't work.</li>
+          <li>WindowsXP: Symbolic links between <a href="https://schinagl.priv.at/nt/ln/ln.html#verylongpath">very long path</a> didn't work.</li>
           <li>WindowsXP: Lots of tweaks here and there.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2850</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2850</guid>
     </item>
 
     <item>
       <title>Link Shell Extension 15th Anniversary</title>
-      <link>http://schinagl.priv.at/nt/ln/blog/blog.html</link>
+      <link>https://schinagl.priv.at/nt/ln/blog/blog.html</link>
       <pubDate>Tue, 2 May 2014 10:15:50:15 +0100</pubDate>
       <description>
         Link Shell Extension 15th Anniversary
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Lets <a href="http://schinagl.priv.at/nt/ln/blog/blog.html"> celebrate!</a>.</li>
+          <li>Lets <a href="https://schinagl.priv.at/nt/ln/blog/blog.html"> celebrate!</a>.</li>
           ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#15thanniversary</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#15thanniversary</guid>
     </item>
 
     <item>
       <title>ln.exe 2.834 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2830</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2830</link>
       <pubDate>Tue, 27 April 2014 20:15:50:15 +0100</pubDate>
       <description>
         ln.exe 2.834 has been released.
@@ -1039,12 +1054,12 @@
           <li>The .html docu has no .html format errors.</li>
           ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2834</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2834</guid>
     </item>
 
     <item>
       <title>LSEConfig 3.8xx Japanese translations for needed</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/beta</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/beta</link>
       <pubDate>Wed, 29 March 2014 22:30:15 +0100</pubDate>
       <description>
         LSEConfig 3.8xx Japanese translations for needed
@@ -1054,30 +1069,30 @@
           <li>LSEConfig needs a Japanese translation, which is about 40 strings. Anyone volunteers? Drop me a line to hermann.schinagl@gmx.net</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3793</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3793</guid>
     </item>
 
     <item>
       <title>ln.exe 2.831 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2830</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2830</link>
       <pubDate>Tue, 26 March 2014 07:15:50:15 +0100</pubDate>
       <description>
         ln.exe 2.831 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Added the <a href="http://schinagl.priv.at/nt/ln/ln.html#noads">--noads</a> option.</li>
-          <li>Added the <a href="http://schinagl.priv.at/nt/ln/ln.html#noea">--noea</a> option.</li>
-          <li>Errors during <a href="http://schinagl.priv.at/nt/ln/ln.html#adsfailed">copying ADS</a> are marked with the t charachter.</li>
-          <li>Errors during <a href="http://schinagl.priv.at/nt/ln/ln.html#eafailed">copying EA Records</a> are marked with the e character.</li>
+          <li>Added the <a href="https://schinagl.priv.at/nt/ln/ln.html#noads">--noads</a> option.</li>
+          <li>Added the <a href="https://schinagl.priv.at/nt/ln/ln.html#noea">--noea</a> option.</li>
+          <li>Errors during <a href="https://schinagl.priv.at/nt/ln/ln.html#adsfailed">copying ADS</a> are marked with the t charachter.</li>
+          <li>Errors during <a href="https://schinagl.priv.at/nt/ln/ln.html#eafailed">copying EA Records</a> are marked with the e character.</li>
           ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2831</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2831</guid>
     </item>
 
     <item>
       <title>LSE 3.791 Beta Version Available.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/beta</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/beta</link>
       <pubDate>Wed, 14 March 2014 12:30:15 +0100</pubDate>
       <description>
         LSE 3.791 Beta Version Available.
@@ -1087,76 +1102,76 @@
           <li>LSE now can be switched into Backup Mode via LSEConfig. This is a Beta Version for public test and feedback</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3791</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3791</guid>
     </item>
 
     <item>
       <title>ln.exe 2.830 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2830</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2830</link>
       <pubDate>Tue, 23 February 2014 21:15:50:15 +0100</pubDate>
       <description>
         ln.exe 2.830 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>With --backup <a href="http://schinagl.priv.at/nt/ln/ln.html#filetypescopied">Encrypted Files</a> are copied too.</li>
-          <li>Junctions on <a href="http://schinagl.priv.at/nt/ln/ln.html#mappednetworkdrive">mapped network drives</a> are handled properly during all operations.</li>
+          <li>With --backup <a href="https://schinagl.priv.at/nt/ln/ln.html#filetypescopied">Encrypted Files</a> are copied too.</li>
+          <li>Junctions on <a href="https://schinagl.priv.at/nt/ln/ln.html#mappednetworkdrive">mapped network drives</a> are handled properly during all operations.</li>
           ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2830</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2830</guid>
     </item>
 
     <item>
       <title>ln.exe 2.810 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2800</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2800</link>
       <pubDate>Tue, 11 February 2014 08:15:50:15 +0100</pubDate>
       <description>
         ln.exe 2.810 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>The --copy, --mirror and --delorean also copy <a href="http://schinagl.priv.at/nt/ln/ln.html#filetypescopied">sparse files</a> and alternative sparse streams.</li>
+          <li>The --copy, --mirror and --delorean also copy <a href="https://schinagl.priv.at/nt/ln/ln.html#filetypescopied">sparse files</a> and alternative sparse streams.</li>
           <li>Fixed a bug during copy, when a file was already there and the new file was smaller, it didn't copy over completley.</li>
           ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2810</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2810</guid>
     </item>
 
     <item>
       <title>ln.exe 2.800 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2800</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2800</link>
       <pubDate>Tue, 7 February 2014 17:00:50:15 +0100</pubDate>
       <description>
         ln.exe 2.800 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Introduced the <a href="http://schinagl.priv.at/nt/ln/ln.html#backup">--backup</a> switch which also copies ACLs.</li>
-          <li>Introduced the <a href="http://schinagl.priv.at/nt/ln/ln.html#keepsymlinkrelation">--keepsymlinkrelation</a> switch.</li>
+          <li>Introduced the <a href="https://schinagl.priv.at/nt/ln/ln.html#backup">--backup</a> switch which also copies ACLs.</li>
+          <li>Introduced the <a href="https://schinagl.priv.at/nt/ln/ln.html#keepsymlinkrelation">--keepsymlinkrelation</a> switch.</li>
           <li>The --output option produced logfiles with LF but not CR/LF.</li>
           ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2800</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2800</guid>
     </item>
 
     <item>
       <title>LinkshellExtension French Documentation.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension_fr.html</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension_fr.html</link>
       <pubDate>Tue, 24 Jannuary 2014 21:30:50:15 +0100</pubDate>
       <description>
         LinkshellExtension French Documentation
       </description>
       <content:encoded>
         <![CDATA[
-          <li><a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension_fr.html">French Documentation</a></li>
+          <li><a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension_fr.html">French Documentation</a></li>
           ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension_fr.html</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension_fr.html</guid>
     </item>
 
     <item>
       <title>ln.exe --backup 2.7.9.201/Beta2.01.</title>
-      <link>http://schinagl.priv.at/nt/ln/beta</link>
+      <link>https://schinagl.priv.at/nt/ln/beta</link>
       <pubDate>Tue, 24 Jannuary 2014 18:30:50:15 +0100</pubDate>
       <description>
         ln.exe --backup 2.7.9.201/Beta2.01.
@@ -1166,12 +1181,12 @@
           <li>Fixed a crucial memory leal.</li>
           ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#279201</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#279201</guid>
     </item>
 
     <item>
       <title>ln.exe --backup 2.7.9.200/Beta2.</title>
-      <link>http://schinagl.priv.at/nt/ln/beta</link>
+      <link>https://schinagl.priv.at/nt/ln/beta</link>
       <pubDate>Tue, 21 Jannuary 2014 07:30:50:15 +0100</pubDate>
       <description>
         ln.exe --backup 2.7.9.200/Beta2.
@@ -1180,47 +1195,47 @@
         <![CDATA[
           <li>ACLs and EA records are copied from directories.</li>
           <li>Timestamp handling improved.</li>
-          <li>Regression test passed. Get it <a href="http://schinagl.priv.at/nt/ln/beta">from here</a></li>
+          <li>Regression test passed. Get it <a href="https://schinagl.priv.at/nt/ln/beta">from here</a></li>
           ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#279200</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#279200</guid>
     </item>
 
     <item>
       <title>ln.exe --backup goes Beta.</title>
-      <link>http://schinagl.priv.at/nt/ln/beta</link>
+      <link>https://schinagl.priv.at/nt/ln/beta</link>
       <pubDate>Tue, 11 Jannuary 2014 09:30:50:15 +0100</pubDate>
       <description>
         ln.exe --backup goes Beta.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>ln.exe is able to copy ACLs, EA Records, Alternative Datastreams on files or directory. Modify your ln.exe invocation with --backup option, e.g. ln.exe --backup --copy SrcPath DestPath. Get it <a href="http://schinagl.priv.at/nt/ln/beta">from here</a></li>
+          <li>ln.exe is able to copy ACLs, EA Records, Alternative Datastreams on files or directory. Modify your ln.exe invocation with --backup option, e.g. ln.exe --backup --copy SrcPath DestPath. Get it <a href="https://schinagl.priv.at/nt/ln/beta">from here</a></li>
           ]]>
         </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#279100</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#279100</guid>
     </item>
 
     <item>
       <title>LSE 3.759 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3752</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3752</link>
       <pubDate>Wed, 29 December 2013 12:30:15 +0100</pubDate>
       <description>
         LSE 3.759 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>A changed <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#faq11">file attribute</a> didn't cause the file to be treated as changed during all SmartXXX/Delorean functions.</li>
+          <li>A changed <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#faq11">file attribute</a> didn't cause the file to be treated as changed during all SmartXXX/Delorean functions.</li>
           <li>Symbolic Link Clones always created absolute symlinks regardless of the LSE Settings</li>
-          <li>The LastWriteTime, CreationTime and LastAccessTime for files/folders/junctions/symlinks is restored during <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#smartmirror">SmartMirror</a> or <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#deloreancopy">DeloreanCopy</a>.</li>
+          <li>The LastWriteTime, CreationTime and LastAccessTime for files/folders/junctions/symlinks is restored during <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#smartmirror">SmartMirror</a> or <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#deloreancopy">DeloreanCopy</a>.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3759</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3759</guid>
     </item>
 
     <item>
       <title>ln.exe 2.759 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2754</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2754</link>
       <pubDate>Tue, 29 December 2013 12:30:50:15 +0100</pubDate>
       <description>
         ln.exe 2.759 has been released.
@@ -1230,29 +1245,29 @@
           <li>Symbolic Link Clones always created absolute symlinks regardless of the command line args.</li>
           ]]>
         </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2759</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2759</guid>
     </item>
 
     <item>
       <title>ln.exe 2.758 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2754</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2754</link>
       <pubDate>Tue, 27 December 2013 09:30:50:15 +0100</pubDate>
       <description>
         ln.exe 2.758 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Arguments to common operations support <a href="http://schinagl.priv.at/nt/ln/ln.html#volumeguidsupport">\\?\Volume{GUID}</a> as arguments.</li>
-          <li>The LastWriteTime, CreationTime and LastAccessTime for files/folders/junctions/symlinks is restored during <a href="http://schinagl.priv.at/nt/ln/ln.html#smartmirror">--mirror</a> or <a href="#deloreancopy">--delorean</a>.</li>
-          <li>Is able to delete very long path with the <a href="http://schinagl.priv.at/nt/ln/ln.html#deeppathdelete">--deeppathdelete</a> option.</li>
+          <li>Arguments to common operations support <a href="https://schinagl.priv.at/nt/ln/ln.html#volumeguidsupport">\\?\Volume{GUID}</a> as arguments.</li>
+          <li>The LastWriteTime, CreationTime and LastAccessTime for files/folders/junctions/symlinks is restored during <a href="https://schinagl.priv.at/nt/ln/ln.html#smartmirror">--mirror</a> or <a href="#deloreancopy">--delorean</a>.</li>
+          <li>Is able to delete very long path with the <a href="https://schinagl.priv.at/nt/ln/ln.html#deeppathdelete">--deeppathdelete</a> option.</li>
           ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2758</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2758</guid>
     </item>
 
     <item>
       <title>LSE 3.754 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3752</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3752</link>
       <pubDate>Wed, 03 December 2013 07:00:15 +0100</pubDate>
       <description>
         LSE 3.754 has been released.
@@ -1262,12 +1277,12 @@
           <li>Fix 2: With Delorean Copy when elevated via symlink.exe in rare situations symlinks could get deleted in the source. Ugly. Sorry!</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3754</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3754</guid>
     </item>
 
     <item>
       <title>LSE 3.752 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3752</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3752</link>
       <pubDate>Wed, 02 December 2013 19:00:15 +0100</pubDate>
       <description>
         LSE 3.752 has been released.
@@ -1277,28 +1292,28 @@
           <li>With Delorean Copy when elevated via symlink.exe in rare situations symlinks could get deleted in the source. Ugly. Sorry!</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3752</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3752</guid>
     </item>
 
     <item>
       <title>ln.exe 2.756 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2754</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2754</link>
       <pubDate>Tue, 19 November 2013 23:50:15 +0100</pubDate>
       <description>
         ln.exe 2.756 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Fixed a bug in <a href="http://schinagl.priv.at/nt/ln/ln.html#excludewildcardsfiles">--exclude</a>, which prevented excluding files along a path.</li>
-          <li>Fixed a bug in <a href="http://schinagl.priv.at/nt/ln/ln.html#includewildcardsfiles">--include</a>, which prevented including files along a path.</li>
+          <li>Fixed a bug in <a href="https://schinagl.priv.at/nt/ln/ln.html#excludewildcardsfiles">--exclude</a>, which prevented excluding files along a path.</li>
+          <li>Fixed a bug in <a href="https://schinagl.priv.at/nt/ln/ln.html#includewildcardsfiles">--include</a>, which prevented including files along a path.</li>
           ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2756</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2756</guid>
     </item>
 
     <item>
       <title>ln.exe 2.754 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2754</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2754</link>
       <pubDate>Tue, 17 November 2013 22:20:15 +0100</pubDate>
       <description>
         ln.exe 2.754 has been released.
@@ -1308,36 +1323,36 @@
           <li>The --list function didn't return error messages when used on UNC pathes.</li>
           <li>Just --symbolic without argument caused a crash.</li>
           <li>ln --copy x:\ x caused the folder x to be completley invisible, because GetFileAttributes() runs havoc on root dirs, e.g h:\.</li>
-          <li>The <a href="http://schinagl.priv.at/nt/ln/ln.html#uncnamesupport">UNC Support</a> has been improved and supports hardlink preservation for --copy, --delorean, --mirror.</li>
-          <li>Introduced the <a href="http://schinagl.priv.at/nt/ln/ln.html#probefs">--probefs</a> option.</li>
-          <li>The shadow copy .cmd file for <a href="http://schinagl.priv.at/nt/ln/ln.html#vss_unc.cmd">vss shares</a> via UNC name has been adapted.</li>
-          <li>Junctions can have now volume names like <a href="http://schinagl.priv.at/nt/ln/ln.html#junctionvolumeguid">\\?\Volume{GUID}\tmp</a> as target.</li>
-          <li>Symbolic Links can have now volume names like <a href="http://schinagl.priv.at/nt/ln/ln.html#symbolicvolumeguid">\\?\Volume{GUID}\tmp</a> as target.</li>
+          <li>The <a href="https://schinagl.priv.at/nt/ln/ln.html#uncnamesupport">UNC Support</a> has been improved and supports hardlink preservation for --copy, --delorean, --mirror.</li>
+          <li>Introduced the <a href="https://schinagl.priv.at/nt/ln/ln.html#probefs">--probefs</a> option.</li>
+          <li>The shadow copy .cmd file for <a href="https://schinagl.priv.at/nt/ln/ln.html#vss_unc.cmd">vss shares</a> via UNC name has been adapted.</li>
+          <li>Junctions can have now volume names like <a href="https://schinagl.priv.at/nt/ln/ln.html#junctionvolumeguid">\\?\Volume{GUID}\tmp</a> as target.</li>
+          <li>Symbolic Links can have now volume names like <a href="https://schinagl.priv.at/nt/ln/ln.html#symbolicvolumeguid">\\?\Volume{GUID}\tmp</a> as target.</li>
           <li>Updated the documentation, and structured it based on alphabetical order of command line switches.</li>
           ]]>
         </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2754</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2754</guid>
     </item>
 
     <item>
       <title>ln.exe 2.753 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2751</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2751</link>
       <pubDate>Tue, 30 August 2013 07:00:15 +0100</pubDate>
       <description>
         ln.exe 2.753 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Introduced a <a href="http://schinagl.priv.at/nt/ln/ln.html#error0585">sanity check</a> for broken NTFS implementations.</li>
-          <li>Introduced On the Fly <a href="http://schinagl.priv.at/nt/ln/ln.html#dupemerge">DupeMerge</a>.</li>        
+          <li>Introduced a <a href="https://schinagl.priv.at/nt/ln/ln.html#error0585">sanity check</a> for broken NTFS implementations.</li>
+          <li>Introduced On the Fly <a href="https://schinagl.priv.at/nt/ln/ln.html#dupemerge">DupeMerge</a>.</li>        
           ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2753</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2753</guid>
     </item>
 
     <item>
       <title>LSE 3.751 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3751</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3751</link>
       <pubDate>Wed, 23 August 2013 18:00:15 +0100</pubDate>
       <description>
         LSE 3.751 has been released.
@@ -1347,12 +1362,12 @@
           <li>Dead Junctions to a different drive could lead to not detecting hardlinks during all operations. Very Nasty, but no dataloss caused.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3751</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3751</guid>
     </item>
 
     <item>
       <title>ln.exe 2.751 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2751</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2751</link>
       <pubDate>Tue, 23 August 2013 18:00:15 +0100</pubDate>
       <description>
         ln.exe 2.751 has been released.
@@ -1362,12 +1377,12 @@
           <li>Dead Junctions to a different drive could lead to not detecting hardlinks during all operations. Very Nasty, but no dataloss caused.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2751</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2751</guid>
     </item>
 
     <item>
       <title>DupeMerge.exe 1.07 has been released.</title>
-      <link>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1070</link>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1070</link>
       <pubDate>Sun, 23 August 2013 18:10:15 +0100</pubDate>
       <description>
         DupeMerge.exe 1.07 has been released.
@@ -1377,29 +1392,29 @@
           <li>Dead Junctions to a different drive could lead to not detecting hardlinks during all operations. Very Nasty, but no dataloss caused.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1070</guid>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1070</guid>
     </item>
 
     <item>
       <title>DupeMerge.exe 1.06 has been released.</title>
-      <link>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1060</link>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1060</link>
       <pubDate>Sun, 20 August 2013 18:10:15 +0100</pubDate>
       <description>
         DupeMerge.exe 1.06 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li class="bodytext">Introduced a sanity check for <a href="http://schinagl.priv.at/nt/dupemerge/dupemerge.html#error0585">broken NTFS</a> implementations.</li>
-          <li class="bodytext">When hardlinking a tupel of equal files, the tupels <a href="http://schinagl.priv.at/nt/dupemerge/dupemerge.html#timestamphandling">common date</a> is the date of the oldest file of the tupel.</li>
+          <li class="bodytext">Introduced a sanity check for <a href="https://schinagl.priv.at/nt/dupemerge/dupemerge.html#error0585">broken NTFS</a> implementations.</li>
+          <li class="bodytext">When hardlinking a tupel of equal files, the tupels <a href="https://schinagl.priv.at/nt/dupemerge/dupemerge.html#timestamphandling">common date</a> is the date of the oldest file of the tupel.</li>
           <li class="bodytext">The statistics is printed after the detailed log and not before.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1060</guid>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1060</guid>
     </item>
 
     <item>
       <title>DupeMerge.exe 1.05 has been released.</title>
-      <link>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1050</link>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1050</link>
       <pubDate>Sun, 7 August 2013 08:10:15 +0100</pubDate>
       <description>
         DupeMerge.exe 1.05 has been released.
@@ -1409,12 +1424,12 @@
           <li class="bodytext">Fixed a crash during cleanup at the very end when all was correctly done.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1050</guid>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1050</guid>
     </item>
 
     <item>
       <title>LSE 3.750 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
       <pubDate>Wed, 4 August 2013 08:00:15 +0100</pubDate>
       <description>
         LSE 3.750 has been released.
@@ -1426,12 +1441,12 @@
           <li>LSEConfig localized to French.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3750</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3750</guid>
     </item>
 
     <item>
       <title>LSE 3.749 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
       <pubDate>Wed, 30 June 2013 12:00:15 +0100</pubDate>
       <description>
         LSE 3.749 has been released.
@@ -1442,12 +1457,12 @@
           <li>Draging from or Droping to zipped folders caused an explorer crash.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3749</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3749</guid>
     </item>
 
     <item>
       <title>ln.exe 2.749 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2740</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2740</link>
       <pubDate>Tue, 9 May 2013 09:00:15 +0100</pubDate>
       <description>
         ln.exe 2.749 has been released.
@@ -1457,12 +1472,12 @@
           <li>The handling of the compression bit during copying/mirroring/deloreaning for files and directories was broken.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2749</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2749</guid>
     </item>
 
     <item>
       <title>ln.exe 2.748 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2740</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2740</link>
       <pubDate>Tue, 5 May 2013 19:00:15 +0100</pubDate>
       <description>
         ln.exe 2.748 has been released.
@@ -1470,22 +1485,22 @@
       <content:encoded>
         <![CDATA[
           <li>Fixed a problem in UNC name resolution, when the UNC share was created by the Volume Shadow Service.</li>
-          <li>Added the <a href="http://schinagl.priv.at/nt/ln/bat/vss_unc-exec.cmd">vss_unc.cmd</a> to create Volume Shadow Service backups via a UNC share.</li>
+          <li>Added the <a href="https://schinagl.priv.at/nt/ln/bat/vss_unc-exec.cmd">vss_unc.cmd</a> to create Volume Shadow Service backups via a UNC share.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2748</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2748</guid>
     </item>
 
     <item>
       <title>LSE 3.748 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
       <pubDate>Wed, 5 April 2013 19:00:15 +0100</pubDate>
       <description>
         LSE 3.748 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Enabled Link Shell Extension on <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#refssupport">ReFs</a> volumes.</li>
+          <li>Enabled Link Shell Extension on <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#refssupport">ReFs</a> volumes.</li>
           <li>Added a Swedish localisation. Thanks to Mikael Grönholm.</li>
           <li>Added a Turkish localisation. Thanks to Memet.</li>
           <li>Added a Czech localisation. Thanks to Ashus</li>
@@ -1493,12 +1508,12 @@
           <li>LSEConfig has been localised.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3748</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3748</guid>
     </item>
 
     <item>
       <title>DupeMerge.exe 1.04 has been released.</title>
-      <link>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1040</link>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1040</link>
       <pubDate>Sun, 5 April 2013 18:00:15 +0100</pubDate>
       <description>
         DupeMerge.exe 1.04 has been released.
@@ -1510,12 +1525,12 @@
 
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1040</guid>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1040</guid>
     </item>
 
     <item>
       <title>LSE 3.747 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
       <pubDate>Wed, 26 Feb 2013 21:00:15 +0100</pubDate>
       <description>
         LSE 3.747 has been released.
@@ -1525,12 +1540,12 @@
           <li>symlink.exe was missing in the 32bit version of the x64 install.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3747</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3747</guid>
     </item>
 
     <item>
       <title>LSE 3.746 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
       <pubDate>Wed, 24 Feb 2013 20:00:15 +0100</pubDate>
       <description>
         LSE 3.746 has been released.
@@ -1543,29 +1558,29 @@
           <li>During installation not all processes were detected, which blocked the installation.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3746</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3746</guid>
     </item>
 
     <item>
       <title>ln.exe 2.746 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2740</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2740</link>
       <pubDate>Tue, 10 Feb 2013 20:00:15 +0100</pubDate>
       <description>
         ln.exe 2.746 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Added kind of <a href="http://schinagl.priv.at/nt/ln/ln.html#clonemirror">'clonemirror'</a> option: --symbolic combined with --mirror now mirrors symbolic link clones.</li>
+          <li>Added kind of <a href="https://schinagl.priv.at/nt/ln/ln.html#clonemirror">'clonemirror'</a> option: --symbolic combined with --mirror now mirrors symbolic link clones.</li>
           <li>Extended the <a href="bat/DeLoreanCopy.bat">DeloreanCopy.bat</a> with a 'number of keep-entry' argument. Thx to MathiasB for providing it.</li>
-          <li>The filters for --includeXXX or --excludeXXX are applied on source and destination during <a href="http://schinagl.priv.at/nt/ln/ln.html#smartmirror">--mirror</a> and <a href="http://schinagl.priv.at/nt/ln/ln.html#deloreancopy">--delorean</a>.</li>
+          <li>The filters for --includeXXX or --excludeXXX are applied on source and destination during <a href="https://schinagl.priv.at/nt/ln/ln.html#smartmirror">--mirror</a> and <a href="https://schinagl.priv.at/nt/ln/ln.html#deloreancopy">--delorean</a>.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2746</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2746</guid>
     </item>
 
     <item>
       <title>LSE 3.745 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
       <pubDate>Wed, 06 Feb 2013 21:00:15 +0100</pubDate>
       <description>
         LSE 3.745 has been released.
@@ -1575,12 +1590,12 @@
           <li>The eunmeration of hardlink siblings didn't work under XP, when the root dir of a drive had to be traversed.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3745</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3745</guid>
     </item>
 
     <item>
       <title>LSE 3.742 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
       <pubDate>Tue, 27 Jan 2013 20:00:15 +0100</pubDate>
       <description>
         LSE 3.742 has been released.
@@ -1590,12 +1605,12 @@
           <li>The OS Version detection during installation went wrong on certain machines causing symlinke.exe missing from the installation.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3742</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3742</guid>
     </item>
 
     <item>
       <title>ln.exe 2.745 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2740</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2740</link>
       <pubDate>Tue, 18 Jan 2013 20:00:15 +0100</pubDate>
       <description>
         ln.exe 2.745 has been released.
@@ -1603,17 +1618,17 @@
       <content:encoded>
         <![CDATA[
           <li>Directory matches with --excludedir did not work properly with every expression.</li>
-          <li>Introduced the <a href="http://schinagl.priv.at/nt/ln/ln.html#includewildcardsfiles">--include*</a> options.</li>
-          <li>Added the <a href="http://schinagl.priv.at/nt/ln/ln.html#skipfiles">--skipfiles</a> option.</li>
+          <li>Introduced the <a href="https://schinagl.priv.at/nt/ln/ln.html#includewildcardsfiles">--include*</a> options.</li>
+          <li>Added the <a href="https://schinagl.priv.at/nt/ln/ln.html#skipfiles">--skipfiles</a> option.</li>
           <li>Sorted the options in the doku alphabetically.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2745</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2745</guid>
     </item>
 
     <item>
       <title>LSE 3.741 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
       <pubDate>Tue, 8 Jan 2013 20:00:15 +0100</pubDate>
       <description>
         LSE 3.741 has been released.
@@ -1627,53 +1642,53 @@
           <li>Fixed a problem during SmartMirror when a directory changed into a file or vice versa from one mirror to the next and had exactly the same name.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3741</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3741</guid>
     </item>
 
     <item>
       <title>ln.exe 2.741 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2740</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2740</link>
       <pubDate>Tue, 8 Jan 2013 20:00:15 +0100</pubDate>
       <description>
         ln.exe 2.741 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-            <li><a href="http://schinagl.priv.at/nt/ln/ln.html#timetolerance">--timetolerance</a> was introduced so that during --mirror and --delorean 
+            <li><a href="https://schinagl.priv.at/nt/ln/ln.html#timetolerance">--timetolerance</a> was introduced so that during --mirror and --delorean 
             timestamp comparison is fuzzy.</li>
             <li>Fixed a problem with --mirror when a directory changed into a file or vice versa from one mirror to the next and had exactly the same name.</li>
             <li>Compressed files are handled during SmartCopy/SmartMirror and DeloreanCopy.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2741</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2741</guid>
     </item>
 
     <item>
       <title>LSE 3.740 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</link>
       <pubDate>Mon, 26 Dec 2012 16:00:15 +0100</pubDate>
       <description>
         LSE 3.740 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>For Junctions or Symbolic Links the Target field can be edited in the <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#linkproperties">Properties Dialog</a>.</li>
+          <li>For Junctions or Symbolic Links the Target field can be edited in the <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#linkproperties">Properties Dialog</a>.</li>
           <li>LSE elevates the creation of hardlinks in system protected directories, e.g.: %systemroot%.</li>
           <li>LSE now offers all its function also in the <i>Library</i> folder.</li>
-          <li>If <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#configuration">enabled</a> LSE summarizes the ouptut of operations in a log file.</li>
+          <li>If <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#configuration">enabled</a> LSE summarizes the ouptut of operations in a log file.</li>
           <li>Fixed a crash related to UNC path and Overlay Icons.</li>
 
           <li>The progress bar showed wrong/incomplete filename-path combinations during operations on large files.</li>
           <li>Symbolic links to mapped network drives can be created now via LSE.</li>
-          <li><a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#replacementjunction">Replacement</a> functions can used to repair broken junctions/symbolic links/mountpoints. </li>
+          <li><a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#replacementjunction">Replacement</a> functions can used to repair broken junctions/symbolic links/mountpoints. </li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3740</guid>
     </item>
 
     <item>
       <title>ln.exe 2.740 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2740</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2740</link>
       <pubDate>Thu, 26 December 2012 08:00:15 +0100</pubDate>
       <description>
         ln.exe 2.740 has been released.
@@ -1686,29 +1701,29 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2740</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2740</guid>
     </item>
 
     <item>
       <title>ln.exe 2.720 extended the documentation.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#snapshotservice</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#snapshotservice</link>
       <pubDate>Sun, 24 November 2012 07:00:15 +0100</pubDate>
       <description>
         ln.exe 2.720 extended the documentation
       </description>
       <content:encoded>
         <![CDATA[
-          <li class="bodytext">Added a <a href="http://schinagl.priv.at/nt/ln/ln.html#snapshotservice">section</a> to the documentation of ln.exe how to use the Volume Snapshot Service with ln.exe to create consistent backups
+          <li class="bodytext">Added a <a href="https://schinagl.priv.at/nt/ln/ln.html#snapshotservice">section</a> to the documentation of ln.exe how to use the Volume Snapshot Service with ln.exe to create consistent backups
           <br></li>
 
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#snapshotservice</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#snapshotservice</guid>
     </item>
 
     <item>
       <title>DupeMerge.exe 1.03 has been released.</title>
-      <link>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1010</link>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1010</link>
       <pubDate>Sun, 28 October 2012 20:00:15 +0100</pubDate>
       <description>
         DupeMerge.exe 1.03 has been released.
@@ -1720,12 +1735,12 @@
 
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1030</guid>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1030</guid>
     </item>
 
     <item>
       <title>DupeMerge.exe 1.02 has been released.</title>
-      <link>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1010</link>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1010</link>
       <pubDate>Sun, 14 October 2012 11:00:15 +0100</pubDate>
       <description>
         DupeMerge.exe 1.02 has been released.
@@ -1740,12 +1755,12 @@
 
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1020</guid>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1020</guid>
     </item>
 
     <item>
       <title>DupeMerge.exe 1.01 has been released.</title>
-      <link>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1010</link>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1010</link>
       <pubDate>Sun, 7 October 2012 11:00:15 +0100</pubDate>
       <description>
         DupeMerge.exe 1.01 has been released.
@@ -1760,12 +1775,12 @@
 
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1010</guid>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1010</guid>
     </item>
 
     <item>
       <title>DupeMerge.exe 1.0 has been released.</title>
-      <link>http://schinagl.priv.at/nt/dupemerge/dupemerge.html</link>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html</link>
       <pubDate>Mon, 1 October 2012 04:00:15 +0100</pubDate>
       <description>
         DupeMerge.exe 1.0 has been released.
@@ -1783,12 +1798,12 @@
 
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#1000</guid>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1000</guid>
     </item>
 
     <item>
       <title>DupeMerge.exe 0.9998 has been released.</title>
-      <link>http://schinagl.priv.at/nt/dupemerge/dupemerge.html</link>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html</link>
       <pubDate>Wed, 16 September 2012 13:00:15 +0100</pubDate>
       <description>
         DupeMerge.exe 0.9998 has been released.
@@ -1797,20 +1812,20 @@
         <![CDATA[
           <li class="bodytext">Added the --output option
           <br></li>
-          <li class="bodytext">Added a <a href="http://schinagl.priv.at/nt/dupemerge/dupemerge.html#output"></a>error reporting</a> capabilty.
+          <li class="bodytext">Added a <a href="https://schinagl.priv.at/nt/dupemerge/dupemerge.html#output"></a>error reporting</a> capabilty.
           <br></li>
-          <li class="bodytext">Added the <a href="http://schinagl.priv.at/nt/dupemerge/dupemerge.html#exclude">--exclude</a> option
+          <li class="bodytext">Added the <a href="https://schinagl.priv.at/nt/dupemerge/dupemerge.html#exclude">--exclude</a> option
           <br></li>
           <li class="bodytext">Fixed the statistic output so that only new dupegroups are printed out.
           <br></li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#09998</guid>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#09998</guid>
     </item>
 
     <item>
       <title>DupeMerge.exe 0.9996 has been released.</title>
-      <link>http://schinagl.priv.at/nt/dupemerge/dupemerge.html</link>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html</link>
       <pubDate>Wed, 12 September 2012 18:35:15 +0100</pubDate>
       <description>
         DupeMerge.exe 0.9996 has been released.
@@ -1825,12 +1840,12 @@
           <br></li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#09996</guid>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#09996</guid>
     </item>
 
     <item>
       <title>DupeMerge.exe 0.9995 has been released.</title>
-      <link>http://schinagl.priv.at/nt/dupemerge/dupemerge.html</link>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html</link>
       <pubDate>Mon, 9 September 2012 20:00:15 +0100</pubDate>
       <description>
         DupeMerge.exe 0.9995 has been released.
@@ -1848,12 +1863,12 @@
           <br>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/dupemerge/dupemerge.html#09995</guid>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#09995</guid>
     </item>
 
     <item>
       <title>ln.exe 2.720 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2720</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2720</link>
       <pubDate>Thu, 24 June 2012 08:00:15 +0100</pubDate>
       <description>
         ln.exe 2.720 has been released.
@@ -1864,13 +1879,13 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2720</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2720</guid>
     </item>
 
 
     <item>
       <title>LSE 3.719 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
       <pubDate>Mon, 27 May 2012 22:00:15 +0100</pubDate>
       <description>
         LSE 3.719 has been released.
@@ -1880,27 +1895,27 @@
         <li>Fixed deployment problems for the Win32bit version.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3719</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3719</guid>
     </item>
 
     <item>
       <title>LSE 3.718 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
       <pubDate>Mon, 25 May 2012 19:00:15 +0100</pubDate>
       <description>
         LSE 3.718 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>The status of the <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#SymbolicLinkPrivilege">privilege for Symbolic Link Creation</a> is checked, so that UAC can be avoided</a></li>
+          <li>The status of the <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#SymbolicLinkPrivilege">privilege for Symbolic Link Creation</a> is checked, so that UAC can be avoided</a></li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3718</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3718</guid>
     </item>
 
     <item>
       <title>LSE 3.717 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
       <pubDate>Mon, 5 May 2012 09:00:15 +0100</pubDate>
       <description>
         LSE 3.717 has been released.
@@ -1910,28 +1925,28 @@
           <li>With XP and the symlink driver installed the Delete Junction menue didn't show up.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3717</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3717</guid>
     </item>
 
     <item>
       <title>LSE 3.716 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
       <pubDate>Mon, 11 April 2012 09:00:15 +0100</pubDate>
       <description>
         LSE 3.716 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>The target of the Symbolic Liks or Junctions can be edited in the <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#linkproperties">properties dialog</a>.</li>
+          <li>The target of the Symbolic Liks or Junctions can be edited in the <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#linkproperties">properties dialog</a>.</li>
           <li>Non administrators could not create symbolic links.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3716</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3716</guid>
     </item>
 
     <item>
       <title>LSE 3.715 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
       <pubDate>Mon, 30 March 2012 09:00:15 +0100</pubDate>
       <description>
         LSE 3.715 has been released.
@@ -1946,12 +1961,12 @@
           <li>The installer provides more info in Control Panel/Program and Features.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3715</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3715</guid>
     </item>
 
     <item>
       <title>LSE 3.714 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
       <pubDate>Mon, 30 March 2012 09:00:15 +0100</pubDate>
       <description>
         LSE 3.714 has been released.
@@ -1961,12 +1976,12 @@
           <li>The installer came up with Chinese as default installation language.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3714</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3714</guid>
     </item>
 
     <item>
       <title>LSE 3.712 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
       <pubDate>Mon, 24 March 2012 09:00:15 +0100</pubDate>
       <description>
         LSE 3.712 has been released.
@@ -1976,47 +1991,47 @@
           <li>Fixed a problem with the creation of absolute symbolic links to directories.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3712</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3712</guid>
     </item>
 
     <item>
       <title>ln.exe 2.712 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2700</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2700</link>
       <pubDate>Thu, 24 March 2012 18:00:15 +0100</pubDate>
       <description>
         ln.exe 2.712 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Added a <a href="http://schinagl.priv.at/nt/ln/ln.html#truesize">--truesize</a> option.</li>
-          <li>More detailed <a href="http://schinagl.priv.at/nt/ln/ln.html#xpdanglingjunctions">reporting</a> when the restore of a dangling junction under windows XP fails.</li>
+          <li>Added a <a href="https://schinagl.priv.at/nt/ln/ln.html#truesize">--truesize</a> option.</li>
+          <li>More detailed <a href="https://schinagl.priv.at/nt/ln/ln.html#xpdanglingjunctions">reporting</a> when the restore of a dangling junction under windows XP fails.</li>
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2712</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2712</guid>
     </item>
 
     <item>
       <title>LSE 3.710 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
       <pubDate>Mon, 17 March 2012 09:00:15 +0100</pubDate>
       <description>
         LSE 3.710 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Overlay Icons for <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#symboliclinksforwindowsxp">symbolic links under Window XP</a> are available now.</li>
+          <li>Overlay Icons for <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#symboliclinksforwindowsxp">symbolic links under Window XP</a> are available now.</li>
           <li>Fixed a few bugs related to WindowsXP and symbolic links handling.</li>
-          <li>Elevation to symlink.exe now happens only if <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#VistaAndUAC">UAC</a> is on, or the elevation is really neccesary.</li>
+          <li>Elevation to symlink.exe now happens only if <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#VistaAndUAC">UAC</a> is on, or the elevation is really neccesary.</li>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3710</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3710</guid>
     </item>
 
 
     <item>
       <title>LSE 3.700 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</link>
       <pubDate>Mon, 10 March 2012 14:00:15 +0100</pubDate>
       <description>
         LSE 3.700 has been released.
@@ -2024,7 +2039,7 @@
       <content:encoded>
         <![CDATA[
           <li>When working on mapped network drives via SMB or CFIS, as many NAS boxes do, LSE uses a more traditional enumeration mode and this will copy files ( which it did not in any case ).</li>
-          <li> <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#multiplesource">Multiple locations</a> can be selected and the location are treated as a common root with respect to hardlinks/junctions/symbolic links.</li>
+          <li> <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#multiplesource">Multiple locations</a> can be selected and the location are treated as a common root with respect to hardlinks/junctions/symbolic links.</li>
           <li>Nested junctions and symbolic links ( aka junctions on junction on junctions ... ) are now properly restored in any situation.</li>
           <li>Smartmove had problems with relative symbolic links in rare situations.</li>
           <li>Italian translation updated.</li>
@@ -2033,12 +2048,12 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3700</guid>
     </item>
 
     <item>
       <title>LSE 3.653 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3650</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3650</link>
       <pubDate>Mon, 9 March 2012 14:00:15 +0100</pubDate>
       <description>
         LSE 3.653 has been released.
@@ -2049,12 +2064,12 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3653</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3653</guid>
     </item>
 
     <item>
       <title>LSE 3.652 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3650</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3650</link>
       <pubDate>Mon, 4 March 2012 14:00:15 +0100</pubDate>
       <description>
         LSE 3.652 has been released.
@@ -2065,12 +2080,12 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3652</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3652</guid>
     </item>
 
     <item>
       <title>ln.exe 2.681 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2680</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2680</link>
       <pubDate>Thu, 23 February 2012 22:00:15 +0100</pubDate>
       <description>
         ln.exe 2.681 has been released.
@@ -2081,35 +2096,35 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2681</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2681</guid>
     </item>
 
     <item>
       <title>ln.exe 2.680 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2680</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2680</link>
       <pubDate>Sun, 12 February 2012 14:00:15 +0100</pubDate>
       <description>
         ln.exe 2.680 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-          <li>Introduced a <a href="http://schinagl.priv.at/nt/ln/ln.html#traditional">traditional mode</a> for SmartCopy, DeloreanCopy and SmartClone when used on network shared implementing SMBV10 (NAS boxes).</li>
+          <li>Introduced a <a href="https://schinagl.priv.at/nt/ln/ln.html#traditional">traditional mode</a> for SmartCopy, DeloreanCopy and SmartClone when used on network shared implementing SMBV10 (NAS boxes).</li>
           <li>During SmartCopy, DeloreanCopy and SmartClone nested junctions/symbolic link directories were not processed correctly if alphabetical order was bad.</li>
           <li>During SmartCopy, DeloreanCopy and SmartClone dangling junctions or symlinks will be at least in the same way dangling restored.</li>
-          <li><a href="http://schinagl.priv.at/nt/ln/ln.html#multiplesource">Multiple source locations </a> can be specified with SmartCopy, DeloreanCopy and SmartClone.</li>
-          <li><a href="http://schinagl.priv.at/nt/ln/ln.html#smartrename">SmartRename</a> was introduced.</li>
+          <li><a href="https://schinagl.priv.at/nt/ln/ln.html#multiplesource">Multiple source locations </a> can be specified with SmartCopy, DeloreanCopy and SmartClone.</li>
+          <li><a href="https://schinagl.priv.at/nt/ln/ln.html#smartrename">SmartRename</a> was introduced.</li>
           <li>SmartCopy, SmartMirror and DeloreanCopy accept FAT drives as source directory.</li>
-          <li>Support for <a href="http://schinagl.priv.at/nt/ln/ln.html#deeppath">DeepPath operations</a> in SmartCopy, DeloreanCopy and SmartClone, SmartMove.</li>
-          <li>Fixed a problem in  <a href="http://schinagl.priv.at/nt/ln/ln.html#smartmove">SmartMove</a> which created dangling symbolic links, when using relative symbolic links in certain situations.</li>
+          <li>Support for <a href="https://schinagl.priv.at/nt/ln/ln.html#deeppath">DeepPath operations</a> in SmartCopy, DeloreanCopy and SmartClone, SmartMove.</li>
+          <li>Fixed a problem in  <a href="https://schinagl.priv.at/nt/ln/ln.html#smartmove">SmartMove</a> which created dangling symbolic links, when using relative symbolic links in certain situations.</li>
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2680</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2680</guid>
     </item>
 
     <item>
       <title>LSE 3.651 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3650</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3650</link>
       <pubDate>Mon, 13 August 2011 14:00:15 +0100</pubDate>
       <description>
         LSE 3.651 has been released.
@@ -2121,12 +2136,12 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3651</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3651</guid>
     </item>
     
     <item>
       <title>LSE 3.650 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3650</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3650</link>
       <pubDate>Mon, 15 May 2011 19:00:15 +0100</pubDate>
       <description>
         LSE 3.650 has been released.
@@ -2138,12 +2153,12 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3650</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3650</guid>
     </item>
 
     <item>
       <title>LSE 3.604 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3600</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3600</link>
       <pubDate>Mon, 17 Apr 2011 19:00:15 +0100</pubDate>
       <description>
         LSE 3.604 has been released.
@@ -2154,12 +2169,12 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3604</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3604</guid>
     </item>
 
     <item>
       <title>LSE 3.603 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3600</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3600</link>
       <pubDate>Mon, 14 Mar 2011 08:00:15 +0100</pubDate>
       <description>
         LSE 3.601 has been released.
@@ -2171,12 +2186,12 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3603</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3603</guid>
     </item>
 
     <item>
       <title>LSE 3.602 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3600</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3600</link>
       <pubDate>Mon, 07 Mar 2011 08:00:15 +0100</pubDate>
       <description>
         LSE 3.601 has been released.
@@ -2187,12 +2202,12 @@
         </p>
       ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3602</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3602</guid>
     </item>
 
     <item>
       <title>LSE 3.601 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3600</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3600</link>
       <pubDate>Mon, 05 Mar 2011 08:00:15 +0100</pubDate>
       <description>
         LSE 3.601 has been released.
@@ -2203,66 +2218,66 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3601</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3601</guid>
     </item>
 
     <item>
       <title>LSE 3.600 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3600</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3600</link>
       <pubDate>Mon, 03 Mar 2011 08:00:15 +0100</pubDate>
       <description>
         LSE 3.600 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-              <li>With all Smart* functionality, Outer Junctions/Symbolic Links can now be <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#outerjunctionhandling">unrolled or spliced</a>.</li>
-              <li>Added <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#smartmirror">SmartMirror</a>.</li>
+              <li>With all Smart* functionality, Outer Junctions/Symbolic Links can now be <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#outerjunctionhandling">unrolled or spliced</a>.</li>
+              <li>Added <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#smartmirror">SmartMirror</a>.</li>
               <li>Speed improvements to Smart Copy, Smart Move and Delorean Copy.</li>
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3600</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3600</guid>
     </item>
     <item>
       <title>ln.exe 2.59.114 goes beta.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2600</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2600</link>
       <pubDate>Mon, 14 Feb 2011 08:00:15 +0100</pubDate>
       <description>
         ln.exe 2.59.114 goes beta.
       </description>
       <content:encoded>
         <![CDATA[
-            <li>With all Smart* functionality, Outer Junctions/Symbolic Links can now be <a href="http://schinagl.priv.at/nt/ln/ln.html#outerjunctionhandling">unrolled or spliced</a>.</li>
-            <li>Added <a href="http://schinagl.priv.at/nt/ln/ln.html#smartmirror">SmartMirror</a>.</li>
+            <li>With all Smart* functionality, Outer Junctions/Symbolic Links can now be <a href="https://schinagl.priv.at/nt/ln/ln.html#outerjunctionhandling">unrolled or spliced</a>.</li>
+            <li>Added <a href="https://schinagl.priv.at/nt/ln/ln.html#smartmirror">SmartMirror</a>.</li>
             <li>Improved logging and statistics.</a>.</li>
             <li>Smart Moves restores timestamps.</a>.</li>
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2600</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2600</guid>
     </item>
     
     <item>
       <title>ln.exe 2.550 has been released.</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2550</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2550</link>
       <pubDate>Mon, 16 Dec 2010 08:00:15 +0100</pubDate>
       <description>
         ln.exe 2.550 has been released.
       </description>
       <content:encoded>
         <![CDATA[
-              <li>Added more powerful options to <a href="http://schinagl.priv.at/nt/ln/ln.html#excludewildcards">exclude files/directories</a> via wildcards/regular expressions.</li>
+              <li>Added more powerful options to <a href="https://schinagl.priv.at/nt/ln/ln.html#excludewildcards">exclude files/directories</a> via wildcards/regular expressions.</li>
               <li>Speed improvemened by about 35% since 2.500 (without virus scanner).</li>
               <li>Changed the regular expression machine to tre-0.8.0.</li>
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2550</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2550</guid>
     </item>
 
     <item>
       <title>LSE 3.500 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3500</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3500</link>
       <pubDate>Mon, 15 Nov 2010 08:00:15 +0100</pubDate>
       <description>
         LSE 3.500 has been released.
@@ -2273,19 +2288,19 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3500</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3500</guid>
     </item>
 
     <item>
       <title>LSE 3.5 went beta and ln.exe 2.5 too</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/beta</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/beta</link>
       <pubDate>Nov, 06 Oct 2010 20:00:15 +0100</pubDate>
       <description>
         LSE 3.5 went beta and ln.exe 2.5 too
       </description>
       <content:encoded>
         <![CDATA[
-          <p>Link Shellextension went <a href="http://schinagl.priv.at/nt/hardlinkshellext/beta">Beta</a> and <a href="http://schinagl.priv.at/nt/ln/beta">ln.exe</a> also.<br>
+          <p>Link Shellextension went <a href="https://schinagl.priv.at/nt/hardlinkshellext/beta">Beta</a> and <a href="https://schinagl.priv.at/nt/ln/beta">ln.exe</a> also.<br>
 
           What's new? DeLorean Copy is available in LSE and ln.exe.<br>
           What is this? DeLorean Copy is a incremental way of creating backups using hardlinks very similar to Apples TimeMachine(tm). Read the LSE .html doku, you will find out.<br>
@@ -2294,12 +2309,12 @@
           </p>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2455</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2455</guid>
     </item>
 
     <item>
       <title>LSE little sibling can do 'timemachine' functionality for beta testers</title>
-      <link>http://schinagl.priv.at/nt/ln/ln.html#2450</link>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2450</link>
       <pubDate>Sun, 10 Oct 2010 21:00:15 +0100</pubDate>
       <description>
         ln.exe wants beta testers for timemachine functionality
@@ -2311,12 +2326,12 @@
         </ul>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/ln/ln.html#2450</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2450</guid>
     </item>
 
     <item>
       <title>LSE 3.402 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3400</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3400</link>
       <pubDate>Sun, 3 Oct 2010 18:00:15 +0100</pubDate>
       <description>
         LSE released version 3.402
@@ -2328,12 +2343,12 @@
         </ul>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3402</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3402</guid>
     </item>
 
     <item>
       <title>LSE 3.401 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3400</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3400</link>
       <pubDate>Sun, 3 Oct 2010 18:00:15 +0100</pubDate>
       <description>
         LSE released version 3.40
@@ -2345,12 +2360,12 @@
         </ul>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3401</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3401</guid>
     </item>
 
     <item>
       <title>LSE 3.400 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3400</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3400</link>
       <pubDate>Sun, 3 Oct 2010 18:00:00 +0100</pubDate>
       <description>
         LSE released version 3.400
@@ -2358,30 +2373,30 @@
       <content:encoded>
         <![CDATA[
         <ul>
-          <li>LSE now by default creates <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#relativevsabsolutesymboliclinks">relative</a> target path names when creating symbolic links.</li>
-          <li>Symbolic Links now have an <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#overlayiconsforsymboliclinks">overlay icon</a>.</li>
-          <li>Added a <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#configuration">configuration</a> tool for LSE options</li>
-          <li>Added a <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#configuration">priority level</a> for the indidual overlay icons.</li>
-          <li>Added an <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#configuration">option</a> to switch of overlay icons totally for each type of overlay.</li>
+          <li>LSE now by default creates <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#relativevsabsolutesymboliclinks">relative</a> target path names when creating symbolic links.</li>
+          <li>Symbolic Links now have an <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#overlayiconsforsymboliclinks">overlay icon</a>.</li>
+          <li>Added a <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#configuration">configuration</a> tool for LSE options</li>
+          <li>Added a <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#configuration">priority level</a> for the indidual overlay icons.</li>
+          <li>Added an <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#configuration">option</a> to switch of overlay icons totally for each type of overlay.</li>
           <li>The Pick Link Source context menue now also shows up on FAT drives, if the item potentially is the source for a LSE operation.</li>
-          <li>Overlay icons can be <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#disablingoverlayicons">disabled.</a></li>
-          <li>Documented how the <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#silentinstall">install directory</a> can specified when using silent (un)install.</li>
+          <li>Overlay icons can be <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#disablingoverlayicons">disabled.</a></li>
+          <li>Documented how the <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#silentinstall">install directory</a> can specified when using silent (un)install.</li>
           <li>The menu hydraulics have been reworked, so that it is decided early to only show menue for chioces, which are really possible.</li>
           <li>LSE and symlink are now linked with ASLR.</li>
           <li>Tranparency glitches in the Junction overlay icon have been fixed.</li>
-          <li>Hardlink Clone and Symboliclink Clone have been extended so that <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#hardlinkclones">Inner Junctions and inner Symbolic Links</a> are properly handled.</li>
-          <li>LSE now supports also the replacement of <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#replacementjunction">Mountpoints and Symbolic Links</a>.</li>
-          <li>LSE shows a dialog box whether explorer should be <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#installation">restarted</a> or not during non silent installation.</li>
-          <li>Under Windows Vista and Window7 the <i><a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#junctionwindows7">Delete Junction</a></i> menue doe not show up anymore.</li>
+          <li>Hardlink Clone and Symboliclink Clone have been extended so that <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#hardlinkclones">Inner Junctions and inner Symbolic Links</a> are properly handled.</li>
+          <li>LSE now supports also the replacement of <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#replacementjunction">Mountpoints and Symbolic Links</a>.</li>
+          <li>LSE shows a dialog box whether explorer should be <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#installation">restarted</a> or not during non silent installation.</li>
+          <li>Under Windows Vista and Window7 the <i><a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#junctionwindows7">Delete Junction</a></i> menue doe not show up anymore.</li>
         </ul>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3400</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3400</guid>
     </item>
 
     <item>
       <title>LSE 3.358 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
       <pubDate>Mon, 3 August 2010 08:00:00 +0100</pubDate>
       <description>
         LSE released version 3.357
@@ -2393,12 +2408,12 @@
         </ul>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3358</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3358</guid>
     </item>
 
     <item>
       <title>LSE 3.357 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
       <pubDate>Mon, 19 June 2010 08:00:00 +0100</pubDate>
       <description>
         LSE released version 3.357
@@ -2410,12 +2425,12 @@
         </ul>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3357</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3357</guid>
     </item>
 
     <item>
       <title>LSE 3.356 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
       <pubDate>Mon, 16 June 2010 18:00:00 +0100</pubDate>
       <description>
         LSE released version 3.356
@@ -2427,12 +2442,12 @@
         </ul>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3356</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3356</guid>
     </item>
 
     <item>
       <title>LSE 3.355 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
       <pubDate>Mon, 13 June 2010 09:00:00 +0100</pubDate>
       <description>
         LSE released version 3.355
@@ -2444,12 +2459,12 @@
         </ul>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3355</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3355</guid>
     </item>
 
     <item>
       <title>LSE 3.354 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
       <pubDate>Mon, 6 May 2010 21:00:00 +0100</pubDate>
       <description>
         LSE released version 3.354
@@ -2461,12 +2476,12 @@
         </ul>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3354</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3354</guid>
     </item>
 
     <item>
       <title>LSE 3.353 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
       <pubDate>Mon, 6 May 2010 21:00:00 +0100</pubDate>
       <description>
         LSE released version 3.353
@@ -2478,12 +2493,12 @@
         </ul>
         ]]>
       </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3350</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3350</guid>
     </item>
 
     <item>
       <title>LSE 3.351 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
       <pubDate>Mon, 3 May 2010 21:00:00 +0100</pubDate>
       <description>
       	LSE released version 3.352
@@ -2498,12 +2513,12 @@
         </ul>
         ]]>
         </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3350</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3350</guid>
     </item>
 
     <item>
       <title>LSE 3.350 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
       <pubDate>Mon, 30 April 2010 21:00:00 +0100</pubDate>
       <description>
       	LSE released version 3.350
@@ -2511,16 +2526,16 @@
       <content:encoded>
         <![CDATA[
         <ul>
-        <li>LSE supports <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#smartmove">Smart Move</a> functionality, which updates inner junctions/symlinks in case of moving/renaming directories</li>
+        <li>LSE supports <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#smartmove">Smart Move</a> functionality, which updates inner junctions/symlinks in case of moving/renaming directories</li>
         </ul>
         ]]>
         </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</guid>
     </item>
 
     <item>
       <title>LSE 3.300 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3300</link>
       <pubDate>Mon, 16 April 2010 21:00:00 +0100</pubDate>
       <description>
       	LSE released version 3.300
@@ -2528,20 +2543,20 @@
       <content:encoded>
         <![CDATA[
         <ul>
-        <li>LSE now deals with Symboliclinks during <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#smartcopy">Smart Copy</a> under Vista and Windows 7.</li>
+        <li>LSE now deals with Symboliclinks during <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#smartcopy">Smart Copy</a> under Vista and Windows 7.</li>
         <li>Brazilian Portuguese localization added. Thanks to Marcia R.</li>
-        <li>LSE has been adapted to the Windows 7 way of <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#autorename">automatically renaming</a> in-place hardlinks/junctions/..., e.g. '$Filename - Hardlink.$ext'.</li>
-        <li>Fixed flaws of the <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#autorename">automatically renaming</a> feature with respect to directories under W7</li>
+        <li>LSE has been adapted to the Windows 7 way of <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#autorename">automatically renaming</a> in-place hardlinks/junctions/..., e.g. '$Filename - Hardlink.$ext'.</li>
+        <li>Fixed flaws of the <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#autorename">automatically renaming</a> feature with respect to directories under W7</li>
         <li>Overriding custom overlay icons under HKCU was flawed </li>
         </ul>
         ]]>
         </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3224</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3224</guid>
     </item>
 
     <item>
       <title>LSE 3.224 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</link>
       <pubDate>Mon, 21 Feb 2010 21:00:00 +0100</pubDate>
       <description>
       	LSE released version 3.224 which adds Japanese localization.
@@ -2550,16 +2565,16 @@
         <![CDATA[
         <ul>
         <li>Japanese localization added. Thanks to Taka from Japan.</li>
-        <li>LSE has been adapted to the Windows 7 way of <a href="http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#autorename">automatically renaming</a> in-place hardlinks/junctions/..., e.g. '$Filename - Hardlink.$ext'.</li>
+        <li>LSE has been adapted to the Windows 7 way of <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#autorename">automatically renaming</a> in-place hardlinks/junctions/..., e.g. '$Filename - Hardlink.$ext'.</li>
         </ul>
         ]]>
         </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3224</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3224</guid>
     </item>
 
     <item>
       <title>LSE 3.222 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</link>
       <pubDate>Mon, 30 Jan 2010 13:00:00 +0100</pubDate>
       <description>
       	LSE released version 3.222 which fixes problems with smartcopying whole disks
@@ -2573,12 +2588,12 @@
         </ul>
         ]]>
         </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3222</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3222</guid>
     </item>
 
     <item>
       <title>LSE 3.221 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</link>
       <pubDate>Mon, 16 Jan 2010 19:30:00 +0000</pubDate>
       <description>
       	LSE released version 3.221 which adds a minor bugfix
@@ -2590,12 +2605,12 @@
         </ul>
         ]]>
         </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3221</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3221</guid>
     </item>
 
     <item>
       <title>LSE 3.220 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</link>
       <pubDate>Mon, 03 Jan 2010 08:28:40 +0000</pubDate>
       <description>
       	LSE released version 3.220 which adds a few minor features and bugfixes
@@ -2609,12 +2624,12 @@
         </ul>
         ]]>
         </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</guid>
     </item>
 
     <item>
       <title>LSE 3.200 has been released.</title>
-      <link>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</link>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</link>
       <pubDate>Mon, 23 Dec 2009 17:00:00 +0000</pubDate>
       <description>
       	LSE version 3.200 released which added progressbars, improved localization...
@@ -2629,7 +2644,7 @@
         </ul>
         ]]>
         </content:encoded>
-      <guid>http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</guid>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3220</guid>
     </item>
 
 

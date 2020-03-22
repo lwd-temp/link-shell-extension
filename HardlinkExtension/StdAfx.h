@@ -13,6 +13,9 @@
 #include <stdio.h>
 #include <tchar.h>
 
+#include <iomanip>
+#include <sstream>
+
 #define INITGUID
 #include <initguid.h>
 #include <shlguid.h>

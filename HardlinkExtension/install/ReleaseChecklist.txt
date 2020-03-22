@@ -1,7 +1,7 @@
 DEBUG_DEFINES must not be enables in hardlink_types.h
 
 Edit BuildWord.bat and update version number for LSE, ln.exe and Dupemerge.exe
-Unter Windows10 einen Admin Command Prompt aufmachen und dann 'Run As Admin' machen, sonst können die Stubs nicht nach Programm Files zurückkopiert werden
+With Windows 10 open a 'Admin' command prompt otherwise stups can get get copied to 'Programm Files'
 
 Docu Versionsnummer linkshellextension.html top
 Docu Versionsnummer linkshellextension.html in history

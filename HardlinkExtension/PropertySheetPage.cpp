@@ -221,6 +221,9 @@ Initialize(
     _wstat(m_File, &stat);
     if (stat.st_mode & _S_IFDIR)
     {
+#if defined DEBUG_SHOW_TRUESIZE
+      // Junctions, Mountpoints, SymbolicLinkDirs are all of type Directory. So no eed to check further
+#else
       // Check if the selected dir is a junction, so that we
       // we can provide junction delete menue
       if (!ProbeJunction(m_File, NULL))
@@ -232,6 +235,7 @@ Initialize(
             rVal = E_INVALIDARG;
         }
       }
+#endif
     }
     else
     {
@@ -335,11 +339,17 @@ INT_PTR CALLBACK PropPageDlgProc ( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM l
       long code = (long)wParam;		
       switch ( code )
       {
-        case IDC_EXPLORE_TARGET:
+        case IDC_PROPPAGE_LINKSHLEXT_EXPLORE_TARGET_BUTTON:
           OnExploreTarget(hwnd, lParam);
         break;
 
-         default:
+#if defined DEBUG_SHOW_TRUESIZE
+        case IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_BUTTON:
+          OnTrueSize(hwnd, lParam);
+        break;
+#endif
+
+        default:
           // HTRACE(L"WM_COMMAND: lparam %08x, wparam %08x\n", lParam, wParam);
         break;
       }
@@ -371,11 +381,126 @@ UINT CALLBACK PropPageCallbackProc ( HWND hwnd, UINT uMsg, LPPROPSHEETPAGE ppsp 
   return 1;   // used for PSPCB_CREATE - let the page be created
 }
 
-void OnExploreTarget ( HWND hwnd, LPARAM lParam )
+
+void ShowTrueSizeData(HWND aHwnd, CopyStatistics& aStats)
+{
+  locale localeDeu("");
+  ostringstream oss;
+  oss.imbue(localeDeu);
+
+  wchar_t buffer[MAX_PATH] = { 0 };
+
+  oss << aStats.m_FilesTotal;
+  wsprintf(buffer, L"%S", oss.str().c_str());
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_FILE_ITEMS, buffer);
+  oss.str("");
+  oss.clear();
+
+  oss << aStats.m_BytesTotal;
+  wsprintf(buffer, L"%S", oss.str().c_str());
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_FILE_BYTES, buffer);
+  oss.str("");
+  oss.clear();
+
+  oss << aStats.m_FilesTotal - aStats.m_HardlinksTotal;
+  wsprintf(buffer, L"%S", oss.str().c_str());
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_HARDLINK_ITEMS, buffer);
+  oss.str("");
+  oss.clear();
+
+  oss << aStats.m_BytesTotal - aStats.m_HardlinksTotalBytes;
+  wsprintf(buffer, L"%S", oss.str().c_str());
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_HARDLINK_BYTES, buffer);
+  oss.str("");
+  oss.clear();
+
+  oss << aStats.m_BytesTotal - (aStats.m_BytesTotal - aStats.m_HardlinksTotalBytes);
+  wsprintf(buffer, L"%S", oss.str().c_str());
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_TOTAL_BYTES, buffer);
+  oss.str("");
+  oss.clear();
+
+  oss << aStats.m_DirectoryTotal;
+  wsprintf(buffer, L"%S", oss.str().c_str());
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_FOLDER_ITEMS, buffer);
+  oss.str("");
+  oss.clear();
+
+  oss << aStats.m_JunctionsTotal;
+  wsprintf(buffer, L"%S", oss.str().c_str());
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_JUNCTION_ITEMS, buffer);
+  oss.str("");
+  oss.clear();
+
+  oss << aStats.m_SymlinksTotal;
+  wsprintf(buffer, L"%S", oss.str().c_str());
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_SYMLINK_ITEMS, buffer);
+}
+
+void ShowTrueSizeDlg(HWND aHwnd)
+{
+#if defined DEBUG_SHOW_TRUESIZE
+  // Show TrueSize Menu
+  for (int dlgItem = IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_FILE; dlgItem < IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_FREE; ++dlgItem)
+  {
+    HWND hStatic = GetDlgItem(aHwnd, dlgItem);
+    ShowWindow(hStatic, SW_SHOWNORMAL);
+  }
+  UpdateWindow(aHwnd);
+#endif
+}
+
+void OnTrueSize(HWND aHwnd, LPARAM lParam)
 {
   // Get the filename 
   WCHAR	szTarget[HUGE_PATH];
-  GetDlgItemText ( hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, szTarget, HUGE_PATH );
+  GetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, szTarget, HUGE_PATH);
+
+  ShowTrueSizeDlg(aHwnd);
+
+  _PathNameStatusList pathNameStatusList;
+  CopyStatistics	stats;
+
+  FileInfoContainer	FileList;
+  GetLocalTime(&stats.m_StartTime);
+
+  _ArgvPath TrueSizePath;
+  _ArgvList TrueSizePathList;
+
+  // Record all path for enumeration
+  int DriveType = DRIVE_UNKNOWN;
+  DWORD FileSystemFlags;
+  IsFileSystemNtfs(szTarget, &FileSystemFlags, gLSESettings.GetFlags() & eEnableRemote, &DriveType);
+
+  if (!PathIsUNC(szTarget))
+    TrueSizePath.Argv = PATH_PARSE_SWITCHOFF;
+  TrueSizePath.Argv += szTarget;
+
+  TrueSizePath.DriveType = DriveType;
+  TrueSizePathList.push_back(TrueSizePath);
+
+  // Enumerate affected files
+  AsyncContext    Context;
+  int r = FileList.FindHardLink(TrueSizePathList, 0, &stats, &pathNameStatusList, &Context);
+  while (!Context.Wait(250))
+  {
+    ShowTrueSizeData(aHwnd, stats);
+  }
+
+  // Calculate the true Size
+  FileList.TrueSize(&stats, &pathNameStatusList, nullptr);
+  ShowTrueSizeData(aHwnd, stats);
+
+
+  DeletePathNameStatusList(pathNameStatusList);
+  FileList.Dispose(nullptr, &stats);
+}
+
+void OnExploreTarget ( HWND aHwnd, LPARAM lParam )
+{
+  // Get the filename 
+  WCHAR	szTarget[HUGE_PATH];
+  GetDlgItemText (aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, szTarget, HUGE_PATH );
 
   ShellExecute (NULL, L"explore", szTarget, NULL, szTarget, SW_SHOWDEFAULT);
 }
@@ -397,9 +522,9 @@ void ShowJunction(HWND aHwnd, wchar_t* aBuffer, wchar_t* aDest, ReparsePropertie
   SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, aDest);
 
   // Show Explore Target Button
-  HWND hStatic = GetDlgItem(aHwnd, IDC_EXPLORE_TARGET);
+  HWND hStatic = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_EXPLORE_TARGET_BUTTON);
   LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, aBuffer, MAX_PATH, gLSESettings.GetLanguageID());
-  SetDlgItemText(aHwnd, IDC_EXPLORE_TARGET, aBuffer);
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_EXPLORE_TARGET_BUTTON, aBuffer);
   ShowWindow(hStatic, SW_SHOWNORMAL);
 
   // Enable Edit
@@ -409,24 +534,30 @@ void ShowJunction(HWND aHwnd, wchar_t* aBuffer, wchar_t* aDest, ReparsePropertie
   apReparseProperties->SetTarget(aDest, REPARSE_POINT_JUNCTION);
 }
 
-BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
+BOOL OnInitDialog ( HWND aHwnd, LPARAM lParam )
 {
   PROPSHEETPAGE*  ppsp = (PROPSHEETPAGE*)lParam;
   ReparseProperties*		pReparseProperties = (ReparseProperties*)ppsp->lParam;
 
+#if !defined DEBUG_SHOW_TRUESIZE
+  // hide truesize button
+  HWND hStatic = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_BUTTON);
+  ShowWindow(hStatic, SW_HIDE);
+  UpdateWindow(aHwnd);
+#endif
 
   if (g_Themed)
   {
-    EnableThemeDialogTexture(hwnd, ETDT_USETABTEXTURE | ETDT_ENABLE);
+    EnableThemeDialogTexture(aHwnd, ETDT_USETABTEXTURE | ETDT_ENABLE);
     EnableTheming(true);
   }
 
   HTRACE(L"LSE: PropertySheetPage::OnInitDialog '%s'", pReparseProperties->Source);
 
-  SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pReparseProperties);
+  SetWindowLongPtr(aHwnd, GWLP_USERDATA, (LONG_PTR)pReparseProperties);
 
   // Display the full path in the top static control.
-  SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_FILENAME, pReparseProperties->Source);
+  SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_FILENAME, pReparseProperties->Source);
 
   struct _stat stat;
   _wstat(pReparseProperties->Source, &stat);
@@ -439,7 +570,8 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
     WCHAR Dest[HUGE_PATH] = { 0 };
     if (ProbeJunction(pReparseProperties->Source, Dest))
     {
-      ShowJunction(hwnd, Buffer, Dest, pReparseProperties);
+      ShowJunction(aHwnd, Buffer, Dest, pReparseProperties);
+      ShowTrueSizeDlg(aHwnd);
     }
     else
     {
@@ -449,19 +581,19 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
         // Show Mountpoint
         //
         LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
+        SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
         LoadStringEx(g_hInstance, IDS_STRING_MountPoint, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
+        SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
         LoadStringEx(g_hInstance, IDS_STRING_MountPointTarget, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
+        SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
-        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, Dest);
-        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Dest);
+        SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, Dest);
+        SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Dest);
 
         // Display the Volumename 
-        HWND hEdit = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKS);
+        HWND hEdit = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKS);
         SendMessage(hEdit, EM_LIMITTEXT, (WPARAM)0, (LPARAM)0);
         ShowWindow(hEdit, SW_SHOWNORMAL);
 
@@ -471,16 +603,18 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
         SendMessage(hEdit, EM_REPLACESEL, 0, (LPARAM)VolumeName);
 
         // Show Explore Target Button
-        HWND hStatic = GetDlgItem(hwnd, IDC_EXPLORE_TARGET);
+        HWND hStatic = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_EXPLORE_TARGET_BUTTON);
         LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText(hwnd, IDC_EXPLORE_TARGET, Buffer);
+        SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_EXPLORE_TARGET_BUTTON, Buffer);
         ShowWindow(hStatic, SW_SHOWNORMAL);
 
         // Enable Edit
-        hEdit = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
+        hEdit = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
         SendMessage(hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0);
 
         pReparseProperties->SetTarget(Dest, REPARSE_POINT_MOUNTPOINT);
+
+        ShowTrueSizeDlg(aHwnd);
       }
       else
       {
@@ -489,19 +623,19 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
           // Show a Symbolic Link Directory
           //
           LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
+          SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
-          LoadStringEx(g_hInstance, IDS_STRING_LinkTypeSymlink, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
+          LoadStringEx(g_hInstance, IDS_STRING_Symlink, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
+          SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
           LoadStringEx(g_hInstance, IDS_STRING_Target, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
+          SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
           int p = 0;
           if (IsVeryLongPath(Dest))
             p = PATH_PARSE_SWITCHOFF_SIZE;
 
-          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, &Dest[p]);
+          SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, &Dest[p]);
 
           // Since we can only resolve the symbolic link here, because pReparseProperties->Source
           // is a parameter of this function, the full path to the symbolic link has to be stored 
@@ -514,20 +648,48 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
           {
             WCHAR AbsoluteDest[HUGE_PATH];
             PathCanonicalize(AbsoluteDest, SymlinkTarget);
-            SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, AbsoluteDest);
+            SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, AbsoluteDest);
           }
           else
-            SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Dest);
+            SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Dest);
 
           // Enable Edit
-          HWND hEdit = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
+          HWND hEdit = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
           SendMessage(hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0);
 
           // Show Explore Target Button
-          HWND hStatic = GetDlgItem(hwnd, IDC_EXPLORE_TARGET);
+          HWND hStatic = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_EXPLORE_TARGET_BUTTON);
           LoadStringEx(g_hInstance, IDS_STRING_ExploreTarget, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-          SetDlgItemText(hwnd, IDC_EXPLORE_TARGET, Buffer);
+          SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_EXPLORE_TARGET_BUTTON, Buffer);
           ShowWindow(hStatic, SW_SHOWNORMAL);
+
+          ShowTrueSizeDlg(aHwnd);
+        }
+        else
+        {
+#if defined DEBUG_SHOW_TRUESIZE
+          // directory
+          int p = 0;
+          if (IsVeryLongPath(pReparseProperties->Source))
+            p = PATH_PARSE_SWITCHOFF_SIZE;
+
+          SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, &pReparseProperties->Source[p]);
+
+          LoadStringEx(g_hInstance, IDS_STRING_Target, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
+          SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
+
+          LoadStringEx(g_hInstance, IDS_STRING_Directory, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
+          SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
+
+          pReparseProperties->SetTarget(pReparseProperties->Source, REPARSE_POINT_FAIL);
+
+          // Enable Edit
+          HWND hEdit = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
+          SendMessage(hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0);
+          SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, pReparseProperties->Source);
+
+          ShowTrueSizeDlg(aHwnd);
+#endif
         }
       }
     }
@@ -535,47 +697,46 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
   else
   {
     wchar_t	Dest[MAX_PATH] = { 0 };
-    // Make sure we check for the Symbolic Link first, because a 
-    // symbolic link might also point to a hardlink, but
-    // we don't want to see the properties what the symbolic
-    // link points to, but the Symbolic Link itself
+    // Make sure we check for the Symbolic Link first, because a symbolic link might also point to a hardlink, but
+    // we don't want to see the properties what the symbolic link points to, but the Symbolic Link itself
     if (ProbeSymbolicLink(pReparseProperties->Source, Dest))
     {
       // Show Symbolic Link Files
       //
       LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-      SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
+      SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
-      LoadStringEx(g_hInstance, IDS_STRING_LinkTypeSymlink, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-      SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
+      LoadStringEx(g_hInstance, IDS_STRING_Symlink, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
+      SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
       LoadStringEx(g_hInstance, IDS_STRING_Target, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-      SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
+      SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
       int p = 0;
       if (IsVeryLongPath(Dest))
         p = PATH_PARSE_SWITCHOFF_SIZE;
 
-      SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, &Dest[p]);
+      SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, &Dest[p]);
 
       // Enable Edit
-      HWND hEdit = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
+      HWND hEdit = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE);
       SendMessage(hEdit, EM_SETREADONLY, (WPARAM)0, (LPARAM)0);
 
       pReparseProperties->SetTarget(Dest, REPARSE_POINT_SYMBOLICLINK);
     }
     else
     {
+      // Hardlinks
       int RefCount = ProbeHardlink(pReparseProperties->Source);
       if (RefCount > 1)
       {
         // Show Hardlink
         //
         LoadStringEx(g_hInstance, IDS_STRING_PropPageLinkType, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
+        SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE, Buffer);
 
         LoadStringEx(g_hInstance, IDS_STRING_Hardlink, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
+        SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE, Buffer);
 
         wchar_t		RefCountStr[64];
 #if defined DEBUG_RICHARD_SCHAEFER
@@ -584,9 +745,9 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
         wsprintf(RefCountStr, L"%d", RefCount);
 #endif
         LoadStringEx(g_hInstance, IDS_STRING_PropPageRefCount, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
+        SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET, Buffer);
 
-        SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, RefCountStr);
+        SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE, RefCountStr);
 
         // Enumerate Hardlinks under Windows7
         wchar_t	LinkName[HUGE_PATH + 2];
@@ -627,12 +788,12 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
           // So we have to show the sibblins dialog only after we made sure
           // that we got the first sibling, since it seems it is not enough
           // to know that the reference count is > 1
-          HWND hStatic = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM);
+          HWND hStatic = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM);
           ShowWindow(hStatic, SW_SHOWNORMAL);
           LoadStringEx(g_hInstance, IDS_STRING_PropPageHardlinkEnum, Buffer, MAX_PATH, gLSESettings.GetLanguageID());
-          SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM, Buffer);
+          SetDlgItemText(aHwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM, Buffer);
 
-          HWND hEdit = GetDlgItem(hwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKS);
+          HWND hEdit = GetDlgItem(aHwnd, IDC_PROPPAGE_LINKSHLEXT_HARDLINKS);
           SendMessage(hEdit, EM_LIMITTEXT, (WPARAM)0, (LPARAM)0);
           ShowWindow(hEdit, SW_SHOWNORMAL);
 
@@ -663,7 +824,7 @@ BOOL OnInitDialog ( HWND hwnd, LPARAM lParam )
       {
         if (ProbeJunction(pReparseProperties->Source, Dest))
         {
-          ShowJunction(hwnd, Buffer, Dest, pReparseProperties);
+          ShowJunction(aHwnd, Buffer, Dest, pReparseProperties);
         }
       }
     }
@@ -719,6 +880,18 @@ BOOL OnApply ( HWND hwnd, PSHNOTIFY* phdr )
         {
           int rValue = ReplaceMountPoint(pReparseProperties->Source, Destination);
           if (ERROR_SUCCESS == rValue)
+          {
+            SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
+            pReparseProperties->SetTarget(Destination, REPARSE_POINT_MOUNTPOINT);
+          }
+        }
+        break;
+
+        case REPARSE_POINT_FAIL:
+        {
+          // Directory. 
+          BOOL  bMoved = MoveFile(pReparseProperties->Source, Destination);
+          if (TRUE == bMoved)
           {
             SetDlgItemText(hwnd, IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE, Destination);
             pReparseProperties->SetTarget(Destination, REPARSE_POINT_MOUNTPOINT);

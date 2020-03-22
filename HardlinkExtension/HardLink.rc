@@ -55,7 +55,8 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "ƒn[ƒhƒŠƒ“ƒN"
     IDS_STRING_Junction     "ƒWƒƒƒ“ƒNƒVƒ‡ƒ“"
-    IDS_STRING_LinkTypeSymlink "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN"
+    IDS_STRING_Symlink "ƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN"
+    IDS_STRING_Directory "Directory"
     IDS_STRING_ErrDestSrcCircular " : ‘ÎÛ‚ÌƒtƒHƒ‹ƒ_‚ÍƒŠƒ“ƒNŒ³‚ÌƒTƒuƒtƒHƒ‹ƒ_‚Å‚·B"
     IDS_STRING_ProgressCreatingSmartCopy "ƒXƒ}[ƒgƒRƒs[‚ğÀs’†c"
     IDS_STRING_MountPoint   "ƒ}ƒEƒ“ƒgƒ|ƒCƒ“ƒg"
@@ -269,8 +270,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Ó²Á¬½Ó"
     IDS_STRING_Junction     "Ä¿Â¼Á¬½Óµã"
-    IDS_STRING_LinkTypeSymlink "·ûºÅÁ¬½Ó"
-    IDS_STRING_ErrDestSrcCircular " : Ä¿±êÄ¿Â¼²»ÄÜÊÇÔ´Ä¿Â¼µÄ×ÓÄ¿Â¼"
+    IDS_STRING_Symlink "·ûºÅÁ¬½Ó"
+      IDS_STRING_Directory "Directory"
+      IDS_STRING_ErrDestSrcCircular " : Ä¿±êÄ¿Â¼²»ÄÜÊÇÔ´Ä¿Â¼µÄ×ÓÄ¿Â¼"
     IDS_STRING_ProgressCreatingSmartCopy "ÕıÔÚ´´½¨ÖÇÄÜ¸±±¾..."
     IDS_STRING_MountPoint   "´ÅÅÌ¹Ò½Óµã"
     IDS_STRING_ProgressCloning "ÕıÔÚ¸´ÖÆ¸±±¾..."
@@ -464,8 +466,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "ÇÏµå¸µÅ©"
     IDS_STRING_Junction     "Á¤¼Ç"
-    IDS_STRING_LinkTypeSymlink "½Éº¼¸¯ ¸µÅ©"
-    IDS_STRING_ErrDestSrcCircular " : µµÂø µğ·ºÅÍ¸®°¡ Ãâ¹ß¼Ò½ºÀÇ ÇÏÀ§ µğ·ºÅä¸®ÀÔ´Ï´Ù"
+    IDS_STRING_Symlink "½Éº¼¸¯ ¸µÅ©"
+      IDS_STRING_Directory "Directory"
+      IDS_STRING_ErrDestSrcCircular " : µµÂø µğ·ºÅÍ¸®°¡ Ãâ¹ß¼Ò½ºÀÇ ÇÏÀ§ µğ·ºÅä¸®ÀÔ´Ï´Ù"
     IDS_STRING_ProgressCreatingSmartCopy "½º¸¶Æ® º¹»ç »ı¼ºÁß..."
     IDS_STRING_MountPoint   "¸¶¿îÆ® ÁöÁ¡"
     IDS_STRING_ProgressCloning "Å¬·Ğ Áß..."
@@ -696,8 +699,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Pevnı odkaz"
     IDS_STRING_Junction     "Rozcestí"
-    IDS_STRING_LinkTypeSymlink "Symbolickı odkaz"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Symbolickı odkaz"
+      IDS_STRING_Directory "Directory"
+      IDS_STRING_ErrDestSrcCircular
                             " : Cílová sloka je podøízená sloka zdroje"
     IDS_STRING_ProgressCreatingSmartCopy "Vytváøení chytré kopie…"
     IDS_STRING_MountPoint   "Pøípojnı bod"
@@ -741,7 +745,7 @@ BEGIN
     IDS_STRING_PropPageEnumSiblings "Najít pøíbuzné"
     IDS_STRING_ProgressEnumerating "Hledání pøíbuznıch pevnıch odkazù…"
     IDS_STRING_ProgressCanceling "Rušení…"
-    IDS_STRING_ExploreTarget "Zobrazit cíl"
+    IDS_STRING_ExploreTarget "Zobrazit"
     IDS_STRING_ProgressSmartMove "Probíhá chytrı pøesun…"
 END
 
@@ -922,8 +926,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Dowi¹zanie twarde"
     IDS_STRING_Junction     "Powi¹zanie"
-    IDS_STRING_LinkTypeSymlink "Dowi¹zanie symboliczne"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Dowi¹zanie symboliczne"
+      IDS_STRING_Directory "Directory"
+      IDS_STRING_ErrDestSrcCircular
                             " : Katalog docelowy stanowi podkatalog Ÿród³a"
     IDS_STRING_ProgressCreatingSmartCopy "Tworzê poprawn¹ kopiê…"
     IDS_STRING_MountPoint   "Punkt montowania"
@@ -965,7 +970,7 @@ BEGIN
     IDS_STRING_PropPageEnumSiblings "Wylicz duplikaty"
     IDS_STRING_ProgressEnumerating "Wyliczam duplikaty dowi¹zañ twardych…"
     IDS_STRING_ProgressCanceling "Rezygnacja…"
-    IDS_STRING_ExploreTarget "Eksploruj cel"
+    IDS_STRING_ExploreTarget "Eksploruj"
     IDS_STRING_ProgressSmartMove "Poprawne przenosiny w toku…"
 END
 
@@ -1152,8 +1157,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Pevnı odkaz"
     IDS_STRING_Junction     "Prepojenie"
-    IDS_STRING_LinkTypeSymlink "Symbolickı odkaz"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Symbolickı odkaz"
+      IDS_STRING_Directory "Directory"
+      IDS_STRING_ErrDestSrcCircular
                             " : Cie¾ovı prieèinok je podprieèinok zdrojového prieèinku"
     IDS_STRING_ProgressCreatingSmartCopy "Vytvára sa inteligentná kópia…"
     IDS_STRING_MountPoint   "Bod pripojenia"
@@ -1194,7 +1200,7 @@ BEGIN
     IDS_STRING_PropPageEnumSiblings "Nájs príbuzné"
     IDS_STRING_ProgressEnumerating "Vyh¾adávajú sa príbuzné pevné odkazy…"
     IDS_STRING_ProgressCanceling "Ruší sa…"
-    IDS_STRING_ExploreTarget "Preskúma cie¾"
+    IDS_STRING_ExploreTarget "Preskúma"
     IDS_STRING_ProgressSmartMove "Prebieha inteligentnı presun…"
 END
 
@@ -1378,8 +1384,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Æåñòêàÿ ññûëêà"
     IDS_STRING_Junction     "Junction ñâÿçü"
-    IDS_STRING_LinkTypeSymlink "Ñèìâîëè÷åñêàÿ ññûëêà"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Ñèìâîëè÷åñêàÿ ññûëêà"
+  IDS_STRING_Directory "Directory"
+  IDS_STRING_ErrDestSrcCircular
                             " : Ïàïêà íàçíà÷åíèÿ ÿâëÿåòñÿ ïîäïàïêîé èñòî÷íèêà"
     IDS_STRING_ProgressCreatingSmartCopy "Ñîçäàíèå óìíîé Smart êîïèè…"
     IDS_STRING_MountPoint   "Òî÷êà ìîíòèğîâàíèÿ"
@@ -1587,8 +1594,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Æîğñòêå ïîñèëàííÿ"
     IDS_STRING_Junction     "Ç'ºäíàííÿ"
-    IDS_STRING_LinkTypeSymlink "Ñèìâîëüíå ïîñèëàííÿ"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Ñèìâîëüíå ïîñèëàííÿ"
+      IDS_STRING_Directory "Directory"
+      IDS_STRING_ErrDestSrcCircular
                             " : Êàòàëîã ïğèçíà÷åííÿ º ï³äêàòàëîãîì äæåğåëà"
     IDS_STRING_ProgressCreatingSmartCopy "Ñòâîğåííÿ ğîçóìíî¿ êîï³¿…"
     IDS_STRING_MountPoint   "Òî÷êà ìîíòóâàííÿ"
@@ -1835,8 +1843,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Lien physique"
     IDS_STRING_Junction     "Jonction"
-    IDS_STRING_LinkTypeSymlink "Lien symbolique"
-    IDS_STRING_ErrDestSrcCircular " : Ce serait un sous-dossier de la cible."
+    IDS_STRING_Symlink "Lien symbolique"
+      IDS_STRING_Directory "Directory"
+      IDS_STRING_ErrDestSrcCircular " : Ce serait un sous-dossier de la cible."
     IDS_STRING_ProgressCreatingSmartCopy "Copie intelligente en cours…"
     IDS_STRING_MountPoint   "Point de montage"
     IDS_STRING_ProgressCloning "Clonage en cours…"
@@ -1881,7 +1890,7 @@ BEGIN
     IDS_STRING_PropPageEnumSiblings "Énumérer les liens"
     IDS_STRING_ProgressEnumerating "Énumération des liens frères en cours…"
     IDS_STRING_ProgressCanceling "Annulation…"
-    IDS_STRING_ExploreTarget "Explorer la ci&ble"
+    IDS_STRING_ExploreTarget "Explorer"
     IDS_STRING_ProgressSmartMove "Déplacement intelligent en cours…"
 END
 
@@ -2068,8 +2077,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Hardlink"
     IDS_STRING_Junction     "Junction"
-    IDS_STRING_LinkTypeSymlink "Symbolic Link"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Symbolic Link"
+  IDS_STRING_Directory "Directory"
+  IDS_STRING_ErrDestSrcCircular
                             " : The destination directory is a subdirectory of the source"
     IDS_STRING_ProgressCreatingSmartCopy "Creating Smart Copy…"
     IDS_STRING_MountPoint   "Mountpoint"
@@ -2109,7 +2119,7 @@ BEGIN
     IDS_STRING_PropPageEnumSiblings "Enumerate Siblings"
     IDS_STRING_ProgressEnumerating "Enumerating Hardlink Siblings…"
     IDS_STRING_ProgressCanceling "Canceling…"
-    IDS_STRING_ExploreTarget "Explore Target"
+    IDS_STRING_ExploreTarget "Explore"
     IDS_STRING_ProgressSmartMove "Smart Move in progress…"
 END
 
@@ -2296,8 +2306,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Hårdlänk"
     IDS_STRING_Junction     "Knutpunkt"
-    IDS_STRING_LinkTypeSymlink "Symbolisk länk"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Symbolisk länk"
+      IDS_STRING_Directory "Directory"
+      IDS_STRING_ErrDestSrcCircular
                             " : Målmappen är en undermapp till källmappen"
     IDS_STRING_ProgressCreatingSmartCopy "Skapar Smart kopia…"
     IDS_STRING_MountPoint   "Monteringspunkt"
@@ -2340,7 +2351,7 @@ BEGIN
     IDS_STRING_PropPageEnumSiblings "Referensuppräknare"
     IDS_STRING_ProgressEnumerating "Räknar hårdlänksreferenser…"
     IDS_STRING_ProgressCanceling "Avbryter…"
-    IDS_STRING_ExploreTarget "Utforska mål"
+    IDS_STRING_ExploreTarget "Utforska"
     IDS_STRING_ProgressSmartMove "Smart flyttning pågår…"
 END
 
@@ -2523,8 +2534,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Hardlink"
     IDS_STRING_Junction     "Junction"
-    IDS_STRING_LinkTypeSymlink "Symbolischer Link"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Symbolischer Link"
+      IDS_STRING_Directory "Verzeichnis"
+      IDS_STRING_ErrDestSrcCircular
                             " : Das Zielverzeichnis ist ein Unterverzeichnis des Quellverzeichnises"
     IDS_STRING_ProgressCreatingSmartCopy "Erstellen von Smarter Kopie…"
     IDS_STRING_MountPoint   "Bereitstellungspunkt"
@@ -2567,7 +2579,7 @@ BEGIN
     IDS_STRING_PropPageEnumSiblings "Hardlink Referenzen"
     IDS_STRING_ProgressEnumerating "Hardlinks auflisten…"
     IDS_STRING_ProgressCanceling "Beenden…"
-    IDS_STRING_ExploreTarget "Ziel öffnen"
+    IDS_STRING_ExploreTarget "Öffnen"
     IDS_STRING_ProgressSmartMove "Smart Move…"
 END
 
@@ -2774,8 +2786,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Hardlink"
     IDS_STRING_Junction     "Junction"
-    IDS_STRING_LinkTypeSymlink "Symbolic Link"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Symbolic Link"
+  IDS_STRING_Directory "Directory"
+  IDS_STRING_ErrDestSrcCircular
                             " : The destination directory is a subdirectory of the source"
     IDS_STRING_ProgressCreatingSmartCopy "Creating Smart Copy…"
     IDS_STRING_MountPoint   "Mountpoint"
@@ -2815,7 +2828,7 @@ BEGIN
     IDS_STRING_PropPageEnumSiblings "Enumerate Siblings"
     IDS_STRING_ProgressEnumerating "Enumerating Hardlink Siblings…"
     IDS_STRING_ProgressCanceling "Canceling…"
-    IDS_STRING_ExploreTarget "Explore Target"
+    IDS_STRING_ExploreTarget "Explore"
     IDS_STRING_ProgressSmartMove "Smart Move in progress…"
 END
 
@@ -3020,8 +3033,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Reale"
     IDS_STRING_Junction     "Giunzione"
-    IDS_STRING_LinkTypeSymlink "Simbolico"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Simbolico"
+      IDS_STRING_Directory "Directory"
+      IDS_STRING_ErrDestSrcCircular
                             ": la cartella di destinazione è una sottodirectory della directory di partenza"
     IDS_STRING_ProgressCreatingSmartCopy "Copia intelligente…"
     IDS_STRING_MountPoint   "Punto di montaggio"
@@ -3068,7 +3082,7 @@ BEGIN
     IDS_STRING_ProgressEnumerating 
                             "Enumerazione riferimenti a collegamenti reali…"
     IDS_STRING_ProgressCanceling "Annullamento…"
-    IDS_STRING_ExploreTarget "Esplora destinazione"
+    IDS_STRING_ExploreTarget "Esplora"
     IDS_STRING_ProgressSmartMove "Spostamento intelligente…"
 END
 
@@ -3254,8 +3268,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Hardlink"
     IDS_STRING_Junction     "Junção"
-    IDS_STRING_LinkTypeSymlink "Vínculo Simbólico"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Vínculo Simbólico"
+  IDS_STRING_Directory "Directory"
+  IDS_STRING_ErrDestSrcCircular
                             ": diretório de destino é um sub-diretório da origem."
     IDS_STRING_ProgressCreatingSmartCopy "Criando Cópia Inteligente…"
     IDS_STRING_MountPoint   "Ponto de Montajem"
@@ -3295,7 +3310,7 @@ BEGIN
     IDS_STRING_PropPageEnumSiblings "Enumerar Vínculos"
     IDS_STRING_ProgressEnumerating "Enumerar Vínculos…"
     IDS_STRING_ProgressCanceling "Cancelando…"
-    IDS_STRING_ExploreTarget "Explorar destino"
+    IDS_STRING_ExploreTarget "Explorar"
     IDS_STRING_ProgressSmartMove "Mover Inteligente em progresso…"
 END
 
@@ -3470,12 +3485,29 @@ BEGIN
                     "Static",SS_LEFTNOWORDWRAP | WS_GROUP,6,55,72,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,3,72,213,1
     EDITTEXT        IDC_PROPPAGE_LINKSHLEXT_FILENAME,42,10,174,13,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE,78,53,138,14,ES_AUTOHSCROLL | ES_READONLY
-    CONTROL         "Static",IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,78,38,134,11
-    EDITTEXT        IDC_PROPPAGE_LINKSHLEXT_HARDLINKS,6,96,210,130,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | NOT WS_VISIBLE | WS_VSCROLL | WS_HSCROLL
+    EDITTEXT        IDC_PROPPAGE_LINKSHLEXT_REFTARGET_VALUE,71,53,109,14,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Static",IDC_PROPPAGE_LINKSHLEXT_LINKTYPE_VALUE,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,71,38,141,11
+    EDITTEXT        IDC_PROPPAGE_LINKSHLEXT_HARDLINKS,6,99,210,130,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | NOT WS_VISIBLE | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Static",IDC_PROPPAGE_LINKSHLEXT_HARDLINKENUM,6,78,205,8,SS_NOPREFIX | NOT WS_VISIBLE
-    PUSHBUTTON      "Explore Target",IDC_EXPLORE_TARGET,120,78,95,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Explore",IDC_PROPPAGE_LINKSHLEXT_EXPLORE_TARGET_BUTTON,184,53,32,14,NOT WS_VISIBLE
     LTEXT           "Static",IDC_PROPPAGE_LINKSHLEXT_REFTARGET_ABSOLUT_VALUE,8,234,61,8,NOT WS_VISIBLE
+    PUSHBUTTON      "Truesize",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_BUTTON,6,200,32,14
+    RTEXT           "Items:",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_ITEMS,70,78,45,8,NOT WS_VISIBLE
+    RTEXT           "Bytes:",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_BYTES,140,78,75,8,NOT WS_VISIBLE
+    LTEXT           "File:",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_FILE,8,94,60,8,NOT WS_VISIBLE
+    RTEXT           "",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_FILE_ITEMS,70,94,45,8,NOT WS_VISIBLE
+    RTEXT           "",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_FILE_BYTES,140,94,75,8,NOT WS_VISIBLE
+    LTEXT           "Hardlink:",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_HARDLINK,8,110,75,8,NOT WS_VISIBLE
+    RTEXT           "",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_HARDLINK_ITEMS,70,110,45,8,NOT WS_VISIBLE
+    RTEXT           "",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_HARDLINK_BYTES,140,110,75,8,NOT WS_VISIBLE
+    LTEXT           "Total:",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_TOTAL,8,126,60,8,NOT WS_VISIBLE
+    RTEXT           "",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_TOTAL_BYTES,140,126,75,8,NOT WS_VISIBLE
+    LTEXT           "Folder:",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_FOLDER,8,142,60,8,NOT WS_VISIBLE
+    RTEXT           "",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_FOLDER_ITEMS,70,142,45,8,NOT WS_VISIBLE
+    LTEXT           "Junction:",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_JUNCTION,8,158,60,8,NOT WS_VISIBLE
+    RTEXT           "",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_JUNCTION_ITEMS,70,158,45,8,NOT WS_VISIBLE
+    LTEXT           "Symbolic Link:",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_SYMLINK,8,174,60,8,NOT WS_VISIBLE
+    RTEXT           "",IDC_PROPPAGE_LINKSHLEXT_TRUESIZE_SYMLINK_ITEMS,70,174,45,8,NOT WS_VISIBLE
 END
 
 
@@ -3493,6 +3525,17 @@ BEGIN
     END
 END
 #endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_LINKSHLEXT_PROPPAGE AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
 
 #endif    // Neutral (Sys. Default) resources
 /////////////////////////////////////////////////////////////////////////////
@@ -3542,8 +3585,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Vínculo Fuerte"
     IDS_STRING_Junction     "Unión"
-    IDS_STRING_LinkTypeSymlink "Vínculo Simbólico"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Vínculo Simbólico"
+      IDS_STRING_Directory "Directory"
+      IDS_STRING_ErrDestSrcCircular
                             ": El directorio de destino es un subdirectorio del origen."
     IDS_STRING_ProgressCreatingSmartCopy "Creando Copia Inteligente…"
     IDS_STRING_MountPoint   "Punto de montaje"
@@ -3584,7 +3628,7 @@ BEGIN
     IDS_STRING_PropPageEnumSiblings "Enumerar Vinculados"
     IDS_STRING_ProgressEnumerating "Enumerar Vinculados…"
     IDS_STRING_ProgressCanceling "Cancelando…"
-    IDS_STRING_ExploreTarget "Explorar Objetivo"
+    IDS_STRING_ExploreTarget "Explorar"
     IDS_STRING_ProgressSmartMove "Movimiento inteligente en progreso…"
 END
 
@@ -3751,8 +3795,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Äåóìüò õëéêïı"
     IDS_STRING_Junction     "Óçìåßï óıíäåóçò"
-    IDS_STRING_LinkTypeSymlink "Óõìâïëéêüò äåóìüò"
-    IDS_STRING_ErrDestSrcCircular 
+    IDS_STRING_Symlink "Óõìâïëéêüò äåóìüò"
+      IDS_STRING_Directory "Directory"
+      IDS_STRING_ErrDestSrcCircular
                             " : Ï êáôÜëïãïò áğüèåóçò åßíáé õğïêáôÜëïãïò ôïõ ğñïïñéóìïı"
     IDS_STRING_ProgressCreatingSmartCopy "Äçìéïõñãßá İîõğíïõ áíôßãñáöïõ…"
     IDS_STRING_MountPoint   "Óçìåßï ìïíôáñßóìáôïò"
@@ -4004,8 +4049,9 @@ STRINGTABLE
 BEGIN
     IDS_STRING_Hardlink     "Hardlink"
     IDS_STRING_Junction     "Junction"
-    IDS_STRING_LinkTypeSymlink "Sembolik Link"
-    IDS_STRING_ErrDestSrcCircular " : Hedef dizin kaynağın alt dizini"
+    IDS_STRING_Symlink "Sembolik Link"
+  IDS_STRING_Directory "Directory"
+  IDS_STRING_ErrDestSrcCircular " : Hedef dizin kaynağın alt dizini"
     IDS_STRING_ProgressCreatingSmartCopy "Akıllı kopya oluşturuluyor…"
     IDS_STRING_MountPoint   "Disk Bölümü Bağlama noktası"
     IDS_STRING_ProgressCloning "Klonluyor…"

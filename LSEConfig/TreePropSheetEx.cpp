@@ -625,7 +625,8 @@ BOOL CTreePropSheetEx::OnHelpInfo(HELPINFO* pHelpInfo)
   CPropertyPage* page = GetActivePage();
   if( page != NULL )
   {
-    page->SendMessage(WM_HELP, 0, reinterpret_cast<LPARAM>(pHelpInfo) );
+    // Since there is no help for LSEConfig, do not forward the help the pages
+    // page->SendMessage(WM_HELP, 0, reinterpret_cast<LPARAM>(pHelpInfo) );
     return TRUE;
   }
 
