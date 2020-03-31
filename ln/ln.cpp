@@ -461,7 +461,8 @@ TrueSize(
     if (gProgress)
       pContext = &Context;
     int r = FileList.FindHardLink(aSourceDirList, 0, &stats, &pathNameStatusList, pContext);
-    Enumerating(Context);
+    if (pContext)
+      Enumerating(Context);
 
     // Calculate the true Size
     FileList.TrueSize(&stats, &pathNameStatusList, nullptr);
@@ -603,7 +604,8 @@ LnSmartXXX(
   if (gProgress)
     pContext = &Context;
   FileList.FindHardLink (aSourceDirList, 0, &aStats, &PathNameStatusList, pContext);
-  Enumerating(Context);
+  if (pContext)
+    Enumerating(Context);
 
   // Check if enumerating worked
   //
@@ -1175,12 +1177,13 @@ Delorean(
 
   AsyncContext CloneContext;
   AsyncContext* pCloneContext = nullptr;
-  int ProgressCount = 0;
+
   if (gProgress)
     pCloneContext = &CloneContext;
 
   CloneList.FindHardLink (CloneDestination, 0, &CloneStatistics, &PathNameStatusListClone, pCloneContext);
-  Enumerating(CloneContext);
+  if (pCloneContext)
+    Enumerating(CloneContext);
 
   GetLocalTime(&CloneStatistics.m_CopyTime);
   Effort MaxProgress;
