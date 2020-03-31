@@ -16,6 +16,7 @@ set BINDIR=%HARDLINKHOME%\Bin\win32\Release
 set ARCHIVE=ln%VERSION%.zip
 call :ZipBinary %MEDIA%\%ARCHIVE% %BINDIR%
 call :ZipAllFiles %MEDIA%\%ARCHIVE%
+copy %MEDIA%\%ARCHIVE% %MEDIA%\ln.zip
 
 REM x64
 REM
@@ -23,6 +24,7 @@ set BINDIR=%HARDLINKHOME%\Bin\x64\Release
 set ARCHIVE=ln64%VERSION%.zip
 call :ZipBinary %MEDIA%\%ARCHIVE% %BINDIR%
 call :ZipAllFiles %MEDIA%\%ARCHIVE%
+copy %MEDIA%\%ARCHIVE% %MEDIA%\ln64.zip
 
 :ausmausraus
 

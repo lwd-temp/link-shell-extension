@@ -7,18 +7,18 @@
     <language>en</language>
 
     <item>
-      <title>ln.exe 2.927 has been released.</title>
+      <title>ln.exe 2.928 has been released.</title>
       <link>https://schinagl.priv.at/nt/ln/ln.html#2900</link>
-      <pubDate>Sun, 31 March 2020 19:00:50:15 +0100</pubDate>
+      <pubDate>Sun, 31 March 2020 22:30:50:15 +0100</pubDate>
       <description>
-        ln.exe 2.927 has been released.
+        ln.exe 2.928 has been released.
       </description>
       <content:encoded>
         <![CDATA[
           <li>Fixed a race condition, when ln was called without --progress. Introduced in 2.9.2.6</li>
         ]]>
       </content:encoded>
-      <guid>https://schinagl.priv.at/nt/ln/ln.html#2927</guid>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2928</guid>
     </item>
 
     <item>

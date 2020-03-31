@@ -13,7 +13,7 @@ REM
 set MAJOR_LN_VERSION=2
 set MINOR_LN_VERSION=9
 set PATCH_LN_VERSION=2
-set HOTFIX_LN_VERSION=7
+set HOTFIX_LN_VERSION=8
 
 REM Set the version info for dupemerge.exe
 REM
