@@ -3,7 +3,7 @@
   <metadata>
     <id>Ln</id>
     <title>Ln - Command line Hardlinks</title>
-    <version>2.9.2.7</version>
+    <version>2.9.2.8</version>
     <authors>Hermann Schinagl</authors>
     <owners>Hermann Schinagl</owners>
     <summary>Advanced command line hardlink tool</summary>
