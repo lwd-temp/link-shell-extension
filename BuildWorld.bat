@@ -13,7 +13,7 @@ REM
 set MAJOR_LN_VERSION=2
 set MINOR_LN_VERSION=9
 set PATCH_LN_VERSION=2
-set HOTFIX_LN_VERSION=6
+set HOTFIX_LN_VERSION=7
 
 REM Set the version info for dupemerge.exe
 REM
@@ -90,7 +90,7 @@ REM Rebuild
 REM
 if not exist Media mkdir Media
 @echo.
-@echo Rebuild link.sln and press enter afertwards
+@echo Rebuild link.sln and press enter afterwards
 @echo.
 pause
 

@@ -405,20 +405,22 @@ void PrintElapsed(ProgressPrediction& aProgressPrediction, __int64 aFakeEffort =
     );
   }
 }
+
 void Enumerating(AsyncContext& aContext)
 {
   // Print progress if async
   // 
+  constexpr wchar_t     progressIndicator[] = { L'|', L'/', L'-', L'\\' };
+  int ProgressCount = 0;
   if (gProgress)
-  {
-    constexpr wchar_t     progressIndicator[] = { L'|', L'/', L'-', L'\\' };
-    int ProgressCount = 0;
     wprintf(L"Enumerating...   ");
-    while (!aContext.Wait(250))
+  while (!aContext.Wait(250))
+  {
+    if (gProgress)
       wprintf(L"\b%c", progressIndicator[++ProgressCount % 4]);
-
-    wprintf(L"\b \n");
   }
+
+  wprintf(L"\b \n");
 }
 
 int
