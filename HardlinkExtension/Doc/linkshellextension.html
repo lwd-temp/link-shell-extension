@@ -982,7 +982,7 @@
                             </p>
                             <p>
                                 The picture above was just the simplest case, because <i>Unroll</i> does much more
-                                when it encounters complex situations. Think of a outer junctions/symbolic links,
+                                when it encounters complex situations. Think of an outer junctions/symbolic links,
                                 which itself contains junctions/symbolic links, which are inner with respect to
                                 the first outer junction symbolic link:
                             </p>
@@ -993,7 +993,7 @@
                             <p>
                                 In the above example <i>Folder1</i> is copied to <i>Destination/Folder1</i>, and
                                 <i>Outer Junction/Symlink</i> and is unrolled as expected, but since <i>Junction/Symlink</i>
-                                is a inner junction with respect to <i>Outer Junction/Symlink Target</i>, the junction/symlink
+                                is an inner junction with respect to <i>Outer Junction/Symlink Target</i>, the junction/symlink
                                 relation is restored in the destination.
                             </p>
 
@@ -1026,7 +1026,7 @@
                             <p>
                                 In the above example <i>Folder1</i> is copied to <i>Destination/Folder1</i>, and
                                 <i>Outer Junction/Symlink</i> and is unrolled as expected, but it contains <i>Inner Outer Symlink</i> which points to <i>Inner Outer Symlink Target</i> and this is
-                                a inner junction/symbolic link with respect to <i>Outer Junction/Symlink Target</i>
+                                an inner junction/symbolic link with respect to <i>Outer Junction/Symlink Target</i>
                             </p>
 
                             <p>
@@ -1036,7 +1036,7 @@
                             </p>
 
                             <p>
-                                <i>File1 Symlink</i> is also a outer symbolic link, but its target parent-directory
+                                <i>File1 Symlink</i> is also an outer symbolic link, but its target parent-directory
                                 <i>Folder2</i> is not that lucky to get unrolled, so in the destination <i>File1 Symlink</i>
                                 is not a symbolic link any more, but a copy of the symbolic links' target.
                             </p>
