@@ -230,9 +230,39 @@ REM
 %LN% --recursive
 @echo ErrorLevel == %errorlevel%
 
+REM SUC symbolic link tests
+REM
 %LN% --symbolic
 @echo ErrorLevel == %errorlevel%
 
+@set SYMBOLIC_TESTFILE=test\ln_symlink.h
+%LN% --symbolic test\ln.h %SYMBOLIC_TESTFILE% > nul
+@%LN% --symbolic %SYMBOLIC_TESTFILE%
+@echo ErrorLevel == %errorlevel%
+@del %SYMBOLIC_TESTFILE%
+
+@set SYMBOLIC_TESTDIR=test\symbolic
+@%MKDIR% %SYMBOLIC_TESTDIR%
+%LN% --symbolic test\ln.h %SYMBOLIC_TESTDIR%  > nul
+@%LN% --symbolic %SYMBOLIC_TESTDIR%\ln.h
+@echo ErrorLevel == %errorlevel%
+@%RD% %SYMBOLIC_TESTDIR%
+
+@set SYMBOLIC_TESTDIR=symbolic
+@pushd test
+@%MKDIR% %SYMBOLIC_TESTDIR%
+..\%LN% --symbolic ln.h %SYMBOLIC_TESTDIR%  > nul
+@..\%LN% --symbolic %SYMBOLIC_TESTDIR%\ln.h
+@echo ErrorLevel == %errorlevel%
+@..\%RD% %SYMBOLIC_TESTDIR%
+@popd
+
+%LN% --symbolic test\ln.h %SYMBOLIC_TESTDIR%not_existant  
+REM > nul
+@echo ErrorLevel == %errorlevel%
+
+
+@
 REM
 REM SUC: par1 has a trailing \
 REM
@@ -249,7 +279,7 @@ REM
 REM SUC: Destination is specified with no drive letter
 REM
 set DIR=%~p0\test\t
-mkdir %DIR%
+%MKDIR% %DIR%
 %LN% --recursive  test\poi %DIR% > sortout
 @echo off
 set ERRLEV=%errorlevel%

@@ -4022,14 +4022,47 @@ wmain(
       int result;
       if (Symbolic)
       {
+        // --symbolic
+        //
         int RelativeFlag = Absolute ? 0 : SYMLINK_FLAG_RELATIVE;
+        
+        // If the first argument is a directory we assume two directories get linked
         if (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
           RelativeFlag |= SYMLINK_FLAG_DIRECTORY;
+#if 1
 
+        // If the first argument is a file and the second is a directory, we concatenate the filename to the directory
+        if (
+          (Argv1Path.FileAttribute & (FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_NORMAL)) &&
+          (Argv2Path.FileAttribute != INVALID_FILE_ATTRIBUTES) && 
+          (Argv2Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
+        )
+        {
+          wchar_t* filename = PathFindFileName(Argv1);
+          if (filename != Argv1)
+          {
+            wcscat_s(Argv2, HUGE_PATH, L"\\");
+            wcscat_s(Argv2, HUGE_PATH, filename);
+          }
+        }
+
+#endif
         result = CreateSymboliclink(Argv2, Argv1, RelativeFlag);
       }
       else
       {
+#if 0
+        // Create a Hardlink
+        // If the first argument is a file and the second is a directory, we concatenate the filename to the directory
+        if (
+          (Argv1Path.FileAttribute & (FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_NORMAL)) &&
+          (Argv2Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
+        )
+        {
+          wcscat_s(Argv2, HUGE_PATH, L"\\");
+          wcscat_s(Argv2, HUGE_PATH, Argv1Path.ArgvOrg.c_str());
+        }
+#endif
         result = CreateHardlink(Argv1, Argv2);
       }
 
