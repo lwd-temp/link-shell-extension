@@ -4029,7 +4029,6 @@ wmain(
         // If the first argument is a directory we assume two directories get linked
         if (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
           RelativeFlag |= SYMLINK_FLAG_DIRECTORY;
-#if 1
 
         // If the first argument is a file and the second is a directory, we concatenate the filename to the directory
         if (
@@ -4046,7 +4045,6 @@ wmain(
           }
         }
 
-#endif
         result = CreateSymboliclink(Argv2, Argv1, RelativeFlag);
       }
       else

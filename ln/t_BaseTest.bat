@@ -235,34 +235,73 @@ REM
 %LN% --symbolic
 @echo ErrorLevel == %errorlevel%
 
+
+REM file -> file
 @set SYMBOLIC_TESTFILE=test\ln_symlink.h
 %LN% --symbolic test\ln.h %SYMBOLIC_TESTFILE% > nul
+@set ERRLEV=%errorlevel%
 @%LN% --symbolic %SYMBOLIC_TESTFILE%
-@echo ErrorLevel == %errorlevel%
+@echo ErrorLevel == %ERRLEV%
 @del %SYMBOLIC_TESTFILE%
 
+REM not_existant_file -> file
+@set SYMBOLIC_TESTFILE=test\ln_symlink.h
+%LN% --symbolic test\ln_not_existant.h %SYMBOLIC_TESTFILE% 
+@echo ErrorLevel == %errorlevel%
+
+REM file -> dir/dir
 @set SYMBOLIC_TESTDIR=test\symbolic
 @%MKDIR% %SYMBOLIC_TESTDIR%
 %LN% --symbolic test\ln.h %SYMBOLIC_TESTDIR%  > nul
+@set ERRLEV=%errorlevel%
 @%LN% --symbolic %SYMBOLIC_TESTDIR%\ln.h
-@echo ErrorLevel == %errorlevel%
+@echo ErrorLevel == %ERRLEV%
 @%RD% %SYMBOLIC_TESTDIR%
 
+REM file -> dir
 @set SYMBOLIC_TESTDIR=symbolic
 @pushd test
 @%MKDIR% %SYMBOLIC_TESTDIR%
 ..\%LN% --symbolic ln.h %SYMBOLIC_TESTDIR%  > nul
+@set ERRLEV=%errorlevel%
 @..\%LN% --symbolic %SYMBOLIC_TESTDIR%\ln.h
-@echo ErrorLevel == %errorlevel%
+@echo ErrorLevel == %ERRLEV%
 @..\%RD% %SYMBOLIC_TESTDIR%
 @popd
 
-%LN% --symbolic test\ln.h %SYMBOLIC_TESTDIR%not_existant  
-REM > nul
-@echo ErrorLevel == %errorlevel%
+REM not_existant_file -> dir/dir
+@set SYMBOLIC_TESTDIR=test\symbolic
+@%MKDIR% %SYMBOLIC_TESTDIR%
+%LN% --symbolic test\ln_not_existant.h %SYMBOLIC_TESTDIR%  > nul
+@set ERRLEV=%errorlevel%
+@%LN% --symbolic %SYMBOLIC_TESTDIR%\ln.h
+@echo ErrorLevel == %ERRLEV%
+@%RD% %SYMBOLIC_TESTDIR%
 
+REM file -> dir/symlink_dir
+@set SYMBOLIC_TESTDIR=test\symbolic
+@set SYMBOLIC_TESTREPARSE=test\symlink_dir
+@%MKDIR% %SYMBOLIC_TESTDIR%
+@%LN% --symbolic %SYMBOLIC_TESTDIR% %SYMBOLIC_TESTREPARSE% > nul
+%LN% --symbolic test\ln.h %SYMBOLIC_TESTREPARSE%  > nul
+@set ERRLEV=%errorlevel%
+@%LN% --symbolic %SYMBOLIC_TESTREPARSE%\ln.h
+@echo ErrorLevel == %ERRLEV%
+@%RD% %SYMBOLIC_TESTDIR%
+@%RD% %SYMBOLIC_TESTREPARSE%
 
-@
+REM file -> dir/junction
+@set SYMBOLIC_TESTDIR=test\symbolic
+@set SYMBOLIC_TESTREPARSE=test\junction
+@%MKDIR% %SYMBOLIC_TESTDIR%
+@%LN% --noitcnuj %SYMBOLIC_TESTDIR% %SYMBOLIC_TESTREPARSE% > nul
+%LN% --symbolic test\ln.h %SYMBOLIC_TESTREPARSE%  > nul
+@set ERRLEV=%errorlevel%
+@%LN% --symbolic %SYMBOLIC_TESTREPARSE%\ln.h
+@echo ErrorLevel == %ERRLEV%
+@%RD% %SYMBOLIC_TESTDIR%
+@%RD% %SYMBOLIC_TESTREPARSE%
+
 REM
 REM SUC: par1 has a trailing \
 REM
