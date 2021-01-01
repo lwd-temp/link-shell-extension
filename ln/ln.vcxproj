@@ -340,6 +340,7 @@
     <None Include="t_Dupemerge01Preperation.bat" />
     <None Include="t_FatSmartXXX.bat" />
     <None Include="t_Hardlink01.bat" />
+    <None Include="t_HardSymLink.bat" />
     <None Include="t_IpAdress.bat" />
     <None Include="t_Json01.bat" />
     <None Include="t_LnTest.bat" />

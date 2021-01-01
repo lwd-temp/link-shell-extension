@@ -259,6 +259,9 @@
     <None Include="choco\ln.nuspec.template">
       <Filter>Install\choco</Filter>
     </None>
+    <None Include="t_HardSymLink.bat">
+      <Filter>Test</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Doc\ln.html">
