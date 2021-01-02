@@ -3984,7 +3984,8 @@ wmain(
       Exit(RetVal);
     }
   }
-  else // this is not recursive
+  else 
+  // this is not recursive
   {
     // Check first argument
     if (INVALID_FILE_ATTRIBUTES == Argv1Path.FileAttribute)
@@ -3997,17 +3998,7 @@ wmain(
     }
 
     // Check second argument if the file to be linked is already there
-    if (INVALID_FILE_ATTRIBUTES != Argv2Path.FileAttribute && 0 == RetVal && !Symbolic)
-    {
-      if (gLogLevel != FileInfoContainer::eLogQuiet)
-      {
-        fwprintf(gStdOutFile, L"ERROR: file '%s' already exists\n", Argv2Path.ArgvOrg.c_str());
-      }
-      RetVal = ERR_FILE_ALREADY_EXISTS;
-    }
-
-    // Check second argument if the file to be linked is already there
-    if (INVALID_FILE_ATTRIBUTES == Argv2Path.FileAttribute && 0 == RetVal && GetLastError() == ERROR_PATH_NOT_FOUND)
+    if (INVALID_FILE_ATTRIBUTES == Argv2Path.FileAttribute && ERROR_SUCCESS == RetVal && GetLastError() == ERROR_PATH_NOT_FOUND)
     {
       // The path to the destination file did not exist
       wchar_t* filename = PathFindFileName(Argv2);
@@ -4017,48 +4008,111 @@ wmain(
     }
 
     // lets create the link if everything was fine up till now
-    if (0 == RetVal)
+    if (ERROR_SUCCESS == RetVal)
     {
-      int result;
+      int result = ERROR_SUCCESS;
       if (Symbolic)
       {
+        // --symbolic
+        //
         int RelativeFlag = Absolute ? 0 : SYMLINK_FLAG_RELATIVE;
+        
+        // If the first argument is a directory we assume two directories get linked
         if (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
           RelativeFlag |= SYMLINK_FLAG_DIRECTORY;
 
-        result = CreateSymboliclink(Argv2, Argv1, RelativeFlag);
+        // If the first argument is a file and the second is an existing directory, we concatenate the filename to that directory
+        if (
+//          (Argv1Path.FileAttribute & (FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_NORMAL)) &&
+          (Argv2Path.FileAttribute != INVALID_FILE_ATTRIBUTES) && 
+          (Argv2Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
+        )
+        {
+          int lenArgv2 = Argv2Path.ArgvOrg.length();
+          if (
+            // If Argv2 contains a traling slash and Argv1 is a directory 
+            (lenArgv2 && Argv2Path.ArgvOrg[lenArgv2 - 1] == '\\' && (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)) ||
+            // or Argv1 is a normal file ...
+            (Argv1Path.FileAttribute & (FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_NORMAL))
+            )
+          {
+            // ... do the 'into linking' stuff
+            wchar_t* filename = PathFindFileName(Argv1);
+            if (filename != Argv1)
+            {
+              wcscat_s(Argv2, HUGE_PATH, L"\\");
+              wcscat_s(Argv2, HUGE_PATH, filename);
+
+              if (INVALID_FILE_ATTRIBUTES != GetFileAttributes(Argv2))
+              {
+                // Prepare filename for error message
+                if (Argv1Path.FileAttribute & (FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_NORMAL))
+                  Argv2Path.ArgvOrg += L"\\";
+                Argv2Path.ArgvOrg += filename;
+                result = ERROR_ALREADY_EXISTS;
+              }
+            }
+          }
+        }
+        if (ERROR_SUCCESS == result)
+          result = CreateSymboliclink(Argv2, Argv1, RelativeFlag);
       }
       else
       {
-        result = CreateHardlink(Argv1, Argv2);
+        // Create a Hardlink
+        // If the first argument is a file and the second is an existing directory, we concatenate the filename to that directory
+        if (
+          (Argv2Path.FileAttribute != INVALID_FILE_ATTRIBUTES) &&
+          (Argv2Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
+          )
+        {
+          wchar_t* filename = PathFindFileName(Argv1);
+          if (filename != Argv1)
+          {
+            wcscat_s(Argv2, HUGE_PATH, L"\\");
+            wcscat_s(Argv2, HUGE_PATH, filename);
+
+            if (INVALID_FILE_ATTRIBUTES != GetFileAttributes(Argv2))
+            {
+              // Prepare filename for error message
+              Argv2Path.ArgvOrg += L"\\";
+              Argv2Path.ArgvOrg += filename;
+              result = ERROR_ALREADY_EXISTS;
+            }
+          }
+        }
+
+        if (ERROR_SUCCESS == result)
+          result = CreateHardlink(Argv1, Argv2);
       }
 
-      if (ERROR_SUCCESS == result)
+      switch (result)
       {
+      case ERROR_SUCCESS:
         if (gLogLevel != FileInfoContainer::eLogQuiet)
         {
           fwprintf(gStdOutFile, L"%s\n", Argv1Path.ArgvOrg.c_str());
         }
-      }
-      else
+        break;
+
+      case ERROR_ALREADY_EXISTS:
       {
-        if (ERROR_ALREADY_EXISTS == result)
+        if (gLogLevel != FileInfoContainer::eLogQuiet)
         {
-          if (gLogLevel != FileInfoContainer::eLogQuiet)
-          {
-            fwprintf(gStdOutFile, L"ERROR: '%s' already exists\n", Argv2Path.ArgvOrg.c_str());
-          }
-          RetVal = ERR_FILE_ALREADY_EXISTS;
+          fwprintf(gStdOutFile, L"ERROR: '%s' already exists\n", Argv2Path.ArgvOrg.c_str());
         }
-        else
+        RetVal = ERR_FILE_ALREADY_EXISTS;
+      }
+      break;
+
+      default:
+        if (gLogLevel != FileInfoContainer::eLogQuiet)
         {
-          if (gLogLevel != FileInfoContainer::eLogQuiet)
-          {
-            // Trau mich nicht da eine Fehlermeldung auszugeben, weil das den Regression test vernichtet
-            // fwprintf (gStdOutFile, L"ERROR: failed to create '%s', (%08x)\n", Argv2Path.ArgvOrg.c_str(), result);
-          }
-          RetVal = ERR_CREATE_HARDLINK_FAILED;
+          // Trau mich nicht da eine Fehlermeldung auszugeben, weil das den Regression test vernichtet
+          // fwprintf (gStdOutFile, L"ERROR: failed to create '%s', (%08x)\n", Argv2Path.ArgvOrg.c_str(), result);
         }
+        RetVal = ERR_CREATE_HARDLINK_FAILED;
+        break;
       }
     }
 

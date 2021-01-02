@@ -230,8 +230,13 @@ REM
 %LN% --recursive
 @echo ErrorLevel == %errorlevel%
 
+REM SUC symbolic link tests
+REM
 %LN% --symbolic
 @echo ErrorLevel == %errorlevel%
+
+call t_HardSymLink.bat symbolic
+call t_HardSymLink.bat 
 
 REM
 REM SUC: par1 has a trailing \
@@ -249,7 +254,7 @@ REM
 REM SUC: Destination is specified with no drive letter
 REM
 set DIR=%~p0\test\t
-mkdir %DIR%
+%MKDIR% %DIR%
 %LN% --recursive  test\poi %DIR% > sortout
 @echo off
 set ERRLEV=%errorlevel%

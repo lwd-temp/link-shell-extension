@@ -70,7 +70,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i><font face="arial">Last Updated March 31, 2020 Version 2.9.2.8</font></i>
+                    <i><font face="arial">Last Updated January 1, 2021 Version 2.9.3.0</font></i>
                 </div>
             </td>
         </tr>
@@ -205,6 +205,13 @@
                                 In the above example <i>sourcefile.txt</i> gets hard-linked to <i>destination.txt</i>
                             </p>
                             <br />
+                            <span class="ascode">
+                                ln sourcefile.txt dest_dir<br />
+                            </span>
+                            <p>
+                                In the above example <i>sourcefile.txt</i> gets hard-linked to <i>dest_dir\sourcefile.txt</i>
+                            </p>
+                            <br />
                         </td>
                     </tr>
                     <tr>
@@ -241,20 +248,39 @@
                             <br />
 
                             <span class="ascode">
-                                ln --absolute --symbolic sourcefile.txt destination.txt
+                                ln --absolute --symbolic Sourcefile.txt Destination.txt
                             </span>
                             <p>
-                                In the above example <i>sourcefile.txt</i> gets symbolically linked to <i>destination.txt</i>, but
-                                the target path in the symbolic link is absolute.
+                                In the above example <i>Sourcefile.txt</i> gets linked to <i>Destination.txt</i>
+                                with an absolute target path.
                             </p>
+                            <br />
+
+                            <span class="ascode">
+                                ln --absolute --symbolic Sourcefile.txt DestinationDirectory
+                            </span>
+                            <p>
+                                In the above example a symbolic link <i>DestinationDirectory\Sourcefile.txt</i>
+                                gets linked to <i>Sourcefile.txt </i> with an absolute target path.
+                            </p>
+                            <br />
 
                             <span class="ascode">
                                 ln --absolute --symbolic SourceDirectory DestinationDirectory
                             </span>
                             <p>
                                 In the above example a symbolic link directory <i>SourceDirectory</i>
-                                gets symbolically linked to <i>DestinationDirectory</i>, but the target path in
-                                the symbolic link is absolute.
+                                gets linked to <i>DestinationDirectory</i> with an absolute target path.
+                            </p>
+                            <br />
+
+                            <span class="ascode">
+                                ln --absolute --symbolic SourceDirectory DestinationDirectory\
+                            </span>
+                            <p>
+                                In the above example a symbolic link directory <i>DestinationDirectory\SourceDirectory</i>
+                                gets linked to <i>SourceDirectory</i> with an absolute target path.
+                                A traling backslash is the trigger for this to work.
                             </p>
                             <br />
                         </td>
@@ -3933,6 +3959,16 @@
                                 In the above example a symbolic link <i>SymbolicLinkToSourceFile.txt</i>
                                 is created which points to <i>sourcefile.txt</i>.
                             </p>
+                            <br />
+
+                            <span class="ascode">
+                                ln --symbolic Sourcefile.txt DestinationDirectory
+                            </span>
+                            <p>
+                                In the above example a symbolic link <i>DestinationDirectory\Sourcefile.txt</i>
+                                is created which points to <i>Sourcefile.txt</i>.
+                            </p>
+                            <br />
 
                             <span class="ascode">
                                 ln --symbolic SourceDirectory SymbolicLinkToSourceDirectory
@@ -3941,6 +3977,19 @@
                                 In the above example a symbolic link <i>SymbolicLinkToSourceDirectory</i>
                                 is created which points to <i>SourceDirectory</i>.
                             </p>
+                            <br />
+
+                            <span class="ascode">
+                                ln --symbolic SourceDirectory DestinationDirectory\
+                            </span>
+                            <p>
+                                In the above example a symbolic link <i>DestinationDirectory\SourceDirectory</i>
+                                is created which points to <i>SourceDirectory</i>. 
+                                A traling backslash is the trigger for this to work.
+                            </p>
+                            <br />
+
+                            <br />
 
                             <p>
                                 ln.exe can also only show the target of a symbolic link
@@ -5150,6 +5199,19 @@
             </td>
             <td class="bodytext">
                 <table cellspacing="0" cellpadding="0" border="0">
+
+                    <tr>
+                        <td class="hanger2">
+                            January 1, 2021
+                        </td>
+                        <td align="left" class="bodytext">
+                            <a name="2930">Version 2.9.3.0</a>
+                            <ul>
+                                <!-- 2.9.3.0, 1.1.2021 -->
+                                <li>Directories can be specified as destination with <a href="#symboliclinks">normal file or symbolic linking.</a></li>
+                             </ul>
+                        </td>
+                    </tr>
 
                     <tr>
                         <td class="hanger2">

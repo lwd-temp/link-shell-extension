@@ -22,7 +22,7 @@ BEGIN
             VALUE "FileDescription", PRODUCT_NAME
             VALUE "FileVersion", VERSION_STRING
             VALUE "InternalName", PRODUCT_NAME
-            VALUE "LegalCopyright", "Copyright © 1999-2020 Hermann Schinagl"
+            VALUE "LegalCopyright", "Copyright © 1999-2021 Hermann Schinagl"
             VALUE "OriginalFilename", ORIGINAL_FILENAME
             VALUE "ProductVersion", VERSION_STRING
         END

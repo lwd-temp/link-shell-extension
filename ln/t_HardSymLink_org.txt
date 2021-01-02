@@ -1,0 +1,54 @@
+
+N:\data\cpp\hardlinks\ln>REM file -> file 
+
+N:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln.h test\ln_symlink.h  1>nul 
+test\ln_symlink.h -> ln.h
+ErrorLevel == 0
+
+N:\data\cpp\hardlinks\ln>REM file -> file - already exists 
+
+N:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln.h test\ln_symlink.h 
+ERROR: 'test\ln_symlink.h' already exists
+ErrorLevel == -3
+
+N:\data\cpp\hardlinks\ln>REM not_existant_file -> file 
+
+N:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln_not_existant.h test\ln_symlink.h  
+ERROR: file 'test\ln_not_existant.h' does not exist
+ErrorLevel == -5
+
+N:\data\cpp\hardlinks\ln>REM file -> dir/dir 
+
+N:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln.h test\symbolic   1>nul 
+test\symbolic\ln.h -> ..\ln.h
+ErrorLevel == 0
+
+N:\data\cpp\hardlinks\ln>REM file -> dir/dir - already exists 
+
+N:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln.h test\symbolic  
+ERROR: 'test\symbolic\ln.h' already exists
+ErrorLevel == -3
+
+N:\data\cpp\hardlinks\ln>REM file -> dir 
+
+N:\data\cpp\hardlinks\ln\test>..\..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic ln.h symbolic   1>nul 
+symbolic\ln.h -> ..\ln.h
+ErrorLevel == 0
+
+N:\data\cpp\hardlinks\ln>REM not_existant_file -> dir/dir 
+
+N:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln_not_existant.h test\symbolic   1>nul 
+ERROR: symlink 'test\symbolic\ln.h' does not exist
+ErrorLevel == -5
+
+N:\data\cpp\hardlinks\ln>REM file -> dir/symlink_dir 
+
+N:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln.h test\symlink_dir   1>nul 
+test\symlink_dir\ln.h -> ..\ln.h
+ErrorLevel == 0
+
+N:\data\cpp\hardlinks\ln>REM file -> dir/junction 
+
+N:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln.h test\junction   1>nul 
+test\junction\ln.h -> ..\ln.h
+ErrorLevel == 0
