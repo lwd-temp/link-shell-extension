@@ -248,11 +248,20 @@
                             <br />
 
                             <span class="ascode">
-                                ln --absolute --symbolic sourcefile.txt destination.txt
+                                ln --absolute --symbolic Sourcefile.txt Destination.txt
                             </span>
                             <p>
-                                In the above example <i>sourcefile.txt</i> gets symbolically linked to <i>destination.txt</i>, but
-                                the target path in the symbolic link is absolute.
+                                In the above example <i>Sourcefile.txt</i> gets linked to <i>Destination.txt</i>
+                                with an absolute target path.
+                            </p>
+                            <br />
+
+                            <span class="ascode">
+                                ln --absolute --symbolic Sourcefile.txt DestinationDirectory
+                            </span>
+                            <p>
+                                In the above example a symbolic link <i>DestinationDirectory\Sourcefile.txt</i>
+                                gets linked to <i>Sourcefile.txt </i> with an absolute target path.
                             </p>
                             <br />
 
@@ -261,17 +270,17 @@
                             </span>
                             <p>
                                 In the above example a symbolic link directory <i>SourceDirectory</i>
-                                gets symbolically linked to <i>DestinationDirectory</i>, but the target path in
-                                the symbolic link is absolute.
+                                gets linked to <i>DestinationDirectory</i> with an absolute target path.
                             </p>
                             <br />
 
                             <span class="ascode">
-                                ln --absolute --symbolic sourcefile.txt dest_dir
+                                ln --absolute --symbolic SourceDirectory DestinationDirectory\
                             </span>
                             <p>
-                                In the above example <i>sourcefile.txt</i> gets symbolically linked to <i>dest_dir\sourcefile.txt</i>, but
-                                the target path in the symbolic link is absolute.
+                                In the above example a symbolic link directory <i>SourceDirectory</i>
+                                gets linked to <i>DestinationDirectory\SourceDirectory</i> with an absolute target path.
+                                A traling backslash is the trigger for this to work.
                             </p>
                             <br />
                         </td>
@@ -3953,6 +3962,15 @@
                             <br />
 
                             <span class="ascode">
+                                ln --symbolic Sourcefile.txt DestinationDirectory
+                            </span>
+                            <p>
+                                In the above example a symbolic link <i>DestinationDirectory\Sourcefile.txt</i>
+                                is created which points to <i>Sourcefile.txt</i>.
+                            </p>
+                            <br />
+
+                            <span class="ascode">
                                 ln --symbolic SourceDirectory SymbolicLinkToSourceDirectory
                             </span>
                             <p>
@@ -3962,13 +3980,15 @@
                             <br />
 
                             <span class="ascode">
-                                ln --symbolic Sourcefile.txt Dest_Dir
+                                ln --symbolic SourceDirectory DestinationDirectory\
                             </span>
                             <p>
-                                In the above example a symbolic link <i>Dest_Dir\Sourcefile.txt</i>
-                                is created which points to <i>Sourcefile.txt</i>.
+                                In the above example a symbolic link <i>DestinationDirectory\SourceDirectory</i>
+                                is created which points to <i>SourceDirectory</i>. 
+                                A traling backslash is the trigger for this to work.
                             </p>
                             <br />
+
                             <br />
 
                             <p>

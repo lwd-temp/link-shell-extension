@@ -4023,23 +4023,34 @@ wmain(
 
         // If the first argument is a file and the second is an existing directory, we concatenate the filename to that directory
         if (
-          (Argv1Path.FileAttribute & (FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_NORMAL)) &&
+//          (Argv1Path.FileAttribute & (FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_NORMAL)) &&
           (Argv2Path.FileAttribute != INVALID_FILE_ATTRIBUTES) && 
           (Argv2Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
         )
         {
-          wchar_t* filename = PathFindFileName(Argv1);
-          if (filename != Argv1)
+          int lenArgv2 = Argv2Path.ArgvOrg.length();
+          if (
+            // If Argv2 contains a traling slash and Argv1 is a directory 
+            (lenArgv2 && Argv2Path.ArgvOrg[lenArgv2 - 1] == '\\' && (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)) ||
+            // or Argv1 is a normal file ...
+            (Argv1Path.FileAttribute & (FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_NORMAL))
+            )
           {
-            wcscat_s(Argv2, HUGE_PATH, L"\\");
-            wcscat_s(Argv2, HUGE_PATH, filename);
-
-            if (INVALID_FILE_ATTRIBUTES != GetFileAttributes(Argv2))
+            // ... do the 'into linking' stuff
+            wchar_t* filename = PathFindFileName(Argv1);
+            if (filename != Argv1)
             {
-              // Prepare filename for error message
-              Argv2Path.ArgvOrg += L"\\";
-              Argv2Path.ArgvOrg += filename;
-              result = ERROR_ALREADY_EXISTS;
+              wcscat_s(Argv2, HUGE_PATH, L"\\");
+              wcscat_s(Argv2, HUGE_PATH, filename);
+
+              if (INVALID_FILE_ATTRIBUTES != GetFileAttributes(Argv2))
+              {
+                // Prepare filename for error message
+                if (Argv1Path.FileAttribute & (FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_NORMAL))
+                  Argv2Path.ArgvOrg += L"\\";
+                Argv2Path.ArgvOrg += filename;
+                result = ERROR_ALREADY_EXISTS;
+              }
             }
           }
         }

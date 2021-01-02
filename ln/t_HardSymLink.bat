@@ -82,3 +82,23 @@ REM file -> dir/junction
 @%RD% %SYMBOLIC_TESTDIR%
 @%RD% %SYMBOLIC_TESTREPARSE%
 
+REM dir -> dir/dir
+@set SYMBOLIC_TESTDIR=test\symbolic
+@set SYMBOLIC_TARGET=test\sym_target
+@%MKDIR% %SYMBOLIC_TESTDIR%
+@%MKDIR% %SYMBOLIC_TARGET%
+%LN% %OPTION% %SYMBOLIC_TARGET% %SYMBOLIC_TESTDIR%
+@echo ErrorLevel == %errorlevel%
+
+REM dir -> dir/dir/
+%LN% %OPTION% %SYMBOLIC_TARGET% %SYMBOLIC_TESTDIR%\  > nul
+@set ERRLEV=%errorlevel%
+@%LN% --symbolic %SYMBOLIC_TESTDIR%\sym_target
+@echo ErrorLevel == %ERRLEV%
+
+REM dir -> dir/dir/ - already exists
+%LN% %OPTION% %SYMBOLIC_TARGET% %SYMBOLIC_TESTDIR%\
+@echo ErrorLevel == %errorlevel%
+
+@%RD% %SYMBOLIC_TESTDIR%
+@%RD% %SYMBOLIC_TARGET%
