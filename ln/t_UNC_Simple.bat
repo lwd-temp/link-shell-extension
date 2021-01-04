@@ -47,7 +47,7 @@ REM
 
 
 REM
-REM --delorean Dríve to UNC via Localhost
+REM --delorean Drive to UNC via Localhost
 REM
 @del %TESTROOTSRC%\Folder0\0_D	
 @%RD% %TESTROOTSRC%\_F\F0
