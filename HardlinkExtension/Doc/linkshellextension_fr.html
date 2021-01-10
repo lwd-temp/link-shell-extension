@@ -123,7 +123,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i>Dernière mise à jour du 26 Janvier 2020, Version 3.9.3.3</i>
+                    <i>Dernière mise à jour du 10 Janvier 2021, Version 3.9.3.4</i>
                 </div>
             </td>
         </tr>
@@ -404,7 +404,7 @@
             <td class="bodytext">
                 Comme LSE supporte les <a href="#junctions">Jonctions</a>,
                 <a href="#hardlinkclones">Clones</a> et les <a href="#symboliclinks">Liens Symboliques</a>,
-                si un ou plusieurs fichiers/répertoires sont sélectionnés comme liens source ils peuvent être créés comme liens sous plusieurs formes.
+                si un ou plusieurs fichiers/répertoires sont sélectionnés comme source ils peuvent être créés comme liens de plusieurs façons.
                 <br />
                 <br />
                 Pour éviter de surcharger les menus contextuels, un sous-menu contenant les différents types de liens applicables aux répertoires est alors proposé.
@@ -737,8 +737,8 @@
                             <b>Jonctions internes<br />Liens Symboliques</b>
                         </td>
                         <td>
-                            Le répertoire 'Inner Junction/Symlink' est lié au répertoire cible 'Inner
-                            Junction/Symlink Target'. Dans la terminologie de LSE ce type de répertoire est nommé <i>Inner Junction/Symlink</i>, car il pointe vers un répertoire qui est dans le même
+                            Le répertoire 'Inner Junction/Symlink' est lié au répertoire cible 'Inner Junction/Symlink Target'.
+                            Dans la terminologie de LSE ce type de répertoire est nommé <i>Inner Junction/Symlink</i>, car il pointe vers un répertoire qui est en dessous du
                             sous répertoire père 'Folder 1'.
                             <br />
                             <br />
@@ -1211,7 +1211,7 @@
                 <p>
                     Dans l'exemple ci-dessus <i>Location1</i> et <i>Location2</i> sont copiés vers <i>Destination</i>.
                     <i>Location2/Junction20</i> sont traités comme jonctions internes vers <i>Location1/Folder10</i> dans la source,
-                    et c'est donc pourquoi <i>Destination/Junction20</i> pointe vers <i>Destination/Folder10 dans la Destination</i>.
+                    et c'est donc pourquoi <i>Destination/Junction20</i> pointe vers <i>Destination/Folder10</i> dans la Destination.
                 </p>
                 <p>
                     L'objectif derrière cela est de traiter toutes les jonctions/liens symboliques comme des jonctions/liens symboliques internes tant qu'elles
@@ -1248,7 +1248,7 @@
             </td>
 
             <td class="bodytext">
-                Le Déplacement Intelligent permet aux répertoires contenant des jonctions et des liens symboliques d'être renommés, et les
+                Le Déplacement Intelligent permet aux répertoires contenant des jonctions et des liens symboliques d'être renommés. Les
                 cibles des jonctions et liens symboliques sont mis à jour à l'intérieur de ces répertoires. Sans le Déplacement Intelligent
                 le renommage de tels répertoires conduirait à obtenir des jonctions ou liens symboliques morts, soit ne pointant plus sur la cible.
 
@@ -1421,7 +1421,7 @@
                 </p>
 
                 <p>
-                    Les Clones Physiques et Symboliques peuvent également être créés par Glisser-Déposer à la souris : sélectionnez un répertoire et glissez-le
+                    Les Clones Physiques et Symboliques peuvent également être créés par Glisser-Déposer à la souris. Sélectionnez un répertoire et glissez-le
                     tout en maintenant le bouton d'action enfoncé vers le répertoire de destination. Quand le bouton d'action
                     est relâché, ouvrez le sous-menu <b>Coller...</b> et sélectionnez <b>un clone physique</b>
                     ou sous Windows7/8/10 <b>un clone symbolique</b>:
@@ -1586,12 +1586,12 @@
                             </b>
                         </td>
                         <td>
-                            Miroir du répertoire <i>Source</i> vers <i>Backup1</i>. C'est ce
+                            Faire un Miroir du répertoire <i>Source</i> vers <i>Backup1</i>. C'est ce
                             qui est montré par la flèche verte :
                             <ul>
-                                <li>Garder inchangés les fichiers comme liens physiques vers InitialBackup.</li>
-                                <li>Supprimer les fichiers qui ne sont plus dans Source(t+1) de Backup1.</li>
-                                <li>Copier les fichiers différents de <i>Source(t+1)</i> vers <i>Backup1.</i></li>
+                                <li>Garde inchangés les fichiers comme liens physiques vers InitialBackup.</li>
+                                <li>Supprime les fichiers qui ne sont plus dans Source(t+1) de Backup1.</li>
+                                <li>Copie les fichiers différents de <i>Source(t+1)</i> vers <i>Backup1.</i></li>
                             </ul>
                             <p>
                         </td>
@@ -1644,9 +1644,9 @@
                             Faire un Miroir du répertoire <i>Source(t+2)</i> vers <i>Backup2</i>.
                             C'est ce qui est montré par la flèche verte :
                             <ul>
-                                <li>Garder inchangés les fichiers comme liens physiques vers Backup1.</li>
-                                <li>Supprimer les fichiers qui ne sont plus dans Source(t+2) de Backup2.</li>
-                                <li>Copier les fichiers plus récents de <i>Source(t+2)</i> vers <i>Backup2.</i></li>
+                                <li>Garde inchangés les fichiers comme liens physiques vers Backup1.</li>
+                                <li>Supprime les fichiers qui ne sont plus dans Source(t+2) de Backup2.</li>
+                                <li>Copie les fichiers plus récents de <i>Source(t+2)</i> vers <i>Backup2.</i></li>
                             </ul>
                             <p>
                         </td>
@@ -1669,7 +1669,8 @@
                 </p>
                 <img src="deloreandrop.png" alt="Pick a directory for DeLorean Copy" />
 
-                <br /><p>
+                <br />
+                <p>
                     Si une Copie DeLorean est effectuée pour la première fois dans un répertoire, les opérations, qui sont décrites dans la
                     phase 1 des descriptions ci-dessus, en fait une Copie Intelligente, sont réalisées. Link Shell Extension automatiquement
                     génère un nom de répertoire de destination en y ajoutant un horodatage.<br />
@@ -1798,8 +1799,7 @@
             <td class="bodytext">
                 <p>
                     Les points de montage sont une fonctionnalité permettant
-                    d'accéder à un volume local complet depuis une position arbitraire de disque. Les points de montage de volume
-                    n'étaient pas supportés dans NTFS Version 4.0
+                    d'accéder à un volume local complet depuis une position arbitraire de disque.
                 </p>
 
                 <p>
@@ -1857,10 +1857,10 @@
             </td>
 
             <td class="bodytext">
-                Comme décrit dans les <a href="#backgrounders">fiches d'informations</a> à l'intérieur du flux de données par &#8220;défaut&#8221; de tous les objets de données
-                NTFS maintient un compteur référençant combien de fois une entrée de répertoire NTFS se réfère à un objet. Dans la plupart des cas chaque entrée se
-                réfèrera à un répertoire différent, bien qu'il soit possible d'avoir des liens multiple vers un même objet de données dans un répertoire,
-                à condition qu'ils aient un nom unique.
+                Comme décrit dans les <a href="#backgrounders">fiches d'informations</a>
+                NTFS maintient un compteur pour chaque flux de données référençant combien de fois une entrée de répertoire NTFS se réfère à cet objet.
+                
+                
                 <br />
                 <br />
 
@@ -2018,7 +2018,7 @@
             <td class="bodytext">
                 <p>
                     Sélectionnez tout simplement un fichier qui a un lien physique et
-                    sélectionnez ses <a href="#linkproperties">Propriétés </a>par un clic droit sur le menu d'action:
+                    sélectionnez ses <a href="#linkproperties">Propriétés </a>depuis le menu d'action:
                 <p>
 
                 <p>
@@ -2191,7 +2191,7 @@
                 <a name="verylongpath"><b>Chemins très longs</b></a>
             </td>
             <td>
-                l'API Win32 supporte des noms de chemins contenant jusqu'à 256 caractères, ce qui impose cette contrainte de longueur de nom à toutes les applications.
+                L'explorateur supporte des noms de chemins contenant jusqu'à 256 caractères, ce qui impose cette contrainte de longueur de nom à toutes les applications.
                 <p>
                     D'un autre côté NTFS supporte des noms de chemins contenant jusqu'à 32767 caractères, aussi est-on
                     vite confronté à ces longueurs de noms de chemins plus longs que 256 caractères. Pour faire face
@@ -2760,8 +2760,8 @@
 
                             </ul>
                         </p>
-
-
+                    </li>
+                    
                     <li>
                         <b>
                             <a name="faq09">Q</a> : Quand je crée des liens Symboliques ils apparaissent dans l'Explorateur avec une taille de 0 octets. Je ne me rappelle pas si
@@ -2853,11 +2853,15 @@
 
                     <tr>
                         <td class="history">
-                            <a name="3930">26 Janvier 2020</a>
+                            <a name="3930">10 Janvier 2021</a>
                         </td>
                         <td>
-                            Version 3.9.3.3
+                            Version 3.9.3.4
                             <ul>
+                                <!-- 3.9.3.4, 10.01.2021 -->
+                                <li>Traduction de la Documentation en Allemand.</li>
+                                <!-- 3.9.3.4, 16.02.2020 -->
+                                <li>Appuyer sur F1 dans LSEConfig le faisait planter. Corrigé.</li>
                                 <!-- 3.9.3.3, 26.01.2020 -->
                                 <li>Lors du clonage d'un lien Physique/Symbolique, appuyer sur Annuler n'avait aucun effet.</li>
                                 <!-- 3.9.3.2, 5.01.2020 -->

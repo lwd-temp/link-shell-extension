@@ -1,11 +1,11 @@
 ﻿$packageName = 'Link Shellextension'
 $installerType = 'exe'
 $silentArgs = '/S /noredist'
-$url = 'https://schinagl.priv.at/nt/hardlinkshellext/save/3933/HardLinkShellExt_win32.exe'
-$checksum = 'faf8636fd5f28f60df5158860fb7107e5fa0bd9aedc06c0986b361a7dab7217f'
+$url = 'https://schinagl.priv.at/nt/hardlinkshellext/save/3934/HardLinkShellExt_win32.exe'
+$checksum = '1353122044bf8613bdd9a557b1e003724e579bde410a87f5e2e831c4ecadef68'
 $checksumType = 'sha256'
-$url64 = 'https://schinagl.priv.at/nt/hardlinkshellext/save/3933/HardLinkShellExt_X64.exe'
-$checksum64 = 'cc60bd4b6808770cd32e748dd4b2bf3f97b9b895c20954fc094d7f5b698a2e9c'
+$url64 = 'https://schinagl.priv.at/nt/hardlinkshellext/save/3934/HardLinkShellExt_X64.exe'
+$checksum64 = '032db48f2c84011dd65d141cc52f00528883e7257a946f77143a957f5ca3fe9a'
 $checksumType64 = 'sha256'
 $validExitCodes = @(0)
 
