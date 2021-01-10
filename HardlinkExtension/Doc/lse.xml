@@ -7,6 +7,22 @@
     <language>en</language>
 
     <item>
+      <title>LSE 3.934 has been released.</title>
+      <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3930</link>
+      <pubDate>Tue, 10 Jan 2021 19:00:15 +0100</pubDate>
+      <description>
+        LSE 3.934 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+            <li>German Translation of Documentation.</li>
+            <li>Pressing F1 in LSEConfig crashed it. Fixed.</li>
+        ]]>
+      </content:encoded>
+      <guid>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3934</guid>
+    </item>
+
+    <item>
       <title>ln.exe 2.930 has been released.</title>
       <link>https://schinagl.priv.at/nt/ln/ln.html#2930</link>
       <pubDate>Sun, 4 January 2021 13:00:50:15 +0100</pubDate>

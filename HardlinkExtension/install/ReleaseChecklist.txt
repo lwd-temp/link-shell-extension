@@ -11,11 +11,19 @@ Docu Versionsnummer linkshellextension_fr.html top
 Docu Versionsnummer linkshellextension_fr.html in history
 Docu Datum linkshellextension_fr.html in history
 
+Docu Versionsnummer linkshellextension_de.html top
+Docu Versionsnummer linkshellextension_de.html in history
+Docu Datum linkshellextension_de.html in history
+
 Docu Versionsnummer ln\Doc\ln.html top
 Docu Versionsnummer ln\Doc\ln.html  'The 2.9.2.x version is a stable version'
 
 Docu Versionsnummer lse.xml: <title> <pubDate> <description> <![CDATA[> <guid> 
 
+if only one product, e.g. ln.exe 
+	check bat/FilesToUpload.txt and temporarily delete what shall not be uploaded to symbol server
+	Change goto statements in bat/MediaUpload.bat so that only generated products are uploaded to choco
+	
 BuildWorld.bat
 Check if all plattforms are selected in Batch Build
 
