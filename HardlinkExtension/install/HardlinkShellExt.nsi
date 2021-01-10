@@ -784,6 +784,7 @@ Section
   File ..\Doc\cancelpickbackground.png
   File ..\Doc\linkshellextension.html
   File ..\Doc\linkshellextension_fr.html
+  File ..\Doc\linkshellextension_de.html
   
   File ..\Doc\remotecapabilities.png
   File ..\Doc\junctionreplacementdrop.png
@@ -804,6 +805,7 @@ Section
 
   File ..\Doc\french.png
   File ..\Doc\english.png
+  File ..\Doc\german.png
   
   File ..\Doc\enumeratehardlinks.png
   File ..\Doc\enumeratehardlinksxp.png

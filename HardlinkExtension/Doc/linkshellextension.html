@@ -152,6 +152,7 @@
                 <a href="#history">History</a><br />
                 <a href="#contact">Donations</a><br /><br />
                 <a href="linkshellextension_fr.html"><img src="french.png" />French</a><br /><br />
+                <a href="linkshellextension_de.html"><img src="german.png" />German</a><br /><br />
             </td>
         </tr>
 
@@ -288,10 +289,14 @@
 
                 <b>Uninstall</b><br />
                 Link Shell Extension can also be uninstalled silently by issuing
+                <br />
+                <br />
 
                 <span class="ascode">
                     <b>$LSEInstallDir/uninst-HardLinkShellExt_$(platform).exe /S </b>
                 </span>
+                <br />
+                <br />
 
                 If the /S switch is used during uninstall, explorer.exe will be restarted after uninstallation, to make Link Shell Extension
                 inactive immediately.
@@ -399,7 +404,7 @@
             <td class="bodytext">
                 Since LSE supports <a href="#junctions">Junction</a>,
                 <a href="#hardlinkclones">Clones</a> and <a href="#symboliclinks">Symbolic Links</a>,
-                when one or more folders are selected as the Source Links they can be dropped in several forms.
+                when one or more folders are selected as the Source, they can be dropped in several ways.
                 <br />
                 <br />
                 To avoid crowding the popup menu, a submenu is provided that contains the different types of Links applicable to folders.
@@ -442,8 +447,8 @@
             </td>
 
             <td class="bodytext">
-                Files can&nbsp;
-                be hard linked to the same folder as the source folder. Because two directory entries cannot have the same name, LSE uses
+                Files can 
+				be hard linked to the same folder as the source folder. Because two directory entries cannot have the same name, LSE uses
                 '$filename - Hardlink.$ext' as the name of the the new link.
                 <br />
                 <br />
@@ -532,11 +537,6 @@
                 double clicked in explorer the error ERROR_INVALID_REPARSE_DATA(4392), will
                 show up and tell you that the info in the reparse point is illegal, even if
                 it is not.
-                <br />
-                <br />
-
-                <b>@Microsoft</b>: Why didn't you enable this feature for junctions, even if the syntax
-                for UNC junctions is defined: \??\UNC\server\share. Any help appreciated.
                 <br />
                 <br />
 
@@ -737,8 +737,8 @@
                             <b>Inner Junctions<br />Symlinks</b>
                         </td>
                         <td>
-                            The folder 'Inner Junction/Symlink' is targeted at 'Inner
-                            Junction/Symlink Target'. In LSE terms this kind of folder is called <i>Inner Junction/Symlink</i>, because its target points to a folder, which is below
+                            The folder 'Inner Junction/Symlink' is targeted at 'Inner Junction/Symlink Target'. 
+							In LSE terms this kind of folder is called <i>Inner Junction/Symlink</i>, because its target points to a folder, which is below
                             the common anchor 'Folder 1'.
                             <br />
                             <br />
@@ -769,6 +769,8 @@
                         </td>
                     </tr>
                 </table>
+                <br />
+                <br />
                 Windows7/8/10 support Symbolic Links, which behave as follows during
                 Smart Copy:
                 <br />
@@ -780,6 +782,8 @@
 
                 By closely looking at the above picture one can find three different types of files/symbolic
                 links:
+                <br />
+                <br />
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
                     <tr>
                         <td class="hanger2">
@@ -926,7 +930,7 @@
                             <br />
                             <p>
                                 In the above example <i>Folder1</i> is copied to <i>Destination/Folder1</i>, but<i>Outer Junction/Symlink</i> is not available in the destination,
-                                because <i>Folder1/Outer Junction/Symlink </i> pointed to <i>Folder0/Outer Junction/Symlink Target</i>,
+                                because <i>Folder1/Outer Junction/Symlink</i> pointed to <i>Folder0/Outer Junction/Symlink Target</i>,
                                 which is not below <i>Folder1</i>.
                             </p>
                             <p>
@@ -939,6 +943,8 @@
                                 <b>Enabling Crop for Outer Junction/Symbolic Links</b><br />
                                 <i>Crop</i> can be selected via the <a href="#configuration">configuration tool.</a>
                             </p>
+                            <br />
+                            <br />
                         </td>
                     </tr>
                     <tr>
@@ -1054,7 +1060,7 @@
                             <p>
                                 In the above example <i>Folder1</i> is copied to <i>Destination</i>, and
                                 <i>Junction/Symlink F0</i> and is unrolled as expected, but it contains inner
-                                nested reparse points. <i>Nested</i> means Reparse point pointing to Reparse Points
+                                nested reparse points. <i>Nested</i> means Reparse Points pointing to Reparse Points
                             </p>
 
                             <p>
@@ -1182,6 +1188,8 @@
                             <p>
                                 <i>Splice</i> can be selected via the <a href="#configuration">configuration tool.</a>
                             </p>
+                            <br />
+                            <br />
                         </td>
                     </tr>
                 </table>
@@ -1203,7 +1211,7 @@
                 <p>
                     In the above example <i>Location1</i> and <i>Location2</i> are copied to <i>Destination</i>.
                     <i>Location2/Junction20</i> is treated as inner junctions to <i>Location1/Folder10</i> in the source,
-                    and that's why <i>Destination/Junction20</i> points to <i>Destination/Folder10 in the Destination</i>.
+                    and that's why <i>Destination/Junction20</i> points to <i>Destination/Folder10</i> in the Destination.
                 </p>
                 <p>
                     The objective behind this is to treat all junctions/symlinks as inner junctions/symlins as long as
@@ -1240,7 +1248,7 @@
             </td>
 
             <td class="bodytext">
-                Smart Move enables folders with junctions and symbolic links beneath to be renamed, and the
+                Smart Move enables folders with junctions and symbolic links beneath to be renamed. The
                 junctions and symbolic links' targets are updated below that folder. Without Smart Move
                 renaming of such folders would end in dead junctions and symbolic links.
 
@@ -1262,16 +1270,22 @@
                     <tr>
                         <td class="hanger2">
                             <b>Normal Folders</b>
+                            <br />
+                            <br />
                         </td>
 
                         <td>
                             The folder 'Folder 3' is a normal folder. It gets moved with its content straight forward.<p>
+                            <br />
+                            <br />
                         </td>
                     </tr>
 
                     <tr>
                         <td class="hanger2">
                             <b>Inner Junctions<br />Symlinks</b>
+                            <br />
+                            <br />
                         </td>
 
                         <td>
@@ -1280,6 +1294,8 @@
                             points to a folder, which is below the common anchor 'Folder 1'.<p>
                                 <i>Inner Junctions/Symlink</i> are updated properly via Smart Move in the destination location.
                             <p>
+                            <br />
+                            <br />
 
                         </td>
                     </tr>
@@ -1287,6 +1303,8 @@
                     <tr>
                         <td class="hanger2">
                             <b>Outer Junctions<br />Symlinks</b>
+                            <br />
+                            <br />
                         </td>
 
                         <td>
@@ -1298,6 +1316,8 @@
                                 Please note that this is different to Smart Copy, which has <a href="#outerjunctionhandling"> 3 different ways </a>
                                 to deal with Outer Junctions/Symbolic Links.
                             </p>
+                            <br />
+                            <br />
                         </td>
                     </tr>
                 </table>
@@ -1368,7 +1388,7 @@
                 Outer Junctions/Symbolic links are recreated with respect to the specified
                 <a href="#outerjunctionhandling">Outer Junction/Symbolic Link handling</a>. e.g.<p>
 
-                    With Windows7/8/10 this cloning process is also available with Symbolic Links instead of Hardlinks.
+                With Windows7/8/10 this cloning process is also available with Symbolic Links instead of Hardlinks.
 
                 <p>
                     <img src="symlinkssmart.png" alt="Symbolic Link Clones the smart way" />
@@ -1401,7 +1421,7 @@
                 </p>
 
                 <p>
-                    HardLink and Symbolic Link Clones can also be created via Drag and Drop, select a folder and drag
+                    HardLink and Symbolic Link Clones can also be created via Drag and Drop. Select a folder and drag
                     with the action button depressed to a destination folder. When the action button
                     is released open the <b>Drop Here...</b> submenu and select <b>HardLink Clone</b>
                     or with Windows7/8/10 <b>Symbolic Link Clone</b>:
@@ -1520,7 +1540,7 @@
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
                     <tr>
                         <td class="hanger2">
-                            <b>Phase 1: Intial SmartCopy</b>
+                            <b>Phase 1: Initial SmartCopy</b>
                             <br />
                             <br />
                         </td>
@@ -1566,12 +1586,12 @@
                             </b>
                         </td>
                         <td>
-                            Mirror the folder <i>Source</i> to <i>Backup1</i>. This
+                            Mirrors the folder <i>Source</i> to <i>Backup1</i>. This
                             is shown by the green arrow:
                             <ul>
-                                <li>Keep unchanged files as hardllinks to InitialBackup.</li>
-                                <li>Delete files not anymore in Source(t+1) from Backup1.</li>
-                                <li>Copy different files from <i>Source(t+1)</i> to <i>Backup1</i>.</li>
+                                <li>Keeps unchanged files as hardllinks to InitialBackup.</li>
+                                <li>Deletes files not anymore in Source(t+1) from Backup1.</li>
+                                <li>Copies different files from <i>Source(t+1)</i> to <i>Backup1</i>.</li>
                             </ul>
                             <p>
                         </td>
@@ -1609,7 +1629,7 @@
                             <br />
                         </td>
                         <td>
-                            The folder <i>Backup1</i> is Hardlink Cloned to <i>Backup2,</i>
+                            The folder <i>Backup1</i> is Hardlink Cloned to <i>Backup2</i>,
                             which ties <i>Backup1</i> and <i>Backup2</i>. This is shown by the red arrow.<br />
                             <br />
                             <p>
@@ -1621,12 +1641,12 @@
                             <br />
                         </td>
                         <td>
-                            Mirror the folder <i>Source(t+2)</i> to <i>Backup2</i>.
+                            Mirrors the folder <i>Source(t+2)</i> to <i>Backup2</i>.
                             This is shown by the green arrow:
                             <ul>
-                                <li>Keep unchanged files as hardllinks to Backup1.</li>
-                                <li>Delete files not anymore in Source(t+2) from Backup2.</li>
-                                <li>Copy newer files from <i>Source(t+2)</i> to <i>Backup2</i>.</li>
+                                <li>Keeps unchanged files as hardllinks to Backup1.</li>
+                                <li>Deletes files not anymore in Source(t+2) from Backup2.</li>
+                                <li>Copie newer files from <i>Source(t+2)</i> to <i>Backup2</i>.</li>
                             </ul>
                             <p>
                         </td>
@@ -1649,7 +1669,8 @@
                 </p>
                 <img src="deloreandrop.png" alt="Pick a directory for DeLorean Copy" />
 
-                <br /><p>
+                <br />
+                <p>
                     If a DeLorean Copy was dropped the first time onto a directory, the operations, which are described under
                     phase 1 in the above descriptions, namely a Smart Copy, is performed. Link Shell Extension automatically
                     generated the folder name for the destination by appending a timestamp.<br />
@@ -1778,8 +1799,7 @@
             <td class="bodytext">
                 <p>
                     Volume Mountpoints provides functionality to
-                    map complete local volumes onto arbitrary disk locations. Volume Mountpoints
-                    were not supported in NTFS Version 4.0
+                    map complete local volumes onto arbitrary disk locations. 
                 </p>
 
                 <p>
@@ -1837,10 +1857,10 @@
             </td>
 
             <td class="bodytext">
-                As described in the <a href="#backgrounders">backgrounders section</a> within the &#8220;default&#8221; data stream of all data objects
-                NTFS maintains a reference count how many NTFS directory entries refer to object. In most scenarios each entry will
-                refer a different folder, although it is possible to have multiple links to the same data object in the one folder,
-                providing they have folder unique names
+                As described in the <a href="#backgrounders">backgrounders section</a> 
+                NTFS maintains a reference count for each data stream object how many NTFS directory entries refer to that objects.
+
+
                 <br />
                 <br />
 
@@ -1986,22 +2006,6 @@
                 Overlay icons for Symbolic Links can also be <a href="#customoverlayicons">customized.</a>
                 <p>
                     <br />
-
-
-
-                    <b>@Microsoft: Symbolic links without elevation:</b> Lets see if this paragraph
-                    is read by someone. I don't know if it is a bug or a feature, but one
-                    can create symbolic links without elevation, if you create a hardlink
-                    from a symbolic link. That sounds weird, but it works. And by a closer
-                    look at this stuff, it can be seen, that LSE really uses CreateHardlink()
-                    and a symbolic link is created. MS guys! Your opinion?
-                <p>
-
-                    <b>@Microsoft: Symbolic can span network drives</b> as long as the target is a
-                    drive letter mapped drive, but it fails for UNC names in symbolic link target with
-                    error ERROR_LOGON_FAILURE(1326), even if the network is connected properly.
-                </p><br />
-
             </td>
         </tr>
 
@@ -2014,7 +2018,7 @@
             <td class="bodytext">
                 <p>
                     Simply select a hardlinked file and select
-                    <a href="#linkproperties">Properties </a>from the right click action menu:
+                    <a href="#linkproperties">Properties </a>from the action menu:
                 <p>
 
                 <p>
@@ -2122,13 +2126,6 @@
                 count of a hardlink is reported via SMB1.0 in 90% correctly, so please
                 be aware of this restriction.<p>
 
-                    <b>@Microsoft</b>: Why does this happen in 90%? I have scanned my code
-                    in the meantime many times, and it is obvious, that the same call
-                    sometimes succeeds and sometimes not. Why??? If you wanna hunt
-                    down a bug in your code, please contact me!
-                <p>
-
-
                 <p>
                     LSE supports both, mapped network drives and UNC paths.
                 <p>
@@ -2163,8 +2160,6 @@
                     for hardlinked files, but you will be able to create them remotley.<br />
                 <p>
 
-                    <b>@Microsoft:</b> Is this implementation since SMB2.0 a bug or a feature?
-
                     <br />
                     <br />
 
@@ -2196,7 +2191,7 @@
                 <a name="verylongpath"><b>Very long Path</b></a>
             </td>
             <td>
-                The Win32 API supports pathnames up to 256 characters, thus limiting all applications to that length for pathnames.
+                Explorer supports pathnames up to 256 characters, thus limiting all applications to that length for pathnames.
                 <p>
                     On the other hand NTFS supports pathnames with up to 32767 characters, so one might
                     have already experienced pathnames, which are longer than 256 characters. To deal
@@ -2213,7 +2208,7 @@
             </td>
             <td class="bodytext">
                 <p>
-                    With the subst.exe command one can create driveletters, which point to certain path on a NTFS volume. This means that two
+                    With the subst.exe command one can create driveletters, which point to a certain path on a NTFS volume. This means that two
                     different driveletters in the end might resolve to locations on the same NTFS volume. <br />
                     Link Shell Extension checks these situations when it comes to allow the creation of hardlinks, and as a consequence allows
                     the creation of hardlinks among different logical drives if they resolve to the same NTFS volume.
@@ -2765,7 +2760,7 @@
 
                             </ul>
                         </p>
-
+                    </li>
 
                     <li>
                         <b>

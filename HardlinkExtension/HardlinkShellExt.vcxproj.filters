@@ -146,6 +146,9 @@
     <None Include="..\bat\MediaUpload.bat">
       <Filter>Bat</Filter>
     </None>
+    <None Include="Doc\linkshellextension_de.html">
+      <Filter>Docu</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CopyHook.h">
