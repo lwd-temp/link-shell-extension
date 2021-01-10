@@ -320,6 +320,12 @@
     <None Include="..\bat\SymStoreDel.bat" />
     <None Include="..\BuildWorld.bat" />
     <None Include="..\bat\SourceIndex.bat" />
+    <None Include="Doc\linkshellextension_de.html">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
     <None Include="install\choco\linkshellextension.nuspec">
       <SubType>Designer</SubType>
     </None>

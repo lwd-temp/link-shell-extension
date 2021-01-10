@@ -152,6 +152,7 @@
                 <a href="#history">Historique</a><br />
                 <a href="#contact">Donations</a><br /><br />
                 <a href="linkshellextension.html"><img src="english.png" />English</a><br /><br />
+                <a href="linkshellextension_de.html"><img src="german.png" />German</a><br /><br />
             </td>
         </tr>
 
@@ -288,10 +289,14 @@
 
                 <b>Désinstallation</b><br />
                 Link Shell Extension peut aussi se désinstaller silencieusement en faisant
+                <br />
+                <br />
 
                 <span class="ascode">
                     <b>$LSEInstallDir/uninst-HardLinkShellExt_$(platform).exe /S </b>
                 </span>
+                <br />
+                <br />
 
                 Si on utilise le paramètre /S lors d'une désinstallation, explorer.exe sera redémarré en fin de désinstallation, afin de désactiver
                 immédiatement Link Shell Extension.
@@ -535,11 +540,6 @@
                 <br />
                 <br />
 
-                <b>@Microsoft</b>: Pourquoi n'avez-vous pas activé cette fonctionnalité pour les jonctions, même si la syntaxe
-                pour les jonctions UNC est définie par : \??\UNC\server\share. Une aide serait appréciée.
-                <br />
-                <br />
-
                 Une élévation de privilèges est nécessaire dans certains répertoires, comme par exemple c:\Program Files
                 pour pouvoir y créer des jonctions. C'est la raison pour laquelle le célèbre dialogue <a href="#VistaAndUAC">UAC</a> doit être accepté.
                 <br />
@@ -769,6 +769,8 @@
                         </td>
                     </tr>
                 </table>
+                <br />
+                <br />
                 Windows 7/8/10 supportent les Liens Symboliques qui se comportent comme suit durant
                 une Copie Intelligente :
                 <br />
@@ -780,6 +782,8 @@
 
                 En observant de près l'image ci-dessus on peut voir trois types différents de fichiers/liens
                 symboliques :
+                <br />
+                <br />
                 <table cellspacing="0" cellpadding="0" border="0" class="bodytext">
                     <tr>
                         <td class="hanger2">
@@ -939,6 +943,8 @@
                                 <b>Activation de la suppression pour les Jonctions/Liens symboliques sortants</b><br />
                                 <i>Supprimer</i> peut être sélectionné via <a href="#configuration">l'outil de configuration.</a>
                             </p>
+                            <br />
+                            <br />
                         </td>
                     </tr>
                     <tr>
@@ -1182,6 +1188,8 @@
                             <p>
                                 <i>Préserver</i> peut être sélectionné via <a href="#configuration">l'outil de configuration.</a>
                             </p>
+                            <br />
+                            <br />
                         </td>
                     </tr>
                 </table>
@@ -1262,16 +1270,22 @@
                     <tr>
                         <td class="hanger2">
                             <b>Répertoires Normaux</b>
+                            <br />
+                            <br />
                         </td>
 
                         <td>
                             Le répertoire 'Folder 3' est un répertoire normal. Il sera déplacé avec son contenu directement.<p>
+                            <br />
+                            <br />
                         </td>
                     </tr>
 
                     <tr>
                         <td class="hanger2">
                             <b>Jonctions / Liens<br />Symboliques Internes</b>
+                            <br />
+                            <br />
                         </td>
 
                         <td>
@@ -1280,6 +1294,8 @@
                             pointe vers un répertoire qui est situé en dessous de la racine commune 'Folder 1'.<p>
                                 Les <i>Jonctions / Liens Symboliques Internes</i> sont correctement mis à jour par un Déplacement Intelligent dans la localisation de destination.
                             <p>
+                            <br />
+                            <br />
 
                         </td>
                     </tr>
@@ -1287,6 +1303,8 @@
                     <tr>
                         <td class="hanger2">
                             <b>Jonctions / Liens<br />Symboliques Externes</b>
+                            <br />
+                            <br />
                         </td>
 
                         <td>
@@ -1298,6 +1316,8 @@
                                 Notez SVP que ce n'est pas la même chose dans une Copie Intelligente, qui a <a href="#outerjunctionhandling"> 3 façons différentes </a>
                                 de se comporter avec les Jonctions/Liens Symboliques Externes.
                             </p>
+                            <br />
+                            <br />
                         </td>
                     </tr>
                 </table>
@@ -1986,22 +2006,6 @@
                 Les icônes de superposition des Liens Symboliques peuvent aussi être <a href="#customoverlayicons">personnalisées.</a>
                 <p>
                     <br />
-
-
-
-                    <b>@Microsoft : Liens Symboliques sans élévation:</b> Voyons si ce paragraphe
-                    est lu par quelqu'un. Je ne sais pas si c'est un bug ou une fonctionnalité voulue, mais
-                    on peut créer des liens symboliques sans élévation de privilège, si vous créez un lien physique
-                    sur un lien symbolique. Cela semble étrange, mais ça marche. Et en y regardant de plus près
-                    on peut voir que LSE utilise en réalité CreateHardlink()
-                    et qu'un lien symbolique est créé. Eh les gars de MS ! Votre opinion ?
-                <p>
-
-                    <b>@Microsoft : Les liens Symboliques peuvent s'étendre aux disques réseau</b> du moins si le disque cible est
-                    affecté à une lettre, mais ça plante pour des noms UNC sur un lien symbolique avec l'erreur
-                    ERROR_LOGON_FAILURE(1326), même si le réseau est correctement connecté.
-                </p><br />
-
             </td>
         </tr>
 
@@ -2122,13 +2126,6 @@
                 référence d'un lien physique fonctionne correctement via SMB1.0 dans 90% des cas, aussi soyez
                 conscient de cette restriction.<p>
 
-                    <b>@Microsoft</b> : Pourquoi ça ne marche que dans 90%? J'ai regardé mon code
-                    depuis plusieurs fois, est c'est évident, que le même appel
-                    parfois fonctionne et parfois ne marche pas. Pourquoi ??? Si vous voulez traquer un bug
-                    dans votre code, SVP contactez-moi !
-                <p>
-
-
                 <p>
                     LSE supporte à la fois les disques réseaux mappés et les chemins UNC.
                 <p>
@@ -2162,8 +2159,6 @@
                     qui est sur une machine Windows7/8/10, vous ne pourrez pas voir les icônes de superpositions
                     sur les fichiers liens physiques, mais vous serez capable d'en créer en ligne.<br />
                 <p>
-
-                    <b>@Microsoft :</b> Cette implémentation depuis SMB2.0 est un bug ou une fonctionnalité ?
 
                     <br />
                     <br />
