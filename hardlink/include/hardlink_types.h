@@ -263,9 +263,9 @@ public:
   wstring  Argv;
   wstring  ArgvOrg;
   wstring  ArgvDest;
-  int           DriveType;
-  int           FileAttribute;
-  int           Flags;
+  int      DriveType;
+  int      FileAttribute;
+  int      Flags;
 
   enum {
     Created = 1,

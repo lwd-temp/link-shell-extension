@@ -3366,6 +3366,9 @@ wmain(
   //
   if (DeepPathDelete)
   {
+    if (INVALID_FILE_ATTRIBUTES == Argv1Path.FileAttribute)
+      Exit (ERR_SOURCE_DIR_DOES_NOT_EXIST);
+
     if (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
     {
       XDelStatistics xs;
@@ -4030,8 +4033,8 @@ wmain(
         {
           int lenArgv2 = Argv2Path.ArgvOrg.length();
           if (
-            // If Argv2 contains a traling slash and Argv1 is a directory 
-            (lenArgv2 && Argv2Path.ArgvOrg[lenArgv2 - 1] == '\\' && (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)) ||
+            // If Argv2 contains a traling slash ( \ or / ) and Argv1 is a directory 
+            (lenArgv2 && (Argv2Path.ArgvOrg[lenArgv2 - 1] == '\\' || Argv2Path.ArgvOrg[lenArgv2 - 1] == '/') && (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)) ||
             // or Argv1 is a normal file ...
             (Argv1Path.FileAttribute & (FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_NORMAL))
             )
