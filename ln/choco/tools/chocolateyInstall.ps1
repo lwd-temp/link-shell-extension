@@ -1,9 +1,9 @@
 ﻿$packageName = 'ln'
-$url = 'https://schinagl.priv.at/nt/ln/save/2930/ln.zip'
-$checksum = 'd9d4f7a2f1dec92b201a042b6efc600ce06e30aaef53f3547d2be20a0f881646'
+$url = 'https://schinagl.priv.at/nt/ln/save/2931/ln.zip'
+$checksum = 'a229fcb3c0bc403cc3d72cabaeb3d89cf8b2b99f03d19c6ab5147bc7b3aa561d'
 $checksumType = 'sha256'
-$url64 = 'https://schinagl.priv.at/nt/ln/save/2930/ln64.zip'
-$checksum64 = '0316be3abdca74afb3a2bbd995edbaef155c4adb6bcb048706ccab66ec9f087e'
+$url64 = 'https://schinagl.priv.at/nt/ln/save/2931/ln64.zip'
+$checksum64 = '9accc61ad084767b99f79e6548da94c3d844775f5e618ba9a04a6192d34f5a32'
 $checksumType64 = 'sha256'
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 
