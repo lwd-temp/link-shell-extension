@@ -7,6 +7,21 @@
     <language>en</language>
 
     <item>
+      <title>ln.exe 2.931 has been released.</title>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2930</link>
+      <pubDate>Sun, 14 January 2021 20:30:50:15 +0100</pubDate>
+      <description>
+        ln.exe 2.931 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>Symbolic Link creation required admin even in developer mode.</li>
+        ]]>
+      </content:encoded>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2931</guid>
+    </item>
+
+    <item>
       <title>LSE 3.934 has been released.</title>
       <link>https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#3930</link>
       <pubDate>Tue, 10 Jan 2021 19:00:15 +0100</pubDate>

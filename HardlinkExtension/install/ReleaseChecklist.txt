@@ -16,7 +16,7 @@ Docu Versionsnummer linkshellextension_de.html in history
 Docu Datum linkshellextension_de.html in history
 
 Docu Versionsnummer ln\Doc\ln.html top
-Docu Versionsnummer ln\Doc\ln.html  'The 2.9.2.x version is a stable version'
+Docu Versionsnummer ln\Doc\ln.html  'The 2.9.3.x version is a stable version'
 
 Docu Versionsnummer lse.xml: <title> <pubDate> <description> <![CDATA[> <guid> 
 
