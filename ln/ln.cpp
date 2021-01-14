@@ -4015,18 +4015,18 @@ wmain(
       {
         // --symbolic
         //
-        int RelativeFlag = Absolute ? 0 : SYMLINK_FLAG_RELATIVE;
-        
+        int SymlinkFlag = Absolute ? 0 : SYMLINK_FLAG_RELATIVE;
+
         // If the first argument is a directory we assume two directories get linked
         if (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
-          RelativeFlag |= SYMLINK_FLAG_DIRECTORY;
+          SymlinkFlag |= SYMLINK_FLAG_DIRECTORY;
 
         // If the first argument is a file and the second is an existing directory, we concatenate the filename to that directory
         if (
-//          (Argv1Path.FileAttribute & (FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_NORMAL)) &&
-          (Argv2Path.FileAttribute != INVALID_FILE_ATTRIBUTES) && 
+          //          (Argv1Path.FileAttribute & (FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_NORMAL)) &&
+          (Argv2Path.FileAttribute != INVALID_FILE_ATTRIBUTES) &&
           (Argv2Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
-        )
+          )
         {
           int lenArgv2 = Argv2Path.ArgvOrg.length();
           if (
@@ -4055,7 +4055,12 @@ wmain(
           }
         }
         if (ERROR_SUCCESS == result)
-          result = CreateSymboliclink(Argv2, Argv1, RelativeFlag);
+        {
+          if (SymLinkAllowUnprivilegedCreation(&gVersionInfo))
+            SymlinkFlag |= SYMLINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
+
+          result = CreateSymboliclink(Argv2, Argv1, SymlinkFlag);
+        }
       }
       else
       {
