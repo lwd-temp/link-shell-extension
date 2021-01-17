@@ -4435,79 +4435,89 @@ _ChangeTokenPrivilege(
   //
   // Check if we are allowed to change privileges
   //
-  if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
+  if (FALSE == OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
     return FALSE;
 
-  if (!LookupPrivilegeValue(NULL, PrivilegeName, &luid))
+  if (FALSE == LookupPrivilegeValue(NULL, PrivilegeName, &luid))
   {
     CloseHandle(hToken);
     return FALSE;
   }
 
-  //
-  // first pass.  get current privilege setting
-  //
-  tp.PrivilegeCount = 1;
-  tp.Privileges[0].Luid = luid;
-  tp.Privileges[0].Attributes = 0;
-
-  AdjustTokenPrivileges(
-    hToken,
-    FALSE,
-    &tp,
-    sizeof(TOKEN_PRIVILEGES),
-    &tpPrevious,
-    &cbPrevious
-  );
-
-  if (GetLastError() != ERROR_SUCCESS)
+  if (eProbePrivilege == aMode)
   {
-    CloseHandle(hToken);
-    return FALSE;
-  }
+    PRIVILEGE_SET checkPrivilege;
+    checkPrivilege.PrivilegeCount = 1;
+    checkPrivilege.Control = PRIVILEGE_SET_ALL_NECESSARY;
+    checkPrivilege.Privilege[0].Luid = luid;
+    checkPrivilege.Privilege[0].Attributes = SE_PRIVILEGE_ENABLED;
 
-  //
-  // second pass.  set privilege based on previous setting
-  //
-  tpPrevious.PrivilegeCount = 1;
-  tpPrevious.Privileges[0].Luid = luid;
-  switch (aMode)
-  {
-  case eSetPrivilege:
-    tpPrevious.Privileges[0].Attributes |= SE_PRIVILEGE_ENABLED;
-
-    AdjustTokenPrivileges(
-      hToken,
-      FALSE,
-      &tpPrevious,
-      cbPrevious,
-      NULL,
-      NULL
-    );
-    break;
-
-  case eClearPrivilege:
-    tpPrevious.Privileges[0].Attributes &= ~SE_PRIVILEGE_ENABLED;
-
-    AdjustTokenPrivileges(
-      hToken,
-      FALSE,
-      &tpPrevious,
-      cbPrevious,
-      NULL,
-      NULL
-    );
-    break;
-
-  case eProbePrivilege:
-    if (tpPrevious.Privileges[0].Attributes & SE_PRIVILEGE_ENABLED)
+    BOOL result = FALSE;
+    PrivilegeCheck(hToken, &checkPrivilege, &result);
+    
+    if (TRUE == result)
       SetLastError(ERROR_SUCCESS);
     else
       SetLastError(ERROR_PRIVILEGE_NOT_HELD);
-    break;
-
   }
+  else
+  {
+    //
+    // first pass.  get current privilege setting
+    //
+    tp.PrivilegeCount = 1;
+    tp.Privileges[0].Luid = luid;
+    tp.Privileges[0].Attributes = 0;
 
+    AdjustTokenPrivileges(
+      hToken,
+      FALSE,
+      &tp,
+      sizeof(TOKEN_PRIVILEGES),
+      &tpPrevious,
+      &cbPrevious
+    );
+
+    if (GetLastError() != ERROR_SUCCESS)
+    {
+      CloseHandle(hToken);
+      return FALSE;
+    }
+
+    //
+    // second pass.  set privilege based on previous setting
+    //
+    tpPrevious.PrivilegeCount = 1;
+    tpPrevious.Privileges[0].Luid = luid;
+    switch (aMode)
+    {
+    case eSetPrivilege:
+      tpPrevious.Privileges[0].Attributes |= SE_PRIVILEGE_ENABLED;
+
+      AdjustTokenPrivileges(
+        hToken,
+        FALSE,
+        &tpPrevious,
+        cbPrevious,
+        NULL,
+        NULL
+      );
+      break;
+
+    case eClearPrivilege:
+      tpPrevious.Privileges[0].Attributes &= ~SE_PRIVILEGE_ENABLED;
+
+      AdjustTokenPrivileges(
+        hToken,
+        FALSE,
+        &tpPrevious,
+        cbPrevious,
+        NULL,
+        NULL
+      );
+      break;
+    }
+  }
   DWORD r = GetLastError();
   CloseHandle(hToken);
   return r == ERROR_SUCCESS;
