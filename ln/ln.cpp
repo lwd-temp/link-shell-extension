@@ -1531,20 +1531,23 @@ Mirror(
   _ArgvList CloneDestination;
   for (_ArgvListIterator iter = aSourceDirList.begin(); iter != aSourceDirList.end(); ++iter)
   {
-    iter->ArgvDest = aDestination.Argv;
+    _ArgvPath destination;
+
+    // if no corresponding destination was given via --destination, assume there is only one destination
+    if (iter->ArgvDest.empty())
+    {
+      iter->ArgvDest = aDestination.Argv;
+    }
     if (!(iter->Flags & _ArgvPath::Anchor))
     {
-      // Add the first non-anchor as 'destination', which in this case is the source location
-      if (aDestination.ArgvDest.empty())
-      {
-        aDestination.Argv = iter->ArgvDest;
-        aDestination.ArgvDest= iter->Argv;
-      }
+      // for non-anchors, create a destination which is source-destination flipped 
+      destination.Argv = iter->ArgvDest;
+      destination.ArgvDest= iter->Argv;
     }
+    CloneDestination.push_back(destination);
   }
   // Provide a destination
-  CloneDestination.push_back(aDestination);
-
+  
   CopyStatistics	MirrorStatistics;
 #if defined SEPERATED_CLONE_MIRROR
   MirrorList.FindHardLink (aSourceDirList, 0, &MirrorStatistics, &PathNameStatusList, nullptr);

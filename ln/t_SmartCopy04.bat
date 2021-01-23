@@ -3,7 +3,7 @@ REM -----------------
 
 REM
 REM 1: directory
-REM 2: unroll/splice
+REM 2: copy/recursive
 REM 3: junction/symbolic
 REM 4: absolute during copy
 REM [5: absolute during creation]
@@ -36,7 +36,7 @@ REM
 REM Smart Copy/Clone with multiple destinations
 REM
 @%RD% %TESTROOTDST%
-
+pause
 %LN% %ABS_REL% --source %TESTROOTSRC%\F0 --destination %TESTROOTDST%\F0 --source %TESTROOTSRC%\F1 --destination %TESTROOTDST%\F1 %OPTION% %TESTROOTSRC%\S1 %TESTROOTDST%\S1 > sortout
 @echo off
 set ERRLEV=%errorlevel%
