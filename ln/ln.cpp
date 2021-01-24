@@ -1598,7 +1598,7 @@ Mirror(
   Enumerating(MirrorContext);
 #endif
 
-  MirrorStatistics.m_StartTime = CloneStatistics.m_StartTime ;
+  MirrorStatistics.m_StartTime = CloneStatistics.m_StartTime;
   GetLocalTime(&MirrorStatistics.m_CopyTime);
 
   if (gLogLevel != FileInfoContainer::eLogQuiet)

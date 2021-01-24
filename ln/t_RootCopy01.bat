@@ -145,7 +145,6 @@ REM
 
 @REM Copy --anchor && --backup to create dangling junctions
 @REM
-@REM pause
 %LN% --excludedir "System*" --backup --anchor %TESTROOTDST% --copy %TESTROOTSRC% %TESTROOTDST%\F_DST > sortout
 @set ERRLEV=%errorlevel%
 @sort sortout
