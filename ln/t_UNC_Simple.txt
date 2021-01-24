@@ -1,92 +1,24 @@
 
-D:\data\cpp\hardlinks\ln>..\Tools\where.exe  *.* test\UNCSimple   | sort
+C:\data\cpp\git\hardlinks\ln>..\Tools\where.exe  *.* test\UNCSimple   | sort
 10 matching file(s) found, using 4000 bytes.
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\_F\0_A
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\_F\1_A
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\_F\1_C
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder0\0_A
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder0\0_B
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder0\0_C
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder0\0_D
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder1\1_A
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder1\1_B
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder1\1_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\_F\0_A
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\_F\1_A
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\_F\1_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\Folder0\0_A
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\Folder0\0_B
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\Folder0\0_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\Folder0\0_D
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\Folder1\1_A
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\Folder1\1_B
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\Folder1\1_C
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy UNC to UNC via Localhost 
+C:\data\cpp\git\hardlinks\ln>REM --copy UNC to UNC via Localhost 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest  1>sortout 
-
-
-                      Overall
-              Total    Copied    Linked   Skipped  Excluded    Failed
-    Byte:     4.000     3.001       999         0         0         0
-    File:        10         7         3         0         0         0
-   Times:        00:00:00.002
-  Folder:         5         5         -         0         0         0
- Symlink:         0         -         0         0         0         0
-*h D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\0_A
-*h D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1\1_A
-*h D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1\1_C
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\F0
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\1_A
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\1_C
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_A
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_B
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_C
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_D
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1\1_B
-Junction:         0         -         0         0         0         0
-ErrorLevel == 0
-
-D:\data\cpp\hardlinks\ln>REM
-
-D:\data\cpp\hardlinks\ln>REM --delorean UNC to UNC 
-
-D:\data\cpp\hardlinks\ln>REM
-
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
-
-
--d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\F0
--f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_D
-                      Overall               Clone              Mirror
-              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
-    Byte:     3.468         0         0     3.468       532         0         0
-    File:         9         0         0         9         1         0         0
-   Times:        00:00:00.002        00:00:00.007        00:00:00.034
-  Folder:         4         0         -         4         1         0         0
- Symlink:         0         -         0         0         0         0         0
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\1_A
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\1_C
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_A
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_B
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_B
-=h D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\0_A
-=h D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_A
-=h D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_C
-Junction:         0         -         0         0         0         0         0
-ErrorLevel == 0
-
-D:\data\cpp\hardlinks\ln>REM
-
-D:\data\cpp\hardlinks\ln>REM --copy Drive to UNC via Localhost 
-
-D:\data\cpp\hardlinks\ln>REM
-
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\UNCSimple\source \\quadtatz\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest  1>sortout 
 
 
                       Overall
@@ -96,35 +28,35 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         5         5         -         0         0         0
  Symlink:         0         -         0         0         0         0
-*h D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\0_A
-*h D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1\1_A
-*h D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1\1_C
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\F0
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\1_A
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\1_C
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_A
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_B
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_C
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_D
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1\1_B
+*h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\_F\0_A
+*h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder1\1_A
+*h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder1\1_C
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\_F
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\_F\F0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder1
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\_F\1_A
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\_F\1_C
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder0\0_A
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder0\0_B
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder0\0_C
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder0\0_D
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder1\1_B
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean Dríve to UNC via Localhost 
+C:\data\cpp\git\hardlinks\ln>REM --delorean UNC to UNC 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean test\UNCSimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
 
 
--d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\F0
--f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_D
+-d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\F0
+-f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_D
                       Overall               Clone              Mirror
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:     3.468         0         0     3.468       532         0         0
@@ -132,29 +64,97 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean t
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
   Folder:         4         0         -         4         1         0         0
  Symlink:         0         -         0         0         0         0         0
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\1_A
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\1_C
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_A
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_B
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_B
-=h D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\0_A
-=h D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_A
-=h D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_C
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder1
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\1_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\1_C
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_B
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_B
+=h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\0_A
+=h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_A
+=h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_C
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy UNC to UNC via sharename, nolocaluncresolve 
+C:\data\cpp\git\hardlinks\ln>REM --copy Drive to UNC via Localhost 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocaluncresolve --copy \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy test\UNCSimple\source \\quadtatz\UNCsimple\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     4.000     3.001       999         0         0         0
+    File:        10         7         3         0         0         0
+   Times:        00:00:00.002
+  Folder:         5         5         -         0         0         0
+ Symlink:         0         -         0         0         0         0
+*h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\_F\0_A
+*h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder1\1_A
+*h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder1\1_C
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\_F
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\_F\F0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder1
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\_F\1_A
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\_F\1_C
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder0\0_A
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder0\0_B
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder0\0_C
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder0\0_D
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder1\1_B
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM --delorean Drive to UNC via Localhost 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean test\UNCSimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+
+
+-d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\F0
+-f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_D
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     3.468         0         0     3.468       532         0         0
+    File:         9         0         0         9         1         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         4         0         -         4         1         0         0
+ Symlink:         0         -         0         0         0         0         0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder1
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\1_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\1_C
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_B
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_B
+=h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\0_A
+=h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_A
+=h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_C
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM --copy UNC to UNC via sharename, nolocaluncresolve 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --copy \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest  1>sortout 
 
 
                       Overall
@@ -182,13 +182,13 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocalunc
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean UNC to UNC via sharename, nolocaluncresolve 
+C:\data\cpp\git\hardlinks\ln>REM --delorean UNC to UNC via sharename, nolocaluncresolve 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocaluncresolve --delorean \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --delorean \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
 
 
 'Sleeping 5 sec: Destination is a remote drive.
@@ -217,13 +217,13 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocalunc
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy Drive to UNC via sharename, nolocaluncresolve 
+C:\data\cpp\git\hardlinks\ln>REM --copy Drive to UNC via sharename, nolocaluncresolve 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocaluncresolve --copy test\UNCSimple\source \\quadtatz\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --copy test\UNCSimple\source \\quadtatz\UNCsimple\dest  1>sortout 
 
 
                       Overall
@@ -251,13 +251,13 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocalunc
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean Drive to UNC via sharename, nolocaluncresolve 
+C:\data\cpp\git\hardlinks\ln>REM --delorean Drive to UNC via sharename, nolocaluncresolve 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocaluncresolve --delorean test\UNCSimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --delorean test\UNCSimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
 
 
 'Sleeping 5 sec: Destination is a remote drive.
@@ -285,20 +285,20 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocalunc
 =h \\quadtatz\UNCsimple\bk1\Folder1\1_C
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
-D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
   :                                       406
 Total size: 406 bytes.
-D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder0\0_C
   :                                       532
 Total size: 532 bytes.
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean Drive to UNC via sharename, nolocaluncresolve, clean fails 
+C:\data\cpp\git\hardlinks\ln>REM --delorean Drive to UNC via sharename, nolocaluncresolve, clean fails 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocaluncresolve --delorean test\UNCSimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --delorean test\UNCSimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
 
 
 'Sleeping 5 sec: Destination is a remote drive.
@@ -328,13 +328,16 @@ Junction:         0         -         0         0         0         0         0
 WARNING: Delorean Copy finished successfully but see output for errors.
 ErrorLevel == -16
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --mirror Drive to UNC via sharename, nolocaluncresolve, clean fails 
+C:\data\cpp\git\hardlinks\ln>REM --mirror Drive to UNC via sharename, nolocaluncresolve, clean fails 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocaluncresolve --mirror test\UNCSimple\source \\quadtatz\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>pause
+Press any key to continue . . . 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --mirror test\UNCSimple\source \\quadtatz\UNCsimple\dest  1>sortout 
 
 
                       Overall
@@ -361,13 +364,13 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocalunc
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy UNC to UNC via Ip-Adresse 
+C:\data\cpp\git\hardlinks\ln>REM --copy UNC to UNC via Ip-Adresse 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy \\10.0.0.74\UNCsimple\source \\10.0.0.74\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy \\192.168.253.128\UNCsimple\source \\192.168.253.128\UNCsimple\dest  1>sortout 
 
 
                       Overall
@@ -377,35 +380,35 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy \\10.
    Times:        00:00:00.002
   Folder:         5         5         -         0         0         0
  Symlink:         0         -         0         0         0         0
-*h \\10.0.0.74\UNCsimple\dest\_F\0_A
-*h \\10.0.0.74\UNCsimple\dest\Folder1\1_A
-*h \\10.0.0.74\UNCsimple\dest\Folder1\1_C
-+d \\10.0.0.74\UNCsimple\dest
-+d \\10.0.0.74\UNCsimple\dest\_F
-+d \\10.0.0.74\UNCsimple\dest\_F\F0
-+d \\10.0.0.74\UNCsimple\dest\Folder0
-+d \\10.0.0.74\UNCsimple\dest\Folder1
-+f \\10.0.0.74\UNCsimple\dest\_F\1_A
-+f \\10.0.0.74\UNCsimple\dest\_F\1_C
-+f \\10.0.0.74\UNCsimple\dest\Folder0\0_A
-+f \\10.0.0.74\UNCsimple\dest\Folder0\0_B
-+f \\10.0.0.74\UNCsimple\dest\Folder0\0_C
-+f \\10.0.0.74\UNCsimple\dest\Folder0\0_D
-+f \\10.0.0.74\UNCsimple\dest\Folder1\1_B
+*h \\192.168.253.128\UNCsimple\dest\_F\0_A
+*h \\192.168.253.128\UNCsimple\dest\Folder1\1_A
+*h \\192.168.253.128\UNCsimple\dest\Folder1\1_C
++d \\192.168.253.128\UNCsimple\dest
++d \\192.168.253.128\UNCsimple\dest\_F
++d \\192.168.253.128\UNCsimple\dest\_F\F0
++d \\192.168.253.128\UNCsimple\dest\Folder0
++d \\192.168.253.128\UNCsimple\dest\Folder1
++f \\192.168.253.128\UNCsimple\dest\_F\1_A
++f \\192.168.253.128\UNCsimple\dest\_F\1_C
++f \\192.168.253.128\UNCsimple\dest\Folder0\0_A
++f \\192.168.253.128\UNCsimple\dest\Folder0\0_B
++f \\192.168.253.128\UNCsimple\dest\Folder0\0_C
++f \\192.168.253.128\UNCsimple\dest\Folder0\0_D
++f \\192.168.253.128\UNCsimple\dest\Folder1\1_B
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean UNC to UNC via sharename, nolocaluncresolve 
+C:\data\cpp\git\hardlinks\ln>REM --delorean UNC to UNC via sharename, nolocaluncresolve 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean \\10.0.0.74\UNCsimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean \\192.168.253.128\UNCsimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
 
 
--d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\F0
--f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_D
+-d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\F0
+-f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_D
                       Overall               Clone              Mirror
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:     3.468         0         0     3.468       532         0         0
@@ -413,29 +416,29 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean \
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
   Folder:         4         0         -         4         1         0         0
  Symlink:         0         -         0         0         0         0         0
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\1_A
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\1_C
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_A
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_B
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_B
-=h D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\0_A
-=h D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_A
-=h D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_C
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder1
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\1_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\1_C
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_B
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_B
+=h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\0_A
+=h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_A
+=h C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_C
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --recursive UNC test 
+C:\data\cpp\git\hardlinks\ln>REM --recursive UNC test 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive \\10.0.0.74\UNCsimple\source \\10.0.0.74\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive \\192.168.253.128\UNCsimple\source \\192.168.253.128\UNCsimple\dest  1>sortout 
 
 
                       Overall
@@ -445,41 +448,41 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
    Times:        00:00:00.002
   Folder:         5         5         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d \\10.0.0.74\UNCsimple\dest
-+d \\10.0.0.74\UNCsimple\dest\_F
-+d \\10.0.0.74\UNCsimple\dest\_F\F0
-+d \\10.0.0.74\UNCsimple\dest\Folder0
-+d \\10.0.0.74\UNCsimple\dest\Folder1
-+h \\10.0.0.74\UNCsimple\dest\_F\0_A
-+h \\10.0.0.74\UNCsimple\dest\_F\1_A
-+h \\10.0.0.74\UNCsimple\dest\_F\1_C
-+h \\10.0.0.74\UNCsimple\dest\Folder0\0_A
-+h \\10.0.0.74\UNCsimple\dest\Folder0\0_B
-+h \\10.0.0.74\UNCsimple\dest\Folder0\0_C
-+h \\10.0.0.74\UNCsimple\dest\Folder0\0_D
-+h \\10.0.0.74\UNCsimple\dest\Folder1\1_A
-+h \\10.0.0.74\UNCsimple\dest\Folder1\1_B
-+h \\10.0.0.74\UNCsimple\dest\Folder1\1_C
++d \\192.168.253.128\UNCsimple\dest
++d \\192.168.253.128\UNCsimple\dest\_F
++d \\192.168.253.128\UNCsimple\dest\_F\F0
++d \\192.168.253.128\UNCsimple\dest\Folder0
++d \\192.168.253.128\UNCsimple\dest\Folder1
++h \\192.168.253.128\UNCsimple\dest\_F\0_A
++h \\192.168.253.128\UNCsimple\dest\_F\1_A
++h \\192.168.253.128\UNCsimple\dest\_F\1_C
++h \\192.168.253.128\UNCsimple\dest\Folder0\0_A
++h \\192.168.253.128\UNCsimple\dest\Folder0\0_B
++h \\192.168.253.128\UNCsimple\dest\Folder0\0_C
++h \\192.168.253.128\UNCsimple\dest\Folder0\0_D
++h \\192.168.253.128\UNCsimple\dest\Folder1\1_A
++h \\192.168.253.128\UNCsimple\dest\Folder1\1_B
++h \\192.168.253.128\UNCsimple\dest\Folder1\1_C
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy UNC test with noexistant share 
+C:\data\cpp\git\hardlinks\ln>REM --copy UNC test with noexistant share 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy \\10.0.0.74\UNCsimple\source \\10.0.0.74\UNCsimple_notthere\dest  1>sortout 
-ERROR: Source directory '\\10.0.0.74\UNCsimple_notthere\dest' does not exist
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy \\192.168.253.128\UNCsimple\source \\192.168.253.128\UNCsimple_notthere\dest  1>sortout 
+ERROR: Source directory '\\192.168.253.128\UNCsimple_notthere\dest' does not exist
 ErrorLevel == -1
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean UNC  
+C:\data\cpp\git\hardlinks\ln>REM --delorean UNC  
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean \\10.0.0.74\UNCsimple\source \\10.0.0.74\UNCsimple\dest \\10.0.0.74\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean \\192.168.253.128\UNCsimple\source \\192.168.253.128\UNCsimple\dest \\192.168.253.128\UNCsimple\bk1  1>sortout 
 
 
 'Sleeping 5 sec: Destination is a remote drive.
@@ -490,29 +493,29 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean \
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
   Folder:         5         1         -         4         0         0         0
  Symlink:         0         -         0         0         0         0         0
-*h \\10.0.0.74\UNCsimple\bk1\_F\0_A
-+d \\10.0.0.74\UNCsimple\bk1\Folder0
-+f \\10.0.0.74\UNCsimple\bk1\Folder0\0_A
-+f \\10.0.0.74\UNCsimple\bk1\Folder0\0_B
-+f \\10.0.0.74\UNCsimple\bk1\Folder0\0_C
-+f \\10.0.0.74\UNCsimple\bk1\Folder0\0_D
-=d \\10.0.0.74\UNCsimple\bk1
-=d \\10.0.0.74\UNCsimple\bk1\_F
-=d \\10.0.0.74\UNCsimple\bk1\_F\F0
-=d \\10.0.0.74\UNCsimple\bk1\Folder1
-=f \\10.0.0.74\UNCsimple\bk1\_F\1_A
-=f \\10.0.0.74\UNCsimple\bk1\_F\1_C
-=f \\10.0.0.74\UNCsimple\bk1\Folder1\1_B
-=h \\10.0.0.74\UNCsimple\bk1\Folder1\1_A
-=h \\10.0.0.74\UNCsimple\bk1\Folder1\1_C
+*h \\192.168.253.128\UNCsimple\bk1\_F\0_A
++d \\192.168.253.128\UNCsimple\bk1\Folder0
++f \\192.168.253.128\UNCsimple\bk1\Folder0\0_A
++f \\192.168.253.128\UNCsimple\bk1\Folder0\0_B
++f \\192.168.253.128\UNCsimple\bk1\Folder0\0_C
++f \\192.168.253.128\UNCsimple\bk1\Folder0\0_D
+=d \\192.168.253.128\UNCsimple\bk1
+=d \\192.168.253.128\UNCsimple\bk1\_F
+=d \\192.168.253.128\UNCsimple\bk1\_F\F0
+=d \\192.168.253.128\UNCsimple\bk1\Folder1
+=f \\192.168.253.128\UNCsimple\bk1\_F\1_A
+=f \\192.168.253.128\UNCsimple\bk1\_F\1_C
+=f \\192.168.253.128\UNCsimple\bk1\Folder1\1_B
+=h \\192.168.253.128\UNCsimple\bk1\Folder1\1_A
+=h \\192.168.253.128\UNCsimple\bk1\Folder1\1_C
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean \\10.0.0.74\UNCsimple\source \\10.0.0.74\UNCsimple\dest \\10.0.0.74\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean \\192.168.253.128\UNCsimple\source \\192.168.253.128\UNCsimple\dest \\192.168.253.128\UNCsimple\bk1  1>sortout 
 
 
 'Sleeping 5 sec: Destination is a remote drive.
--f \\10.0.0.74\UNCsimple\bk1\Folder1\1_C
+-f \\192.168.253.128\UNCsimple\bk1\Folder1\1_C
                       Overall               Clone              Mirror
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:     3.468     1.934       464     1.070       532         0         0
@@ -520,30 +523,30 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean \
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
   Folder:         5         1         -         4         0         0         0
  Symlink:         0         -         0         0         0         0         0
-*h \\10.0.0.74\UNCsimple\bk1\_F\0_A
-+d \\10.0.0.74\UNCsimple\bk1\Folder0
-+f \\10.0.0.74\UNCsimple\bk1\Folder0\0_A
-+f \\10.0.0.74\UNCsimple\bk1\Folder0\0_B
-+f \\10.0.0.74\UNCsimple\bk1\Folder0\0_C
-+f \\10.0.0.74\UNCsimple\bk1\Folder0\0_D
-=d \\10.0.0.74\UNCsimple\bk1
-=d \\10.0.0.74\UNCsimple\bk1\_F
-=d \\10.0.0.74\UNCsimple\bk1\_F\F0
-=d \\10.0.0.74\UNCsimple\bk1\Folder1
-=f \\10.0.0.74\UNCsimple\bk1\_F\1_A
-=f \\10.0.0.74\UNCsimple\bk1\_F\1_C
-=f \\10.0.0.74\UNCsimple\bk1\Folder1\1_B
-=h \\10.0.0.74\UNCsimple\bk1\Folder1\1_A
+*h \\192.168.253.128\UNCsimple\bk1\_F\0_A
++d \\192.168.253.128\UNCsimple\bk1\Folder0
++f \\192.168.253.128\UNCsimple\bk1\Folder0\0_A
++f \\192.168.253.128\UNCsimple\bk1\Folder0\0_B
++f \\192.168.253.128\UNCsimple\bk1\Folder0\0_C
++f \\192.168.253.128\UNCsimple\bk1\Folder0\0_D
+=d \\192.168.253.128\UNCsimple\bk1
+=d \\192.168.253.128\UNCsimple\bk1\_F
+=d \\192.168.253.128\UNCsimple\bk1\_F\F0
+=d \\192.168.253.128\UNCsimple\bk1\Folder1
+=f \\192.168.253.128\UNCsimple\bk1\_F\1_A
+=f \\192.168.253.128\UNCsimple\bk1\_F\1_C
+=f \\192.168.253.128\UNCsimple\bk1\Folder1\1_B
+=h \\192.168.253.128\UNCsimple\bk1\Folder1\1_A
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy Drive to Mapped Drive 
+C:\data\cpp\git\hardlinks\ln>REM --copy Drive to Mapped Drive 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\UNCSimple\source t:\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy test\UNCSimple\source t:\dest  1>sortout 
 
 
                       Overall
@@ -570,13 +573,13 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean Drive to Mapped Drive 
+C:\data\cpp\git\hardlinks\ln>REM --delorean Drive to Mapped Drive 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean test\UNCSimple\source t:\dest t:\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean test\UNCSimple\source t:\dest t:\bk1  1>sortout 
 
 
 'Sleeping 5 sec: Destination is a remote drive.
@@ -603,21 +606,21 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean t
 =h t:\bk1\Folder1\1_A
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
-D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
   :                                       406
 Total size: 406 bytes.
-D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\Folder0\0_C
   :                                       532
 Total size: 532 bytes.
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --probefs for UNC names & Drives 
+C:\data\cpp\git\hardlinks\ln>REM --probefs for UNC names & Drives 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --probefs \\10.0.0.74\UNCsimple 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --probefs \\192.168.253.128\UNCsimple 
 NTFS
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --probefs \\10.0.0.74\UNCsimple 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --probefs \\192.168.253.128\UNCsimple 
 NTFS

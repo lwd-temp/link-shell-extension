@@ -1526,28 +1526,62 @@ Mirror(
   MirrorList.SetUnrollDirList(aUnrollDirList);
   MirrorList.SetSpliceDirList(aSpliceDirList);
 
-
+#if 0
+  _ArgvList CloneDestination;
+  for (_ArgvListIterator iter = aSourceDirList.begin(); iter != aSourceDirList.end(); ++iter)
+  {
+    iter->ArgvDest = aDestination.Argv;
+    if (!(iter->Flags & _ArgvPath::Anchor))
+    {
+      // Add the first non-anchor as 'destination', which in this case is the source location
+      if (aDestination.ArgvDest.empty())
+      {
+        aDestination.Argv = iter->ArgvDest;
+        aDestination.ArgvDest = iter->Argv;
+      }
+    }
+  }
+  // Provide a destination
+  CloneDestination.push_back(aDestination);
+#else
   // Assign each source location the same destination
   _ArgvList CloneDestination;
   for (_ArgvListIterator iter = aSourceDirList.begin(); iter != aSourceDirList.end(); ++iter)
   {
-    _ArgvPath destination;
-
     // if no corresponding destination was given via --destination, assume there is only one destination
+    
+    bool isAnchor = iter->Flags & _ArgvPath::Anchor;
+    
     if (iter->ArgvDest.empty())
     {
+      // All attributes of destination are copied over
       iter->ArgvDest = aDestination.Argv;
+      iter->ArgvOrg = aDestination.ArgvOrg;
+      iter->DriveType = aDestination.DriveType;
+      iter->FileAttribute = aDestination.FileAttribute;
+      if (!isAnchor)
+        iter->Flags = aDestination.Flags;
     }
-    if (!(iter->Flags & _ArgvPath::Anchor))
+
+    if (!isAnchor)
     {
       // for non-anchors, create a destination which is source-destination flipped 
+      _ArgvPath destination;
+
       destination.Argv = iter->ArgvDest;
-      destination.ArgvDest= iter->Argv;
+      destination.ArgvDest = iter->Argv;
+      destination.ArgvOrg = iter->ArgvOrg;
+      destination.DriveType = aDestination.DriveType;
+      destination.FileAttribute = aDestination.FileAttribute;
+      destination.Flags = aDestination.Flags;
+
+      CloneDestination.push_back(destination);
     }
-    CloneDestination.push_back(destination);
+    else
+      CloneDestination.push_back(aDestination);
   }
-  // Provide a destination
-  
+#endif  
+
   CopyStatistics	MirrorStatistics;
 #if defined SEPERATED_CLONE_MIRROR
   MirrorList.FindHardLink (aSourceDirList, 0, &MirrorStatistics, &PathNameStatusList, nullptr);
