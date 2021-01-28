@@ -115,7 +115,7 @@ call bat\SourceIndex.bat
 
 REM Upload to symbolserver
 REM
-REM call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_VERSION%%HOTFIX_LSE_VERSION%
+call bat\SymServUpload.bat %MAJOR_LSE_VERSION%%MINOR_LSE_VERSION%%PATCH_LSE_VERSION%%HOTFIX_LSE_VERSION%
 @REM 
 @echo.
 @echo Please commit to GIT now for he symbol transaction-id
@@ -168,7 +168,7 @@ echo.
 echo ###### Press key to continue to Media Upload or stop script here
 echo.
 pause
-REM call bat\MediaUpload.bat
+call bat\MediaUpload.bat
 
 @REM Media GIT Commit
 @REM
