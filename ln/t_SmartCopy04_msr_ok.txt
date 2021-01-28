@@ -1,0 +1,119 @@
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Smart Copy/Clone/Mirror with multiple destinations 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   --source test\MultiDest\source\F0 --destination test\MultiDest\dest\F0 --source test\MultiDest\source\F1 --destination test\MultiDest\dest\F1 --mirror test\MultiDest\source\S1 test\MultiDest\dest\S1  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     1.856       928       928         0         0         0         0
+    File:         4         2         2         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         5         5         -         0         0         0         0
+ Symlink:         1         -         1         0         0         0         0
+*h C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\S1\F0.h
+*h C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\S1\F1_F0\F1_F0.h
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1\F1_F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\S1
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\S1\F1_F0
++f C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1\F0.h
++f C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1\F1_F0\F1_F0.h
++s C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F0\F0_J0
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+
+test\MultiDest\dest\F0\F0_J0 -> ..\F1\F1_F0
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Smart Copy/Clone/Mirror with multiple destinations 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   --unroll --source test\MultiDest\source\F0 --destination test\MultiDest\dest\F0 --source test\MultiDest\source\F1 --destination test\MultiDest\dest\F1 --mirror test\MultiDest\source\S1 test\MultiDest\dest\S1  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     1.856       928       928         0         0         0         0
+    File:         4         2         2         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         5         5         -         0         0         0         0
+ Symlink:         1         -         1         0         0         0         0
+*h C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\S1\F0.h
+*h C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\S1\F1_F0\F1_F0.h
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1\F1_F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\S1
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\S1\F1_F0
++f C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1\F0.h
++f C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1\F1_F0\F1_F0.h
++s C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F0\F0_J0
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+
+test\MultiDest\dest\F0\F0_J0 -> ..\F1\F1_F0
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Smart Copy/Clone/Mirror with multiple sources and different source path length 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   --source test\MultiDest\source\F20 --mirror test\MultiDest\source\F21xy test\MultiDest\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:       464       464         0         0         0         0         0
+    File:         1         1         0         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         5         4         -         1         0         0         0
+ Symlink:         1         -         1         0         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F20_F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F21xy_F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F21xy_F0\F21xy_F0_F0
++f C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F21xy_F0\F21xy_F0_F0\F21xy_F0_F0.h
++s C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F20_F0\F20_F0_J0
+=d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+
+test\MultiDest\dest\F20_F0\F20_F0_J0 -> ..\F21xy_F0\F21xy_F0_F0
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Delete a few items with --mirror 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+
+-d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1\F1_F0
+-d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\S1\F1_F0
+-f C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1\F1_F0\F1_F0.h
+-f C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\S1\F1_F0\F1_F0.h
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:       928         0         0       928       928         0         0
+    File:         2         0         0         2         2         0         0
+   Times:        00:00:00.002
+  Folder:         3         0         -         3         2         0         0
+ Symlink:         1         -         0         1         0         0         0
+=d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F0
+=d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1
+=d C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\S1
+=f C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1\F0.h
+=h C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\S1\F0.h
+=s C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F0\F0_J0
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+
+test\MultiDest\dest\F0\F0_J0 -#-> ..\F1\F1_F0 (\\?\C:\data\cpp\git\hardlinks\ln\test\MultiDest\dest\F1\F1_F0)

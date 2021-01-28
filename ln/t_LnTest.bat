@@ -41,6 +41,15 @@ call t_SmartCopy04.bat test\MultiDest recursive symbolic absolute absolute
 call t_SmartCopy04.bat test\MultiDest recursive symbolic relative
 call t_SmartCopy04.bat test\MultiDest recursive symbolic absolute
 
+REM
+REM Smart Mirror Test Multiple Destinations
+REM
+call t_SmartCopy04.bat test\MultiDest mirror noitcnuj relative
+call t_SmartCopy04.bat test\MultiDest mirror symbolic relative absolute
+call t_SmartCopy04.bat test\MultiDest mirror symbolic absolute absolute
+call t_SmartCopy04.bat test\MultiDest mirror symbolic relative
+call t_SmartCopy04.bat test\MultiDest mirror symbolic absolute
+
 REM -----------------
 
 REM

@@ -70,7 +70,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i><font face="arial">Last Updated January 14, 2021 Version 2.9.3.1</font></i>
+                    <i><font face="arial">Last Updated January 28, 2021 Version 2.9.3.2</font></i>
                 </div>
             </td>
         </tr>
@@ -3867,6 +3867,7 @@
 
                             <br />
                             <p>
+                                <b>Merging into one destination</b><br />
                                 The command line invocation below copies from "c:\Location 1" and "c:\Location 2"
                                 to c:\Destination :
                             </p>
@@ -3889,23 +3890,38 @@
                                 ln --unroll --source "c:\Location 2" --copy "c:\Location 1" c:\Destination
                             </span>
                             <p>
-                                <br />
-                                <a name="destination"></a>
                                 The above command copies all content from "c:\Location 2" and "c:\Location 1" to c:\Destination, but
-                                does not create a "c:\Destination\Location 2" and a "c:\Destination\Location 1". To even acchive this
-                                the --destination option must be used:
+                                does not create a "c:\Destination\Location 2" and a "c:\Destination\Location 1".
+                            </p>
+                            <br />
+                            <p>
+                                <b>Keeping several destinations</b><br />
+                                <a name="destination"></a>
+                                To keep several destinations the --destination option must be used:
                             </p>
                             <span class="ascode">
                                 ln --unroll --source "c:\Location 2" --destination "c:\Destination\Location 2" --copy "c:\Location 1" "c:\Destination\Location 1"
                             </span>
                             <p>
                                 <br />
-                                The --destination option must alsways be used with a corresponding --source option building pairs. The
+                                The --destination option must always be used with a corresponding --source option building pairs. The
                                 order of --source --destination is also important. For --copy the normal destination builds the pair:
                             </p>
                             <span class="ascode">
                                 ln --source SrcA --destination DstA --source SrcB --destination DstB --source SrcC --destination DstC --copy SrcD DstD
                             </span>
+                            <br />
+                            <br />
+                            <p>
+                                <b>Mirror to several destinations</b><br />
+                                The --mirror option can also be used to mirror to several destinations
+                            </p>
+                            <span class="ascode">
+                                ln --source "c:\Location 2" --destination "c:\Destination\Location 2" --mirror "c:\Location 1" "c:\Destination\Location 1"
+                            </span>
+                            <p>
+                                Make sure that c:\Destination already exists
+                            </p>
                             <br />
                             <br />
                             <br />
@@ -5202,11 +5218,13 @@
 
                     <tr>
                         <td class="hanger2">
-                            January 14, 2021
+                            January 28, 2021
                         </td>
                         <td align="left" class="bodytext">
-                            <a name="2930">Version 2.9.3.1</a>
+                            <a name="2930">Version 2.9.3.2</a>
                             <ul>
+                                <!-- 2.9.3.2, 28.1.2021 -->
+                                <li>Multisource aka --destination in combination with --mirror did not work.</li>
                                 <!-- 2.9.3.1, 14.1.2021 -->
                                 <li>Symbolic Link creation required admin even in developer mode.</li>
                                 <!-- 2.9.3.0, 4.1.2021 -->
