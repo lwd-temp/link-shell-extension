@@ -4068,7 +4068,7 @@ wmain(
           (Argv2Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)
           )
         {
-          int lenArgv2 = Argv2Path.ArgvOrg.length();
+          size_t lenArgv2 = Argv2Path.ArgvOrg.length();
           if (
             // If Argv2 contains a traling slash ( \ or / ) and Argv1 is a directory 
             (lenArgv2 && (Argv2Path.ArgvOrg[lenArgv2 - 1] == '\\' || Argv2Path.ArgvOrg[lenArgv2 - 1] == '/') && (Argv1Path.FileAttribute & FILE_ATTRIBUTE_DIRECTORY)) ||
