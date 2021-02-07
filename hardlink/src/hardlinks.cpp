@@ -4672,7 +4672,7 @@ IsOuterReparsePoint(
   bool DoRecursion = false;
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-  wprintf(L"%s FileInfoContainer::IsOuterReparsePoint 01 %s, %08x\n", m_ContainerName, aSrcPath, aFileAttributes);
+  wprintf(L"%s "__FUNCTION__" 01 %s, %08x\n", m_ContainerName, aSrcPath, aFileAttributes);
 #endif
   if (aFileAttributes & FILE_ATTRIBUTE_REPARSE_POINT)
   {
@@ -4731,7 +4731,7 @@ IsOuterReparsePoint(
     // Here we should end up in any case with ReparseSrcTarget beeing a long path
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-  wprintf(L"%s FileInfoContainer::IsOuterReparsePoint 02 '%s', %08x, '%s'\n", m_ContainerName, aSrcPath, ReparsePointType, ReparseSrcTarget);
+  wprintf(L"%s "__FUNCTION__" 02 '%s', %08x, '%s'\n", m_ContainerName, aSrcPath, ReparsePointType, ReparseSrcTarget);
 #endif
 
 
@@ -4774,7 +4774,7 @@ IsOuterReparsePoint(
     if (Circularity)
     {
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-  wprintf(L"%s FileInfoContainer::IsOuterReparsePoint 03 %s, %08x, %s\n", m_ContainerName, aSrcPath, ReparsePointType, ReparseSrcTarget);
+  wprintf(L"%s "__FUNCTION__" 03 %s, %08x, %s\n", m_ContainerName, aSrcPath, ReparsePointType, ReparseSrcTarget);
 #endif
       switch(ReparsePointType)
       {
@@ -4831,7 +4831,7 @@ IsOuterReparsePoint(
 
 
     //
-    // Decide whether it is a Inner or Outer ReparsePoint
+    // Decide whether it is an Inner or Outer ReparsePoint
     //
 
     //
@@ -4852,7 +4852,7 @@ IsOuterReparsePoint(
     else
       CurrentReparsePointReferencePathLen = 0;
 
-    // Check if it is a inner or outer ReparsePoint by checking if we find the aCurrentReparsePointReferencePath
+    // Check if it is an inner or outer ReparsePoint by checking if we find the aCurrentReparsePointReferencePath
     // in the ReparseSrcTarget ...
     wchar_t* InnerReparsePoint = wcseistr(ReparseSrcTarget, *aCurrentReparsePointReferencePath);
     
@@ -4884,7 +4884,7 @@ IsOuterReparsePoint(
     if (MultiSourcePath)
     {
       //
-      // Detection of such am exact match is esay. wcseistr() points to the terminating \0 character
+      // Detection of such an exact match is easy. wcseistr() points to the terminating \0 character
       // of ReparseSrcTarget
       if (!*MultiSourcePath)
       {
@@ -4927,7 +4927,7 @@ IsOuterReparsePoint(
     // the same locations twice, once copied due to --source and once due to be unrolled, 
     // because a Reparse Point directly pointed to a junction, we must be carefull to choose
     // the InnerReparsePoint way, because otherwise the Reparsepoints from unrolled portions
-    // of the tree point to locations which are there due to --source
+    // of the tree points to locations which are there due to --source
     // 
     // The UnrollPrepare01.bat sample shows this for the unrolled portion below F3_J0, which
     // point to F2/F2_F2, and the F2/F2_F2 portion, which is there due to --source F2
@@ -4952,7 +4952,7 @@ IsOuterReparsePoint(
       if (InnerReparsePoint)
       {
   #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-        wprintf(L"%s FileInfoContainer::IsOuterReparsePoint 04 %s, %08x, %s\n", m_ContainerName, aSrcPath, aCurrentBoundaryCross, aCurrentReparsePointReferencePath);
+        wprintf(L"%s "__FUNCTION__" 04 %s, %08x, %s\n", m_ContainerName, aSrcPath, aCurrentBoundaryCross, aCurrentReparsePointReferencePath);
   #endif
         // Inner ReparsePoint with respect to aCurrentReparsePointReferencePath
         if (aCurrentBoundaryCross)
@@ -4966,7 +4966,7 @@ IsOuterReparsePoint(
             wcscat_s(aReparseSrcTargetHint, HUGE_PATH, L"\\");
           wcscat_s(aReparseSrcTargetHint, HUGE_PATH, InnerReparsePoint);
   #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-          wprintf(L"%s FileInfoContainer::IsOuterReparsePoint 05 %s, %s\n", m_ContainerName, aSrcPath, aReparseSrcTargetHint);
+          wprintf(L"%s "__FUNCTION__" 05 %s, %s\n", m_ContainerName, aSrcPath, aReparseSrcTargetHint);
   #endif
         }
 
@@ -4977,7 +4977,7 @@ IsOuterReparsePoint(
         // Outer ReparsePoint
 
   #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-        wprintf(L"%s FileInfoContainer::IsOuterReparsePoint 06 %s\n", m_ContainerName, aSrcPath);
+        wprintf(L"%s "__FUNCTION__" 06 %s\n", m_ContainerName, aSrcPath);
   #endif
         // Save the current DiskSerialNumber, and only after successfull traverse make it the new SerialNumber
         DWORD DiskSerialNumber = m_CurrentSerialNumber;
@@ -5061,7 +5061,7 @@ IsOuterReparsePoint(
     if (aReparsePointBoundaryCrossed)
     {
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-      wprintf(L"%s FileInfoContainer::IsOuterReparsePoint 07 %s\n", m_ContainerName, aSrcPath);
+      wprintf(L"%s "__FUNCTION__" 07 %s\n", m_ContainerName, aSrcPath);
 #endif
       // Check if all junctions/symlink dirs should be unrolled. 
       // This switch  is here because if we can avoid time consuming 
@@ -5095,7 +5095,7 @@ IsOuterReparsePoint(
         aCurrentBoundaryCross = wcslen(aSrcPath);
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-      wprintf(L"%s FileInfoContainer::IsOuterReparsePoint 09 %s %s\n", m_ContainerName, aSrcPath, aReparsePointReferencePath);
+      wprintf(L"%s "__FUNCTION__" 09 %s %s\n", m_ContainerName, aSrcPath, aReparsePointReferencePath);
 #endif
         aFileAttributes &= ~FILE_ATTRIBUTE_REPARSE_POINT;
       }
@@ -5104,7 +5104,7 @@ IsOuterReparsePoint(
   else
   {
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-    wprintf(L"%s FileInfoContainer::IsOuterReparsePoint 08 %s\n", m_ContainerName, aSrcPath);
+    wprintf(L"%s "__FUNCTION__" 08 %s\n", m_ContainerName, aSrcPath);
 #endif
 
     // Follow directories anyway
