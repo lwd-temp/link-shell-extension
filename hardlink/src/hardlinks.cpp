@@ -4771,6 +4771,8 @@ IsOuterReparsePoint(
       ReparseSrcTarget[ReparseSrcTargetLen + 1] = SaveChar2;
     }
 
+// #define CIRCULARITY
+#if defined CIRCULARITY
     if (Circularity)
     {
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
@@ -4825,7 +4827,7 @@ IsOuterReparsePoint(
     //
     // Circularity Check: End
     //
-
+#endif
 
 
 
@@ -5063,41 +5065,53 @@ IsOuterReparsePoint(
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
       wprintf(L"%s "__FUNCTION__" 07 %s\n", m_ContainerName, aSrcPath);
 #endif
-      // Check if all junctions/symlink dirs should be unrolled. 
-      // This switch  is here because if we can avoid time consuming 
-      // regular expression matches the performance will be better
-      if (m_Flags & eAlwaysUnrollDir) 
-        DoRecursion = true;
-      else
+      
+      // Unrolling on circularities would drive us into an endless loop thus we have to break it
+      // Create the last known good junctions and stop recursion
+#if !defined CIRCULARITY
+      if (!Circularity)
+#endif
       {
-        // Apply regular expression to know which junctions/symlink dirs should be unrolled
-        if (MatchRegExpList(&aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], m_RegExpUnrollDirList))
+        // Check if all junctions/symlink dirs should be unrolled. 
+        // This switch  is here because if we can avoid time consuming 
+        // regular expression matches the performance will be better
+        if (m_Flags & eAlwaysUnrollDir)
           DoRecursion = true;
-      }
+        else
+        {
+          // Apply regular expression to know which junctions/symlink dirs should be unrolled
+          if (MatchRegExpList(&aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], m_RegExpUnrollDirList))
+            DoRecursion = true;
+        }
 
-      // Only unroll reparse points if either the directory matches or all reparse
-      // points should be unrolled
-      if (DoRecursion)
-      {
-        // We are crossing a outer reparse point boundary, so save the previous 
-        // ReparsePointReferencePath
-        *aPreviousReparsePointReferencePath = *aCurrentReparsePointReferencePath;
-        wcscpy_s(aReparsePointReferencePath, HUGE_PATH, ReparseSrcTarget);
-        
-        // Pass on the new ReparseSrcTarget as ReparsePointReferencePath to the 
-        // recursion, which is operating in the outer reparse point.
-        *aCurrentReparsePointReferencePath = aReparsePointReferencePath;
+        // Only unroll reparse points if either the directory matches or all reparse
+        // points should be unrolled
+        if (DoRecursion)
+        {
+          // We are crossing a outer reparse point boundary, so save the previous 
+          // ReparsePointReferencePath
+          *aPreviousReparsePointReferencePath = *aCurrentReparsePointReferencePath;
+          wcscpy_s(aReparsePointReferencePath, HUGE_PATH, ReparseSrcTarget);
 
-        // The position in SrcPath when it crosses to a outer junction is 
-        // important because with it the wrapped destination to new-inner
-        // junctions can be assembled.
-        aPreviousBoundaryCross = aCurrentBoundaryCross;
-        aCurrentBoundaryCross = wcslen(aSrcPath);
+          // Pass on the new ReparseSrcTarget as ReparsePointReferencePath to the 
+          // recursion, which is operating in the outer reparse point.
+          *aCurrentReparsePointReferencePath = aReparsePointReferencePath;
+
+          // The position in SrcPath when it crosses to a outer junction is 
+          // important because with it the wrapped destination to new-inner
+          // junctions can be assembled.
+          aPreviousBoundaryCross = aCurrentBoundaryCross;
+          aCurrentBoundaryCross = wcslen(aSrcPath);
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-      wprintf(L"%s "__FUNCTION__" 09 %s %s\n", m_ContainerName, aSrcPath, aReparsePointReferencePath);
+          wprintf(L"%s "__FUNCTION__" 09 %s %s\n", m_ContainerName, aSrcPath, aReparsePointReferencePath);
 #endif
-        aFileAttributes &= ~FILE_ATTRIBUTE_REPARSE_POINT;
+          aFileAttributes &= ~FILE_ATTRIBUTE_REPARSE_POINT;
+        }
+      }
+      else
+      {
+        // Left for error message on circular reparsepoints during unroll
       }
     }
   }
