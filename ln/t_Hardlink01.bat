@@ -209,7 +209,6 @@ sort sortout
 @type test\y | @%CACLS% %TESTROOTDST% /G "%USERNAME%":F > nul
 @type test\y | @%CACLS% %TESTROOTDST%\hl0_0.txt /G "%USERNAME%":F > nul
 
-REM
 REM Test the subst driveletters hardlinking
 REM
 @echo off
@@ -217,6 +216,7 @@ REM
 @subst.exe %EMPTYTESTDRIVE% %TESTROOTSRC% > nul
 @subst.exe %EMPTYTESTDRIVE2% %TESTROOTSRC% > nul
 @copy ln.h %TESTROOTSRC% > nul
+@copy ln.h %EMPTYTESTDRIVE%\reverse.h > nul
 %LN% %TESTROOTSRC%\ln.h %EMPTYTESTDRIVE%\ln_hardlink.h > nul
 %LN% %EMPTYTESTDRIVE2%\ln.h %EMPTYTESTDRIVE%\ln_hardlink2.h > nul
 @echo on
@@ -230,6 +230,30 @@ subst %EMPTYTESTDRIVE2% %EMPTYTESTDRIVE%\
 %LN% %EMPTYTESTDRIVE2%\ln.h %EMPTYTESTDRIVE%\ln_hardlink3.h > nul
 @echo on
 %LN% --symbolic %TESTROOTSRC%\ln_hardlink3.h
+
+REM Test the subst driveletters symbolic linking
+REM
+%LN% --symbolic %TESTROOTSRC%\ln.h %EMPTYTESTDRIVE%\ln_symlink.h > nul
+%LN% --symbolic %TESTROOTSRC%\ln_symlink.h
+
+%LN% --absolute --symbolic %TESTROOTSRC%\ln.h %EMPTYTESTDRIVE%\ln_symlink_abs.h > nul
+%LN% --symbolic %TESTROOTSRC%\ln_symlink_abs.h
+
+REM reverse
+%LN% --symbolic %EMPTYTESTDRIVE%\reverse.h %TESTROOTSRC%\reverse_symlink.h > nul
+%LN% --symbolic %TESTROOTSRC%\reverse_symlink.h
+
+%LN% --absolute --symbolic %EMPTYTESTDRIVE%\reverse.h %TESTROOTSRC%\reverse_symlink_abs.h > nul
+%LN% --symbolic %TESTROOTSRC%\reverse_symlink_abs.h
+
+REM within
+%LN% --symbolic %EMPTYTESTDRIVE%\reverse.h %EMPTYTESTDRIVE%\within.h > nul
+%LN% --symbolic %EMPTYTESTDRIVE%\within.h
+
+%LN% --absolute --symbolic %EMPTYTESTDRIVE%\reverse.h %EMPTYTESTDRIVE%\within_abs.h > nul
+%LN% --symbolic %EMPTYTESTDRIVE%\within_abs.h
+
+
 
 @echo off
 subst /d %EMPTYTESTDRIVE%

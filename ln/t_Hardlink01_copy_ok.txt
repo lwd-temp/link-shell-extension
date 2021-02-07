@@ -1,19 +1,19 @@
 
-D:\data\cpp\hardlinks\ln>set OPTION=--copy 
+C:\data\cpp\git\hardlinks\ln>set OPTION=--copy 
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\git\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>REM Hardlinking Tests 
+C:\data\cpp\git\hardlinks\ln>REM Hardlinking Tests 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Do a simple hardlink copy 
+C:\data\cpp\git\hardlinks\ln>REM Do a simple hardlink copy 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\hardlink\src test\hardlink\dst  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --copy test\hardlink\src test\hardlink\dst  1>sortout 
 
 
                       Overall
@@ -23,25 +23,25 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         1         1         -         0         0         0
  Symlink:         0         -         0         0         0         0
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_1.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_2.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_3.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_1.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_2.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_3.txt
-+d D:\data\cpp\hardlinks\ln\test\hardlink\dst
-+f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_0.txt
-+f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_1.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_2.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_3.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_1.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_2.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_3.txt
++d C:\data\cpp\git\hardlinks\ln\test\hardlink\dst
++f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_0.txt
++f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Copy again, to see that nothing is copied, because the date didn't change 
+C:\data\cpp\git\hardlinks\ln>REM Copy again, to see that nothing is copied, because the date didn't change 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\hardlink\src test\hardlink\dst    1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --copy test\hardlink\src test\hardlink\dst    1>sortout 
 
 
                       Overall
@@ -51,26 +51,26 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         1         0         -         0         0         0
  Symlink:         0         -         0         0         0         0
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_0.txt
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_2.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_3.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_2.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_3.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_2.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_3.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_2.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_3.txt
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Make the leader newer, so that it has to be copied, and all hardlinks to newly tied 
+C:\data\cpp\git\hardlinks\ln>REM Make the leader newer, so that it has to be copied, and all hardlinks to newly tied 
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\git\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>..\Tools\timestamp.exe --writetime test\hardlink\src\hl1_0.txt 
+C:\data\cpp\git\hardlinks\ln>..\Tools\timestamp.exe --writetime test\hardlink\src\hl1_0.txt 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\hardlink\src test\hardlink\dst   1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --copy test\hardlink\src test\hardlink\dst   1>sortout 
 
 
                       Overall
@@ -80,26 +80,26 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         1         0         -         0         0         0
  Symlink:         0         -         0         0         0         0
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_1.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_2.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_3.txt
-+f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_0.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_2.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_3.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_1.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_2.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_3.txt
++f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_0.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_2.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_3.txt
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Add an additional hardlink, only one hardlink must be additionally tied. 
+C:\data\cpp\git\hardlinks\ln>REM Add an additional hardlink, only one hardlink must be additionally tied. 
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\git\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test test\hardlink\src\hl1_0.txt test\hardlink\src\hl1_4.txt  1>nul 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress test\hardlink\src\hl1_0.txt test\hardlink\src\hl1_4.txt  1>nul 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\hardlink\src test\hardlink\dst  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --copy test\hardlink\src test\hardlink\dst  1>sortout 
 
 
                       Overall
@@ -109,32 +109,32 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         1         0         -         0         0         0
  Symlink:         0         -         0         0         0         0
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_4.txt
-.f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_0.txt
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_2.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_3.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_2.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_3.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_4.txt
+.f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_2.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_3.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_2.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_3.txt
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Lock the leader in the destination, so that a new leader has to be found 
+C:\data\cpp\git\hardlinks\ln>REM Lock the leader in the destination, so that a new leader has to be found 
 
-D:\data\cpp\hardlinks\ln>REM But since permissions are valid for siblings of a hardlink no new leader 
+C:\data\cpp\git\hardlinks\ln>REM But since permissions are valid for siblings of a hardlink no new leader 
 
-D:\data\cpp\hardlinks\ln>REM can be found 
+C:\data\cpp\git\hardlinks\ln>REM can be found 
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\git\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>..\Tools\timestamp.exe -w test\hardlink\src\hl1_0.txt 
+C:\data\cpp\git\hardlinks\ln>..\Tools\timestamp.exe -w test\hardlink\src\hl1_0.txt 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\hardlink\src test\hardlink\dst  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --copy test\hardlink\src test\hardlink\dst  1>sortout 
 
 
                       Overall
@@ -144,30 +144,30 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         1         0         -         0         0         0
  Symlink:         0         -         0         0         0         0
-!+f(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_0.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_2.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_3.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_2.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_3.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_4.txt
+!+f(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_0.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_2.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_3.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_2.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_3.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_4.txt
 Junction:         0         -         0         0         0         0
 WARNING: SmartCopy finished successfully but see output for errors.
 ErrorLevel == -12
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Delete 2 of 5 files from the destination, and lock the leader in the  
+C:\data\cpp\git\hardlinks\ln>REM Delete 2 of 5 files from the destination, and lock the leader in the  
 
-D:\data\cpp\hardlinks\ln>REM destination, so that a new leader has to be found 
+C:\data\cpp\git\hardlinks\ln>REM destination, so that a new leader has to be found 
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\git\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>..\Tools\timestamp.exe -w test\hardlink\src\hl1_0.txt 
+C:\data\cpp\git\hardlinks\ln>..\Tools\timestamp.exe -w test\hardlink\src\hl1_0.txt 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\hardlink\src test\hardlink\dst  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --copy test\hardlink\src test\hardlink\dst  1>sortout 
 
 
                       Overall
@@ -177,28 +177,28 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         1         0         -         0         0         0
  Symlink:         0         -         0         0         0         0
-!*h(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_3.txt
-!*h(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_4.txt
-!+f(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_0.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_2.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_3.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_2.txt
+!*h(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_3.txt
+!*h(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_4.txt
+!+f(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_0.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_2.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_3.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_2.txt
 Junction:         0         -         0         0         0         0
 WARNING: SmartCopy finished successfully but see output for errors.
 ErrorLevel == -12
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM The hardlink groups have been split now. But since we newly hardlinked  
+C:\data\cpp\git\hardlinks\ln>REM The hardlink groups have been split now. But since we newly hardlinked  
 
-D:\data\cpp\hardlinks\ln>REM hl1_4.txt, the date in the source is newer and relinking must take place. 
+C:\data\cpp\git\hardlinks\ln>REM hl1_4.txt, the date in the source is newer and relinking must take place. 
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\git\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\hardlink\src test\hardlink\dst  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --copy test\hardlink\src test\hardlink\dst  1>sortout 
 
 
                       Overall
@@ -208,27 +208,27 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         1         0         -         0         0         0
  Symlink:         0         -         0         0         0         0
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_1.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_2.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_3.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_4.txt
-+f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_0.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_2.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_3.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_1.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_2.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_3.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_4.txt
++f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_0.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_2.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_3.txt
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Delete some hardlinks from the destination, and check that they are  
+C:\data\cpp\git\hardlinks\ln>REM Delete some hardlinks from the destination, and check that they are  
 
-D:\data\cpp\hardlinks\ln>REM created again 
+C:\data\cpp\git\hardlinks\ln>REM created again 
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\git\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\hardlink\src test\hardlink\dst  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --copy test\hardlink\src test\hardlink\dst  1>sortout 
 
 
                       Overall
@@ -238,28 +238,28 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         1         0         -         0         0         0
  Symlink:         0         -         0         0         0         0
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_3.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_4.txt
-.f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_0.txt
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_2.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_3.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_2.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_3.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_4.txt
+.f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_2.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_3.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_2.txt
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Lock the hardlink tupel in the destination. But since 
+C:\data\cpp\git\hardlinks\ln>REM Lock the hardlink tupel in the destination. But since 
 
-D:\data\cpp\hardlinks\ln>REM nothing has changed, no error is displayed 
+C:\data\cpp\git\hardlinks\ln>REM nothing has changed, no error is displayed 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\hardlink\src test\hardlink\dst  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --copy test\hardlink\src test\hardlink\dst  1>sortout 
 
 
                       Overall
@@ -269,28 +269,28 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         1         0         -         0         0         0
  Symlink:         0         -         0         0         0         0
-!*h(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_1.txt
-!*h(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_2.txt
-!*h(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_3.txt
-!*h(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_4.txt
-!+f(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_0.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_2.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_3.txt
+!*h(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_1.txt
+!*h(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_2.txt
+!*h(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_3.txt
+!*h(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_4.txt
+!+f(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_0.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_2.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_3.txt
 Junction:         0         -         0         0         0         0
 WARNING: SmartCopy finished successfully but see output for errors.
 ErrorLevel == -12
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Do it again, but have a file with read only in the destination 
+C:\data\cpp\git\hardlinks\ln>REM Do it again, but have a file with read only in the destination 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>attrib +r test\hardlink\dst\hl0_0.txt 
+C:\data\cpp\git\hardlinks\ln>attrib +r test\hardlink\dst\hl0_0.txt 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\hardlink\src test\hardlink\dst  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --copy test\hardlink\src test\hardlink\dst  1>sortout 
 
 
                       Overall
@@ -300,26 +300,26 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         1         0         -         0         0         0
  Symlink:         0         -         0         0         0         0
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_1.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_2.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_3.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_1.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_2.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_3.txt
-*h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_4.txt
-.f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
-+f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_0.txt
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_1.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_2.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_3.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_1.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_2.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_3.txt
+*h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_4.txt
+.f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
++f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Do it again, but have a file with attributes so that it cant be accessed 
+C:\data\cpp\git\hardlinks\ln>REM Do it again, but have a file with attributes so that it cant be accessed 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\hardlink\src test\hardlink\dst  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --copy test\hardlink\src test\hardlink\dst  1>sortout 
 
 
                       Overall
@@ -329,40 +329,76 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         1         0         -         0         0         0
  Symlink:         0         -         0         0         0         0
-!*h(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_1.txt
-!*h(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_2.txt
-!*h(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_3.txt
-!+f(0x00000005) D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl0_0.txt
-=f D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_0.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_1.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_2.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_3.txt
-=h D:\data\cpp\hardlinks\ln\test\hardlink\dst\hl1_4.txt
+!*h(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_1.txt
+!*h(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_2.txt
+!*h(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_3.txt
+!+f(0x00000005) C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl0_0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_0.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_1.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_2.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_3.txt
+=h C:\data\cpp\git\hardlinks\ln\test\hardlink\dst\hl1_4.txt
 Junction:         0         -         0         0         0         0
 WARNING: SmartCopy finished successfully but see output for errors.
 ErrorLevel == -12
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM Test the subst driveletters hardlinking 
 
-D:\data\cpp\hardlinks\ln>REM Test the subst driveletters hardlinking 
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM
-
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --symbolic test\hardlink\src\ln_hardlink.h 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --symbolic test\hardlink\src\ln_hardlink.h 
 test\hardlink\src\ln_hardlink.h:3
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --symbolic test\hardlink\src\ln_hardlink2.h 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --symbolic test\hardlink\src\ln_hardlink2.h 
 test\hardlink\src\ln_hardlink2.h:3
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --list t:\ln_hardlink2.h 
-D:\data\cpp\hardlinks\ln\test\hardlink\src\ln.h
-D:\data\cpp\hardlinks\ln\test\hardlink\src\ln_hardlink.h
-D:\data\cpp\hardlinks\ln\test\hardlink\src\ln_hardlink2.h
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --list t:\ln_hardlink2.h   | sort
+C:\data\cpp\git\hardlinks\ln\test\hardlink\src\ln.h
+C:\data\cpp\git\hardlinks\ln\test\hardlink\src\ln_hardlink.h
+C:\data\cpp\git\hardlinks\ln\test\hardlink\src\ln_hardlink2.h
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --list test\hardlink\src\ln_hardlink2.h 
-D:\data\cpp\hardlinks\ln\test\hardlink\src\ln.h
-D:\data\cpp\hardlinks\ln\test\hardlink\src\ln_hardlink.h
-D:\data\cpp\hardlinks\ln\test\hardlink\src\ln_hardlink2.h
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --list test\hardlink\src\ln_hardlink2.h   | sort
+C:\data\cpp\git\hardlinks\ln\test\hardlink\src\ln.h
+C:\data\cpp\git\hardlinks\ln\test\hardlink\src\ln_hardlink.h
+C:\data\cpp\git\hardlinks\ln\test\hardlink\src\ln_hardlink2.h
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --symbolic test\hardlink\src\ln_hardlink3.h 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress --symbolic test\hardlink\src\ln_hardlink3.h 
 test\hardlink\src\ln_hardlink3.h:4
+
+C:\data\cpp\git\hardlinks\ln>REM Test the subst driveletters symbolic linking 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\hardlink\src\ln.h t:\ln_symlink.h  1>nul 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\hardlink\src\ln_symlink.h 
+test\hardlink\src\ln_symlink.h -> C:\data\cpp\git\hardlinks\ln\test\hardlink\src\ln.h
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --absolute --symbolic test\hardlink\src\ln.h t:\ln_symlink_abs.h  1>nul 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\hardlink\src\ln_symlink_abs.h 
+test\hardlink\src\ln_symlink_abs.h -> C:\data\cpp\git\hardlinks\ln\test\hardlink\src\ln.h
+
+C:\data\cpp\git\hardlinks\ln>REM reverse 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic t:\reverse.h test\hardlink\src\reverse_symlink.h  1>nul 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\hardlink\src\reverse_symlink.h 
+test\hardlink\src\reverse_symlink.h -> t:\reverse.h
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --absolute --symbolic t:\reverse.h test\hardlink\src\reverse_symlink_abs.h  1>nul 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\hardlink\src\reverse_symlink_abs.h 
+test\hardlink\src\reverse_symlink_abs.h -> t:\reverse.h
+
+C:\data\cpp\git\hardlinks\ln>REM within 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic t:\reverse.h t:\within.h  1>nul 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic t:\within.h 
+t:\within.h -> reverse.h
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --absolute --symbolic t:\reverse.h t:\within_abs.h  1>nul 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic t:\within_abs.h 
+t:\within_abs.h -> t:\reverse.h
