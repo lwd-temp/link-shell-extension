@@ -3293,7 +3293,7 @@ _FindHardLinkTraditionalRecursive(
   //
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-    wprintf(L"%s FileInfoContainer::_FindHardLinkTraditionalRecursive 01 %s\n", m_ContainerName, aSrcPath);
+    wprintf(L"%s " __FUNCTION__ L" 01 %s\n", m_ContainerName, aSrcPath);
 #endif
 
   size_t sp_value;
@@ -3364,7 +3364,7 @@ _FindHardLinkTraditionalRecursive(
               PathParseSwitchOffSize = PATH_PARSE_SWITCHOFF_SIZE;
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-            wprintf(L"%s FileInfoContainer::_FindHardLinkTraditionalRecursive 04 %s\n", m_ContainerName, aSrcPath);
+            wprintf(L"%s " __FUNCTION__ L" 04 %s\n", m_ContainerName, aSrcPath);
 #endif
             if (apContext)
             {
@@ -3419,14 +3419,14 @@ _FindHardLinkTraditionalRecursive(
               );
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-              wprintf(L"%s FileInfoContainer::_FindHardLinkTraditionalRecursive 05 %s, %d, %d, %d\n", m_ContainerName, aSrcPath, DoRecursion, aRefCount, FatalReparseError);
+              wprintf(L"%s " __FUNCTION__ L" 05 %s, %d, %d, %d\n", m_ContainerName, aSrcPath, DoRecursion, aRefCount, FatalReparseError);
 #endif
               // Check if we are in copy mode, then we also need the directories
               if (aRefCount <= 0 && !FatalReparseError)
               {
                 // A directory might also be a Junction or Symbolic Link
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-                  wprintf(L"%s FileInfoContainer::_FindHardLinkTraditionalRecursive 06 %s\n", m_ContainerName, aSrcPath);
+                  wprintf(L"%s " __FUNCTION__ L" 06 %s\n", m_ContainerName, aSrcPath);
 #endif
                 // A directory might also be a Junction or Symbolic Link
                 int ResultAddDir = AddDirectory(
@@ -3479,7 +3479,7 @@ _FindHardLinkTraditionalRecursive(
                 {
                   // TBD: if we encounter an error escape the recursion, and use PathNameStatuslist 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-                    wprintf(L"%s FileInfoContainer::_FindHardLinkTraditionalRecursive 07 %08x\n", m_ContainerName, rr);
+                    wprintf(L"%s " __FUNCTION__ L" 07 %08x\n", m_ContainerName, rr);
 #endif
                   RetVal = rr;
                   break;
@@ -3537,7 +3537,7 @@ _FindHardLinkTraditionalRecursive(
                 }
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-                wprintf(L"%s FileInfoContainer::_FindHardLinkTraditionalRecursive 08\n", m_ContainerName);
+                wprintf(L"%s " __FUNCTION__ L" 08\n", m_ContainerName);
 #endif
             } // if (RegExpMatch)
 
@@ -3914,7 +3914,7 @@ _FindHardLinkRecursive(
   //
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-    wprintf(L"%s FileInfoContainer::_FindHardLinkRecursive 01 %s\n", m_ContainerName, aSrcPath);
+    wprintf(L"%s " __FUNCTION__ L" 01 %s\n", m_ContainerName, aSrcPath);
 #endif
 
   size_t sp_value;
@@ -4040,7 +4040,7 @@ _FindHardLinkRecursive(
         FirstFullDirQuery 
       );
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-      wprintf(L"%s FileInfoContainer::_FindHardLinkRecursive 03 %s, %08x\n", m_ContainerName, aSrcPath, ntStatus);
+      wprintf(L"%s " __FUNCTION__ L" 03 %s, %08x\n", m_ContainerName, aSrcPath, ntStatus);
 #endif
       if( !NT_SUCCESS( ntStatus ))
         break;
@@ -4073,7 +4073,7 @@ _FindHardLinkRecursive(
 
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-              wprintf(L"%s FileInfoContainer::_FindHardLinkRecursive 04 %s\n", m_ContainerName, aSrcPath);
+              wprintf(L"%s " __FUNCTION__ L" 04 %s\n", m_ContainerName, aSrcPath);
 #endif
               if (apContext)
               {
@@ -4137,14 +4137,14 @@ _FindHardLinkRecursive(
                 );
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-                wprintf(L"%s FileInfoContainer::_FindHardLinkRecursive 05 %s, %d, %d, %d\n", m_ContainerName, aSrcPath, DoRecursion, aRefCount, FatalReparseError);
+                wprintf(L"%s " __FUNCTION__ L" 05 %s, %d, %d, %d\n", m_ContainerName, aSrcPath, DoRecursion, aRefCount, FatalReparseError);
 #endif
                 // Check if we are in copy mode, then we also need the directories
                 if (aRefCount <= 0 && !FatalReparseError)
                 {
                   // A directory might also be a Junction or Symbolic Link
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-                  wprintf(L"%s FileInfoContainer::_FindHardLinkRecursive 06 %s\n", m_ContainerName, aSrcPath);
+                  wprintf(L"%s " __FUNCTION__ L" 06 %s\n", m_ContainerName, aSrcPath);
 #endif
                   int ResultAddDir = 
                     AddDirectoryFast(
@@ -4197,7 +4197,7 @@ _FindHardLinkRecursive(
                   {
                     // TBD: if we encounter an error escape the recursion, and use PathNameStatuslist 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-                    wprintf(L"%s FileInfoContainer::_FindHardLinkRecursive 07 %08x\n", m_ContainerName, RecursionResult);
+                    wprintf(L"%s " __FUNCTION__ L" 07 %08x\n", m_ContainerName, RecursionResult);
 #endif
                     RetVal = RecursionResult;
                     break;
@@ -4255,7 +4255,7 @@ _FindHardLinkRecursive(
                 }
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-                wprintf(L"%s FileInfoContainer::_FindHardLinkRecursive 08\n", m_ContainerName);
+                wprintf(L"%s " __FUNCTION__ L" 08\n", m_ContainerName);
 #endif
               } // if (RegExpMatch)
 
@@ -4672,7 +4672,7 @@ IsOuterReparsePoint(
   bool DoRecursion = false;
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-  wprintf(L"%s "__FUNCTION__" 01 %s, %08x\n", m_ContainerName, aSrcPath, aFileAttributes);
+  wprintf(L"%s " __FUNCTION__ L" 01 %s, %08x\n", m_ContainerName, aSrcPath, aFileAttributes);
 #endif
   if (aFileAttributes & FILE_ATTRIBUTE_REPARSE_POINT)
   {
@@ -4731,18 +4731,12 @@ IsOuterReparsePoint(
     // Here we should end up in any case with ReparseSrcTarget beeing a long path
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-  wprintf(L"%s "__FUNCTION__" 02 '%s', %08x, '%s'\n", m_ContainerName, aSrcPath, ReparsePointType, ReparseSrcTarget);
+  wprintf(L"%s " __FUNCTION__ L" 02 '%s', %08x, '%s'\n", m_ContainerName, aSrcPath, ReparsePointType, ReparseSrcTarget);
 #endif
-
-
-
-
 
     //
     // Circularity Check: See if we are running into a circularity, which would cause us
-    // to run till the stack is over
-    //
-
+    // to run till the stack is over when we unroll
     //
     // But we have to add a \ to the ReparseSrcTarget because otherwise a 
     // ReparseSrcTarget == x:\path\3 and a aSrcPath == x:\path\333 will result
@@ -4770,67 +4764,6 @@ IsOuterReparsePoint(
       ReparseSrcTarget[ReparseSrcTargetLen] = SaveChar1;
       ReparseSrcTarget[ReparseSrcTargetLen + 1] = SaveChar2;
     }
-
-// #define CIRCULARITY
-#if defined CIRCULARITY
-    if (Circularity)
-    {
-#if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-  wprintf(L"%s "__FUNCTION__" 03 %s, %08x, %s\n", m_ContainerName, aSrcPath, ReparsePointType, ReparseSrcTarget);
-#endif
-      switch(ReparsePointType)
-      {
-        case REPARSE_POINT_SYMBOLICLINK:
-        {
-          aStats->m_SymlinksTotal++;
-          aStats->m_SymlinksRestoreFailed++;
-
-          PathNameStatus pns(QuestionS, &aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], ERROR_CIRCULAR_DEPENDENCY);
-          aPathNameStatusList->push_back(pns);
-        }
-        break;
-
-        case REPARSE_POINT_MOUNTPOINT:
-        {
-          aStats->m_MountpointsTotal++;
-          aStats->m_MountpointsRestoreFailed++;
-
-          PathNameStatus pns(QuestionM, &aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], ERROR_CIRCULAR_DEPENDENCY);
-          aPathNameStatusList->push_back(pns);
-        }
-        break;
-
-        case REPARSE_POINT_JUNCTION:
-        {
-          aStats->m_JunctionsTotal++;
-          aStats->m_JunctionsRestoreFailed++;
-
-          PathNameStatus pns(QuestionJ, &aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], ERROR_CIRCULAR_DEPENDENCY);
-          aPathNameStatusList->push_back(pns);
-        }
-        break;
-
-        default:
-        {
-          aStats->m_ReparsePointTotal++;
-          aStats->m_ReparsePointRestoreFailed++;
-
-          PathNameStatus pns(QuestionR, &aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], ERROR_CIRCULAR_DEPENDENCY);
-          aPathNameStatusList->push_back(pns);
-        }
-      }
-
-      aReparsePointBoundaryCrossed = false;
-      aFatalReparseError = true;
-      return DoRecursion;
-    }
-    //
-    // Circularity Check: End
-    //
-#endif
-
-
-
 
     //
     // Decide whether it is an Inner or Outer ReparsePoint
@@ -4954,7 +4887,7 @@ IsOuterReparsePoint(
       if (InnerReparsePoint)
       {
   #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-        wprintf(L"%s "__FUNCTION__" 04 %s, %08x, %s\n", m_ContainerName, aSrcPath, aCurrentBoundaryCross, aCurrentReparsePointReferencePath);
+        wprintf(L"%s " __FUNCTION__ L" 04 %s, %08x, %s\n", m_ContainerName, aSrcPath, aCurrentBoundaryCross, aCurrentReparsePointReferencePath);
   #endif
         // Inner ReparsePoint with respect to aCurrentReparsePointReferencePath
         if (aCurrentBoundaryCross)
@@ -4968,7 +4901,7 @@ IsOuterReparsePoint(
             wcscat_s(aReparseSrcTargetHint, HUGE_PATH, L"\\");
           wcscat_s(aReparseSrcTargetHint, HUGE_PATH, InnerReparsePoint);
   #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-          wprintf(L"%s "__FUNCTION__" 05 %s, %s\n", m_ContainerName, aSrcPath, aReparseSrcTargetHint);
+          wprintf(L"%s " __FUNCTION__ L" 05 %s, %s\n", m_ContainerName, aSrcPath, aReparseSrcTargetHint);
   #endif
         }
 
@@ -4979,7 +4912,7 @@ IsOuterReparsePoint(
         // Outer ReparsePoint
 
   #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-        wprintf(L"%s "__FUNCTION__" 06 %s\n", m_ContainerName, aSrcPath);
+        wprintf(L"%s " __FUNCTION__ L" 06 %s\n", m_ContainerName, aSrcPath);
   #endif
         // Save the current DiskSerialNumber, and only after successfull traverse make it the new SerialNumber
         DWORD DiskSerialNumber = m_CurrentSerialNumber;
@@ -5063,17 +4996,15 @@ IsOuterReparsePoint(
     if (aReparsePointBoundaryCrossed)
     {
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-      wprintf(L"%s "__FUNCTION__" 07 %s\n", m_ContainerName, aSrcPath);
+      wprintf(L"%s " __FUNCTION__ L" 07 %s\n", m_ContainerName, aSrcPath);
 #endif
       
       // Unrolling on circularities would drive us into an endless loop thus we have to break it
       // Create the last known good junctions and stop recursion
-#if !defined CIRCULARITY
       if (!Circularity)
-#endif
       {
         // Check if all junctions/symlink dirs should be unrolled. 
-        // This switch  is here because if we can avoid time consuming 
+        // This switch is here because if we can avoid time consuming 
         // regular expression matches the performance will be better
         if (m_Flags & eAlwaysUnrollDir)
           DoRecursion = true;
@@ -5104,21 +5035,66 @@ IsOuterReparsePoint(
           aCurrentBoundaryCross = wcslen(aSrcPath);
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-          wprintf(L"%s "__FUNCTION__" 09 %s %s\n", m_ContainerName, aSrcPath, aReparsePointReferencePath);
+          wprintf(L"%s " __FUNCTION__ L" 09 %s %s\n", m_ContainerName, aSrcPath, aReparsePointReferencePath);
 #endif
           aFileAttributes &= ~FILE_ATTRIBUTE_REPARSE_POINT;
         }
       }
       else
       {
-        // Left for error message on circular reparsepoints during unroll
+/*
+#if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
+        wprintf(L"%s " __FUNCTION__ L" 03 %s, %08x, %s\n", m_ContainerName, aSrcPath, ReparsePointType, ReparseSrcTarget);
+#endif
+        switch (ReparsePointType)
+        {
+        case REPARSE_POINT_SYMBOLICLINK:
+        {
+          aStats->m_SymlinksTotal++;
+          aStats->m_SymlinksRestoreFailed++;
+
+          PathNameStatus pns(QuestionS, &aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], ERROR_CIRCULAR_DEPENDENCY);
+          aPathNameStatusList->push_back(pns);
+        }
+        break;
+
+        case REPARSE_POINT_MOUNTPOINT:
+        {
+          aStats->m_MountpointsTotal++;
+          aStats->m_MountpointsRestoreFailed++;
+
+          PathNameStatus pns(QuestionM, &aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], ERROR_CIRCULAR_DEPENDENCY);
+          aPathNameStatusList->push_back(pns);
+        }
+        break;
+
+        case REPARSE_POINT_JUNCTION:
+        {
+          aStats->m_JunctionsTotal++;
+          aStats->m_JunctionsRestoreFailed++;
+
+          PathNameStatus pns(QuestionJ, &aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], ERROR_CIRCULAR_DEPENDENCY);
+          aPathNameStatusList->push_back(pns);
+        }
+        break;
+
+        default:
+        {
+          aStats->m_ReparsePointTotal++;
+          aStats->m_ReparsePointRestoreFailed++;
+
+          PathNameStatus pns(QuestionR, &aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], ERROR_CIRCULAR_DEPENDENCY);
+          aPathNameStatusList->push_back(pns);
+        }
+        }
+*/
       }
     }
   }
   else
   {
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-    wprintf(L"%s "__FUNCTION__" 08 %s\n", m_ContainerName, aSrcPath);
+    wprintf(L"%s " __FUNCTION__ L" 08 %s\n", m_ContainerName, aSrcPath);
 #endif
 
     // Follow directories anyway
@@ -5142,7 +5118,7 @@ AddDirectoryFast(
 )
 {
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-  wprintf(L"%s AddDirectoryFast::\n", m_ContainerName);
+  wprintf(L"%s " __FUNCTION__ L"\n", m_ContainerName);
 #endif
 
   int RetVal = ERROR_SUCCESS;
@@ -5336,7 +5312,7 @@ AddDirectory(
 )
 {
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-  wprintf(L"%s AddDirectory::\n", m_ContainerName);
+  wprintf(L"%s " __FUNCTION__ L"\n", m_ContainerName);
 #endif
 
   int RetVal = ERROR_SUCCESS;
@@ -5399,7 +5375,7 @@ AddDirectory(
 #endif
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-      wprintf(L"%s AddDirectory::push_back dir %s\n", m_ContainerName, pFileInfo->m_FileName);
+      wprintf(L"%s " __FUNCTION__ L"::push_back dir %s\n", m_ContainerName, pFileInfo->m_FileName);
 #endif
 
       if (FileAttribute & FILE_ATTRIBUTE_REPARSE_POINT)
@@ -5444,7 +5420,7 @@ AddDirectory(
       RetVal = GetLastError();
 
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-      wprintf(L"%s AddDirectory::GetFileInformationByHandle failed %s(%08d)\n", m_ContainerName, aName, RetVal);
+      wprintf(L"%s " __FUNCTION__ L"::GetFileInformationByHandle failed %s(%08d)\n", m_ContainerName, aName, RetVal);
 #endif
 
       if (aOriginalFileAttribute & FILE_ATTRIBUTE_REPARSE_POINT)
@@ -5505,7 +5481,7 @@ AddDirectory(
   else // if (INVALID_HANDLE_VALUE != fh)
   {
 #if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-    wprintf(L"%s AddDirectory::CreateFileW failed %s(%08d)\n", m_ContainerName, aName, RetVal);
+    wprintf(L"%s " __FUNCTION__ L"::CreateFileW failed %s(%08d)\n", m_ContainerName, aName, RetVal);
 #endif
     RetVal = GetLastError();
 
