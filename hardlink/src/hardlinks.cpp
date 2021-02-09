@@ -5040,55 +5040,6 @@ IsOuterReparsePoint(
           aFileAttributes &= ~FILE_ATTRIBUTE_REPARSE_POINT;
         }
       }
-      else
-      {
-/*
-#if defined FIND_HARDLINK_DEBUG // DEBUG_DEFINES
-        wprintf(L"%s " __FUNCTION__ L" 03 %s, %08x, %s\n", m_ContainerName, aSrcPath, ReparsePointType, ReparseSrcTarget);
-#endif
-        switch (ReparsePointType)
-        {
-        case REPARSE_POINT_SYMBOLICLINK:
-        {
-          aStats->m_SymlinksTotal++;
-          aStats->m_SymlinksRestoreFailed++;
-
-          PathNameStatus pns(QuestionS, &aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], ERROR_CIRCULAR_DEPENDENCY);
-          aPathNameStatusList->push_back(pns);
-        }
-        break;
-
-        case REPARSE_POINT_MOUNTPOINT:
-        {
-          aStats->m_MountpointsTotal++;
-          aStats->m_MountpointsRestoreFailed++;
-
-          PathNameStatus pns(QuestionM, &aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], ERROR_CIRCULAR_DEPENDENCY);
-          aPathNameStatusList->push_back(pns);
-        }
-        break;
-
-        case REPARSE_POINT_JUNCTION:
-        {
-          aStats->m_JunctionsTotal++;
-          aStats->m_JunctionsRestoreFailed++;
-
-          PathNameStatus pns(QuestionJ, &aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], ERROR_CIRCULAR_DEPENDENCY);
-          aPathNameStatusList->push_back(pns);
-        }
-        break;
-
-        default:
-        {
-          aStats->m_ReparsePointTotal++;
-          aStats->m_ReparsePointRestoreFailed++;
-
-          PathNameStatus pns(QuestionR, &aSrcPath[PATH_PARSE_SWITCHOFF_SIZE], ERROR_CIRCULAR_DEPENDENCY);
-          aPathNameStatusList->push_back(pns);
-        }
-        }
-*/
-      }
     }
   }
   else
