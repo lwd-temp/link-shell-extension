@@ -5,6 +5,10 @@
 
 @set ROOT=%~dp0..
 
+@REM Upload general files
+@REM
+@call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\lse.xml
+
 @REM Upload LinkshellExtension
 @REM
 :No_ChocoUpload
@@ -16,7 +20,6 @@
 @call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\linkshellextension.html
 @call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\linkshellextension_fr.html
 @call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\linkshellextension_de.html
-@call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\lse.xml
 @copy %ROOT%\HardlinkExtension\Doc\linkshellextension.html %ROOT%\HardlinkExtension\Doc\hardlinkshellext.html > nul
 @call %~dp0FtpUpload.bat hardlinkshellext %ROOT%\HardlinkExtension\Doc\hardlinkshellext.html
 
