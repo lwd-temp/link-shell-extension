@@ -70,7 +70,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i><font face="arial">Last Updated January 28, 2021 Version 2.9.3.2</font></i>
+                    <i><font face="arial">Last Updated February 9, 2021 Version 2.9.3.3</font></i>
                 </div>
             </td>
         </tr>
@@ -1862,48 +1862,6 @@
                                         <p>
                                             The ? operator means the current operation was unable to enumerate all available files.
                                             It is always prefixed with ! to signal that during enumeration of items something went wrong.
-                                        </p>
-                                        <p>
-                                        </p>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="bodytext">
-                                        <span class="ascode">!?j (0x00000423) d:\src\deny</span>
-                                    </td>
-                                    <td class="bodytext">
-                                        <p>
-                                            Circularities are detected during Smart Copy/Smart Mirror/Delorean Copy and are flagged as
-                                            an error with the code 0x0423, which means ERROR_CIRCULAR_DEPENDENCY.
-                                        </p>
-                                        <p>
-                                        </p>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="bodytext">
-                                        <span class="ascode">!?s (0x00000780) d:\src\deny</span>
-                                    </td>
-                                    <td class="bodytext">
-                                        <p>
-                                            The error ERROR_CANT_ACCESS_FILE aka 0x0780 is thrown only under Windows
-                                            XP if a symbolic link is among the files to operate on, because Windows XP can not process Symbolic
-                                            Links unless the <a href="#symboliclinksforwindowsxp">symbolic link driver for Windows XP</a> is installed.
-                                        </p>
-                                        <p>
-                                        </p>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="bodytext">
-                                        <span class="ascode"><a name="xpdanglingjunctions">!&j (0x000000a1) d:\src\dangling_junction</a></span>
-                                    </td>
-                                    <td class="bodytext">
-                                        <p>
-                                            The error ERROR_BAD_PATHNAME aka 0x00a1 is thrown only under Windows XP if a dangling junction can not be restored.
                                         </p>
                                         <p>
                                         </p>
@@ -5237,11 +5195,14 @@
 
                     <tr>
                         <td class="hanger2">
-                            January 28, 2021
+                            February 9, 2021
                         </td>
                         <td align="left" class="bodytext">
-                            <a name="2930">Version 2.9.3.2</a>
+                            <a name="2930">Version 2.9.3.3</a>
                             <ul>
+                                <!-- 2.9.3.3, 9.2.2021 -->
+                                <li>Introduced a static version of ln.exe for use under e.g. WinPE</li>
+                                <li>Changed the behavior related to cirularties. No error message raised, but circularity are broken properly.</li>
                                 <!-- 2.9.3.2, 28.1.2021 -->
                                 <li>Multisource aka <a href="#destinationoption">--destination</a> in combination with --mirror did not work.</li>
                                 <!-- 2.9.3.1, 14.1.2021 -->
@@ -5983,28 +5944,13 @@
             <td align="center" class="bodytext">
                 <table cellspacing="0" cellpadding="0" border="0">
                     <tr>
-                        <td class="hanger2">
-                            <b>Windows 32bit<br /></b>
-                        </td>
-                        <td align="left" class="bodytext">
-                            Simply download and extract
-                            <a href="https://schinagl.priv.at/nt/ln/ln.zip">ln.zip (2.22Mb)</a>
-
-                            to your favourite tools directory. All neccesary runtime dlls are already installed on your system, but if not grab it from
-                            <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">here.</a>
-                            <br />
-                            <br />
-                            <br />
-                        </td>
-                    </tr>
-
                     <tr>
                         <td class="hanger2">
-                            <b>Windows 64bit<br /></b>
+                            <b>Win64<br /></b>
                         </td>
                         <td align="left" class="bodytext">
                             Simply download and extract
-                            <a href="https://schinagl.priv.at/nt/ln/ln64.zip">ln64.zip (2.24Mb)</a>
+                            <a href="https://schinagl.priv.at/nt/ln/ln64.zip">ln64.zip (2.30Mb)</a>
                             to your favourite tools directory. All neccesary runtime dlls are already installed on your system, but if not grab it from
                             <a href="https://aka.ms/vs/15/release/vc_redist.x64.exe">here.</a>
                             <br />
@@ -6012,6 +5958,22 @@
                             <br />
                         </td>
                     </tr>
+
+                    <td class="hanger2">
+                        <b>Win32<br /></b>
+                    </td>
+                    <td align="left" class="bodytext">
+                        Simply download and extract
+                        <a href="https://schinagl.priv.at/nt/ln/ln.zip">ln.zip (2.29Mb)</a>
+
+                        to your favourite tools directory. All neccesary runtime dlls are already installed on your system, but if not grab it from
+                        <a href="https://aka.ms/vs/15/release/vc_redist.x86.exe">here.</a>
+                        <br />
+                        <br />
+                        <br />
+                    </td>
+</tr>
+
                     <tr>
                         <td class="hanger2">
                             <b>Chocolatey<br />Installation</b>
@@ -6030,6 +5992,35 @@
                             <br />
                         </td>
                     </tr>
+
+                    <tr>
+                        <td class="hanger2">
+                            <b>Static<br />Win64</b>
+                        </td>
+                        <td align="left" class="bodytext">
+                            Simply download and extract
+                            <a href="https://schinagl.priv.at/nt/ln/ln64static.zip">ln64static.zip (2.30Mb)</a>
+                            to your favourite tools directory. No need for runtime dlls, thus can run under WinPE
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="hanger2">
+                            <b>Static<br />Win32</b>
+                        </td>
+                        <td align="left" class="bodytext">
+                            Simply download and extract
+                            <a href="https://schinagl.priv.at/nt/ln/lnstatic.zip">lnstatic.zip (2.30Mb)</a>
+                            to your favourite tools directory. No need for runtime dlls, thus can run under WinPE
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+
                     <tr>
                         <td colspan="2">
                             &nbsp

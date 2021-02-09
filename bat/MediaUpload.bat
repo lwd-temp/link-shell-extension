@@ -29,9 +29,11 @@
 REM @goto No_LnUpLoad
 @call %ROOT%\ln\choco\NugetGen.bat
 
+@call %~dp0FtpUpload.bat ln %ROOT%\ln\Doc\ln.html
 @call %~dp0FtpUpload.bat ln %ROOT%\Media\ln.zip
 @call %~dp0FtpUpload.bat ln %ROOT%\Media\ln64.zip
-@call %~dp0FtpUpload.bat ln %ROOT%\ln\Doc\ln.html
+@call %~dp0FtpUpload.bat ln %ROOT%\Media\lnstatic.zip
+@call %~dp0FtpUpload.bat ln %ROOT%\Media\ln64static.zip
 
 @REM Upload dupemerge.exe
 @REM

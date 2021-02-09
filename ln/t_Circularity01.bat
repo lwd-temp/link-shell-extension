@@ -82,7 +82,6 @@ REM
 %LN% %ABS_REL% %REPARSEOPT% %TESTROOTSRC%\F1 %TESTROOTSRC%\F0\F0_F0\F0_F0_J0 
 %LN% %ABS_REL% %REPARSEOPT% %TESTROOTSRC%\F0 %TESTROOTSRC%\F1\F1_F0\F1_F0_J1 
 
-
 REM
 REM Outer Circularity Copy
 REM
@@ -95,6 +94,9 @@ sort sortout
 @if [%2] == [splice] ( 
   @%LN% %REPARSEOPT% %TESTROOTSRC%\F1\F1_F0\F1_F0_J0
 )
+
+@%LN% --junction %TESTROOTDST%\F1_F0\F1_F0_J0
+@%LN% --junction %TESTROOTDST%\F1_F0\F1_F0_J1\F0_F0\F0_F0_J0 
 
 @echo off
 REM 

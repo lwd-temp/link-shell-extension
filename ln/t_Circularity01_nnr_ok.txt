@@ -1,0 +1,82 @@
+
+C:\data\cpp\git\hardlinks\ln>REM  
+
+C:\data\cpp\git\hardlinks\ln>REM Inner Circularity  
+
+C:\data\cpp\git\hardlinks\ln>REM
+test\Circularity\src\F1\F1_F0\F1_F0_J0 -> C:\data\cpp\git\hardlinks\ln\test\Circularity\src\F1
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Inner Circularity Copy 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress    --copy test\Circularity\src "test\Circularity\dst"   1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     4.466     4.466         0         0         0         0
+    File:        11        11         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         5         5         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\Circularity\dst
++d C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F0
++d C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F0\F0_F0
++d C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F1
++d C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F1\F1_F0
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F0\F0_F0\RD_F0_F0.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F0\RD00.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F0\RD01.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F0\RD02.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F1\F1_F0\RD_F1_F0.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F1\RD00.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F1\RD01.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F1\RD02.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\RD00.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\RD01.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\RD02.txt
++j C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F1\F1_F0\F1_F0_J0
+Junction:         1         -         1         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM  
+
+C:\data\cpp\git\hardlinks\ln>REM Outer Circularity  
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   --noitcnuj test\Circularity\src\F1 test\Circularity\src\F0\F0_F0\F0_F0_J0  
+test\Circularity\src\F0\F0_F0\F0_F0_J0 -> C:\data\cpp\git\hardlinks\ln\test\Circularity\src\F1
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   --noitcnuj test\Circularity\src\F0 test\Circularity\src\F1\F1_F0\F1_F0_J1  
+test\Circularity\src\F1\F1_F0\F1_F0_J1 -> C:\data\cpp\git\hardlinks\ln\test\Circularity\src\F0
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Outer Circularity Copy 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress    --copy test\Circularity\src\F1 test\Circularity\dst   1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     1.624     1.624         0         0         0         0
+    File:         4         4         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         2         2         -         0         0         0
+ Symlink:         0         -         0         0         0         0
+#j C:\data\cpp\git\hardlinks\ln\test\Circularity\src\F1\F1_F0\F1_F0_J1
++d C:\data\cpp\git\hardlinks\ln\test\Circularity\dst
++d C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F1_F0
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F1_F0\RD_F1_F0.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\RD00.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\RD01.txt
++f C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\RD02.txt
++j C:\data\cpp\git\hardlinks\ln\test\Circularity\dst\F1_F0\F1_F0_J0
+Junction:         2         -         1         0         1         0
+ErrorLevel == 0

@@ -1,0 +1,74 @@
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM SmartCopy from FAT drive 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy t:\F00 test\FatSmartXXX\dst  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:       406       406         0         0         0         0
+    File:         1         1         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         1         1         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\FatSmartXXX\dst
++f C:\data\cpp\git\hardlinks\ln\test\FatSmartXXX\dst\resource.h
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM SmartMirror from FAT drive 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --mirror t:\F00 test\FatSmartXXX\dst  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:       406       406         0         0         0         0         0
+    File:         1         1         0         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         1         1         -         0         0         0         0
+ Symlink:         0         -         0         0         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\FatSmartXXX\dst
++f C:\data\cpp\git\hardlinks\ln\test\FatSmartXXX\dst\resource.h
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM SmartClone from FAT drive 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive t:\F00 test\FatSmartXXX\dst 
+ERROR: volume type for 't:\F00' does not support hardlinks
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Delorean from FAT drive 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean t:\F00 test\FatSmartXXX\dst test\FatSmartXXX\bkp 1>sortout 
+
+
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:       406         0         0       406         0         0         0
+    File:         1         0         0         1         0         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         1         0         -         1         0         0         0
+ Symlink:         0         -         0         0         0         0         0
+=d C:\data\cpp\git\hardlinks\ln\test\FatSmartXXX\bkp
+=f C:\data\cpp\git\hardlinks\ln\test\FatSmartXXX\bkp\resource.h
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+
+test\FatSmartXXX\bkp\resource.h:2

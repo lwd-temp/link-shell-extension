@@ -1,0 +1,313 @@
+
+C:\data\cpp\git\hardlinks\ln>echo.
+
+
+C:\data\cpp\git\hardlinks\ln>set OPTION=--splice 
+
+C:\data\cpp\git\hardlinks\ln>set REPARSEOPT=--noitcnuj 
+
+C:\data\cpp\git\hardlinks\ln>if [relative] == [absolute] (SET ABS_REL=--relative )  else (SET ABS_REL= ) 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Unroll is on, but multiple specified sources prevent from unrolling 
+
+C:\data\cpp\git\hardlinks\ln>REM so in the whole tree no unrolling needed 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --splice  --source test\MultiSourceSplice\source\F0 --copy test\MultiSourceSplice\source\F1 test\MultiSourceSplice\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     2.784     2.784         0         0         0         0
+    File:         6         6         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         9         8         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1_F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1_F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_F2
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F1\F1_F1_F0
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1_F1\F0_F1_F1.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_F2\F1_F0_F2.txt
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1_J2
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_J0
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_J1
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F1\F1_F1_J1
+Junction:         4         -         4         0         0         0
+ErrorLevel == 0
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1_J2 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1_F1
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_F2
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F1\F1_F1_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_F2
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Multiple sources are given for F1/ F2/, so unrolling is prevented,  
+
+C:\data\cpp\git\hardlinks\ln>REM but to F0/ unrolling is necessary 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --splice  --source test\MultiSourceSplice\source\F1 --copy test\MultiSourceSplice\source\F2 test\MultiSourceSplice\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     3.248     3.248         0         0         0         0
+    File:         7         7         0         0         0         0
+   Times:        00:00:00.002
+  Folder:        13        12         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_F2
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F1\F1_F1_F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1\F2_F1_F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1\F2_F1_F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F2
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F3
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_F2\F1_F0_F2.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1\F2_F1_F0\F2_F1_F0.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1\F2_F1_F1\F2_F1_F1.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F2\F2_F2_F2.txt
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_J0
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_J1
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F1\F1_F1_J1
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F3\F2_F2_F3_J0
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F3\F2_F2_F3_J1
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_J0
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_J0
+Junction:         7         -         7         0         0         0
+ErrorLevel == 0
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_F2
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F1\F1_F1_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_F2
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1\F2_F1_F1
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F3\F2_F2_F3_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F2
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F3\F2_F2_F3_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1\F2_F1_F0
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F1_F0\F1_F0_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\source\F0\F0_F1
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Multiple sources are given for F2/ F3/, so unrolling is prevented,  
+
+C:\data\cpp\git\hardlinks\ln>REM but to F0/ and F1/ unrolling is necessary 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --splice  --source test\MultiSourceSplice\source\F3 --copy test\MultiSourceSplice\source\F2 test\MultiSourceSplice\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     2.320     2.320         0         0         0         0
+    File:         5         5         0         0         0         0
+   Times:        00:00:00.002
+  Folder:        11        10         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1\F2_F1_F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1\F2_F1_F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F2
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F3
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_F2
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_F2\F3_F2_F0
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1\F2_F1_F0\F2_F1_F0.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1\F2_F1_F1\F2_F1_F1.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F2\F2_F2_F2.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_F2\F3_F2_F0\F3_F2_F0.txt
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F3\F2_F2_F3_J0
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F3\F2_F2_F3_J1
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_J0
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_J0
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_F2\F3_F2_J1
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_J0
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_J1
+Junction:         7         -         7         0         0         0
+ErrorLevel == 0
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F3\F2_F2_F3_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F2
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_F3\F2_F2_F3_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1\F2_F1_F0
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F2\F2_F2_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_F1\F2_F1_F1
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_F2\F3_F2_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_F2\F3_F2_F0
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F2_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\source\F1
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\source\F1\F1_F0
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Delorean is on, but multiple specified sources prevent from unrolling 
+
+C:\data\cpp\git\hardlinks\ln>REM so in the whole tree no unrolling needed 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --splice  --source test\MultiSourceSplice\source\F0 --copy test\MultiSourceSplice\source\F1 test\MultiSourceSplice\dest  1>nul 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --splice  --source test\MultiSourceSplice\source\F0 --delorean test\MultiSourceSplice\source\F1 test\MultiSourceSplice\dest test\MultiSourceSplice\bk1  1>sortout 
+
+
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     2.784         0         0     2.784         0         0         0
+    File:         6         0         0         6         0         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         9         0         -         9         0         0         0
+ Symlink:         0         -         0         0         0         0         0
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F0_F1
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F0_F1\F0_F1_F0
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F0_F1\F0_F1_F1
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F0
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F0\F1_F0_F2
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F1
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F1\F1_F1_F0
+=f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F0_F1\F0_F1.txt
+=f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F0_F1\F0_F1_F1\F0_F1_F1.txt
+=f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1.txt
+=f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F0\F1_F0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F0\F1_F0_F2\F1_F0_F2.txt
+=j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F0_F1\F0_F1_J2
+=j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F0\F1_F0_J0
+=j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F0\F1_F0_J1
+=j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F1\F1_F1_J1
+Junction:         4         -         0         4         0         0         0
+ErrorLevel == 0
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F0_F1\F0_F1_J2 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F0_F1\F0_F1_F1
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F0\F1_F0_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F0_F1
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F0\F1_F0_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F0\F1_F0_F2
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F1\F1_F1_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F1_F0\F1_F0_F2
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Multiple sources are given for F2/ F3/, so unrolling is prevented,  
+
+C:\data\cpp\git\hardlinks\ln>REM but to F0/ and F1/ unrolling is necessary 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --splice  --source test\MultiSourceSplice\source\F2 --copy test\MultiSourceSplice\source\F3 test\MultiSourceSplice\dest  1>nul 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --splice  --source test\MultiSourceSplice\source\F2 --delorean test\MultiSourceSplice\source\F3 test\MultiSourceSplice\dest test\MultiSourceSplice\bk1  1>sortout 
+
+
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     2.320         0         0     2.320         0         0         0
+    File:         5         0         0         5         0         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:        11         0         -        11         0         0         0
+ Symlink:         0         -         0         0         0         0         0
+!?j(0x00000423) C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_J0
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F3_J0
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F1
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F1\F2_F1_F0
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F1\F2_F1_F1
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F2
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F2\F2_F2_F1
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F2\F2_F2_F2
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F2\F2_F2_F3
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F3_F2
+=d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F3_F2\F3_F2_F0
+=f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2.txt
+=f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F1\F2_F1_F0\F2_F1_F0.txt
+=f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F1\F2_F1_F1\F2_F1_F1.txt
+=f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F2\F2_F2_F2\F2_F2_F2.txt
+=f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F3_F2\F3_F2_F0\F3_F2_F0.txt
+=j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F2\F2_F2_F3\F2_F2_F3_J0
+=j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F2\F2_F2_F3\F2_F2_F3_J1
+=j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F2\F2_F2_J0
+=j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_J0
+=j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F3_F2\F3_F2_J1
+=j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F3_J1
+Junction:         7         -         1         6         0         0         0
+WARNING: Delorean Copy finished successfully but see output for errors.
+ErrorLevel == -16
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F2\F2_F2_F3\F2_F2_F3_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F2\F2_F2_F2
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F2\F2_F2_F3\F2_F2_F3_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F1\F2_F1_F0
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F2\F2_F2_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_F1\F2_F1_F1
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F3_F2\F3_F2_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F3_F2\F3_F2_F0
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F2_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\source\F1
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F3_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\bk1\F3_J1 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\source\F1\F1_F0
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Prepare a short example 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>call t_Unroll01Prepare02.bat test\MultiSourceSplice noitcnuj  
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Preparation for Unroll test 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM Multiple sources are given for F0/ F3/, so unrolling is prevented,  
+
+C:\data\cpp\git\hardlinks\ln>REM but to F1/ and F2/ unrolling is necessary 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --splice  --source test\MultiSourceSplice\source\F0 --copy test\MultiSourceSplice\source\F3 test\MultiSourceSplice\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     1.392     1.392         0         0         0         0
+    File:         3         3         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         5         4         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1_F0
++d C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1_F1
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1.txt
++f C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1_F1\F0_F1_F1.txt
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1_J2
++j C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_J0
+Junction:         2         -         2         0         0         0
+ErrorLevel == 0
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F3_J0 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\source\F2
+C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1_J2 -> C:\data\cpp\git\hardlinks\ln\test\MultiSourceSplice\dest\F0_F1\F0_F1_F1
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM MS01_2: Multiple sources are given for F0/ F4. Check if F4 is created 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --splice  --source test\MultiSourceSplice\source\F0 --destination test\MultiSourceSplice\dest\F0 --copy test\MultiSourceSplice\source\J4 test\MultiSourceSplice\dest\J4  1>sortout 
+ErrorLevel == 0

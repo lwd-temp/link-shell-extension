@@ -7,6 +7,22 @@
     <language>en</language>
 
     <item>
+      <title>ln.exe 2.933 has been released.</title>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2930</link>
+      <pubDate>Sun, 9 February 2021 21:30:50:15 +0100</pubDate>
+      <description>
+        ln.exe 2.932 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+          <li>Introduced a static version of ln.exe for use under e.g. WinPE</li>
+          <li>Changed the behavior related to cirularties. No error message raised, but circularity are broken properly.</li>
+        ]]>
+      </content:encoded>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2933</guid>
+    </item>
+
+    <item>
       <title>ln.exe 2.932 has been released.</title>
       <link>https://schinagl.priv.at/nt/ln/ln.html#2930</link>
       <pubDate>Sun, 28 January 2021 20:30:50:15 +0100</pubDate>
