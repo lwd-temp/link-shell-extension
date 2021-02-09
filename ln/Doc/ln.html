@@ -1371,15 +1371,15 @@
                                 </tr>
 
                                 <!-- One day we could give a message when just the compression status changes. The engine could do this
-                                <tr>
-                                    <td class="bodytext">
-                                        %
-                                    </td>
-                                    <td class="bodytext">
-                                        Item is already present in the target, but with different compression state. Used during Smart Mirror
-                                    </td>
-                                </tr>
-                                -->
+                <tr>
+                    <td class="bodytext">
+                        %
+                    </td>
+                    <td class="bodytext">
+                        Item is already present in the target, but with different compression state. Used during Smart Mirror
+                    </td>
+                </tr>
+                -->
 
                                 <tr>
                                     <td class="bodytext">
@@ -2383,7 +2383,26 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <br />
+                            <br /><br />
+                        </td>
+                    </tr>
+
+                    <!-- Destination -->
+                    <tr>
+                        <td class="hanger2">
+                            <a name="destinationoption"><b>--destination</b><br />Specify Destination</a>
+                        </td>
+
+                        <td align="left" class="bodytext">
+                            <p>
+                                The --destination option can only be used in combination with the --source option.<br />
+                                Please <a href="#destination">see here<a />
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <br /><br/>
                         </td>
                     </tr>
 
@@ -2844,8 +2863,8 @@
                             <p>
                                 Basically any arbitrary wildcard expressions can be used, because
                                 the wildcard expressions are translated into a regular expression. This means that e.g *ub?older*
-                                is also a valid wildcard expression for --includedir. 
-                                Wildcard expression shall not span more than one directory level: e.g. *fotos\\temp* will not succeed 
+                                is also a valid wildcard expression for --includedir.
+                                Wildcard expression shall not span more than one directory level: e.g. *fotos\\temp* will not succeed
                             </p>
                             <p>
                                 This option supports taking its arguments from file.
@@ -3895,8 +3914,8 @@
                             </p>
                             <br />
                             <p>
-                                <b>Keeping several destinations</b><br />
                                 <a name="destination"></a>
+                                <b>Keeping several destinations</b><br />
                                 To keep several destinations the --destination option must be used:
                             </p>
                             <span class="ascode">
@@ -4000,7 +4019,7 @@
                             </span>
                             <p>
                                 In the above example a symbolic link <i>DestinationDirectory\SourceDirectory</i>
-                                is created which points to <i>SourceDirectory</i>. 
+                                is created which points to <i>SourceDirectory</i>.
                                 A traling backslash is the trigger for this to work.
                             </p>
                             <br />
@@ -5224,7 +5243,7 @@
                             <a name="2930">Version 2.9.3.2</a>
                             <ul>
                                 <!-- 2.9.3.2, 28.1.2021 -->
-                                <li>Multisource aka --destination in combination with --mirror did not work.</li>
+                                <li>Multisource aka <a href="#destinationoption">--destination</a> in combination with --mirror did not work.</li>
                                 <!-- 2.9.3.1, 14.1.2021 -->
                                 <li>Symbolic Link creation required admin even in developer mode.</li>
                                 <!-- 2.9.3.0, 4.1.2021 -->
