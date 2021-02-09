@@ -17,6 +17,8 @@ if not exist %GIT_SRC_INDEX% (
 @pushd %~dp0
 @%GIT_SRC_INDEX% "%~dp0..\Bin\x64\Release" /svc git /ev %GIT_SOURCE_SERVER% > %LOGFILE%
 @%GIT_SRC_INDEX% "%~dp0..\Bin\win32\Release" /svc git /ev %GIT_SOURCE_SERVER% >> %LOGFILE%
+@%GIT_SRC_INDEX% "%~dp0..\Bin\x64\ReleaseStatic" /svc git /ev %GIT_SOURCE_SERVER% > %LOGFILE%
+@%GIT_SRC_INDEX% "%~dp0..\Bin\win32\ReleaseStatic" /svc git /ev %GIT_SOURCE_SERVER% >> %LOGFILE%
 
 @REM Run through all files in 'FilesToUpload.txt', check if .pdb and then see if the .pdb 
 @REM contains a stream with SRCSRV. if all is fine INDEXERROR stays 0, otherwise becomes 1
