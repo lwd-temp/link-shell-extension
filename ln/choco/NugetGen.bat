@@ -29,6 +29,8 @@
 @REM Upload the media
 @call %ROOT%\bat\FtpUpload.bat ln/save/%LN_VERSION% %ROOT%/media/ln.zip
 @call %ROOT%\bat\FtpUpload.bat ln/save/%LN_VERSION% %ROOT%/media/ln64.zip
+@call %ROOT%\bat\FtpUpload.bat ln/save/%LN_VERSION% %ROOT%/media/lnstatic.zip
+@call %ROOT%\bat\FtpUpload.bat ln/save/%LN_VERSION% %ROOT%/media/ln64static.zip
 
 @REM Push package to chocolatey
 @choco push %ROOT%\media\%PACKAGE_NAME% --source https://push.chocolatey.org/

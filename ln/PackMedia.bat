@@ -26,6 +26,22 @@ call :ZipBinary %MEDIA%\%ARCHIVE% %BINDIR%
 call :ZipAllFiles %MEDIA%\%ARCHIVE%
 copy %MEDIA%\%ARCHIVE% %MEDIA%\ln64.zip
 
+REM x86 static
+REM
+set BINDIR=%HARDLINKHOME%\Bin\win32\ReleaseStatic
+set ARCHIVE=lnstatic%VERSION%.zip
+call :ZipBinary %MEDIA%\%ARCHIVE% %BINDIR%
+call :ZipAllFiles %MEDIA%\%ARCHIVE%
+copy %MEDIA%\%ARCHIVE% %MEDIA%\lnstatic.zip
+
+REM x64 static
+REM
+set BINDIR=%HARDLINKHOME%\Bin\x64\ReleaseStatic
+set ARCHIVE=ln64static%VERSION%.zip
+call :ZipBinary %MEDIA%\%ARCHIVE% %BINDIR%
+call :ZipAllFiles %MEDIA%\%ARCHIVE%
+copy %MEDIA%\%ARCHIVE% %MEDIA%\ln64static.zip
+
 :ausmausraus
 
 REM

@@ -2,6 +2,10 @@
 ..\Bin\win32\Release\ln.pdb
 ..\Bin\x64\Release\ln.exe
 ..\Bin\x64\Release\ln.pdb
+..\Bin\win32\ReleaseStatic\ln.exe
+..\Bin\win32\ReleaseStatic\ln.pdb
+..\Bin\x64\ReleaseStatic\ln.exe
+..\Bin\x64\ReleaseStatic\ln.pdb
 ..\Bin\win32\Release\dupemerge.exe
 ..\Bin\win32\Release\dupemerge.pdb
 ..\Bin\x64\Release\dupemerge.exe
