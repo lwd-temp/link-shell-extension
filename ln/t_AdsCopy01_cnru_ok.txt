@@ -573,3 +573,80 @@ Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0 
 C   test\ads\dest\CompressedFile
 A    R       C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedFile
+
+C:\data\cpp\git\hardlinks\ln>REM --copy from compressed to non existing dir but with deeper directory hierarchy  
+
+C:\data\cpp\git\hardlinks\ln>REM  
+C   test\ads\source\CompressedDir
+C   test\ads\source\CompressedDir\CompressedFile
+C   test\ads\source\CompressedDir\C0
+C   test\ads\source\CompressedDir\C0\CompressedFile
+C   test\ads\source\CompressedDir\C0\C1
+C   test\ads\source\CompressedDir\C0\C1\CompressedFile
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy test\ads\source test\ads\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     3.248     2.784       464         0         0         0
+    File:         7         6         1         0         0         0
+   Times:        00:00:00.002
+  Folder:         5         5         -         0         0         0
+ Symlink:         0         -         0         0         0         0
+*h C:\data\cpp\git\hardlinks\ln\test\ads\dest\A_hardlink
++d C:\data\cpp\git\hardlinks\ln\test\ads\dest
++d C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir
++d C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir\C0
++d C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir\C0\C1
++d C:\data\cpp\git\hardlinks\ln\test\ads\dest\StreamDir
++f C:\data\cpp\git\hardlinks\ln\test\ads\dest\A
++f C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir\A
++f C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir\C0\C1\CompressedFile
++f C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir\C0\CompressedFile
++f C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir\CompressedFile
++f C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedFile
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0 
+C   test\ads\dest\CompressedDir
+C   test\ads\dest\CompressedDir\CompressedFile
+C   test\ads\dest\CompressedDir\C0
+C   test\ads\dest\CompressedDir\C0\CompressedFile
+C   test\ads\dest\CompressedDir\C0\C1
+C   test\ads\dest\CompressedDir\C0\C1\CompressedFile
+
+C:\data\cpp\git\hardlinks\ln>REM --copy from compressed to uncompressed but with deeper directory hierarchy  
+
+C:\data\cpp\git\hardlinks\ln>REM  
+    test\ads\source\CompressedDir
+    test\ads\source\CompressedDir\CompressedFile
+    test\ads\source\CompressedDir\C0
+    test\ads\source\CompressedDir\C0\CompressedFile
+    test\ads\source\CompressedDir\C0\C1
+    test\ads\source\CompressedDir\C0\C1\CompressedFile
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy test\ads\source\CompressedDir test\ads\dest\CompressedDir  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     1.856     1.856         0         0         0         0
+    File:         4         4         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         3         3         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir
++d C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir\C0
++d C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir\C0\C1
++f C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir\A
++f C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir\C0\C1\CompressedFile
++f C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir\C0\CompressedFile
++f C:\data\cpp\git\hardlinks\ln\test\ads\dest\CompressedDir\CompressedFile
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0 
+C   test\ads\dest\CompressedDir
+C   test\ads\dest\CompressedDir\CompressedFile
+C   test\ads\dest\CompressedDir\C0
+C   test\ads\dest\CompressedDir\C0\CompressedFile
+C   test\ads\dest\CompressedDir\C0\C1
+C   test\ads\dest\CompressedDir\C0\C1\CompressedFile
