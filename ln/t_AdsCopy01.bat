@@ -316,6 +316,60 @@ REM
 @%TIMESTAMP% --xattr %TESTROOTDST%\CompressedFile
 @attrib %TESTROOTDST%\CompressedFile
 
+REM --copy from compressed to non existing dir but with deeper directory hierarchy 
+REM 
+@%RD% %TESTROOTDST% > nul
+@attrib -r %TESTROOTSRC%\CompressedFile > nul
+@mkdir %TESTROOTSRC%\CompressedDir\C0 > nul
+@mkdir %TESTROOTSRC%\CompressedDir\C0\C1 > nul
+@copy %TESTROOTSRC%\CompressedFile %TESTROOTSRC%\CompressedDir > nul
+@copy %TESTROOTSRC%\CompressedFile %TESTROOTSRC%\CompressedDir\C0 > nul
+@copy %TESTROOTSRC%\CompressedFile %TESTROOTSRC%\CompressedDir\C0\C1 > nul
+@%TIMESTAMP% --xattr %TESTROOTSRC%\CompressedDir
+@%TIMESTAMP% --xattr %TESTROOTSRC%\CompressedDir\CompressedFile
+@%TIMESTAMP% --xattr %TESTROOTSRC%\CompressedDir\C0
+@%TIMESTAMP% --xattr %TESTROOTSRC%\CompressedDir\C0\CompressedFile
+@%TIMESTAMP% --xattr %TESTROOTSRC%\CompressedDir\C0\C1
+@%TIMESTAMP% --xattr %TESTROOTSRC%\CompressedDir\C0\C1\CompressedFile
+%LN% --copy %TESTROOTSRC% %TESTROOTDST% > sortout
+@set ERRLEV=%errorlevel% 
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+
+@%TIMESTAMP% --xattr %TESTROOTDST%\CompressedDir
+@%TIMESTAMP% --xattr %TESTROOTDST%\CompressedDir\CompressedFile
+@%TIMESTAMP% --xattr %TESTROOTDST%\CompressedDir\C0
+@%TIMESTAMP% --xattr %TESTROOTDST%\CompressedDir\C0\CompressedFile
+@%TIMESTAMP% --xattr %TESTROOTDST%\CompressedDir\C0\C1
+@%TIMESTAMP% --xattr %TESTROOTDST%\CompressedDir\C0\C1\CompressedFile
+
+REM --copy from compressed to uncompressed but with deeper directory hierarchy 
+REM 
+@%RD% %TESTROOTDST% > nul
+@compact /S /U %TESTROOTSRC%\CompressedDir\*.* > nul
+@compact /U %TESTROOTSRC%\CompressedDir > nul
+@mkdir %TESTROOTDST% > nul
+@compact /C %TESTROOTDST% > nul
+@%TIMESTAMP% --xattr %TESTROOTSRC%\CompressedDir
+@%TIMESTAMP% --xattr %TESTROOTSRC%\CompressedDir\CompressedFile
+@%TIMESTAMP% --xattr %TESTROOTSRC%\CompressedDir\C0
+@%TIMESTAMP% --xattr %TESTROOTSRC%\CompressedDir\C0\CompressedFile
+@%TIMESTAMP% --xattr %TESTROOTSRC%\CompressedDir\C0\C1
+@%TIMESTAMP% --xattr %TESTROOTSRC%\CompressedDir\C0\C1\CompressedFile
+
+pause
+%LN% --copy %TESTROOTSRC%\CompressedDir %TESTROOTDST%\CompressedDir > sortout
+@set ERRLEV=%errorlevel% 
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@%TIMESTAMP% --xattr %TESTROOTDST%\CompressedDir
+@%TIMESTAMP% --xattr %TESTROOTDST%\CompressedDir\CompressedFile
+@%TIMESTAMP% --xattr %TESTROOTDST%\CompressedDir\C0
+@%TIMESTAMP% --xattr %TESTROOTDST%\CompressedDir\C0\CompressedFile
+@%TIMESTAMP% --xattr %TESTROOTDST%\CompressedDir\C0\C1
+@%TIMESTAMP% --xattr %TESTROOTDST%\CompressedDir\C0\C1\CompressedFile
+
+
 
 
 @echo off
