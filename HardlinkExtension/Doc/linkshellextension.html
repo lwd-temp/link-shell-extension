@@ -1388,7 +1388,7 @@
                 Outer Junctions/Symbolic links are recreated with respect to the specified
                 <a href="#outerjunctionhandling">Outer Junction/Symbolic Link handling</a>. e.g.<p>
 
-                With Windows7/8/10 this cloning process is also available with Symbolic Links instead of Hardlinks.
+                    With Windows7/8/10 this cloning process is also available with Symbolic Links instead of Hardlinks.
 
                 <p>
                     <img src="symlinkssmart.png" alt="Symbolic Link Clones the smart way" />
@@ -1462,6 +1462,17 @@
                     folders, so it saves you from one UAC prompt if you don't have symlinks among your selection.
                 </p>
 
+                <p>
+                    <br />
+                    <a name="faq16"><b>Limitations</b><br /></a>
+                    Hardlink creation needs write access to the source hardlink sibling.
+                    This means Hardlink Clone will fail, and just generates an empty directory structure, if write access for the source files
+                    is not available. This is caused in the way Windows implements hardlinks, because the security information for
+                    a file and thus for all hardlink siblings is shared among all hardlink siblings.<br /><br />
+
+                    Creating hardlink clones in such cases can be enabled, by granting write access for the source files to the user who
+                    will create a hardlink clone, or in a single user use-case to everyone.
+                    <br /><br />
                 <p>
                 <p>
                     <b>Command Line<br /></b>

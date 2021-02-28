@@ -1463,6 +1463,17 @@
                 </p>
 
                 <p>
+                <br />
+                    <b>Limitations</b><br />
+                    La création d'un lien physique nécessite un accès en écriture à la source du lien physique.
+                    Cela signifie qu'un clonage de lien physique échouera, et ne génèrera qu'une structure de répertoire vide, si un accès en écriture aux fichiers sources
+                    n'est pas disponible. La raison en est la façon dont Windows implémente les liens physiques, car les informations de sécurité d'un
+                    fichier et par conséquent de tous les liens frères sont partagés entre eux tous.<br /><br />
+                   
+                    Dans ce cas, la création de liens physiques clones peut être activée en accordant un accès en écriture aux fichiers sources à l'utilisateur qui
+                    créera un clone de lien physique, ou à tous les utilisateurs dans le cas d'un utilisateur unique.
+                    <br /><br />
+                <p>
                 <p>
                     <b>Ligne de Commande<br /></b>
                     La fonctionnalité de Clonage via des Liens Physiques ou des Liens Symboliques est également accessible par
