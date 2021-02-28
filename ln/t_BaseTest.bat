@@ -55,6 +55,20 @@ REM
 @echo ErrorLevel == %errorlevel%
 
 REM
+REM ERR: link file but have no write access to source
+REM
+@set ITEM=hardlink_no_write_access
+@mkdir test\%ITEM% > nul
+@copy test\ln.h test\%ITEM%\%ITEM% > nul
+@type test\y | cacls test\%ITEM%\%ITEM% /D "%USERNAME%" > nul
+%LN% test\%ITEM%\%ITEM% test\%ITEM%\%ITEM%_hardlink > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+type test\y | cacls test\%ITEM%\%ITEM% /G "%USERNAME%":F > nul
+@%RD% test\%ITEM%
+
+REM
 REM ERR: recursivly link a dir, can not create dir
 REM
 @echo off
