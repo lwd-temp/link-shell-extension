@@ -1,44 +1,44 @@
 
-D:\data\cpp\hardlinks\ln>..\Tools\rmtshare.exe \\atgrzwn501360\test=D:\data\cpp\hardlinks\ln\test  1>nul 
+C:\data\cpp\git\hardlinks\ln>..\Tools\rmtshare.exe \\quadtatz\test=C:\data\cpp\git\hardlinks\ln\test  1>nul 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUC: link a file 
+C:\data\cpp\git\hardlinks\ln>REM SUC: link a file 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test test\ln.h test\ln_link.h 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  test\ln.h test\ln_link.h 
 test\ln.h
 1 file linked
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUC: link a file but source does not exist 
+C:\data\cpp\git\hardlinks\ln>REM SUC: link a file but source does not exist 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test test\ln_.h test\ln_link.h 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  test\ln_.h test\ln_link.h 
 ERROR: file 'test\ln_.h' does not exist
 ErrorLevel == -5
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: Destination already exists 
+C:\data\cpp\git\hardlinks\ln>REM ERR: Destination already exists 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test test\ln.h test\ln_link.h 
-ERROR: file 'test\ln_link.h' already exists
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  test\ln.h test\ln_link.h 
+ERROR: 'test\ln_link.h' already exists
 ErrorLevel == -3
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: Destinationfile missing 
+C:\data\cpp\git\hardlinks\ln>REM ERR: Destinationfile missing 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test test\ln.h 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  test\ln.h 
 ln. (Recursively) creates hardlinks for files within NTFS partitions
 Usage. ln [options] [commands] file|dir|UNCname [name|dir|UNCname [dir]]
 
@@ -57,6 +57,7 @@ Commands
       --includeregexp REGEXP          Include file <reg expr filename>
       --includeregexpdir REGEXP       Include directory <reg expr directory>
   -j, --junction JUNCTION [TARGETDIR] Show/Create a junction
+  -l, --list FILENAME                 List hardlink siblings
   -o, --mirror SRCPATH DESTPATH
   -m, --move SRCPATH DESTPATH
       --output FILENAME               Redirect output to FILENAME
@@ -64,20 +65,24 @@ Commands
   -r, --recursive SRCPATH DESTPATH    Create a clone
       --source SRCPATH                Specify additional source directories
   -i, --splice [WILDCARD]             Splice Junctions/Symlink dirs <wildcard>
+  -s, --symbolic SYMBOLICLINK         Show symbolic link target
       --timetolerance MILLISECONDS    File comparison tolerance <miliseconds>
       --truesize SRCPATH              Used space taking into account hardlinks
   -u, --unroll [WILDCARD]             Unroll Junctions/Symlink dirs <wildcard>
 
 Options
   -b, --backup                        Backup mode copies also ACLs
+  -a, --absolute                      Force symbolic links target to absolute
       --dupemerge                     Use Dupemerge' hashing to find hardlinks
   -h, --help                          This help
       --json                          Prints the output in json format
+      --keepsymlinkrelation           Save absolute/relative state of symlinks
       --noea                          Do not copy EA Records
       --noads                         Do not copy Alternative Data Streams (ADS)
       --progress                      Show a progress indicator on the console
   -q, --quiet                         Operation with no output
       --skipfiles                     Don't operate on files, but only on dirs
+  -s, --symbolic                      Create symbolic link
       --traditional                   Use compatibility mode for remote drives
       --1023safe                      Workaround the 1023 hardlink limit
 
@@ -94,25 +99,27 @@ Samples
   ln --source x:\src\loc1 --copy x:\source\dir2 x:\dest\dir2
   ln --junction x:\source\junction x:\dest\junction target
   ln --junction x:\source\junction
+  ln --symbolic sourcefile.txt destination.txt
+  ln --list sourcefile.txt
 ErrorLevel == -8
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: Source file not there 
+C:\data\cpp\git\hardlinks\ln>REM ERR: Source file not there 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test test\ln_nothere.h test\ln_link.h 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  test\ln_nothere.h test\ln_link.h 
 ERROR: file 'test\ln_nothere.h' does not exist
 ErrorLevel == -5
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: Call without parameters 
+C:\data\cpp\git\hardlinks\ln>REM ERR: Call without parameters 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test  
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   
 ln. (Recursively) creates hardlinks for files within NTFS partitions
 Usage. ln [options] [commands] file|dir|UNCname [name|dir|UNCname [dir]]
 
@@ -131,6 +138,7 @@ Commands
       --includeregexp REGEXP          Include file <reg expr filename>
       --includeregexpdir REGEXP       Include directory <reg expr directory>
   -j, --junction JUNCTION [TARGETDIR] Show/Create a junction
+  -l, --list FILENAME                 List hardlink siblings
   -o, --mirror SRCPATH DESTPATH
   -m, --move SRCPATH DESTPATH
       --output FILENAME               Redirect output to FILENAME
@@ -138,20 +146,24 @@ Commands
   -r, --recursive SRCPATH DESTPATH    Create a clone
       --source SRCPATH                Specify additional source directories
   -i, --splice [WILDCARD]             Splice Junctions/Symlink dirs <wildcard>
+  -s, --symbolic SYMBOLICLINK         Show symbolic link target
       --timetolerance MILLISECONDS    File comparison tolerance <miliseconds>
       --truesize SRCPATH              Used space taking into account hardlinks
   -u, --unroll [WILDCARD]             Unroll Junctions/Symlink dirs <wildcard>
 
 Options
   -b, --backup                        Backup mode copies also ACLs
+  -a, --absolute                      Force symbolic links target to absolute
       --dupemerge                     Use Dupemerge' hashing to find hardlinks
   -h, --help                          This help
       --json                          Prints the output in json format
+      --keepsymlinkrelation           Save absolute/relative state of symlinks
       --noea                          Do not copy EA Records
       --noads                         Do not copy Alternative Data Streams (ADS)
       --progress                      Show a progress indicator on the console
   -q, --quiet                         Operation with no output
       --skipfiles                     Don't operate on files, but only on dirs
+  -s, --symbolic                      Create symbolic link
       --traditional                   Use compatibility mode for remote drives
       --1023safe                      Workaround the 1023 hardlink limit
 
@@ -168,37 +180,39 @@ Samples
   ln --source x:\src\loc1 --copy x:\source\dir2 x:\dest\dir2
   ln --junction x:\source\junction x:\dest\junction target
   ln --junction x:\source\junction
+  ln --symbolic sourcefile.txt destination.txt
+  ln --list sourcefile.txt
 ErrorLevel == -8
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUC: link via UNC names to filename 
+C:\data\cpp\git\hardlinks\ln>REM SUC: link via UNC names to filename 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test \\atgrzwn501360\test\ln.h test\ln_share_link.h 
-\\atgrzwn501360\test\ln.h
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  \\quadtatz\test\ln.h test\ln_share_link.h 
+\\quadtatz\test\ln.h
 1 file linked
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUC: link via UNC names to UNC name 
+C:\data\cpp\git\hardlinks\ln>REM SUC: link via UNC names to UNC name 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test \\atgrzwn501360\test\ln.h \\atgrzwn501360\test\ln_share_unc_link.h 
-\\atgrzwn501360\test\ln.h
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  \\quadtatz\test\ln.h \\quadtatz\test\ln_share_unc_link.h 
+\\quadtatz\test\ln.h
 1 file linked
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: link via UNC names but 2nd arg lacks 
+C:\data\cpp\git\hardlinks\ln>REM ERR: link via UNC names but 2nd arg lacks 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test \\atgrzwn501360\test\ln.h  
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  \\quadtatz\test\ln.h  
 ln. (Recursively) creates hardlinks for files within NTFS partitions
 Usage. ln [options] [commands] file|dir|UNCname [name|dir|UNCname [dir]]
 
@@ -217,6 +231,7 @@ Commands
       --includeregexp REGEXP          Include file <reg expr filename>
       --includeregexpdir REGEXP       Include directory <reg expr directory>
   -j, --junction JUNCTION [TARGETDIR] Show/Create a junction
+  -l, --list FILENAME                 List hardlink siblings
   -o, --mirror SRCPATH DESTPATH
   -m, --move SRCPATH DESTPATH
       --output FILENAME               Redirect output to FILENAME
@@ -224,20 +239,24 @@ Commands
   -r, --recursive SRCPATH DESTPATH    Create a clone
       --source SRCPATH                Specify additional source directories
   -i, --splice [WILDCARD]             Splice Junctions/Symlink dirs <wildcard>
+  -s, --symbolic SYMBOLICLINK         Show symbolic link target
       --timetolerance MILLISECONDS    File comparison tolerance <miliseconds>
       --truesize SRCPATH              Used space taking into account hardlinks
   -u, --unroll [WILDCARD]             Unroll Junctions/Symlink dirs <wildcard>
 
 Options
   -b, --backup                        Backup mode copies also ACLs
+  -a, --absolute                      Force symbolic links target to absolute
       --dupemerge                     Use Dupemerge' hashing to find hardlinks
   -h, --help                          This help
       --json                          Prints the output in json format
+      --keepsymlinkrelation           Save absolute/relative state of symlinks
       --noea                          Do not copy EA Records
       --noads                         Do not copy Alternative Data Streams (ADS)
       --progress                      Show a progress indicator on the console
   -q, --quiet                         Operation with no output
       --skipfiles                     Don't operate on files, but only on dirs
+  -s, --symbolic                      Create symbolic link
       --traditional                   Use compatibility mode for remote drives
       --1023safe                      Workaround the 1023 hardlink limit
 
@@ -254,34 +273,48 @@ Samples
   ln --source x:\src\loc1 --copy x:\source\dir2 x:\dest\dir2
   ln --junction x:\source\junction x:\dest\junction target
   ln --junction x:\source\junction
+  ln --symbolic sourcefile.txt destination.txt
+  ln --list sourcefile.txt
 ErrorLevel == -8
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: recursivly link a dir, can not create dir 
+C:\data\cpp\git\hardlinks\ln>REM ERR: link file but have no write access to source 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\Poi test\poi3\poi3  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  test\hardlink_no_write_access\hardlink_no_write_access test\hardlink_no_write_access\hardlink_no_write_access_hardlink  1>sortout 
+ERROR: 'test\hardlink_no_write_access\hardlink_no_write_access_hardlink' permission denied
+ErrorLevel == -17
+
+C:\data\cpp\git\hardlinks\ln>type test\y   | cacls test\hardlink_no_write_access\hardlink_no_write_access /G "schinagl":F  1>nul 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM ERR: recursivly link a dir, can not create dir 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\Poi test\poi3\poi3  1>sortout 
 ERROR: failed to create 'test\poi3\poi3'
 ErrorLevel == -4
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: recursivly link a dir, can not create dir, but be quiet 
+C:\data\cpp\git\hardlinks\ln>REM ERR: recursivly link a dir, can not create dir, but be quiet 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --quiet --recursive test\Poi test\poi3\poi3  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --quiet --recursive test\Poi test\poi3\poi3  1>sortout 
 ErrorLevel == -4
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: recursivly link a dir, but source dir can not be read 
+C:\data\cpp\git\hardlinks\ln>REM ERR: recursivly link a dir, but source dir can not be read 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\Poi test\poi3  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\Poi test\poi3  1>sortout 
 
 
                       Overall
@@ -291,18 +324,18 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
    Times:        00:00:00.002
   Folder:         1         0         -         0         0         1
  Symlink:         0         -         0         0         0         0
-!?d(0x00000005) D:\data\cpp\hardlinks\ln\test\Poi
+!?d(0x00000005) C:\data\cpp\git\hardlinks\ln\test\Poi
 Junction:         0         -         0         0         0         0
 WARNING: SmartClone finished successfully but see output for errors.
 ErrorLevel == -14
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: recursivly link a dir, can not link in denied dir 
+C:\data\cpp\git\hardlinks\ln>REM ERR: recursivly link a dir, can not link in denied dir 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\Poi test\poi3  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\Poi test\poi3  1>sortout 
 
 
                       Overall
@@ -312,25 +345,25 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
    Times:        00:00:00.002
   Folder:         3         0         -         1         0         2
  Symlink:         0         -         0         0         0         0
-!+d(0x00000005) D:\data\cpp\hardlinks\ln\test\poi3\Res
-!+d(0x00000005) D:\data\cpp\hardlinks\ln\test\poi3\Src
-!+h(0x00000003) D:\data\cpp\hardlinks\ln\test\poi3\Res\poi.rc
-!+h(0x00000003) D:\data\cpp\hardlinks\ln\test\poi3\Src\function.cxx
-!+h(0x00000003) D:\data\cpp\hardlinks\ln\test\poi3\Src\licence.cxx
-!+h(0x00000003) D:\data\cpp\hardlinks\ln\test\poi3\Src\poitcp.cxx
-!+h(0x00000005) D:\data\cpp\hardlinks\ln\test\poi3\history.txt
-=d D:\data\cpp\hardlinks\ln\test\poi3
+!+d(0x00000005) C:\data\cpp\git\hardlinks\ln\test\poi3\Res
+!+d(0x00000005) C:\data\cpp\git\hardlinks\ln\test\poi3\Src
+!+h(0x00000003) C:\data\cpp\git\hardlinks\ln\test\poi3\Res\poi.rc
+!+h(0x00000003) C:\data\cpp\git\hardlinks\ln\test\poi3\Src\function.cxx
+!+h(0x00000003) C:\data\cpp\git\hardlinks\ln\test\poi3\Src\licence.cxx
+!+h(0x00000003) C:\data\cpp\git\hardlinks\ln\test\poi3\Src\poitcp.cxx
+!+h(0x00000005) C:\data\cpp\git\hardlinks\ln\test\poi3\history.txt
+=d C:\data\cpp\git\hardlinks\ln\test\poi3
 Junction:         0         -         0         0         0         0
 WARNING: SmartClone finished successfully but see output for errors.
 ErrorLevel == -14
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUC: recursivly link a dir 
+C:\data\cpp\git\hardlinks\ln>REM SUC: recursivly link a dir 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\Poi test\poi2  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\Poi test\poi2  1>sortout 
 
 
                       Overall
@@ -340,24 +373,24 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\poi2
-+d D:\data\cpp\hardlinks\ln\test\poi2\Res
-+d D:\data\cpp\hardlinks\ln\test\poi2\Src
-+h D:\data\cpp\hardlinks\ln\test\poi2\history.txt
-+h D:\data\cpp\hardlinks\ln\test\poi2\Res\poi.rc
-+h D:\data\cpp\hardlinks\ln\test\poi2\Src\function.cxx
-+h D:\data\cpp\hardlinks\ln\test\poi2\Src\licence.cxx
-+h D:\data\cpp\hardlinks\ln\test\poi2\Src\poitcp.cxx
++d C:\data\cpp\git\hardlinks\ln\test\poi2
++d C:\data\cpp\git\hardlinks\ln\test\poi2\Res
++d C:\data\cpp\git\hardlinks\ln\test\poi2\Src
++h C:\data\cpp\git\hardlinks\ln\test\poi2\history.txt
++h C:\data\cpp\git\hardlinks\ln\test\poi2\Res\poi.rc
++h C:\data\cpp\git\hardlinks\ln\test\poi2\Src\function.cxx
++h C:\data\cpp\git\hardlinks\ln\test\poi2\Src\licence.cxx
++h C:\data\cpp\git\hardlinks\ln\test\poi2\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: recursivly link dir but 2nd arg lacks 
+C:\data\cpp\git\hardlinks\ln>REM ERR: recursivly link dir but 2nd arg lacks 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\Poi 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\Poi 
 ln. (Recursively) creates hardlinks for files within NTFS partitions
 Usage. ln [options] [commands] file|dir|UNCname [name|dir|UNCname [dir]]
 
@@ -376,6 +409,7 @@ Commands
       --includeregexp REGEXP          Include file <reg expr filename>
       --includeregexpdir REGEXP       Include directory <reg expr directory>
   -j, --junction JUNCTION [TARGETDIR] Show/Create a junction
+  -l, --list FILENAME                 List hardlink siblings
   -o, --mirror SRCPATH DESTPATH
   -m, --move SRCPATH DESTPATH
       --output FILENAME               Redirect output to FILENAME
@@ -383,20 +417,24 @@ Commands
   -r, --recursive SRCPATH DESTPATH    Create a clone
       --source SRCPATH                Specify additional source directories
   -i, --splice [WILDCARD]             Splice Junctions/Symlink dirs <wildcard>
+  -s, --symbolic SYMBOLICLINK         Show symbolic link target
       --timetolerance MILLISECONDS    File comparison tolerance <miliseconds>
       --truesize SRCPATH              Used space taking into account hardlinks
   -u, --unroll [WILDCARD]             Unroll Junctions/Symlink dirs <wildcard>
 
 Options
   -b, --backup                        Backup mode copies also ACLs
+  -a, --absolute                      Force symbolic links target to absolute
       --dupemerge                     Use Dupemerge' hashing to find hardlinks
   -h, --help                          This help
       --json                          Prints the output in json format
+      --keepsymlinkrelation           Save absolute/relative state of symlinks
       --noea                          Do not copy EA Records
       --noads                         Do not copy Alternative Data Streams (ADS)
       --progress                      Show a progress indicator on the console
   -q, --quiet                         Operation with no output
       --skipfiles                     Don't operate on files, but only on dirs
+  -s, --symbolic                      Create symbolic link
       --traditional                   Use compatibility mode for remote drives
       --1023safe                      Workaround the 1023 hardlink limit
 
@@ -413,42 +451,17 @@ Samples
   ln --source x:\src\loc1 --copy x:\source\dir2 x:\dest\dir2
   ln --junction x:\source\junction x:\dest\junction target
   ln --junction x:\source\junction
+  ln --symbolic sourcefile.txt destination.txt
+  ln --list sourcefile.txt
 ErrorLevel == -8
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUC: recursivly link dir to file dir 
+C:\data\cpp\git\hardlinks\ln>REM SUC: recursivly link dir to file dir 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive \\atgrzwn501360\test\Poi test\poi_share  1>sortout 
-
-
-                      Overall
-              Total    Copied    Linked   Skipped  Excluded    Failed
-    Byte:   133.991         0   133.991         0         0         0
-    File:         5         0         5         0         0         0
-   Times:        00:00:00.002
-  Folder:         3         3         -         0         0         0
- Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\poi_share
-+d D:\data\cpp\hardlinks\ln\test\poi_share\Res
-+d D:\data\cpp\hardlinks\ln\test\poi_share\Src
-+h D:\data\cpp\hardlinks\ln\test\poi_share\history.txt
-+h D:\data\cpp\hardlinks\ln\test\poi_share\Res\poi.rc
-+h D:\data\cpp\hardlinks\ln\test\poi_share\Src\function.cxx
-+h D:\data\cpp\hardlinks\ln\test\poi_share\Src\licence.cxx
-+h D:\data\cpp\hardlinks\ln\test\poi_share\Src\poitcp.cxx
-Junction:         0         -         0         0         0         0
-ErrorLevel == 0
-
-D:\data\cpp\hardlinks\ln>REM
-
-D:\data\cpp\hardlinks\ln>REM SUC: recursivly link dir to share dir 
-
-D:\data\cpp\hardlinks\ln>REM
-
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive \\atgrzwn501360\test\Poi \\atgrzwn501360\test\poi_share_share  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive \\quadtatz\test\Poi test\poi_share  1>sortout 
 
 
                       Overall
@@ -458,24 +471,51 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\poi_share_share
-+d D:\data\cpp\hardlinks\ln\test\poi_share_share\Res
-+d D:\data\cpp\hardlinks\ln\test\poi_share_share\Src
-+h D:\data\cpp\hardlinks\ln\test\poi_share_share\history.txt
-+h D:\data\cpp\hardlinks\ln\test\poi_share_share\Res\poi.rc
-+h D:\data\cpp\hardlinks\ln\test\poi_share_share\Src\function.cxx
-+h D:\data\cpp\hardlinks\ln\test\poi_share_share\Src\licence.cxx
-+h D:\data\cpp\hardlinks\ln\test\poi_share_share\Src\poitcp.cxx
++d C:\data\cpp\git\hardlinks\ln\test\poi_share
++d C:\data\cpp\git\hardlinks\ln\test\poi_share\Res
++d C:\data\cpp\git\hardlinks\ln\test\poi_share\Src
++h C:\data\cpp\git\hardlinks\ln\test\poi_share\history.txt
++h C:\data\cpp\git\hardlinks\ln\test\poi_share\Res\poi.rc
++h C:\data\cpp\git\hardlinks\ln\test\poi_share\Src\function.cxx
++h C:\data\cpp\git\hardlinks\ln\test\poi_share\Src\licence.cxx
++h C:\data\cpp\git\hardlinks\ln\test\poi_share\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: recursivly link a dir but destdir exists and already has files 
+C:\data\cpp\git\hardlinks\ln>REM SUC: recursivly link dir to share dir 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\Poi test\poi2  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive \\quadtatz\test\Poi \\quadtatz\test\poi_share_share  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:   133.991         0   133.991         0         0         0
+    File:         5         0         5         0         0         0
+   Times:        00:00:00.002
+  Folder:         3         3         -         0         0         0
+ Symlink:         0         -         0         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\poi_share_share
++d C:\data\cpp\git\hardlinks\ln\test\poi_share_share\Res
++d C:\data\cpp\git\hardlinks\ln\test\poi_share_share\Src
++h C:\data\cpp\git\hardlinks\ln\test\poi_share_share\history.txt
++h C:\data\cpp\git\hardlinks\ln\test\poi_share_share\Res\poi.rc
++h C:\data\cpp\git\hardlinks\ln\test\poi_share_share\Src\function.cxx
++h C:\data\cpp\git\hardlinks\ln\test\poi_share_share\Src\licence.cxx
++h C:\data\cpp\git\hardlinks\ln\test\poi_share_share\Src\poitcp.cxx
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM ERR: recursivly link a dir but destdir exists and already has files 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\Poi test\poi2  1>sortout 
 
 
                       Overall
@@ -485,26 +525,26 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
    Times:        00:00:00.002
   Folder:         3         0         -         3         0         0
  Symlink:         0         -         0         0         0         0
-=d D:\data\cpp\hardlinks\ln\test\poi2
-=d D:\data\cpp\hardlinks\ln\test\poi2\Res
-=d D:\data\cpp\hardlinks\ln\test\poi2\Src
-=h D:\data\cpp\hardlinks\ln\test\poi2\history.txt
-=h D:\data\cpp\hardlinks\ln\test\poi2\Res\poi.rc
-=h D:\data\cpp\hardlinks\ln\test\poi2\Src\function.cxx
-=h D:\data\cpp\hardlinks\ln\test\poi2\Src\licence.cxx
-=h D:\data\cpp\hardlinks\ln\test\poi2\Src\poitcp.cxx
+=d C:\data\cpp\git\hardlinks\ln\test\poi2
+=d C:\data\cpp\git\hardlinks\ln\test\poi2\Res
+=d C:\data\cpp\git\hardlinks\ln\test\poi2\Src
+=h C:\data\cpp\git\hardlinks\ln\test\poi2\history.txt
+=h C:\data\cpp\git\hardlinks\ln\test\poi2\Res\poi.rc
+=h C:\data\cpp\git\hardlinks\ln\test\poi2\Src\function.cxx
+=h C:\data\cpp\git\hardlinks\ln\test\poi2\Src\licence.cxx
+=h C:\data\cpp\git\hardlinks\ln\test\poi2\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUC: recursivly link a dir but destdir exists but dir is empty 
+C:\data\cpp\git\hardlinks\ln>REM SUC: recursivly link a dir but destdir exists but dir is empty 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>mkdir test\poi3 
+C:\data\cpp\git\hardlinks\ln>mkdir test\poi3 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\Poi test\poi3  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\Poi test\poi3  1>sortout 
 
 
                       Overall
@@ -514,54 +554,54 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\poi3
-+d D:\data\cpp\hardlinks\ln\test\poi3\Res
-+d D:\data\cpp\hardlinks\ln\test\poi3\Src
-+h D:\data\cpp\hardlinks\ln\test\poi3\history.txt
-+h D:\data\cpp\hardlinks\ln\test\poi3\Res\poi.rc
-+h D:\data\cpp\hardlinks\ln\test\poi3\Src\function.cxx
-+h D:\data\cpp\hardlinks\ln\test\poi3\Src\licence.cxx
-+h D:\data\cpp\hardlinks\ln\test\poi3\Src\poitcp.cxx
++d C:\data\cpp\git\hardlinks\ln\test\poi3
++d C:\data\cpp\git\hardlinks\ln\test\poi3\Res
++d C:\data\cpp\git\hardlinks\ln\test\poi3\Src
++h C:\data\cpp\git\hardlinks\ln\test\poi3\history.txt
++h C:\data\cpp\git\hardlinks\ln\test\poi3\Res\poi.rc
++h C:\data\cpp\git\hardlinks\ln\test\poi3\Src\function.cxx
++h C:\data\cpp\git\hardlinks\ln\test\poi3\Src\licence.cxx
++h C:\data\cpp\git\hardlinks\ln\test\poi3\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUC: recursivly link a dir but dest is a file and exists 
+C:\data\cpp\git\hardlinks\ln>REM SUC: recursivly link a dir but dest is a file and exists 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\Poi test\resource.h  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\Poi test\resource.h  1>sortout 
 ERROR: file 'test\resource.h' already exists
 ErrorLevel == -3
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: recursivly link dir but first dir does not exist 
+C:\data\cpp\git\hardlinks\ln>REM ERR: recursivly link dir but first dir does not exist 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\Poi_ test\Poi2  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\Poi_ test\Poi2  1>sortout 
 ERROR: source directory 'test\Poi_' does not exist
 ErrorLevel == -1
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: recursivly link dir but first arg is not a dir 
+C:\data\cpp\git\hardlinks\ln>REM ERR: recursivly link dir but first arg is not a dir 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\ln.h test\Poi2  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\ln.h test\Poi2  1>sortout 
 ERROR: 'test\ln.h' is not a directory
 ErrorLevel == -2
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUC: recursivly link dir to file dir but be quiet 
+C:\data\cpp\git\hardlinks\ln>REM SUC: recursivly link dir to file dir but be quiet 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --quiet --recursive \\atgrzwn501360\test\Poi test\poi_quiet  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --quiet --recursive \\quadtatz\test\Poi test\poi_quiet  1>sortout 
 
 
                       Overall
@@ -574,13 +614,13 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --quiet --re
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ERR: ommit a few parameters 
+C:\data\cpp\git\hardlinks\ln>REM ERR: ommit a few parameters 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive 
 ln. (Recursively) creates hardlinks for files within NTFS partitions
 Usage. ln [options] [commands] file|dir|UNCname [name|dir|UNCname [dir]]
 
@@ -599,6 +639,7 @@ Commands
       --includeregexp REGEXP          Include file <reg expr filename>
       --includeregexpdir REGEXP       Include directory <reg expr directory>
   -j, --junction JUNCTION [TARGETDIR] Show/Create a junction
+  -l, --list FILENAME                 List hardlink siblings
   -o, --mirror SRCPATH DESTPATH
   -m, --move SRCPATH DESTPATH
       --output FILENAME               Redirect output to FILENAME
@@ -606,20 +647,24 @@ Commands
   -r, --recursive SRCPATH DESTPATH    Create a clone
       --source SRCPATH                Specify additional source directories
   -i, --splice [WILDCARD]             Splice Junctions/Symlink dirs <wildcard>
+  -s, --symbolic SYMBOLICLINK         Show symbolic link target
       --timetolerance MILLISECONDS    File comparison tolerance <miliseconds>
       --truesize SRCPATH              Used space taking into account hardlinks
   -u, --unroll [WILDCARD]             Unroll Junctions/Symlink dirs <wildcard>
 
 Options
   -b, --backup                        Backup mode copies also ACLs
+  -a, --absolute                      Force symbolic links target to absolute
       --dupemerge                     Use Dupemerge' hashing to find hardlinks
   -h, --help                          This help
       --json                          Prints the output in json format
+      --keepsymlinkrelation           Save absolute/relative state of symlinks
       --noea                          Do not copy EA Records
       --noads                         Do not copy Alternative Data Streams (ADS)
       --progress                      Show a progress indicator on the console
   -q, --quiet                         Operation with no output
       --skipfiles                     Don't operate on files, but only on dirs
+  -s, --symbolic                      Create symbolic link
       --traditional                   Use compatibility mode for remote drives
       --1023safe                      Workaround the 1023 hardlink limit
 
@@ -636,9 +681,15 @@ Samples
   ln --source x:\src\loc1 --copy x:\source\dir2 x:\dest\dir2
   ln --junction x:\source\junction x:\dest\junction target
   ln --junction x:\source\junction
+  ln --symbolic sourcefile.txt destination.txt
+  ln --list sourcefile.txt
 ErrorLevel == -8
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --symbolic 
+C:\data\cpp\git\hardlinks\ln>REM SUC symbolic link tests 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic 
 ln. (Recursively) creates hardlinks for files within NTFS partitions
 Usage. ln [options] [commands] file|dir|UNCname [name|dir|UNCname [dir]]
 
@@ -657,6 +708,7 @@ Commands
       --includeregexp REGEXP          Include file <reg expr filename>
       --includeregexpdir REGEXP       Include directory <reg expr directory>
   -j, --junction JUNCTION [TARGETDIR] Show/Create a junction
+  -l, --list FILENAME                 List hardlink siblings
   -o, --mirror SRCPATH DESTPATH
   -m, --move SRCPATH DESTPATH
       --output FILENAME               Redirect output to FILENAME
@@ -664,20 +716,24 @@ Commands
   -r, --recursive SRCPATH DESTPATH    Create a clone
       --source SRCPATH                Specify additional source directories
   -i, --splice [WILDCARD]             Splice Junctions/Symlink dirs <wildcard>
+  -s, --symbolic SYMBOLICLINK         Show symbolic link target
       --timetolerance MILLISECONDS    File comparison tolerance <miliseconds>
       --truesize SRCPATH              Used space taking into account hardlinks
   -u, --unroll [WILDCARD]             Unroll Junctions/Symlink dirs <wildcard>
 
 Options
   -b, --backup                        Backup mode copies also ACLs
+  -a, --absolute                      Force symbolic links target to absolute
       --dupemerge                     Use Dupemerge' hashing to find hardlinks
   -h, --help                          This help
       --json                          Prints the output in json format
+      --keepsymlinkrelation           Save absolute/relative state of symlinks
       --noea                          Do not copy EA Records
       --noads                         Do not copy Alternative Data Streams (ADS)
       --progress                      Show a progress indicator on the console
   -q, --quiet                         Operation with no output
       --skipfiles                     Don't operate on files, but only on dirs
+  -s, --symbolic                      Create symbolic link
       --traditional                   Use compatibility mode for remote drives
       --1023safe                      Workaround the 1023 hardlink limit
 
@@ -694,15 +750,189 @@ Samples
   ln --source x:\src\loc1 --copy x:\source\dir2 x:\dest\dir2
   ln --junction x:\source\junction x:\dest\junction target
   ln --junction x:\source\junction
+  ln --symbolic sourcefile.txt destination.txt
+  ln --list sourcefile.txt
 ErrorLevel == -8
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>call t_HardSymLink.bat symbolic 
 
-D:\data\cpp\hardlinks\ln>REM SUC: par1 has a trailing \ 
+C:\data\cpp\git\hardlinks\ln>REM file -> file 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln.h test\ln_symlink.h  1>nul 
+test\ln_symlink.h -> ln.h
+ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\Poi\ test\poi3  1>sortout 
+C:\data\cpp\git\hardlinks\ln>REM file -> file - already exists 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln.h test\ln_symlink.h 
+ERROR: 'test\ln_symlink.h' already exists
+ErrorLevel == -3
+
+C:\data\cpp\git\hardlinks\ln>REM not_existant_file -> file 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln_not_existant.h test\ln_symlink.h  
+ERROR: file 'test\ln_not_existant.h' does not exist
+ErrorLevel == -5
+
+C:\data\cpp\git\hardlinks\ln>REM file -> dir/dir 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln.h test\symbolic   1>nul 
+test\symbolic\ln.h -> ..\ln.h
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM file -> dir/dir - already exists 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln.h test\symbolic  
+ERROR: 'test\symbolic\ln.h' already exists
+ErrorLevel == -3
+
+C:\data\cpp\git\hardlinks\ln>REM file -> dir 
+
+C:\data\cpp\git\hardlinks\ln\test>..\..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic ln.h symbolic   1>nul 
+symbolic\ln.h -> ..\ln.h
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM not_existant_file -> dir/dir 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln_not_existant.h test\symbolic   1>nul 
+ERROR: symlink 'test\symbolic\ln.h' does not exist
+ErrorLevel == -5
+
+C:\data\cpp\git\hardlinks\ln>REM file -> dir/symlink_dir 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln.h test\symlink_dir   1>nul 
+test\symlink_dir\ln.h -> ..\ln.h
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM file -> dir/junction 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\ln.h test\junction   1>nul 
+test\junction\ln.h -> ..\ln.h
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM dir -> dir/dir 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\sym_target test\symbolic 
+ERROR: 'test\symbolic' already exists
+ErrorLevel == -3
+
+C:\data\cpp\git\hardlinks\ln>REM dir -> dir/dir\  
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\sym_target test\symbolic\   1>nul 
+test\symbolic\sym_target -> ..\sym_target
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM dir -> dir/dir\ - already exists 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\sym_target test\symbolic\ 
+ERROR: 'test\symbolic\sym_target' already exists
+ErrorLevel == -3
+
+C:\data\cpp\git\hardlinks\ln>REM dir -> dir/dir/ 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\sym_target test\symbolic/   1>nul 
+test\symbolic\sym_target -> ..\sym_target
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM dir -> dir/dir/ - already exists 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --symbolic test\sym_target test\symbolic/ 
+ERROR: 'test\symbolic/sym_target' already exists
+ErrorLevel == -3
+
+C:\data\cpp\git\hardlinks\ln>call t_HardSymLink.bat  
+
+C:\data\cpp\git\hardlinks\ln>REM file -> file 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\ln.h test\ln_symlink.h  1>nul 
+test\ln_symlink.h:5
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM file -> file - already exists 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\ln.h test\ln_symlink.h 
+ERROR: 'test\ln_symlink.h' already exists
+ErrorLevel == -3
+
+C:\data\cpp\git\hardlinks\ln>REM not_existant_file -> file 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\ln_not_existant.h test\ln_symlink.h  
+ERROR: file 'test\ln_not_existant.h' does not exist
+ErrorLevel == -5
+
+C:\data\cpp\git\hardlinks\ln>REM file -> dir/dir 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\ln.h test\symbolic   1>nul 
+test\symbolic\ln.h:5
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM file -> dir/dir - already exists 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\ln.h test\symbolic  
+ERROR: 'test\symbolic\ln.h' already exists
+ErrorLevel == -3
+
+C:\data\cpp\git\hardlinks\ln>REM file -> dir 
+
+C:\data\cpp\git\hardlinks\ln\test>..\..\bin\X64\Release\ln.exe --automated_test --progress   ln.h symbolic   1>nul 
+symbolic\ln.h:5
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM not_existant_file -> dir/dir 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\ln_not_existant.h test\symbolic   1>nul 
+ERROR: symlink 'test\symbolic\ln.h' does not exist
+ErrorLevel == -5
+
+C:\data\cpp\git\hardlinks\ln>REM file -> dir/symlink_dir 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\ln.h test\symlink_dir   1>nul 
+test\symlink_dir\ln.h:5
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM file -> dir/junction 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\ln.h test\junction   1>nul 
+test\junction\ln.h:5
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>REM dir -> dir/dir 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\sym_target test\symbolic 
+ERROR: 'test\symbolic' permission denied
+ErrorLevel == -17
+
+C:\data\cpp\git\hardlinks\ln>REM dir -> dir/dir\  
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\sym_target test\symbolic\   1>nul 
+ERROR: symlink 'test\symbolic\sym_target' does not exist
+ErrorLevel == -17
+
+C:\data\cpp\git\hardlinks\ln>REM dir -> dir/dir\ - already exists 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\sym_target test\symbolic\ 
+ERROR: 'test\symbolic\' permission denied
+ErrorLevel == -17
+
+C:\data\cpp\git\hardlinks\ln>REM dir -> dir/dir/ 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\sym_target test\symbolic/   1>nul 
+ERROR: symlink 'test\symbolic\sym_target' does not exist
+ErrorLevel == -17
+
+C:\data\cpp\git\hardlinks\ln>REM dir -> dir/dir/ - already exists 
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress   test\sym_target test\symbolic/ 
+ERROR: 'test\symbolic/' permission denied
+ErrorLevel == -17
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM SUC: par1 has a trailing \ 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\Poi\ test\poi3  1>sortout 
 
 
                       Overall
@@ -712,28 +942,28 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\poi3
-+d D:\data\cpp\hardlinks\ln\test\poi3\Res
-+d D:\data\cpp\hardlinks\ln\test\poi3\Src
-+h D:\data\cpp\hardlinks\ln\test\poi3\history.txt
-+h D:\data\cpp\hardlinks\ln\test\poi3\Res\poi.rc
-+h D:\data\cpp\hardlinks\ln\test\poi3\Src\function.cxx
-+h D:\data\cpp\hardlinks\ln\test\poi3\Src\licence.cxx
-+h D:\data\cpp\hardlinks\ln\test\poi3\Src\poitcp.cxx
++d C:\data\cpp\git\hardlinks\ln\test\poi3
++d C:\data\cpp\git\hardlinks\ln\test\poi3\Res
++d C:\data\cpp\git\hardlinks\ln\test\poi3\Src
++h C:\data\cpp\git\hardlinks\ln\test\poi3\history.txt
++h C:\data\cpp\git\hardlinks\ln\test\poi3\Res\poi.rc
++h C:\data\cpp\git\hardlinks\ln\test\poi3\Src\function.cxx
++h C:\data\cpp\git\hardlinks\ln\test\poi3\Src\licence.cxx
++h C:\data\cpp\git\hardlinks\ln\test\poi3\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUC: Destination is specified with no drive letter 
+C:\data\cpp\git\hardlinks\ln>REM SUC: Destination is specified with no drive letter 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>set DIR=\data\cpp\hardlinks\ln\\test\t 
+C:\data\cpp\git\hardlinks\ln>set DIR=\data\cpp\git\hardlinks\ln\\test\t 
 
-D:\data\cpp\hardlinks\ln>mkdir \data\cpp\hardlinks\ln\\test\t 
+C:\data\cpp\git\hardlinks\ln>mkdir \data\cpp\git\hardlinks\ln\\test\t 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive  test\poi \data\cpp\hardlinks\ln\\test\t  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive  test\poi \data\cpp\git\hardlinks\ln\\test\t  1>sortout 
 
 
                       Overall
@@ -743,24 +973,24 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\t
-+d D:\data\cpp\hardlinks\ln\test\t\Res
-+d D:\data\cpp\hardlinks\ln\test\t\Src
-+h D:\data\cpp\hardlinks\ln\test\t\history.txt
-+h D:\data\cpp\hardlinks\ln\test\t\Res\poi.rc
-+h D:\data\cpp\hardlinks\ln\test\t\Src\function.cxx
-+h D:\data\cpp\hardlinks\ln\test\t\Src\licence.cxx
-+h D:\data\cpp\hardlinks\ln\test\t\Src\poitcp.cxx
++d C:\data\cpp\git\hardlinks\ln\test\t
++d C:\data\cpp\git\hardlinks\ln\test\t\Res
++d C:\data\cpp\git\hardlinks\ln\test\t\Src
++h C:\data\cpp\git\hardlinks\ln\test\t\history.txt
++h C:\data\cpp\git\hardlinks\ln\test\t\Res\poi.rc
++h C:\data\cpp\git\hardlinks\ln\test\t\Src\function.cxx
++h C:\data\cpp\git\hardlinks\ln\test\t\Src\licence.cxx
++h C:\data\cpp\git\hardlinks\ln\test\t\Src\poitcp.cxx
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUC: --recursive on an empty directory 
+C:\data\cpp\git\hardlinks\ln>REM SUC: --recursive on an empty directory 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\poi\empty_src test\poi\empty_dst  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\poi\empty_src test\poi\empty_dst  1>sortout 
 
 
                       Overall
@@ -774,79 +1004,79 @@ Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 File not found - test\poi\empty_dst
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUC: Destination is a path which does not exist 
+C:\data\cpp\git\hardlinks\ln>REM SUC: Destination is a path which does not exist 
 
-D:\data\cpp\hardlinks\ln>REM      so call mkdirhier to create the path to the file 
+C:\data\cpp\git\hardlinks\ln>REM      so call mkdirhier to create the path to the file 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>set BASE=test\not 
+C:\data\cpp\git\hardlinks\ln>set BASE=test\not 
 
-D:\data\cpp\hardlinks\ln>set DIR=test\not\there\at\all 
+C:\data\cpp\git\hardlinks\ln>set DIR=test\not\there\at\all 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test test\poi\history.txt test\not\there\at\all\history_link.txt 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  test\poi\history.txt test\not\there\at\all\history_link.txt 
 test\poi\history.txt
 1 file linked
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM TODO SUC: Remote Hardlink creation  
+C:\data\cpp\git\hardlinks\ln>REM TODO SUC: Remote Hardlink creation  
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ln \\ba\file1 \\bla\file2 
+C:\data\cpp\git\hardlinks\ln>REM ln \\ba\file1 \\bla\file2 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM TODO ERR: Remote Hardlink creation  
+C:\data\cpp\git\hardlinks\ln>REM TODO ERR: Remote Hardlink creation  
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ln \\blu\file1 \\bla\file2 
+C:\data\cpp\git\hardlinks\ln>REM ln \\blu\file1 \\bla\file2 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM TODO SUC: Remote Hardlink creation  
+C:\data\cpp\git\hardlinks\ln>REM TODO SUC: Remote Hardlink creation  
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ln --recursive \\ba\dir1 \\bla\dir2 
+C:\data\cpp\git\hardlinks\ln>REM ln --recursive \\ba\dir1 \\bla\dir2 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM TODO ERR: Remote Hardlink creation  
+C:\data\cpp\git\hardlinks\ln>REM TODO ERR: Remote Hardlink creation  
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ln --recursive \\blu\file1 \\bla\file2 
+C:\data\cpp\git\hardlinks\ln>REM ln --recursive \\blu\file1 \\bla\file2 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM TODO ERR: Check enumerate 
+C:\data\cpp\git\hardlinks\ln>REM TODO ERR: Check enumerate 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ln --enum \\blu\file1  
+C:\data\cpp\git\hardlinks\ln>REM ln --enum \\blu\file1  
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUCC: Enumerate only saturated hardlinks 
+C:\data\cpp\git\hardlinks\ln>REM SUCC: Enumerate only saturated hardlinks 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --enum test\enum\1 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --enum test\enum\1 
 Saturated Hardlinks
 ---------------------
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.0: 7 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.1: 7 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.2: 7 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.3: 7 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.4: 7 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.5: 7 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.6: 7 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.0: 7 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.1: 7 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.2: 7 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.3: 7 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.4: 7 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.5: 7 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.6: 7 
 
 UnSaturated Hardlinks
 ---------------------
@@ -855,47 +1085,47 @@ No unsaturated hardlinks found.
 1 Hardlink Groups found.
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUCC: Now make the saturated group unsaturated 
+C:\data\cpp\git\hardlinks\ln>REM SUCC: Now make the saturated group unsaturated 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --enum test\enum\1 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --enum test\enum\1 
 Saturated Hardlinks
 ---------------------
 No saturated hardlinks found.
 
 UnSaturated Hardlinks
 ---------------------
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.0: 8 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.1: 8 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.2: 8 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.3: 8 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.4: 8 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.5: 8 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.6: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.0: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.1: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.2: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.3: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.4: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.5: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.6: 8 
 
 1 Hardlink Groups found.
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUCC: Show both now 
+C:\data\cpp\git\hardlinks\ln>REM SUCC: Show both now 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --enum test\enum 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --enum test\enum 
 Saturated Hardlinks
 ---------------------
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.0: 8 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.1: 8 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.2: 8 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.3: 8 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.4: 8 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.5: 8 
-D:\data\cpp\hardlinks\ln\test\enum\1\ln.h.6: 8 
-D:\data\cpp\hardlinks\ln\test\enum\2\ln.h.us1: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.0: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.1: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.2: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.3: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.4: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.5: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\1\ln.h.6: 8 
+C:\data\cpp\git\hardlinks\ln\test\enum\2\ln.h.us1: 8 
 
 UnSaturated Hardlinks
 ---------------------
@@ -904,39 +1134,39 @@ No unsaturated hardlinks found.
 1 Hardlink Groups found.
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUCC: Copy Hardlink 
+C:\data\cpp\git\hardlinks\ln>REM SUCC: Copy Hardlink 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Preparation 
+C:\data\cpp\git\hardlinks\ln>REM Preparation 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --enum test\copy\source\Folder1 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --enum test\copy\source\Folder1 
 Saturated Hardlinks
 ---------------------
-D:\data\cpp\hardlinks\ln\test\copy\source\Folder1\Folder2\E: 2 
-D:\data\cpp\hardlinks\ln\test\copy\source\Folder1\Folder3\F: 2 
+C:\data\cpp\git\hardlinks\ln\test\copy\source\Folder1\Folder2\E: 2 
+C:\data\cpp\git\hardlinks\ln\test\copy\source\Folder1\Folder3\F: 2 
 
 UnSaturated Hardlinks
 ---------------------
-D:\data\cpp\hardlinks\ln\test\copy\source\Folder1\C: 3 
-D:\data\cpp\hardlinks\ln\test\copy\source\Folder1\Folder2\D: 3 
+C:\data\cpp\git\hardlinks\ln\test\copy\source\Folder1\C: 3 
+C:\data\cpp\git\hardlinks\ln\test\copy\source\Folder1\Folder2\D: 3 
 
 2 Hardlink Groups found.
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --enum test\copy\source 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --enum test\copy\source 
 Saturated Hardlinks
 ---------------------
-D:\data\cpp\hardlinks\ln\test\copy\source\Folder0\A: 3 
-D:\data\cpp\hardlinks\ln\test\copy\source\Folder1\C: 3 
-D:\data\cpp\hardlinks\ln\test\copy\source\Folder1\Folder2\D: 3 
+C:\data\cpp\git\hardlinks\ln\test\copy\source\Folder0\A: 3 
+C:\data\cpp\git\hardlinks\ln\test\copy\source\Folder1\C: 3 
+C:\data\cpp\git\hardlinks\ln\test\copy\source\Folder1\Folder2\D: 3 
 
-D:\data\cpp\hardlinks\ln\test\copy\source\Folder1\Folder2\E: 2 
-D:\data\cpp\hardlinks\ln\test\copy\source\Folder1\Folder3\F: 2 
+C:\data\cpp\git\hardlinks\ln\test\copy\source\Folder1\Folder2\E: 2 
+C:\data\cpp\git\hardlinks\ln\test\copy\source\Folder1\Folder3\F: 2 
 
 UnSaturated Hardlinks
 ---------------------
@@ -945,15 +1175,15 @@ No unsaturated hardlinks found.
 2 Hardlink Groups found.
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM ----------------- 
+C:\data\cpp\git\hardlinks\ln>REM ----------------- 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUCC: Copy Hardlink 
+C:\data\cpp\git\hardlinks\ln>REM SUCC: Copy Hardlink 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\copy\source\Folder1 test\copy\dest\Folder1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy test\copy\source\Folder1 test\copy\dest\Folder1  1>sortout 
 
 
                       Overall
@@ -963,25 +1193,25 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-*h D:\data\cpp\hardlinks\ln\test\copy\dest\Folder1\Folder2\D
-*h D:\data\cpp\hardlinks\ln\test\copy\dest\Folder1\Folder2\E
-+d D:\data\cpp\hardlinks\ln\test\copy\dest\Folder1
-+d D:\data\cpp\hardlinks\ln\test\copy\dest\Folder1\Folder2
-+d D:\data\cpp\hardlinks\ln\test\copy\dest\Folder1\Folder3
-+f D:\data\cpp\hardlinks\ln\test\copy\dest\Folder1\B
-+f D:\data\cpp\hardlinks\ln\test\copy\dest\Folder1\C
-+f D:\data\cpp\hardlinks\ln\test\copy\dest\Folder1\Folder3\F
+*h C:\data\cpp\git\hardlinks\ln\test\copy\dest\Folder1\Folder2\D
+*h C:\data\cpp\git\hardlinks\ln\test\copy\dest\Folder1\Folder2\E
++d C:\data\cpp\git\hardlinks\ln\test\copy\dest\Folder1
++d C:\data\cpp\git\hardlinks\ln\test\copy\dest\Folder1\Folder2
++d C:\data\cpp\git\hardlinks\ln\test\copy\dest\Folder1\Folder3
++f C:\data\cpp\git\hardlinks\ln\test\copy\dest\Folder1\B
++f C:\data\cpp\git\hardlinks\ln\test\copy\dest\Folder1\C
++f C:\data\cpp\git\hardlinks\ln\test\copy\dest\Folder1\Folder3\F
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --enum test\copy\dest 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --enum test\copy\dest 
 Saturated Hardlinks
 ---------------------
-D:\data\cpp\hardlinks\ln\test\copy\dest\Folder1\Folder2\E: 2 
-D:\data\cpp\hardlinks\ln\test\copy\dest\Folder1\Folder3\F: 2 
+C:\data\cpp\git\hardlinks\ln\test\copy\dest\Folder1\Folder2\E: 2 
+C:\data\cpp\git\hardlinks\ln\test\copy\dest\Folder1\Folder3\F: 2 
 
-D:\data\cpp\hardlinks\ln\test\copy\dest\Folder1\C: 2 
-D:\data\cpp\hardlinks\ln\test\copy\dest\Folder1\Folder2\D: 2 
+C:\data\cpp\git\hardlinks\ln\test\copy\dest\Folder1\C: 2 
+C:\data\cpp\git\hardlinks\ln\test\copy\dest\Folder1\Folder2\D: 2 
 
 UnSaturated Hardlinks
 ---------------------
@@ -990,39 +1220,39 @@ No unsaturated hardlinks found.
 2 Hardlink Groups found.
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>REM  
+C:\data\cpp\git\hardlinks\ln>REM  
 
-D:\data\cpp\hardlinks\ln>REM Clean up 
+C:\data\cpp\git\hardlinks\ln>REM Clean up 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM ----------------- 
+C:\data\cpp\git\hardlinks\ln>REM ----------------- 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUCC: ln -r but one file is read only 
+C:\data\cpp\git\hardlinks\ln>REM SUCC: ln -r but one file is read only 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>set TESTROOT=test\hlc03 
+C:\data\cpp\git\hardlinks\ln>set TESTROOT=test\hlc03 
 
-D:\data\cpp\hardlinks\ln>set TESTROOTSRC=test\hlc03\source 
+C:\data\cpp\git\hardlinks\ln>set TESTROOTSRC=test\hlc03\source 
 
-D:\data\cpp\hardlinks\ln>set TESTROOTDST=test\hlc03\dest 
+C:\data\cpp\git\hardlinks\ln>set TESTROOTDST=test\hlc03\dest 
 
-D:\data\cpp\hardlinks\ln>mkdir test\hlc03\source\Folder0  1>nul 
+C:\data\cpp\git\hardlinks\ln>mkdir test\hlc03\source\Folder0  1>nul 
 
-D:\data\cpp\hardlinks\ln>mkdir test\hlc03\source\Folder0\Folder1  1>nul 
+C:\data\cpp\git\hardlinks\ln>mkdir test\hlc03\source\Folder0\Folder1  1>nul 
 
-D:\data\cpp\hardlinks\ln>mkdir test\hlc03\dest  1>nul 
+C:\data\cpp\git\hardlinks\ln>mkdir test\hlc03\dest  1>nul 
 
-D:\data\cpp\hardlinks\ln>copy test\ln.h "test\hlc03\source\Folder0\Folder1\File A in Folder1"  1>nul 
+C:\data\cpp\git\hardlinks\ln>copy test\ln.h "test\hlc03\source\Folder0\Folder1\File A in Folder1"  1>nul 
 
-D:\data\cpp\hardlinks\ln>copy test\ln.h "test\hlc03\source\Folder0\Folder1\File B in Folder1"  1>nul 
+C:\data\cpp\git\hardlinks\ln>copy test\ln.h "test\hlc03\source\Folder0\Folder1\File B in Folder1"  1>nul 
 
-D:\data\cpp\hardlinks\ln>attrib +r "test\hlc03\source\Folder0\Folder1\File A in Folder1" 
+C:\data\cpp\git\hardlinks\ln>attrib +r "test\hlc03\source\Folder0\Folder1\File A in Folder1" 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\hlc03\source test\hlc03\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\hlc03\source test\hlc03\dest  1>sortout 
 
 
                       Overall
@@ -1032,50 +1262,50 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\hlc03\dest
-+d D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0
-+d D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0\Folder1
-+h D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File A in Folder1
-+h D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File B in Folder1
++d C:\data\cpp\git\hardlinks\ln\test\hlc03\dest
++d C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0
++d C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0\Folder1
++h C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File A in Folder1
++h C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File B in Folder1
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\Tools\where.exe *.* test\hlc03\dest   | sort  
+C:\data\cpp\git\hardlinks\ln>..\Tools\where.exe *.* test\hlc03\dest   | sort  
 2 matching file(s) found, using 928 bytes.
-D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File A in Folder1
-D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File B in Folder1
+C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File A in Folder1
+C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File B in Folder1
 
-D:\data\cpp\hardlinks\ln>REM ----------------- 
+C:\data\cpp\git\hardlinks\ln>REM ----------------- 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUCC: ln -r but one file is read only and one is hidden 
+C:\data\cpp\git\hardlinks\ln>REM SUCC: ln -r but one file is read only and one is hidden 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>set TESTROOT=test\hlc03 
+C:\data\cpp\git\hardlinks\ln>set TESTROOT=test\hlc03 
 
-D:\data\cpp\hardlinks\ln>set TESTROOTSRC=test\hlc03\source 
+C:\data\cpp\git\hardlinks\ln>set TESTROOTSRC=test\hlc03\source 
 
-D:\data\cpp\hardlinks\ln>set TESTROOTDST=test\hlc03\dest 
+C:\data\cpp\git\hardlinks\ln>set TESTROOTDST=test\hlc03\dest 
 
-D:\data\cpp\hardlinks\ln>mkdir test\hlc03\source\Folder0  1>nul 
+C:\data\cpp\git\hardlinks\ln>mkdir test\hlc03\source\Folder0  1>nul 
 
-D:\data\cpp\hardlinks\ln>mkdir test\hlc03\source\Folder0\Folder1  1>nul 
+C:\data\cpp\git\hardlinks\ln>mkdir test\hlc03\source\Folder0\Folder1  1>nul 
 
-D:\data\cpp\hardlinks\ln>mkdir test\hlc03\dest  1>nul 
+C:\data\cpp\git\hardlinks\ln>mkdir test\hlc03\dest  1>nul 
 
-D:\data\cpp\hardlinks\ln>copy test\ln.h "test\hlc03\source\Folder0\Folder1\File A in Folder1"  1>nul 
+C:\data\cpp\git\hardlinks\ln>copy test\ln.h "test\hlc03\source\Folder0\Folder1\File A in Folder1"  1>nul 
 
-D:\data\cpp\hardlinks\ln>copy test\ln.h "test\hlc03\source\Folder0\Folder1\File B in Folder1"  1>nul 
+C:\data\cpp\git\hardlinks\ln>copy test\ln.h "test\hlc03\source\Folder0\Folder1\File B in Folder1"  1>nul 
 
-D:\data\cpp\hardlinks\ln>copy test\ln.h "test\hlc03\source\Folder0\Folder1\File C in Folder1"  1>nul 
+C:\data\cpp\git\hardlinks\ln>copy test\ln.h "test\hlc03\source\Folder0\Folder1\File C in Folder1"  1>nul 
 
-D:\data\cpp\hardlinks\ln>attrib +r "test\hlc03\source\Folder0\Folder1\File A in Folder1" 
+C:\data\cpp\git\hardlinks\ln>attrib +r "test\hlc03\source\Folder0\Folder1\File A in Folder1" 
 
-D:\data\cpp\hardlinks\ln>attrib +h "test\hlc03\source\Folder0\Folder1\File B in Folder1" 
+C:\data\cpp\git\hardlinks\ln>attrib +h "test\hlc03\source\Folder0\Folder1\File B in Folder1" 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\hlc03\source test\hlc03\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\hlc03\source test\hlc03\dest  1>sortout 
 
 
                       Overall
@@ -1085,50 +1315,50 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\hlc03\dest
-+d D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0
-+d D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0\Folder1
-+h D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File A in Folder1
-+h D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File B in Folder1
-+h D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File C in Folder1
++d C:\data\cpp\git\hardlinks\ln\test\hlc03\dest
++d C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0
++d C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0\Folder1
++h C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File A in Folder1
++h C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File B in Folder1
++h C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File C in Folder1
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\Tools\where.exe *.* test\hlc03\dest   | sort  
+C:\data\cpp\git\hardlinks\ln>..\Tools\where.exe *.* test\hlc03\dest   | sort  
 3 matching file(s) found, using 1392 bytes.
-D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File A in Folder1
-D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File B in Folder1
-D:\data\cpp\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File C in Folder1
+C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File A in Folder1
+C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File B in Folder1
+C:\data\cpp\git\hardlinks\ln\test\hlc03\dest\Folder0\Folder1\File C in Folder1
 
-D:\data\cpp\hardlinks\ln>REM ----------------- 
+C:\data\cpp\git\hardlinks\ln>REM ----------------- 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUCC: Check if attributes of directories are copied 
+C:\data\cpp\git\hardlinks\ln>REM SUCC: Check if attributes of directories are copied 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>set TESTROOT=test\acp 
+C:\data\cpp\git\hardlinks\ln>set TESTROOT=test\acp 
 
-D:\data\cpp\hardlinks\ln>set TESTROOTSRC=test\acp\source 
+C:\data\cpp\git\hardlinks\ln>set TESTROOTSRC=test\acp\source 
 
-D:\data\cpp\hardlinks\ln>set TESTROOTDST=test\acp\dest 
+C:\data\cpp\git\hardlinks\ln>set TESTROOTDST=test\acp\dest 
 
-D:\data\cpp\hardlinks\ln>mkdir test\acp\source\Folder0  1>nul 
+C:\data\cpp\git\hardlinks\ln>mkdir test\acp\source\Folder0  1>nul 
 
-D:\data\cpp\hardlinks\ln>mkdir test\acp\source\Folder0\Folder1  1>nul 
+C:\data\cpp\git\hardlinks\ln>mkdir test\acp\source\Folder0\Folder1  1>nul 
 
-D:\data\cpp\hardlinks\ln>mkdir test\acp\dest  1>nul 
+C:\data\cpp\git\hardlinks\ln>mkdir test\acp\dest  1>nul 
 
-D:\data\cpp\hardlinks\ln>copy test\ln.h "test\acp\source\Folder0\Folder1\File A in Folder1"  1>nul 
+C:\data\cpp\git\hardlinks\ln>copy test\ln.h "test\acp\source\Folder0\Folder1\File A in Folder1"  1>nul 
 
-D:\data\cpp\hardlinks\ln>copy test\ln.h "test\acp\source\Folder0\Folder1\File B in Folder1"  1>nul 
+C:\data\cpp\git\hardlinks\ln>copy test\ln.h "test\acp\source\Folder0\Folder1\File B in Folder1"  1>nul 
 
-D:\data\cpp\hardlinks\ln>attrib +r +h "test\acp\source\Folder0\Folder1" 
+C:\data\cpp\git\hardlinks\ln>attrib +r +h "test\acp\source\Folder0\Folder1" 
 
-D:\data\cpp\hardlinks\ln>attrib +r "test\acp\source\Folder0\Folder1\File A in Folder1" 
+C:\data\cpp\git\hardlinks\ln>attrib +r "test\acp\source\Folder0\Folder1\File A in Folder1" 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\acp\source test\acp\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy test\acp\source test\acp\dest  1>sortout 
 
 
                       Overall
@@ -1138,57 +1368,57 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
    Times:        00:00:00.002
   Folder:         3         2         -         1         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0
-+d D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0\Folder1
-+f D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0\Folder1\File A in Folder1
-+f D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0\Folder1\File B in Folder1
-=d D:\data\cpp\hardlinks\ln\test\acp\dest
++d C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0
++d C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0\Folder1
++f C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0\Folder1\File A in Folder1
++f C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0\Folder1\File B in Folder1
+=d C:\data\cpp\git\hardlinks\ln\test\acp\dest
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>ATTRIB test\acp\*.* /S /D 
-A    R       D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0\Folder1\File A in Folder1
-A            D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0\Folder1\File B in Folder1
-    HR       D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0\Folder1
-             D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0
-A    R       D:\data\cpp\hardlinks\ln\test\acp\source\Folder0\Folder1\File A in Folder1
-A            D:\data\cpp\hardlinks\ln\test\acp\source\Folder0\Folder1\File B in Folder1
-    HR       D:\data\cpp\hardlinks\ln\test\acp\source\Folder0\Folder1
-             D:\data\cpp\hardlinks\ln\test\acp\source\Folder0
-             D:\data\cpp\hardlinks\ln\test\acp\dest
-             D:\data\cpp\hardlinks\ln\test\acp\source
+C:\data\cpp\git\hardlinks\ln>ATTRIB test\acp\*.* /S /D 
+A    R       C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0\Folder1\File A in Folder1
+A            C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0\Folder1\File B in Folder1
+    HR       C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0\Folder1
+             C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0
+A    R       C:\data\cpp\git\hardlinks\ln\test\acp\source\Folder0\Folder1\File A in Folder1
+A            C:\data\cpp\git\hardlinks\ln\test\acp\source\Folder0\Folder1\File B in Folder1
+    HR       C:\data\cpp\git\hardlinks\ln\test\acp\source\Folder0\Folder1
+             C:\data\cpp\git\hardlinks\ln\test\acp\source\Folder0
+             C:\data\cpp\git\hardlinks\ln\test\acp\dest
+             C:\data\cpp\git\hardlinks\ln\test\acp\source
 
-D:\data\cpp\hardlinks\ln>REM ----------------- 
+C:\data\cpp\git\hardlinks\ln>REM ----------------- 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUCC: Check if attributes of directories are cloned 
+C:\data\cpp\git\hardlinks\ln>REM SUCC: Check if attributes of directories are cloned 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>set TESTROOT=test\acp 
+C:\data\cpp\git\hardlinks\ln>set TESTROOT=test\acp 
 
-D:\data\cpp\hardlinks\ln>set TESTROOTSRC=test\acp\source 
+C:\data\cpp\git\hardlinks\ln>set TESTROOTSRC=test\acp\source 
 
-D:\data\cpp\hardlinks\ln>set TESTROOTDST=test\acp\dest 
+C:\data\cpp\git\hardlinks\ln>set TESTROOTDST=test\acp\dest 
 
-D:\data\cpp\hardlinks\ln>mkdir test\acp\source\Folder0  1>nul 
+C:\data\cpp\git\hardlinks\ln>mkdir test\acp\source\Folder0  1>nul 
 
-D:\data\cpp\hardlinks\ln>mkdir test\acp\source\Folder0\Folder1  1>nul 
+C:\data\cpp\git\hardlinks\ln>mkdir test\acp\source\Folder0\Folder1  1>nul 
 
-D:\data\cpp\hardlinks\ln>mkdir test\acp\dest  1>nul 
+C:\data\cpp\git\hardlinks\ln>mkdir test\acp\dest  1>nul 
 
-D:\data\cpp\hardlinks\ln>copy test\ln.h "test\acp\source\Folder0\Folder1\File A in Folder1"  1>nul 
+C:\data\cpp\git\hardlinks\ln>copy test\ln.h "test\acp\source\Folder0\Folder1\File A in Folder1"  1>nul 
 
-D:\data\cpp\hardlinks\ln>copy test\ln.h "test\acp\source\Folder0\Folder1\File B in Folder1"  1>nul 
+C:\data\cpp\git\hardlinks\ln>copy test\ln.h "test\acp\source\Folder0\Folder1\File B in Folder1"  1>nul 
 
-D:\data\cpp\hardlinks\ln>attrib +r +h "test\acp\source\Folder0\Folder1" 
+C:\data\cpp\git\hardlinks\ln>attrib +r +h "test\acp\source\Folder0\Folder1" 
 
-D:\data\cpp\hardlinks\ln>attrib +r "test\acp\source\Folder0\Folder1\File A in Folder1" 
+C:\data\cpp\git\hardlinks\ln>attrib +r "test\acp\source\Folder0\Folder1\File A in Folder1" 
 
-D:\data\cpp\hardlinks\ln>attrib +r "test\acp\source" 
+C:\data\cpp\git\hardlinks\ln>attrib +r "test\acp\source" 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive test\acp\source test\acp\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive test\acp\source test\acp\dest  1>sortout 
 
 
                       Overall
@@ -1198,57 +1428,57 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
    Times:        00:00:00.002
   Folder:         3         3         -         0         0         0
  Symlink:         0         -         0         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\acp\dest
-+d D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0
-+d D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0\Folder1
-+h D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0\Folder1\File A in Folder1
-+h D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0\Folder1\File B in Folder1
++d C:\data\cpp\git\hardlinks\ln\test\acp\dest
++d C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0
++d C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0\Folder1
++h C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0\Folder1\File A in Folder1
++h C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0\Folder1\File B in Folder1
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>ATTRIB test\acp\*.* /S /D 
-A    R       D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0\Folder1\File A in Folder1
-A            D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0\Folder1\File B in Folder1
-    HR       D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0\Folder1
-             D:\data\cpp\hardlinks\ln\test\acp\dest\Folder0
-A    R       D:\data\cpp\hardlinks\ln\test\acp\source\Folder0\Folder1\File A in Folder1
-A            D:\data\cpp\hardlinks\ln\test\acp\source\Folder0\Folder1\File B in Folder1
-    HR       D:\data\cpp\hardlinks\ln\test\acp\source\Folder0\Folder1
-             D:\data\cpp\hardlinks\ln\test\acp\source\Folder0
-     R       D:\data\cpp\hardlinks\ln\test\acp\dest
-     R       D:\data\cpp\hardlinks\ln\test\acp\source
+C:\data\cpp\git\hardlinks\ln>ATTRIB test\acp\*.* /S /D 
+A    R       C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0\Folder1\File A in Folder1
+A            C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0\Folder1\File B in Folder1
+    HR       C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0\Folder1
+             C:\data\cpp\git\hardlinks\ln\test\acp\dest\Folder0
+A    R       C:\data\cpp\git\hardlinks\ln\test\acp\source\Folder0\Folder1\File A in Folder1
+A            C:\data\cpp\git\hardlinks\ln\test\acp\source\Folder0\Folder1\File B in Folder1
+    HR       C:\data\cpp\git\hardlinks\ln\test\acp\source\Folder0\Folder1
+             C:\data\cpp\git\hardlinks\ln\test\acp\source\Folder0
+     R       C:\data\cpp\git\hardlinks\ln\test\acp\dest
+     R       C:\data\cpp\git\hardlinks\ln\test\acp\source
 
-D:\data\cpp\hardlinks\ln>REM ----------------- 
+C:\data\cpp\git\hardlinks\ln>REM ----------------- 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM SUCC: Check Copy Junction 
+C:\data\cpp\git\hardlinks\ln>REM SUCC: Check Copy Junction 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>call t_SmartCopy02Preperation.bat test\junction 
+C:\data\cpp\git\hardlinks\ln>call t_SmartCopy02Preperation.bat test\junction 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Preparation for Junction test 
+C:\data\cpp\git\hardlinks\ln>REM Preparation for Junction test 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
 No matching files found.
 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM Do the test 
+C:\data\cpp\git\hardlinks\ln>REM Do the test 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\junction\000_@_Source test\junction\000_@_SmartKopie 
-+d D:\data\cpp\hardlinks\ln\test\junction\000_@_SmartKopie
-+d D:\data\cpp\hardlinks\ln\test\junction\000_@_SmartKopie\A_Test
-+d D:\data\cpp\hardlinks\ln\test\junction\000_@_SmartKopie\A_Test\AA_Test
-+d D:\data\cpp\hardlinks\ln\test\junction\000_@_SmartKopie\B_Test
-+j D:\data\cpp\hardlinks\ln\test\junction\000_@_SmartKopie\B_Test\AA_Test
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy test\junction\000_@_Source test\junction\000_@_SmartKopie 
++d C:\data\cpp\git\hardlinks\ln\test\junction\000_@_SmartKopie
++d C:\data\cpp\git\hardlinks\ln\test\junction\000_@_SmartKopie\A_Test
++d C:\data\cpp\git\hardlinks\ln\test\junction\000_@_SmartKopie\A_Test\AA_Test
++d C:\data\cpp\git\hardlinks\ln\test\junction\000_@_SmartKopie\B_Test
++j C:\data\cpp\git\hardlinks\ln\test\junction\000_@_SmartKopie\B_Test\AA_Test
 
               Total    Copied    Linked   Skipped  Excluded    Failed
   Folder:         4         4         -         0         0         0
@@ -1261,5 +1491,5 @@ Junction:         1         -         1         0         0         0
    Times:        00:00:00.002
 ErrorLevel == 0
 
-D:\data\cpp\hardlinks\ln>..\Tools\where.exe *.* test\junction   | sort
+C:\data\cpp\git\hardlinks\ln>..\Tools\where.exe *.* test\junction   | sort
 No matching files found.
