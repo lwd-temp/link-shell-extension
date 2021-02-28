@@ -2688,8 +2688,8 @@
                         <p>
                             A: Die Anzahl der verschiedenen Icon-Overlay-Handler, die das System unterstützen kann, ist begrenzt
                             durch die Menge an verfügbarem Platz für Symbol-Overlays in der Systembildliste.
-                            Derzeit sind fünfzehn Plätze für Symbol-Overlays vorgesehen, von denen einige vom System reserviert sind.
-
+                            Derzeit sind 11 Plätze für Symbol-Overlays unter Windows 10 vorgesehen, 
+                            von denen einige vom System reserviert sind.
                         </p>
                         <p>
                             Gesteuert wird das Ganze durch die alphabetische Reihenfolge der OverlayHandler unter<br /><br />
@@ -2702,43 +2702,19 @@
                             größer 11 bei 64bit Windows, werden die LSE Overlay Icons nicht angezeigt.
                         </p>
                         <p>
-                            Um die Priorität der LSE OverlayIcons manuell zu erhöhen, öffnen Sie den obigen Registry-Speicherort mit regedit und benennen Sie ihn um <br />
+                            Um die Priorität der LSE OverlayIcons manuell zu erhöhen, öffnen Sie den obigen Registry-Speicherort mit regedit und stellen Sie ein Leerzeichen voran<br />
                             <span class="ascode">
                                 <br />
 
-                                HardLinkMenu --> <font color="red">0</font>HardLinkMenu<br />
-                                IconOverlayHardLink --> <font color="red">0</font>IconOverlayHardLink<br />
-                                IconOverlaySymbolicLink --> <font color="red">0</font>IconOverlaySymbolicLink<br /><br />
+                                IconOverlayHardLink --> <font color="red">'&nbsp'</font>IconOverlayHardLink<br />
+                                IconOverlayJunction --> <font color="red">'&nbsp'</font>IconOverlayJunction<br />
+                                IconOverlaySymbolicLink --> <font color="red">'&nbsp'</font>IconOverlaySymbolicLink<br /><br />
                             </span>
 
                             und starten Sie entweder den Explorer neu oder melden Sie sich ab und wieder an. Hier geht es darum, die alphabetische Reihenfolge zu ändern
-                            zu ändern, indem Sie eine 0 vorgeben.
-
-
-                            Bei Windows 10 hilft eine 0 vielleicht nicht, aber das Voranstellen eines Leerzeichens sollte es tun. Siehe unten:
-
-                        </p>
-                    </li>
-
-                    <li>
-                        <b>
-                            <a name="faq12">Q</a>: Die Überlagerungs Symbole für Symbolische Links werden unter Windows 10 nicht angezeigt.
-                        </b>
-                        <br />
-
-                        <p>
-                            A: Siehe eine FAQ oben und erhöhen Sie die Prio von IconOverlaySymbolicLink unter<br />
-                            <span class="ascode">
-                                HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers<br /><br />
-                            </span>
-                            indem zwei Leerzeichen vorangestellt werden.
-                            <span class="ascode">
-                                <br />
-                                IconOverlaySymbolicLink --> <font color="red">'&nbsp&nbsp'</font>IconOverlaySymbolicLink<br /><br />
-                            </span>
-
-                            und starten Sie entweder den Explorer neu oder melden Sie sich ab und wieder an. Es geht hier darum, die alphabetische Reihenfolge zu ändern
-                            durch das Voranstellen von Leerzeichen.
+                            zu ändern, indem Sie ein Leerzeichen voranstellen. Das kann in einem Wettlauf um die höchste Priorität enden,
+                            weil einige OverlayHandler wie <a href="https://stackoverflow.com/questions/41697737/shelliconoverlayidentifiers-and-windows10">
+                            DropBox schon einige Leerzeichen vorangestellt haben.</a>
                         </p>
                     </li>
 
@@ -2827,7 +2803,7 @@
                         </p>
                     </li>
 
-                    <!-- free FAQ13, FAQ16 -->
+                    <!-- free FAQ12, FAQ13, FAQ16 -->
 
                 </ul>
             </td>

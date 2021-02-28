@@ -2688,8 +2688,8 @@
                         <p>
                             A: The number of different icon overlay handlers that the system can support is limited
                             by the amount of space available for icon overlays in the system image list.
-                            There are currently fifteen slots allotted for icon overlays, some of which are reserved
-                            by the system.
+                            There are currently 11 slots allotted with Windows 10 for icon overlays, some of which 
+                            are reserved by the system.
                         </p>
                         <p>
                             All is controlled by the alphabetical order of OverlayHandlers under<br /><br />
@@ -2699,46 +2699,22 @@
                             </span>
 
                             If the OverlayHandlers for LinkShellExtension somehow slipped to a slot greater 15 under 32bit Windows or
-                            greater 11 with 64bit Windows, the LSE Overlay Icons won't show up.
+                            greater 11 with Windows 10, the LSE Overlay Icons won't show up.
                         </p>
                         <p>
-                            To manually boost the priority of LSE OverlayIcons open the above registry location with regedit and rename <br />
+                            To manually boost the priority of LSE OverlayIcons, open the above registry location with regedit and prepend a blank<br />
                             <span class="ascode">
                                 <br />
 
-                                HardLinkMenu --> <font color="red">0</font>HardLinkMenu<br />
-                                IconOverlayHardLink --> <font color="red">0</font>IconOverlayHardLink<br />
-                                IconOverlaySymbolicLink --> <font color="red">0</font>IconOverlaySymbolicLink<br /><br />
+                                IconOverlayHardLink --> <font color="red">'&nbsp'</font>IconOverlayHardLink<br />
+                                IconOverlayJunction --> <font color="red">'&nbsp'</font>IconOverlayJunction<br />
+                                IconOverlaySymbolicLink --> <font color="red">'&nbsp'</font>IconOverlaySymbolicLink<br /><br />
                             </span>
 
                             and either restart the explorer or log-off and log-on again. The point here is to change the alphabetical order
-                            by prepeding a 0.
-
-
-                            With Windows 10, a 0 might not help but prepending a blank should do it. See below:
-
-                        </p>
-                    </li>
-
-                    <li>
-                        <b>
-                            <a name="faq12">Q</a>: The symbolic link overlay icons do not show up under Windows 10
-                        </b>
-                        <br />
-
-                        <p>
-                            A: See one FAQ above and raise the prio of IconOverlaySymbolicLink under<br />
-                            <span class="ascode">
-                                HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers<br /><br />
-                            </span>
-                            by prepending two blanks.
-                            <span class="ascode">
-                                <br />
-                                IconOverlaySymbolicLink --> <font color="red">'&nbsp&nbsp'</font>IconOverlaySymbolicLink<br /><br />
-                            </span>
-
-                            and either restart the explorer or log-off and log-on again. The point here is to change the alphabetical order
-                            by prepeding blanks.
+                            by prepeding one blank. You might end up in a race to the top by adding more and mor blanks, since other
+                            OverlayHandlers such as <a href="https://stackoverflow.com/questions/41697737/shelliconoverlayidentifiers-and-windows10">
+                            DropBox' have already added a few blanks.</a>
                         </p>
                     </li>
 
@@ -2827,7 +2803,7 @@
                         </p>
                     </li>
 
-                    <!-- free FAQ13, FAQ16 -->
+                    <!-- free FAQ12, FAQ13, FAQ16 -->
 
                 </ul>
             </td>
