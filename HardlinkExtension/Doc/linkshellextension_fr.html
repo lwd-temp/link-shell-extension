@@ -1276,8 +1276,8 @@
 
                         <td>
                             Le répertoire 'Folder 3' est un répertoire normal. Il sera déplacé avec son contenu directement.<p>
-                            <br />
-                            <br />
+                                <br />
+                                <br />
                         </td>
                     </tr>
 
@@ -1294,8 +1294,8 @@
                             pointe vers un répertoire qui est situé en dessous de la racine commune 'Folder 1'.<p>
                                 Les <i>Jonctions / Liens Symboliques Internes</i> sont correctement mis à jour par un Déplacement Intelligent dans la localisation de destination.
                             <p>
-                            <br />
-                            <br />
+                                <br />
+                                <br />
 
                         </td>
                     </tr>
@@ -1342,12 +1342,18 @@
                 <br />
                 <br />
 
-                Si le mode sauvegarde est activé le compagnon UAC, LSEUacHelper.exe, est appelé dans tous les cas, car LSE a besoin d'énumérer les fichiers là où 
+                Si le mode sauvegarde est activé le compagnon UAC, LSEUacHelper.exe, est appelé dans tous les cas, car LSE a besoin d'énumérer les fichiers là où
                 il pourrait ne pas en avoir les droits.
                 <br />
                 <br />
                 <p>
                     Le Déplacement Intelligent crée des liens symboliques <a href="#relativevsabsolutesymboliclinks">relatifs</a> durant une opération de Déplacement Intelligent.
+                </p>
+
+                <p>
+                    If a LocalizedResourceName is given via desktop.ini and the very folder is readonly, SmartMove will not work.
+                    This seems to be a bug in Shell Explorer ever since. ICopyHook::CopyCallback() is not called at all in this
+                    situation.
                 </p>
 
                 <b>Activer/Désactiver le Déplacement Intelligent</b><br />
