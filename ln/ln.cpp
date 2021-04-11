@@ -4163,7 +4163,6 @@ wmain(
       default:
         if (gLogLevel != FileInfoContainer::eLogQuiet && Argv2Path.ArgvOrg.size())
         {
-          // Trau mich nicht da eine Fehlermeldung auszugeben, weil das den Regression test vernichtet
           fwprintf (gStdOutFile, L"ERROR: failed to create '%s', (%08x)\n", Argv2Path.ArgvOrg.c_str(), result);
         }
         RetVal = ERR_CREATE_HARDLINK_FAILED;
