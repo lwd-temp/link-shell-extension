@@ -1276,8 +1276,8 @@
 
                         <td>
                             The folder 'Folder 3' is a normal folder. It gets moved with its content straight forward.<p>
-                            <br />
-                            <br />
+                                <br />
+                                <br />
                         </td>
                     </tr>
 
@@ -1294,8 +1294,8 @@
                             points to a folder, which is below the common anchor 'Folder 1'.<p>
                                 <i>Inner Junctions/Symlink</i> are updated properly via Smart Move in the destination location.
                             <p>
-                            <br />
-                            <br />
+                                <br />
+                                <br />
 
                         </td>
                     </tr>
@@ -1348,6 +1348,12 @@
                 <br />
                 <p>
                     Smart Move creates <a href="#relativevsabsolutesymboliclinks">relative</a> symbolic links during the Smart Move operation.
+                </p>
+
+                <p>
+                    If a LocalizedResourceName is given via desktop.ini and the very folder is readonly, SmartMove will not work.
+                    This seems to be a bug in Shell Explorer ever since. ICopyHook::CopyCallback() is not called at all in this 
+                    situation.
                 </p>
 
                 <b>Enabling/Disabling Smart Move</b><br />

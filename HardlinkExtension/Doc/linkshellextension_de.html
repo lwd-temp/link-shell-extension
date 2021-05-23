@@ -1294,8 +1294,8 @@
                             Ziel auf einen Ordner zeigt, der sich unterhalb der gemeinsamen Wurzel 'Folder 1' befindet.
                             <i>Innere Junctions/Symbolische Links</i> werden durch Smart Move am Zielort korrekt aktualisiert.
                             <p>
-                            <br />
-                            <br />
+                                <br />
+                                <br />
 
                         </td>
                     </tr>
@@ -1348,6 +1348,12 @@
                 <br />
                 <p>
                     Smart Move erstellt <a href="#relativevsabsolutesymboliclinks">relative</a> Symbolische Links während des Smart Move-Vorgangs.
+                </p>
+
+                <p>
+                    Wenn in desktop.ini ein LocalizedResourceName für den Folder gesetzt ist, und dieser Folder read-only ist, dann funktioniert SmartMove nicht.
+                    Das ist ein Fehler von Windows, denn ICopyHook::CopyCallback() wird nicht aufgerufen, und somit kann die ShellExtension auch nicht
+                    den Umbennenungsvorgang beinflussen.
                 </p>
 
                 <b>Aktivieren/Deaktivieren von Smart Move</b><br />
