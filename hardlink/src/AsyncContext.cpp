@@ -14,7 +14,7 @@ AsyncContext::
 PutStatus(wchar_t*  aSource, wchar_t* aDestination)
 {
   int RetVal;
-  scoped_lock  lock(m_DataLock);
+  scoped_lock  lock{m_DataLock};
 #if 0
   // Use this, if you want to slow down the operation, thus showing the progress bar 
   Sleep(1);
@@ -44,7 +44,7 @@ int
 AsyncContext::
 GetStatus(wchar_t*  aSourcePath, wchar_t*  aDestpath)
 {
-  scoped_lock  lock(m_DataLock);
+  scoped_lock  lock{m_DataLock};
   if (m_SourcePath[0])
   {
     wcscpy_s(aSourcePath, HUGE_PATH, m_SourcePath);
