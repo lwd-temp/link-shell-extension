@@ -2385,7 +2385,7 @@ CopyStatistics::
 AddTlsStat(CopyStatistics* rCopyStatistics)
 {
   {
-    scoped_lock  lock(m_StatGuard);
+    scoped_lock  lock{m_StatGuard};
   
 //  rCopyStatistics->m_DupeGroupsTotal += m_DupeGroupsTotal;
 //  rCopyStatistics->m_DupeGroupsNew += m_DupeGroupsNew;
@@ -2437,7 +2437,7 @@ Proceed(int aNewState)
 	GetSystemTime(&se.m_time);
 
   {
-    scoped_lock  lock(m_EventGuard);
+    scoped_lock  lock{m_EventGuard};
 	m_StatisticsEvents.push_back (se);
   }
 
@@ -2450,7 +2450,7 @@ CopyStatistics::
 GetDupeEvent(StatisticsEvent& aStatisticsEvent)
 {
   {
-    scoped_lock  lock(m_EventGuard);
+    scoped_lock  lock{m_EventGuard};
 	if (m_StatisticsEvents.begin () != m_StatisticsEvents.end ())
 	{
 		StatisticsEvent& rStatisticsEvents = m_StatisticsEvents.front ();
