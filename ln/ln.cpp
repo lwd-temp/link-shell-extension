@@ -2068,7 +2068,7 @@ wmain(
   bool  Backup = false;
   bool  TimeTolerance = false;
   int   TimeToleranceValue = 0;
-  bool  ProbeFs = false;
+  bool  bProbeFs = false;
   bool  EnumVolumes = false;
   int   HardlinkLimitValue = cMaxHardlinkLimit;
   int   gGenerateHardlinks = 0;
@@ -3034,7 +3034,7 @@ wmain(
       case cBaseJustLongOpts + 0x12:
         wcscpy_s(Argv1, HUGE_PATH, argv[optind - 1]);
         Argv2[0] = 0x00;
-        ProbeFs = true;
+        bProbeFs = true;
         break;
 
         // --enumvolumes
@@ -3320,7 +3320,7 @@ wmain(
   }
 
   // All the listed option prepare Argv1 and Argv2 itself above, or are just switches
-  if (!(recursive ^ enumerate ^ SmartCopy ^ list ^ junction ^ noitcnuj ^ SmartMove ^ DeepPathCreate ^ DeepPathDelete ^ delorean ^ SmartMirror ^ SmartRename ^ bTrueSize ^ AdsDev ^ ProbeFs ^ HardlinkMirror ^ DeloreanMerge ^ DeloreanDelete))
+  if (!(recursive ^ enumerate ^ SmartCopy ^ list ^ junction ^ noitcnuj ^ SmartMove ^ DeepPathCreate ^ DeepPathDelete ^ delorean ^ SmartMirror ^ SmartRename ^ bTrueSize ^ AdsDev ^ bProbeFs ^ HardlinkMirror ^ DeloreanMerge ^ DeloreanDelete))
   {
     // Apply this only if no options 'ln source dest' is applied
     if (argc - optind == 2)
@@ -3372,7 +3372,7 @@ wmain(
   _ArgvPath       Argv1Path;
   Argv1Path.Argv = Argv1;
   Argv1Path.ArgvOrg = Argv1;
-  int r = CheckArgument(&Argv1Path, !(noitcnuj || Symbolic || SmartCopy || SmartMirror || delorean || DeepPathDelete || DeloreanMerge));
+  int r = CheckArgument(&Argv1Path, !(noitcnuj || Symbolic || SmartCopy || SmartMirror || delorean || DeepPathDelete || DeloreanMerge || bProbeFs));
   if (r < 0)
     Exit(r);
 
@@ -3817,7 +3817,7 @@ wmain(
   //
   // --ProbeFs
   //
-  if (ProbeFs)
+  if (bProbeFs)
   {
     if (INVALID_FILE_ATTRIBUTES != Argv1Path.FileAttribute)
     {
