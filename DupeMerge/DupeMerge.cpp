@@ -31,33 +31,34 @@ int               gSortMode = eSortBySize;
 
 static struct option	long_options[] =
 {
-	{ "exclude", required_argument, NULL, 'e' },
-	{ "excludedir", required_argument, NULL, 'X' },
-	{ "maxsize", required_argument, NULL, 'a' },
-	{ "minsize", required_argument, NULL, 'i' },
-	{ "wildcard", required_argument, NULL, 'w' },
-	{ "include", required_argument, NULL, 'n' },
-	{ "includedir", required_argument, NULL, 'I' },
-	{ "regexp", required_argument, NULL, 'r' },
-	{ "sort", required_argument, NULL, 's' },
-	{ "list", no_argument, NULL, 'l' }, 
-	{ "quiet", optional_argument, NULL, 'q' }, 
-	{ "help", no_argument, NULL, 'h' }, 
-	{ "debug", no_argument, NULL, 'd' },
-	{ "automated_test", no_argument, NULL, 'A' }, 
-	{ "output", required_argument, NULL, 'o' },
+  { "exclude", required_argument, NULL, 'e' },
+  { "excludedir", required_argument, NULL, 'X' },
+  { "maxsize", required_argument, NULL, 'a' },
+  { "minsize", required_argument, NULL, 'i' },
+  { "wildcard", required_argument, NULL, 'w' },
+  { "include", required_argument, NULL, 'n' },
+  { "includedir", required_argument, NULL, 'I' },
+  { "regexp", required_argument, NULL, 'r' },
+  { "sort", required_argument, NULL, 's' },
+  { "list", no_argument, NULL, 'l' },
+  { "quiet", optional_argument, NULL, 'q' },
+  { "help", no_argument, NULL, 'h' },
+  { "debug", no_argument, NULL, 'd' },
+  { "automated_test", no_argument, NULL, 'A' },
+  { "output", required_argument, NULL, 'o' },
 
   // Only Long Options. If a short opt is added cBaseJustLongOpts has to be increased
   { "traditional", no_argument, NULL, '\0' },
-	{ "slurpafterfind", required_argument, NULL, '\0' },
-	{ "dumpafterfind", required_argument, NULL, '\0' },
-	{ "slurpaftercalc", required_argument, NULL, '\0' },
-	{ "dumpaftercalc", required_argument, NULL, '\0' },
-	{ "whichgroups", required_argument, NULL, '\0' },
-	{ 0, 0, 0, 0 }
+  { "slurpafterfind", required_argument, NULL, '\0' },
+  { "dumpafterfind", required_argument, NULL, '\0' },
+  { "slurpaftercalc", required_argument, NULL, '\0' },
+  { "dumpaftercalc", required_argument, NULL, '\0' },
+  { "whichgroups", required_argument, NULL, '\0' },
+  { "supportfs", required_argument, NULL, '\0' },
+  { 0, 0, 0, 0 }
 };
 
-const int cBaseJustLongOpts = 0x0c;
+const int cBaseJustLongOpts = 0x0f;
 
 #if defined _DEBUG
 // this is a testimplementataion for DupeContainer::NumberOfHardLinkGroups
@@ -462,7 +463,6 @@ wmain(
             else
               RawArgs.push_back(wstring(argv[optind - 1]));
 
-//            for (_StringListIterator iter = RawArgs.begin(); iter != RawArgs.end(); ++iter)
             for (auto iter : RawArgs)
             {
 			        WildCard2RegExp(iter);
@@ -697,6 +697,13 @@ wmain(
 
                   }
                 }
+              }
+              break;
+
+              // --supportfs
+              case cBaseJustLongOpts + 0x06:
+              {
+                gLSESettings.Add(argv[optind - 1]);
               }
               break;
 
