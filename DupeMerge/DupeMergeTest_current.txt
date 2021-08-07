@@ -719,7 +719,7 @@ Merging dupes finished
 !*h(0x00000476) BasePath\test\TooManyLinks\ttt950
 !*h(0x00000476) BasePath\test\TooManyLinks\ttt951
 !*h(0x00000476) BasePath\test\TooManyLinks\ttt952
-!*h(0x00000476) BasePath\test\TooManyLinks\ttt953
+!*h(0x00000476) BasePath\test\TooManyLinks\ttt122
 !*h(0x00000476) BasePath\test\TooManyLinks\ttt954
 !*h(0x00000476) BasePath\test\TooManyLinks\ttt955
 !*h(0x00000476) BasePath\test\TooManyLinks\ttt956
@@ -768,7 +768,7 @@ Merging dupes finished
 !*h(0x00000476) BasePath\test\TooManyLinks\ttt995
 !*h(0x00000476) BasePath\test\TooManyLinks\ttt996
 !*h(0x00000476) BasePath\test\TooManyLinks\ttt997
-!*h(0x00000476) BasePath\test\TooManyLinks\ttt0
+!*h(0x00000476) BasePath\test\TooManyLinks\ttt998
 !*h(0x00000476) BasePath\test\TooManyLinks\ttt874
 'BasePath\test\TooManyLinks\ddd1' 70240
 'BasePath\test\TooManyLinks\ddd10' 70240
@@ -2000,7 +2000,7 @@ BasePath\test\TooManyLinks\eee6: 1023
 BasePath\test\TooManyLinks\eee7: 1023 
 BasePath\test\TooManyLinks\eee8: 1023 
 BasePath\test\TooManyLinks\eee9: 1023 
-BasePath\test\TooManyLinks\ttt0: 88 
+BasePath\test\TooManyLinks\ttt0: 1023 
 BasePath\test\TooManyLinks\ttt1: 1023 
 BasePath\test\TooManyLinks\ttt10: 1023 
 BasePath\test\TooManyLinks\ttt100: 1023 
@@ -2038,7 +2038,7 @@ BasePath\test\TooManyLinks\ttt119: 1023
 BasePath\test\TooManyLinks\ttt12: 1023 
 BasePath\test\TooManyLinks\ttt120: 1023 
 BasePath\test\TooManyLinks\ttt121: 1023 
-BasePath\test\TooManyLinks\ttt122: 1023 
+BasePath\test\TooManyLinks\ttt122: 88 
 BasePath\test\TooManyLinks\ttt123: 1023 
 BasePath\test\TooManyLinks\ttt124: 1023 
 BasePath\test\TooManyLinks\ttt125: 1023 
@@ -2960,7 +2960,7 @@ BasePath\test\TooManyLinks\ttt95: 88
 BasePath\test\TooManyLinks\ttt950: 88 
 BasePath\test\TooManyLinks\ttt951: 88 
 BasePath\test\TooManyLinks\ttt952: 88 
-BasePath\test\TooManyLinks\ttt953: 88 
+BasePath\test\TooManyLinks\ttt953: 1023 
 BasePath\test\TooManyLinks\ttt954: 88 
 BasePath\test\TooManyLinks\ttt955: 88 
 BasePath\test\TooManyLinks\ttt956: 88 
@@ -3009,7 +3009,7 @@ BasePath\test\TooManyLinks\ttt994: 88
 BasePath\test\TooManyLinks\ttt995: 88 
 BasePath\test\TooManyLinks\ttt996: 88 
 BasePath\test\TooManyLinks\ttt997: 88 
-BasePath\test\TooManyLinks\ttt998: 1023 
+BasePath\test\TooManyLinks\ttt998: 88 
 BasePath\test\TooManyLinks\ttt999: 1023 
 No unsaturated hardlinks found.
 Saturated Hardlinks
