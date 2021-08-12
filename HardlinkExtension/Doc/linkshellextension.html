@@ -1461,7 +1461,7 @@
                 <p>
                     When creating Clones, LSE forks its
                     helper LSEUacHelper.exe to forwards this operation to it, if the folder tree
-                    contains <a href="innerjunction">symbolic links</a>, because the creation of
+                    contains <a href="#innerjunction">symbolic links</a>, because the creation of
                     symbolic links needs elevation, and thus brings up the
                     <a href="#VistaAndUAC">famous UAC</a> dialog. <br />
                     LSE <b>only</b> issues its helper LSEUacHelper.exe if a symlink is among/below the selected
@@ -1479,7 +1479,7 @@
                     Creating hardlink clones in such cases can be enabled, by granting write access for the source files to the user who
                     will create a hardlink clone, or in a single user use-case to everyone.
                     <br /><br />
-                <p>
+                </p>
                 <p>
                     <b>Command Line<br /></b>
                     The Clone functionality via Hardlinks or Symbolic Links is also available via
@@ -2244,12 +2244,13 @@
                     With Windows Server 2012 Microsoft introduced the
                     <a href="https://blogs.msdn.com/b/b8/archive/2012/01/16/building-the-next-generation-file-system-for-windows-refs.aspx">ReFS</a>
                     filesystem, which is the designated successor to NTFS. But the first
-                    implementation of ReFS can do nice things, but lacks a few important features from NTFS like the Hardlink support.
+                    implementation of ReFS can do nice things, but lacks a few important features from NTFS like the Hardlink support. 
+                    Hardlinks are avaialble with ReFs3.5
                     <br />
 
                     Link Shell Extension supports ReFS so that one can create Symbolic Links, Mountpoints, Junctions on ReFS volumes.
-                    But it will throw an error message if a hardlink is about to be created on a ReFS volume. So what are the impacts on
-                    Link Shell Extension in detail:
+                    With ReFs version smaller than 3.5 it will throw an error message if a hardlink is about to be created on a ReFS volume. The impact on
+                    Link Shell Extension in detail is:
                     <ul>
                         <li>ReFS drives as the destination of <a href="#deloreancopy">Delorean Copies</a> will for sure fail, at least when creating the second backup in a Delorean set.</li>
                         <li><a href="#smartcopy">SmartCopy</a>/<a href="#smartmirror">SmartMirror</a> will fail as destination for <a href="#saturatedhardlinks">hardlinks</a> within the source.</li>
@@ -3055,7 +3056,7 @@
                                 <li>The target of mountpoints can be changed from <a href="#linkproperties">Link Properties</a>.</li>
                                 <li>LSE now can handle <a href="#mountpointcopy">Mountpoints</a> during SmartXXX/Delorean operations.</li>
                                 <li>WindowsXP: Symbolic links across drives didn't work.</li>
-                                <li>WindowsXP: Symbolic links to <a href="#TBDvolumeguidTBD">Volume GUIDs</a> didn't work.</li>
+                                <li>WindowsXP: Symbolic links to Volume GUIDs didn't work.</li>
                                 <li>WindowsXP: Symbolic links between <a href="#verylongpath">very long path</a> didn't work.</li>
                                 <li>WindowsXP: Lots of tweaks here and there.</li>
                                 <li>UNC path as Link Source for SmartCopy/Mirror/Delorean/SymbolicLinkClone now work.</li>
@@ -3161,9 +3162,9 @@
                                 <li>Nested junctions and symbolic links ( aka junctions on junction on junctions ... ) are now properly restored in any situation.</li>
                                 <li>Smartmove had problems with relative symbolic links in rare situations.</li>
                                 <li>Italian translation updated.</li>
-                                <li>Support for <a href="#symboliclinksforwindowsxp">symbolic links under Window XP</a>.</li>
+                                <li>Support for symbolic links under Window XP.</li>
                                 <li>Can handle <a href="#substhandling">subst.exe created</a> driveletters.</li>
-                                <li>Overlay Icons for <a href="#symboliclinksforwindowsxp">symbolic links under Window XP</a> are available now.</li>
+                                <li>Overlay Icons for symbolic links under Window XP are available now.</li>
                                 <li>Fixed a few bugs related to WindowsXP and symbolic links handling.</li>
                                 <li>Elevation to LSEUacHelper.exe now happens only if <a href="#VistaAndUAC">UAC</a> is on, or the elevation is really neccesary.</li>
                                 <li>Fixed a problem with the creation of absolute symbolic links to directories.</li>
@@ -3180,7 +3181,7 @@
                                 <li>Non administrators could not create symbolic links.</li>
 
                                 <li>With XP and the symlink driver installed the Delete Junction menu didn't show up.</li>
-                                <li>The status of the <a href="#SymbolicLinkPrivilege">privilege for Symbolic Link Creation</a> is checked, so that UAC can be avoided</li>
+                                <li>The status of the <a href="#changesymboliclinkprivilege">privilege for Symbolic Link Creation</a> is checked, so that UAC can be avoided</li>
 
                                 <li>Fixed deployment problems for the Win32bit version.</li>
                             </ul>
@@ -3263,7 +3264,7 @@
                                 <li>Hardlink Clone and Symboliclink Clone have been extended so that <a href="#hardlinkclones">Inner Junctions and inner Symbolic Links</a> are properly handled.</li>
                                 <li>LSE now supports also the replacement of <a href="#replacementjunction">Mountpoints and Symbolic Links</a>.</li>
                                 <li>LSE shows a dialog box whether explorer should be <a href="#installation">restarted</a> or not during non silent installation.</li>
-                                <li>Under Windows Vista and Window7 the <i><a href="#junctionwindows7">Delete Junction</a></i> menu doe not show up anymore.</li>
+                                <li>Under Windows Vista and Window7 the <i>Delete Junction</i> menu doe not show up anymore.</li>
                             </ul>
                         </td>
                     </tr>
@@ -4204,9 +4205,8 @@
                             <b>Symbolic Link Driver<br /> for Windows XP</b>
                         </td>
                         <td align="left" class="bodytext">
-                            The driver to enable even WindowsXP with <a href="#symboliclinksforwindowsxp">
-                                symbolic link functionality
-                            </a> is provided courtesy of Masatoshi Kimura. You can download the driver from his
+                            The driver to enable even WindowsXP with symbolic link functionality
+                            is provided courtesy of Masatoshi Kimura. You can download the driver from his
                             homepage or from my site acting as a mirror.
 
                             <br />
