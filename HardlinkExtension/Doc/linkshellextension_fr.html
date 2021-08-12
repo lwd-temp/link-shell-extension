@@ -1351,8 +1351,8 @@
                 </p>
 
                 <p>
-                    If a LocalizedResourceName is given via desktop.ini and the very folder is readonly, SmartMove will not work.
-                    This seems to be a bug in Shell Explorer ever since. ICopyHook::CopyCallback() is not called at all in this
+                    Si un LocalizedResourceName est entré via desktop.ini et que le dossier en question est en lecture seule, SmartMove (déplacement intelligent) ne fonctionnera pas.
+                    Cela semble être un bug dans le "Shell Explorer" depuis un certain temps déjà. ICopyHook::CopyCallback() n'est pas du tout appelé dans cette
                     situation.
                 </p>
 
@@ -1461,7 +1461,7 @@
                 <p>
                     Quand vous créez des Clones, LSE appelle son
                     acolyte LSEUacHelper.exe pour lui sous-traiter cette opération, si l'arborescence du répertoire
-                    contient <a href="innerjunction">des liens symboliques</a>, car la création de liens symboliques
+                    contient <a href="#innerjunction">des liens symboliques</a>, car la création de liens symboliques
                     nécessite une élévation de privilège, ce qui conduit au
                     <a href="#VistaAndUAC">fameux dialogue UAC</a>. <br />
                     LSE appelle <b>seulement</b> son acolyte LSEUacHelper.exe si un lien symbolique est dans/sous le répertoire
@@ -1479,7 +1479,7 @@
                     Dans ce cas, la création de liens physiques clones peut être activée en accordant un accès en écriture aux fichiers sources à l'utilisateur qui
                     créera un clone de lien physique, ou à tous les utilisateurs dans le cas d'un utilisateur unique.
                     <br /><br />
-                <p>
+                </p>
                 <p>
                     <b>Ligne de Commande<br /></b>
                     La fonctionnalité de Clonage via des Liens Physiques ou des Liens Symboliques est également accessible par
@@ -2245,11 +2245,12 @@
                     <a href="https://blogs.msdn.com/b/b8/archive/2012/01/16/building-the-next-generation-file-system-for-windows-refs.aspx">ReFS</a>,
                     qui est désigné comme le successeur de NTFS. La première
                     implémentation de ReFS peut faire des choses certes très bien, mais il lui manque quelques fonctionnalités importantes de NTFS comme le support des liens physiques.
+                    Les liens physiques sont disponibles sous ReFs3.5
                     <br />
 
                     Link Shell Extension supporte ReFS de façon à ce qu'on puisse créer des Liens Symboliques, des Points de Montage, Jonctions sur des volumes ReFS.
-                    Mais il génèrera un message d'erreur si on crée un lien physique interne sur un volume ReFS. Aussi quelles sont les conséquences
-                    en détails pour Link Shell Extension :
+                    Mais, pour les versions antérieures à la 3.5, il génèrera un message d'erreur si on crée un lien physique interne sur un volume ReFS. Aussi les conséquences
+                    en détails pour Link Shell Extension sont :
                     <ul>
                         <li>Donner des disques ReFS en tant que destination de <a href="#deloreancopy">Copies Delorean</a> échouera à tous coups, au moins lors de la création d'un second backup d'un ensemble Delorean.</li>
                         <li><a href="#smartcopy">Une Copie Intelligente</a>/<a href="#smartmirror">Miroir Intelligent</a> échouera comme destination pour <a href="#saturatedhardlinks">des liens physiques</a> internes à la source.</li>
@@ -3055,7 +3056,7 @@
                                 <li>La cible des points de montage peut être modifiée depuis le <a href="#linkproperties">Lien des Propriétés</a>.</li>
                                 <li>LSE peut maintenant traiter les <a href="#mountpointcopy">Points de Montage</a> lors des opérations de XXX Intelligentes ou Delorean</li>
                                 <li>WindowsXP: Les liens Symboliques inter-disques ne fonctionnaient pas.</li>
-                                <li>WindowsXP: Les liens Symboliques vers des <a href="https://schinagl.priv.at/nt/ln/ln.html#volumeguidsupport">Volume GUIDs</a> ne fonctionnaient pas.</li>
+                                <li>WindowsXP: Les liens Symboliques vers des Volume GUIDs ne fonctionnaient pas.</li>
                                 <li>WindowsXP: Les liens Symboliques entre <a href="#verylongpath">de très longs chemins</a> ne fonctionnaient pas.</li>
                                 <li>WindowsXP: Nombreuses améliorations par-ci par-là.</li>
                                 <li>Un chemin UNC comme Source de Lien de "Copie Intelligente/Miroir/Delorean/Lien symbolique de Clonage" fonctionne maintenant.</li>
@@ -3161,9 +3162,9 @@
                                 <li>Nested junctions and symbolic links ( aka junctions on junction on junctions ... ) are now properly restored in any situation.</li>
                                 <li>Smartmove had problems with relative symbolic links in rare situations.</li>
                                 <li>Italian translation updated.</li>
-                                <li>Support for <a href="#symboliclinksforwindowsxp">symbolic links under Window XP</a>.</li>
+                                <li>Support for symbolic links under Window XP.</li>
                                 <li>Can handle <a href="#substhandling">subst.exe created</a> driveletters.</li>
-                                <li>Overlay Icons for <a href="#symboliclinksforwindowsxp">symbolic links under Window XP</a> are available now.</li>
+                                <li>Overlay Icons for symbolic links under Window XP are available now.</li>
                                 <li>Fixed a few bugs related to WindowsXP and symbolic links handling.</li>
                                 <li>Elevation to LSEUacHelper.exe now happens only if <a href="#VistaAndUAC">UAC</a> is on, or the elevation is really neccesary.</li>
                                 <li>Fixed a problem with the creation of absolute symbolic links to directories.</li>
@@ -3180,7 +3181,7 @@
                                 <li>Non administrators could not create symbolic links.</li>
 
                                 <li>With XP and the symlink driver installed the Delete Junction menu didn't show up.</li>
-                                <li>The status of the <a href="#SymbolicLinkPrivilege">privilege for Symbolic Link Creation</a> is checked, so that UAC can be avoided</li>
+                                <li>The status of the <a href="#changesymboliclinkprivilege">privilege for Symbolic Link Creation</a> is checked, so that UAC can be avoided</li>
 
                                 <li>Fixed deployment problems for the Win32bit version.</li>
                             </ul>
@@ -3263,7 +3264,7 @@
                                 <li>Hardlink Clone and Symboliclink Clone have been extended so that <a href="#hardlinkclones">Inner Junctions and inner Symbolic Links</a> are properly handled.</li>
                                 <li>LSE now supports also the replacement of <a href="#replacementjunction">Mountpoints and Symbolic Links</a>.</li>
                                 <li>LSE shows a dialog box whether explorer should be <a href="#installation">restarted</a> or not during non silent installation.</li>
-                                <li>Under Windows Vista and Window7 the <i><a href="#junctionwindows7">Delete Junction</a></i> menu doe not show up anymore.</li>
+                                <li>Under Windows Vista and Window7 the <i>Delete Junction</i> menu doe not show up anymore.</li>
                             </ul>
                         </td>
                     </tr>
@@ -4204,9 +4205,8 @@
                             <b>Symbolic Link Driver<br /> for Windows XP</b>
                         </td>
                         <td align="left" class="bodytext">
-                            Un driver pour activer même sous WindowsXP la <a href="#symboliclinksforwindowsxp">
-                                fonctionnalité de lien symbolique
-                            </a> est mis à disposition par Masatoshi Kimura. Vous pouvez télécharger le
+                            Un driver pour activer même sous WindowsXP la fonctionnalité de lien symbolique
+                            est mis à disposition par Masatoshi Kimura. Vous pouvez télécharger le
                             driver depuis sa page web ou depuis mon site agissant comme miroir.
 
                             <br />
