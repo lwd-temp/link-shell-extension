@@ -885,9 +885,6 @@ CreateJunction(
   PWCHAR		filePart;
   HANDLE		hFile;
   DWORD		returnedLength;
-  PREPARSE_MOUNTPOINT_DATA_BUFFER reparseInfo = 
-    (PREPARSE_MOUNTPOINT_DATA_BUFFER) reparseBuffer;
-
 
   //
   // Get the full path referenced by the target
@@ -989,14 +986,15 @@ CreateJunction(
 
   reparseJunctionInfo->ReparseDataLength = 
     reparseJunctionInfo->JunctionReparseBuffer.SubstituteNameLength + 
-    reparseJunctionInfo->JunctionReparseBuffer.PrintNameLength + 12;
+    reparseJunctionInfo->JunctionReparseBuffer.PrintNameLength +
+    FIELD_OFFSET(REPARSE_DATA_BUFFER, JunctionReparseBuffer.PathBuffer[2]) - FIELD_OFFSET(REPARSE_DATA_BUFFER, JunctionReparseBuffer);
 
   //
   // Set the link
   //
   if( !DeviceIoControl( hFile, FSCTL_SET_REPARSE_POINT,
-    reparseInfo, 
-    reparseInfo->ReparseDataLength + REPARSE_MOUNTPOINT_HEADER_SIZE,
+     reparseJunctionInfo,
+     reparseJunctionInfo->ReparseDataLength + REPARSE_MOUNTPOINT_HEADER_SIZE,
     NULL, 0, &returnedLength, NULL )) 
   {	
     RetVal = GetLastError();
