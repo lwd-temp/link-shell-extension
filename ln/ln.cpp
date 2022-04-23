@@ -1154,8 +1154,17 @@ Delorean(
   CopyStatistics	MirrorStatistics;
   
   // Assign each source location the same destination
-  for (_ArgvListIterator iter = aSourceDirList.begin(); iter != aSourceDirList.end(); ++iter)
-    iter->ArgvDest = aBackupPath.Argv;
+  for (auto& srcDir : aSourceDirList)
+  {
+    // Do not mirror from src dirs, which are not available
+    if (INVALID_FILE_ATTRIBUTES == srcDir.FileAttribute)
+    {
+      fwprintf(gStdOutFile, L"ERROR: DeloreanCopy Source directory %s does not exist.\n", srcDir.ArgvOrg.c_str());
+      return ERR_DELOREANCOPY_FAILED;
+    }
+    srcDir.ArgvDest = aBackupPath.Argv;
+
+  }
 
 #if defined SEPERATED_CLONE_MIRROR
   MirrorList.FindHardLink (aSourceDirList, 0, &MirrorStatistics, &PathNameStatusList, nullptr);
@@ -1528,16 +1537,16 @@ Mirror(
 
 #if 0
   _ArgvList CloneDestination;
-  for (_ArgvListIterator iter = aSourceDirList.begin(); iter != aSourceDirList.end(); ++iter)
+  for (auto& srcDir : aSourceDirList)
   {
-    iter->ArgvDest = aDestination.Argv;
-    if (!(iter->Flags & _ArgvPath::Anchor))
+    srcDir.ArgvDest = aDestination.Argv;
+    if (!(srcDir.Flags & _ArgvPath::Anchor))
     {
       // Add the first non-anchor as 'destination', which in this case is the source location
       if (aDestination.ArgvDest.empty())
       {
-        aDestination.Argv = iter->ArgvDest;
-        aDestination.ArgvDest = iter->Argv;
+        aDestination.Argv = srcDir.ArgvDest;
+        aDestination.ArgvDest = srcDir.Argv;
       }
     }
   }
@@ -1546,21 +1555,27 @@ Mirror(
 #else
   // Assign each source location the same destination
   _ArgvList CloneDestination;
-  for (_ArgvListIterator iter = aSourceDirList.begin(); iter != aSourceDirList.end(); ++iter)
+  for (auto& srcDir : aSourceDirList)
   {
+    // Do not mirror from src dirs, which are not available
+    if (INVALID_FILE_ATTRIBUTES == srcDir.FileAttribute)
+    {
+      fwprintf(gStdOutFile, L"ERROR: SmartMirror Source directory %s does not exist.\n", srcDir.ArgvOrg.c_str());
+      return ERR_SMARTMIRROR_FAILED;
+    }
     // if no corresponding destination was given via --destination, assume there is only one destination
+
+    bool isAnchor = srcDir.Flags & _ArgvPath::Anchor;
     
-    bool isAnchor = iter->Flags & _ArgvPath::Anchor;
-    
-    if (iter->ArgvDest.empty())
+    if (srcDir.ArgvDest.empty())
     {
       // All attributes of destination are copied over
-      iter->ArgvDest = aDestination.Argv;
-      iter->ArgvOrg = aDestination.ArgvOrg;
-      iter->DriveType = aDestination.DriveType;
-      iter->FileAttribute = aDestination.FileAttribute;
+      srcDir.ArgvDest = aDestination.Argv;
+      srcDir.ArgvOrg = aDestination.ArgvOrg;
+      srcDir.DriveType = aDestination.DriveType;
+      srcDir.FileAttribute = aDestination.FileAttribute;
       if (!isAnchor)
-        iter->Flags = aDestination.Flags;
+        srcDir.Flags = aDestination.Flags;
     }
 
     if (!isAnchor)
@@ -1568,9 +1583,9 @@ Mirror(
       // for non-anchors, create a destination which is source-destination flipped 
       _ArgvPath destination;
 
-      destination.Argv = iter->ArgvDest;
-      destination.ArgvDest = iter->Argv;
-      destination.ArgvOrg = iter->ArgvOrg;
+      destination.Argv = srcDir.ArgvDest;
+      destination.ArgvDest = srcDir.Argv;
+      destination.ArgvOrg = srcDir.ArgvOrg;
       destination.DriveType = aDestination.DriveType;
       destination.FileAttribute = aDestination.FileAttribute;
       destination.Flags = aDestination.Flags;
