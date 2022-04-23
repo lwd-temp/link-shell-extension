@@ -269,6 +269,23 @@ REM
 @echo.
 @%LN% --list %TESTROOTBK2%\ln | sort
 
+REM Try to copy from non extisting source directory
+REM
+@%RD% %TESTROOTBK2%
+%LN% --delorean %TESTROOTSRC%_non_existant %TESTROOTBKP% %TESTROOTBK2% > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+
+REM Try to copy from non extisting backup directory
+REM
+@%RD% %TESTROOTBK2%
+%LN% --delorean %TESTROOTSRC% %TESTROOTBKP%_non_existant %TESTROOTBK2% > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+
+
 @echo off
 REM 
 REM Clean up

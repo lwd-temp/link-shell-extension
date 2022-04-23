@@ -200,6 +200,13 @@ REM
 @echo ErrorLevel == %ERRLEV%
 
 
+REM Try to mirror from non existing directory
+REM
+%LN% --mirror %TESTROOTSRC%_non_existant %TESTROOTDST% > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+
 :ausmausraus
 
 @echo off
