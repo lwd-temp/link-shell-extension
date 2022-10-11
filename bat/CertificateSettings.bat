@@ -1,6 +1,6 @@
 REM Settings for certification
 REM
-@set TIME_SERVER="http://timestamp.entrust.net/TSS/RFC3161sha2TS"
+@set TIME_SERVER="http://timestamp.digicert.com"
 @set SIGNTOOL=%~dp0..\tools\signtool.exe
 
 @set CERTIFICATE_SCHINAGL=%~dp0..\Shared\certificate\schinagl.priv.at.pfx
