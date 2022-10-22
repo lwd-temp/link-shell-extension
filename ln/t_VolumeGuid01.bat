@@ -1,16 +1,8 @@
 @echo off
 REM
 REM 1: directory
-REM 2: unroll/splice
-REM 3: junction/symbolic
-REM 4: absolute during copy
-REM [5: absolute during creation]
 
-REM
-REM SUCC: Check Unroll of Junctions
-REM
 @echo on
-
 REM
 REM Mount VolumeGuids
 REM

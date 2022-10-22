@@ -1,0 +1,68 @@
+
+C:\data\cpp\git\hardlinks\ln>..\Tools\where.exe  *.* test\DupeMerge   | sort
+10 matching file(s) found, using 4000 bytes.
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\source\inner\_F\0_A
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\source\inner\_F\1_A
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\source\inner\_F\1_C
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\source\inner\Folder0\0_A
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\source\inner\Folder0\0_B
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\source\inner\Folder0\0_C
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\source\inner\Folder0\0_D
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\source\inner\Folder1\1_A
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\source\inner\Folder1\1_B
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\source\inner\Folder1\1_C
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --dupemerge --copy test\DupeMerge\source test\DupeMerge\dest  1>sortout 
+
+
+'Entering on the fly dupemerge. This may take a while...
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     4.000     1.405     2.595         0         0         0
+    File:        10         4         6         0         0         0
+   Times:        00:00:00.002
+  Folder:         8         8         -         0         0         0
+ Symlink:         0         -         0         0         0         0
+*h C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\_F\1_A
+*h C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\_F\1_C
+*h C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder0\0_A
+*h C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder0\0_C
+*h C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder0\0_D
+*h C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder1\1_B
++d C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest
++d C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner
++d C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\_F
++d C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\_F\F0
++d C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder0
++d C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder1
++d C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\outer
++d C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\outer\OF
++f C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\_F\0_A
++f C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder0\0_B
++f C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder1\1_A
++f C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder1\1_C
+DEBUG: Copying...  Overshoot: 1281, Effort: 4556
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --enum test\DupeMerge\dest  1>sortout 
+
+
+
+
+---------------------
+---------------------
+3 Hardlink Groups found.
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\_F\0_A: 2 
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\_F\1_A: 2 
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\_F\1_C: 5 
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder0\0_A: 2 
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder0\0_C: 5 
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder0\0_D: 5 
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder1\1_A: 2 
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder1\1_B: 5 
+C:\data\cpp\git\hardlinks\ln\test\DupeMerge\dest\inner\Folder1\1_C: 5 
+No unsaturated hardlinks found.
+Saturated Hardlinks
+UnSaturated Hardlinks
+ErrorLevel == 0
