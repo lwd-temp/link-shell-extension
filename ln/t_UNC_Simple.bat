@@ -36,6 +36,54 @@ REM
 @copy test\readme.txt "%TESTROOTSRC%\inner\Folder0\0_D" > nul
 @%MKDIR% %TESTROOTSRC%\_F\F0 > nul
 
+@echo on
+REM
+REM --copy UNC to UNC via Localhost with splice
+REM
+%LN% --keepsymlinkrelation --splice --copy \\%LH%\%SHARENAME%\source\inner \\%LH%\%SHARENAME%\dest\inner > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@call :CheckSymbolicLinks %2 %TESTROOTDST%
+
+@%RD% %TESTROOTDST% > nul
+
+@echo on
+REM
+REM --copy UNC to UNC via Localhost with splice
+REM
+%LN% --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --splice --copy \\%LH%\%SHARENAME%\source\inner \\%LH%\%SHARENAME%\dest\inner > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@call :CheckSymbolicLinks %2 %TESTROOTDST%
+@%RD% %TESTROOTDST% > nul
+
+@echo on
+REM
+REM --copy UNC to UNC via Localhost with splice, anchor and destination
+REM
+%LN% --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --destination %TESTROOTDST%\inner --splice --copy \\%LH%\%SHARENAME%\source\inner \\%LH%\%SHARENAME%\dest\inner > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@call :CheckSymbolicLinks %2 %TESTROOTDST%
+@%RD% %TESTROOTDST% > nul
+
+@echo on
+REM
+REM --copy UNC to Drive via Localhost with splice
+REM
+%LN% --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --splice --copy \\%LH%\%SHARENAME%\source\inner %TESTROOTDST%\inner > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@call :CheckSymbolicLinks %2 %TESTROOTDST%
+@%RD% %TESTROOTDST% > nul
+
+
+
+
 REM
 REM --copy Drive to UNC via Localhost
 REM

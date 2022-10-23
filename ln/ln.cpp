@@ -3094,7 +3094,7 @@ wmain(
         // 
       case cBaseJustLongOpts + 0x19:
       {
-        // Create/fake a virtual source, so that junction and symlink resolvals work
+        // Create/fake a virtual source, so that junction and symlink resolving work
         _ArgvPath       ArgvXPath;
         ArgvXPath.ArgvOrg = argv[optind - 1];
         ArgvXPath.Argv = argv[optind - 1];
@@ -3453,7 +3453,13 @@ wmain(
       if (S_OK == r)
         SymlinkAttr = GetFileAttributes(SymlinkFullTarget);
       else
-        SymlinkAttr = GetFileAttributes(SymlinkTarget);
+      {
+         // Any very long path
+         SymlinkAttr = GetFileAttributes(SymlinkTarget);
+         if (SymlinkAttr == INVALID_FILE_ATTRIBUTES)
+            // UNC Path with long path prefix
+            SymlinkAttr = GetFileAttributes(&SymlinkTarget[PATH_PARSE_SWITCHOFF_SIZE]);
+      }
 
       if (SymlinkAttr == INVALID_FILE_ATTRIBUTES)
         fwprintf(gStdOutFile, L"%s -#-> %s (%s)\n", Argv1Path.ArgvOrg.c_str(), &SymlinkTarget[PATH_PARSE_SWITCHOFF_SIZE], S_OK == r ? SymlinkFullTarget : &SymlinkTarget[PATH_PARSE_SWITCHOFF_SIZE]);
