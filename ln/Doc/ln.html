@@ -70,7 +70,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i><font face="arial">Last Updated August 7, 2021 Version 2.9.3.4</font></i>
+                    <i><font face="arial">Last Updated October 23, 2022 Version 2.9.3.3</font></i>
                 </div>
             </td>
         </tr>
@@ -327,12 +327,14 @@
                                 additional anchor path to the copy process.
                             </p>
                             <span class="ascode">
-                                ln --anchor c:\ --copy e:\ y:\
+                                ln --anchor c:\ --destination c:\ --copy e:\ y:\
                             </span>
                             <p>
                                 The above example supplies <i>c:\</i> as additional anchor path and lets ln.exe assume that all
                                 junctions and symbolic links below e:\, which point to some places below <i>c:\</i> are inner junctions, and
-                                thus are restored in the destinations as junctions/symbolic links pointing to places below <i>c:\</i> properly.
+                                thus are restored in the destination as junctions/symbolic links pointing to places below <i>c:\</i> properly.<br /><br>
+                                The option --destination is needed because the inner junctions found on e: shall point to c: even if the destination of
+                                this copy operation is y:\
                             </p>
 
                             But in real life situations are more complex : The original c:\ drive might also have junctions to e.g. d:\ e:\.
@@ -343,8 +345,12 @@
                             </ul>
                             <br />
                             <span class="ascode">
-                                ln --anchor c:\ --anchor d:\ --anchor e:\ --copy f:\ y:\
+                                ln --anchor c:\ --destination c:\ --anchor d:\ --destination d:\ --anchor e:\ --destination e:\ --copy f:\ y:\
                             </span>
+
+                            <p>
+                                The order of --anchor and --destination in the above example is important: They build kind of pairs.
+                            </p>
                             <br />
                             <br />
                             <br />
@@ -376,11 +382,14 @@
                             </p>
                             <br />
                             <span class="ascode">
-                                ln --backup --anchor c:\ --mirror e:\ y:\
+                                ln --backup --anchor c:\ --mirror e:\ y:\ 
                             </span>
-                            if this should be done via snapshots, see <a href="#vss_drivecopy.cmd">Copying a whole drive via snapshots</a>
-                            <br />
-                            <br />
+                            <p>
+                                If this should be done via snapshots, see <a href="#vss_drivecopy.cmd">Copying a whole drive via snapshots</a>.
+                                The above example does not use --destination. This means the inner junctions/symbolic links, which point to c: on the source now in the destination y: point to y:
+                                <br />
+                                <br />
+                            </p>
                             <p>
                                 See also the note on <a href="#quotesaroundpath">quotes</a>.
                             </p>
@@ -2353,13 +2362,40 @@
                     <!-- Destination -->
                     <tr>
                         <td class="hanger2">
-                            <a name="destinationoption"><b>--destination</b><br />Specify Destination</a>
+                            <a name="destination"><b>--destination</b><br />Specify Destination</a>
                         </td>
 
                         <td align="left" class="bodytext">
                             <p>
-                                The --destination option can only be used in combination with the --source option.<br />
-                                Please <a href="#destination">see here<a />
+                                In general ln.exe operates on source/target pairs. The default pair is always provided via e.g.<br />
+                            </p>
+
+                            <span class="ascode">
+                                --copy SourceDir TargetDir, or --mirror SourceDir TargetDir<br />
+                            </span>
+
+                            <br />
+                            --anchor AnchorDir provides an extra pair, but without --destination it uses the current target as second part of the pair .e.g<br /><br />
+                            <span class="ascode">
+                                --anchor AnchorDir --copy SourceDir TargetDir<br /><br />
+                            </span>
+                            creates two pairs<br />
+                            <ul>
+                                <li>SourceDir/TargetDir</li>
+                                <li>AnchorDir/TargetDir</li>
+                            </ul>
+                            To modify the pair AnchorDir/TargetDir one must provide --destination:<br /><br />
+                            <span class="ascode">
+                                --anchor AnchorDir --Destination DestinationDir --copy SourceDir TargetDir<br /><br />
+                            </span>
+                            so that the pairs now are
+                            <ul>
+                                <li>SourceDir/TargetDir</li>
+                                <li>AnchorDir/DestinationDir</li>
+                            </ul>
+                            <p>
+                                The --destination option can only be used in combination with the <a href="#destinationusage">
+                                --source option<a />, or the <a href="#anchor"> --anchor option<a /><br />
                             </p>
                         </td>
                     </tr>
@@ -3880,7 +3916,7 @@
                             </p>
                             <br />
                             <p>
-                                <a name="destination"></a>
+                                <a name="destinationusage"></a>
                                 <b>Keeping several destinations</b><br />
                                 To keep several destinations the --destination option must be used:
                             </p>
@@ -4639,7 +4675,12 @@
                     <br />&nbsp; vss_drivecopy.cmd
                 </span>
                 <p>
-                    will do the job.
+                    will do the job.<br /><br />
+                    Ln.exe will mirror the content from %SHADOW_DEVICE_1% to %DST_PATH%, but it is important to note that the --anchor %SRC_DRIVE%\ will let all
+                    inner junctions / symbolic links from %SHADOW_DEVICE_1% be also inner junctions / symbolic links in %DST_PATH%. <br /><br />
+                    If this would be omitted all inner junctions / symbolic links from %SHADOW_DEVICE_1% would be outer junctions / symbolic links and depending on the
+                    option would be cropped, spliced or unrolled.<br /><br />
+                    Please check the <a href="#anchor">the anchor option</a> and the <a href="#destination">destination option</a> for a indepth explanation.
                 </p>
 
 
@@ -5159,14 +5200,23 @@
                             <br />
                             <br />
 
-                            So if you recover a disk, you definitley have not mounted it to its original drive letter, but the junctions
-                            on this disk still refer to locations where it was originally mounted. ln.exe assumes now that this is
-                            an outer junction, and thus crops the junctions.
+                            So if you recover a disk, you 
+                            <ul>
+                                <li>
+                                    either mounted it to its original drive letter, because the junctions
+                                    on this disk still refer to locations where it was originally mounted. ln.exe assumes now that this is
+                                    an outer junction, and thus crops the junctions.
+                                </li>
+                                <li>
+                                    or go the way with the <a href="#anchor">option.</a>
+                                </li>
+
+                            </ul>
                             <br />
                             <br />
                             The same happens if a drive was mapped as a <a href="#snapshotservice">snapshot</a>, and is available under anything else
                             than its original location. E.g. a drive c:\ mapped as \\localhost\vss_share via a snapshot will also loose junction relations
-                            during e.g. copy: ln.exe --copy \\localhost\vss_share\source x:\dest
+                            during e.g. copy: ln.exe --copy \\localhost\vss_share\source x:\dest, or use the <a href="#anchor">option.</a>
                             <br /><br />
                         </p>
                     </li>
@@ -5203,11 +5253,13 @@
 
                     <tr>
                         <td class="hanger2">
-                            August 7, 2021
+                            October 23, 2022
                         </td>
                         <td align="left" class="bodytext">
-                            <a name="2930">Version 2.9.3.4</a>
+                            <a name="2930">Version 2.9.3.3</a>
                             <ul>
+                                <!-- 2.9.3.4, 22.10.2022 -->
+                                <li>Docu update on <a href="#anchor">--anchor</a> and <a href="#destination">--destination</a></a></li>
                                 <!-- 2.9.3.4, 7.8.2021 -->
                                 <li>--probefs failed on unknown filesystems</li>
                                 <!-- 2.9.3.4, 28.2.2021 -->
@@ -5216,7 +5268,7 @@
                                 <li>Introduced a static version of ln.exe for use under e.g. WinPE</li>
                                 <li>Changed the behavior related to cirularties. No error message raised, but circularity are broken properly.</li>
                                 <!-- 2.9.3.2, 28.1.2021 -->
-                                <li>Multisource aka <a href="#destinationoption">--destination</a> in combination with --mirror did not work.</li>
+                                <li>Multisource aka <a href="#destination">--destination</a> in combination with --mirror did not work.</li>
                                 <!-- 2.9.3.1, 14.1.2021 -->
                                 <li>Symbolic Link creation required admin even in developer mode.</li>
                                 <!-- 2.9.3.0, 4.1.2021 -->
