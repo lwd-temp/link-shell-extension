@@ -72,15 +72,54 @@ REM
 
 @echo on
 REM
-REM --copy UNC to Drive via Localhost with splice
+REM --copy UNC to Drive via Localhost with --splice --nolocaluncresolve
 REM
 %LN% --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --splice --copy \\%LH%\%SHARENAME%\source\inner %TESTROOTDST%\inner > sortout
 @set ERRLEV=%errorlevel%
 @sort sortout
 @echo ErrorLevel == %ERRLEV%
 @call :CheckSymbolicLinks %2 %TESTROOTDST%
-@%RD% %TESTROOTDST% > nul
 
+REM
+REM --delorean UNC to Drive via Localhost with --splice --nolocaluncresolve --anchor
+REM
+@del %TESTROOTSRC%\inner\Folder0\0_D	
+@%RD% %TESTROOTSRC%\_F\F0
+%LN% --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --delorean \\%LH%\%SHARENAME%\source\inner %TESTROOTDST%\inner %TESTROOTBKP%\inner > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@call :CheckSymbolicLinks %2 %TESTROOTBKP%
+
+@%RD% %TESTROOTBKP% > nul
+@%RD% %TESTROOTDST% > nul
+@copy test\readme.txt "%TESTROOTSRC%\inner\Folder0\0_D" > nul
+@%MKDIR% %TESTROOTSRC%\_F\F0 > nul
+
+REM
+REM --delorean Drive to a *different* Drive via Localhost with --splice --nolocaluncresolve
+REM
+@set TESTROOTDST_SAVE=%TESTROOTDST%
+@set TESTROOTDST=%EMTPYSNAPHOTDRIVE%\DST
+@set TESTROOTBKP_SAVE=%TESTROOTBKP%
+@set TESTROOTBKP=%EMTPYSNAPHOTDRIVE%\BKP
+@del %TESTROOTSRC%\inner\Folder0\0_D	
+@%RD% %TESTROOTSRC%\_F\F0
+@%LN% --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --splice --copy \\%LH%\%SHARENAME%\source\inner %TESTROOTDST%\inner > nul
+@%RD% %TESTROOTDST%\inner\inner_reparse
+%LN% --splice --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --delorean \\%LH%\%SHARENAME%\source\inner %TESTROOTDST%\inner %TESTROOTBKP%\inner > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@call :CheckSymbolicLinks %2 %TESTROOTBKP%
+
+@%RD% %TESTROOTBKP% > nul
+@%RD% %TESTROOTDST% > nul
+@copy test\readme.txt "%TESTROOTSRC%\inner\Folder0\0_D" > nul
+@%MKDIR% %TESTROOTSRC%\_F\F0 > nul
+
+@set TESTROOTBKP=%TESTROOTBKP_SAVE%
+@set TESTROOTDST=%TESTROOTDST_SAVE%
 
 
 
@@ -109,7 +148,6 @@ REM
 @%RD% %TESTROOTDST% > nul
 @copy test\readme.txt "%TESTROOTSRC%\inner\Folder0\0_D" > nul
 @%MKDIR% %TESTROOTSRC%\_F\F0 > nul
-
 
 REM
 REM --copy UNC to UNC via sharename, nolocaluncresolve

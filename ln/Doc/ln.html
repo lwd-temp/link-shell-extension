@@ -1385,15 +1385,15 @@
                                 </tr>
 
                                 <!-- One day we could give a message when just the compression status changes. The engine could do this
-                <tr>
-                    <td class="bodytext">
-                        %
-                    </td>
-                    <td class="bodytext">
-                        Item is already present in the target, but with different compression state. Used during Smart Mirror
-                    </td>
-                </tr>
-                -->
+        <tr>
+            <td class="bodytext">
+                %
+            </td>
+            <td class="bodytext">
+                Item is already present in the target, but with different compression state. Used during Smart Mirror
+            </td>
+        </tr>
+        -->
 
                                 <tr>
                                     <td class="bodytext">
@@ -2350,6 +2350,12 @@
                             <p>
                                 DeLorean Copy functionality is also available via
                                 <a href="https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html#deloreancopy"> Link Shell Extension </a>
+                            </p>
+                            <b>Anchor and Destination</b>
+                            <p>
+                                DeLorean Copy might need <a href="#anchor"> --anchor </a> and/or <a href="#destination">--destination</a> if there are
+                                inner junctions / symbolic links among the source and the source dir is not referenced via its native name (e.g. X:\path ), but via UNC Shares
+                                or <a href="#volumeguidsupport">GLOBALROOT / Volumeguid </a>due to operation via <a href="#snapshotservice"> snapshotservice</a>
                             </p>
                         </td>
                     </tr>
