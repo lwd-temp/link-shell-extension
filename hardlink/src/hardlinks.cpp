@@ -12278,7 +12278,6 @@ ContainsSource(
   int*            a_AlternativeDestPathIdx
 )
 {
-  wchar_t* FoundPos;
   for (_ArgvListIterator iter = m_AnchorPaths.begin(); iter != m_AnchorPaths.end(); ++iter)
   {
     // Assuming a_Path contains t:\f0\f0_f0 and a path under anchorpath is a root path, e.g. 
@@ -12286,13 +12285,15 @@ ContainsSource(
     // The first \ is important. So make a local copy... not the best performance...
     wchar_t Argv[HUGE_PATH];
     wcscpy_s(Argv, HUGE_PATH, iter->Argv.c_str());
-    size_t ArgvLength = iter->Argv.length();
 
     // PathIsRoot does not work with XP with long path name (\\?\) but works in Windows7
     if (PathIsRoot(&Argv[PATH_PARSE_SWITCHOFF_SIZE]))
-      Argv[ArgvLength - 1] = 0x00;
+    {
+       size_t ArgvLength = iter->Argv.length();
+       Argv[ArgvLength - 1] = 0x00;
+    }
 
-    FoundPos = wcseistr(a_Path, Argv);
+    wchar_t* FoundPos = wcseistr(a_Path, Argv);
     if ( FoundPos )
     {
       if (a_AlternativeDestPath)
@@ -12304,7 +12305,7 @@ ContainsSource(
     }
   }
 
-  return NULL;
+  return nullptr;
 }
 
 int

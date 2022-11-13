@@ -1,24 +1,28 @@
 
-D:\data\cpp\hardlinks\ln>..\Tools\where.exe  *.* test\UNCSimple   | sort
-10 matching file(s) found, using 3001 bytes.
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\_F\0_A
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\_F\1_A
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\_F\1_C
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder0\0_A
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder0\0_B
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder0\0_C
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder0\0_D
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder1\1_A
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder1\1_B
-D:\data\cpp\hardlinks\ln\test\UNCSimple\source\Folder1\1_C
+C:\data\cpp\git\hardlinks\ln>..\Tools\where.exe  *.* test\UNCSimple   | sort
+14 matching file(s) found, using 4935 bytes.
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\_F\0_A
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\_F\1_A
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\_F\1_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder0\0_A
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder0\0_B
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder0\0_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder0\0_D
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder1\1_A
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder1\1_B
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder1\1_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\inner_reparse\0_A
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\inner_reparse\0_B
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\inner_reparse\0_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\inner_reparse\0_D
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy UNC to UNC via Localhost 
+C:\data\cpp\git\hardlinks\ln>REM --copy UNC to UNC via Localhost 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest  1>sortout 
 
 
                       Overall
@@ -26,73 +30,87 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy \\qua
     Byte:     3.001     3.001         0         0         0         0
     File:         7         7         0         0         0         0
    Times:        00:00:00.002
-  Folder:         5         5         -         0         0         0
- Symlink:         3         -         3         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\F0
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_A
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_B
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_C
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_D
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1\1_A
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1\1_B
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1\1_C
-+s D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\0_A
-+s D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\1_A
-+s D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\1_C
+  Folder:         8         8         -         0         0         0
+ Symlink:         5         -         5         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\F0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\outer
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\outer\OF
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_A
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_B
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_C
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_D
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_A
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_B
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_C
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\0_A
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\1_A
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\1_C
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\inner_reparse
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\outer_reparse
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\dest\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\dest\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\dest\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\dest\inner\_F\0_A -> ..\Folder0\0_A
+test\UNCSimple\dest\inner\_F\1_A -> ..\Folder1\1_A
+test\UNCSimple\dest\inner\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\dest\inner\inner_reparse -> Folder0
+test\UNCSimple\dest\inner\outer_reparse -> ..\outer\OF
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean UNC to UNC 
+C:\data\cpp\git\hardlinks\ln>REM --delorean UNC to UNC 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
 
 
--d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\F0
--f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_D
+-f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_D
                       Overall               Clone              Mirror
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:     2.469         0         0     2.469       532         0         0
     File:         6         0         0         6         1         0         0
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
-  Folder:         4         0         -         4         1         0         0
- Symlink:         3         -         0         3         0         0         0
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_A
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_B
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_A
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_B
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_C
-=s D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\0_A
-=s D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\1_A
-=s D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\1_C
+  Folder:         8         0         -         8         0         0         0
+ Symlink:         5         -         0         5         0         0         0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\F0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\outer
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\outer\OF
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_B
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_C
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_B
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_C
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\0_A
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\1_A
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\1_C
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\inner_reparse
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\outer_reparse
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\bk1\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\bk1\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\bk1\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\bk1\inner\_F\0_A -> ..\Folder0\0_A
+test\UNCSimple\bk1\inner\_F\1_A -> ..\Folder1\1_A
+test\UNCSimple\bk1\inner\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\bk1\inner\inner_reparse -> Folder0
+test\UNCSimple\bk1\inner\outer_reparse -> ..\outer\OF
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy Drive to UNC via Localhost 
+C:\data\cpp\git\hardlinks\ln>REM --copy UNC to UNC via Localhost with splice 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\UNCSimple\source \\quadtatz\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --keepsymlinkrelation --splice --copy \\quadtatz\UNCsimple\source\inner \\quadtatz\UNCsimple\dest\inner  1>sortout 
 
 
                       Overall
@@ -101,72 +119,243 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
     File:         7         7         0         0         0         0
    Times:        00:00:00.002
   Folder:         5         5         -         0         0         0
- Symlink:         3         -         3         0         0         0
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\F0
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0
-+d D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_A
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_B
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_C
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_D
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1\1_A
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1\1_B
-+f D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder1\1_C
-+s D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\0_A
-+s D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\1_A
-+s D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\_F\1_C
+ Symlink:         5         -         5         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\F0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_A
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_B
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_C
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_D
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_A
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_B
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_C
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\0_A
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\1_A
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\1_C
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\inner_reparse
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\outer_reparse
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\dest\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\dest\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\dest\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\dest\inner\_F\0_A -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_A
+test\UNCSimple\dest\inner\_F\1_A -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_A
+test\UNCSimple\dest\inner\_F\1_C -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_C
+test\UNCSimple\dest\inner\inner_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0
+test\UNCSimple\dest\inner\outer_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\outer\OF
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean Dríve to UNC via Localhost 
+C:\data\cpp\git\hardlinks\ln>REM --copy UNC to UNC via Localhost with splice 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean test\UNCSimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --keepsymlinkrelation --anchor test\UNCSimple\source\inner --splice --copy \\quadtatz\UNCsimple\source\inner \\quadtatz\UNCsimple\dest\inner  1>sortout 
 
 
--d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\F0
--f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_D
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     3.001     3.001         0         0         0         0
+    File:         7         7         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         5         5         -         0         0         0
+ Symlink:         5         -         5         0         0         0
++d \\quadtatz\UNCsimple\dest\inner
++d \\quadtatz\UNCsimple\dest\inner\_F
++d \\quadtatz\UNCsimple\dest\inner\_F\F0
++d \\quadtatz\UNCsimple\dest\inner\Folder0
++d \\quadtatz\UNCsimple\dest\inner\Folder1
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_A
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_B
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_C
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_D
++f \\quadtatz\UNCsimple\dest\inner\Folder1\1_A
++f \\quadtatz\UNCsimple\dest\inner\Folder1\1_B
++f \\quadtatz\UNCsimple\dest\inner\Folder1\1_C
++s \\quadtatz\UNCsimple\dest\inner\_F\0_A
++s \\quadtatz\UNCsimple\dest\inner\_F\1_A
++s \\quadtatz\UNCsimple\dest\inner\_F\1_C
++s \\quadtatz\UNCsimple\dest\inner\inner_reparse
++s \\quadtatz\UNCsimple\dest\inner\outer_reparse
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+test\UNCSimple\dest\inner\_F\0_A -> \\quadtatz\UNCsimple\dest\inner\Folder0\0_A
+test\UNCSimple\dest\inner\_F\1_A -> \\quadtatz\UNCsimple\dest\inner\Folder1\1_A
+test\UNCSimple\dest\inner\_F\1_C -> \\quadtatz\UNCsimple\dest\inner\Folder1\1_C
+test\UNCSimple\dest\inner\inner_reparse -> \\quadtatz\UNCsimple\dest\inner\Folder0
+test\UNCSimple\dest\inner\outer_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\outer\OF
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM --copy UNC to UNC via Localhost with splice, anchor and destination 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --keepsymlinkrelation --anchor test\UNCSimple\source\inner --destination test\UNCSimple\dest\inner --splice --copy \\quadtatz\UNCsimple\source\inner \\quadtatz\UNCsimple\dest\inner  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     3.001     3.001         0         0         0         0
+    File:         7         7         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         5         5         -         0         0         0
+ Symlink:         5         -         5         0         0         0
++d \\quadtatz\UNCsimple\dest\inner
++d \\quadtatz\UNCsimple\dest\inner\_F
++d \\quadtatz\UNCsimple\dest\inner\_F\F0
++d \\quadtatz\UNCsimple\dest\inner\Folder0
++d \\quadtatz\UNCsimple\dest\inner\Folder1
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_A
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_B
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_C
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_D
++f \\quadtatz\UNCsimple\dest\inner\Folder1\1_A
++f \\quadtatz\UNCsimple\dest\inner\Folder1\1_B
++f \\quadtatz\UNCsimple\dest\inner\Folder1\1_C
++s \\quadtatz\UNCsimple\dest\inner\_F\0_A
++s \\quadtatz\UNCsimple\dest\inner\_F\1_A
++s \\quadtatz\UNCsimple\dest\inner\_F\1_C
++s \\quadtatz\UNCsimple\dest\inner\inner_reparse
++s \\quadtatz\UNCsimple\dest\inner\outer_reparse
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+test\UNCSimple\dest\inner\_F\0_A -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_A
+test\UNCSimple\dest\inner\_F\1_A -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_A
+test\UNCSimple\dest\inner\_F\1_C -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_C
+test\UNCSimple\dest\inner\inner_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0
+test\UNCSimple\dest\inner\outer_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\outer\OF
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM --copy UNC to Drive via Localhost with --splice --nolocaluncresolve 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --keepsymlinkrelation --anchor test\UNCSimple\source\inner --splice --copy \\quadtatz\UNCsimple\source\inner test\UNCSimple\dest\inner  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     3.001     3.001         0         0         0         0
+    File:         7         7         0         0         0         0
+   Times:        00:00:00.002
+  Folder:         5         5         -         0         0         0
+ Symlink:         5         -         5         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\F0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_A
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_B
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_C
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_D
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_A
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_B
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_C
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\0_A
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\1_A
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\1_C
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\inner_reparse
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\outer_reparse
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+test\UNCSimple\dest\inner\_F\0_A -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_A
+test\UNCSimple\dest\inner\_F\1_A -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_A
+test\UNCSimple\dest\inner\_F\1_C -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_C
+test\UNCSimple\dest\inner\inner_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0
+test\UNCSimple\dest\inner\outer_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\outer\OF
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM --delorean UNC to Drive via Localhost with --splice --nolocaluncresolve --anchor 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --keepsymlinkrelation --anchor test\UNCSimple\source\inner --delorean \\quadtatz\UNCsimple\source\inner test\UNCSimple\dest\inner test\UNCSimple\bk1\inner  1>sortout 
+
+
+-f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_D
                       Overall               Clone              Mirror
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:     2.469         0         0     2.469       532         0         0
     File:         6         0         0         6         1         0         0
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
-  Folder:         4         0         -         4         1         0         0
- Symlink:         3         -         0         3         0         0         0
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_A
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_B
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_A
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_B
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_C
-=s D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\0_A
-=s D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\1_A
-=s D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\1_C
+  Folder:         5         0         -         5         0         0         0
+ Symlink:         5         -         0         4         0         1         0
+#s \\quadtatz\UNCsimple\source\inner\outer_reparse
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\F0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_B
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_C
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_B
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_C
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\0_A
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\1_A
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\1_C
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\inner_reparse
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\bk1\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\bk1\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\bk1\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\bk1\inner\_F\0_A -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_A
+test\UNCSimple\bk1\inner\_F\1_A -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_A
+test\UNCSimple\bk1\inner\_F\1_C -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_C
+test\UNCSimple\bk1\inner\inner_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0
+ERROR: symlink 'test\UNCSimple\bk1\inner\outer_reparse' does not exist
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy UNC to UNC via sharename, nolocaluncresolve 
+C:\data\cpp\git\hardlinks\ln>REM --delorean Drive to a *different* Drive via Localhost with --splice --nolocaluncresolve 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocaluncresolve --copy \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --splice --nolocaluncresolve --keepsymlinkrelation --anchor test\UNCSimple\source\inner --delorean \\quadtatz\UNCsimple\source\inner O:\DST\inner O:\BKP\inner  1>sortout 
+
+
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     2.469         0         0     2.469         0         0         0
+    File:         6         0         0         6         0         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         5         0         -         5         0         0         0
+ Symlink:         5         -         1         4         0         0         0
++s O:\BKP\inner\inner_reparse
+=d O:\BKP\inner
+=d O:\BKP\inner\_F
+=d O:\BKP\inner\_F\F0
+=d O:\BKP\inner\Folder0
+=d O:\BKP\inner\Folder1
+=f O:\BKP\inner\Folder0\0_A
+=f O:\BKP\inner\Folder0\0_B
+=f O:\BKP\inner\Folder0\0_C
+=f O:\BKP\inner\Folder1\1_A
+=f O:\BKP\inner\Folder1\1_B
+=f O:\BKP\inner\Folder1\1_C
+=s O:\BKP\inner\_F\0_A
+=s O:\BKP\inner\_F\1_A
+=s O:\BKP\inner\_F\1_C
+=s O:\BKP\inner\outer_reparse
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+O:\BKP\inner\_F\0_A -> O:\BKP\inner\Folder0\0_A
+O:\BKP\inner\_F\1_A -> O:\BKP\inner\Folder1\1_A
+O:\BKP\inner\_F\1_C -> O:\BKP\inner\Folder1\1_C
+O:\BKP\inner\inner_reparse -> O:\BKP\inner\Folder0
+O:\BKP\inner\outer_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\outer\OF
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM --copy Drive to UNC via Localhost 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy test\UNCSimple\source \\quadtatz\UNCsimple\dest  1>sortout 
 
 
                       Overall
@@ -174,74 +363,189 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocalunc
     Byte:     3.001     3.001         0         0         0         0
     File:         7         7         0         0         0         0
    Times:        00:00:00.002
-  Folder:         5         5         -         0         0         0
- Symlink:         3         -         3         0         0         0
+  Folder:        10        10         -         0         0         0
+ Symlink:         5         -         5         0         0         0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\_F
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\_F\F0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\F0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\outer
++d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\outer\OF
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_A
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_B
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_C
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_D
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_A
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_B
++f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_C
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\0_A
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\1_A
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\_F\1_C
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\inner_reparse
++s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\outer_reparse
+Junction:         0         -         0         0         0         0
+ErrorLevel == 0
+test\UNCSimple\dest\inner\_F\0_A -> ..\Folder0\0_A
+test\UNCSimple\dest\inner\_F\1_A -> ..\Folder1\1_A
+test\UNCSimple\dest\inner\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\dest\inner\inner_reparse -> Folder0
+test\UNCSimple\dest\inner\outer_reparse -> ..\outer\OF
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM --delorean Drive to UNC via Localhost 
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean test\UNCSimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+
+
+-d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\F0
+-f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_D
+                      Overall               Clone              Mirror
+              Total    Copied    Linked   Skipped   Removed  Excluded    Failed
+    Byte:     2.469         0         0     2.469       532         0         0
+    File:         6         0         0         6         1         0         0
+   Times:        00:00:00.002        00:00:00.007        00:00:00.034
+  Folder:         9         0         -         9         1         0         0
+ Symlink:         5         -         0         5         0         0         0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\F0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\outer
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\outer\OF
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_B
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_C
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_B
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_C
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\0_A
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\1_A
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\1_C
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\inner_reparse
+=s C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\outer_reparse
+Junction:         0         -         0         0         0         0         0
+ErrorLevel == 0
+test\UNCSimple\bk1\inner\_F\0_A -> ..\Folder0\0_A
+test\UNCSimple\bk1\inner\_F\1_A -> ..\Folder1\1_A
+test\UNCSimple\bk1\inner\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\bk1\inner\inner_reparse -> Folder0
+test\UNCSimple\bk1\inner\outer_reparse -> ..\outer\OF
+
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>REM --copy UNC to UNC via sharename, nolocaluncresolve 
+
+C:\data\cpp\git\hardlinks\ln>REM
+test\UNCSimple\source\inner\_F\0_A -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder0\0_A
+test\UNCSimple\source\inner\_F\1_A -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder1\1_A
+test\UNCSimple\source\inner\_F\1_C -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder1\1_C
+test\UNCSimple\source\inner\inner_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder0
+test\UNCSimple\source\inner\outer_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\outer\OF
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --copy \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest  1>sortout 
+
+
+                      Overall
+              Total    Copied    Linked   Skipped  Excluded    Failed
+    Byte:     3.001     3.001         0         0         0         0
+    File:         7         7         0         0         0         0
+   Times:        00:00:00.002
+  Folder:        10        10         -         0         0         0
+ Symlink:         5         -         0         0         5         0
+#s \\quadtatz\UNCsimple\source\inner\_F\0_A
+#s \\quadtatz\UNCsimple\source\inner\_F\1_A
+#s \\quadtatz\UNCsimple\source\inner\_F\1_C
+#s \\quadtatz\UNCsimple\source\inner\inner_reparse
+#s \\quadtatz\UNCsimple\source\inner\outer_reparse
 +d \\quadtatz\UNCsimple\dest
 +d \\quadtatz\UNCsimple\dest\_F
 +d \\quadtatz\UNCsimple\dest\_F\F0
-+d \\quadtatz\UNCsimple\dest\Folder0
-+d \\quadtatz\UNCsimple\dest\Folder1
-+f \\quadtatz\UNCsimple\dest\Folder0\0_A
-+f \\quadtatz\UNCsimple\dest\Folder0\0_B
-+f \\quadtatz\UNCsimple\dest\Folder0\0_C
-+f \\quadtatz\UNCsimple\dest\Folder0\0_D
-+f \\quadtatz\UNCsimple\dest\Folder1\1_A
-+f \\quadtatz\UNCsimple\dest\Folder1\1_B
-+f \\quadtatz\UNCsimple\dest\Folder1\1_C
-+s \\quadtatz\UNCsimple\dest\_F\0_A
-+s \\quadtatz\UNCsimple\dest\_F\1_A
-+s \\quadtatz\UNCsimple\dest\_F\1_C
++d \\quadtatz\UNCsimple\dest\inner
++d \\quadtatz\UNCsimple\dest\inner\_F
++d \\quadtatz\UNCsimple\dest\inner\_F\F0
++d \\quadtatz\UNCsimple\dest\inner\Folder0
++d \\quadtatz\UNCsimple\dest\inner\Folder1
++d \\quadtatz\UNCsimple\dest\outer
++d \\quadtatz\UNCsimple\dest\outer\OF
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_A
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_B
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_C
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_D
++f \\quadtatz\UNCsimple\dest\inner\Folder1\1_A
++f \\quadtatz\UNCsimple\dest\inner\Folder1\1_B
++f \\quadtatz\UNCsimple\dest\inner\Folder1\1_C
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\dest\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\dest\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\dest\_F\1_C -> ..\Folder1\1_C
+ERROR: symlink 'test\UNCSimple\dest\inner\_F\0_A' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\_F\1_A' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\_F\1_C' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\inner_reparse' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\outer_reparse' does not exist
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean UNC to UNC via sharename, nolocaluncresolve 
+C:\data\cpp\git\hardlinks\ln>REM --delorean UNC to UNC via sharename, nolocaluncresolve 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocaluncresolve --delorean \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --delorean \\quadtatz\UNCsimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
 
 
 'Sleeping 5 sec: Destination is a remote drive.
 -d \\quadtatz\UNCsimple\bk1\_F\F0
--f \\quadtatz\UNCsimple\bk1\Folder0\0_D
+-f \\quadtatz\UNCsimple\bk1\inner\Folder0\0_D
                       Overall               Clone              Mirror
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:     2.469         0         0     2.469       532         0         0
     File:         6         0         0         6         1         0         0
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
-  Folder:         4         0         -         4         1         0         0
- Symlink:         3         -         0         3         0         0         0
+  Folder:         9         0         -         9         1         0         0
+ Symlink:         5         -         0         0         0         5         0
+#s \\quadtatz\UNCsimple\source\inner\_F\0_A
+#s \\quadtatz\UNCsimple\source\inner\_F\1_A
+#s \\quadtatz\UNCsimple\source\inner\_F\1_C
+#s \\quadtatz\UNCsimple\source\inner\inner_reparse
+#s \\quadtatz\UNCsimple\source\inner\outer_reparse
 =d \\quadtatz\UNCsimple\bk1
 =d \\quadtatz\UNCsimple\bk1\_F
-=d \\quadtatz\UNCsimple\bk1\Folder0
-=d \\quadtatz\UNCsimple\bk1\Folder1
-=f \\quadtatz\UNCsimple\bk1\Folder0\0_A
-=f \\quadtatz\UNCsimple\bk1\Folder0\0_B
-=f \\quadtatz\UNCsimple\bk1\Folder0\0_C
-=f \\quadtatz\UNCsimple\bk1\Folder1\1_A
-=f \\quadtatz\UNCsimple\bk1\Folder1\1_B
-=f \\quadtatz\UNCsimple\bk1\Folder1\1_C
-=s \\quadtatz\UNCsimple\bk1\_F\0_A
-=s \\quadtatz\UNCsimple\bk1\_F\1_A
-=s \\quadtatz\UNCsimple\bk1\_F\1_C
+=d \\quadtatz\UNCsimple\bk1\inner
+=d \\quadtatz\UNCsimple\bk1\inner\_F
+=d \\quadtatz\UNCsimple\bk1\inner\_F\F0
+=d \\quadtatz\UNCsimple\bk1\inner\Folder0
+=d \\quadtatz\UNCsimple\bk1\inner\Folder1
+=d \\quadtatz\UNCsimple\bk1\outer
+=d \\quadtatz\UNCsimple\bk1\outer\OF
+=f \\quadtatz\UNCsimple\bk1\inner\Folder0\0_A
+=f \\quadtatz\UNCsimple\bk1\inner\Folder0\0_B
+=f \\quadtatz\UNCsimple\bk1\inner\Folder0\0_C
+=f \\quadtatz\UNCsimple\bk1\inner\Folder1\1_A
+=f \\quadtatz\UNCsimple\bk1\inner\Folder1\1_B
+=f \\quadtatz\UNCsimple\bk1\inner\Folder1\1_C
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\bk1\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\bk1\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\bk1\_F\1_C -> ..\Folder1\1_C
+ERROR: symlink 'test\UNCSimple\bk1\inner\_F\0_A' does not exist
+ERROR: symlink 'test\UNCSimple\bk1\inner\_F\1_A' does not exist
+ERROR: symlink 'test\UNCSimple\bk1\inner\_F\1_C' does not exist
+ERROR: symlink 'test\UNCSimple\bk1\inner\inner_reparse' does not exist
+ERROR: symlink 'test\UNCSimple\bk1\inner\outer_reparse' does not exist
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy Drive to UNC via sharename, nolocaluncresolve 
+C:\data\cpp\git\hardlinks\ln>REM --copy Drive to UNC via sharename, nolocaluncresolve 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocaluncresolve --copy test\UNCSimple\source \\quadtatz\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --copy test\UNCSimple\source \\quadtatz\UNCsimple\dest  1>sortout 
 
 
                       Overall
@@ -249,80 +553,98 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocalunc
     Byte:     3.001     3.001         0         0         0         0
     File:         7         7         0         0         0         0
    Times:        00:00:00.002
-  Folder:         5         5         -         0         0         0
- Symlink:         3         -         3         0         0         0
+  Folder:        10        10         -         0         0         0
+ Symlink:         5         -         5         0         0         0
 +d \\quadtatz\UNCsimple\dest
 +d \\quadtatz\UNCsimple\dest\_F
 +d \\quadtatz\UNCsimple\dest\_F\F0
-+d \\quadtatz\UNCsimple\dest\Folder0
-+d \\quadtatz\UNCsimple\dest\Folder1
-+f \\quadtatz\UNCsimple\dest\Folder0\0_A
-+f \\quadtatz\UNCsimple\dest\Folder0\0_B
-+f \\quadtatz\UNCsimple\dest\Folder0\0_C
-+f \\quadtatz\UNCsimple\dest\Folder0\0_D
-+f \\quadtatz\UNCsimple\dest\Folder1\1_A
-+f \\quadtatz\UNCsimple\dest\Folder1\1_B
-+f \\quadtatz\UNCsimple\dest\Folder1\1_C
-+s \\quadtatz\UNCsimple\dest\_F\0_A
-+s \\quadtatz\UNCsimple\dest\_F\1_A
-+s \\quadtatz\UNCsimple\dest\_F\1_C
++d \\quadtatz\UNCsimple\dest\inner
++d \\quadtatz\UNCsimple\dest\inner\_F
++d \\quadtatz\UNCsimple\dest\inner\_F\F0
++d \\quadtatz\UNCsimple\dest\inner\Folder0
++d \\quadtatz\UNCsimple\dest\inner\Folder1
++d \\quadtatz\UNCsimple\dest\outer
++d \\quadtatz\UNCsimple\dest\outer\OF
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_A
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_B
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_C
++f \\quadtatz\UNCsimple\dest\inner\Folder0\0_D
++f \\quadtatz\UNCsimple\dest\inner\Folder1\1_A
++f \\quadtatz\UNCsimple\dest\inner\Folder1\1_B
++f \\quadtatz\UNCsimple\dest\inner\Folder1\1_C
++s \\quadtatz\UNCsimple\dest\inner\_F\0_A
++s \\quadtatz\UNCsimple\dest\inner\_F\1_A
++s \\quadtatz\UNCsimple\dest\inner\_F\1_C
++s \\quadtatz\UNCsimple\dest\inner\inner_reparse
++s \\quadtatz\UNCsimple\dest\inner\outer_reparse
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\dest\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\dest\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\dest\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\dest\inner\_F\0_A -> ..\Folder0\0_A
+test\UNCSimple\dest\inner\_F\1_A -> ..\Folder1\1_A
+test\UNCSimple\dest\inner\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\dest\inner\inner_reparse -> Folder0
+test\UNCSimple\dest\inner\outer_reparse -> ..\outer\OF
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean Drive to UNC via sharename, nolocaluncresolve 
+C:\data\cpp\git\hardlinks\ln>REM --delorean Drive to UNC via sharename, nolocaluncresolve 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocaluncresolve --delorean test\UNCSimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --delorean test\UNCSimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
 
 
 'Sleeping 5 sec: Destination is a remote drive.
 -d \\quadtatz\UNCsimple\bk1\_F\F0
--f \\quadtatz\UNCsimple\bk1\Folder0\0_D
+-f \\quadtatz\UNCsimple\bk1\inner\Folder0\0_D
                       Overall               Clone              Mirror
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:     2.343       406         0     1.937       532         0         0
     File:         6         1         0         5         1         0         0
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
-  Folder:         4         0         -         4         1         0         0
- Symlink:         3         -         0         3         0         0         0
-+f \\quadtatz\UNCsimple\bk1\Folder0\0_C
+  Folder:         9         0         -         9         1         0         0
+ Symlink:         5         -         0         5         0         0         0
++f \\quadtatz\UNCsimple\bk1\inner\Folder0\0_C
 =d \\quadtatz\UNCsimple\bk1
 =d \\quadtatz\UNCsimple\bk1\_F
-=d \\quadtatz\UNCsimple\bk1\Folder0
-=d \\quadtatz\UNCsimple\bk1\Folder1
-=f \\quadtatz\UNCsimple\bk1\Folder0\0_A
-=f \\quadtatz\UNCsimple\bk1\Folder0\0_B
-=f \\quadtatz\UNCsimple\bk1\Folder1\1_A
-=f \\quadtatz\UNCsimple\bk1\Folder1\1_B
-=f \\quadtatz\UNCsimple\bk1\Folder1\1_C
-=s \\quadtatz\UNCsimple\bk1\_F\0_A
-=s \\quadtatz\UNCsimple\bk1\_F\1_A
-=s \\quadtatz\UNCsimple\bk1\_F\1_C
+=d \\quadtatz\UNCsimple\bk1\inner
+=d \\quadtatz\UNCsimple\bk1\inner\_F
+=d \\quadtatz\UNCsimple\bk1\inner\_F\F0
+=d \\quadtatz\UNCsimple\bk1\inner\Folder0
+=d \\quadtatz\UNCsimple\bk1\inner\Folder1
+=d \\quadtatz\UNCsimple\bk1\outer
+=d \\quadtatz\UNCsimple\bk1\outer\OF
+=f \\quadtatz\UNCsimple\bk1\inner\Folder0\0_A
+=f \\quadtatz\UNCsimple\bk1\inner\Folder0\0_B
+=f \\quadtatz\UNCsimple\bk1\inner\Folder1\1_A
+=f \\quadtatz\UNCsimple\bk1\inner\Folder1\1_B
+=f \\quadtatz\UNCsimple\bk1\inner\Folder1\1_C
+=s \\quadtatz\UNCsimple\bk1\inner\_F\0_A
+=s \\quadtatz\UNCsimple\bk1\inner\_F\1_A
+=s \\quadtatz\UNCsimple\bk1\inner\_F\1_C
+=s \\quadtatz\UNCsimple\bk1\inner\inner_reparse
+=s \\quadtatz\UNCsimple\bk1\inner\outer_reparse
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
-D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_C
   :                                       406
 Total size: 406 bytes.
-D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_C
   :                                       532
 Total size: 532 bytes.
-test\UNCSimple\bk1\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\bk1\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\bk1\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\bk1\inner\_F\0_A -> ..\Folder0\0_A
+test\UNCSimple\bk1\inner\_F\1_A -> ..\Folder1\1_A
+test\UNCSimple\bk1\inner\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\bk1\inner\inner_reparse -> Folder0
+test\UNCSimple\bk1\inner\outer_reparse -> ..\outer\OF
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean Drive to UNC via sharename, nolocaluncresolve, clean fails 
+C:\data\cpp\git\hardlinks\ln>REM --delorean Drive to UNC via sharename, nolocaluncresolve, clean fails 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocaluncresolve --delorean test\UNCSimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --delorean test\UNCSimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
 
 
 'Sleeping 5 sec: Destination is a remote drive.
@@ -331,37 +653,46 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocalunc
     Byte:     2.469         0         0     2.469         0         0         0
     File:         6         0         0         6         0         0         0
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
-  Folder:         5         0         -         5         0         0         0
- Symlink:         3         -         0         3         0         0         0
-!?f(0x00000005) \\quadtatz\UNCsimple\dest\Folder0\0_D
+  Folder:        10         0         -        10         0         0         0
+ Symlink:         5         -         0         5         0         0         0
+!?f(0x00000005) \\quadtatz\UNCsimple\dest\inner\Folder0\0_D
 =d \\quadtatz\UNCsimple\bk1
 =d \\quadtatz\UNCsimple\bk1\_F
 =d \\quadtatz\UNCsimple\bk1\_F\F0
-=d \\quadtatz\UNCsimple\bk1\Folder0
-=d \\quadtatz\UNCsimple\bk1\Folder1
-=f \\quadtatz\UNCsimple\bk1\Folder0\0_A
-=f \\quadtatz\UNCsimple\bk1\Folder0\0_B
-=f \\quadtatz\UNCsimple\bk1\Folder0\0_C
-=f \\quadtatz\UNCsimple\bk1\Folder1\1_A
-=f \\quadtatz\UNCsimple\bk1\Folder1\1_B
-=f \\quadtatz\UNCsimple\bk1\Folder1\1_C
-=s \\quadtatz\UNCsimple\bk1\_F\0_A
-=s \\quadtatz\UNCsimple\bk1\_F\1_A
-=s \\quadtatz\UNCsimple\bk1\_F\1_C
+=d \\quadtatz\UNCsimple\bk1\inner
+=d \\quadtatz\UNCsimple\bk1\inner\_F
+=d \\quadtatz\UNCsimple\bk1\inner\_F\F0
+=d \\quadtatz\UNCsimple\bk1\inner\Folder0
+=d \\quadtatz\UNCsimple\bk1\inner\Folder1
+=d \\quadtatz\UNCsimple\bk1\outer
+=d \\quadtatz\UNCsimple\bk1\outer\OF
+=f \\quadtatz\UNCsimple\bk1\inner\Folder0\0_A
+=f \\quadtatz\UNCsimple\bk1\inner\Folder0\0_B
+=f \\quadtatz\UNCsimple\bk1\inner\Folder0\0_C
+=f \\quadtatz\UNCsimple\bk1\inner\Folder1\1_A
+=f \\quadtatz\UNCsimple\bk1\inner\Folder1\1_B
+=f \\quadtatz\UNCsimple\bk1\inner\Folder1\1_C
+=s \\quadtatz\UNCsimple\bk1\inner\_F\0_A
+=s \\quadtatz\UNCsimple\bk1\inner\_F\1_A
+=s \\quadtatz\UNCsimple\bk1\inner\_F\1_C
+=s \\quadtatz\UNCsimple\bk1\inner\inner_reparse
+=s \\quadtatz\UNCsimple\bk1\inner\outer_reparse
 Junction:         0         -         0         0         0         0         0
 WARNING: Delorean Copy finished successfully but see output for errors.
 ErrorLevel == -16
-test\UNCSimple\bk1\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\bk1\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\bk1\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\bk1\inner\_F\0_A -> ..\Folder0\0_A
+test\UNCSimple\bk1\inner\_F\1_A -> ..\Folder1\1_A
+test\UNCSimple\bk1\inner\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\bk1\inner\inner_reparse -> Folder0
+test\UNCSimple\bk1\inner\outer_reparse -> ..\outer\OF
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --mirror Drive to UNC via sharename, nolocaluncresolve, clean fails 
+C:\data\cpp\git\hardlinks\ln>REM --mirror Drive to UNC via sharename, nolocaluncresolve, clean fails 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocaluncresolve --mirror test\UNCSimple\source \\quadtatz\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --nolocaluncresolve --mirror test\UNCSimple\source \\quadtatz\UNCsimple\dest  1>sortout 
 
 
                       Overall
@@ -369,35 +700,44 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --nolocalunc
     Byte:     2.469         0         0     2.469         0         0         0
     File:         6         0         0         6         0         0         0
    Times:        00:00:00.002
-  Folder:         5         0         -         5         0         0         0
- Symlink:         3         -         0         3         0         0         0
+  Folder:        10         0         -        10         0         0         0
+ Symlink:         5         -         0         5         0         0         0
 =d \\quadtatz\UNCsimple\dest
 =d \\quadtatz\UNCsimple\dest\_F
 =d \\quadtatz\UNCsimple\dest\_F\F0
-=d \\quadtatz\UNCsimple\dest\Folder0
-=d \\quadtatz\UNCsimple\dest\Folder1
-=f \\quadtatz\UNCsimple\dest\Folder0\0_A
-=f \\quadtatz\UNCsimple\dest\Folder0\0_B
-=f \\quadtatz\UNCsimple\dest\Folder0\0_C
-=f \\quadtatz\UNCsimple\dest\Folder1\1_A
-=f \\quadtatz\UNCsimple\dest\Folder1\1_B
-=f \\quadtatz\UNCsimple\dest\Folder1\1_C
-=s \\quadtatz\UNCsimple\dest\_F\0_A
-=s \\quadtatz\UNCsimple\dest\_F\1_A
-=s \\quadtatz\UNCsimple\dest\_F\1_C
+=d \\quadtatz\UNCsimple\dest\inner
+=d \\quadtatz\UNCsimple\dest\inner\_F
+=d \\quadtatz\UNCsimple\dest\inner\_F\F0
+=d \\quadtatz\UNCsimple\dest\inner\Folder0
+=d \\quadtatz\UNCsimple\dest\inner\Folder1
+=d \\quadtatz\UNCsimple\dest\outer
+=d \\quadtatz\UNCsimple\dest\outer\OF
+=f \\quadtatz\UNCsimple\dest\inner\Folder0\0_A
+=f \\quadtatz\UNCsimple\dest\inner\Folder0\0_B
+=f \\quadtatz\UNCsimple\dest\inner\Folder0\0_C
+=f \\quadtatz\UNCsimple\dest\inner\Folder1\1_A
+=f \\quadtatz\UNCsimple\dest\inner\Folder1\1_B
+=f \\quadtatz\UNCsimple\dest\inner\Folder1\1_C
+=s \\quadtatz\UNCsimple\dest\inner\_F\0_A
+=s \\quadtatz\UNCsimple\dest\inner\_F\1_A
+=s \\quadtatz\UNCsimple\dest\inner\_F\1_C
+=s \\quadtatz\UNCsimple\dest\inner\inner_reparse
+=s \\quadtatz\UNCsimple\dest\inner\outer_reparse
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\dest\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\dest\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\dest\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\dest\inner\_F\0_A -> ..\Folder0\0_A
+test\UNCSimple\dest\inner\_F\1_A -> ..\Folder1\1_A
+test\UNCSimple\dest\inner\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\dest\inner\inner_reparse -> Folder0
+test\UNCSimple\dest\inner\outer_reparse -> ..\outer\OF
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy UNC to UNC via Ip-Adresse 
+C:\data\cpp\git\hardlinks\ln>REM --copy UNC to UNC via Ip-Adresse 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy \\10.0.0.74\UNCsimple\source \\10.0.0.74\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy \\192.168.253.128\UNCsimple\source \\192.168.253.128\UNCsimple\dest  1>sortout 
 
 
                       Overall
@@ -405,73 +745,91 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy \\10.
     Byte:     3.001     3.001         0         0         0         0
     File:         7         7         0         0         0         0
    Times:        00:00:00.002
-  Folder:         5         5         -         0         0         0
- Symlink:         3         -         0         0         3         0
-#s \\10.0.0.74\UNCsimple\source\_F\0_A
-#s \\10.0.0.74\UNCsimple\source\_F\1_A
-#s \\10.0.0.74\UNCsimple\source\_F\1_C
-+d \\10.0.0.74\UNCsimple\dest
-+d \\10.0.0.74\UNCsimple\dest\_F
-+d \\10.0.0.74\UNCsimple\dest\_F\F0
-+d \\10.0.0.74\UNCsimple\dest\Folder0
-+d \\10.0.0.74\UNCsimple\dest\Folder1
-+f \\10.0.0.74\UNCsimple\dest\Folder0\0_A
-+f \\10.0.0.74\UNCsimple\dest\Folder0\0_B
-+f \\10.0.0.74\UNCsimple\dest\Folder0\0_C
-+f \\10.0.0.74\UNCsimple\dest\Folder0\0_D
-+f \\10.0.0.74\UNCsimple\dest\Folder1\1_A
-+f \\10.0.0.74\UNCsimple\dest\Folder1\1_B
-+f \\10.0.0.74\UNCsimple\dest\Folder1\1_C
+  Folder:        10        10         -         0         0         0
+ Symlink:         5         -         0         0         5         0
+#s \\192.168.253.128\UNCsimple\source\inner\_F\0_A
+#s \\192.168.253.128\UNCsimple\source\inner\_F\1_A
+#s \\192.168.253.128\UNCsimple\source\inner\_F\1_C
+#s \\192.168.253.128\UNCsimple\source\inner\inner_reparse
+#s \\192.168.253.128\UNCsimple\source\inner\outer_reparse
++d \\192.168.253.128\UNCsimple\dest
++d \\192.168.253.128\UNCsimple\dest\_F
++d \\192.168.253.128\UNCsimple\dest\_F\F0
++d \\192.168.253.128\UNCsimple\dest\inner
++d \\192.168.253.128\UNCsimple\dest\inner\_F
++d \\192.168.253.128\UNCsimple\dest\inner\_F\F0
++d \\192.168.253.128\UNCsimple\dest\inner\Folder0
++d \\192.168.253.128\UNCsimple\dest\inner\Folder1
++d \\192.168.253.128\UNCsimple\dest\outer
++d \\192.168.253.128\UNCsimple\dest\outer\OF
++f \\192.168.253.128\UNCsimple\dest\inner\Folder0\0_A
++f \\192.168.253.128\UNCsimple\dest\inner\Folder0\0_B
++f \\192.168.253.128\UNCsimple\dest\inner\Folder0\0_C
++f \\192.168.253.128\UNCsimple\dest\inner\Folder0\0_D
++f \\192.168.253.128\UNCsimple\dest\inner\Folder1\1_A
++f \\192.168.253.128\UNCsimple\dest\inner\Folder1\1_B
++f \\192.168.253.128\UNCsimple\dest\inner\Folder1\1_C
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\dest\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\dest\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\dest\_F\1_C -> ..\Folder1\1_C
+ERROR: symlink 'test\UNCSimple\dest\inner\_F\0_A' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\_F\1_A' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\_F\1_C' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\inner_reparse' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\outer_reparse' does not exist
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean UNC to UNC via sharename, nolocaluncresolve 
+C:\data\cpp\git\hardlinks\ln>REM --delorean UNC to UNC via sharename, nolocaluncresolve 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean \\10.0.0.74\UNCsimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean \\192.168.253.128\UNCsimple\source \\quadtatz\UNCsimple\dest \\quadtatz\UNCsimple\bk1  1>sortout 
 
 
--d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\F0
--f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_D
+-d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F\F0
+-f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_D
                       Overall               Clone              Mirror
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:     2.469         0         0     2.469       532         0         0
     File:         6         0         0         6         1         0         0
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
-  Folder:         4         0         -         4         1         0         0
- Symlink:         3         -         0         3         0         0         0
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0
-=d D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_A
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_B
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_A
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_B
-=f D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder1\1_C
-=s D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\0_A
-=s D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\1_A
-=s D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\_F\1_C
+  Folder:         9         0         -         9         1         0         0
+ Symlink:         5         -         0         0         0         5         0
+#s \\192.168.253.128\UNCsimple\source\inner\_F\0_A
+#s \\192.168.253.128\UNCsimple\source\inner\_F\1_A
+#s \\192.168.253.128\UNCsimple\source\inner\_F\1_C
+#s \\192.168.253.128\UNCsimple\source\inner\inner_reparse
+#s \\192.168.253.128\UNCsimple\source\inner\outer_reparse
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\_F
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\_F\F0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\outer
+=d C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\outer\OF
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_B
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_C
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_A
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_B
+=f C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_C
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\bk1\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\bk1\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\bk1\_F\1_C -> ..\Folder1\1_C
+ERROR: symlink 'test\UNCSimple\bk1\inner\_F\0_A' does not exist
+ERROR: symlink 'test\UNCSimple\bk1\inner\_F\1_A' does not exist
+ERROR: symlink 'test\UNCSimple\bk1\inner\_F\1_C' does not exist
+ERROR: symlink 'test\UNCSimple\bk1\inner\inner_reparse' does not exist
+ERROR: symlink 'test\UNCSimple\bk1\inner\outer_reparse' does not exist
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --recursive UNC test 
+C:\data\cpp\git\hardlinks\ln>REM --recursive UNC test 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive \\10.0.0.74\UNCsimple\source \\10.0.0.74\UNCsimple\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --recursive \\192.168.253.128\UNCsimple\source \\192.168.253.128\UNCsimple\dest  1>sortout 
 
 
                       Overall
@@ -479,46 +837,55 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --recursive 
     Byte:     3.001         0     3.001         0         0         0
     File:         7         0         7         0         0         0
    Times:        00:00:00.002
-  Folder:         5         5         -         0         0         0
- Symlink:         3         -         3         0         0         0
-+d \\192.168.242.1\UNCsimple\dest
-+d \\192.168.242.1\UNCsimple\dest\_F
-+d \\192.168.242.1\UNCsimple\dest\_F\F0
-+d \\192.168.242.1\UNCsimple\dest\Folder0
-+d \\192.168.242.1\UNCsimple\dest\Folder1
-+h \\192.168.242.1\UNCsimple\dest\Folder0\0_A
-+h \\192.168.242.1\UNCsimple\dest\Folder0\0_B
-+h \\192.168.242.1\UNCsimple\dest\Folder0\0_C
-+h \\192.168.242.1\UNCsimple\dest\Folder0\0_D
-+h \\192.168.242.1\UNCsimple\dest\Folder1\1_A
-+h \\192.168.242.1\UNCsimple\dest\Folder1\1_B
-+h \\192.168.242.1\UNCsimple\dest\Folder1\1_C
-+s \\192.168.242.1\UNCsimple\dest\_F\0_A
-+s \\192.168.242.1\UNCsimple\dest\_F\1_A
-+s \\192.168.242.1\UNCsimple\dest\_F\1_C
+  Folder:        10        10         -         0         0         0
+ Symlink:         5         -         0         0         5         0
+#s \\192.168.253.128\UNCsimple\source\inner\_F\0_A
+#s \\192.168.253.128\UNCsimple\source\inner\_F\1_A
+#s \\192.168.253.128\UNCsimple\source\inner\_F\1_C
+#s \\192.168.253.128\UNCsimple\source\inner\inner_reparse
+#s \\192.168.253.128\UNCsimple\source\inner\outer_reparse
++d \\192.168.253.128\UNCsimple\dest
++d \\192.168.253.128\UNCsimple\dest\_F
++d \\192.168.253.128\UNCsimple\dest\_F\F0
++d \\192.168.253.128\UNCsimple\dest\inner
++d \\192.168.253.128\UNCsimple\dest\inner\_F
++d \\192.168.253.128\UNCsimple\dest\inner\_F\F0
++d \\192.168.253.128\UNCsimple\dest\inner\Folder0
++d \\192.168.253.128\UNCsimple\dest\inner\Folder1
++d \\192.168.253.128\UNCsimple\dest\outer
++d \\192.168.253.128\UNCsimple\dest\outer\OF
++h \\192.168.253.128\UNCsimple\dest\inner\Folder0\0_A
++h \\192.168.253.128\UNCsimple\dest\inner\Folder0\0_B
++h \\192.168.253.128\UNCsimple\dest\inner\Folder0\0_C
++h \\192.168.253.128\UNCsimple\dest\inner\Folder0\0_D
++h \\192.168.253.128\UNCsimple\dest\inner\Folder1\1_A
++h \\192.168.253.128\UNCsimple\dest\inner\Folder1\1_B
++h \\192.168.253.128\UNCsimple\dest\inner\Folder1\1_C
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\dest\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\dest\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\dest\_F\1_C -> ..\Folder1\1_C
+ERROR: symlink 'test\UNCSimple\dest\inner\_F\0_A' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\_F\1_A' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\_F\1_C' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\inner_reparse' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\outer_reparse' does not exist
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy UNC test with noexistant share 
+C:\data\cpp\git\hardlinks\ln>REM --copy UNC test with noexistant share 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy \\10.0.0.74\UNCsimple\source \\10.0.0.74\UNCsimple_notthere\dest  1>sortout 
-ERROR: Source directory '\\10.0.0.74\UNCsimple_notthere\dest' does not exist
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy \\192.168.253.128\UNCsimple\source \\192.168.253.128\UNCsimple_notthere\dest  1>sortout 
+ERROR: Source directory '\\192.168.253.128\UNCsimple_notthere\dest' does not exist
 ErrorLevel == -1
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean UNC  
+C:\data\cpp\git\hardlinks\ln>REM --delorean UNC  
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean \\10.0.0.74\UNCsimple\source \\10.0.0.74\UNCsimple\dest \\10.0.0.74\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean \\192.168.253.128\UNCsimple\source \\192.168.253.128\UNCsimple\dest \\192.168.253.128\UNCsimple\bk1  1>sortout 
 
 
 'Sleeping 5 sec: Destination is a remote drive.
@@ -527,65 +894,91 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean \
     Byte:     3.001     1.934         0     1.067         0         0         0
     File:         7         4         0         3         0         0         0
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
-  Folder:         5         1         -         4         0         0         0
- Symlink:         3         -         0         3         0         0         0
-+d \\192.168.242.1\UNCsimple\bk1\Folder0
-+f \\192.168.242.1\UNCsimple\bk1\Folder0\0_A
-+f \\192.168.242.1\UNCsimple\bk1\Folder0\0_B
-+f \\192.168.242.1\UNCsimple\bk1\Folder0\0_C
-+f \\192.168.242.1\UNCsimple\bk1\Folder0\0_D
-=d \\192.168.242.1\UNCsimple\bk1
-=d \\192.168.242.1\UNCsimple\bk1\_F
-=d \\192.168.242.1\UNCsimple\bk1\_F\F0
-=d \\192.168.242.1\UNCsimple\bk1\Folder1
-=f \\192.168.242.1\UNCsimple\bk1\Folder1\1_A
-=f \\192.168.242.1\UNCsimple\bk1\Folder1\1_B
-=f \\192.168.242.1\UNCsimple\bk1\Folder1\1_C
-=s \\192.168.242.1\UNCsimple\bk1\_F\0_A
-=s \\192.168.242.1\UNCsimple\bk1\_F\1_A
-=s \\192.168.242.1\UNCsimple\bk1\_F\1_C
+  Folder:        10         1         -         9         0         0         0
+ Symlink:         5         -         0         0         0         5         0
+#s \\192.168.253.128\UNCsimple\source\inner\_F\0_A
+#s \\192.168.253.128\UNCsimple\source\inner\_F\1_A
+#s \\192.168.253.128\UNCsimple\source\inner\_F\1_C
+#s \\192.168.253.128\UNCsimple\source\inner\inner_reparse
+#s \\192.168.253.128\UNCsimple\source\inner\outer_reparse
++d \\192.168.253.128\UNCsimple\bk1\inner\Folder0
++f \\192.168.253.128\UNCsimple\bk1\inner\Folder0\0_A
++f \\192.168.253.128\UNCsimple\bk1\inner\Folder0\0_B
++f \\192.168.253.128\UNCsimple\bk1\inner\Folder0\0_C
++f \\192.168.253.128\UNCsimple\bk1\inner\Folder0\0_D
+=d \\192.168.253.128\UNCsimple\bk1
+=d \\192.168.253.128\UNCsimple\bk1\_F
+=d \\192.168.253.128\UNCsimple\bk1\_F\F0
+=d \\192.168.253.128\UNCsimple\bk1\inner
+=d \\192.168.253.128\UNCsimple\bk1\inner\_F
+=d \\192.168.253.128\UNCsimple\bk1\inner\_F\F0
+=d \\192.168.253.128\UNCsimple\bk1\inner\Folder1
+=d \\192.168.253.128\UNCsimple\bk1\outer
+=d \\192.168.253.128\UNCsimple\bk1\outer\OF
+=f \\192.168.253.128\UNCsimple\bk1\inner\Folder1\1_A
+=f \\192.168.253.128\UNCsimple\bk1\inner\Folder1\1_B
+=f \\192.168.253.128\UNCsimple\bk1\inner\Folder1\1_C
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\bk1\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\bk1\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\bk1\_F\1_C -> ..\Folder1\1_C
+ERROR: symlink 'test\UNCSimple\bk1\inner\_F\0_A' does not exist
+ERROR: symlink 'test\UNCSimple\bk1\inner\_F\1_A' does not exist
+ERROR: symlink 'test\UNCSimple\bk1\inner\_F\1_C' does not exist
+ERROR: symlink 'test\UNCSimple\bk1\inner\inner_reparse' does not exist
+ERROR: symlink 'test\UNCSimple\bk1\inner\outer_reparse' does not exist
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean \\10.0.0.74\UNCsimple\source \\10.0.0.74\UNCsimple\dest \\10.0.0.74\UNCsimple\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean \\192.168.253.128\UNCsimple\source \\192.168.253.128\UNCsimple\dest \\192.168.253.128\UNCsimple\bk1  1>sortout 
 
 
 'Sleeping 5 sec: Destination is a remote drive.
--f \\10.0.0.74\UNCsimple\bk1\Folder1\1_C
+-f \\192.168.253.128\UNCsimple\bk1\inner\Folder1\1_C
                       Overall               Clone              Mirror
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:     2.469     1.934         0       535       532         0         0
     File:         6         4         0         2         1         0         0
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
-  Folder:         5         1         -         4         0         0         0
- Symlink:         3         -         0         3         0         0         0
-+d \\192.168.242.1\UNCsimple\bk1\Folder0
-+f \\192.168.242.1\UNCsimple\bk1\Folder0\0_A
-+f \\192.168.242.1\UNCsimple\bk1\Folder0\0_B
-+f \\192.168.242.1\UNCsimple\bk1\Folder0\0_C
-+f \\192.168.242.1\UNCsimple\bk1\Folder0\0_D
-=d \\192.168.242.1\UNCsimple\bk1
-=d \\192.168.242.1\UNCsimple\bk1\_F
-=d \\192.168.242.1\UNCsimple\bk1\_F\F0
-=d \\192.168.242.1\UNCsimple\bk1\Folder1
-=f \\192.168.242.1\UNCsimple\bk1\Folder1\1_A
-=f \\192.168.242.1\UNCsimple\bk1\Folder1\1_B
-=s \\192.168.242.1\UNCsimple\bk1\_F\0_A
-=s \\192.168.242.1\UNCsimple\bk1\_F\1_A
-=s \\192.168.242.1\UNCsimple\bk1\_F\1_C
+  Folder:        10         1         -         9         0         0         0
+ Symlink:         5         -         0         0         0         5         0
+#s \\192.168.253.128\UNCsimple\source\inner\_F\0_A
+#s \\192.168.253.128\UNCsimple\source\inner\_F\1_A
+#s \\192.168.253.128\UNCsimple\source\inner\_F\1_C
+#s \\192.168.253.128\UNCsimple\source\inner\inner_reparse
+#s \\192.168.253.128\UNCsimple\source\inner\outer_reparse
++d \\192.168.253.128\UNCsimple\bk1\inner\Folder0
++f \\192.168.253.128\UNCsimple\bk1\inner\Folder0\0_A
++f \\192.168.253.128\UNCsimple\bk1\inner\Folder0\0_B
++f \\192.168.253.128\UNCsimple\bk1\inner\Folder0\0_C
++f \\192.168.253.128\UNCsimple\bk1\inner\Folder0\0_D
+=d \\192.168.253.128\UNCsimple\bk1
+=d \\192.168.253.128\UNCsimple\bk1\_F
+=d \\192.168.253.128\UNCsimple\bk1\_F\F0
+=d \\192.168.253.128\UNCsimple\bk1\inner
+=d \\192.168.253.128\UNCsimple\bk1\inner\_F
+=d \\192.168.253.128\UNCsimple\bk1\inner\_F\F0
+=d \\192.168.253.128\UNCsimple\bk1\inner\Folder1
+=d \\192.168.253.128\UNCsimple\bk1\outer
+=d \\192.168.253.128\UNCsimple\bk1\outer\OF
+=f \\192.168.253.128\UNCsimple\bk1\inner\Folder1\1_A
+=f \\192.168.253.128\UNCsimple\bk1\inner\Folder1\1_B
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
+ERROR: symlink 'test\UNCSimple\dest\inner\_F\0_A' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\_F\1_A' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\_F\1_C' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\inner_reparse' does not exist
+ERROR: symlink 'test\UNCSimple\dest\inner\outer_reparse' does not exist
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --copy Drive to Mapped Drive 
+C:\data\cpp\git\hardlinks\ln>REM --copy Drive to Mapped Drive 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
+test\UNCSimple\source\inner\_F\0_A -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder0\0_A
+test\UNCSimple\source\inner\_F\1_A -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder1\1_A
+test\UNCSimple\source\inner\_F\1_C -#-> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder1\1_C (C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder1\1_C)
+test\UNCSimple\source\inner\inner_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\inner\Folder0
+test\UNCSimple\source\inner\outer_reparse -> C:\data\cpp\git\hardlinks\ln\test\UNCSimple\source\outer\OF
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\UNCSimple\source t:\dest  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --copy test\UNCSimple\source t:\dest  1>sortout 
 
 
                       Overall
@@ -593,78 +986,97 @@ D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --copy test\
     Byte:     2.469     2.469         0         0         0         0
     File:         6         6         0         0         0         0
    Times:        00:00:00.002
-  Folder:         5         5         -         0         0         0
- Symlink:         3         -         3         0         0         0
-&s t:\dest\_F\1_C
+  Folder:        10        10         -         0         0         0
+ Symlink:         5         -         5         0         0         0
+&s t:\dest\inner\_F\1_C
 +d t:\dest
 +d t:\dest\_F
 +d t:\dest\_F\F0
-+d t:\dest\Folder0
-+d t:\dest\Folder1
-+f t:\dest\Folder0\0_A
-+f t:\dest\Folder0\0_B
-+f t:\dest\Folder0\0_C
-+f t:\dest\Folder0\0_D
-+f t:\dest\Folder1\1_A
-+f t:\dest\Folder1\1_B
-+s t:\dest\_F\0_A
-+s t:\dest\_F\1_A
++d t:\dest\inner
++d t:\dest\inner\_F
++d t:\dest\inner\_F\F0
++d t:\dest\inner\Folder0
++d t:\dest\inner\Folder1
++d t:\dest\outer
++d t:\dest\outer\OF
++f t:\dest\inner\Folder0\0_A
++f t:\dest\inner\Folder0\0_B
++f t:\dest\inner\Folder0\0_C
++f t:\dest\inner\Folder0\0_D
++f t:\dest\inner\Folder1\1_A
++f t:\dest\inner\Folder1\1_B
++s t:\dest\inner\_F\0_A
++s t:\dest\inner\_F\1_A
++s t:\dest\inner\inner_reparse
++s t:\dest\inner\outer_reparse
 Junction:         0         -         0         0         0         0
 ErrorLevel == 0
-test\UNCSimple\dest\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\dest\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\bk1\_F\1_C -> ..\Folder1\1_C
+test\UNCSimple\dest\inner\_F\0_A -> ..\Folder0\0_A
+test\UNCSimple\dest\inner\_F\1_A -> ..\Folder1\1_A
+test\UNCSimple\dest\inner\_F\1_C -#-> ..\Folder1\1_C (\\?\C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder1\1_C)
+test\UNCSimple\dest\inner\inner_reparse -> Folder0
+test\UNCSimple\dest\inner\outer_reparse -> ..\outer\OF
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM --delorean Drive to Mapped Drive 
+C:\data\cpp\git\hardlinks\ln>REM --delorean Drive to Mapped Drive 
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --delorean test\UNCSimple\source t:\dest t:\bk1  1>sortout 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --delorean test\UNCSimple\source t:\dest t:\bk1  1>sortout 
 
 
 'Sleeping 5 sec: Destination is a remote drive.
 -d t:\bk1\_F\F0
--f t:\bk1\Folder0\0_D
+-f t:\bk1\inner\Folder0\0_D
                       Overall               Clone              Mirror
               Total    Copied    Linked   Skipped   Removed  Excluded    Failed
     Byte:     1.811       406         0     1.405       532         0         0
     File:         5         1         0         4         1         0         0
    Times:        00:00:00.002        00:00:00.007        00:00:00.034
-  Folder:         4         0         -         4         1         0         0
- Symlink:         3         -         0         3         0         0         0
-+f t:\bk1\Folder0\0_C
+  Folder:         9         0         -         9         1         0         0
+ Symlink:         5         -         0         5         0         0         0
++f t:\bk1\inner\Folder0\0_C
 =d t:\bk1
 =d t:\bk1\_F
-=d t:\bk1\Folder0
-=d t:\bk1\Folder1
-=f t:\bk1\Folder0\0_A
-=f t:\bk1\Folder0\0_B
-=f t:\bk1\Folder1\1_A
-=f t:\bk1\Folder1\1_B
-=s t:\bk1\_F\0_A
-=s t:\bk1\_F\1_A
-=s t:\bk1\_F\1_C
+=d t:\bk1\inner
+=d t:\bk1\inner\_F
+=d t:\bk1\inner\_F\F0
+=d t:\bk1\inner\Folder0
+=d t:\bk1\inner\Folder1
+=d t:\bk1\outer
+=d t:\bk1\outer\OF
+=f t:\bk1\inner\Folder0\0_A
+=f t:\bk1\inner\Folder0\0_B
+=f t:\bk1\inner\Folder1\1_A
+=f t:\bk1\inner\Folder1\1_B
+=s t:\bk1\inner\_F\0_A
+=s t:\bk1\inner\_F\1_A
+=s t:\bk1\inner\_F\1_C
+=s t:\bk1\inner\inner_reparse
+=s t:\bk1\inner\outer_reparse
 Junction:         0         -         0         0         0         0         0
 ErrorLevel == 0
-D:\data\cpp\hardlinks\ln\test\UNCSimple\bk1\Folder0\0_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder0\0_C
   :                                       406
 Total size: 406 bytes.
-D:\data\cpp\hardlinks\ln\test\UNCSimple\dest\Folder0\0_C
+C:\data\cpp\git\hardlinks\ln\test\UNCSimple\dest\inner\Folder0\0_C
   :                                       532
 Total size: 532 bytes.
-test\UNCSimple\bk1\_F\0_A -> ..\Folder0\0_A
-test\UNCSimple\bk1\_F\1_A -> ..\Folder1\1_A
-test\UNCSimple\bk1\_F\1_C -> ..\Folder1\1_C
-D:\data\cpp\hardlinks\ln>REM
+test\UNCSimple\bk1\inner\_F\0_A -> ..\Folder0\0_A
+test\UNCSimple\bk1\inner\_F\1_A -> ..\Folder1\1_A
+test\UNCSimple\bk1\inner\_F\1_C -#-> ..\Folder1\1_C (\\?\C:\data\cpp\git\hardlinks\ln\test\UNCSimple\bk1\inner\Folder1\1_C)
+test\UNCSimple\bk1\inner\inner_reparse -> Folder0
+test\UNCSimple\bk1\inner\outer_reparse -> ..\outer\OF
 
-D:\data\cpp\hardlinks\ln>REM --probefs for UNC names & Drives 
+C:\data\cpp\git\hardlinks\ln>REM
 
-D:\data\cpp\hardlinks\ln>REM
+C:\data\cpp\git\hardlinks\ln>REM --probefs for UNC names & Drives 
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --probefs \\10.0.0.74\UNCsimple 
+C:\data\cpp\git\hardlinks\ln>REM
+
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --probefs \\192.168.253.128\UNCsimple 
 NTFS
 
-D:\data\cpp\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --probefs \\10.0.0.74\UNCsimple 
+C:\data\cpp\git\hardlinks\ln>..\bin\X64\Release\ln.exe --automated_test --progress  --probefs \\192.168.253.128\UNCsimple 
 NTFS

@@ -23,7 +23,7 @@ REM
 REM
 REM --delorean UNC to UNC
 REM
-@del %TESTROOTSRC%\Folder0\0_D	
+@del %TESTROOTSRC%\inner\Folder0\0_D	
 @%RD% %TESTROOTSRC%\_F\F0
 %LN% --delorean \\%LH%\%SHARENAME%\source \\%LH%\%SHARENAME%\dest \\%LH%\%SHARENAME%\bk1 > sortout
 @set ERRLEV=%errorlevel%
@@ -33,8 +33,95 @@ REM
 
 @%RD% %TESTROOTBKP% > nul
 @%RD% %TESTROOTDST% > nul
-@copy test\readme.txt "%TESTROOTSRC%\Folder0\0_D" > nul
+@copy test\readme.txt "%TESTROOTSRC%\inner\Folder0\0_D" > nul
 @%MKDIR% %TESTROOTSRC%\_F\F0 > nul
+
+@echo on
+REM
+REM --copy UNC to UNC via Localhost with splice
+REM
+%LN% --keepsymlinkrelation --splice --copy \\%LH%\%SHARENAME%\source\inner \\%LH%\%SHARENAME%\dest\inner > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@call :CheckSymbolicLinks %2 %TESTROOTDST%
+
+@%RD% %TESTROOTDST% > nul
+
+@echo on
+REM
+REM --copy UNC to UNC via Localhost with splice
+REM
+%LN% --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --splice --copy \\%LH%\%SHARENAME%\source\inner \\%LH%\%SHARENAME%\dest\inner > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@call :CheckSymbolicLinks %2 %TESTROOTDST%
+@%RD% %TESTROOTDST% > nul
+
+@echo on
+REM
+REM --copy UNC to UNC via Localhost with splice, anchor and destination
+REM
+%LN% --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --destination %TESTROOTDST%\inner --splice --copy \\%LH%\%SHARENAME%\source\inner \\%LH%\%SHARENAME%\dest\inner > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@call :CheckSymbolicLinks %2 %TESTROOTDST%
+@%RD% %TESTROOTDST% > nul
+
+@echo on
+REM
+REM --copy UNC to Drive via Localhost with --splice --nolocaluncresolve
+REM
+%LN% --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --splice --copy \\%LH%\%SHARENAME%\source\inner %TESTROOTDST%\inner > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@call :CheckSymbolicLinks %2 %TESTROOTDST%
+
+REM
+REM --delorean UNC to Drive via Localhost with --splice --nolocaluncresolve --anchor
+REM
+@del %TESTROOTSRC%\inner\Folder0\0_D	
+@%RD% %TESTROOTSRC%\_F\F0
+%LN% --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --delorean \\%LH%\%SHARENAME%\source\inner %TESTROOTDST%\inner %TESTROOTBKP%\inner > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@call :CheckSymbolicLinks %2 %TESTROOTBKP%
+
+@%RD% %TESTROOTBKP% > nul
+@%RD% %TESTROOTDST% > nul
+@copy test\readme.txt "%TESTROOTSRC%\inner\Folder0\0_D" > nul
+@%MKDIR% %TESTROOTSRC%\_F\F0 > nul
+
+REM
+REM --delorean Drive to a *different* Drive via Localhost with --splice --nolocaluncresolve
+REM
+@set TESTROOTDST_SAVE=%TESTROOTDST%
+@set TESTROOTDST=%EMTPYSNAPHOTDRIVE%\DST
+@set TESTROOTBKP_SAVE=%TESTROOTBKP%
+@set TESTROOTBKP=%EMTPYSNAPHOTDRIVE%\BKP
+@del %TESTROOTSRC%\inner\Folder0\0_D	
+@%RD% %TESTROOTSRC%\_F\F0
+@%LN% --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --splice --copy \\%LH%\%SHARENAME%\source\inner %TESTROOTDST%\inner > nul
+@%RD% %TESTROOTDST%\inner\inner_reparse
+%LN% --splice --nolocaluncresolve --keepsymlinkrelation --anchor %TESTROOTSRC%\inner --delorean \\%LH%\%SHARENAME%\source\inner %TESTROOTDST%\inner %TESTROOTBKP%\inner > sortout
+@set ERRLEV=%errorlevel%
+@sort sortout
+@echo ErrorLevel == %ERRLEV%
+@call :CheckSymbolicLinks %2 %TESTROOTBKP%
+
+@%RD% %TESTROOTBKP% > nul
+@%RD% %TESTROOTDST% > nul
+@copy test\readme.txt "%TESTROOTSRC%\inner\Folder0\0_D" > nul
+@%MKDIR% %TESTROOTSRC%\_F\F0 > nul
+
+@set TESTROOTBKP=%TESTROOTBKP_SAVE%
+@set TESTROOTDST=%TESTROOTDST_SAVE%
+
+
 
 REM
 REM --copy Drive to UNC via Localhost
@@ -49,7 +136,7 @@ REM
 REM
 REM --delorean Drive to UNC via Localhost
 REM
-@del %TESTROOTSRC%\Folder0\0_D	
+@del %TESTROOTSRC%\inner\Folder0\0_D	
 @%RD% %TESTROOTSRC%\_F\F0
 %LN% --delorean %TESTROOTSRC% \\%LH%\%SHARENAME%\dest \\%LH%\%SHARENAME%\bk1 > sortout
 @set ERRLEV=%errorlevel%
@@ -59,9 +146,8 @@ REM
 
 @%RD% %TESTROOTBKP% > nul
 @%RD% %TESTROOTDST% > nul
-@copy test\readme.txt "%TESTROOTSRC%\Folder0\0_D" > nul
+@copy test\readme.txt "%TESTROOTSRC%\inner\Folder0\0_D" > nul
 @%MKDIR% %TESTROOTSRC%\_F\F0 > nul
-
 
 REM
 REM --copy UNC to UNC via sharename, nolocaluncresolve
@@ -76,7 +162,7 @@ REM
 REM
 REM --delorean UNC to UNC via sharename, nolocaluncresolve
 REM
-@del %TESTROOTSRC%\Folder0\0_D	
+@del %TESTROOTSRC%\inner\Folder0\0_D	
 @%RD% %TESTROOTSRC%\_F\F0
 %LN% --nolocaluncresolve --delorean \\%LH%\%SHARENAME%\source \\%LH%\%SHARENAME%\dest \\%LH%\%SHARENAME%\bk1 > sortout
 @set ERRLEV=%errorlevel%
@@ -88,7 +174,7 @@ REM
 @%RD% %TESTROOTDST% > nul
 
 @REM repair
-@copy test\readme.txt "%TESTROOTSRC%\Folder0\0_D" > nul
+@copy test\readme.txt "%TESTROOTSRC%\inner\Folder0\0_D" > nul
 @%MKDIR% %TESTROOTSRC%\_F\F0 > nul
 
 REM
@@ -103,31 +189,31 @@ REM
 REM
 REM --delorean Drive to UNC via sharename, nolocaluncresolve
 REM
-@del %TESTROOTSRC%\Folder0\0_D	
+@del %TESTROOTSRC%\inner\Folder0\0_D	
 @%RD% %TESTROOTSRC%\_F\F0
-@%COPY% test\resource.h "%TESTROOTSRC%\Folder0\0_C" > nul
+@%COPY% test\resource.h "%TESTROOTSRC%\inner\Folder0\0_C" > nul
 %LN% --nolocaluncresolve --delorean %TESTROOTSRC% \\%LH%\%SHARENAME%\dest \\%LH%\%SHARENAME%\bk1 > sortout
 @set ERRLEV=%errorlevel%
 @sort sortout
 @echo ErrorLevel == %ERRLEV%
-@%LISTSTREAMS% %TESTROOTBKP%\Folder0\0_C
-@%LISTSTREAMS% %TESTROOTDST%\Folder0\0_C
+@%LISTSTREAMS% %TESTROOTBKP%\inner\Folder0\0_C
+@%LISTSTREAMS% %TESTROOTDST%\inner\Folder0\0_C
 @call :CheckSymbolicLinks %2 %TESTROOTBKP%
 
 @%RD% %TESTROOTBKP% > nul
 @%RD% %TESTROOTDST% > nul
 
 @REM repair
-@copy test\readme.txt %TESTROOTSRC%\Folder0\0_D > nul
-@copy test\readme.txt %TESTROOTSRC%\Folder0\0_C > nul
+@copy test\readme.txt %TESTROOTSRC%\inner\Folder0\0_D > nul
+@copy test\readme.txt %TESTROOTSRC%\inner\Folder0\0_C > nul
 @%MKDIR% %TESTROOTSRC%\_F\F0 > nul
 
 REM
 REM --delorean Drive to UNC via sharename, nolocaluncresolve, clean fails
 REM
 @%LN% --nolocaluncresolve --copy %TESTROOTSRC% \\%LH%\%SHARENAME%\dest > nul
-@type test\y | @%CACLS% %TESTROOTDST%\Folder0\0_D /D "%USERNAME%" > nul
-@del %TESTROOTSRC%\Folder0\0_D
+@type test\y | @%CACLS% %TESTROOTDST%\inner\Folder0\0_D /D "%USERNAME%" > nul
+@del %TESTROOTSRC%\inner\Folder0\0_D
 %LN% --nolocaluncresolve --delorean %TESTROOTSRC% \\%LH%\%SHARENAME%\dest \\%LH%\%SHARENAME%\bk1 > sortout
 @set ERRLEV=%errorlevel%
 @sort sortout
@@ -144,11 +230,11 @@ REM
 @call :CheckSymbolicLinks %2 %TESTROOTDST%
 
 @REM repair
-@type test\y | @%CACLS% %TESTROOTDST%\Folder0\0_D /G "%USERNAME%":F > nul
+@type test\y | @%CACLS% %TESTROOTDST%\inner\Folder0\0_D /G "%USERNAME%":F > nul
 @%RD% %TESTROOTDST% > nul
 @%RD% %TESTROOTBKP% > nul
 
-@copy test\readme.txt "%TESTROOTSRC%\Folder0\0_D" > nul
+@copy test\readme.txt "%TESTROOTSRC%\inner\Folder0\0_D" > nul
 
 
 
@@ -165,7 +251,7 @@ REM
 REM
 REM --delorean UNC to UNC via sharename, nolocaluncresolve
 REM
-@del %TESTROOTSRC%\Folder0\0_D	
+@del %TESTROOTSRC%\inner\Folder0\0_D	
 @%RD% %TESTROOTSRC%\_F\F0
 %LN% --delorean \\%IP_ADRESS%\%SHARENAME%\source \\%LH%\%SHARENAME%\dest \\%LH%\%SHARENAME%\bk1 > sortout
 @set ERRLEV=%errorlevel%
@@ -175,7 +261,7 @@ REM
 
 @%RD% %TESTROOTBKP% > nul
 @%RD% %TESTROOTDST% > nul
-@copy test\readme.txt "%TESTROOTSRC%\Folder0\0_D" > nul
+@copy test\readme.txt "%TESTROOTSRC%\inner\Folder0\0_D" > nul
 @%MKDIR% %TESTROOTSRC%\_F\F0 > nul
 
 REM
@@ -202,14 +288,14 @@ REM --delorean UNC
 REM
 @%RD% %TESTROOTDST% > nul
 @%LN% --copy \\%IP_ADRESS%\%SHARENAME%\source \\%IP_ADRESS%\%SHARENAME%\dest > nul
-@%RD% \\%IP_ADRESS%\UNCsimple\dest\Folder0
+@%RD% \\%IP_ADRESS%\UNCsimple\dest\inner\Folder0
 %LN% --delorean \\%IP_ADRESS%\%SHARENAME%\source \\%IP_ADRESS%\%SHARENAME%\dest \\%IP_ADRESS%\%SHARENAME%\bk1 > sortout
 @set ERRLEV=%errorlevel%
 @sort sortout
 @echo ErrorLevel == %ERRLEV%
 @call :CheckSymbolicLinks %2 %TESTROOTBKP%
 
-@del \\%LH%\%SHARENAME%\source\Folder1\1_C
+@del \\%LH%\%SHARENAME%\source\inner\Folder1\1_C
 @%RD% \\%IP_ADRESS%\%SHARENAME%\bk1
 %LN% --delorean \\%IP_ADRESS%\%SHARENAME%\source \\%IP_ADRESS%\%SHARENAME%\dest \\%IP_ADRESS%\%SHARENAME%\bk1 > sortout
 @set ERRLEV=%errorlevel%
@@ -224,7 +310,7 @@ REM
 @net use %EMPTYTESTDRIVE% \\%LH%\%SHARENAME% > nul
 @%RD% %TESTROOTBKP% > nul
 @%RD% %TESTROOTDST% > nul
-@copy test\readme.txt %TESTROOTSRC%\Folder0\0_D > nul
+@copy test\readme.txt %TESTROOTSRC%\inner\Folder0\0_D > nul
 @call :CheckSymbolicLinks %2 %TESTROOTSRC%
 %LN% --copy %TESTROOTSRC% %EMPTYTESTDRIVE%\dest > sortout
 @set ERRLEV=%errorlevel%
@@ -235,23 +321,23 @@ REM
 REM
 REM --delorean Drive to Mapped Drive
 REM
-@del %TESTROOTSRC%\Folder0\0_D
+@del %TESTROOTSRC%\inner\Folder0\0_D
 @%RD% %TESTROOTSRC%\_F\F0
-@%COPY% test\resource.h "%TESTROOTSRC%\Folder0\0_C" > nul
+@%COPY% test\resource.h "%TESTROOTSRC%\inner\Folder0\0_C" > nul
 
 %LN% --delorean %TESTROOTSRC% %EMPTYTESTDRIVE%\dest %EMPTYTESTDRIVE%\bk1 > sortout
 @set ERRLEV=%errorlevel%
 @sort sortout
 @echo ErrorLevel == %ERRLEV%
-@%LISTSTREAMS% %TESTROOTBKP%\Folder0\0_C
-@%LISTSTREAMS% %TESTROOTDST%\Folder0\0_C
+@%LISTSTREAMS% %TESTROOTBKP%\inner\Folder0\0_C
+@%LISTSTREAMS% %TESTROOTDST%\inner\Folder0\0_C
 @call :CheckSymbolicLinks %2 %TESTROOTBKP%
 
 @%RD% %TESTROOTBKP% > nul
 @%RD% %TESTROOTDST% > nul
 
-@copy test\readme.txt %TESTROOTSRC%\Folder0\0_D > nul
-@copy test\readme.txt "%TESTROOTSRC%\Folder0\0_C" > nul
+@copy test\readme.txt %TESTROOTSRC%\inner\Folder0\0_D > nul
+@copy test\readme.txt "%TESTROOTSRC%\inner\Folder0\0_C" > nul
 @%MKDIR% %TESTROOTSRC%\_F\F0 > nul
 
 @net use %EMPTYTESTDRIVE% /Delete > nul
@@ -276,9 +362,11 @@ if [%DEEPPATH%] == [] %NETSHAREDEL% %SHARENAME% > nul
 
 :CheckSymbolicLinks 
 @if [%1] == [symbolic] ( 
-  @%LN% --%1 "%2\_F\0_A"
-  @%LN% --%1 "%2\_F\1_A"
-  @%LN% --%1 "%2\_F\1_C"
+  @%LN% --%1 "%2\inner\_F\0_A"
+  @%LN% --%1 "%2\inner\_F\1_A"
+  @%LN% --%1 "%2\inner\_F\1_C"
+  @%LN% --%1 "%2\inner\inner_reparse"
+  @%LN% --%1 "%2\inner\outer_reparse"
 )
 @exit /b
 
