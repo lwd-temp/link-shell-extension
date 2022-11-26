@@ -1,4 +1,4 @@
-DEBUG_DEFINES must not be enables in hardlink_types.h
+DEBUG_DEFINES must not be enabled in hardlink_types.h
 
 Edit BuildWord.bat and update version number for LSE, ln.exe and Dupemerge.exe
 With Windows 10 open a 'Admin' command prompt otherwise stups can get get copied to 'Programm Files'
@@ -24,6 +24,8 @@ if only one product, e.g. ln.exe
 	check bat/FilesToUpload.txt and temporarily delete what shall not be uploaded to symbol server
 	Change goto statements in bat/MediaUpload.bat so that only generated products are uploaded to choco
 	
+edit bat/MediaUpload.bat and use the 'goto' to skip media upload for not published products
+	
 BuildWorld.bat
 Check if all plattforms are selected in Batch Build
 
@@ -33,3 +35,4 @@ Post to facebook
 Upload to Heise
 Backup Symbol Server and Media
 
+Discard temporary changes in bat/FilesToUpload.txt and bat/MediaUpload.bat
