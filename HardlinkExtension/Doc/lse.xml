@@ -7,11 +7,28 @@
     <language>en</language>
 
     <item>
+      <title>ln.exe 2.934 has been released.</title>
+      <link>https://schinagl.priv.at/nt/ln/ln.html#2930</link>
+      <pubDate>Sun, 26 November 2022 18:00:50:15 +0100</pubDate>
+      <description>
+        ln.exe 2.934 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+			<li>Docu update on <a href="https://schinagl.priv.at/nt/ln/ln.html#anchor">--anchor</a> and <a href="https://schinagl.priv.at/nt/ln/ln.html#destination">--destination</a></a></li>
+			<li>--probefs failed on unknown filesystems</li>
+			<li>ln reports error code when it fails creating hardlinks</li>
+        ]]>
+      </content:encoded>
+      <guid>https://schinagl.priv.at/nt/ln/ln.html#2934</guid>
+    </item>
+
+    <item>
       <title>ln.exe 2.933 has been released.</title>
       <link>https://schinagl.priv.at/nt/ln/ln.html#2930</link>
       <pubDate>Sun, 9 February 2021 21:30:50:15 +0100</pubDate>
       <description>
-        ln.exe 2.932 has been released.
+        ln.exe 2.933 has been released.
       </description>
       <content:encoded>
         <![CDATA[
@@ -27,7 +44,7 @@
       <link>https://schinagl.priv.at/nt/ln/ln.html#2930</link>
       <pubDate>Sun, 28 January 2021 20:30:50:15 +0100</pubDate>
       <description>
-        ln.exe 2.931 has been released.
+        ln.exe 2.932 has been released.
       </description>
       <content:encoded>
         <![CDATA[
