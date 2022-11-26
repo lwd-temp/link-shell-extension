@@ -234,28 +234,28 @@ enum Operations
 
  // defines for commandline wrappers
  //
-#define ERR_ERROR 		                  1
-#define ERR_SUCCESS 		                  0
-#define ERR_SOURCE_DIR_DOES_NOT_EXIST 		-1
-#define ERR_ARG_IS_NOT_A_DIRECTORY				-2
-#define ERR_FILE_ALREADY_EXISTS 				-3
-#define ERR_FAILED_TO_CREATE_DIR				-4
-#define ERR_FILE_DOES_NOT_EXIST 				-5
-#define ERR_HARDLINKS_UNSUPPORTED 				-6
-#define ERR_CREATE_HARDLINK_FAILED				-7
-#define ERR_LESS_CMD_ARGUMENTS					-8
-#define ERR_FAILED_TO_ENUMERATE_FILES			-9
-#define ERR_TOO_MANY_LINKS					    -10  // Not yet in html docu
-#define ERR_NOT_ON_SAME_VOLUME					-11  // Not yet in html docu
-#define ERR_SMARTCOPY_FAILED					-12
-#define ERR_NO_HARDLINKGROUPS					-13
-#define ERR_SMARTCLONE_FAILED         -14
-#define ERR_SMARTMIRROR_FAILED					-15
-#define ERR_DELOREANCOPY_FAILED					-16
-#define ERR_ACCESS_DENIED					      -17 // Not yet in html docu
-#define ERR_OPERATION_NOT_SUPPORTED     -18 // Not yet in html docu and not yet used
-#define ERR_SMARTDELETE_FAILED          -19
-#define ERR_TARGET_DIR_DOES_NOT_EXIST 		-20 // Not yet in html docu
+#define ERR_ERROR                          1
+#define ERR_SUCCESS                        0
+#define ERR_SOURCE_DIR_DOES_NOT_EXIST     -1
+#define ERR_ARG_IS_NOT_A_DIRECTORY        -2
+#define ERR_FILE_ALREADY_EXISTS           -3
+#define ERR_FAILED_TO_CREATE_DIR          -4
+#define ERR_FILE_DOES_NOT_EXIST           -5
+#define ERR_HARDLINKS_UNSUPPORTED         -6
+#define ERR_CREATE_HARDLINK_FAILED        -7
+#define ERR_LESS_CMD_ARGUMENTS            -8
+#define ERR_FAILED_TO_ENUMERATE_FILES     -9
+#define ERR_TOO_MANY_LINKS                -10  
+#define ERR_NOT_ON_SAME_VOLUME            -11  
+#define ERR_SMARTCOPY_FAILED              -12
+#define ERR_NO_HARDLINKGROUPS             -13
+#define ERR_SMARTCLONE_FAILED             -14
+#define ERR_SMARTMIRROR_FAILED            -15
+#define ERR_DELOREANCOPY_FAILED           -16
+#define ERR_ACCESS_DENIED                 -17
+#define ERR_OPERATION_NOT_SUPPORTED       -18
+#define ERR_SMARTDELETE_FAILED            -19
+#define ERR_TARGET_DIR_DOES_NOT_EXIST     -20
 
 class _ArgvPath
 {

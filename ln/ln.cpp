@@ -2796,7 +2796,7 @@ wmain(
         if (r)
           fwprintf(gStdOutFile, L"+f %s\n", DestFullPath);
         else
-          fwprintf(gStdOutFile, L"!f %s\n", DestFullPath);
+          fwprintf(gStdOutFile, L"!f (0x%08x) %s\n", GetLastError(), DestFullPath);
 
         Exit(ERR_SUCCESS);
 
