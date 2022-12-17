@@ -169,7 +169,7 @@
                 Resource Kits, dem <i>fsutil</i> Befehl von Windows oder mit diesem Tool
                 <a href="https://schinagl.priv.at/nt/ln/ln.html">ln.exe</a>&nbsp; erstellt werden.
 
-                Daher können Hardlinks mit Standard Windows Befehlen nur in der 
+                Daher können Hardlinks mit Standard Windows Befehlen nur in der
                 Eingabeaufforderung erstellt werden, was aber sehr mühsam sein kann, besonders wenn Hardlinks zu mehreren Dateien nötig sind
                 oder wenn man nur selten von Hardlinks gebrauch macht.&nbsp;
                 Die Unterstützung für Junctions und Symbolische Links unter Windows ist noch begrenzter als die für Hardlinks.
@@ -201,7 +201,7 @@
                 </b> verwendet, um die rechte Maustaste und das Menü zu beschreiben, das erscheint wenn die rechte Maustaste gedrückt wird
                 (oft auch als Context Menu bezeichnet). In Anbetracht dessen, dass Benutzer die Funktionen ihrer Maustasten ändern können,
                 bezeichnet Microsoft diese als primäre und secondäre Maustasten. Wir bevorzugen es die Maustasten
-                <b>Selecttaste</b> und <b>Aktionstaste</b> zu nennen, und Anstelle des Context Menus, des Shell Menus 
+                <b>Selecttaste</b> und <b>Aktionstaste</b> zu nennen, und Anstelle des Context Menus, des Shell Menus
                 oder des Right Mouse menus wird der Begriff <b>Action menu</b> verwendet.
             </td>
         </tr>
@@ -340,6 +340,31 @@
             <td colspan="2"><br /></td>
         </tr>
 
+        <!-- WinGet -->
+        <tr>
+            <td class="hanger2">
+                <a name="winget"><b>Winget<br />Installation</b></a>
+            </td>
+
+            <td class="bodytext">
+                LSE kann auch via <a href="https://winget.run/">winget</a> und dem Komando
+                <br /><br />
+                <span class="ascode">
+                    winget install HermannSchinagl.LinkShellExtension
+                </span>
+                <br />
+                <br />
+                von einem Command prompt installiert werden. Stellen sie dicher, dass <a href="https://winget.run/">winget installiert ist</a>.
+                <br />
+                <br />
+                <br />
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><br /></td>
+        </tr>
+
         <tr>
             <td class="hanger">
                 <a name="usinglinkshellextension"><b>Link ShellExtension verwenden</b></a>
@@ -355,7 +380,7 @@
                 <br />
 
                 Um einen Hardlink zu erstellen, muss ein Zielordner ausgewählt werden.
-                Wenn Sie mit der Aktionstaste der Maus auf den Zielordner klicken, öffnet sich ein Menü, das den Eintrag 
+                Wenn Sie mit der Aktionstaste der Maus auf den Zielordner klicken, öffnet sich ein Menü, das den Eintrag
                 <b>HardLink erstellen</b>
                 <br />
                 <br />
@@ -594,7 +619,7 @@
 
             <td class="bodytext">
                 <p>
-                    Link Shell Extension kann existierende Junctions/Symbolische Links/Bereitstellungspunkte 
+                    Link Shell Extension kann existierende Junctions/Symbolische Links/Bereitstellungspunkte
                     entweder mit Festsetzen/Einfügen oder mit Drag and Drop kopieren.
                 </p>
 
@@ -942,8 +967,8 @@
                             <p>
                                 <b>Crop für äußere Verbindungen/Symbolische Links aktivieren</b><br />
                                 <i>Crop</i> kann über das <a href="#configuration">KonfigurationsTool</a> ausgewählt werden.
-                            <br />
-                            <br />
+                                <br />
+                                <br />
                             </p>
                         </td>
                     </tr>
@@ -2022,7 +2047,7 @@
                 <br /><br />
                 Überlagerungs Symbole für Symbolische Links können auch <a href="#customoverlayicons">angepasst werden.</a>
                 <p>
-                <br />
+                    <br />
             </td>
         </tr>
 
@@ -2036,19 +2061,19 @@
                 <p>
                     Markieren Sie einfach eine fest verlinkte Datei und wählen Sie
                     <a href="#linkproperties">Properties </a>aus dem Aktionsmenü:
-<p>
+                <p>
 
                 <p>
                     <img src="enumeratehardlinks.png" alt="Enumerate Hardlinks" />
                 </p><br />
 
-                    <p>
-                        Die Hardlink-Aufzählung ist auch über die
-                        Kommandozeile von
-                        <a href="https://schinagl.priv.at/nt/ln/ln.html">ln.exe</a>
-                        über den <a href="https://schinagl.priv.at/nt/ln/ln.html#enumhardlinks">--enum</a> oder
-                        den <a href="https://schinagl.priv.at/nt/ln/ln.html#listsiblings">--list</a> Befehlszeilenschalter verfügbar.
-                    </p>
+                <p>
+                    Die Hardlink-Aufzählung ist auch über die
+                    Kommandozeile von
+                    <a href="https://schinagl.priv.at/nt/ln/ln.html">ln.exe</a>
+                    über den <a href="https://schinagl.priv.at/nt/ln/ln.html#enumhardlinks">--enum</a> oder
+                    den <a href="https://schinagl.priv.at/nt/ln/ln.html#listsiblings">--list</a> Befehlszeilenschalter verfügbar.
+                </p>
 
                 <br /><br />
 
@@ -2064,7 +2089,7 @@
                 <p>
                     Aufgrund der UAC müssen einige API-Aufrufe auf die administrative Ebene angehoben werden. Diese Anhebung muss über den unten gezeigten Dialog bestätigt werden.
 
-                    Wenn Sie also den unten gezeigten Dialog sehen und das Programm, das nach einer Erhöhung fragt, ist LSEUacHelper.exe, 
+                    Wenn Sie also den unten gezeigten Dialog sehen und das Programm, das nach einer Erhöhung fragt, ist LSEUacHelper.exe,
                     dann handelt es sich um Link Shell Extension. Sie müssen den Dialog bestätigen um Symbolische Links zu erstellen.
                 </p>
                 <p>
@@ -2081,7 +2106,7 @@
             </td>
             <td class="bodytext">
                 <p>
-                    Eine Möglichkeit die UAC-Abfrage zum Erstellen von Symbolischen Links zu umgehen, besteht darin 
+                    Eine Möglichkeit die UAC-Abfrage zum Erstellen von Symbolischen Links zu umgehen, besteht darin
                     Benutzern das Erstellen von Symbolischen Links zu erlauben, indem man die Richtlinie ändert.
                 </p>
                 <p>
@@ -2193,15 +2218,15 @@
                 LSE unterstützt Wechselmedien, die mit NTFS formatiert wurden, um alle Funktionen zu nutzen, die es auch für nicht Wechsel-Laufwerke bietet. Die einzige Einschränkung
                 ist, dass es nicht auf Wechseldatenträgern funktioniert, wenn diese auf Laufwerk A: oder B: gemountet sind. Der Grund dafür ist, dass A: oder B: üblicherweise für Diskettenlaufwerke verwendet werden.
                 <p>
-                    Bei Wechseldatenträgern, die auf NTFS formatiert sind, besteht die seltene Möglichkeit, dass LSE 
-                    beim Erstellen von Hardlinks oder Junctions Probleme mit 'Zugriff verweigert' meldet. Dies liegt an 
-                    den Datei-Objektberechtigungen auf dem NTFS-Wechsellaufwerk, die mit einem anderen Computer auf diesem 
-                    Wechseldatenträger erstellt wurden, wodurch diese 'Zugriff verweigert' Meldungen verursacht werden. Die 
+                    Bei Wechseldatenträgern, die auf NTFS formatiert sind, besteht die seltene Möglichkeit, dass LSE
+                    beim Erstellen von Hardlinks oder Junctions Probleme mit 'Zugriff verweigert' meldet. Dies liegt an
+                    den Datei-Objektberechtigungen auf dem NTFS-Wechsellaufwerk, die mit einem anderen Computer auf diesem
+                    Wechseldatenträger erstellt wurden, wodurch diese 'Zugriff verweigert' Meldungen verursacht werden. Die
                     Lösung besteht darin, die Berechtigung auf diesem Wechseldatenträger als Administrator zu ändern.
                     <br />
                     <br />
 
-</td>
+            </td>
         </tr>
 
         <tr>
@@ -2295,7 +2320,7 @@
                 </p>
                 <p>
                     Das Konfigurieren Ihres bevorzugten Dateisystems, damit es von LSE erkannt wird, geschieht auf eigene Gefahr. Grundsätzlich würde LSE alle Operationen
-                    auf die konfigurierten Dateisysteme ausführen, die es auch auf NTFS ausführt. Stellen Sie also sicher, dass Ihr Dateisystem den gleichen 
+                    auf die konfigurierten Dateisysteme ausführen, die es auch auf NTFS ausführt. Stellen Sie also sicher, dass Ihr Dateisystem den gleichen
                     Funktionsumfang unterstützt wie NTFS, sonst werden bestimmte Operationen fehlschlagen.
                 </p>
                 <br />
@@ -2498,7 +2523,7 @@
                     sind für Dateien das, was Junctions für Ordner sind, da sie sowohl transparent als auch symbolisch sind. Transparenz bedeutet, dass eine Anwendung
                     auf sie zugreifen kann wie auf jede andere Datei, Symbolik bedeutet, dass die Datenobjekte auf jedem verfügbaren
                     Volume liegen können, d. h. sie sind nicht wie Hardlinks auf ein einzelnes Volume beschränkt. Symbolische Links unterscheiden sich von Shortcuts dadurch, dass
-                    sie einen transparenten Weg zum gewünschten Datenobjekt bieten, bei einer Verknüpfung (.lnk) muss 
+                    sie einen transparenten Weg zum gewünschten Datenobjekt bieten, bei einer Verknüpfung (.lnk) muss
                     der Inhalt der Verknüpfungsdatei gelesen und interpretiert und dann kann die Datei geöffnet werden. (d. h. es ist ein zweistufiger
                     Prozess). Wenn eine Anwendung einen Symlink verwendet, erhält sie sofortigen Zugriff auf das Datenobjekt, auf das der
                     Symlink referenziert wird (d. h. es ist ein einstufiger Prozess).
@@ -2695,7 +2720,7 @@
                         <p>
                             A: Die Anzahl der verschiedenen Icon-Overlay-Handler, die das System unterstützen kann, ist begrenzt
                             durch die Menge an verfügbarem Platz für Symbol-Overlays in der Systembildliste.
-                            Derzeit sind 11 Plätze für Symbol-Overlays unter Windows 10 vorgesehen, 
+                            Derzeit sind 11 Plätze für Symbol-Overlays unter Windows 10 vorgesehen,
                             von denen einige vom System reserviert sind.
                         </p>
                         <p>
@@ -2721,7 +2746,7 @@
                             und starten Sie entweder den Explorer neu oder melden Sie sich ab und wieder an. Hier geht es darum, die alphabetische Reihenfolge zu ändern
                             zu ändern, indem Sie ein Leerzeichen voranstellen. Das kann in einem Wettlauf um die höchste Priorität enden,
                             weil einige OverlayHandler wie <a href="https://stackoverflow.com/questions/41697737/shelliconoverlayidentifiers-and-windows10">
-                            DropBox schon einige Leerzeichen vorangestellt haben.</a>
+                                DropBox schon einige Leerzeichen vorangestellt haben.</a>
                         </p>
                     </li>
 
@@ -2853,6 +2878,8 @@
                         <td>
                             Version 3.9.3.5
                             <ul>
+                                <!-- 3.9.3.6, 28.11.2022 -->
+                                <li>ln.LSE kann auch via <a href="#winget">winget package</a> installiert werden.</li>
                                 <!-- 3.9.3.5, 16.01.2021 -->
                                 <li>UAC dialog wurde geöffnet auch wenn SE_CREATE_SYMBOLICLINK dem User zugewiesen war.</li>
                                 <!-- 3.9.3.4, 10.01.2021 -->
@@ -4099,6 +4126,7 @@
                             <br />
                             <br />
                             <br />
+                            <br />
                         </td>
                     </tr>
 
@@ -4113,6 +4141,30 @@
                             <span class="ascode">
                                 choco install linkshellextension
                             </span>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+
+                    <!-- WinGet -->
+                    <tr>
+                        <td class="hanger2">
+                            <a name="winget"><b>Winget<br />Installation</b></a>
+                        </td>
+
+                        <td class="bodytext">
+                            LSE kann auch via <a href="https://winget.run/">winget</a> und dem Komando
+                            <br /><br />
+                            <span class="ascode">
+                                winget install HermannSchinagl.LinkShellExtension
+                            </span>
+                            <br />
+                            <br />
+                            von einem Command prompt installiert werden. Stellen sie dicher, dass <a href="https://winget.run/">winget installiert ist</a>.
+                            <br />
+                            <br />
                             <br />
                             <br />
                         </td>

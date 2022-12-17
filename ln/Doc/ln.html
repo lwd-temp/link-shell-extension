@@ -83,7 +83,7 @@
             </td>
 
             <td valign="bottom">
-                    The privacy statement can be found <a href="https://schinagl.priv.at/about/dsgvo.html">here</a>
+                The privacy statement can be found <a href="https://schinagl.priv.at/about/dsgvo.html">here</a>
             </td>
         </tr>
 
@@ -125,6 +125,7 @@
                 Copy ln.exe to some directory referenced by your PATH environment variable. %systemroot% is a good place.
                 <br />
                 <br />
+                <br />
             </td>
         </tr>
 
@@ -143,6 +144,28 @@
                 <br />
                 <br />
                 from a command prompt. Make sure you have <a href="https://chocolatey.org/install">chocolatey installed</a>.
+                <br />
+                <br />
+                <br />
+            </td>
+        </tr>
+
+        <!-- WinGet -->
+        <tr>
+            <td class="hanger">
+                <a name="winget">Winget<br />Installation</a>
+            </td>
+
+            <td class="bodytext">
+                The 64bit version of ln.exe can also be installed via <a href="https://winget.run/">winget</a> by issuing
+                <br /><br />
+                <span class="ascode">
+                    winget install HermannSchinagl.ln
+                </span>
+                <br />
+                <br />
+                from a command prompt. Make sure you have <a href="https://winget.run/">winget installed</a>.
+                <br />
                 <br />
                 <br />
             </td>
@@ -382,7 +405,7 @@
                             </p>
                             <br />
                             <span class="ascode">
-                                ln --backup --anchor c:\ --mirror e:\ y:\ 
+                                ln --backup --anchor c:\ --mirror e:\ y:\
                             </span>
                             <p>
                                 If this should be done via snapshots, see <a href="#vss_drivecopy.cmd">Copying a whole drive via snapshots</a>.
@@ -1385,15 +1408,15 @@
                                 </tr>
 
                                 <!-- One day we could give a message when just the compression status changes. The engine could do this
-                                <tr>
-                                    <td class="bodytext">
-                                        %
-                                    </td>
-                                    <td class="bodytext">
-                                        Item is already present in the target, but with different compression state. Used during Smart Mirror
-                                    </td>
-                                </tr>
-                                -->
+                            <tr>
+                                <td class="bodytext">
+                                    %
+                                </td>
+                                <td class="bodytext">
+                                    Item is already present in the target, but with different compression state. Used during Smart Mirror
+                                </td>
+                            </tr>
+                            -->
 
                                 <tr>
                                     <td class="bodytext">
@@ -2401,13 +2424,13 @@
                             </ul>
                             <p>
                                 The --destination option can only be used in combination with the <a href="#destinationusage">
-                                --source option<a />, or the <a href="#anchor"> --anchor option<a /><br />
+                                    --source option<a />, or the <a href="#anchor"> --anchor option<a /><br />
                             </p>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <br /><br/>
+                            <br /><br />
                         </td>
                     </tr>
 
@@ -4792,8 +4815,10 @@
         <!-- Useful .bat files -->
         <tr>
             <td class="hanger">
-                <a name="batfiles">Useful .bat and <br />
-                powershell scripts</a>
+                <a name="batfiles">
+                    Useful .bat and <br />
+                    powershell scripts
+                </a>
             </td>
             <td class="bodytext">
                 <p>
@@ -5290,7 +5315,7 @@
                             <br />
                             <br />
 
-                            So if you recover a disk, you 
+                            So if you recover a disk, you
                             <ul>
                                 <li>
                                     either mounted it to its original drive letter, because the junctions
@@ -5348,6 +5373,8 @@
                         <td align="left" class="bodytext">
                             <a name="2930">Version 2.9.3.4</a>
                             <ul>
+                                <!-- 2.9.3.5, 27.11.2022 -->
+                                <li>ln.exe now maintains its <a href="#winget">winget package</a>.</li>
                                 <!-- 2.9.3.4, 22.10.2022 -->
                                 <li>Docu update on <a href="#anchor">--anchor</a> and <a href="#destination">--destination</a></a></li>
                                 <!-- 2.9.3.4, 7.8.2021 -->
@@ -6116,72 +6143,91 @@
                         <br />
                         <br />
                     </td>
-</tr>
+        </tr>
 
-                    <tr>
-                        <td class="hanger2">
-                            <b>Chocolatey<br />Installation</b>
-                        </td>
+        <tr>
+            <td class="hanger2">
+                <b>Chocolatey<br />Installation</b>
+            </td>
 
-                        <td class="bodytext">
-                            ln.exe can also be installed via <a href="https://chocolatey.org">chocolatey</a> by issuing
-                            <br /><br />
-                            <span class="ascode">
-                                choco install ln
-                            </span>
-                            <br />
-                            <br />
-                            from a command prompt. Make sure you have <a href="https://chocolatey.org/install">chocolatey installed</a>.
-                            <br />
-                            <br />
-                        </td>
-                    </tr>
+            <td class="bodytext">
+                ln.exe can also be installed via <a href="https://chocolatey.org">chocolatey</a> by issuing
+                <br /><br />
+                <span class="ascode">
+                    choco install ln
+                </span>
+                <br />
+                <br />
+                from a command prompt. Make sure you have <a href="https://chocolatey.org/install">chocolatey installed</a>.
+                <br />
+                <br />
+            </td>
+        </tr>
 
-                    <tr>
-                        <td class="hanger2">
-                            <b>Static<br />Win64</b>
-                        </td>
-                        <td align="left" class="bodytext">
-                            Simply download and extract
-                            <a href="https://schinagl.priv.at/nt/ln/ln64static.zip">ln64static.zip (2.30Mb)</a>
-                            to your favourite tools directory. No need for runtime dlls, thus can run under WinPE
-                            <br />
-                            <br />
-                            <br />
-                        </td>
-                    </tr>
+        <tr>
+            <td class="hanger2">
+                <b>Winget<br />Installation</b>
+            </td>
 
-                    <tr>
-                        <td class="hanger2">
-                            <b>Static<br />Win32</b>
-                        </td>
-                        <td align="left" class="bodytext">
-                            Simply download and extract
-                            <a href="https://schinagl.priv.at/nt/ln/lnstatic.zip">lnstatic.zip (2.30Mb)</a>
-                            to your favourite tools directory. No need for runtime dlls, thus can run under WinPE
-                            <br />
-                            <br />
-                            <br />
-                        </td>
-                    </tr>
+            <td class="bodytext">
+                The 64bit version of ln.exe can also be installed via <a href="https://winget.run/">winget</a> by issuing
+                <br /><br />
+                <span class="ascode">
+                    winget install schinagl.ln
+                </span>
+                <br />
+                <br />
+                from a command prompt. Make sure you have <a href="https://winget.run/">winget installed</a>.
+                <br />
+                <br />
+            </td>
+        </tr>
 
-                    <tr>
-                        <td colspan="2">
-                            &nbsp
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                        </td>
-                    </tr>
+        <tr>
+            <td class="hanger2">
+                <b>Static<br />Win64</b>
+            </td>
+            <td align="left" class="bodytext">
+                Simply download and extract
+                <a href="https://schinagl.priv.at/nt/ln/ln64static.zip">ln64static.zip (2.30Mb)</a>
+                to your favourite tools directory. No need for runtime dlls, thus can run under WinPE
+                <br />
+                <br />
+                <br />
+            </td>
+        </tr>
 
-                </table>
+        <tr>
+            <td class="hanger2">
+                <b>Static<br />Win32</b>
+            </td>
+            <td align="left" class="bodytext">
+                Simply download and extract
+                <a href="https://schinagl.priv.at/nt/ln/lnstatic.zip">lnstatic.zip (2.30Mb)</a>
+                to your favourite tools directory. No need for runtime dlls, thus can run under WinPE
+                <br />
+                <br />
+                <br />
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                &nbsp
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                &nbsp
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </td>
+        </tr>
+
+    </table>
 
 
         <tr>

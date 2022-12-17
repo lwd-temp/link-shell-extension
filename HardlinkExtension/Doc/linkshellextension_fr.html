@@ -123,7 +123,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i>Dernière mise à jour du 16 Janvier 2021, Version 3.9.3.5</i>
+                    <i>Dernière mise à jour du 28 Novembre 2022, Version 3.9.3.6</i>
                 </div>
             </td>
         </tr>
@@ -332,6 +332,31 @@
                 <br />
                 en ligne de commande. Assurez-vous d'avoir <a href="https://chocolatey.org/install">installé chocolatey</a>.
                 L'utilisateur courant doit posséder des privilèges administrateur pour pouvoir installer le logiciel via choco.
+                <br />
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><br /></td>
+        </tr>
+
+        <!-- WinGet -->
+        <tr>
+            <td class="hanger">
+                <a name="winget"><b>Installation<br />via Winget</b></a>
+            </td>
+
+            <td class="bodytext">
+                LSE peut aussi être installé via <a href="https://winget.run/">winget</a> en entrant
+                <br /><br />
+                <span class="ascode">
+                    winget install HermannSchinagl.LinkShellExtension
+                </span>
+                <br />
+                <br />
+                en ligne de commande. Assurez-vous d'avoir auparavant <a href="https://winget.run/">installé winget</a>.
+                <br />
+                <br />
                 <br />
                 <br />
             </td>
@@ -2848,11 +2873,13 @@
 
                     <tr>
                         <td class="history">
-                            <a name="3930">16 Janvier 2021</a>
+                            <a name="3936">28 Novembre 2022</a>
                         </td>
                         <td>
-                            Version 3.9.3.5
+                            Version 3.9.3.6
                             <ul>
+                                <!-- 3.9.3.6, 28.11.2022 -->
+                                <li>ln.LSE maintient maintenant son propre <a href="#winget">package winget</a>.</li>
                                 <!-- 3.9.3.5, 16.01.2021 -->
                                 <li>Lorsque SE_CREATE_SYMBOLICLINK était assigné à un utilisateur, le dialogue UAC se déclenchait tout le temps après la seconde tentative.</li>
                                 <!-- 3.9.3.4, 10.01.2021 -->
@@ -4099,6 +4126,7 @@
                             <br />
                             <br />
                             <br />
+                            <br />
                         </td>
                     </tr>
 
@@ -4113,6 +4141,30 @@
                             <span class="ascode">
                                 choco install linkshellextension
                             </span>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+
+                    <!-- WinGet -->
+                    <tr>
+                        <td class="hanger2">
+                            <b>Installation via<br />Winget</b>
+                        </td>
+
+                        <td class="bodytext">
+                            LSE peut aussi être installé via <a href="https://winget.run/">winget</a> en entrant
+                            <br /><br />
+                            <span class="ascode">
+                                winget install HermannSchinagl.LinkShellExtension
+                            </span>
+                            <br />
+                            <br />
+                            en ligne de commande. Assurez-vous d'avoir auparavant <a href="https://winget.run/">installé winget</a>.
+                            <br />
+                            <br />
                             <br />
                             <br />
                         </td>

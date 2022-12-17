@@ -32,6 +32,17 @@
 @call %ROOT%\bat\FtpUpload.bat ln/save/%LN_VERSION% %ROOT%/media/lnstatic.zip
 @call %ROOT%\bat\FtpUpload.bat ln/save/%LN_VERSION% %ROOT%/media/ln64static.zip
 
+@REM Upload binaries & sha256 hash for winget
+@call :genhash %ROOT%\Bin\win32\Release\ln.exe
+@call %ROOT%\bat\FtpUpload.bat ln/save/%LN_VERSION%/32 %ROOT%/Bin/win32/Release/ln.exe
+@echo %SHA256% > %ROOT%\Bin\win32\Release\sha256.txt
+@call %ROOT%\bat\FtpUpload.bat ln/save/%LN_VERSION%/32 %ROOT%/Bin/win32/Release/sha256.txt
+
+@call :genhash %ROOT%\Bin\x64\Release\ln.exe
+@call %ROOT%\bat\FtpUpload.bat ln/save/%LN_VERSION%/64 %ROOT%/Bin/x64/Release/ln.exe
+@echo %SHA256% > %ROOT%\Bin\x64\Release\sha256.txt
+@call %ROOT%\bat\FtpUpload.bat ln/save/%LN_VERSION%/64 %ROOT%/Bin/x64/Release/sha256.txt
+
 @REM Push package to chocolatey
 @choco push %ROOT%\media\%PACKAGE_NAME% --source https://push.chocolatey.org/
 

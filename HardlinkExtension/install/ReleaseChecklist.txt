@@ -34,5 +34,6 @@ Copy new Pictures to $website
 Post to facebook
 Upload to Heise
 Backup Symbol Server and Media
+Set up PR in https://github.com/microsoft/winget-pkgs with updated .yaml
 
 Discard temporary changes in bat/FilesToUpload.txt and bat/MediaUpload.bat
