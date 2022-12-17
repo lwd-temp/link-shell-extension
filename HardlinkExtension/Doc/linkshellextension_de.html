@@ -171,8 +171,12 @@
 
                 Daher können Hardlinks mit Standard Windows Befehlen nur in der
                 Eingabeaufforderung erstellt werden, was aber sehr mühsam sein kann, besonders wenn Hardlinks zu mehreren Dateien nötig sind
-                oder wenn man nur selten von Hardlinks gebrauch macht.&nbsp;
-                Die Unterstützung für Junctions und Symbolische Links unter Windows ist noch begrenzter als die für Hardlinks.
+                oder wenn man nur selten von Hardlinks gebrauch macht.<br /><br />
+                Die Unterstützung für Junctions und Symbolische Links unter Windows ist noch begrenzter als die für Hardlinks.<br />
+                Neuerdings wurde <a href="https://github.com/microsoft/winfile">Winfile.exe auf github</a> von Microsoft veröffentlicht, und ich habe einige
+                Zeit damit verbracht <a href="https://schinagl.priv.at/nt/winfile/winfile.html">das Handling von Junctions und Symbolischen Links dort zu integrieren</a>.
+                Für einfaches und schnelles Erstellen von Hard/Symbolischen Links ist <a href="https://schinagl.priv.at/nt/winfile/winfile.html">Winfile</a> recht brauchbar.
+
 
                 <p>
                     Link Shell Extension (LSE) ermöglicht das Erstellen von
