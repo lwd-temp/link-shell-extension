@@ -237,8 +237,8 @@
                         <br /><br />
                     </i>
 
-                    Please choose 'Install Anyway'. LSE is signed with a Standard Code Signing Certificate, but not with an 
-                    <a href="https://blogs.msdn.microsoft.com/ie/2012/08/14/microsoft-smartscreen-extended-validation-ev-code-signing-certificates/">EV Code Signing certificate</a>, 
+                    Please choose 'Install Anyway'. LSE is signed with a Standard Code Signing Certificate, but not with an
+                    <a href="https://blogs.msdn.microsoft.com/ie/2012/08/14/microsoft-smartscreen-extended-validation-ev-code-signing-certificates/">EV Code Signing certificate</a>,
                     which would prevent Smartscreen from interferring.
                     <br /><br />
 
@@ -332,6 +332,31 @@
                 <br />
                 from a command prompt. Make sure you have <a href="https://chocolatey.org/install">chocolatey installed</a>.
                 The current user must have administrator privileges in order to install the software via choco
+                <br />
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><br /></td>
+        </tr>
+
+        <!-- WinGet -->
+        <tr>
+            <td class="hanger">
+                <a name="winget"><b>Winget<br />Installation</b></a>
+            </td>
+
+            <td class="bodytext">
+                LSE can also be installed via <a href="https://winget.run/">winget</a> by issuing
+                <br /><br />
+                <span class="ascode">
+                    winget install HermannSchinagl.LinkShellExtension
+                </span>
+                <br />
+                <br />
+                from a command prompt. Make sure you have <a href="https://winget.run/">winget installed</a>.
+                <br />
+                <br />
                 <br />
                 <br />
             </td>
@@ -447,8 +472,8 @@
             </td>
 
             <td class="bodytext">
-                Files can 
-				be hard linked to the same folder as the source folder. Because two directory entries cannot have the same name, LSE uses
+                Files can
+                be hard linked to the same folder as the source folder. Because two directory entries cannot have the same name, LSE uses
                 '$filename - Hardlink.$ext' as the name of the the new link.
                 <br />
                 <br />
@@ -737,8 +762,8 @@
                             <b>Inner Junctions<br />Symlinks</b>
                         </td>
                         <td>
-                            The folder 'Inner Junction/Symlink' is targeted at 'Inner Junction/Symlink Target'. 
-							In LSE terms this kind of folder is called <i>Inner Junction/Symlink</i>, because its target points to a folder, which is below
+                            The folder 'Inner Junction/Symlink' is targeted at 'Inner Junction/Symlink Target'.
+                            In LSE terms this kind of folder is called <i>Inner Junction/Symlink</i>, because its target points to a folder, which is below
                             the common anchor 'Folder 1'.
                             <br />
                             <br />
@@ -1352,7 +1377,7 @@
 
                 <p>
                     If a LocalizedResourceName is given via desktop.ini and the very folder is readonly, SmartMove will not work.
-                    This seems to be a bug in Shell Explorer ever since. ICopyHook::CopyCallback() is not called at all in this 
+                    This seems to be a bug in Shell Explorer ever since. ICopyHook::CopyCallback() is not called at all in this
                     situation.
                 </p>
 
@@ -1816,7 +1841,7 @@
             <td class="bodytext">
                 <p>
                     Volume Mountpoints provides functionality to
-                    map complete local volumes onto arbitrary disk locations. 
+                    map complete local volumes onto arbitrary disk locations.
                 </p>
 
                 <p>
@@ -1874,7 +1899,7 @@
             </td>
 
             <td class="bodytext">
-                As described in the <a href="#backgrounders">backgrounders section</a> 
+                As described in the <a href="#backgrounders">backgrounders section</a>
                 NTFS maintains a reference count for each data stream object how many NTFS directory entries refer to that objects.
 
 
@@ -2244,7 +2269,7 @@
                     With Windows Server 2012 Microsoft introduced the
                     <a href="https://blogs.msdn.com/b/b8/archive/2012/01/16/building-the-next-generation-file-system-for-windows-refs.aspx">ReFS</a>
                     filesystem, which is the designated successor to NTFS. But the first
-                    implementation of ReFS can do nice things, but lacks a few important features from NTFS like the Hardlink support. 
+                    implementation of ReFS can do nice things, but lacks a few important features from NTFS like the Hardlink support.
                     Hardlinks are avaialble with ReFs3.5
                     <br />
 
@@ -2695,7 +2720,7 @@
                         <p>
                             A: The number of different icon overlay handlers that the system can support is limited
                             by the amount of space available for icon overlays in the system image list.
-                            There are currently 11 slots allotted with Windows 10 for icon overlays, some of which 
+                            There are currently 11 slots allotted with Windows 10 for icon overlays, some of which
                             are reserved by the system.
                         </p>
                         <p>
@@ -2721,7 +2746,7 @@
                             and either restart the explorer or log-off and log-on again. The point here is to change the alphabetical order
                             by prepeding one blank. You might end up in a race to the top by adding more and mor blanks, since other
                             OverlayHandlers such as <a href="https://stackoverflow.com/questions/41697737/shelliconoverlayidentifiers-and-windows10">
-                            DropBox' have already added a few blanks.</a>
+                                DropBox' have already added a few blanks.</a>
                         </p>
                     </li>
 
@@ -2853,6 +2878,8 @@
                         <td>
                             Version 3.9.3.5
                             <ul>
+                                <!-- 3.9.3.6, 28.11.2022 -->
+                                <li>ln.LSE now maintains its <a href="#winget">winget package</a>.</li>
                                 <!-- 3.9.3.5, 16.01.2021 -->
                                 <li>With SE_CREATE_SYMBOLICLINK assigned to a user, UAC dialog was raised anytime after second attempt.</li>
                                 <!-- 3.9.3.4, 10.01.2021 -->
@@ -4099,6 +4126,7 @@
                             <br />
                             <br />
                             <br />
+                            <br />
                         </td>
                     </tr>
 
@@ -4113,6 +4141,30 @@
                             <span class="ascode">
                                 choco install linkshellextension
                             </span>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+
+                    <!-- WinGet -->
+                    <tr>
+                        <td class="hanger2">
+                            <b>Winget<br />Installation</b>
+                        </td>
+
+                        <td class="bodytext">
+                            LSE can also be installed via <a href="https://winget.run/">winget</a> by issuing
+                            <br /><br />
+                            <span class="ascode">
+                                winget install HermannSchinagl.LinkShellExtension
+                            </span>
+                            <br />
+                            <br />
+                            from a command prompt. Make sure you have <a href="https://winget.run/">winget installed</a>.
+                            <br />
+                            <br />
                             <br />
                             <br />
                         </td>

@@ -152,7 +152,7 @@ TimeStamp(
       FILE_SHARE_READ,
       NULL, 
       OPEN_EXISTING,
-      FILE_FLAG_BACKUP_SEMANTICS | FILE_ATTRIBUTE_NORMAL,
+      FILE_FLAG_BACKUP_SEMANTICS | (gReparse ? FILE_FLAG_OPEN_REPARSE_POINT : 0) | FILE_ATTRIBUTE_NORMAL,
       NULL);
 
     if (INVALID_HANDLE_VALUE != h ) 
@@ -1155,7 +1155,7 @@ main(int argc,
       }
       break;
 
-      // --recursive
+      // --reparse
       case 'L':
       {
         gReparse = true;

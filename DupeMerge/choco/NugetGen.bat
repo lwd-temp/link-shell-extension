@@ -33,6 +33,17 @@
 @call %ROOT%\bat\FtpUpload.bat dupemerge/save/%UPLOAD_DIR% %ROOT%/media/dupemerge.zip
 @call %ROOT%\bat\FtpUpload.bat dupemerge/save/%UPLOAD_DIR% %ROOT%/media/dupemerge64.zip
 
+@REM Upload binaries for winget
+@call :genhash %ROOT%\Bin\win32\Release\dupemerge.exe
+@call %ROOT%\bat\FtpUpload.bat dupemerge/save/%UPLOAD_DIR%/32 %ROOT%/Bin/win32/Release/dupemerge.exe
+@echo %SHA256% > %ROOT%\Bin\win32\Release\sha256.txt
+@call %ROOT%\bat\FtpUpload.bat dupemerge/save/%UPLOAD_DIR%/32 %ROOT%/Bin/win32/Release/sha256.txt
+
+@call :genhash %ROOT%\Bin\x64\Release\dupemerge.exe
+@call %ROOT%\bat\FtpUpload.bat dupemerge/save/%UPLOAD_DIR%/64 %ROOT%/Bin/x64/Release/dupemerge.exe
+@echo %SHA256% > %ROOT%\Bin\x64\Release\sha256.txt
+@call %ROOT%\bat\FtpUpload.bat dupemerge/save/%UPLOAD_DIR%/64 %ROOT%/Bin/x64/Release/sha256.txt
+
 
 @REM Push package to chocolatey
 @choco push %ROOT%\media\dupemerge.%DUPEMERGE_VERSION%.nupkg --source https://push.chocolatey.org/

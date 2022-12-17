@@ -25,8 +25,8 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_AUSTRIAN
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,3,8,0
- PRODUCTVERSION 1,3,8,0
+ FILEVERSION 1,3,9,0
+ PRODUCTVERSION 1,3,9,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -42,11 +42,11 @@ BEGIN
         BLOCK "0c0704b0"
         BEGIN
             VALUE "FileDescription", "timestamp"
-            VALUE "FileVersion", "1.3.8.0"
+            VALUE "FileVersion", "1.3.9.0"
             VALUE "InternalName", "timestamp"
-            VALUE "LegalCopyright", "Copyright © 1999-2022 Hermann Schinagl"
+            VALUE "LegalCopyright", "Copyright © 1999-2023 Hermann Schinagl"
             VALUE "OriginalFilename", "timestamp.exe"
-            VALUE "ProductVersion", "1.3.8.0"
+            VALUE "ProductVersion", "1.3.9.0"
         END
     END
     BLOCK "VarFileInfo"
