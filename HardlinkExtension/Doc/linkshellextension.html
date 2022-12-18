@@ -123,7 +123,7 @@
         <tr>
             <td colspan="2" height="22">
                 <div align="right">
-                    <i>Last Updated January 16 2021, Version 3.9.3.5</i>
+                    <i>Last Updated December 18 2022, Version 3.9.3.5</i>
                 </div>
             </td>
         </tr>
@@ -162,18 +162,21 @@
             </td>
 
             <td class="bodytext">
-                The NTFS file system supports a facility known as <b>hard links</b>
-                (referred to herein as <b>Hardlinks</b>). Hardlinks provide the ability to keep a single copy of a file yet have it
-                appear in multiple folders (directories).&nbsp;
+                The NTFS file system supports a facility known as <b>hard links</b> (referred to herein as <b>Hardlinks</b>). 
+                Hardlinks provide the ability to keep a single copy of a file yet have it appear in multiple folders (directories).&nbsp;
 
                 They can be created with the POSIX command <b><i>ln</i></b> included <i>in</i> the Windows
                 Resource Kit, the <i>fsutil</i> command utility included in Windows or my command line
-                <a href="https://schinagl.priv.at/nt/ln/ln.html">ln.exe</a> utility&nbsp;
+                <a href="https://schinagl.priv.at/nt/ln/ln.html">ln.exe</a> utility.&nbsp;
 
                 Thus, using standard Windows facilities Hardlinks can only be created at
                 the command prompt, which can be tedious, especially when Hardlinks to multiple files are required or when
-                one only makes occasional use of Hardlinks.&nbsp;
-                Support for Junctions in standard Microsoft software offerings is even more limited than that offered for hardlinks.
+                one only makes occasional use of Hardlinks.<br /><br />
+                Support for Junctions in standard Microsoft software offerings is even more limited than that offered for hardlinks.<br />
+                Recently <a href="https://github.com/microsoft/winfile">Winfile.exe was github-reborn</a> by Microsoft, and I spent quite some
+                time <a href="https://schinagl.priv.at/nt/winfile/winfile.html">to make it hardlink and symbolic link aware</a>. For easy tasks
+                you might try <a href="https://schinagl.priv.at/nt/winfile/winfile.html">Winfile</a>
+
 
                 <p>
                     Link Shell Extension (LSE) provides for the creation of
@@ -228,7 +231,7 @@
                     C:\Program Files\LinkShellExtension<br />
                 <p>
                     <b><a name="smartscreen">Smartscreen pop-up</a></b><br />
-                    With Windows 10 the SmartScreen facility of Windows Defender might pop up and warns you:
+                    With Windows 10 the SmartScreen facility of Windows Defender might pop up and warn you:
 
                     <i>
                         <br /><br />
