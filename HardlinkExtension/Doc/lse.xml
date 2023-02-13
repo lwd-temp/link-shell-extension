@@ -7,6 +7,21 @@
     <language>en</language>
 
     <item>
+      <title>DupeMerge.exe 1.104 has been released.</title>
+      <link>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1100</link>
+      <pubDate>Sun, 13 February 2023 20:10:15 +0100</pubDate>
+      <description>
+        DupeMerge.exe 1.104 has been released.
+      </description>
+      <content:encoded>
+        <![CDATA[
+		 <li>Added the <a href="https://schinagl.priv.at/nt/dupemerge/dupemerge.html#supportfs">--suportfs option</a></li>
+        ]]>
+      </content:encoded>
+      <guid>https://schinagl.priv.at/nt/dupemerge/dupemerge.html#1104</guid>
+    </item>
+
+    <item>
       <title>ln.exe 2.934 has been released.</title>
       <link>https://schinagl.priv.at/nt/ln/ln.html#2930</link>
       <pubDate>Sun, 26 November 2022 18:00:50:15 +0100</pubDate>

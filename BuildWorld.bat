@@ -20,7 +20,7 @@ REM
 set MAJOR_DUPEMERGE_VERSION=1
 set MINOR_DUPEMERGE_VERSION=1
 set PATCH_DUPEMERGE_VERSION=0
-set HOTFIX_DUPEMERGE_VERSION=3
+set HOTFIX_DUPEMERGE_VERSION=4
 
 @echo generating Version info
 REM Generate version info for Shell Extension
