@@ -3,7 +3,7 @@
   <metadata>
     <id>dupemerge</id>
     <title>Dupemerge</title>
-    <version>1.103</version>
+    <version>1.104</version>
     <authors>Hermann Schinagl</authors>
     <owners>Hermann Schinagl</owners>
     <summary>Command line file integrity and file deduplication utility</summary>
@@ -42,7 +42,7 @@
     <packageSourceUrl>https://gitlab.com/schinagl/link-shell-extension/tree/master/DupeMerge/choco</packageSourceUrl>
     <projectUrl>https://schinagl.priv.at/nt/dupemerge/dupemerge.html</projectUrl>
     <tags>cli ntfs data-integrity checksum dedupe freeware</tags>
-    <copyright>© 1999 - 2023 Hermann Schinagl</copyright>
+    <copyright>© 1999 - 2020 Hermann Schinagl</copyright>
     <licenseUrl>https://schinagl.priv.at/nt/dupemerge/license.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://schinagl.priv.at/nt/hardlinkshellext/hardlinkicon_10.png</iconUrl>
