@@ -16,6 +16,7 @@ set BINDIR=%HARDLINKHOME%\Bin\win32\Release
 set ARCHIVE=dupemerge%VERSION%.zip
 call :ZipBinary %MEDIA%\%ARCHIVE% %BINDIR%
 call :ZipAllFiles %MEDIA%\%ARCHIVE%
+copy %MEDIA%\%ARCHIVE% %MEDIA%\dupemerge.zip
 
 REM x64
 REM
@@ -23,6 +24,7 @@ set BINDIR=%HARDLINKHOME%\Bin\x64\Release
 set ARCHIVE=dupemerge64%VERSION%.zip
 call :ZipBinary %MEDIA%\%ARCHIVE% %BINDIR%
 call :ZipAllFiles %MEDIA%\%ARCHIVE%
+copy %MEDIA%\%ARCHIVE% %MEDIA%\dupemerge64.zip
 
 :ausmausraus
 
